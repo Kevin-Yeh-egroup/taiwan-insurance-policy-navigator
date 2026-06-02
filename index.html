@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex,nofollow,noarchive">
+    <title>保單資訊導航台</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <header class="app-header">
+      <div class="header-main">
+        <p class="eyebrow">Taiwan Policy Navigator</p>
+        <h1>保單資訊導航台</h1>
+        <p class="lede">保單來源與理賠重點，可查、可追溯。</p>
+      </div>
+      <div class="review-box">
+        <span class="status-dot"></span>
+        <div>
+          <strong>Review build</strong>
+          <span>公開部署前需完成資料與風險核准</span>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="toolbar" aria-label="搜尋與篩選">
+        <label class="search-box">
+          <span>搜尋</span>
+          <input id="searchInput" type="search" placeholder="公司、網域、商品頁、PDF URL">
+        </label>
+        <label>
+          <span>公司</span>
+          <select id="companyFilter"></select>
+        </label>
+        <label>
+          <span>來源類型</span>
+          <select id="kindFilter"></select>
+        </label>
+        <label>
+          <span>抓取狀態</span>
+          <select id="crawlFilter">
+            <option value="all">全部</option>
+            <option value="ok">已驗證可取</option>
+            <option value="blocked">robots 擋下</option>
+            <option value="error">錯誤/待複核</option>
+            <option value="unchecked">尚未批次檢查</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="metrics" aria-label="資料摘要">
+        <article>
+          <span id="metricSources">--</span>
+          <p>來源文件</p>
+        </article>
+        <article>
+          <span id="metricUrls">--</span>
+          <p>唯一 URL</p>
+        </article>
+        <article>
+          <span id="metricCandidates">--</span>
+          <p>公開候選</p>
+        </article>
+        <article>
+          <span id="metricCrawlOk">--</span>
+          <p>小批次可取</p>
+        </article>
+      </section>
+
+      <section class="split">
+        <div>
+          <div class="section-heading">
+            <p class="eyebrow">Reader-first IA</p>
+            <h2>民眾查保單最在乎的七件事</h2>
+          </div>
+          <div id="taxonomyList" class="taxonomy-list"></div>
+        </div>
+        <div>
+          <div class="section-heading">
+            <p class="eyebrow">Source health</p>
+            <h2>來源網域分布</h2>
+          </div>
+          <div id="domainChart" class="domain-chart"></div>
+        </div>
+      </section>
+
+      <section class="source-section">
+        <div class="section-heading with-count">
+          <div>
+            <p class="eyebrow">Source explorer</p>
+            <h2>保單來源清冊</h2>
+          </div>
+          <span id="resultCount" class="result-count">--</span>
+        </div>
+        <div id="sourceList" class="source-list"></div>
+      </section>
+
+      <section class="roadmap">
+        <div class="section-heading">
+          <p class="eyebrow">Batch plan</p>
+          <h2>分批完成路線</h2>
+        </div>
+        <ol>
+          <li><strong>Phase 1</strong><span>來源清冊、公開安全過濾、少量 crawl probe、前台搜尋。</span></li>
+          <li><strong>Phase 2</strong><span>依網域分批抓取，保留 hash、版本日期、錯誤與 stale 標記。</span></li>
+          <li><strong>Phase 3</strong><span>抽取理賠、定義、等待期、除外責任、保費與續保欄位，每欄附來源。</span></li>
+          <li><strong>Phase 4</strong><span>人工抽查、風險審核、Kevin 核准後接 GitHub 與 Vercel Production。</span></li>
+        </ol>
+      </section>
+
+      <section class="notice">
+        <strong>重要聲明</strong>
+        <p>本站是公開資訊整理與導覽工具，不是保險建議、法律意見、理賠承諾或承保判斷。所有摘要需回到保險公司、主管機關或官方條款確認。</p>
+      </section>
+    </main>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>

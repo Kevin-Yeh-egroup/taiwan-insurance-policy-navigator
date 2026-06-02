@@ -1,0 +1,20 @@
+.env
+.env.*
+.vercel/
+node_modules/
+.next/
+dist/
+build/
+.cache/
+tmp/
+work/
+
+# Local extraction keeps full text from user-provided files; do not publish.
+work/source-extraction/source-manifest.json
+work/crawl-cache/
+outputs/
+
+# OS/editor noise
+Thumbs.db
+.DS_Store
+*.swp
