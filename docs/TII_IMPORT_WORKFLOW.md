@@ -54,3 +54,28 @@ python scripts\import_tii_results.py --input-dir work\tii-results --output data\
 ## 重要限制
 
 查詢結果只是公開資訊導覽，不是保險建議、法律意見、理賠承諾或承保判斷。停售與給付內容仍需回官方條款、保險公司或保發中心查詢結果確認。
+
+## 分段處理策略
+
+保單數量很大時，不要一次查完。先產生批次計畫：
+
+```powershell
+python scripts\plan_segmented_batches.py --policy-batch-size 80
+```
+
+輸出檔案：
+
+```text
+data\batch-plan.json
+```
+
+目前批次規劃會分成兩種：
+
+- `policy_url_content_batch`：既有保單 URL 的自動批次，每批約 80 筆。
+- `tii_manual_captcha_batch`：保發中心查詢的人工驗證碼批次，依公司與保險類別拆分。
+
+建議節奏：
+
+- 每天 1 批自動 URL/content batch。
+- 每天 1 到 3 批 TII 人工驗證碼查詢。
+- 優先順序：已停售、不確定、高量公司、健康險/壽險/傷害險/年金險，最後再補其他公司與其他類型。

@@ -11,6 +11,7 @@ const state = {
   crawlStatus: null,
   policyInsights: null,
   tiiMetadata: null,
+  batchPlan: null,
   crawlByUrlId: new Map(),
   openSourceId: null,
   search: DEFAULT_FILTERS.search,
@@ -104,18 +105,20 @@ function setText(id, value) {
 }
 
 async function loadData() {
-  const [sourceIndex, taxonomy, crawlStatus, policyInsights, tiiMetadata] = await Promise.all([
+  const [sourceIndex, taxonomy, crawlStatus, policyInsights, tiiMetadata, batchPlan] = await Promise.all([
     fetch("./data/source-index.json").then((response) => response.json()),
     fetch("./data/consumer-taxonomy.json").then((response) => response.json()),
     fetch("./data/crawl-status.json").then((response) => response.json()),
     fetch("./data/policy-insights.json").then((response) => response.json()),
     fetch("./data/tii-query-metadata.json").then((response) => response.json()),
+    fetch("./data/batch-plan.json").then((response) => response.json()),
   ]);
   state.sourceIndex = sourceIndex;
   state.taxonomy = taxonomy;
   state.crawlStatus = crawlStatus;
   state.policyInsights = policyInsights;
   state.tiiMetadata = tiiMetadata;
+  state.batchPlan = batchPlan;
   state.crawlByUrlId = new Map(crawlStatus.results.map((item) => [item.url_id, item]));
 }
 
@@ -302,6 +305,67 @@ function renderPolicyInsights() {
     <p>官方查詢支援公司、保險類別、銷售日、停售日與關鍵字。因有圖形驗證碼，本專案只做人工完成驗證後的結果匯入，不自動破解。</p>
     <a href="${escapeHtml(metadata.source_url)}" target="_blank" rel="noreferrer">開啟保發中心查詢</a>
   `;
+  renderBatchPlan();
+}
+
+function renderBatchPlan() {
+  const plan = state.batchPlan;
+  const summary = plan.summary;
+  const totalPlanned = summary.policy_url_batch_count + summary.tii_priority_batch_count;
+  setText("batchPlanCount", `${formatNumber.format(totalPlanned)} 優先批`);
+  document.getElementById("batchSummary").innerHTML = `
+    <article>
+      <strong>${formatNumber.format(summary.policy_url_batch_count)}</strong>
+      <span>保單 URL 自動批次</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(summary.tii_priority_batch_count)}</strong>
+      <span>TII 優先人工批次</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(summary.tii_full_estimated_batch_count)}</strong>
+      <span>TII 全量估算批次</span>
+    </article>
+  `;
+
+  const nextPolicyBatches = plan.policy_url_batches.slice(0, 2);
+  const nextTiiBatches = plan.tii_priority_batches.slice(0, 3);
+  const rows = [
+    ...nextPolicyBatches.map((batch) => ({
+      id: batch.id,
+      kind: "保單 URL",
+      title: batch.sample_products.join("、"),
+      meta: `${formatNumber.format(batch.item_count)} 筆｜${Object.entries(batch.status_mix)
+        .map(([label, count]) => `${label} ${count}`)
+        .join("、")}`,
+      priority: batch.priority === "high" ? "優先" : "一般",
+    })),
+    ...nextTiiBatches.map((batch) => ({
+      id: batch.id,
+      kind: "TII 人工",
+      title: `${batch.company_label} / ${batch.category_label}`,
+      meta: "人工輸入驗證碼後保存結果，再匯入整理",
+      priority: "優先",
+    })),
+  ];
+
+  document.getElementById("nextBatches").innerHTML = rows
+    .map(
+      (batch) => `
+        <article class="batch-item">
+          <div>
+            <div class="source-heading">
+              <strong>${escapeHtml(batch.id)}</strong>
+              <span class="badge">${escapeHtml(batch.kind)}</span>
+              <span class="badge ${batch.priority === "優先" ? "error" : "muted"}">${escapeHtml(batch.priority)}</span>
+            </div>
+            <h3>${escapeHtml(batch.title)}</h3>
+            <p>${escapeHtml(batch.meta)}</p>
+          </div>
+        </article>
+      `,
+    )
+    .join("");
 }
 
 function passesCrawlFilter(item) {

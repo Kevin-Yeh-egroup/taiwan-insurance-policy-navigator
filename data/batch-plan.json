@@ -1,0 +1,2304 @@
+{
+  "generated_at": "2026-06-03T18:08:24+08:00",
+  "strategy": {
+    "policy_url_batch_size": 80,
+    "default_daily_target": "1-3 TII manual batches plus 1 automated URL/content batch",
+    "priority_order": [
+      "已停售",
+      "不確定",
+      "高量公司",
+      "健康險/壽險/傷害險/年金險",
+      "其他公司與其他類型"
+    ],
+    "captcha_boundary": "TII batches require human captcha completion; do not bypass captcha."
+  },
+  "summary": {
+    "policy_url_total": 1343,
+    "policy_url_batch_count": 17,
+    "tii_priority_batch_count": 78,
+    "tii_full_estimated_batch_count": 610,
+    "tii_priority_company_count": 13
+  },
+  "policy_url_batches": [
+    {
+      "id": "policy-url-001",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "high",
+      "status_mix": {
+        "已停售": 8,
+        "不確定": 72
+      },
+      "companies": [
+        "南山人壽保險股份有限公司",
+        "南山人壽",
+        "南山產物",
+        "凱基人壽"
+      ],
+      "product_types": [
+        "健康險",
+        "醫療險 (重大疾病)",
+        "醫療險 (住院日額)",
+        "醫療險 (手術醫療)",
+        "其他"
+      ],
+      "first_policy_id": "policy_001666",
+      "last_policy_id": "policy_001431",
+      "sample_products": [
+        "一年定期住院醫療日額健康保險附約（Ａ）",
+        "享安心失能照護健康保險附約（Ａ）",
+        "一年定期癌症醫療健康保險附約（Ａ）"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-002",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "high",
+      "status_mix": {
+        "不確定": 72,
+        "仍可投保": 8
+      },
+      "companies": [
+        "國泰人壽",
+        "南山產物",
+        "國泰產險",
+        "三商美邦人壽",
+        "華南產物保險股份有限公司"
+      ],
+      "product_types": [
+        "壽險",
+        "終身保險",
+        "產險-個人保險-汽車保險",
+        "產險-個人保險-機車保險",
+        "定期壽險"
+      ],
+      "first_policy_id": "policy_001421",
+      "last_policy_id": "policy_001100",
+      "sample_products": [
+        "南山產物強制汽車責任保險",
+        "南山產物機車責任綜合保險",
+        "南山產物機車責任綜合保險(電動車專用)"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-003",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 80
+      },
+      "companies": [
+        "保誠人壽",
+        "三商美邦人壽"
+      ],
+      "product_types": [
+        "壽險",
+        "其他",
+        "年金險"
+      ],
+      "first_policy_id": "policy_001101",
+      "last_policy_id": "policy_001550",
+      "sample_products": [
+        "金世紀優利外幣變額萬能終身壽險",
+        "金世紀多利外幣變額萬能壽險",
+        "金世紀富利外幣變額萬能壽險"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-004",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 80
+      },
+      "companies": [
+        "凱基人壽",
+        "保誠人壽"
+      ],
+      "product_types": [
+        "健康險",
+        "壽險",
+        "年金險",
+        "其他",
+        "定期壽險"
+      ],
+      "first_policy_id": "policy_001551",
+      "last_policy_id": "policy_001591",
+      "sample_products": [
+        "三五致富外幣變額壽險",
+        "誠億滿滿外幣變額壽險",
+        "誠利十足變額壽險"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-005",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 80
+      },
+      "companies": [
+        "凱基人壽",
+        "南山人壽"
+      ],
+      "product_types": [
+        "壽險",
+        "健康險",
+        "年金險",
+        "定期給付型"
+      ],
+      "first_policy_id": "policy_001592",
+      "last_policy_id": "policy_000474",
+      "sample_products": [
+        "美利加倍美元利率變動型終身壽險－定期給付型 保單條款",
+        "美利盛世美元利率變動型終身壽險－定期給付型 保單條款",
+        "鑫樂退美元利率變動型終身壽險－定期給付型 保單條款"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-006",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 80
+      },
+      "companies": [
+        "南山人壽"
+      ],
+      "product_types": [
+        "其他",
+        "傷害險",
+        "傷害醫療險",
+        "健康險"
+      ],
+      "first_policy_id": "policy_000476",
+      "last_policy_id": "policy_000428",
+      "sample_products": [
+        "團體健康保險門診手術醫療保險附加條款",
+        "團體健康保險門診手術醫療保險附加條款-甲型",
+        "團體一年定期癌症醫療保險門診醫療保險金附加條款"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-007",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 80
+      },
+      "companies": [
+        "南山人壽"
+      ],
+      "product_types": [
+        "其他",
+        "壽險",
+        "壽 險"
+      ],
+      "first_policy_id": "policy_000429",
+      "last_policy_id": "policy_000379",
+      "sample_products": [
+        "新醫療給付團體健康保險-甲型",
+        "自負額醫療給付團體健康保險-甲型",
+        "醫療給付總限額團體健康保險-甲型"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-008",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 80
+      },
+      "companies": [
+        "南山人壽",
+        "台灣人壽"
+      ],
+      "product_types": [
+        "健康險",
+        "壽險",
+        "年金險",
+        "旅平險",
+        "長照險"
+      ],
+      "first_policy_id": "policy_000426",
+      "last_policy_id": "policy_000098",
+      "sample_products": [
+        "團體微型定期壽險",
+        "鑫富臻保變額壽險",
+        "鑫富雙享變額壽險"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-009",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 80
+      },
+      "companies": [
+        "台灣人壽"
+      ],
+      "product_types": [
+        "其他",
+        "傷害險",
+        "健康險",
+        "傷害醫療險",
+        "傷害失能險"
+      ],
+      "first_policy_id": "policy_000099",
+      "last_policy_id": "policy_000241",
+      "sample_products": [
+        "金卡安心一年定期重大傷病健康保險附約",
+        "保富通一年定期重大疾病健康保險(甲型)",
+        "新保富通二十年定期重大疾病健康保險(甲型)"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-010",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 80
+      },
+      "companies": [
+        "台灣人壽"
+      ],
+      "product_types": [
+        "其他",
+        "壽險"
+      ],
+      "first_policy_id": "policy_000242",
+      "last_policy_id": "policy_000028",
+      "sample_products": [
+        "全權委託管理帳戶投資標的批註條款(106)",
+        "貨幣型基金投資標的批註條款",
+        "共同基金投資標的批註條款"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-011",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 80
+      },
+      "companies": [
+        "台灣人壽"
+      ],
+      "product_types": [
+        "壽險",
+        "年金險"
+      ],
+      "first_policy_id": "policy_000029",
+      "last_policy_id": "policy_000185",
+      "sample_products": [
+        "超享利利率變動型還本終身保險",
+        "金得利利率變動型增額終身壽險",
+        "金福利利率變動型終身壽險"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-012",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 80
+      },
+      "companies": [
+        "宏泰人壽",
+        "台灣人壽"
+      ],
+      "product_types": [
+        "其他",
+        "意外傷害",
+        "健康險",
+        "傷害險",
+        "未分類"
+      ],
+      "first_policy_id": "policy_000186",
+      "last_policy_id": "policy_001311",
+      "sample_products": [
+        "年年好鑫 2 外幣變額年金保險",
+        "長安傷害保險附約",
+        "龍平安傷害保險附約"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-013",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 80
+      },
+      "companies": [
+        "富邦人壽",
+        "宏泰人壽",
+        "新光人壽"
+      ],
+      "product_types": [
+        "其他",
+        "壽險",
+        "健康險",
+        "傷害險",
+        "失能險"
+      ],
+      "first_policy_id": "policy_001234",
+      "last_policy_id": "policy_000704",
+      "sample_products": [
+        "多多福利率變動型終身壽險",
+        "美添富美元利率變動型終身壽險",
+        "泰貼鑫利率變動型終身壽險"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-014",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 80
+      },
+      "companies": [
+        "新光人壽"
+      ],
+      "product_types": [
+        "其他",
+        "傷害險"
+      ],
+      "first_policy_id": "policy_000705",
+      "last_policy_id": "policy_000676",
+      "sample_products": [
+        "術術順心傷害保險保險單條款",
+        "集體投保型微型傷害保險保險單條款",
+        "傷害住院日額保險附約條款"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-015",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 80
+      },
+      "companies": [
+        "新光人壽"
+      ],
+      "product_types": [
+        "其他",
+        "壽險",
+        "其他）"
+      ],
+      "first_policy_id": "policy_000677",
+      "last_policy_id": "policy_000598",
+      "sample_products": [
+        "新依靠 A 型長期照顧終身保險保險單條款",
+        "新依靠 B 型長期照顧終身健康保險保險單條款",
+        "新呵護安心住院醫療健康保險附約保險單條款"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-016",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 80,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 80
+      },
+      "companies": [
+        "新光人壽",
+        "臺銀人壽"
+      ],
+      "product_types": [
+        "壽險",
+        "年金險",
+        "健康險",
+        "傷害險",
+        "豐利贏家變額年金保險保險單條款"
+      ],
+      "first_policy_id": "policy_000599",
+      "last_policy_id": "policy_001739",
+      "sample_products": [
+        "美鑽盈家外幣利率變動型終身壽險（定期給付型） 保險單條款",
+        "美鑽傳世外幣利率變動型終身壽險（定期給付型） 保險單條款",
+        "美鑽傳家外幣利率變動型終身壽險（定期給付型） 保險單條款"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    },
+    {
+      "id": "policy-url-017",
+      "kind": "policy_url_content_batch",
+      "status": "planned",
+      "item_count": 63,
+      "priority": "normal",
+      "status_mix": {
+        "仍可投保": 63
+      },
+      "companies": [
+        "臺銀人壽",
+        "郵政簡易人壽",
+        "遠雄人壽"
+      ],
+      "product_types": [
+        "其他",
+        "壽險",
+        "年金險",
+        "傷害失能保險",
+        "傷害險"
+      ],
+      "first_policy_id": "policy_001740",
+      "last_policy_id": "policy_001327",
+      "sample_products": [
+        "主契約遭強制執行終止附約延續批註條款",
+        "生命末期提前給付附加條款",
+        "新安心保工商團體一年期綜合保險計畫"
+      ],
+      "recommended_command": "python scripts\\crawl_batch.py --limit 80 --max-per-domain 8 # source availability probe; deep content extraction should use this batch id"
+    }
+  ],
+  "tii_priority_batches": [
+    {
+      "id": "tii-001",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "202",
+      "company_label": "202-台灣人壽保險股份有限公司",
+      "category_value": "3_1",
+      "category_label": "傷害保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "202",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-002",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "202",
+      "company_label": "202-台灣人壽保險股份有限公司",
+      "category_value": "3_2",
+      "category_label": "健康保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "202",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-003",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "202",
+      "company_label": "202-台灣人壽保險股份有限公司",
+      "category_value": "2_3",
+      "category_label": "傳統型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "202",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-004",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "202",
+      "company_label": "202-台灣人壽保險股份有限公司",
+      "category_value": "2_4",
+      "category_label": "傳統型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "202",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-005",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "202",
+      "company_label": "202-台灣人壽保險股份有限公司",
+      "category_value": "2_5",
+      "category_label": "投資型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "202",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-006",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "202",
+      "company_label": "202-台灣人壽保險股份有限公司",
+      "category_value": "2_6",
+      "category_label": "投資型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "202",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-007",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "206",
+      "company_label": "206-南山人壽保險股份有限公司",
+      "category_value": "3_1",
+      "category_label": "傷害保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "206",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-008",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "206",
+      "company_label": "206-南山人壽保險股份有限公司",
+      "category_value": "3_2",
+      "category_label": "健康保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "206",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-009",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "206",
+      "company_label": "206-南山人壽保險股份有限公司",
+      "category_value": "2_3",
+      "category_label": "傳統型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "206",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-010",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "206",
+      "company_label": "206-南山人壽保險股份有限公司",
+      "category_value": "2_4",
+      "category_label": "傳統型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "206",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-011",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "206",
+      "company_label": "206-南山人壽保險股份有限公司",
+      "category_value": "2_5",
+      "category_label": "投資型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "206",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-012",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "206",
+      "company_label": "206-南山人壽保險股份有限公司",
+      "category_value": "2_6",
+      "category_label": "投資型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "206",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-013",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "208",
+      "company_label": "208-新光人壽保險股份有限公司(115年起與台新合併)",
+      "category_value": "3_1",
+      "category_label": "傷害保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "208",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-014",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "208",
+      "company_label": "208-新光人壽保險股份有限公司(115年起與台新合併)",
+      "category_value": "3_2",
+      "category_label": "健康保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "208",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-015",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "208",
+      "company_label": "208-新光人壽保險股份有限公司(115年起與台新合併)",
+      "category_value": "2_3",
+      "category_label": "傳統型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "208",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-016",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "208",
+      "company_label": "208-新光人壽保險股份有限公司(115年起與台新合併)",
+      "category_value": "2_4",
+      "category_label": "傳統型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "208",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-017",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "208",
+      "company_label": "208-新光人壽保險股份有限公司(115年起與台新合併)",
+      "category_value": "2_5",
+      "category_label": "投資型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "208",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-018",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "208",
+      "company_label": "208-新光人壽保險股份有限公司(115年起與台新合併)",
+      "category_value": "2_6",
+      "category_label": "投資型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "208",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-019",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "209",
+      "company_label": "209-富邦人壽保險股份有限公司",
+      "category_value": "3_1",
+      "category_label": "傷害保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "209",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-020",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "209",
+      "company_label": "209-富邦人壽保險股份有限公司",
+      "category_value": "3_2",
+      "category_label": "健康保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "209",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-021",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "209",
+      "company_label": "209-富邦人壽保險股份有限公司",
+      "category_value": "2_3",
+      "category_label": "傳統型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "209",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-022",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "209",
+      "company_label": "209-富邦人壽保險股份有限公司",
+      "category_value": "2_4",
+      "category_label": "傳統型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "209",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-023",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "209",
+      "company_label": "209-富邦人壽保險股份有限公司",
+      "category_value": "2_5",
+      "category_label": "投資型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "209",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-024",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "209",
+      "company_label": "209-富邦人壽保險股份有限公司",
+      "category_value": "2_6",
+      "category_label": "投資型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "209",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-025",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "211",
+      "company_label": "211-三商美邦人壽保險股份有限公司",
+      "category_value": "3_1",
+      "category_label": "傷害保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "211",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-026",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "211",
+      "company_label": "211-三商美邦人壽保險股份有限公司",
+      "category_value": "3_2",
+      "category_label": "健康保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "211",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-027",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "211",
+      "company_label": "211-三商美邦人壽保險股份有限公司",
+      "category_value": "2_3",
+      "category_label": "傳統型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "211",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-028",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "211",
+      "company_label": "211-三商美邦人壽保險股份有限公司",
+      "category_value": "2_4",
+      "category_label": "傳統型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "211",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-029",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "211",
+      "company_label": "211-三商美邦人壽保險股份有限公司",
+      "category_value": "2_5",
+      "category_label": "投資型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "211",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-030",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "211",
+      "company_label": "211-三商美邦人壽保險股份有限公司",
+      "category_value": "2_6",
+      "category_label": "投資型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "211",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-031",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "205",
+      "company_label": "205-凱基人壽保險股份有限公司(原中國人壽)",
+      "category_value": "3_1",
+      "category_label": "傷害保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "205",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-032",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "205",
+      "company_label": "205-凱基人壽保險股份有限公司(原中國人壽)",
+      "category_value": "3_2",
+      "category_label": "健康保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "205",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-033",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "205",
+      "company_label": "205-凱基人壽保險股份有限公司(原中國人壽)",
+      "category_value": "2_3",
+      "category_label": "傳統型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "205",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-034",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "205",
+      "company_label": "205-凱基人壽保險股份有限公司(原中國人壽)",
+      "category_value": "2_4",
+      "category_label": "傳統型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "205",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-035",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "205",
+      "company_label": "205-凱基人壽保險股份有限公司(原中國人壽)",
+      "category_value": "2_5",
+      "category_label": "投資型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "205",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-036",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "205",
+      "company_label": "205-凱基人壽保險股份有限公司(原中國人壽)",
+      "category_value": "2_6",
+      "category_label": "投資型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "205",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-037",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "216",
+      "company_label": "216-遠雄人壽保險事業股份有限公司",
+      "category_value": "3_1",
+      "category_label": "傷害保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "216",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-038",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "216",
+      "company_label": "216-遠雄人壽保險事業股份有限公司",
+      "category_value": "3_2",
+      "category_label": "健康保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "216",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-039",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "216",
+      "company_label": "216-遠雄人壽保險事業股份有限公司",
+      "category_value": "2_3",
+      "category_label": "傳統型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "216",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-040",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "216",
+      "company_label": "216-遠雄人壽保險事業股份有限公司",
+      "category_value": "2_4",
+      "category_label": "傳統型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "216",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-041",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "216",
+      "company_label": "216-遠雄人壽保險事業股份有限公司",
+      "category_value": "2_5",
+      "category_label": "投資型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "216",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-042",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "216",
+      "company_label": "216-遠雄人壽保險事業股份有限公司",
+      "category_value": "2_6",
+      "category_label": "投資型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "216",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-043",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "203",
+      "company_label": "203-保誠人壽保險股份有限公司",
+      "category_value": "3_1",
+      "category_label": "傷害保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "203",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-044",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "203",
+      "company_label": "203-保誠人壽保險股份有限公司",
+      "category_value": "3_2",
+      "category_label": "健康保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "203",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-045",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "203",
+      "company_label": "203-保誠人壽保險股份有限公司",
+      "category_value": "2_3",
+      "category_label": "傳統型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "203",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-046",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "203",
+      "company_label": "203-保誠人壽保險股份有限公司",
+      "category_value": "2_4",
+      "category_label": "傳統型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "203",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-047",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "203",
+      "company_label": "203-保誠人壽保險股份有限公司",
+      "category_value": "2_5",
+      "category_label": "投資型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "203",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-048",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "203",
+      "company_label": "203-保誠人壽保險股份有限公司",
+      "category_value": "2_6",
+      "category_label": "投資型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "203",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-049",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "217",
+      "company_label": "217-宏泰人壽保險股份有限公司",
+      "category_value": "3_1",
+      "category_label": "傷害保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "217",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-050",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "217",
+      "company_label": "217-宏泰人壽保險股份有限公司",
+      "category_value": "3_2",
+      "category_label": "健康保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "217",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-051",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "217",
+      "company_label": "217-宏泰人壽保險股份有限公司",
+      "category_value": "2_3",
+      "category_label": "傳統型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "217",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-052",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "217",
+      "company_label": "217-宏泰人壽保險股份有限公司",
+      "category_value": "2_4",
+      "category_label": "傳統型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "217",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-053",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "217",
+      "company_label": "217-宏泰人壽保險股份有限公司",
+      "category_value": "2_5",
+      "category_label": "投資型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "217",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-054",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "217",
+      "company_label": "217-宏泰人壽保險股份有限公司",
+      "category_value": "2_6",
+      "category_label": "投資型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "217",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-055",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "201",
+      "company_label": "201-臺銀人壽保險股份有限公司",
+      "category_value": "3_1",
+      "category_label": "傷害保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "201",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-056",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "201",
+      "company_label": "201-臺銀人壽保險股份有限公司",
+      "category_value": "3_2",
+      "category_label": "健康保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "201",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-057",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "201",
+      "company_label": "201-臺銀人壽保險股份有限公司",
+      "category_value": "2_3",
+      "category_label": "傳統型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "201",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-058",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "201",
+      "company_label": "201-臺銀人壽保險股份有限公司",
+      "category_value": "2_4",
+      "category_label": "傳統型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "201",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-059",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "201",
+      "company_label": "201-臺銀人壽保險股份有限公司",
+      "category_value": "2_5",
+      "category_label": "投資型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "201",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-060",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "201",
+      "company_label": "201-臺銀人壽保險股份有限公司",
+      "category_value": "2_6",
+      "category_label": "投資型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "201",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-061",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "204",
+      "company_label": "204-國泰人壽保險股份有限公司",
+      "category_value": "3_1",
+      "category_label": "傷害保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "204",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-062",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "204",
+      "company_label": "204-國泰人壽保險股份有限公司",
+      "category_value": "3_2",
+      "category_label": "健康保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "204",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-063",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "204",
+      "company_label": "204-國泰人壽保險股份有限公司",
+      "category_value": "2_3",
+      "category_label": "傳統型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "204",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-064",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "204",
+      "company_label": "204-國泰人壽保險股份有限公司",
+      "category_value": "2_4",
+      "category_label": "傳統型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "204",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-065",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "204",
+      "company_label": "204-國泰人壽保險股份有限公司",
+      "category_value": "2_5",
+      "category_label": "投資型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "204",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-066",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "204",
+      "company_label": "204-國泰人壽保險股份有限公司",
+      "category_value": "2_6",
+      "category_label": "投資型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "204",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-067",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "109",
+      "company_label": "109-南山產物保險股份有限公司",
+      "category_value": "3_1",
+      "category_label": "傷害保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "109",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-068",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "109",
+      "company_label": "109-南山產物保險股份有限公司",
+      "category_value": "3_2",
+      "category_label": "健康保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "109",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-069",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "109",
+      "company_label": "109-南山產物保險股份有限公司",
+      "category_value": "2_3",
+      "category_label": "傳統型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "109",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-070",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "109",
+      "company_label": "109-南山產物保險股份有限公司",
+      "category_value": "2_4",
+      "category_label": "傳統型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "109",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-071",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "109",
+      "company_label": "109-南山產物保險股份有限公司",
+      "category_value": "2_5",
+      "category_label": "投資型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "109",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-072",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "109",
+      "company_label": "109-南山產物保險股份有限公司",
+      "category_value": "2_6",
+      "category_label": "投資型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "109",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-073",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "114",
+      "company_label": "114-華南產物保險股份有限公司",
+      "category_value": "3_1",
+      "category_label": "傷害保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "114",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-074",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "114",
+      "company_label": "114-華南產物保險股份有限公司",
+      "category_value": "3_2",
+      "category_label": "健康保險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "114",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-075",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "114",
+      "company_label": "114-華南產物保險股份有限公司",
+      "category_value": "2_3",
+      "category_label": "傳統型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "114",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-076",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "114",
+      "company_label": "114-華南產物保險股份有限公司",
+      "category_value": "2_4",
+      "category_label": "傳統型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "114",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-077",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "114",
+      "company_label": "114-華南產物保險股份有限公司",
+      "category_value": "2_5",
+      "category_label": "投資型壽險",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "114",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    },
+    {
+      "id": "tii-078",
+      "kind": "tii_manual_captcha_batch",
+      "status": "planned_manual",
+      "company_code": "114",
+      "company_label": "114-華南產物保險股份有限公司",
+      "category_value": "2_6",
+      "category_label": "投資型年金",
+      "target": "停售保單優先",
+      "query_hint": {
+        "CompanyID": "114",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "manual_steps": [
+        "Open https://insprod.tii.org.tw/Query.aspx",
+        "Select company and insurance category from this batch.",
+        "Leave 未停售 unchecked to include discontinued records.",
+        "Human enters captcha and saves result HTML/CSV to work\\tii-results.",
+        "Run python scripts\\import_tii_results.py --input-dir work\\tii-results --output data\\tii-policy-results.json"
+      ]
+    }
+  ],
+  "tii_full_coverage": {
+    "company_count": 61,
+    "category_count": 10,
+    "estimated_batches": 610,
+    "note": "Full TII coverage is company x category. Because captcha is required, process priority batches first."
+  }
+}

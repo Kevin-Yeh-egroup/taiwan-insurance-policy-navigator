@@ -48,6 +48,7 @@ python scripts\crawl_batch.py --limit 60 --max-per-domain 8
 python scripts\write_crawl_progress.py
 python scripts\build_policy_insights.py
 python scripts\extract_tii_metadata.py
+python scripts\plan_segmented_batches.py --policy-batch-size 80
 python scripts\validate_data.py
 python -m http.server 4173
 ```
@@ -84,3 +85,11 @@ The Insurance Institute query page uses an image captcha. This project does not 
 ```powershell
 python scripts\import_tii_results.py --input-dir work\tii-results --output data\tii-policy-results.json
 ```
+
+For a large policy universe, use segmented batches instead of one full crawl:
+
+```powershell
+python scripts\plan_segmented_batches.py --policy-batch-size 80
+```
+
+This creates `data\batch-plan.json`, including automated policy URL batches and manual TII captcha batches.

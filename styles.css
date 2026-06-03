@@ -281,6 +281,7 @@ select:focus,
 
 .insight-metrics article,
 .insight-card,
+.batch-panel,
 .discontinued-panel {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -386,7 +387,61 @@ select:focus,
 }
 
 .discontinued-panel {
+  margin-top: 14px;
   padding: 14px;
+}
+
+.batch-panel {
+  padding: 14px;
+}
+
+.batch-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.batch-summary article {
+  display: grid;
+  gap: 6px;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--surface-3);
+}
+
+.batch-summary strong {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.batch-summary span {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.batch-list {
+  display: grid;
+  gap: 10px;
+}
+
+.batch-item {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-3);
+}
+
+.batch-item h3 {
+  overflow-wrap: anywhere;
+}
+
+.batch-item p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
 }
 
 .policy-list {
@@ -872,6 +927,7 @@ select:focus,
   .filter-row,
   .insight-grid,
   .insight-metrics,
+  .batch-summary,
   .metrics,
   .roadmap ol,
   .manual-grid {
