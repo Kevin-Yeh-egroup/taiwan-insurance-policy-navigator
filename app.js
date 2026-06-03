@@ -78,10 +78,13 @@ function populateFilters() {
 }
 
 function renderMetrics() {
+  const summary = state.crawlStatus.summary;
   setText("metricSources", formatNumber.format(state.sourceIndex.source_file_count));
   setText("metricUrls", formatNumber.format(state.sourceIndex.total_unique_url_count));
   setText("metricCandidates", formatNumber.format(state.sourceIndex.public_crawl_candidate_count));
-  setText("metricCrawlOk", formatNumber.format(state.crawlStatus.summary.ok));
+  setText("metricChecked", formatNumber.format(summary.checked));
+  setText("metricUnchecked", formatNumber.format(summary.unchecked ?? Math.max(0, state.sourceIndex.public_crawl_candidate_count - summary.checked)));
+  setText("metricCrawlOk", formatNumber.format(summary.ok));
 }
 
 function renderTaxonomy() {

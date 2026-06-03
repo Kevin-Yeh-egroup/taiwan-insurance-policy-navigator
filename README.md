@@ -7,7 +7,9 @@
 - Local git repo initialized.
 - 17 user-provided source files were scanned locally.
 - 1,670 unique URLs were extracted.
-- Public-safe source index and crawler status can be generated with scripts.
+- Public-safe source index and crawler status are generated with scripts.
+- Crawl status now covers 932 of 1,666 public crawl candidates (55.9%).
+- 761 checked sources are currently reachable, 44 are blocked by robots rules, and 171 need review.
 - Public GitHub repository is live.
 - Vercel Production is live with review-stage noindex controls.
 
@@ -38,7 +40,8 @@ Each field should carry `source_url`, `source_document`, `source_clause_or_page`
 ```powershell
 python scripts\extract_sources.py --input-list work\input-files.json
 python scripts\prepare_public_sources.py
-python scripts\crawl_batch.py --limit 60 --max-per-domain 4
+python scripts\crawl_batch.py --limit 60 --max-per-domain 8
+python scripts\write_crawl_progress.py
 python scripts\validate_data.py
 python -m http.server 4173
 ```
