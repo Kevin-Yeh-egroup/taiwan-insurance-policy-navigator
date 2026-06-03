@@ -8,7 +8,12 @@
 - 17 user-provided source files were scanned locally.
 - 1,670 unique URLs were extracted.
 - Public-safe source index and crawler status can be generated with scripts.
-- Vercel publication is prepared but not pushed/deployed yet.
+- Public GitHub repository is live.
+- Vercel Production is live with review-stage noindex controls.
+
+Production URL:
+
+<https://taiwan-insurance-policy-navigator.vercel.app/>
 
 ## Scope
 
