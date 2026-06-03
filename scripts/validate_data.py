@@ -61,6 +61,16 @@ def main() -> None:
         fail("batch plan has no policy URL batches")
     if not batch_plan.get("tii_priority_batches"):
         fail("batch plan has no TII priority batches")
+    if not batch_plan.get("tii_company_type_groups"):
+        fail("batch plan has no TII company type groups")
+    if not batch_plan.get("tii_manual_matrix_batches"):
+        fail("batch plan has no TII manual matrix batches")
+    matrix_count = batch_plan["summary"].get("tii_manual_matrix_batch_count")
+    if matrix_count != len(batch_plan["tii_manual_matrix_batches"]):
+        fail("TII manual matrix batch count does not match summary")
+    matrix_types = {batch.get("company_type") for batch in batch_plan["tii_manual_matrix_batches"]}
+    if not {"property", "life"}.issubset(matrix_types):
+        fail("TII manual matrix should include both property and life batches")
     if not batch_progress.get("batches"):
         fail("batch progress has no executed batches")
     if not policy_batch_results.get("batches"):
@@ -84,6 +94,7 @@ def main() -> None:
                 "tii_companies": len(tii_metadata["companies"]),
                 "policy_url_batches": batch_plan["summary"]["policy_url_batch_count"],
                 "tii_priority_batches": batch_plan["summary"]["tii_priority_batch_count"],
+                "tii_manual_matrix_batches": batch_plan["summary"]["tii_manual_matrix_batch_count"],
                 "completed_policy_url_batches": batch_progress["summary"]["completed_policy_url_batches"],
                 "policy_url_items_processed": batch_progress["summary"]["policy_url_items_processed"],
             },

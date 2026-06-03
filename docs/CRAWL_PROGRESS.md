@@ -21,6 +21,13 @@ Updated at: `2026-06-03T14:31:27+08:00`
 - Errors / timeouts: `252`
 - Note: completed batch means the URL was checked. It does not mean the policy content was fully available for automated extraction.
 
+## TII Manual Matrix
+
+- Property-insurance manual batches: `108`
+- Life / personal-insurance manual batches: `198`
+- Total TII manual matrix batches: `306`
+- Captcha boundary: TII result pages require human captcha completion; this project prepares click-through batches and imports saved results, but does not bypass captcha.
+
 ## Top Checked Domains
 
 | Domain | Checked | OK | Robots blocked | Errors |

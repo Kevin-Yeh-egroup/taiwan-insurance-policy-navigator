@@ -12,6 +12,7 @@
 - 919 checked sources are currently reachable, 387 are blocked by robots rules, and 360 need review.
 - Segmented policy URL batches are fully executed: 17/17 batches, 1,343 policy URLs processed, 559 pages reachable, 532 blocked by robots rules, and 252 errors or timeouts.
 - TII captcha-protected batches remain manual; this project does not bypass captcha.
+- TII manual batches now follow the site split: 108 property-insurance batches and 198 life/personal-insurance batches, 306 total.
 - Public GitHub repository is live.
 - Vercel Production is live with review-stage noindex controls.
 
@@ -96,7 +97,7 @@ For a large policy universe, use segmented batches instead of one full crawl:
 python scripts\plan_segmented_batches.py --policy-batch-size 80
 ```
 
-This creates `data\batch-plan.json`, including automated policy URL batches and manual TII captcha batches.
+This creates `data\batch-plan.json`, including automated policy URL batches, priority TII captcha batches, and the full TII property/life manual matrix.
 
 Execute one automated URL/content batch:
 
@@ -107,3 +108,5 @@ python scripts\run_policy_batch.py --batch-id policy-url-001
 Execution writes `data\policy-batch-results.json` and `data\batch-progress.json`.
 
 Current execution snapshot: `policy-url-001` through `policy-url-017` are complete. The site reports the distinction between executed batches, pages that were actually reachable, robots-blocked URLs, and errors/timeouts.
+
+Current TII manual matrix: `27` property insurers x `4` property categories = `108` batches; `33` life/personal insurers x `6` personal-insurance categories = `198` batches. These batches are shown on the site as clickable property/life groups, but result retrieval still requires human captcha completion and import.

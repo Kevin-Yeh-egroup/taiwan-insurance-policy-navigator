@@ -19,6 +19,7 @@ const state = {
   company: DEFAULT_FILTERS.company,
   kind: DEFAULT_FILTERS.kind,
   crawl: DEFAULT_FILTERS.crawl,
+  tiiMode: "property",
 };
 
 const formatNumber = new Intl.NumberFormat("zh-Hant-TW");
@@ -317,8 +318,8 @@ function renderBatchPlan() {
   const progress = state.batchProgress?.summary || {};
   const processed = progress.policy_url_items_processed || 0;
   const successRate = processed ? Math.round(((progress.policy_url_ok || 0) / processed) * 1000) / 10 : 0;
-  const totalPlanned = summary.policy_url_batch_count + summary.tii_priority_batch_count;
-  setText("batchPlanCount", `${formatNumber.format(totalPlanned)} 優先批`);
+  const totalPlanned = summary.policy_url_batch_count + (summary.tii_manual_matrix_batch_count || summary.tii_priority_batch_count);
+  setText("batchPlanCount", `${formatNumber.format(totalPlanned)} 批次`);
   document.getElementById("batchSummary").innerHTML = `
     <article>
       <strong>${formatNumber.format(summary.policy_url_batch_count)}</strong>
@@ -357,6 +358,7 @@ function renderBatchPlan() {
       <span>錯誤或逾時</span>
     </article>
   `;
+  renderTiiMatrix(plan);
 
   const completed = new Set((state.batchProgress?.batches || []).map((batch) => batch.id));
   const completedRows = (state.batchProgress?.batches || []).slice(-3).reverse().map((batch) => ({
@@ -407,6 +409,90 @@ function renderBatchPlan() {
       `,
     )
     .join("");
+}
+
+function renderTiiMatrix(plan) {
+  const container = document.getElementById("tiiMatrix");
+  if (!container) return;
+
+  const groups = plan.tii_company_type_groups || [];
+  const batches = plan.tii_manual_matrix_batches || [];
+  if (!groups.length || !batches.length) {
+    container.innerHTML = "";
+    return;
+  }
+
+  const activeGroup = groups.find((group) => group.key === state.tiiMode) || groups[0];
+  state.tiiMode = activeGroup.key;
+  const activeBatches = batches.filter((batch) => batch.company_type === activeGroup.key).slice(0, 8);
+  const categoryLabels = (activeGroup.insurance_categories || []).map((item) => item.label).join("、");
+
+  container.innerHTML = `
+    <div class="tii-matrix-header">
+      <div>
+        <p class="eyebrow">TII Click-through Matrix</p>
+        <h3>產險 / 壽險逐批查詢</h3>
+      </div>
+      <div class="tii-toggle" role="tablist" aria-label="保發中心公司類別">
+        ${groups
+          .map(
+            (group) => `
+              <button type="button" class="${group.key === activeGroup.key ? "active" : ""}" data-tii-mode="${escapeHtml(
+                group.key,
+              )}" role="tab" aria-selected="${group.key === activeGroup.key}">
+                ${escapeHtml(group.short_label)}
+              </button>
+            `,
+          )
+          .join("")}
+      </div>
+    </div>
+    <div class="tii-matrix-summary">
+      <article>
+        <strong>${formatNumber.format(activeGroup.company_count)}</strong>
+        <span>${escapeHtml(activeGroup.short_label)}公司</span>
+      </article>
+      <article>
+        <strong>${formatNumber.format(activeGroup.category_count)}</strong>
+        <span>保險類別</span>
+      </article>
+      <article>
+        <strong>${formatNumber.format(activeGroup.manual_batch_count)}</strong>
+        <span>人工查詢批次</span>
+      </article>
+    </div>
+    <p class="tii-matrix-note">
+      ${escapeHtml(activeGroup.label)}會搭配：${escapeHtml(categoryLabels)}。查詢結果需要人工輸入驗證碼後匯入，系統不繞過驗證碼。
+    </p>
+    <div class="tii-matrix-list">
+      ${activeBatches
+        .map(
+          (batch) => `
+            <article class="tii-matrix-item">
+              <div>
+                <div class="source-heading">
+                  <strong>${escapeHtml(batch.id)}</strong>
+                  <span class="badge">${escapeHtml(batch.company_type_short_label)}</span>
+                </div>
+                <h4>${escapeHtml(batch.company_label)}</h4>
+                <p>${escapeHtml(batch.category_label)}｜categoryId ${escapeHtml(
+                  batch.query_hint?.categoryId || "",
+                )}｜CompanyID ${escapeHtml(batch.company_code)}｜f_CategoryId1 ${escapeHtml(batch.category_value)}</p>
+              </div>
+              <a class="button secondary" href="${escapeHtml(batch.source_url)}" target="_blank" rel="noreferrer">開啟查詢頁</a>
+            </article>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+
+  container.querySelectorAll("[data-tii-mode]").forEach((button) => {
+    button.addEventListener("click", () => {
+      state.tiiMode = button.getAttribute("data-tii-mode") || state.tiiMode;
+      renderTiiMatrix(plan);
+    });
+  });
 }
 
 function passesCrawlFilter(item) {

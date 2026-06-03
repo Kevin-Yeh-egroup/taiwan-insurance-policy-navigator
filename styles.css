@@ -426,6 +426,115 @@ select:focus,
   gap: 10px;
 }
 
+.tii-matrix {
+  display: grid;
+  gap: 12px;
+  margin: 14px 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
+
+.tii-matrix-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.tii-matrix-header h3 {
+  margin: 2px 0 0;
+  font-size: 1.05rem;
+}
+
+.tii-toggle {
+  display: inline-grid;
+  grid-template-columns: repeat(2, minmax(64px, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-3);
+}
+
+.tii-toggle button {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.tii-toggle button.active {
+  background: var(--ink);
+  color: var(--surface);
+}
+
+.tii-matrix-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.tii-matrix-summary article {
+  display: grid;
+  gap: 5px;
+  min-width: 0;
+  padding: 10px;
+  border-radius: 8px;
+  background: var(--surface-3);
+}
+
+.tii-matrix-summary strong {
+  font-size: 1.2rem;
+}
+
+.tii-matrix-summary span,
+.tii-matrix-note {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.tii-matrix-note {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.tii-matrix-list {
+  display: grid;
+  gap: 8px;
+}
+
+.tii-matrix-item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 12px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-3);
+}
+
+.tii-matrix-item h4 {
+  margin: 8px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.tii-matrix-item p {
+  margin: 7px 0 0;
+  color: var(--muted);
+  font-size: 0.84rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
 .batch-item {
   padding: 12px;
   border: 1px solid var(--line);
@@ -928,6 +1037,7 @@ select:focus,
   .insight-grid,
   .insight-metrics,
   .batch-summary,
+  .tii-matrix-summary,
   .metrics,
   .roadmap ol,
   .manual-grid {
@@ -953,6 +1063,19 @@ select:focus,
 
   .policy-item {
     grid-template-columns: 1fr;
+  }
+
+  .tii-matrix-header,
+  .tii-matrix-item {
+    grid-template-columns: 1fr;
+  }
+
+  .tii-matrix-header {
+    display: grid;
+  }
+
+  .tii-toggle {
+    width: 100%;
   }
 
   .tii-grid {
