@@ -167,14 +167,18 @@ def summarize_results(source_index: dict[str, Any], results: list[dict[str, Any]
             row["ok"] += 1
         if not item["robots_allowed"]:
             row["blocked"] += 1
-        if item["error"]:
+        if item["error"] and item["robots_allowed"] is not False:
             row["errors"] += 1
 
     public_count = len(public_ids)
     checked_count = len(public_ids & checked_ids)
     ok_count = sum(1 for item in results if item["url_id"] in public_ids and item["ok"])
     blocked_count = sum(1 for item in results if item["url_id"] in public_ids and not item["robots_allowed"])
-    error_count = sum(1 for item in results if item["url_id"] in public_ids and item["error"])
+    error_count = sum(
+        1
+        for item in results
+        if item["url_id"] in public_ids and item["error"] and item["robots_allowed"] is not False
+    )
     return {
         "generated_at": now_iso(),
         "user_agent": USER_AGENT,

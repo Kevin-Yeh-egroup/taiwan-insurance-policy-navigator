@@ -8,8 +8,8 @@
 - 17 user-provided source files were scanned locally.
 - 1,670 unique URLs were extracted.
 - Public-safe source index and crawler status are generated with scripts.
-- Crawl status now covers 932 of 1,666 public crawl candidates (55.9%).
-- 761 checked sources are currently reachable, 44 are blocked by robots rules, and 171 need review.
+- Crawl status now covers all 1,666 public crawl candidates (100.0% checked).
+- 919 checked sources are currently reachable, 387 are blocked by robots rules, and 360 need review.
 - Public GitHub repository is live.
 - Vercel Production is live with review-stage noindex controls.
 
