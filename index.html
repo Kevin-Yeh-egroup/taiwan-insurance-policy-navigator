@@ -62,6 +62,59 @@
         <p id="resultSummary" class="result-summary" aria-live="polite">資料載入中。</p>
       </section>
 
+      <section class="insight-section" aria-label="保單內容重點整理">
+        <div class="section-heading">
+          <p class="eyebrow">Policy Insights</p>
+          <h2>保單重點總覽</h2>
+        </div>
+        <div class="insight-metrics">
+          <article>
+            <span id="policyMetricTotal">--</span>
+            <p>已整理保單</p>
+          </article>
+          <article>
+            <span id="policyMetricDiscontinued">--</span>
+            <p>已停售</p>
+          </article>
+          <article>
+            <span id="policyMetricCurrent">--</span>
+            <p>仍可投保</p>
+          </article>
+          <article>
+            <span id="policyMetricUnknown">--</span>
+            <p>待確認</p>
+          </article>
+        </div>
+        <div class="insight-grid">
+          <article class="insight-card">
+            <h3>銷售狀態</h3>
+            <div id="statusBars" class="bar-list"></div>
+          </article>
+          <article class="insight-card">
+            <h3>商品類型</h3>
+            <div id="typeBars" class="bar-list"></div>
+          </article>
+          <article class="insight-card">
+            <h3>公司分布</h3>
+            <div id="companyBars" class="bar-list"></div>
+          </article>
+          <article class="insight-card">
+            <h3>保發中心停售查詢</h3>
+            <div id="tiiStatus" class="tii-status"></div>
+          </article>
+        </div>
+        <div class="discontinued-panel">
+          <div class="section-heading with-count">
+            <div>
+              <p class="eyebrow">Discontinued</p>
+              <h2>已停售保單清單</h2>
+            </div>
+            <span id="discontinuedCount" class="result-count">--</span>
+          </div>
+          <div id="discontinuedList" class="policy-list"></div>
+        </div>
+      </section>
+
       <section id="results" class="source-section">
         <div class="section-heading with-count">
           <div>

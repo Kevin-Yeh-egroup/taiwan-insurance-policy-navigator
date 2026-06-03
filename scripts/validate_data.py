@@ -20,6 +20,8 @@ def main() -> None:
     source_index = load_json("data/source-index.json")
     taxonomy = load_json("data/consumer-taxonomy.json")
     crawl_status = load_json("data/crawl-status.json")
+    policy_insights = load_json("data/policy-insights.json")
+    tii_metadata = load_json("data/tii-query-metadata.json")
 
     if not source_index.get("urls"):
         fail("source-index has no urls")
@@ -46,6 +48,12 @@ def main() -> None:
 
     if not crawl_status.get("results"):
         fail("crawl-status has no results")
+    if not policy_insights.get("policies"):
+        fail("policy-insights has no policies")
+    if not tii_metadata.get("companies"):
+        fail("tii metadata has no companies")
+    if tii_metadata.get("captcha_required") is not True:
+        fail("tii metadata should record captcha boundary")
     known_ids = {item["id"] for item in source_index["urls"]}
     for result in crawl_status["results"]:
         if result["url_id"] not in known_ids:
@@ -60,6 +68,9 @@ def main() -> None:
                 "public_crawl_candidates": source_index["public_crawl_candidate_count"],
                 "crawl_checked": crawl_status["summary"]["checked"],
                 "crawl_ok": crawl_status["summary"]["ok"],
+                "policy_count": policy_insights["summary"]["policy_count"],
+                "policy_discontinued": policy_insights["summary"]["discontinued_count"],
+                "tii_companies": len(tii_metadata["companies"]),
             },
             ensure_ascii=False,
             indent=2,

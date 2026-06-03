@@ -9,6 +9,8 @@ const state = {
   sourceIndex: null,
   taxonomy: null,
   crawlStatus: null,
+  policyInsights: null,
+  tiiMetadata: null,
   crawlByUrlId: new Map(),
   openSourceId: null,
   search: DEFAULT_FILTERS.search,
@@ -102,14 +104,18 @@ function setText(id, value) {
 }
 
 async function loadData() {
-  const [sourceIndex, taxonomy, crawlStatus] = await Promise.all([
+  const [sourceIndex, taxonomy, crawlStatus, policyInsights, tiiMetadata] = await Promise.all([
     fetch("./data/source-index.json").then((response) => response.json()),
     fetch("./data/consumer-taxonomy.json").then((response) => response.json()),
     fetch("./data/crawl-status.json").then((response) => response.json()),
+    fetch("./data/policy-insights.json").then((response) => response.json()),
+    fetch("./data/tii-query-metadata.json").then((response) => response.json()),
   ]);
   state.sourceIndex = sourceIndex;
   state.taxonomy = taxonomy;
   state.crawlStatus = crawlStatus;
+  state.policyInsights = policyInsights;
+  state.tiiMetadata = tiiMetadata;
   state.crawlByUrlId = new Map(crawlStatus.results.map((item) => [item.url_id, item]));
 }
 
@@ -221,6 +227,81 @@ function renderDomainChart() {
       `,
     )
     .join("");
+}
+
+function renderInsightMetrics() {
+  const summary = state.policyInsights.summary;
+  setText("policyMetricTotal", formatNumber.format(summary.policy_count));
+  setText("policyMetricDiscontinued", formatNumber.format(summary.discontinued_count));
+  setText("policyMetricCurrent", formatNumber.format(summary.current_count));
+  setText("policyMetricUnknown", formatNumber.format(summary.unknown_count));
+}
+
+function barRows(rows, options = {}) {
+  const max = Math.max(...rows.map((row) => row.count), 1);
+  return rows
+    .map((row) => {
+      const percent = Math.max((row.count / max) * 100, 3);
+      return `
+        <div class="insight-row">
+          <div class="insight-label">
+            <span>${escapeHtml(row.label)}</span>
+            <strong>${formatNumber.format(row.count)}</strong>
+          </div>
+          <span class="bar-track"><span class="bar-fill ${escapeHtml(options.className || "")}" style="width:${percent}%"></span></span>
+        </div>
+      `;
+    })
+    .join("");
+}
+
+function renderPolicyInsights() {
+  renderInsightMetrics();
+  document.getElementById("statusBars").innerHTML = barRows(state.policyInsights.status_counts, {
+    className: "status-fill",
+  });
+  document.getElementById("typeBars").innerHTML = barRows(state.policyInsights.type_counts.slice(0, 8));
+  document.getElementById("companyBars").innerHTML = barRows(state.policyInsights.company_counts.slice(0, 8));
+
+  const discontinued = state.policyInsights.discontinued_policies || [];
+  setText("discontinuedCount", `${formatNumber.format(discontinued.length)} 筆`);
+  document.getElementById("discontinuedList").innerHTML = discontinued.length
+    ? discontinued
+        .map(
+          (policy) => `
+            <article class="policy-item">
+              <div>
+                <strong>${escapeHtml(policy.product_name)}</strong>
+                <div class="policy-meta">
+                  <span>${escapeHtml(policy.company)}</span>
+                  <span>${escapeHtml(policy.product_type)}</span>
+                  <span>${escapeHtml(policy.version_text || "版本未標示")}</span>
+                </div>
+                <div class="policy-flags">
+                  ${(policy.content_flags || []).map((flag) => `<span class="chip">${escapeHtml(flag)}</span>`).join("")}
+                </div>
+              </div>
+              ${
+                policy.policy_url
+                  ? `<a class="button secondary" href="${escapeHtml(policy.policy_url)}" target="_blank" rel="noreferrer">官方來源</a>`
+                  : '<span class="badge muted">待補來源</span>'
+              }
+            </article>
+          `,
+        )
+        .join("")
+    : '<div class="empty"><strong>目前沒有已停售保單資料。</strong><span>完成 TII 人工驗證碼查詢匯入後會出現在這裡。</span></div>';
+
+  const metadata = state.tiiMetadata;
+  document.getElementById("tiiStatus").innerHTML = `
+    <div class="tii-grid">
+      <span><strong>${formatNumber.format(metadata.companies.length)}</strong><small>公司選項</small></span>
+      <span><strong>${formatNumber.format(metadata.insurance_categories.length)}</strong><small>保險類別</small></span>
+      <span><strong>${metadata.captcha_required ? "需要" : "不需要"}</strong><small>圖形驗證碼</small></span>
+    </div>
+    <p>官方查詢支援公司、保險類別、銷售日、停售日與關鍵字。因有圖形驗證碼，本專案只做人工完成驗證後的結果匯入，不自動破解。</p>
+    <a href="${escapeHtml(metadata.source_url)}" target="_blank" rel="noreferrer">開啟保發中心查詢</a>
+  `;
 }
 
 function passesCrawlFilter(item) {
@@ -461,6 +542,7 @@ async function main() {
     populateFilters();
     loadFiltersFromUrl();
     renderMetrics();
+    renderPolicyInsights();
     renderTaxonomy();
     renderDomainChart();
     renderSources();
