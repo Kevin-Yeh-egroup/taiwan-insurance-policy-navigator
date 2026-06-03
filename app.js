@@ -314,6 +314,9 @@ function renderPolicyInsights() {
 function renderBatchPlan() {
   const plan = state.batchPlan;
   const summary = plan.summary;
+  const progress = state.batchProgress?.summary || {};
+  const processed = progress.policy_url_items_processed || 0;
+  const successRate = processed ? Math.round(((progress.policy_url_ok || 0) / processed) * 1000) / 10 : 0;
   const totalPlanned = summary.policy_url_batch_count + summary.tii_priority_batch_count;
   setText("batchPlanCount", `${formatNumber.format(totalPlanned)} 優先批`);
   document.getElementById("batchSummary").innerHTML = `
@@ -330,12 +333,28 @@ function renderBatchPlan() {
       <span>TII 全量估算批次</span>
     </article>
     <article>
-      <strong>${formatNumber.format(state.batchProgress?.summary?.completed_policy_url_batches || 0)}</strong>
+      <strong>${formatNumber.format(progress.completed_policy_url_batches || 0)}</strong>
       <span>已執行 URL 批次</span>
     </article>
     <article>
-      <strong>${formatNumber.format(state.batchProgress?.summary?.policy_url_robots_blocked || 0)}</strong>
+      <strong>${formatNumber.format(processed)}</strong>
+      <span>已處理保單 URL</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(progress.policy_url_ok || 0)}</strong>
+      <span>可抓取頁面</span>
+    </article>
+    <article>
+      <strong>${successRate}%</strong>
+      <span>可抓取比例</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(progress.policy_url_robots_blocked || 0)}</strong>
       <span>robots 擋下筆數</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(progress.policy_url_errors || 0)}</strong>
+      <span>錯誤或逾時</span>
     </article>
   `;
 

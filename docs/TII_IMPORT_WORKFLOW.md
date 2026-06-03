@@ -87,6 +87,14 @@ data\policy-batch-results.json
 data\batch-progress.json
 ```
 
+目前自動 URL/content batch 已完成 `policy-url-001` 到 `policy-url-017`：
+
+- 已處理保單 URL：`1,343`
+- 可抓取頁面：`559`
+- robots 擋下：`532`
+- 錯誤或逾時：`252`
+- TII 驗證碼批次仍需人工查詢與匯入，不繞過驗證碼。
+
 如果結果顯示 `robots 擋下`，代表站方規則不允許自動抓取，應改走人工複核或 TII 查詢匯入。
 
 建議節奏：

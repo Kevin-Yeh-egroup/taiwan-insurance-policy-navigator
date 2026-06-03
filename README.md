@@ -10,6 +10,8 @@
 - Public-safe source index and crawler status are generated with scripts.
 - Crawl status now covers all 1,666 public crawl candidates (100.0% checked).
 - 919 checked sources are currently reachable, 387 are blocked by robots rules, and 360 need review.
+- Segmented policy URL batches are fully executed: 17/17 batches, 1,343 policy URLs processed, 559 pages reachable, 532 blocked by robots rules, and 252 errors or timeouts.
+- TII captcha-protected batches remain manual; this project does not bypass captcha.
 - Public GitHub repository is live.
 - Vercel Production is live with review-stage noindex controls.
 
@@ -50,6 +52,7 @@ python scripts\build_policy_insights.py
 python scripts\extract_tii_metadata.py
 python scripts\plan_segmented_batches.py --policy-batch-size 80
 python scripts\run_policy_batch.py --batch-id policy-url-001
+1..17 | ForEach-Object { python scripts\run_policy_batch.py --batch-id ('policy-url-{0:D3}' -f $_) }
 python scripts\validate_data.py
 python -m http.server 4173
 ```
@@ -102,3 +105,5 @@ python scripts\run_policy_batch.py --batch-id policy-url-001
 ```
 
 Execution writes `data\policy-batch-results.json` and `data\batch-progress.json`.
+
+Current execution snapshot: `policy-url-001` through `policy-url-017` are complete. The site reports the distinction between executed batches, pages that were actually reachable, robots-blocked URLs, and errors/timeouts.

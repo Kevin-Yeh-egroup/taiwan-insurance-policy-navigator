@@ -48,3 +48,5 @@ Production 手冊頁：<https://taiwan-insurance-policy-navigator.vercel.app/man
 ## 7. 大量保單分段處理
 
 保單很多時，系統會拆成「保單 URL 自動批次」與「TII 人工驗證碼批次」。每批都有 ID、筆數、公司、類型與處理方式。TII 批次需要人工輸入驗證碼並保存結果，再由匯入器整理。
+
+目前 `policy-url-001` 到 `policy-url-017` 已執行完成，共處理 1,343 筆保單 URL，其中 559 筆可抓取、532 筆受 robots 限制、252 筆錯誤或逾時。批次完成代表已檢查，不代表每一筆都能自動整理出完整保單內容。

@@ -12,6 +12,15 @@ Updated at: `2026-06-03T14:31:27+08:00`
 - Robots blocked: `387`
 - Errors / needs review: `360`
 
+## Policy URL Content Batches
+
+- Completed URL batches: `17 / 17`
+- Policy URLs processed: `1343`
+- Reachable page reads: `559`
+- Robots blocked: `532`
+- Errors / timeouts: `252`
+- Note: completed batch means the URL was checked. It does not mean the policy content was fully available for automated extraction.
+
 ## Top Checked Domains
 
 | Domain | Checked | OK | Robots blocked | Errors |
