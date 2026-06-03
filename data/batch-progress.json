@@ -1,0 +1,53 @@
+{
+  "generated_at": "2026-06-03T18:38:50+08:00",
+  "batches": [
+    {
+      "id": "policy-url-001",
+      "kind": "policy_url_content_batch",
+      "status": "completed",
+      "ran_at": "2026-06-03T18:38:10+08:00",
+      "item_count": 80,
+      "ok": 0,
+      "robots_blocked": 80,
+      "errors": 0,
+      "status_mix": {
+        "已停售": 8,
+        "不確定": 72
+      }
+    },
+    {
+      "id": "policy-url-002",
+      "kind": "policy_url_content_batch",
+      "status": "completed",
+      "ran_at": "2026-06-03T18:38:35+08:00",
+      "item_count": 80,
+      "ok": 0,
+      "robots_blocked": 80,
+      "errors": 0,
+      "status_mix": {
+        "不確定": 72,
+        "仍可投保": 8
+      }
+    },
+    {
+      "id": "policy-url-003",
+      "kind": "policy_url_content_batch",
+      "status": "completed",
+      "ran_at": "2026-06-03T18:38:50+08:00",
+      "item_count": 80,
+      "ok": 0,
+      "robots_blocked": 80,
+      "errors": 0,
+      "status_mix": {
+        "仍可投保": 80
+      }
+    }
+  ],
+  "summary": {
+    "completed_policy_url_batches": 3,
+    "policy_url_items_processed": 240,
+    "policy_url_ok": 0,
+    "policy_url_robots_blocked": 240,
+    "policy_url_errors": 0
+  }
+}

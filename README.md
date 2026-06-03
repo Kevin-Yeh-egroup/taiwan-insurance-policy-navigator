@@ -49,6 +49,7 @@ python scripts\write_crawl_progress.py
 python scripts\build_policy_insights.py
 python scripts\extract_tii_metadata.py
 python scripts\plan_segmented_batches.py --policy-batch-size 80
+python scripts\run_policy_batch.py --batch-id policy-url-001
 python scripts\validate_data.py
 python -m http.server 4173
 ```
@@ -93,3 +94,11 @@ python scripts\plan_segmented_batches.py --policy-batch-size 80
 ```
 
 This creates `data\batch-plan.json`, including automated policy URL batches and manual TII captcha batches.
+
+Execute one automated URL/content batch:
+
+```powershell
+python scripts\run_policy_batch.py --batch-id policy-url-001
+```
+
+Execution writes `data\policy-batch-results.json` and `data\batch-progress.json`.

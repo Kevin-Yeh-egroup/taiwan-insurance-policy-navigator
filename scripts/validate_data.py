@@ -23,6 +23,8 @@ def main() -> None:
     policy_insights = load_json("data/policy-insights.json")
     tii_metadata = load_json("data/tii-query-metadata.json")
     batch_plan = load_json("data/batch-plan.json")
+    batch_progress = load_json("data/batch-progress.json")
+    policy_batch_results = load_json("data/policy-batch-results.json")
 
     if not source_index.get("urls"):
         fail("source-index has no urls")
@@ -59,6 +61,10 @@ def main() -> None:
         fail("batch plan has no policy URL batches")
     if not batch_plan.get("tii_priority_batches"):
         fail("batch plan has no TII priority batches")
+    if not batch_progress.get("batches"):
+        fail("batch progress has no executed batches")
+    if not policy_batch_results.get("batches"):
+        fail("policy batch results has no batches")
     known_ids = {item["id"] for item in source_index["urls"]}
     for result in crawl_status["results"]:
         if result["url_id"] not in known_ids:
@@ -78,6 +84,8 @@ def main() -> None:
                 "tii_companies": len(tii_metadata["companies"]),
                 "policy_url_batches": batch_plan["summary"]["policy_url_batch_count"],
                 "tii_priority_batches": batch_plan["summary"]["tii_priority_batch_count"],
+                "completed_policy_url_batches": batch_progress["summary"]["completed_policy_url_batches"],
+                "policy_url_items_processed": batch_progress["summary"]["policy_url_items_processed"],
             },
             ensure_ascii=False,
             indent=2,

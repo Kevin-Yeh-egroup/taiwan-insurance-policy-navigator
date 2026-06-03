@@ -74,6 +74,21 @@ data\batch-plan.json
 - `policy_url_content_batch`：既有保單 URL 的自動批次，每批約 80 筆。
 - `tii_manual_captcha_batch`：保發中心查詢的人工驗證碼批次，依公司與保險類別拆分。
 
+執行一批既有 URL/content batch：
+
+```powershell
+python scripts\run_policy_batch.py --batch-id policy-url-001
+```
+
+執行結果會寫入：
+
+```text
+data\policy-batch-results.json
+data\batch-progress.json
+```
+
+如果結果顯示 `robots 擋下`，代表站方規則不允許自動抓取，應改走人工複核或 TII 查詢匯入。
+
 建議節奏：
 
 - 每天 1 批自動 URL/content batch。

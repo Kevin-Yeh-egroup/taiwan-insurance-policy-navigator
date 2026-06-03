@@ -12,6 +12,7 @@ const state = {
   policyInsights: null,
   tiiMetadata: null,
   batchPlan: null,
+  batchProgress: null,
   crawlByUrlId: new Map(),
   openSourceId: null,
   search: DEFAULT_FILTERS.search,
@@ -105,13 +106,14 @@ function setText(id, value) {
 }
 
 async function loadData() {
-  const [sourceIndex, taxonomy, crawlStatus, policyInsights, tiiMetadata, batchPlan] = await Promise.all([
+  const [sourceIndex, taxonomy, crawlStatus, policyInsights, tiiMetadata, batchPlan, batchProgress] = await Promise.all([
     fetch("./data/source-index.json").then((response) => response.json()),
     fetch("./data/consumer-taxonomy.json").then((response) => response.json()),
     fetch("./data/crawl-status.json").then((response) => response.json()),
     fetch("./data/policy-insights.json").then((response) => response.json()),
     fetch("./data/tii-query-metadata.json").then((response) => response.json()),
     fetch("./data/batch-plan.json").then((response) => response.json()),
+    fetch("./data/batch-progress.json").then((response) => (response.ok ? response.json() : null)),
   ]);
   state.sourceIndex = sourceIndex;
   state.taxonomy = taxonomy;
@@ -119,6 +121,7 @@ async function loadData() {
   state.policyInsights = policyInsights;
   state.tiiMetadata = tiiMetadata;
   state.batchPlan = batchPlan;
+  state.batchProgress = batchProgress;
   state.crawlByUrlId = new Map(crawlStatus.results.map((item) => [item.url_id, item]));
 }
 
@@ -326,11 +329,28 @@ function renderBatchPlan() {
       <strong>${formatNumber.format(summary.tii_full_estimated_batch_count)}</strong>
       <span>TII 全量估算批次</span>
     </article>
+    <article>
+      <strong>${formatNumber.format(state.batchProgress?.summary?.completed_policy_url_batches || 0)}</strong>
+      <span>已執行 URL 批次</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(state.batchProgress?.summary?.policy_url_robots_blocked || 0)}</strong>
+      <span>robots 擋下筆數</span>
+    </article>
   `;
 
-  const nextPolicyBatches = plan.policy_url_batches.slice(0, 2);
+  const completed = new Set((state.batchProgress?.batches || []).map((batch) => batch.id));
+  const completedRows = (state.batchProgress?.batches || []).slice(-3).reverse().map((batch) => ({
+    id: batch.id,
+    kind: "已執行",
+    title: `${formatNumber.format(batch.item_count)} 筆，${formatNumber.format(batch.robots_blocked)} 筆 robots 擋下`,
+    meta: `可抓取 ${formatNumber.format(batch.ok)} 筆｜錯誤 ${formatNumber.format(batch.errors)} 筆｜${batch.ran_at}`,
+    priority: "完成",
+  }));
+  const nextPolicyBatches = plan.policy_url_batches.filter((batch) => !completed.has(batch.id)).slice(0, 2);
   const nextTiiBatches = plan.tii_priority_batches.slice(0, 3);
   const rows = [
+    ...completedRows,
     ...nextPolicyBatches.map((batch) => ({
       id: batch.id,
       kind: "保單 URL",
@@ -357,7 +377,9 @@ function renderBatchPlan() {
             <div class="source-heading">
               <strong>${escapeHtml(batch.id)}</strong>
               <span class="badge">${escapeHtml(batch.kind)}</span>
-              <span class="badge ${batch.priority === "優先" ? "error" : "muted"}">${escapeHtml(batch.priority)}</span>
+              <span class="badge ${
+                batch.priority === "優先" ? "error" : batch.priority === "完成" ? "ok" : "muted"
+              }">${escapeHtml(batch.priority)}</span>
             </div>
             <h3>${escapeHtml(batch.title)}</h3>
             <p>${escapeHtml(batch.meta)}</p>
