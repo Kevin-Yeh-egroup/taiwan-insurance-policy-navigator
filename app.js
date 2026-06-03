@@ -1,15 +1,31 @@
-const state = {
-  sourceIndex: null,
-  taxonomy: null,
-  crawlStatus: null,
-  crawlByUrlId: new Map(),
+const DEFAULT_FILTERS = {
   search: "",
   company: "all",
   kind: "all",
   crawl: "all",
 };
 
+const state = {
+  sourceIndex: null,
+  taxonomy: null,
+  crawlStatus: null,
+  crawlByUrlId: new Map(),
+  openSourceId: null,
+  search: DEFAULT_FILTERS.search,
+  company: DEFAULT_FILTERS.company,
+  kind: DEFAULT_FILTERS.kind,
+  crawl: DEFAULT_FILTERS.crawl,
+};
+
 const formatNumber = new Intl.NumberFormat("zh-Hant-TW");
+
+const crawlLabels = {
+  all: "全部",
+  ok: "可開啟",
+  blocked: "網站限制",
+  error: "需人工確認",
+  unchecked: "尚未檢查",
+};
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -18,6 +34,10 @@ function escapeHtml(value) {
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
+}
+
+function normalize(value) {
+  return String(value ?? "").trim().toLowerCase();
 }
 
 function kindLabel(kind) {
@@ -35,10 +55,46 @@ function kindLabel(kind) {
 }
 
 function crawlLabel(result) {
-  if (!result) return { label: "尚未批次檢查", className: "unchecked" };
-  if (result.robots_allowed === false) return { label: "robots 擋下", className: "blocked" };
-  if (result.ok) return { label: "已驗證可取", className: "ok" };
-  return { label: "錯誤/待複核", className: "error" };
+  if (!result) {
+    return {
+      label: "尚未檢查",
+      className: "unchecked",
+      note: "等待下一批來源檢查。",
+    };
+  }
+  if (result.robots_allowed === false) {
+    return {
+      label: "網站限制",
+      className: "blocked",
+      note: "站方規則不允許自動抓取，請手動回官方頁複核。",
+    };
+  }
+  if (result.ok) {
+    return {
+      label: "可開啟",
+      className: "ok",
+      note: "已確認來源可連線；內容仍以官方頁面為準。",
+    };
+  }
+  return {
+    label: "需人工確認",
+    className: "error",
+    note: "連線或格式異常，建議人工複核。",
+  };
+}
+
+function kindPurpose(kind) {
+  const labels = {
+    pdf_or_file: "適合回查條款、費率表、要保文件或官方附件。",
+    product_page: "適合先看商品介紹，再回官方文件確認細節。",
+    web_page: "適合查找保險公司或公開頁面的原始說明。",
+    law_source: "適合確認主管機關、法規或公會公開資料。",
+    social_insurance: "適合查找社會保險制度與官方說明。",
+    local_file: "來自使用者提供文件，目前不列入公開抓取。",
+    private_document: "私有文件來源，目前不列入公開抓取。",
+    unsupported: "此來源類型目前只保留索引，不做自動抓取。",
+  };
+  return labels[kind] || "可作為回到原始來源的入口。";
 }
 
 function setText(id, value) {
@@ -77,13 +133,59 @@ function populateFilters() {
   ].join("");
 }
 
+function hasOption(selectId, value) {
+  return [...document.getElementById(selectId).options].some((option) => option.value === value);
+}
+
+function loadFiltersFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const company = params.get("company") || DEFAULT_FILTERS.company;
+  const kind = params.get("kind") || DEFAULT_FILTERS.kind;
+  const crawl = params.get("status") || DEFAULT_FILTERS.crawl;
+
+  state.search = params.get("q") || DEFAULT_FILTERS.search;
+  state.company = hasOption("companyFilter", company) ? company : DEFAULT_FILTERS.company;
+  state.kind = hasOption("kindFilter", kind) ? kind : DEFAULT_FILTERS.kind;
+  state.crawl = crawlLabels[crawl] ? crawl : DEFAULT_FILTERS.crawl;
+  state.openSourceId = params.get("open");
+}
+
+function syncControls() {
+  document.getElementById("searchInput").value = state.search;
+  document.getElementById("companyFilter").value = state.company;
+  document.getElementById("kindFilter").value = state.kind;
+  document.getElementById("crawlFilter").value = state.crawl;
+
+  document.querySelectorAll(".status-chip").forEach((button) => {
+    const isActive = button.dataset.crawl === state.crawl;
+    button.classList.toggle("active", isActive);
+    button.setAttribute("aria-pressed", String(isActive));
+  });
+}
+
+function updateUrl() {
+  const params = new URLSearchParams();
+  if (state.search) params.set("q", state.search);
+  if (state.company !== DEFAULT_FILTERS.company) params.set("company", state.company);
+  if (state.kind !== DEFAULT_FILTERS.kind) params.set("kind", state.kind);
+  if (state.crawl !== DEFAULT_FILTERS.crawl) params.set("status", state.crawl);
+  const query = params.toString();
+  const nextUrl = `${window.location.pathname}${query ? `?${query}` : ""}`;
+  window.history.replaceState({}, "", nextUrl);
+}
+
 function renderMetrics() {
   const summary = state.crawlStatus.summary;
   setText("metricSources", formatNumber.format(state.sourceIndex.source_file_count));
   setText("metricUrls", formatNumber.format(state.sourceIndex.total_unique_url_count));
   setText("metricCandidates", formatNumber.format(state.sourceIndex.public_crawl_candidate_count));
   setText("metricChecked", formatNumber.format(summary.checked));
-  setText("metricUnchecked", formatNumber.format(summary.unchecked ?? Math.max(0, state.sourceIndex.public_crawl_candidate_count - summary.checked)));
+  setText(
+    "metricUnchecked",
+    formatNumber.format(
+      summary.unchecked ?? Math.max(0, state.sourceIndex.public_crawl_candidate_count - summary.checked),
+    ),
+  );
   setText("metricCrawlOk", formatNumber.format(summary.ok));
 }
 
@@ -132,85 +234,224 @@ function passesCrawlFilter(item) {
   return true;
 }
 
-function filteredUrls() {
-  const query = state.search.trim().toLowerCase();
-  return state.sourceIndex.urls.filter((item) => {
-    if (state.company !== "all" && item.company !== state.company) return false;
-    if (state.kind !== "all" && item.kind !== state.kind) return false;
-    if (!passesCrawlFilter(item)) return false;
-    if (!query) return true;
-    return [item.company, item.domain, item.kind, item.source_file_title, item.source_label, item.url]
-      .join(" ")
-      .toLowerCase()
-      .includes(query);
-  });
+function resultSortScore(item) {
+  const result = state.crawlByUrlId.get(item.id);
+  const statusScore = result?.ok ? 0 : result?.robots_allowed === false ? 2 : result ? 3 : 4;
+  const kindScore = {
+    product_page: 0,
+    pdf_or_file: 1,
+    web_page: 2,
+    law_source: 3,
+    social_insurance: 3,
+    local_file: 5,
+    private_document: 5,
+    unsupported: 6,
+  }[item.kind] ?? 4;
+  return statusScore * 10 + kindScore;
 }
 
-function renderSources() {
+function filteredUrls() {
+  const query = normalize(state.search);
+  return state.sourceIndex.urls
+    .filter((item) => {
+      if (state.company !== "all" && item.company !== state.company) return false;
+      if (state.kind !== "all" && item.kind !== state.kind) return false;
+      if (!passesCrawlFilter(item)) return false;
+      if (!query) return true;
+      const result = state.crawlByUrlId.get(item.id);
+      return normalize(
+        [
+          item.company,
+          item.domain,
+          item.kind,
+          kindLabel(item.kind),
+          item.source_file_title,
+          item.source_label,
+          item.url,
+          result?.title,
+          result?.content_type,
+        ].join(" "),
+      ).includes(query);
+    })
+    .sort((a, b) => {
+      const scoreDiff = resultSortScore(a) - resultSortScore(b);
+      if (scoreDiff) return scoreDiff;
+      const companyDiff = a.company.localeCompare(b.company, "zh-Hant-TW");
+      if (companyDiff) return companyDiff;
+      return a.id.localeCompare(b.id);
+    });
+}
+
+function sourceTitle(item, result) {
+  if (result?.title) return result.title;
+  if (item.source_label) return item.source_label;
+  return `${item.company} ${kindLabel(item.kind)}來源`;
+}
+
+function formatBytes(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number) || number <= 0) return "n/a";
+  if (number >= 1024 * 1024) return `${(number / 1024 / 1024).toFixed(1)} MB`;
+  if (number >= 1024) return `${Math.round(number / 1024)} KB`;
+  return `${number} B`;
+}
+
+function renderResultSummary(rowCount) {
+  const summary = state.crawlStatus.summary;
+  const filterParts = [];
+  if (state.search) filterParts.push(`關鍵字「${state.search}」`);
+  if (state.company !== "all") filterParts.push(state.company);
+  if (state.kind !== "all") filterParts.push(kindLabel(state.kind));
+  if (state.crawl !== "all") filterParts.push(crawlLabels[state.crawl]);
+  const activeText = filterParts.length ? `條件：${filterParts.join(" / ")}。` : "條件：全部來源。";
+
+  setText(
+    "resultSummary",
+    `${activeText} 顯示 ${formatNumber.format(rowCount)} 筆；目前收錄 ${formatNumber.format(
+      state.sourceIndex.total_unique_url_count,
+    )} 筆來源，${formatNumber.format(summary.ok)} 筆可開啟。`,
+  );
+}
+
+function renderSourceCard(item) {
+  const result = state.crawlByUrlId.get(item.id);
+  const status = crawlLabel(result);
+  const isPublic = item.should_crawl ? "公開候選" : "不列入公開爬取";
+  const detailsOpen = state.openSourceId === item.id ? " open" : "";
+  return `
+    <article class="source-item" id="source-${escapeHtml(item.id)}">
+      <div class="source-main">
+        <div class="source-heading">
+          <strong>${escapeHtml(item.company)}</strong>
+          <span class="badge ${status.className}">${escapeHtml(status.label)}</span>
+        </div>
+        <h3>${escapeHtml(sourceTitle(item, result))}</h3>
+        <div class="source-badges">
+          <span class="badge">${escapeHtml(kindLabel(item.kind))}</span>
+          <span class="badge">${escapeHtml(isPublic)}</span>
+          <span class="badge muted">${escapeHtml(item.domain)}</span>
+        </div>
+        <p class="source-purpose">${escapeHtml(kindPurpose(item.kind))}</p>
+        <details class="source-details"${detailsOpen}>
+          <summary>來源資訊</summary>
+          <dl>
+            <div><dt>原始連結</dt><dd><a href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${escapeHtml(item.url)}</a></dd></div>
+            <div><dt>來源文件</dt><dd>${escapeHtml(item.source_file_title)}</dd></div>
+            <div><dt>來源 ID</dt><dd>${escapeHtml(item.id)}</dd></div>
+            <div><dt>HTTP</dt><dd>${result ? escapeHtml(result.status ?? "n/a") : "尚未檢查"}</dd></div>
+            <div><dt>內容類型</dt><dd>${escapeHtml(result?.content_type || "n/a")}</dd></div>
+            <div><dt>大小</dt><dd>${escapeHtml(formatBytes(result?.content_length))}</dd></div>
+            <div><dt>檢查時間</dt><dd>${escapeHtml(result?.checked_at || "尚未檢查")}</dd></div>
+            <div><dt>狀態說明</dt><dd>${escapeHtml(status.note)}</dd></div>
+          </dl>
+        </details>
+      </div>
+      <div class="source-actions">
+        <a class="button primary source-open" href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">開啟來源</a>
+        <button class="button ghost copy-link" type="button" data-url="${escapeHtml(item.url)}">複製連結</button>
+      </div>
+    </article>
+  `;
+}
+
+function renderSources(options = {}) {
   const rows = filteredUrls();
   const container = document.getElementById("sourceList");
   setText("resultCount", `${formatNumber.format(rows.length)} 筆`);
+  renderResultSummary(rows.length);
+  syncControls();
 
   if (!rows.length) {
-    container.innerHTML = '<div class="empty">沒有符合條件的來源。</div>';
+    container.innerHTML =
+      '<div class="empty"><strong>找不到符合條件的來源。</strong><span>請改用保險公司名稱、商品關鍵字或較短的 PDF/網域片段。</span></div>';
     return;
   }
 
-  container.innerHTML = rows
-    .slice(0, 120)
-    .map((item) => {
-      const result = state.crawlByUrlId.get(item.id);
-      const status = crawlLabel(result);
-      const isPublic = item.should_crawl ? "公開候選" : "不列入公開爬取";
-      return `
-        <article class="source-item">
-          <div>
-            <div class="source-title">
-              <strong>${escapeHtml(item.company)}</strong>
-              <span class="badge">${escapeHtml(kindLabel(item.kind))}</span>
-              <span class="badge">${escapeHtml(isPublic)}</span>
-            </div>
-            <a class="source-url" href="${escapeHtml(item.url)}" target="_blank" rel="noreferrer">${escapeHtml(item.url)}</a>
-            <div class="source-meta">
-              <span>${escapeHtml(item.domain)}</span>
-              <span>${escapeHtml(item.source_file_title)}</span>
-              <span>${escapeHtml(item.id)}</span>
-            </div>
-          </div>
-          <div class="crawl-status">
-            <span class="badge ${status.className}">${escapeHtml(status.label)}</span>
-            <span>${result ? `HTTP ${escapeHtml(result.status ?? "n/a")}` : "等待下一批"}</span>
-            <span>${result?.title ? escapeHtml(result.title) : escapeHtml(result?.content_type || "")}</span>
-          </div>
-        </article>
-      `;
-    })
-    .join("");
+  container.innerHTML = rows.slice(0, 120).map(renderSourceCard).join("");
 
   if (rows.length > 120) {
     container.insertAdjacentHTML(
       "beforeend",
-      `<div class="empty">目前先顯示前 120 筆；請用搜尋或篩選縮小範圍。總數 ${formatNumber.format(rows.length)} 筆。</div>`,
+      `<div class="empty"><strong>目前先顯示前 120 筆。</strong><span>請用查詢或篩選縮小範圍；符合條件共 ${formatNumber.format(rows.length)} 筆。</span></div>`,
     );
+  }
+
+  if (options.scroll) {
+    document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
   }
 }
 
+function runSearch(options = {}) {
+  state.openSourceId = null;
+  state.search = document.getElementById("searchInput").value.trim();
+  renderSources(options);
+  updateUrl();
+}
+
+async function copyText(text, button) {
+  try {
+    await navigator.clipboard.writeText(text);
+    const original = button.textContent;
+    button.textContent = "已複製";
+    setTimeout(() => {
+      button.textContent = original;
+    }, 1400);
+  } catch {
+    window.prompt("複製這個連結", text);
+  }
+}
+
+function resetFilters() {
+  Object.assign(state, DEFAULT_FILTERS);
+  state.openSourceId = null;
+  syncControls();
+  renderSources();
+  updateUrl();
+  document.getElementById("searchInput").focus();
+}
+
 function bindEvents() {
-  document.getElementById("searchInput").addEventListener("input", (event) => {
-    state.search = event.target.value;
-    renderSources();
+  document.getElementById("searchForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    runSearch({ scroll: true });
   });
+
+  document.getElementById("clearFilters").addEventListener("click", resetFilters);
+
   document.getElementById("companyFilter").addEventListener("change", (event) => {
+    state.openSourceId = null;
     state.company = event.target.value;
     renderSources();
+    updateUrl();
   });
+
   document.getElementById("kindFilter").addEventListener("change", (event) => {
+    state.openSourceId = null;
     state.kind = event.target.value;
     renderSources();
+    updateUrl();
   });
+
   document.getElementById("crawlFilter").addEventListener("change", (event) => {
+    state.openSourceId = null;
     state.crawl = event.target.value;
     renderSources();
+    updateUrl();
+  });
+
+  document.querySelector(".status-chips").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-crawl]");
+    if (!button) return;
+    state.openSourceId = null;
+    state.crawl = button.dataset.crawl;
+    renderSources();
+    updateUrl();
+  });
+
+  document.getElementById("sourceList").addEventListener("click", (event) => {
+    const button = event.target.closest(".copy-link");
+    if (!button) return;
+    copyText(button.dataset.url, button);
   });
 }
 
@@ -218,6 +459,7 @@ async function main() {
   try {
     await loadData();
     populateFilters();
+    loadFiltersFromUrl();
     renderMetrics();
     renderTaxonomy();
     renderDomainChart();

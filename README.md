@@ -17,6 +17,10 @@ Production URL:
 
 <https://taiwan-insurance-policy-navigator.vercel.app/>
 
+操作手冊:
+
+<https://taiwan-insurance-policy-navigator.vercel.app/manual.html>
+
 ## Scope
 
 This site is an information guide. It is not insurance advice, legal advice, claim approval guidance, or a promise that a claim will be paid. Every product page must link back to the original insurer or official source.
