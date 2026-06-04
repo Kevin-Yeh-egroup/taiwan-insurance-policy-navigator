@@ -335,24 +335,33 @@ function renderBatchPlan() {
   const progress = state.batchProgress?.summary || {};
   const processed = progress.policy_url_items_processed || 0;
   const successRate = processed ? Math.round(((progress.policy_url_ok || 0) / processed) * 1000) / 10 : 0;
-  const totalPlanned = summary.policy_url_batch_count + (summary.tii_manual_matrix_batch_count || summary.tii_priority_batch_count);
+  const tiiManualCount =
+    summary.tii_manual_matrix_batch_count || summary.tii_full_estimated_batch_count || summary.tii_priority_batch_count || 0;
+  const completedUrlBatches = progress.completed_policy_url_batches || 0;
+  const totalPlanned = summary.policy_url_batch_count + tiiManualCount;
   setText("batchPlanCount", `${formatNumber.format(totalPlanned)} 批次`);
+  setText(
+    "batchPlanNote",
+    `批次分成兩種：${formatNumber.format(summary.policy_url_batch_count)} 個保單 URL 自動批次已執行 ${formatNumber.format(
+      completedUrlBatches,
+    )} 個；保發中心 TII 另有 ${formatNumber.format(tiiManualCount)} 個人工驗證碼查詢批次，尚待人工查詢與匯入。`,
+  );
   document.getElementById("batchSummary").innerHTML = `
     <article>
       <strong>${formatNumber.format(summary.policy_url_batch_count)}</strong>
       <span>保單 URL 自動批次</span>
     </article>
     <article>
-      <strong>${formatNumber.format(summary.tii_priority_batch_count)}</strong>
-      <span>TII 優先人工批次</span>
-    </article>
-    <article>
-      <strong>${formatNumber.format(summary.tii_full_estimated_batch_count)}</strong>
-      <span>TII 全量估算批次</span>
-    </article>
-    <article>
-      <strong>${formatNumber.format(progress.completed_policy_url_batches || 0)}</strong>
+      <strong>${formatNumber.format(completedUrlBatches)}</strong>
       <span>已執行 URL 批次</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(tiiManualCount)}</strong>
+      <span>TII 人工批次全量</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(summary.tii_priority_batch_count)}</strong>
+      <span>其中優先人工批次</span>
     </article>
     <article>
       <strong>${formatNumber.format(processed)}</strong>

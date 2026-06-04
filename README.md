@@ -10,7 +10,7 @@ Public, noindex insurance-policy navigator for Taiwan insurance source documents
 - 1,670 unique URLs were extracted.
 - Crawl status covers all 1,666 public crawl candidates.
 - 919 checked sources are reachable, 387 are blocked by robots rules, and 360 need review.
-- Segmented policy URL batches are fully executed: 17/17 batches, 1,343 policy URLs processed, 559 reachable, 532 blocked by robots rules, and 252 errors/timeouts.
+- Segmented policy URL batches are fully executed: 17/17 automated URL batches, 1,343 policy URLs processed, 559 reachable, 532 blocked by robots rules, and 252 errors/timeouts.
 - Policy content extraction is complete for all 559 reachable policy sources: 551 PDF records and 8 HTML records produced parsed text, with 555 records hitting at least one consumer-important field.
 - Reader-first focus cards are generated per policy: coverage items, important definitions, special conditions, and claim application cues.
 - TII captcha-protected discontinued-policy batches remain manual; this project does not bypass captcha.
@@ -109,8 +109,8 @@ python scripts\run_policy_batch.py --batch-id policy-url-001
 
 Execution writes `data\policy-batch-results.json` and `data\batch-progress.json`.
 
-Current execution snapshot: `policy-url-001` through `policy-url-017` are complete. The site reports the distinction between executed batches, pages that were reachable, robots-blocked URLs, and errors/timeouts.
+Current execution snapshot: `policy-url-001` through `policy-url-017` are complete. These 17 are only the automated policy URL/content batches. The separate TII discontinued-policy matrix contains 306 captcha-protected manual batches.
 
 Current content extraction snapshot: `559` reachable policy sources were parsed, including `551` PDF records and `8` HTML records. The extraction produced `6,373,892` parsed text characters and field hits for `555` records. Reader-first focus cards detected `保障項目` in `553` records, `重要定義` in `552`, `特殊項目` in `529`, and `理賠申請` in `539`. The public data stores derived counts, field hits, page hints, and source links, not full policy text.
 
-Current TII manual matrix: `27` property insurers x `4` property categories = `108` batches; `33` life/personal insurers x `6` personal-insurance categories = `198` batches. These batches are shown on the site as clickable property/life groups, but result retrieval still requires human captcha completion and import.
+Current TII manual matrix: `27` property insurers x `4` property categories = `108` batches; `33` life/personal insurers x `6` personal-insurance categories = `198` batches; total `306` manual batches. These batches are shown on the site as clickable property/life groups, but result retrieval still requires human captcha completion and import.

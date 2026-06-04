@@ -15,6 +15,7 @@ Updated at: `2026-06-04T09:07:54+08:00`
 ## Policy URL Content Batches
 
 - Completed URL batches: `17 / 17`
+- Scope note: these `17` are automated policy URL/content batches only, not the full TII discontinued-policy matrix.
 - Policy URLs processed: `1343`
 - Reachable page reads: `559`
 - Robots blocked: `532`
@@ -49,6 +50,7 @@ Updated at: `2026-06-04T09:07:54+08:00`
 - Property-insurance manual batches: `108`
 - Life / personal-insurance manual batches: `198`
 - Total TII manual matrix batches: `306`
+- Scope note: these `306` TII batches are captcha-protected manual click-through/import batches and are separate from the `17` automated URL batches above.
 - Captcha boundary: TII result pages require human captcha completion; this project prepares click-through batches and imports saved results, but does not bypass captcha.
 
 ## Top Checked Domains
