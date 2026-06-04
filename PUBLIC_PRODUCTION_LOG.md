@@ -1,5 +1,35 @@
 # Public Production Log
 
+## 2026-06-04 Fourth TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `19266db`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed fourth TII batch data: `dpl_BaNarjme7Rpv6DUXsFgjW8479x4U`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-8rxd7q708.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- HTML meta robots remained `noindex,nofollow,noarchive`.
+- `robots.txt` remained `User-agent: *` / `Disallow: /`.
+- Production data shows TII `record_count=4186`, `detail_saved_count=4181`, `indexed_batch_count=4`, `completed_batch_count=4`, `partial_batch_count=0`, and pending manual batches `302`.
+- TII execution progress shows `attempted_batches=5`, `completed_batches=4`, `captcha_required_batches=1`; `tii-property-005` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-004` is complete by official row coverage: `2667 / 2667` official result rows, `2091` deduplicated product cards, `576` official duplicate product-id rows, `267` saved result pages, and `2087` saved detail pages; `4` official detail pages returned invalid detail sessions on retry.
+- Production UI renders query controls, `4,186` imported TII policies, `4,181` saved detail pages, `4,762` official result rows, and `576` official duplicate rows.
+
 ## 2026-06-04 Third TII Batch Complete
 
 Repository:
