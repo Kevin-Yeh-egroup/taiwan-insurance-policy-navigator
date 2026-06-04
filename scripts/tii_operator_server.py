@@ -23,7 +23,7 @@ JOB_LOCK = threading.Lock()
 def load_json(path: Path, fallback: dict) -> dict:
     if not path.exists():
         return fallback
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(path.read_text(encoding="utf-8-sig"))
 
 
 def write_json(path: Path, payload: dict) -> None:
