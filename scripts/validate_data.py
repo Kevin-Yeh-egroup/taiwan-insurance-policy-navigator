@@ -81,6 +81,12 @@ def main() -> None:
         fail("TII completed_batch_count does not match completed_batches length")
     if tii_completed_batches > matrix_count:
         fail("TII completed batches cannot exceed manual matrix batch count")
+    for record in tii_results.get("records", []):
+        for field in ["source_batch_id", "company", "insurance_category", "product_name", "sale_status", "sale_date", "discontinued_date"]:
+            if not record.get(field):
+                fail(f"TII imported record missing {field}: {record.get('id')}")
+        if "raw_text" in record:
+            fail(f"TII imported record should not publish raw_text: {record.get('id')}")
     tii_runs = tii_execution_progress.get("runs", [])
     tii_execution_summary = tii_execution_progress.get("summary", {})
     if tii_execution_summary.get("attempted_batches", len(tii_runs)) != len(tii_runs):

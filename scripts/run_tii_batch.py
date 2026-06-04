@@ -7,7 +7,7 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 from html.parser import HTMLParser
-from http.cookiejar import CookieJar
+from http.cookiejar import MozillaCookieJar
 from pathlib import Path
 
 
@@ -84,9 +84,11 @@ def find_batch(plan: dict, batch_id: str) -> dict:
     raise SystemExit(f"Unknown TII batch id: {batch_id}")
 
 
-def opener() -> urllib.request.OpenerDirector:
-    cookie_jar = CookieJar()
-    return urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cookie_jar))
+def opener(cookie_path: Path | None = None) -> tuple[urllib.request.OpenerDirector, MozillaCookieJar]:
+    cookie_jar = MozillaCookieJar(str(cookie_path)) if cookie_path else MozillaCookieJar()
+    if cookie_path and cookie_path.exists():
+        cookie_jar.load(ignore_discard=True, ignore_expires=True)
+    return urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cookie_jar)), cookie_jar
 
 
 def read_url(client: urllib.request.OpenerDirector, url: str) -> tuple[bytes, str]:
@@ -107,6 +109,21 @@ def post_url(client: urllib.request.OpenerDirector, url: str, payload: dict) -> 
     )
     with client.open(request, timeout=30) as response:
         return response.read(), response.geturl()
+
+
+def save_cookies(cookie_jar: MozillaCookieJar, cookie_path: Path) -> None:
+    cookie_path.parent.mkdir(parents=True, exist_ok=True)
+    cookie_jar.save(ignore_discard=True, ignore_expires=True)
+
+
+def image_suffix(content: bytes, fallback: str) -> str:
+    if content.startswith(b"\xff\xd8\xff"):
+        return ".jpg"
+    if content.startswith(b"BM"):
+        return ".bmp"
+    if content.startswith(b"\x89PNG"):
+        return ".png"
+    return fallback or ".img"
 
 
 def parse_forms(html: str) -> list[dict]:
@@ -181,28 +198,43 @@ def main() -> None:
     work_dir.mkdir(parents=True, exist_ok=True)
     results_dir.mkdir(parents=True, exist_ok=True)
 
-    client = opener()
-    form_bytes, final_url = read_url(client, batch["source_url"])
-    form_html = form_bytes.decode("utf-8", errors="replace")
-    (work_dir / f"{args.batch_id}-form.html").write_text(form_html, encoding="utf-8")
+    cookie_path = work_dir / f"{args.batch_id}-cookies.txt"
+    form_path = work_dir / f"{args.batch_id}-form.html"
+    client, cookie_jar = opener(cookie_path)
+
+    if args.captcha and form_path.exists() and cookie_path.exists():
+        final_url = batch["source_url"]
+        form_html = form_path.read_text(encoding="utf-8", errors="replace")
+    else:
+        form_bytes, final_url = read_url(client, batch["source_url"])
+        form_html = form_bytes.decode("utf-8", errors="replace")
+        form_path.write_text(form_html, encoding="utf-8")
+        save_cookies(cookie_jar, cookie_path)
+
     forms = parse_forms(form_html)
     if not forms:
         raise SystemExit("Official TII query page did not expose a form.")
     form = forms[0]
     action = urllib.parse.urljoin(final_url, form.get("attrs", {}).get("action", "ResultQueryAll.aspx"))
-    captcha_sources = parse_captcha_sources(form_html, final_url)
     captcha_files: list[str] = []
-    for index, captcha_url in enumerate(captcha_sources[:2], start=1):
-        captcha_bytes, captcha_final_url = read_url(client, captcha_url)
-        suffix = Path(urllib.parse.urlparse(captcha_final_url).path).suffix or ".bmp"
-        captcha_path = work_dir / f"{args.batch_id}-captcha-{index}{suffix}"
-        captcha_path.write_bytes(captcha_bytes)
-        captcha_files.append(str(captcha_path))
+    if not args.captcha:
+        captcha_sources = parse_captcha_sources(form_html, final_url)
+        for index, captcha_url in enumerate(captcha_sources[:2], start=1):
+            captcha_bytes, captcha_final_url = read_url(client, captcha_url)
+            fallback_suffix = Path(urllib.parse.urlparse(captcha_final_url).path).suffix
+            suffix = image_suffix(captcha_bytes, fallback_suffix)
+            captcha_path = work_dir / f"{args.batch_id}-captcha-{index}{suffix}"
+            captcha_path.write_bytes(captcha_bytes)
+            captcha_files.append(str(captcha_path))
+        save_cookies(cookie_jar, cookie_path)
+    else:
+        captcha_files = [str(path) for path in sorted(work_dir.glob(f"{args.batch_id}-captcha-*"))]
 
     result_path = ""
     if args.captcha:
         payload = build_payload(form, batch, args.captcha)
         result_bytes, _ = post_url(client, action, payload)
+        save_cookies(cookie_jar, cookie_path)
         result_html = result_bytes.decode("utf-8", errors="replace")
         result_file = results_dir / f"{args.batch_id}.html"
         result_file.write_text(result_html, encoding="utf-8")

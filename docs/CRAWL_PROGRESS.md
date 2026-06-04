@@ -51,9 +51,9 @@ Updated at: `2026-06-04T09:07:54+08:00`
 - Life / personal-insurance manual batches: `198`
 - Total TII manual matrix batches: `306`
 - Attempted TII manual batches: `1 / 306`
-- Waiting on captcha: `1`
-- Completed TII manual batches: `0 / 306`
-- Imported TII policy records: `0`
+- Waiting on captcha: `0`
+- Completed TII manual batches: `1 / 306`
+- Imported TII policy records: `10`
 - Scope note: these `306` TII batches are captcha-protected manual click-through/import batches and are separate from the `17` automated URL batches above.
 - Captcha boundary: TII result pages require human captcha completion; this project prepares click-through batches and imports saved results, but does not bypass captcha.
 

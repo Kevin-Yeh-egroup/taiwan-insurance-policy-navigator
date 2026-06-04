@@ -306,7 +306,24 @@ function renderPolicyInsights() {
   document.getElementById("typeBars").innerHTML = barRows(state.policyInsights.type_counts.slice(0, 8));
   document.getElementById("companyBars").innerHTML = barRows(state.policyInsights.company_counts.slice(0, 8));
 
-  const discontinued = state.policyInsights.discontinued_policies || [];
+  const discontinued = [
+    ...(state.policyInsights.discontinued_policies || []).map((policy) => ({
+      ...policy,
+      origin: "來源文件",
+      display_version: policy.version_text || "版本未標示",
+      flags: policy.content_flags || [],
+    })),
+    ...(state.tiiResults?.records || []).map((record) => ({
+      product_name: record.product_name,
+      company: record.company,
+      product_type: record.insurance_category || "TII 匯入",
+      sale_status: record.sale_status,
+      policy_url: state.tiiMetadata?.source_url,
+      origin: "保發中心",
+      display_version: `銷售日 ${record.sale_date || "未標示"}｜停售日 ${record.discontinued_date || "未標示"}`,
+      flags: ["TII 匯入", record.source_batch_id || "人工批次"],
+    })),
+  ];
   setText("discontinuedCount", `${formatNumber.format(discontinued.length)} 筆`);
   document.getElementById("discontinuedList").innerHTML = discontinued.length
     ? discontinued
@@ -318,10 +335,11 @@ function renderPolicyInsights() {
                 <div class="policy-meta">
                   <span>${escapeHtml(policy.company)}</span>
                   <span>${escapeHtml(policy.product_type)}</span>
-                  <span>${escapeHtml(policy.version_text || "版本未標示")}</span>
+                  <span>${escapeHtml(policy.display_version || "版本未標示")}</span>
+                  <span>${escapeHtml(policy.origin)}</span>
                 </div>
                 <div class="policy-flags">
-                  ${(policy.content_flags || []).map((flag) => `<span class="chip">${escapeHtml(flag)}</span>`).join("")}
+                  ${(policy.flags || []).map((flag) => `<span class="chip">${escapeHtml(flag)}</span>`).join("")}
                 </div>
               </div>
               ${

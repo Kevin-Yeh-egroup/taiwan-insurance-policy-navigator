@@ -1,10 +1,124 @@
 {
-  "generated_at": "2026-06-04T10:45:00+08:00",
+  "generated_at": "2026-06-04T11:11:21+08:00",
   "source": "manually_saved_tii_query_results",
-  "record_count": 0,
-  "completed_batch_count": 0,
-  "completed_batches": [],
-  "pending_manual_batch_count": 306,
-  "records": [],
-  "compliance_note": "No TII captcha-protected query result has been imported yet. TII batches require human captcha completion before import; this project does not automate or bypass captcha."
+  "input_dir": "work\\tii-results",
+  "record_count": 10,
+  "completed_batch_count": 1,
+  "completed_batches": [
+    "tii-property-001"
+  ],
+  "pending_manual_batch_count": 305,
+  "records": [
+    {
+      "id": "tii_policy_000001",
+      "source_file": "tii-property-001.html",
+      "source_batch_id": "tii-property-001",
+      "company": "臺灣產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "臺灣產物強制汽車責任保險",
+      "sale_status": "已停售",
+      "sale_date": "086/12/05",
+      "discontinued_date": "094/11/06"
+    },
+    {
+      "id": "tii_policy_000002",
+      "source_file": "tii-property-001.html",
+      "source_batch_id": "tii-property-001",
+      "company": "臺灣產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "臺灣產物營業用汽車第三人責任保險汽車貨運業專用附加條款-傷害(第3次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "087/06/30",
+      "discontinued_date": "109/03/01"
+    },
+    {
+      "id": "tii_policy_000003",
+      "source_file": "tii-property-001.html",
+      "source_batch_id": "tii-property-001",
+      "company": "臺灣產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "臺灣產物營業用汽車第三人責任保險汽車貨運業專用附加條款-財損(第3次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "087/06/30",
+      "discontinued_date": "109/03/01"
+    },
+    {
+      "id": "tii_policy_000004",
+      "source_file": "tii-property-001.html",
+      "source_batch_id": "tii-property-001",
+      "company": "臺灣產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "臺灣產物汽車竊盜損失保險附加代車費用保險(自用車)",
+      "sale_status": "已停售",
+      "sale_date": "090/10/24",
+      "discontinued_date": "096/08/30"
+    },
+    {
+      "id": "tii_policy_000005",
+      "source_file": "tii-property-001.html",
+      "source_batch_id": "tii-property-001",
+      "company": "臺灣產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "臺灣產物汽車保險道路救援費用附加條款(自用車)",
+      "sale_status": "已停售",
+      "sale_date": "090/10/25",
+      "discontinued_date": "096/08/30"
+    },
+    {
+      "id": "tii_policy_000006",
+      "source_file": "tii-property-001.html",
+      "source_batch_id": "tii-property-001",
+      "company": "臺灣產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "臺灣產物汽車保險道路救援費用附加條款(商用車)",
+      "sale_status": "已停售",
+      "sale_date": "090/10/25",
+      "discontinued_date": "096/08/30"
+    },
+    {
+      "id": "tii_policy_000007",
+      "source_file": "tii-property-001.html",
+      "source_batch_id": "tii-property-001",
+      "company": "臺灣產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "臺灣產物汽車車體損失保險全損理賠無折舊附加條款(自用車)",
+      "sale_status": "已停售",
+      "sale_date": "090/11/20",
+      "discontinued_date": "096/08/30"
+    },
+    {
+      "id": "tii_policy_000008",
+      "source_file": "tii-property-001.html",
+      "source_batch_id": "tii-property-001",
+      "company": "臺灣產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "臺灣產物汽車竊盜損失保險全損理賠無折舊附加條款(自用車)",
+      "sale_status": "已停售",
+      "sale_date": "090/11/20",
+      "discontinued_date": "096/08/30"
+    },
+    {
+      "id": "tii_policy_000009",
+      "source_file": "tii-property-001.html",
+      "source_batch_id": "tii-property-001",
+      "company": "臺灣產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "臺灣產物汽車保險附加傷害保險傷害住院加護病房保險給付附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/04/03",
+      "discontinued_date": "095/09/30"
+    },
+    {
+      "id": "tii_policy_000010",
+      "source_file": "tii-property-001.html",
+      "source_batch_id": "tii-property-001",
+      "company": "臺灣產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "臺灣產物汽車保險附加傷害保險",
+      "sale_status": "已停售",
+      "sale_date": "091/04/03",
+      "discontinued_date": "095/09/30"
+    }
+  ],
+  "compliance_note": "This importer parses files saved after a human completes TII captcha. It does not automate or bypass captcha."
 }
