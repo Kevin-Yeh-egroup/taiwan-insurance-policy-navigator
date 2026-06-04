@@ -14,7 +14,7 @@ Vercel:
 - Project: `taiwan-insurance-policy-navigator`
 - Team: `egroup-task3s-projects`
 - Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
-- Active production deployment: `dpl_AVhWCuoR7Tcmz5XyXt9DP7uL3aci`
+- Verified deployment for the TII operator/data update: `dpl_AVhWCuoR7Tcmz5XyXt9DP7uL3aci`
 - Deployment URL: <https://taiwan-insurance-policy-navigator-byo3bnmd0.vercel.app>
 - Target: production
 - Status: READY
