@@ -65,11 +65,23 @@ Status meanings:
       "matched_terms": ["給付", "保險金"]
     }
   ],
+  "reader_focus": [
+    {
+      "key": "coverage",
+      "label": "保障項目",
+      "reader_question": "這張保單主要賠什麼、保障哪些事故或狀態？",
+      "status": "detected",
+      "summary": "已命中 5 個重點詞：給付、保險金、住院。",
+      "terms": ["給付", "保險金", "住院"],
+      "pages": [2, 3]
+    }
+  ],
+  "focus_score": 4,
   "extracted_at": "2026-06-04T09:07:54+08:00"
 }
 ```
 
-The public extract does not include full PDF text. It includes enough derived evidence to confirm that the crawler parsed policy content and found reader-important categories.
+The public extract does not include full PDF text. It includes enough derived evidence to confirm that the crawler parsed policy content and found reader-important categories. `reader_focus` powers the public quick-read cards for `保障項目`, `重要定義`, `特殊項目`, and `理賠申請`.
 
 ## ConsumerField
 

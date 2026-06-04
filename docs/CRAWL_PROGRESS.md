@@ -31,11 +31,16 @@ Updated at: `2026-06-04T09:07:54+08:00`
 - Parsed text characters: `6,373,892`
 - Field-hit categories:
   - `理賠/給付`: `554`
-  - `名詞定義`: `532`
+  - `名詞定義`: `552`
   - `保費/續保`: `482`
   - `除外責任`: `457`
-  - `投保限制`: `356`
+  - `投保限制`: `358`
   - `等待期/免責期`: `104`
+- Reader-first focus cards:
+  - `保障項目`: `553`
+  - `重要定義`: `552`
+  - `理賠申請`: `539`
+  - `特殊項目`: `529`
 - Public output: `data/policy-content-extracts.json`
 - Public output policy: derived evidence only; full policy text is not published.
 

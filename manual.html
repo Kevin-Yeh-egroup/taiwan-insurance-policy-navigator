@@ -12,7 +12,7 @@
       <div class="header-main">
         <p class="eyebrow">User Manual</p>
         <h1>操作手冊</h1>
-        <p class="lede">用查詢、篩選、內容抽取統計與官方來源連結，快速確認保單資料的可用性與重點欄位。</p>
+        <p class="lede">用保單快讀卡先看保障項目、重要定義與特殊限制，再回官方來源確認細節。</p>
       </div>
       <nav class="header-actions" aria-label="主要導覽">
         <a class="nav-link" href="./">查詢台</a>
@@ -27,18 +27,18 @@
           <h2>1. 開始查詢</h2>
         </div>
         <ol class="manual-steps">
-          <li>在首頁「查詢來源」輸入保險公司、商品名稱、關鍵字或 PDF 連結。</li>
-          <li>按「查詢」或按 Enter，列表會依目前條件更新。</li>
+          <li>在首頁「查保單重點」輸入保險公司、商品名稱、住院、手術、除外責任、等待期等關鍵字。</li>
+          <li>按「查詢」或按 Enter，保單快讀卡會依目前條件更新。</li>
           <li>按「清除條件」可回到完整資料集。</li>
         </ol>
         <div class="manual-grid">
           <figure class="manual-figure">
-            <img src="./assets/manual/home-desktop.png" alt="桌機版查詢台首頁">
-            <figcaption>首頁先呈現來源總覽、查詢列、篩選器與資料卡片，適合從公司或關鍵字開始縮小範圍。</figcaption>
+            <img src="./assets/manual/policy-quick-cards.png" alt="桌機版保單快讀卡">
+            <figcaption>首頁先呈現查詢列與保單快讀卡，適合從公司、商品或保障關鍵字開始縮小範圍。</figcaption>
           </figure>
           <figure class="manual-figure">
             <img src="./assets/manual/search-taiwan-life.png" alt="輸入公司名稱後的查詢結果">
-            <figcaption>輸入公司或商品關鍵字後，系統會同步更新統計與下方來源列表。</figcaption>
+            <figcaption>輸入公司、商品或條款關鍵字後，系統會同步更新快讀卡、統計與下方來源列表。</figcaption>
           </figure>
         </div>
       </section>
@@ -50,8 +50,8 @@
         </div>
         <ol class="manual-steps">
           <li>用「公司」篩出特定保險公司。</li>
-          <li>用「文件類型」切換 PDF 條款、HTML 頁面、官方查詢頁或其他來源。</li>
-          <li>用「抓取狀態」分辨可開啟、網站限制與需人工確認。</li>
+          <li>用「保單類型」切換壽險、健康險、傷害險、年金險等類型。</li>
+          <li>用「重點狀態」快速查看四項都有、有特殊項目、需回官方確認。</li>
         </ol>
         <div class="manual-grid">
           <figure class="manual-figure">
@@ -59,7 +59,7 @@
             <figcaption>「可開啟」表示目前來源可讀取；robots 限制或錯誤來源會保留狀態，避免誤判成資料不存在。</figcaption>
           </figure>
           <figure class="manual-figure">
-            <img src="./assets/manual/mobile-home.png" alt="手機版首頁">
+            <img src="./assets/manual/mobile-policy-cards.png" alt="手機版保單快讀卡">
             <figcaption>手機版會把查詢、篩選與卡片改成單欄排列，方便現場快速查資料。</figcaption>
           </figure>
         </div>
@@ -71,7 +71,7 @@
           <h2>3. 看懂圖像化重點</h2>
         </div>
         <ol class="manual-steps">
-          <li>先看「來源總覽」，確認目前資料量、已檢查比例與可開啟來源數。</li>
+          <li>先看「保單快讀卡」，每張卡固定呈現保障項目、重要定義、特殊項目、理賠申請。</li>
           <li>再看「保單內容抽取」，確認系統已解析多少 PDF/HTML、文字量與欄位命中。</li>
           <li>用「重點欄位命中」判斷哪些資料已碰到理賠/給付、名詞定義、除外責任、等待期、保費續保、投保限制。</li>
           <li>在「抽取範例」按「官方來源」，可回到保險公司或官方網站核對原始文件。</li>
@@ -167,7 +167,7 @@
           <h2>7. 目前資料進度</h2>
         </div>
         <p>自動保單 URL 批次 <code>policy-url-001</code> 到 <code>policy-url-017</code> 已完成，共處理 <strong>1,343</strong> 個保單 URL。其中 <strong>559</strong> 個可讀取，<strong>532</strong> 個受 robots 規則限制，<strong>252</strong> 個錯誤或逾時。</p>
-        <p>內容抽取已完成所有 <strong>559</strong> 個可讀取來源，包含 <strong>551</strong> 筆 PDF 與 <strong>8</strong> 筆 HTML。系統共解析 <strong>6,373,892</strong> 個文字字元，<strong>555</strong> 筆來源命中至少一個民眾關心欄位。</p>
+        <p>內容抽取已完成所有 <strong>559</strong> 個可讀取來源，包含 <strong>551</strong> 筆 PDF 與 <strong>8</strong> 筆 HTML。系統共解析 <strong>6,373,892</strong> 個文字字元，<strong>555</strong> 筆來源命中至少一個民眾關心欄位。讀者快讀卡命中：保障項目 <strong>553</strong> 筆、重要定義 <strong>552</strong> 筆、特殊項目 <strong>529</strong> 筆、理賠申請 <strong>539</strong> 筆。</p>
       </section>
 
       <section class="manual-section">

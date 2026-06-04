@@ -92,10 +92,14 @@ def main() -> None:
         fail("policy content extracts have no field hits")
     if content_summary.get("total_text_characters", 0) <= 0:
         fail("policy content extracts have no text characters")
+    if not content_summary.get("focus_counts"):
+        fail("policy content extracts have no reader focus counts")
 
     content_hits = 0
+    focus_counts = {}
     total_text_characters = 0
     allowed_content_kinds = {"pdf", "html"}
+    required_focus_keys = {"coverage", "definitions", "special", "claims"}
     forbidden_text_fields = {"text", "raw_text", "full_text", "content_text", "extracted_text"}
     for record in content_records:
         for field in ["policy_url", "final_url", "company", "product_name", "document_kind", "extraction_status"]:
@@ -113,6 +117,24 @@ def main() -> None:
             fail(f"policy content record field_hits must be a list: {record.get('policy_id')}")
         if forbidden_text_fields.intersection(record):
             fail(f"policy content record should not publish full text: {record.get('policy_id')}")
+        reader_focus = record.get("reader_focus")
+        if not isinstance(reader_focus, list) or len(reader_focus) != 4:
+            fail(f"policy content record should have four reader focus cards: {record.get('policy_id')}")
+        focus_keys = {card.get("key") for card in reader_focus}
+        if focus_keys != required_focus_keys:
+            fail(f"policy content reader focus keys are incomplete: {record.get('policy_id')}")
+        detected_focus = 0
+        for card in reader_focus:
+            for field in ["key", "label", "reader_question", "status", "summary", "terms", "pages"]:
+                if field not in card:
+                    fail(f"reader focus card missing {field}: {record.get('policy_id')}")
+            if card["status"] == "detected":
+                detected_focus += 1
+                focus_counts[card["label"]] = focus_counts.get(card["label"], 0) + 1
+                if not card["terms"]:
+                    fail(f"detected reader focus card has no terms: {record.get('policy_id')}")
+        if record.get("focus_score") != detected_focus:
+            fail(f"policy content focus score does not match detected cards: {record.get('policy_id')}")
         if record["field_hits"]:
             content_hits += 1
         total_text_characters += record["text_char_count"]
@@ -120,6 +142,9 @@ def main() -> None:
         fail("policy content field-hit count does not match records")
     if total_text_characters != content_summary.get("total_text_characters"):
         fail("policy content text-character total does not match records")
+    summary_focus_counts = {item["label"]: item["count"] for item in content_summary["focus_counts"]}
+    if focus_counts != summary_focus_counts:
+        fail("policy content reader focus counts do not match records")
     known_ids = {item["id"] for item in source_index["urls"]}
     for result in crawl_status["results"]:
         if result["url_id"] not in known_ids:

@@ -27,13 +27,100 @@ TAIPEI = timezone(timedelta(hours=8))
 USER_AGENT = "TaiwanPolicyNavigatorBot/0.3 (policy-content-extraction)"
 
 FIELD_KEYWORDS = {
-    "理賠/給付": ["理賠", "給付", "保險金", "申請文件", "受益人"],
-    "名詞定義": ["名詞定義", "定義", "醫院", "住院", "手術"],
+    "理賠/給付": ["理賠", "給付", "保險金", "給付項目", "申請文件", "受益人"],
+    "名詞定義": ["名詞定義", "定義", "醫院", "住院", "手術", "疾病", "傷害"],
     "等待期/免責期": ["等待期", "免責期", "等待期間"],
     "除外責任": ["除外責任", "不保事項", "不予給付", "除外"],
-    "保費/續保": ["保費", "費率", "續保", "復效", "停效"],
-    "投保限制": ["投保年齡", "職業類別", "健康告知", "最高保額"],
+    "保費/續保": ["保費", "費率", "續保", "保證續保", "復效", "停效"],
+    "投保限制": ["投保年齡", "職業類別", "健康告知", "給付上限", "最高保額"],
 }
+
+FOCUS_GROUPS = [
+    {
+        "key": "coverage",
+        "label": "保障項目",
+        "reader_question": "這張保單主要賠什麼、保障哪些事故或狀態？",
+        "empty_note": "未在已解析頁面命中明確保障詞，請回官方條款確認給付項目。",
+        "terms": [
+            "給付項目",
+            "給付",
+            "保險金",
+            "住院",
+            "手術",
+            "醫療",
+            "身故",
+            "失能",
+            "重大疾病",
+            "重大傷病",
+            "癌症",
+            "長期照顧",
+            "燒燙傷",
+            "傷害",
+            "意外",
+            "年金",
+        ],
+    },
+    {
+        "key": "definitions",
+        "label": "重要定義",
+        "reader_question": "條款怎麼定義住院、手術、疾病、傷害等關鍵字？",
+        "empty_note": "未在已解析頁面命中明確定義詞，仍需查看官方條款的名詞定義章節。",
+        "terms": [
+            "名詞定義",
+            "定義",
+            "醫院",
+            "住院",
+            "手術",
+            "疾病",
+            "傷害",
+            "癌症",
+            "重大疾病",
+            "重大傷病",
+            "長期照顧",
+            "失能",
+        ],
+    },
+    {
+        "key": "special",
+        "label": "特殊項目",
+        "reader_question": "有哪些等待期、除外責任、續保、投保限制或給付上限？",
+        "empty_note": "未在已解析頁面命中特殊限制詞，請仍以官方條款為準。",
+        "terms": [
+            "除外責任",
+            "不保事項",
+            "不予給付",
+            "等待期",
+            "等待期間",
+            "免責期",
+            "給付上限",
+            "最高保額",
+            "投保年齡",
+            "職業類別",
+            "健康告知",
+            "保證續保",
+            "續保",
+            "停效",
+            "復效",
+            "保費",
+        ],
+    },
+    {
+        "key": "claims",
+        "label": "理賠申請",
+        "reader_question": "出事時可能需要哪些申請、證明或受益人資訊？",
+        "empty_note": "未在已解析頁面命中理賠申請詞，請回官方條款確認申請文件。",
+        "terms": [
+            "理賠",
+            "申請文件",
+            "保險金申請",
+            "診斷證明",
+            "醫療費用收據",
+            "收據",
+            "事故通知",
+            "受益人",
+        ],
+    },
+]
 
 
 class HtmlTextParser(HTMLParser):
@@ -106,19 +193,22 @@ def fetch_bytes(url: str, timeout: int, max_bytes: int | None = None) -> tuple[b
         return body, response.headers.get("content-type", ""), response.geturl()
 
 
-def extract_pdf_text(data: bytes, max_pages: int) -> tuple[str, int, int]:
+def extract_pdf_text(data: bytes, max_pages: int) -> tuple[str, int, int, list[dict[str, Any]]]:
     reader = PdfReader(BytesIO(data), strict=False)
     page_count = len(reader.pages)
     pages_to_parse = page_count if max_pages <= 0 else min(page_count, max_pages)
     parts: list[str] = []
+    page_texts: list[dict[str, Any]] = []
     for index in range(pages_to_parse):
         try:
             page_text = reader.pages[index].extract_text() or ""
         except Exception:
             page_text = ""
         if page_text:
-            parts.append(page_text)
-    return normalize_text(" ".join(parts)), page_count, pages_to_parse
+            normalized = normalize_text(page_text)
+            parts.append(normalized)
+            page_texts.append({"page": index + 1, "text": normalized})
+    return normalize_text(" ".join(parts)), page_count, pages_to_parse, page_texts
 
 
 def extract_html_text(data: bytes) -> str:
@@ -136,6 +226,50 @@ def detect_fields(text: str, fallback_flags: list[str] | None = None) -> tuple[l
                 hits.add(label)
                 matched_terms.add(term)
     return sorted(hits), sorted(matched_terms)
+
+
+def compact_terms(terms: list[str], limit: int = 10) -> list[str]:
+    seen = set()
+    compacted: list[str] = []
+    for term in terms:
+        if term in seen:
+            continue
+        seen.add(term)
+        compacted.append(term)
+        if len(compacted) >= limit:
+            break
+    return compacted
+
+
+def detect_focus(page_texts: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    focus_cards: list[dict[str, Any]] = []
+    for group in FOCUS_GROUPS:
+        term_pages: dict[str, set[int]] = {}
+        for page in page_texts:
+            text = page["text"]
+            for term in group["terms"]:
+                if term in text:
+                    term_pages.setdefault(term, set()).add(int(page["page"]))
+
+        matched_terms = compact_terms([term for term in group["terms"] if term in term_pages])
+        pages = sorted({page for term in matched_terms for page in term_pages.get(term, set())})[:8]
+        status = "detected" if matched_terms else "not_detected"
+        if matched_terms:
+            summary = f"已命中 {len(matched_terms)} 個重點詞：{'、'.join(matched_terms[:6])}。"
+        else:
+            summary = group["empty_note"]
+        focus_cards.append(
+            {
+                "key": group["key"],
+                "label": group["label"],
+                "reader_question": group["reader_question"],
+                "status": status,
+                "summary": summary,
+                "terms": matched_terms,
+                "pages": pages,
+            }
+        )
+    return focus_cards
 
 
 def build_record(result: dict[str, Any], args: argparse.Namespace) -> dict[str, Any]:
@@ -165,7 +299,7 @@ def build_record(result: dict[str, Any], args: argparse.Namespace) -> dict[str, 
     try:
         if base["document_kind"] == "pdf":
             data, content_type, final_url = fetch_bytes(url, args.timeout)
-            text, page_count, pages_parsed = extract_pdf_text(data, args.max_pdf_pages)
+            text, page_count, pages_parsed, page_texts = extract_pdf_text(data, args.max_pdf_pages)
             base.update(
                 {
                     "final_url": final_url,
@@ -177,6 +311,7 @@ def build_record(result: dict[str, Any], args: argparse.Namespace) -> dict[str, 
         else:
             data, content_type, final_url = fetch_bytes(url, args.timeout, args.max_html_bytes)
             text = extract_html_text(data)
+            page_texts = [{"page": 1, "text": text}] if text else []
             base.update(
                 {
                     "final_url": final_url,
@@ -186,11 +321,14 @@ def build_record(result: dict[str, Any], args: argparse.Namespace) -> dict[str, 
             )
 
         field_hits, matched_terms = detect_fields(text, result.get("detected_flags", []))
+        reader_focus = detect_focus(page_texts)
         base.update(
             {
                 "text_char_count": len(text),
                 "field_hits": field_hits,
                 "matched_terms": matched_terms[:20],
+                "reader_focus": reader_focus,
+                "focus_score": sum(1 for card in reader_focus if card["status"] == "detected"),
                 "extraction_status": "extracted" if text else "no_text",
                 "confidence": "parsed" if text and field_hits else "sampled" if text else "unreviewed",
             }
@@ -219,6 +357,9 @@ def summarize(records: list[dict[str, Any]], candidates: list[dict[str, Any]], g
         "html_record_count": sum(record["document_kind"] == "html" for record in records),
         "total_text_characters": sum(record["text_char_count"] for record in extracted),
         "field_counts": count_rows(Counter(field for record in extracted for field in record["field_hits"])),
+        "focus_counts": count_rows(
+            Counter(card["label"] for record in extracted for card in record.get("reader_focus", []) if card["status"] == "detected")
+        ),
         "company_counts": count_rows(Counter(record["company"] for record in extracted)),
         "product_type_counts": count_rows(Counter(record["product_type"] for record in extracted)),
         "status_counts": count_rows(Counter(record["sale_status"] for record in records)),

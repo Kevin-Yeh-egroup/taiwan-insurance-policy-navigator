@@ -12,7 +12,7 @@
       <div class="header-main">
         <p class="eyebrow">Taiwan Policy Navigator</p>
         <h1>保單資訊查詢台</h1>
-        <p class="lede">保險公司、商品頁、PDF 與官方來源清冊。</p>
+        <p class="lede">先看每張保單的保障項目、重要定義與特殊限制，再回官方來源複核。</p>
       </div>
       <nav class="header-actions" aria-label="主要連結">
         <a class="nav-link current" href="./">查詢台</a>
@@ -21,11 +21,11 @@
     </header>
 
     <main>
-      <section class="search-panel" aria-label="保單來源查詢">
+      <section class="search-panel" aria-label="保單重點查詢">
         <form id="searchForm" class="query-form">
           <label class="query-label" for="searchInput">
-            <span>查詢來源</span>
-            <input id="searchInput" type="search" autocomplete="off" placeholder="輸入保險公司、商品名稱、關鍵字或 PDF 連結">
+            <span>查保單重點</span>
+            <input id="searchInput" type="search" autocomplete="off" placeholder="輸入公司、商品名稱、住院、手術、除外責任、等待期等關鍵字">
           </label>
           <button class="button primary" type="submit">查詢</button>
           <button class="button secondary" id="clearFilters" type="button">清除條件</button>
@@ -37,35 +37,45 @@
             <select id="companyFilter"></select>
           </label>
           <label>
-            <span>資料類型</span>
+            <span>保單類型</span>
             <select id="kindFilter"></select>
           </label>
           <label>
-            <span>狀態</span>
+            <span>重點狀態</span>
             <select id="crawlFilter">
               <option value="all">全部</option>
-              <option value="ok">可開啟</option>
-              <option value="blocked">網站限制</option>
-              <option value="error">需人工確認</option>
-              <option value="unchecked">尚未檢查</option>
+              <option value="complete">四項都有</option>
+              <option value="special">有特殊項目</option>
+              <option value="needs_review">需回官方確認</option>
             </select>
           </label>
         </div>
 
         <div class="status-chips" aria-label="快速狀態篩選">
           <button type="button" class="status-chip active" data-crawl="all">全部</button>
-          <button type="button" class="status-chip" data-crawl="ok">可開啟</button>
-          <button type="button" class="status-chip" data-crawl="blocked">網站限制</button>
-          <button type="button" class="status-chip" data-crawl="error">需人工確認</button>
+          <button type="button" class="status-chip" data-crawl="complete">四項都有</button>
+          <button type="button" class="status-chip" data-crawl="special">有特殊項目</button>
+          <button type="button" class="status-chip" data-crawl="needs_review">需回官方確認</button>
         </div>
 
         <p id="resultSummary" class="result-summary" aria-live="polite">資料載入中。</p>
       </section>
 
-      <section class="insight-section" aria-label="保單內容重點整理">
+      <section id="policy-results" class="policy-results-section">
+        <div class="section-heading with-count">
+          <div>
+            <p class="eyebrow">Policy Finder</p>
+            <h2>保單快讀卡</h2>
+          </div>
+          <span id="policyResultCount" class="result-count">--</span>
+        </div>
+        <div id="policyList" class="policy-card-list"></div>
+      </section>
+
+      <section class="insight-section" aria-label="資料覆蓋與限制">
         <div class="section-heading">
-          <p class="eyebrow">Policy Insights</p>
-          <h2>保單重點總覽</h2>
+          <p class="eyebrow">Coverage And Limits</p>
+          <h2>資料覆蓋與限制</h2>
         </div>
         <div class="insight-metrics">
           <article>
@@ -148,10 +158,11 @@
         <div class="section-heading with-count">
           <div>
             <p class="eyebrow">Source Explorer</p>
-            <h2>保單來源清冊</h2>
+            <h2>官方來源清冊</h2>
           </div>
           <span id="resultCount" class="result-count">--</span>
         </div>
+        <p id="sourceResultSummary" class="result-summary">來源資料載入中。</p>
         <div id="sourceList" class="source-list"></div>
       </section>
 
