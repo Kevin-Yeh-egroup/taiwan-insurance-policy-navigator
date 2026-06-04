@@ -94,8 +94,14 @@ def batch_map() -> dict[str, dict]:
     return {batch["id"]: batch for batch in plan.get("tii_manual_matrix_batches", [])}
 
 
+def batch_order() -> list[str]:
+    plan = load_json(PLAN_PATH, {})
+    return [batch["id"] for batch in plan.get("tii_manual_matrix_batches", [])]
+
+
 def next_batch_id() -> str:
     batches = batch_map()
+    ordered_batch_ids = batch_order()
     progress = load_json(PROGRESS_PATH, {"runs": []})
     results = load_json(RESULTS_PATH, {"completed_batches": [], "batch_summaries": []})
     completed = set(results.get("completed_batches", []))
@@ -106,10 +112,13 @@ def next_batch_id() -> str:
     ]
     waiting = [run["batch_id"] for run in progress.get("runs", []) if "captcha" in run.get("status", "")]
     if waiting:
-        return sorted(waiting)[0]
-    if partial:
-        return sorted(partial)[0]
-    for batch_id in sorted(batches):
+        waiting_set = set(waiting)
+        return next((batch_id for batch_id in ordered_batch_ids if batch_id in waiting_set), sorted(waiting)[0])
+    partial_set = set(partial)
+    for batch_id in ordered_batch_ids:
+        if batch_id in partial_set:
+            return batch_id
+    for batch_id in ordered_batch_ids:
         if batch_id not in completed:
             return batch_id
     return ""
