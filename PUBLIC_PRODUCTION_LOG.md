@@ -1,5 +1,35 @@
 # Public Production Log
 
+## 2026-06-04 TII Same-Name Version Preservation
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Release commit: `a58e8ac`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for same-name version preservation: `dpl_Bodvod5DVsc2xoQn8F4T7Sd4K9ii`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-6x2ra3n7r.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- HTML meta robots remained `noindex,nofollow,noarchive`.
+- `robots.txt` remained `User-agent: *` / `Disallow: /`.
+- Production data shows TII `record_count=4186`, `detail_saved_count=4181`, `indexed_batch_count=4`, and `completed_batch_count=4`.
+- Production data includes `record_identity_key`, `identity_basis`, and `edition_label` for TII records.
+- Production data preserves `66` same-company same-name multi-product groups as `140` separate cards.
+- Production UI renders `140` same-name version chips and `140` version-note blocks; the TII status area states that cards are not merged by name.
+
 ## 2026-06-04 Fourth TII Batch Complete
 
 Repository:
