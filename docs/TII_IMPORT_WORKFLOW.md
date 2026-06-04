@@ -48,9 +48,17 @@ python scripts\run_tii_batch.py --batch-id tii-property-001
 人工讀取驗證碼後，再用同一批次送出：
 
 ```powershell
-python scripts\run_tii_batch.py --batch-id tii-property-001 --captcha <人工輸入的驗證碼>
+python scripts\run_tii_batch.py --batch-id tii-property-001 --captcha <人工輸入的驗證碼> --fetch-all-pages --fetch-details
 python scripts\import_tii_results.py --input-dir work\tii-results --output data\tii-policy-results.json
 ```
+
+較適合大量批次的方式是啟動本機 operator：
+
+```powershell
+python scripts\tii_operator_server.py
+```
+
+然後開啟 <http://127.0.0.1:8765/>。這個頁面只在本機執行，Kevin 只需要輸入官方圖片中的驗證碼；送出後會自動查詢該批、翻完整結果頁、抓可用明細頁、重新匯入 `data\tii-policy-results.json`，再準備下一批驗證碼。
 
 ## 匯入後如何使用
 
@@ -109,8 +117,11 @@ data\batch-progress.json
 - TII 驗證碼批次仍需人工查詢與匯入，不繞過驗證碼。
 - 目前 TII 人工批次已啟動：`1 / 306`。
 - 目前等待驗證碼批次：`0`。
-- 目前 TII 人工批次完成狀態：`1 / 306`。
+- 目前 TII 已索引批次：`1 / 306`。
+- 目前 TII 完整批次：`0 / 306`。
 - 目前已匯入 TII 保單結果：`10` 筆。
+- 目前已保存 TII 明細頁：`0` 筆。
+- `tii-property-001` 官方結果總數為 `952` 筆，目前只保存第一頁 `10` 筆；需要重新用 operator 輸入一次驗證碼，才能自動補齊約 `96` 頁。
 
 保發中心頁面本身分為「財產保險」與「人身保險」。目前批次矩陣已依這個入口拆分：
 
@@ -118,7 +129,7 @@ data\batch-progress.json
 - 壽險/人身保險：`33` 家公司 x `6` 個人身保險類別 = `198` 個人工查詢批次。
 - 合計：`306` 個人工查詢批次，另有 `1` 個非產壽險代碼不列入產險/壽險矩陣。
 
-網站上的每個 TII 批次會列出 `categoryId`、`CompanyID`、`f_CategoryId1`。人工查詢時照這三個欄位選擇，輸入驗證碼後保存結果，再用 `import_tii_results.py` 匯入。
+網站上的每個 TII 批次會列出 `categoryId`、`CompanyID`、`f_CategoryId1`。operator 會依批次計畫送出這些欄位；完成條件不是「有第一頁」，而是 `unique_product_id_count == expected_total_count == imported_record_count`。若只抓到部分頁面，資料會標為 `partial_index`，前台會顯示「已索引」而不是「完整」。
 
 如果結果顯示 `robots 擋下`，代表站方規則不允許自動抓取，應改走人工複核或 TII 查詢匯入。
 

@@ -319,9 +319,15 @@ function renderPolicyInsights() {
       product_type: record.insurance_category || "TII 匯入",
       sale_status: record.sale_status,
       policy_url: state.tiiMetadata?.source_url,
+      detail_url: record.detail_url,
       origin: "保發中心",
       display_version: `銷售日 ${record.sale_date || "未標示"}｜停售日 ${record.discontinued_date || "未標示"}`,
-      flags: ["TII 匯入", record.source_batch_id || "人工批次"],
+      flags: [
+        "TII 匯入",
+        record.source_batch_id || "人工批次",
+        record.product_id ? `productId ${record.product_id}` : "",
+        record.detail_saved ? "明細已保存" : "明細待抓取",
+      ].filter(Boolean),
     })),
   ];
   setText("discontinuedCount", `${formatNumber.format(discontinued.length)} 筆`);
@@ -342,11 +348,18 @@ function renderPolicyInsights() {
                   ${(policy.flags || []).map((flag) => `<span class="chip">${escapeHtml(flag)}</span>`).join("")}
                 </div>
               </div>
-              ${
-                policy.policy_url
-                  ? `<a class="button secondary" href="${escapeHtml(policy.policy_url)}" target="_blank" rel="noreferrer">官方來源</a>`
-                  : '<span class="badge muted">待補來源</span>'
-              }
+              <div class="policy-card-actions">
+                ${
+                  policy.detail_url
+                    ? `<a class="button secondary" href="${escapeHtml(policy.detail_url)}" target="_blank" rel="noreferrer">官方明細</a>`
+                    : ""
+                }
+                ${
+                  policy.policy_url
+                    ? `<a class="button secondary" href="${escapeHtml(policy.policy_url)}" target="_blank" rel="noreferrer">官方查詢</a>`
+                    : '<span class="badge muted">待補來源</span>'
+                }
+              </div>
             </article>
           `,
         )
@@ -358,12 +371,10 @@ function renderPolicyInsights() {
     state.batchPlan?.summary?.tii_manual_matrix_batch_count || state.batchPlan?.summary?.tii_full_estimated_batch_count || 0;
   const tiiAttemptedBatches = state.tiiExecutionProgress?.summary?.attempted_batches || 0;
   const tiiCaptchaRequiredBatches = state.tiiExecutionProgress?.summary?.captcha_required_batches || 0;
-  const tiiCompletedBatches =
-    state.tiiExecutionProgress?.summary?.completed_batches ||
-    state.tiiResults?.completed_batch_count ||
-    state.tiiResults?.completed_batches?.length ||
-    0;
+  const tiiIndexedBatches = state.tiiResults?.indexed_batch_count || state.tiiResults?.indexed_batches?.length || 0;
+  const tiiCompletedBatches = state.tiiResults?.completed_batch_count || state.tiiResults?.completed_batches?.length || 0;
   const tiiImportedPolicies = state.tiiResults?.record_count || state.tiiResults?.records?.length || 0;
+  const tiiDetailSaved = state.tiiResults?.detail_saved_count || 0;
   document.getElementById("tiiStatus").innerHTML = `
     <div class="tii-grid">
       <span><strong>${formatNumber.format(metadata.companies.length)}</strong><small>公司選項</small></span>
@@ -372,10 +383,12 @@ function renderPolicyInsights() {
       <span><strong>${formatNumber.format(tiiManualCount)}</strong><small>人工批次</small></span>
       <span><strong>${formatNumber.format(tiiAttemptedBatches)}</strong><small>已啟動批次</small></span>
       <span><strong>${formatNumber.format(tiiCaptchaRequiredBatches)}</strong><small>等待驗證碼</small></span>
-      <span><strong>${formatNumber.format(tiiCompletedBatches)}</strong><small>已完成批次</small></span>
+      <span><strong>${formatNumber.format(tiiIndexedBatches)}</strong><small>已索引批次</small></span>
+      <span><strong>${formatNumber.format(tiiCompletedBatches)}</strong><small>完整批次</small></span>
       <span><strong>${formatNumber.format(tiiImportedPolicies)}</strong><small>已匯入保單</small></span>
+      <span><strong>${formatNumber.format(tiiDetailSaved)}</strong><small>已保存明細</small></span>
     </div>
-    <p>官方查詢支援公司、保險類別、銷售日、停售日與關鍵字。TII 目前是待人工執行狀態：必須人工輸入驗證碼、保存結果，再匯入本站；本專案不自動破解驗證碼。</p>
+    <p>官方查詢支援公司、保險類別、銷售日、停售日與關鍵字。TII 目前採本機操作台執行：人工輸入驗證碼後，自動翻完整結果頁、抓可用明細頁並匯入本站；本專案不自動破解驗證碼。</p>
     <a href="${escapeHtml(metadata.source_url)}" target="_blank" rel="noreferrer">開啟保發中心查詢</a>
   `;
   renderBatchPlan();
@@ -393,11 +406,8 @@ function renderBatchPlan() {
   const completedUrlBatches = progress.completed_policy_url_batches || 0;
   const tiiAttemptedBatches = state.tiiExecutionProgress?.summary?.attempted_batches || 0;
   const tiiCaptchaRequiredBatches = state.tiiExecutionProgress?.summary?.captcha_required_batches || 0;
-  const tiiCompletedBatches =
-    state.tiiExecutionProgress?.summary?.completed_batches ||
-    state.tiiResults?.completed_batch_count ||
-    state.tiiResults?.completed_batches?.length ||
-    0;
+  const tiiIndexedBatches = state.tiiResults?.indexed_batch_count || state.tiiResults?.indexed_batches?.length || 0;
+  const tiiCompletedBatches = state.tiiResults?.completed_batch_count || state.tiiResults?.completed_batches?.length || 0;
   const tiiPendingBatches = Math.max(tiiManualCount - tiiCompletedBatches, 0);
   const tiiImportedPolicies = state.tiiResults?.record_count || state.tiiResults?.records?.length || 0;
   const totalPlanned = summary.policy_url_batch_count + tiiManualCount;
@@ -408,7 +418,9 @@ function renderBatchPlan() {
       completedUrlBatches,
     )} 個；保發中心 TII 另有 ${formatNumber.format(tiiManualCount)} 個人工驗證碼查詢批次，目前已啟動 ${formatNumber.format(
       tiiAttemptedBatches,
-    )} 個、等待驗證碼 ${formatNumber.format(tiiCaptchaRequiredBatches)} 個、已完成人工批次 ${formatNumber.format(
+    )} 個、等待驗證碼 ${formatNumber.format(tiiCaptchaRequiredBatches)} 個、已索引 ${formatNumber.format(
+      tiiIndexedBatches,
+    )} 個、完整批次 ${formatNumber.format(
       tiiCompletedBatches,
     )} 個、待人工處理 ${formatNumber.format(tiiPendingBatches)} 個。`,
   );
@@ -434,8 +446,12 @@ function renderBatchPlan() {
       <span>TII 等待驗證碼</span>
     </article>
     <article>
+      <strong>${formatNumber.format(tiiIndexedBatches)}</strong>
+      <span>TII 已索引批次</span>
+    </article>
+    <article>
       <strong>${formatNumber.format(tiiCompletedBatches)}</strong>
-      <span>TII 已完成人工批次</span>
+      <span>TII 完整批次</span>
     </article>
     <article>
       <strong>${formatNumber.format(tiiPendingBatches)}</strong>

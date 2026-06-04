@@ -1,11 +1,11 @@
 {
-  "generated_at": "2026-06-04T11:09:26+08:00",
+  "generated_at": "2026-06-04T11:37:15+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
-      "ran_at": "2026-06-04T11:09:26+08:00",
+      "ran_at": "2026-06-04T11:37:15+08:00",
       "status": "submitted_result_saved",
-      "note": "Official site returned a result-like page and it was saved for import.",
+      "note": "First result page saved after human captcha. Full pagination requires a fresh TII session and should be run through scripts/tii_operator_server.py.",
       "company_label": "101-臺灣產物保險股份有限公司",
       "category_label": "汽車保險",
       "query_hint": {
@@ -21,7 +21,18 @@
         "work\\tii-execution\\tii-property-001-captcha-1.bmp",
         "work\\tii-execution\\tii-property-001-captcha-1.jpg"
       ],
-      "result_file": "work\\tii-results\\tii-property-001.html"
+      "result_file": "work\\tii-results\\tii-property-001.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 952,
+        "total_pages": 96,
+        "saved_pages": [
+          "work\\tii-results\\tii-property-001.html"
+        ],
+        "status": "first_page_saved_only",
+        "requires_fresh_captcha_session": true
+      },
+      "fetched_details": {}
     }
   ],
   "summary": {

@@ -4,6 +4,7 @@ import argparse
 import csv
 import json
 import re
+import urllib.parse
 from datetime import datetime, timezone, timedelta
 from html.parser import HTMLParser
 from pathlib import Path
@@ -19,16 +20,25 @@ class TextTableParser(HTMLParser):
         self.in_td = False
         self.in_tr = False
         self.current_cell: list[str] = []
+        self.current_cell_links: list[str] = []
         self.current_row: list[str] = []
+        self.current_row_links: list[str] = []
         self.rows: list[list[str]] = []
+        self.records: list[dict] = []
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
         if tag == "tr":
             self.in_tr = True
             self.current_row = []
+            self.current_row_links = []
         elif tag in {"td", "th"} and self.in_tr:
             self.in_td = True
             self.current_cell = []
+            self.current_cell_links = []
+        elif tag == "a" and self.in_td:
+            href = dict(attrs).get("href")
+            if href:
+                self.current_cell_links.append(href)
 
     def handle_data(self, data: str) -> None:
         if self.in_td:
@@ -39,10 +49,12 @@ class TextTableParser(HTMLParser):
     def handle_endtag(self, tag: str) -> None:
         if tag in {"td", "th"} and self.in_td:
             self.current_row.append(" ".join(self.current_cell).strip())
+            self.current_row_links.extend(self.current_cell_links)
             self.in_td = False
         elif tag == "tr" and self.in_tr:
             if any(self.current_row):
                 self.rows.append(self.current_row)
+                self.records.append({"cells": self.current_row, "links": self.current_row_links})
             self.in_tr = False
 
 
@@ -53,15 +65,15 @@ def parse_saved_html(path: Path) -> list[dict]:
 
     parser = TextTableParser()
     parser.feed(html)
-    rows = parser.rows
     records: list[dict] = []
-    for row in rows:
+    for parsed in parser.records:
+        row = parsed["cells"]
         joined = " | ".join(row)
         if not any(keyword in joined for keyword in ["商品", "保險", "停售", "銷售", "公司"]):
             continue
         if len(row) < 3:
             continue
-        records.append({"source_file": path.name, "cells": row})
+        records.append({"source_file": path.name, "cells": row, "links": parsed.get("links", [])})
     return records
 
 
@@ -92,13 +104,35 @@ def normalize_company_label(label: str) -> str:
     return re.sub(r"^\d+-", "", label or "").strip()
 
 
-def normalize_records(raw_records: list[dict], batch_meta: dict) -> list[dict]:
+def source_batch_id(source_file: str) -> str:
+    stem = Path(source_file).stem
+    return re.sub(r"-page-\d+$", "", stem)
+
+
+def product_id_from_links(links: list[str]) -> tuple[str, str]:
+    for link in links:
+        match = re.search(r"productId=([^&\"'>]+)", link)
+        if match:
+            product_id = match.group(1)
+            return product_id, urllib.parse.urljoin("https://insprod.tii.org.tw/", link)
+    return "", ""
+
+
+def load_detail_files(details_dir: Path) -> dict[str, str]:
+    if not details_dir.exists():
+        return {}
+    return {path.stem: str(path) for path in details_dir.glob("tii-*/*.html")}
+
+
+def normalize_records(raw_records: list[dict], batch_meta: dict, detail_files: dict[str, str]) -> list[dict]:
     normalized: list[dict] = []
+    seen_product_ids: set[str] = set()
     for raw in raw_records:
         cells = raw.get("cells")
         source_file = raw.get("source_file", "")
-        batch_id = Path(source_file).stem
+        batch_id = source_batch_id(source_file)
         run_meta = batch_meta.get(batch_id, {})
+        product_id, detail_url = product_id_from_links(raw.get("links", []))
         if isinstance(cells, list):
             compact = compact_cells(cells)
             if len(compact) < 3 or compact[0] == "保險商品名稱":
@@ -127,6 +161,10 @@ def normalize_records(raw_records: list[dict], batch_meta: dict) -> list[dict]:
 
         if not product_name or product_name == "保險商品名稱":
             continue
+        if product_id:
+            if product_id in seen_product_ids:
+                continue
+            seen_product_ids.add(product_id)
 
         normalized.append(
             {
@@ -135,6 +173,10 @@ def normalize_records(raw_records: list[dict], batch_meta: dict) -> list[dict]:
                 "source_batch_id": batch_id,
                 "company": company,
                 "insurance_category": category,
+                "product_id": product_id,
+                "detail_url": detail_url,
+                "detail_saved": bool(product_id and product_id in detail_files),
+                "detail_source_file": detail_files.get(product_id, ""),
                 "product_name": product_name,
                 "sale_status": sale_status,
                 "sale_date": sale_date,
@@ -142,6 +184,41 @@ def normalize_records(raw_records: list[dict], batch_meta: dict) -> list[dict]:
             }
         )
     return normalized
+
+
+def batch_summaries(records: list[dict], batch_meta: dict) -> list[dict]:
+    by_batch: dict[str, list[dict]] = {}
+    for record in records:
+        by_batch.setdefault(record["source_batch_id"], []).append(record)
+    summaries: list[dict] = []
+    for batch_id, batch_records in sorted(by_batch.items()):
+        run = batch_meta.get(batch_id, {})
+        fetched_pages = run.get("fetched_pages") or {}
+        expected_count = int(fetched_pages.get("total_count") or 0)
+        saved_pages = fetched_pages.get("saved_pages") or []
+        imported_count = len(batch_records)
+        unique_count = len({record.get("product_id") for record in batch_records if record.get("product_id")})
+        detail_saved_count = sum(1 for record in batch_records if record.get("detail_saved"))
+        if expected_count and unique_count == expected_count and imported_count == expected_count:
+            status = "complete"
+        elif expected_count and imported_count < expected_count:
+            status = "partial_index"
+        else:
+            status = "indexed_no_expected_total"
+        summaries.append(
+            {
+                "batch_id": batch_id,
+                "status": status,
+                "expected_total_count": expected_count,
+                "expected_total_pages": int(fetched_pages.get("total_pages") or 0),
+                "saved_page_count": len(saved_pages),
+                "imported_record_count": imported_count,
+                "unique_product_id_count": unique_count,
+                "detail_saved_count": detail_saved_count,
+                "requires_fresh_captcha_session": status != "complete",
+            }
+        )
+    return summaries
 
 
 def main() -> None:
@@ -152,11 +229,14 @@ def main() -> None:
     parser.add_argument("--output", default="data/tii-policy-results.json", help="Output JSON path")
     parser.add_argument("--progress", default="data/tii-execution-progress.json", help="TII execution progress JSON")
     parser.add_argument("--batch-plan", default="data/batch-plan.json", help="Batch plan JSON")
+    parser.add_argument("--details-dir", default="work/tii-details", help="Directory with saved TII detail HTML files")
     args = parser.parse_args()
 
     input_dir = Path(args.input_dir)
     raw_records: list[dict] = []
     for path in sorted(input_dir.glob("*")):
+        if not path.name.startswith("tii-"):
+            continue
         if path.suffix.lower() in {".html", ".htm"}:
             raw_records.extend(parse_saved_html(path))
         elif path.suffix.lower() == ".csv":
@@ -164,22 +244,24 @@ def main() -> None:
 
     batch_meta = load_batch_meta(Path(args.progress))
     manual_batch_count = load_manual_batch_count(Path(args.batch_plan))
-    normalized_records = normalize_records(raw_records, batch_meta)
-    completed_batches = sorted(
-        {
-            Path(record.get("source_file", "")).stem
-            for record in normalized_records
-            if record.get("source_file")
-        }
-    )
+    detail_files = load_detail_files(Path(args.details_dir))
+    normalized_records = normalize_records(raw_records, batch_meta, detail_files)
+    summaries = batch_summaries(normalized_records, batch_meta)
+    indexed_batches = [summary["batch_id"] for summary in summaries]
+    completed_batches = [summary["batch_id"] for summary in summaries if summary["status"] == "complete"]
 
     output = {
         "generated_at": datetime.now(TAIPEI).isoformat(timespec="seconds"),
         "source": "manually_saved_tii_query_results",
         "input_dir": str(input_dir),
         "record_count": len(normalized_records),
+        "detail_saved_count": sum(1 for record in normalized_records if record.get("detail_saved")),
+        "indexed_batch_count": len(indexed_batches),
+        "indexed_batches": indexed_batches,
         "completed_batch_count": len(completed_batches),
         "completed_batches": completed_batches,
+        "partial_batch_count": sum(1 for summary in summaries if summary["status"] != "complete"),
+        "batch_summaries": summaries,
         "pending_manual_batch_count": max(manual_batch_count - len(completed_batches), 0),
         "records": normalized_records,
         "compliance_note": "This importer parses files saved after a human completes TII captcha. It does not automate or bypass captcha.",

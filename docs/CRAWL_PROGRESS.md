@@ -52,10 +52,14 @@ Updated at: `2026-06-04T09:07:54+08:00`
 - Total TII manual matrix batches: `306`
 - Attempted TII manual batches: `1 / 306`
 - Waiting on captcha: `0`
-- Completed TII manual batches: `1 / 306`
+- Indexed TII manual batches: `1 / 306`
+- Completed TII manual batches: `0 / 306`
+- Partial TII manual batches: `1`
 - Imported TII policy records: `10`
+- Saved TII detail pages: `0`
+- Current first TII batch: `tii-property-001` is `10 / 952` records, so it is a partial index and needs a fresh captcha session through the local operator to fetch all `96` result pages.
 - Scope note: these `306` TII batches are captcha-protected manual click-through/import batches and are separate from the `17` automated URL batches above.
-- Captcha boundary: TII result pages require human captcha completion; this project prepares click-through batches and imports saved results, but does not bypass captcha.
+- Captcha boundary: TII result pages require human captcha completion; this project prepares local click-through batches, fetches result/detail pages after human input, and imports saved results, but does not bypass captcha.
 
 ## Top Checked Domains
 

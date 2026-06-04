@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 import re
+import time
 import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
@@ -16,6 +18,9 @@ DEFAULT_BATCH_PLAN = Path("data/batch-plan.json")
 DEFAULT_PROGRESS = Path("data/tii-execution-progress.json")
 DEFAULT_WORK_DIR = Path("work/tii-execution")
 DEFAULT_RESULTS_DIR = Path("work/tii-results")
+DEFAULT_DETAILS_DIR = Path("work/tii-details")
+TOTAL_PATTERN = re.compile(r"總共找到.*?([\d,]+).*?筆", re.DOTALL)
+INVALID_DETAIL_MARKERS = ["識別碼錯誤", "錯誤"]
 
 
 class FormParser(HTMLParser):
@@ -62,6 +67,19 @@ class ImageParser(HTMLParser):
         src = attr.get("src", "")
         if "bmp" in src.lower() or "captcha" in src.lower():
             self.sources.append(src)
+
+
+class LinkParser(HTMLParser):
+    def __init__(self) -> None:
+        super().__init__()
+        self.links: list[str] = []
+
+    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
+        if tag != "a":
+            return
+        href = dict(attrs).get("href", "")
+        if "DetailList.aspx?productId=" in href:
+            self.links.append(href)
 
 
 def now() -> str:
@@ -138,6 +156,23 @@ def parse_captcha_sources(html: str, base_url: str) -> list[str]:
     return [urllib.parse.urljoin(base_url, src) for src in parser.sources]
 
 
+def parse_detail_links(html: str, base_url: str = "https://insprod.tii.org.tw/") -> list[tuple[str, str]]:
+    parser = LinkParser()
+    parser.feed(html)
+    links: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    for href in parser.links:
+        match = re.search(r"productId=([^&\"'>]+)", href)
+        if not match:
+            continue
+        product_id = match.group(1)
+        if product_id in seen:
+            continue
+        seen.add(product_id)
+        links.append((product_id, urllib.parse.urljoin(base_url, href)))
+    return links
+
+
 def build_payload(form: dict, batch: dict, captcha: str | None) -> dict:
     payload = dict(form.get("inputs", {}))
     payload.update(batch.get("query_hint", {}))
@@ -161,6 +196,125 @@ def classify_result(html: str, captcha: str | None) -> tuple[str, str]:
     if any(marker in text for marker in ["商品", "保險", "停售", "查詢結果"]):
         return "submitted_result_saved", "Official site returned a result-like page and it was saved for import."
     return "submitted_unknown_response", "Official site returned a page, but the result format needs manual review."
+
+
+def result_total_count(html: str) -> int:
+    text = re.sub(r"<[^>]+>", " ", html)
+    text = re.sub(r"\s+", " ", text)
+    match = TOTAL_PATTERN.search(text)
+    return int(match.group(1).replace(",", "")) if match else 0
+
+
+def ensure_result_page(html: str, batch_id: str) -> None:
+    if "DetailList.aspx?productId=" not in html:
+        raise SystemExit(f"{batch_id} result page does not contain policy detail links; refusing to mark it completed.")
+
+
+def fetch_result_pages(
+    client: urllib.request.OpenerDirector,
+    batch_id: str,
+    results_dir: Path,
+    page_size: int = 10,
+    max_pages: int = 500,
+) -> dict:
+    result_file = results_dir / f"{batch_id}.html"
+    if result_file.exists():
+        page_one_html = result_file.read_text(encoding="utf-8", errors="replace")
+    else:
+        page_one_bytes, _ = read_url(client, "https://insprod.tii.org.tw/ResultQueryAll.aspx?page=1")
+        page_one_html = page_one_bytes.decode("utf-8", errors="replace")
+    ensure_result_page(page_one_html, batch_id)
+    page_one_path = results_dir / f"{batch_id}-page-001.html"
+    page_one_path.write_text(page_one_html, encoding="utf-8")
+    total_count = result_total_count(page_one_html)
+    detected_page_size = page_one_html.count("DetailList.aspx?productId=") or page_size
+    page_size = detected_page_size
+    total_pages = max(math.ceil(total_count / page_size), 1)
+    if total_pages > max_pages:
+        raise SystemExit(
+            f"{batch_id} result set needs {total_pages} pages, over max_pages={max_pages}. "
+            "The TII session may have lost the intended query filters."
+        )
+    saved_pages = [str(page_one_path)]
+    for page in range(2, total_pages + 1):
+        page_bytes, _ = read_url(
+            client,
+            f"https://insprod.tii.org.tw/ResultQueryAll.aspx?page={page}",
+        )
+        page_html = page_bytes.decode("utf-8", errors="replace")
+        ensure_result_page(page_html, batch_id)
+        page_path = results_dir / f"{batch_id}-page-{page:03d}.html"
+        page_path.write_text(page_html, encoding="utf-8")
+        saved_pages.append(str(page_path))
+    unique_product_ids = {
+        product_id
+        for path in saved_pages
+        for product_id, _ in parse_detail_links(Path(path).read_text(encoding="utf-8", errors="replace"))
+    }
+    if total_count and len(unique_product_ids) != total_count:
+        raise SystemExit(
+            f"{batch_id} saved {len(unique_product_ids)} unique product ids, expected {total_count}. "
+            "Refusing to mark the batch complete."
+        )
+    return {
+        "page_size": page_size,
+        "total_count": total_count,
+        "total_pages": total_pages,
+        "unique_product_id_count": len(unique_product_ids),
+        "saved_pages": saved_pages,
+        "is_complete": bool(total_count and len(unique_product_ids) == total_count),
+    }
+
+
+def fetch_detail_pages(
+    client: urllib.request.OpenerDirector,
+    batch_id: str,
+    results_dir: Path,
+    details_dir: Path,
+    limit: int = 0,
+    delay_seconds: float = 0.2,
+) -> dict:
+    detail_root = details_dir / batch_id
+    detail_root.mkdir(parents=True, exist_ok=True)
+    result_paths = sorted(results_dir.glob(f"{batch_id}-page-*.html"))
+    if not result_paths:
+        result_paths = [results_dir / f"{batch_id}.html"]
+    links: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    for path in result_paths:
+        if not path.exists():
+            continue
+        for product_id, url in parse_detail_links(path.read_text(encoding="utf-8", errors="replace")):
+            if product_id in seen:
+                continue
+            seen.add(product_id)
+            links.append((product_id, url))
+    if limit > 0:
+        links = links[:limit]
+
+    saved: list[str] = []
+    failed: list[dict] = []
+    for index, (product_id, url) in enumerate(links, start=1):
+        try:
+            detail_bytes, _ = read_url(client, url)
+            detail_html = detail_bytes.decode("utf-8", errors="replace")
+            if any(marker in detail_html for marker in INVALID_DETAIL_MARKERS):
+                failed.append({"product_id": product_id, "url": url, "reason": "invalid_detail_session"})
+                continue
+            detail_path = detail_root / f"{product_id}.html"
+            detail_path.write_text(detail_html, encoding="utf-8")
+            saved.append(str(detail_path))
+        except Exception as exc:  # pragma: no cover - network failures are recorded for manual review.
+            failed.append({"product_id": product_id, "url": url, "reason": str(exc)})
+        if delay_seconds and index < len(links):
+            time.sleep(delay_seconds)
+    return {
+        "detail_link_count": len(links),
+        "saved_detail_count": len(saved),
+        "failed_detail_count": len(failed),
+        "saved_details": saved,
+        "failed_details": failed[:20],
+    }
 
 
 def update_progress(progress_path: Path, record: dict) -> dict:
@@ -189,18 +343,62 @@ def main() -> None:
     parser.add_argument("--progress", default=str(DEFAULT_PROGRESS))
     parser.add_argument("--work-dir", default=str(DEFAULT_WORK_DIR))
     parser.add_argument("--results-dir", default=str(DEFAULT_RESULTS_DIR))
+    parser.add_argument("--details-dir", default=str(DEFAULT_DETAILS_DIR))
+    parser.add_argument("--fetch-all-pages", action="store_true", help="After a successful captcha, fetch all result pages.")
+    parser.add_argument("--fetch-details", action="store_true", help="After result pages are saved, fetch product detail pages in the same TII session.")
+    parser.add_argument("--detail-limit", type=int, default=0, help="Optional detail-page limit for testing. 0 means no limit.")
+    parser.add_argument("--page-size", type=int, default=10, choices=[10, 20, 30, 40, 50])
+    parser.add_argument("--max-pages", type=int, default=500, help="Safety ceiling for paginated TII result pages.")
     args = parser.parse_args()
 
     plan = load_json(Path(args.batch_plan))
     batch = find_batch(plan, args.batch_id)
     work_dir = Path(args.work_dir)
     results_dir = Path(args.results_dir)
+    details_dir = Path(args.details_dir)
     work_dir.mkdir(parents=True, exist_ok=True)
     results_dir.mkdir(parents=True, exist_ok=True)
+    details_dir.mkdir(parents=True, exist_ok=True)
 
     cookie_path = work_dir / f"{args.batch_id}-cookies.txt"
     form_path = work_dir / f"{args.batch_id}-form.html"
     client, cookie_jar = opener(cookie_path)
+
+    if args.fetch_all_pages and not args.captcha and cookie_path.exists():
+        fetched_pages = fetch_result_pages(client, args.batch_id, results_dir, args.page_size, args.max_pages)
+        fetched_details = (
+            fetch_detail_pages(client, args.batch_id, results_dir, details_dir, args.detail_limit)
+            if args.fetch_details
+            else {}
+        )
+        save_cookies(cookie_jar, cookie_path)
+        record = {
+            "batch_id": args.batch_id,
+            "ran_at": now(),
+            "status": "submitted_result_saved",
+            "note": "Fetched all result pages from an existing completed TII session.",
+            "company_label": batch.get("company_label"),
+            "category_label": batch.get("category_label"),
+            "query_hint": batch.get("query_hint"),
+            "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+            "captcha_files": [str(path) for path in sorted(work_dir.glob(f"{args.batch_id}-captcha-*"))],
+            "result_file": str(results_dir / f"{args.batch_id}-page-001.html"),
+            "fetched_pages": fetched_pages,
+            "fetched_details": fetched_details,
+        }
+        progress = update_progress(Path(args.progress), record)
+        print(
+            json.dumps(
+                {
+                    "run": record,
+                    "summary": progress["summary"],
+                    "next_step": "Run import_tii_results.py to import all saved result pages.",
+                },
+                ensure_ascii=False,
+                indent=2,
+            )
+        )
+        return
 
     if args.captcha and form_path.exists() and cookie_path.exists():
         final_url = batch["source_url"]
@@ -231,6 +429,8 @@ def main() -> None:
         captcha_files = [str(path) for path in sorted(work_dir.glob(f"{args.batch_id}-captcha-*"))]
 
     result_path = ""
+    fetched_pages: dict = {}
+    fetched_details: dict = {}
     if args.captcha:
         payload = build_payload(form, batch, args.captcha)
         result_bytes, _ = post_url(client, action, payload)
@@ -240,6 +440,10 @@ def main() -> None:
         result_file.write_text(result_html, encoding="utf-8")
         result_path = str(result_file)
         status, note = classify_result(result_html, args.captcha)
+        if args.fetch_all_pages and status == "submitted_result_saved":
+            fetched_pages = fetch_result_pages(client, args.batch_id, results_dir, args.page_size, args.max_pages)
+        if args.fetch_details and status == "submitted_result_saved":
+            fetched_details = fetch_detail_pages(client, args.batch_id, results_dir, details_dir, args.detail_limit)
     else:
         status, note = classify_result(form_html, None)
 
@@ -254,6 +458,8 @@ def main() -> None:
         "form_action": action,
         "captcha_files": captcha_files,
         "result_file": result_path,
+        "fetched_pages": fetched_pages,
+        "fetched_details": fetched_details,
     }
     progress = update_progress(Path(args.progress), record)
     print(
@@ -267,6 +473,8 @@ def main() -> None:
             indent=2,
         )
     )
+    if args.captcha and status != "submitted_result_saved":
+        raise SystemExit(2)
 
 
 if __name__ == "__main__":

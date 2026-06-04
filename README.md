@@ -14,7 +14,7 @@ Public, noindex insurance-policy navigator for Taiwan insurance source documents
 - Policy content extraction is complete for all 559 reachable policy sources: 551 PDF records and 8 HTML records produced parsed text, with 555 records hitting at least one consumer-important field.
 - Reader-first focus cards are generated per policy: coverage items, important definitions, special conditions, and claim application cues.
 - TII captcha-protected discontinued-policy batches remain manual; this project does not bypass captcha.
-- TII manual batches follow the site split: 108 property-insurance batches and 198 life/personal-insurance batches, 306 total. Current TII execution/import status is 1 attempted manual batch, 0 waiting on captcha, 1 completed manual batch, and 10 imported TII policy records.
+- TII manual batches follow the site split: 108 property-insurance batches and 198 life/personal-insurance batches, 306 total. Current TII execution/import status is 1 attempted manual batch, 0 waiting on captcha, 1 indexed manual batch, 0 complete manual batches, and 10 imported TII policy records.
 
 Production URL:
 
@@ -87,9 +87,16 @@ Kevin has approved this repo as public, Vercel as Production, and noindex as ret
 
 ## TII Discontinued Policy Import
 
-The Insurance Institute query page uses an image captcha. This project does not bypass it. Use `scripts\extract_tii_metadata.py` for public form metadata, then manually save query result HTML/CSV after completing captcha and import it with:
+The Insurance Institute query page uses an image captcha. This project does not bypass it. Use `scripts\extract_tii_metadata.py` for public form metadata. For batch execution, run the local-only operator:
 
 ```powershell
+python scripts\tii_operator_server.py
+```
+
+Open `http://127.0.0.1:8765/`, type the official captcha yourself, and the operator submits the batch, fetches all result pages, fetches available detail pages, imports the results, and prepares the next captcha. The same can be run from CLI:
+
+```powershell
+python scripts\run_tii_batch.py --batch-id tii-property-001 --captcha <human-typed-code> --fetch-all-pages --fetch-details
 python scripts\import_tii_results.py --input-dir work\tii-results --output data\tii-policy-results.json
 ```
 
@@ -113,4 +120,4 @@ Current execution snapshot: `policy-url-001` through `policy-url-017` are comple
 
 Current content extraction snapshot: `559` reachable policy sources were parsed, including `551` PDF records and `8` HTML records. The extraction produced `6,373,892` parsed text characters and field hits for `555` records. Reader-first focus cards detected `保障項目` in `553` records, `重要定義` in `552`, `特殊項目` in `529`, and `理賠申請` in `539`. The public data stores derived counts, field hits, page hints, and source links, not full policy text.
 
-Current TII manual matrix: `27` property insurers x `4` property categories = `108` batches; `33` life/personal insurers x `6` personal-insurance categories = `198` batches; total `306` manual batches. These batches are shown on the site as clickable property/life groups, but they are not executed automatically. Current status is `1` attempted manual batch, `0` waiting on captcha, `1 / 306` completed manual batches, and `10` imported TII policy records; result retrieval still requires human captcha completion and import.
+Current TII manual matrix: `27` property insurers x `4` property categories = `108` batches; `33` life/personal insurers x `6` personal-insurance categories = `198` batches; total `306` manual batches. These batches are shown on the site as clickable property/life groups, but captcha still requires human input. Current status is `1` attempted manual batch, `0` waiting on captcha, `1 / 306` indexed manual batches, `0 / 306` complete manual batches, and `10` imported TII policy records. `tii-property-001` currently has `10 / 952` records saved and is marked `partial_index`; it needs a fresh operator captcha session to fetch all `96` result pages.

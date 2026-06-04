@@ -79,16 +79,58 @@ def main() -> None:
     tii_completed_batches = tii_results.get("completed_batch_count", len(tii_results.get("completed_batches", [])))
     if tii_completed_batches != len(tii_results.get("completed_batches", [])):
         fail("TII completed_batch_count does not match completed_batches length")
+    tii_indexed_batches = tii_results.get("indexed_batch_count", len(tii_results.get("indexed_batches", [])))
+    if tii_indexed_batches != len(tii_results.get("indexed_batches", [])):
+        fail("TII indexed_batch_count does not match indexed_batches length")
+    if tii_completed_batches > tii_indexed_batches:
+        fail("TII completed batches cannot exceed indexed batches")
     if tii_completed_batches > matrix_count:
         fail("TII completed batches cannot exceed manual matrix batch count")
     for record in tii_results.get("records", []):
-        for field in ["source_batch_id", "company", "insurance_category", "product_name", "sale_status", "sale_date", "discontinued_date"]:
+        for field in [
+            "source_batch_id",
+            "company",
+            "insurance_category",
+            "product_id",
+            "detail_url",
+            "product_name",
+            "sale_status",
+            "sale_date",
+            "discontinued_date",
+        ]:
             if not record.get(field):
                 fail(f"TII imported record missing {field}: {record.get('id')}")
+        if not str(record["detail_url"]).startswith("https://insprod.tii.org.tw/DetailList.aspx?productId="):
+            fail(f"TII detail_url is not an official detail URL: {record.get('id')}")
         if "raw_text" in record:
             fail(f"TII imported record should not publish raw_text: {record.get('id')}")
+    tii_batch_ids_from_records = sorted({record.get("source_batch_id") for record in tii_results.get("records", [])})
+    if tii_batch_ids_from_records != sorted(tii_results.get("indexed_batches", [])):
+        fail("TII indexed_batches should be unique source_batch_id values, not page filenames")
+    if not isinstance(tii_results.get("batch_summaries", []), list):
+        fail("TII batch_summaries should be a list")
+    for summary in tii_results.get("batch_summaries", []):
+        for field in [
+            "batch_id",
+            "status",
+            "expected_total_count",
+            "saved_page_count",
+            "imported_record_count",
+            "unique_product_id_count",
+        ]:
+            if field not in summary:
+                fail(f"TII batch summary missing {field}")
+        if summary["status"] == "complete" and summary["unique_product_id_count"] != summary["expected_total_count"]:
+            fail(f"TII complete batch does not match expected count: {summary['batch_id']}")
+        if summary["imported_record_count"] != summary["unique_product_id_count"]:
+            fail(f"TII imported count should match unique product ids: {summary['batch_id']}")
     tii_runs = tii_execution_progress.get("runs", [])
     tii_execution_summary = tii_execution_progress.get("summary", {})
+    for run in tii_runs:
+        fetched_pages = run.get("fetched_pages") or {}
+        for page in fetched_pages.get("saved_pages") or []:
+            if not Path(page).exists():
+                fail(f"TII progress references missing saved page: {page}")
     if tii_execution_summary.get("attempted_batches", len(tii_runs)) != len(tii_runs):
         fail("TII attempted batch count does not match runs length")
     if tii_execution_summary.get("completed_batches", 0) > len(tii_runs):
@@ -191,6 +233,7 @@ def main() -> None:
                 "tii_attempted_manual_batches": tii_execution_summary.get("attempted_batches", 0),
                 "tii_captcha_required_batches": tii_execution_summary.get("captcha_required_batches", 0),
                 "tii_completed_manual_batches": tii_completed_batches,
+                "tii_indexed_manual_batches": tii_indexed_batches,
                 "tii_imported_records": tii_results["record_count"],
                 "completed_policy_url_batches": batch_progress["summary"]["completed_policy_url_batches"],
                 "policy_url_items_processed": batch_progress["summary"]["policy_url_items_processed"],

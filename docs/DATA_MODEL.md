@@ -118,15 +118,51 @@ The Insurance Institute discontinued-policy query page requires captcha completi
 
 ## TIIImportedResults
 
-`data/tii-policy-results.json` is the execution/import status for captcha-protected TII batches. A planned batch is not counted as completed until a human finishes the captcha query, saves the result HTML/CSV, and imports it.
+`data/tii-policy-results.json` is the execution/import status for captcha-protected TII batches. A planned batch is not counted as complete until a human finishes the captcha query and the runner imports all expected product IDs.
 
 ```json
 {
-  "record_count": 0,
+  "record_count": 10,
+  "detail_saved_count": 0,
+  "indexed_batch_count": 1,
+  "indexed_batches": ["tii-property-001"],
   "completed_batch_count": 0,
   "completed_batches": [],
+  "partial_batch_count": 1,
   "pending_manual_batch_count": 306,
-  "records": [],
-  "compliance_note": "No TII captcha-protected query result has been imported yet."
+  "batch_summaries": [
+    {
+      "batch_id": "tii-property-001",
+      "status": "partial_index",
+      "expected_total_count": 952,
+      "expected_total_pages": 96,
+      "saved_page_count": 1,
+      "imported_record_count": 10,
+      "unique_product_id_count": 10,
+      "detail_saved_count": 0,
+      "requires_fresh_captcha_session": true
+    }
+  ],
+  "records": [
+    {
+      "source_batch_id": "tii-property-001",
+      "company": "臺灣產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_id": "101111114057010000",
+      "detail_url": "https://insprod.tii.org.tw/DetailList.aspx?productId=101111114057010000",
+      "detail_saved": false,
+      "product_name": "臺灣產物強制汽車責任保險",
+      "sale_status": "已停售",
+      "sale_date": "086/12/05",
+      "discontinued_date": "094/11/06"
+    }
+  ],
+  "compliance_note": "This importer parses files saved after a human completes TII captcha. It does not automate or bypass captcha."
 }
 ```
+
+Completion rule:
+
+- `indexed_batch_count`: at least one valid product row was imported for that batch.
+- `completed_batch_count`: `unique_product_id_count == expected_total_count == imported_record_count`.
+- `partial_index`: the batch has usable rows, but the saved pages do not yet match the official total count.
