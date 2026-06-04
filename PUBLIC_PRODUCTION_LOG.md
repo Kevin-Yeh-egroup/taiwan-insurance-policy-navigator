@@ -1,5 +1,33 @@
 # Public Production Log
 
+## 2026-06-04 First TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `a469c85`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed first TII batch data: `dpl_FJrqGbDfFA4g7xjAz28DZV2SkaTE`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-coql40ibe.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- HTML meta robots remained `noindex,nofollow,noarchive`.
+- `robots.txt` remained `User-agent: *` / `Disallow: /`.
+- Production data shows TII `record_count=952`, `indexed_batch_count=1`, `completed_batch_count=1`, `partial_batch_count=0`, and first batch `tii-property-001` as `952 / 952` with `96` saved result pages and `952` saved detail pages.
+- Production UI renders query controls, `productId 101111114057010000`, `明細已保存`, `已索引批次`, and `完整批次`.
+
 ## 2026-06-04
 
 Repository:
