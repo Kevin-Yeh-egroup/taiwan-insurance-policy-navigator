@@ -375,6 +375,26 @@ function renderPolicyInsights() {
   const tiiCompletedBatches = state.tiiResults?.completed_batch_count || state.tiiResults?.completed_batches?.length || 0;
   const tiiImportedPolicies = state.tiiResults?.record_count || state.tiiResults?.records?.length || 0;
   const tiiDetailSaved = state.tiiResults?.detail_saved_count || 0;
+  const tiiBatchSummaries = state.tiiResults?.batch_summaries || [];
+  const tiiOfficialRows = tiiBatchSummaries.reduce((total, batch) => total + (batch.official_row_count || 0), 0);
+  const tiiDuplicateProductRows = tiiBatchSummaries.reduce(
+    (total, batch) => total + (batch.duplicate_product_id_count || 0),
+    0,
+  );
+  const latestDuplicateBatch = [...tiiBatchSummaries]
+    .reverse()
+    .find((batch) => (batch.duplicate_product_id_count || 0) > 0);
+  const duplicateNote = latestDuplicateBatch
+    ? `<p class="tii-status-note">官方結果目前累計 ${formatNumber.format(
+        tiiOfficialRows,
+      )} 列；本站用 productId 去重呈現 ${formatNumber.format(
+        tiiImportedPolicies,
+      )} 張保單卡，已辨識 ${formatNumber.format(tiiDuplicateProductRows)} 列官方重複 productId。最新重複批次 ${
+        latestDuplicateBatch.batch_id
+      }：官方 ${formatNumber.format(latestDuplicateBatch.official_row_count || 0)} 列 / 去重 ${formatNumber.format(
+        latestDuplicateBatch.unique_product_id_count || 0,
+      )} 張。</p>`
+    : "";
   document.getElementById("tiiStatus").innerHTML = `
     <div class="tii-grid">
       <span><strong>${formatNumber.format(metadata.companies.length)}</strong><small>公司選項</small></span>
@@ -387,7 +407,10 @@ function renderPolicyInsights() {
       <span><strong>${formatNumber.format(tiiCompletedBatches)}</strong><small>完整批次</small></span>
       <span><strong>${formatNumber.format(tiiImportedPolicies)}</strong><small>已匯入保單</small></span>
       <span><strong>${formatNumber.format(tiiDetailSaved)}</strong><small>已保存明細</small></span>
+      <span><strong>${formatNumber.format(tiiOfficialRows)}</strong><small>官方結果列</small></span>
+      <span><strong>${formatNumber.format(tiiDuplicateProductRows)}</strong><small>官方重複列</small></span>
     </div>
+    ${duplicateNote}
     <p>官方查詢支援公司、保險類別、銷售日、停售日與關鍵字。TII 目前採本機操作台執行：人工輸入驗證碼後，自動翻完整結果頁、抓可用明細頁並匯入本站；本專案不自動破解驗證碼。</p>
     <a href="${escapeHtml(metadata.source_url)}" target="_blank" rel="noreferrer">開啟保發中心查詢</a>
   `;

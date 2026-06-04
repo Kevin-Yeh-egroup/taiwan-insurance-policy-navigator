@@ -121,6 +121,15 @@ def product_id_from_links(links: list[str]) -> tuple[str, str]:
     return "", ""
 
 
+def product_ids_from_result_page(path: Path) -> list[str]:
+    product_ids: list[str] = []
+    for record in parse_saved_html(path):
+        product_id, _ = product_id_from_links(record.get("links", []))
+        if product_id:
+            product_ids.append(product_id)
+    return product_ids
+
+
 def result_total_count(html: str) -> int:
     text = re.sub(r"<[^>]+>", " ", html)
     text = re.sub(r"\s+", " ", text)
@@ -139,15 +148,24 @@ def result_expected_counts(input_dir: Path) -> dict[str, dict]:
         if re.search(r"-page-\d+\.html$", path.name):
             batch_counts = counts.setdefault(batch_id, {})
             batch_counts.setdefault("saved_pages", set()).add(path.name)
-            batch_counts.setdefault("page_record_counts", []).append(len(parse_saved_html(path)))
+            page_product_ids = product_ids_from_result_page(path)
+            batch_counts.setdefault("page_record_counts", []).append(len(page_product_ids))
+            batch_counts["official_row_count"] = int(batch_counts.get("official_row_count") or 0) + len(page_product_ids)
+            batch_counts.setdefault("unique_product_ids", set()).update(page_product_ids)
     normalized: dict[str, dict] = {}
     for batch_id, value in counts.items():
         saved_pages = value.get("saved_pages", set())
         expected_total_count = int(value.get("expected_total_count") or 0)
+        official_row_count = int(value.get("official_row_count") or 0)
+        unique_product_ids = value.get("unique_product_ids", set())
+        unique_product_id_count = len(unique_product_ids)
         page_size = max(value.get("page_record_counts") or [0])
         normalized[batch_id] = {
             "expected_total_count": expected_total_count,
             "expected_total_pages": math.ceil(expected_total_count / page_size) if expected_total_count and page_size else 0,
+            "official_row_count": official_row_count,
+            "expected_unique_product_id_count": unique_product_id_count,
+            "duplicate_product_id_count": max(official_row_count - unique_product_id_count, 0),
             "saved_page_count": len(saved_pages),
         }
     return normalized
@@ -231,13 +249,33 @@ def batch_summaries(records: list[dict], batch_meta: dict, expected_counts: dict
         fetched_pages = run.get("fetched_pages") or {}
         fallback = expected_counts.get(batch_id, {})
         expected_count = int(fetched_pages.get("total_count") or fallback.get("expected_total_count") or 0)
+        official_row_count = int(fetched_pages.get("official_row_count") or fallback.get("official_row_count") or 0)
         saved_pages = fetched_pages.get("saved_pages") or []
         saved_page_count = len(saved_pages) or int(fallback.get("saved_page_count") or 0)
         imported_count = len(batch_records)
         unique_count = len({record.get("product_id") for record in batch_records if record.get("product_id")})
+        expected_unique_count = int(
+            fetched_pages.get("unique_product_id_count")
+            or fallback.get("expected_unique_product_id_count")
+            or unique_count
+            or 0
+        )
+        duplicate_product_id_count = int(
+            fetched_pages.get("duplicate_product_id_count")
+            or fallback.get("duplicate_product_id_count")
+            or max(official_row_count - unique_count, 0)
+        )
         detail_saved_count = sum(1 for record in batch_records if record.get("detail_saved"))
         expected_pages = int(fetched_pages.get("total_pages") or fallback.get("expected_total_pages") or 0)
-        if expected_count and unique_count == expected_count and imported_count == expected_count:
+        complete_by_unique_count = bool(expected_count and unique_count == expected_count and imported_count == expected_count)
+        complete_by_official_rows = bool(
+            expected_count
+            and official_row_count == expected_count
+            and unique_count == imported_count
+            and unique_count == expected_unique_count
+            and (not expected_pages or saved_page_count >= expected_pages)
+        )
+        if expected_count and (complete_by_unique_count or complete_by_official_rows):
             status = "complete"
             if not expected_pages:
                 expected_pages = saved_page_count
@@ -251,9 +289,12 @@ def batch_summaries(records: list[dict], batch_meta: dict, expected_counts: dict
                 "status": status,
                 "expected_total_count": expected_count,
                 "expected_total_pages": expected_pages,
+                "official_row_count": official_row_count,
                 "saved_page_count": saved_page_count,
                 "imported_record_count": imported_count,
                 "unique_product_id_count": unique_count,
+                "expected_unique_product_id_count": expected_unique_count,
+                "duplicate_product_id_count": duplicate_product_id_count,
                 "detail_saved_count": detail_saved_count,
                 "requires_fresh_captcha_session": status != "complete",
             }

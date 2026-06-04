@@ -157,18 +157,25 @@ def parse_captcha_sources(html: str, base_url: str) -> list[str]:
 
 
 def parse_detail_links(html: str, base_url: str = "https://insprod.tii.org.tw/") -> list[tuple[str, str]]:
+    links: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    for product_id, url in parse_detail_link_rows(html, base_url):
+        if product_id in seen:
+            continue
+        seen.add(product_id)
+        links.append((product_id, url))
+    return links
+
+
+def parse_detail_link_rows(html: str, base_url: str = "https://insprod.tii.org.tw/") -> list[tuple[str, str]]:
     parser = LinkParser()
     parser.feed(html)
     links: list[tuple[str, str]] = []
-    seen: set[str] = set()
     for href in parser.links:
         match = re.search(r"productId=([^&\"'>]+)", href)
         if not match:
             continue
         product_id = match.group(1)
-        if product_id in seen:
-            continue
-        seen.add(product_id)
         links.append((product_id, urllib.parse.urljoin(base_url, href)))
     return links
 
@@ -246,23 +253,31 @@ def fetch_result_pages(
         page_path = results_dir / f"{batch_id}-page-{page:03d}.html"
         page_path.write_text(page_html, encoding="utf-8")
         saved_pages.append(str(page_path))
-    unique_product_ids = {
+    product_id_rows = [
         product_id
         for path in saved_pages
-        for product_id, _ in parse_detail_links(Path(path).read_text(encoding="utf-8", errors="replace"))
-    }
-    if total_count and len(unique_product_ids) != total_count:
+        for product_id, _ in parse_detail_link_rows(Path(path).read_text(encoding="utf-8", errors="replace"))
+    ]
+    unique_product_ids = set(product_id_rows)
+    official_row_count = len(product_id_rows)
+    duplicate_product_id_count = max(official_row_count - len(unique_product_ids), 0)
+    pages_complete = bool(total_pages and len(saved_pages) == total_pages)
+    complete_by_unique_count = bool(total_count and len(unique_product_ids) == total_count)
+    complete_by_official_rows = bool(total_count and official_row_count == total_count and pages_complete)
+    if total_count and not (complete_by_unique_count or complete_by_official_rows):
         raise SystemExit(
-            f"{batch_id} saved {len(unique_product_ids)} unique product ids, expected {total_count}. "
+            f"{batch_id} saved {official_row_count} official rows / {len(unique_product_ids)} unique product ids, expected {total_count}. "
             "Refusing to mark the batch complete."
         )
     return {
         "page_size": page_size,
         "total_count": total_count,
         "total_pages": total_pages,
+        "official_row_count": official_row_count,
         "unique_product_id_count": len(unique_product_ids),
+        "duplicate_product_id_count": duplicate_product_id_count,
         "saved_pages": saved_pages,
-        "is_complete": bool(total_count and len(unique_product_ids) == total_count),
+        "is_complete": bool(total_count and (complete_by_unique_count or complete_by_official_rows)),
     }
 
 

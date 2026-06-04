@@ -115,17 +115,19 @@ data\batch-progress.json
 - robots 擋下：`532`
 - 錯誤或逾時：`252`
 - TII 驗證碼批次仍需人工查詢與匯入，不繞過驗證碼。
-- 目前 TII 人工批次已啟動：`4 / 306`。
+- 目前 TII 人工批次已啟動：`5 / 306`。
 - 目前等待驗證碼批次：`1`。
-- 目前 TII 已索引批次：`3 / 306`。
-- 目前 TII 完整批次：`3 / 306`。
-- 目前已匯入 TII 保單結果：`2,095` 筆。
-- 目前已保存 TII 明細頁：`2,094` 筆。
+- 目前 TII 已索引批次：`4 / 306`。
+- 目前 TII 完整批次：`4 / 306`。
+- 目前已匯入 TII 保單結果：`4,186` 筆。
+- 目前已保存 TII 明細頁：`4,181` 筆。
 - `tii-property-001` 官方結果總數為 `952` 筆，目前已保存全部 `96` 個結果頁與 `952` 份明細頁。
 - `tii-property-002` 官方結果總數為 `618` 筆，目前已保存全部 `62` 個結果頁與 `617` 份明細頁；另有 `1` 份官方明細頁在同一 session 回傳無效明細。
 - `tii-property-003` 官方結果總數為 `525` 筆，目前已保存全部 `53` 個結果頁與 `525` 份明細頁。
 - `tii-property-004` 已準備驗證碼，仍等待人工輸入。
-- 剩餘 `303` 個 TII 批次仍需透過 operator 逐批人工輸入驗證碼，送出後由系統自動翻頁、抓明細、匯入。
+- `tii-property-004` 官方結果總數為 `2,667` 列，目前已保存全部 `267` 個結果頁；官方結果內有 `576` 列重複 productId，因此公開站呈現為 `2,091` 張去重商品卡，並已保存 `2,087` 份明細頁；`4` 個官方明細頁在同一 session 內回傳無效明細頁。
+- `tii-property-005` 已準備好驗證碼，等待下一次人工輸入後執行。
+- 剩餘 `302` 個 TII 批次仍需透過 operator 逐批人工輸入驗證碼，送出後由系統自動翻頁、抓明細、匯入。
 
 保發中心頁面本身分為「財產保險」與「人身保險」。目前批次矩陣已依這個入口拆分：
 
@@ -133,7 +135,7 @@ data\batch-progress.json
 - 壽險/人身保險：`33` 家公司 x `6` 個人身保險類別 = `198` 個人工查詢批次。
 - 合計：`306` 個人工查詢批次，另有 `1` 個非產壽險代碼不列入產險/壽險矩陣。
 
-網站上的每個 TII 批次會列出 `categoryId`、`CompanyID`、`f_CategoryId1`。operator 會依批次計畫送出這些欄位；完成條件不是「有第一頁」，而是 `unique_product_id_count == expected_total_count == imported_record_count`。若只抓到部分頁面，資料會標為 `partial_index`，前台會顯示「已索引」而不是「完整」。前三批已符合完整條件：`tii-property-001` 為 `952 == 952 == 952`，`tii-property-002` 為 `618 == 618 == 618`，`tii-property-003` 為 `525 == 525 == 525`。
+網站上的每個 TII 批次會列出 `categoryId`、`CompanyID`、`f_CategoryId1`。operator 會依批次計畫送出這些欄位；完成條件不是「有第一頁」，而是完整官方結果頁覆蓋。一般批次可用 `unique_product_id_count == expected_total_count == imported_record_count` 判定；若官方結果重複列出同一個 productId，則用 `official_row_count == expected_total_count`、完整 saved pages、以及 `duplicate_product_id_count > 0` 判定完整，前台仍只顯示去重後的保單卡。若只抓到部分頁面，資料會標為 `partial_index`，前台會顯示「已索引」而不是「完整」。
 
 如果結果顯示 `robots 擋下`，代表站方規則不允許自動抓取，應改走人工複核或 TII 查詢匯入。
 

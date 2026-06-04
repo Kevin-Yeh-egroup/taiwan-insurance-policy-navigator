@@ -118,27 +118,30 @@ The Insurance Institute discontinued-policy query page requires captcha completi
 
 ## TIIImportedResults
 
-`data/tii-policy-results.json` is the execution/import status for captcha-protected TII batches. A planned batch is not counted as complete until a human finishes the captcha query and the runner imports all expected product IDs.
+`data/tii-policy-results.json` is the execution/import status for captcha-protected TII batches. A planned batch is not counted as complete until a human finishes the captcha query and the runner imports complete official result-page coverage. Public cards are deduplicated by TII `productId`, because the official result rows can repeat the same product ID across pages.
 
 ```json
 {
-  "record_count": 2095,
-  "detail_saved_count": 2094,
-  "indexed_batch_count": 3,
-  "indexed_batches": ["tii-property-001", "tii-property-002", "tii-property-003"],
-  "completed_batch_count": 3,
-  "completed_batches": ["tii-property-001", "tii-property-002", "tii-property-003"],
+  "record_count": 4186,
+  "detail_saved_count": 4181,
+  "indexed_batch_count": 4,
+  "indexed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004"],
+  "completed_batch_count": 4,
+  "completed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004"],
   "partial_batch_count": 0,
-  "pending_manual_batch_count": 303,
+  "pending_manual_batch_count": 302,
   "batch_summaries": [
     {
       "batch_id": "tii-property-001",
       "status": "complete",
       "expected_total_count": 952,
       "expected_total_pages": 96,
+      "official_row_count": 952,
       "saved_page_count": 96,
       "imported_record_count": 952,
       "unique_product_id_count": 952,
+      "expected_unique_product_id_count": 952,
+      "duplicate_product_id_count": 0,
       "detail_saved_count": 952,
       "requires_fresh_captcha_session": false
     },
@@ -147,9 +150,12 @@ The Insurance Institute discontinued-policy query page requires captcha completi
       "status": "complete",
       "expected_total_count": 618,
       "expected_total_pages": 62,
+      "official_row_count": 618,
       "saved_page_count": 62,
       "imported_record_count": 618,
       "unique_product_id_count": 618,
+      "expected_unique_product_id_count": 618,
+      "duplicate_product_id_count": 0,
       "detail_saved_count": 617,
       "requires_fresh_captcha_session": false
     },
@@ -158,10 +164,27 @@ The Insurance Institute discontinued-policy query page requires captcha completi
       "status": "complete",
       "expected_total_count": 525,
       "expected_total_pages": 53,
+      "official_row_count": 525,
       "saved_page_count": 53,
       "imported_record_count": 525,
       "unique_product_id_count": 525,
+      "expected_unique_product_id_count": 525,
+      "duplicate_product_id_count": 0,
       "detail_saved_count": 525,
+      "requires_fresh_captcha_session": false
+    },
+    {
+      "batch_id": "tii-property-004",
+      "status": "complete",
+      "expected_total_count": 2667,
+      "expected_total_pages": 267,
+      "official_row_count": 2667,
+      "saved_page_count": 267,
+      "imported_record_count": 2091,
+      "unique_product_id_count": 2091,
+      "expected_unique_product_id_count": 2091,
+      "duplicate_product_id_count": 576,
+      "detail_saved_count": 2087,
       "requires_fresh_captcha_session": false
     }
   ],
@@ -187,5 +210,7 @@ The Insurance Institute discontinued-policy query page requires captcha completi
 Completion rule:
 
 - `indexed_batch_count`: at least one valid product row was imported for that batch.
-- `completed_batch_count`: `unique_product_id_count == expected_total_count == imported_record_count`.
+- `completed_batch_count`: either `unique_product_id_count == expected_total_count == imported_record_count`, or `official_row_count == expected_total_count` with full saved-page coverage and a positive `duplicate_product_id_count`.
 - `partial_index`: the batch has usable rows, but the saved pages do not yet match the official total count.
+- `record_count`: public product cards after deduplicating repeated official `productId` rows.
+- `official_row_count`: row coverage reported by saved TII result pages before deduplication.

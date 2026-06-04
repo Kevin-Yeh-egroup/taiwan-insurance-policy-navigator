@@ -118,11 +118,22 @@ def main() -> None:
             "saved_page_count",
             "imported_record_count",
             "unique_product_id_count",
+            "official_row_count",
+            "duplicate_product_id_count",
         ]:
             if field not in summary:
                 fail(f"TII batch summary missing {field}")
         if summary["status"] == "complete" and summary["unique_product_id_count"] != summary["expected_total_count"]:
-            fail(f"TII complete batch does not match expected count: {summary['batch_id']}")
+            official_row_count = int(summary.get("official_row_count") or 0)
+            duplicate_product_id_count = int(summary.get("duplicate_product_id_count") or 0)
+            expected_pages = int(summary.get("expected_total_pages") or 0)
+            saved_page_count = int(summary.get("saved_page_count") or 0)
+            if (
+                official_row_count != summary["expected_total_count"]
+                or duplicate_product_id_count <= 0
+                or (expected_pages and saved_page_count < expected_pages)
+            ):
+                fail(f"TII complete batch does not match expected count: {summary['batch_id']}")
         if summary["imported_record_count"] != summary["unique_product_id_count"]:
             fail(f"TII imported count should match unique product ids: {summary['batch_id']}")
     tii_runs = tii_execution_progress.get("runs", [])
