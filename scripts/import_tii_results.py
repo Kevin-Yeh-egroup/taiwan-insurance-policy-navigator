@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import math
 import re
 import urllib.parse
 from datetime import datetime, timezone, timedelta
@@ -12,6 +13,7 @@ from pathlib import Path
 
 TAIPEI = timezone(timedelta(hours=8))
 DATE_PATTERN = re.compile(r"^\d{3}/\d{2}/\d{2}$")
+TOTAL_PATTERN = re.compile(r"總共找到.*?([\d,]+).*?筆", re.DOTALL)
 
 
 class TextTableParser(HTMLParser):
@@ -69,7 +71,8 @@ def parse_saved_html(path: Path) -> list[dict]:
     for parsed in parser.records:
         row = parsed["cells"]
         joined = " | ".join(row)
-        if not any(keyword in joined for keyword in ["商品", "保險", "停售", "銷售", "公司"]):
+        has_product_link = any("DetailList.aspx?productId=" in link for link in parsed.get("links", []))
+        if not has_product_link and not any(keyword in joined for keyword in ["商品", "保險", "停售", "銷售", "公司"]):
             continue
         if len(row) < 3:
             continue
@@ -116,6 +119,38 @@ def product_id_from_links(links: list[str]) -> tuple[str, str]:
             product_id = match.group(1)
             return product_id, urllib.parse.urljoin("https://insprod.tii.org.tw/", link)
     return "", ""
+
+
+def result_total_count(html: str) -> int:
+    text = re.sub(r"<[^>]+>", " ", html)
+    text = re.sub(r"\s+", " ", text)
+    match = TOTAL_PATTERN.search(text)
+    return int(match.group(1).replace(",", "")) if match else 0
+
+
+def result_expected_counts(input_dir: Path) -> dict[str, dict]:
+    counts: dict[str, dict] = {}
+    for path in sorted(input_dir.glob("tii-*.html")):
+        batch_id = source_batch_id(path.name)
+        html = path.read_text(encoding="utf-8", errors="replace")
+        total_count = result_total_count(html)
+        if total_count:
+            counts.setdefault(batch_id, {})["expected_total_count"] = total_count
+        if re.search(r"-page-\d+\.html$", path.name):
+            batch_counts = counts.setdefault(batch_id, {})
+            batch_counts.setdefault("saved_pages", set()).add(path.name)
+            batch_counts.setdefault("page_record_counts", []).append(len(parse_saved_html(path)))
+    normalized: dict[str, dict] = {}
+    for batch_id, value in counts.items():
+        saved_pages = value.get("saved_pages", set())
+        expected_total_count = int(value.get("expected_total_count") or 0)
+        page_size = max(value.get("page_record_counts") or [0])
+        normalized[batch_id] = {
+            "expected_total_count": expected_total_count,
+            "expected_total_pages": math.ceil(expected_total_count / page_size) if expected_total_count and page_size else 0,
+            "saved_page_count": len(saved_pages),
+        }
+    return normalized
 
 
 def load_detail_files(details_dir: Path) -> dict[str, str]:
@@ -186,7 +221,7 @@ def normalize_records(raw_records: list[dict], batch_meta: dict, detail_files: d
     return normalized
 
 
-def batch_summaries(records: list[dict], batch_meta: dict) -> list[dict]:
+def batch_summaries(records: list[dict], batch_meta: dict, expected_counts: dict[str, dict]) -> list[dict]:
     by_batch: dict[str, list[dict]] = {}
     for record in records:
         by_batch.setdefault(record["source_batch_id"], []).append(record)
@@ -194,13 +229,18 @@ def batch_summaries(records: list[dict], batch_meta: dict) -> list[dict]:
     for batch_id, batch_records in sorted(by_batch.items()):
         run = batch_meta.get(batch_id, {})
         fetched_pages = run.get("fetched_pages") or {}
-        expected_count = int(fetched_pages.get("total_count") or 0)
+        fallback = expected_counts.get(batch_id, {})
+        expected_count = int(fetched_pages.get("total_count") or fallback.get("expected_total_count") or 0)
         saved_pages = fetched_pages.get("saved_pages") or []
+        saved_page_count = len(saved_pages) or int(fallback.get("saved_page_count") or 0)
         imported_count = len(batch_records)
         unique_count = len({record.get("product_id") for record in batch_records if record.get("product_id")})
         detail_saved_count = sum(1 for record in batch_records if record.get("detail_saved"))
+        expected_pages = int(fetched_pages.get("total_pages") or fallback.get("expected_total_pages") or 0)
         if expected_count and unique_count == expected_count and imported_count == expected_count:
             status = "complete"
+            if not expected_pages:
+                expected_pages = saved_page_count
         elif expected_count and imported_count < expected_count:
             status = "partial_index"
         else:
@@ -210,8 +250,8 @@ def batch_summaries(records: list[dict], batch_meta: dict) -> list[dict]:
                 "batch_id": batch_id,
                 "status": status,
                 "expected_total_count": expected_count,
-                "expected_total_pages": int(fetched_pages.get("total_pages") or 0),
-                "saved_page_count": len(saved_pages),
+                "expected_total_pages": expected_pages,
+                "saved_page_count": saved_page_count,
                 "imported_record_count": imported_count,
                 "unique_product_id_count": unique_count,
                 "detail_saved_count": detail_saved_count,
@@ -246,7 +286,8 @@ def main() -> None:
     manual_batch_count = load_manual_batch_count(Path(args.batch_plan))
     detail_files = load_detail_files(Path(args.details_dir))
     normalized_records = normalize_records(raw_records, batch_meta, detail_files)
-    summaries = batch_summaries(normalized_records, batch_meta)
+    expected_counts = result_expected_counts(input_dir)
+    summaries = batch_summaries(normalized_records, batch_meta, expected_counts)
     indexed_batches = [summary["batch_id"] for summary in summaries]
     completed_batches = [summary["batch_id"] for summary in summaries if summary["status"] == "complete"]
 

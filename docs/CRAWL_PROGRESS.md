@@ -1,6 +1,6 @@
 # Crawl Progress
 
-Updated at: `2026-06-04T09:07:54+08:00`
+Updated at: `2026-06-04T14:54:10+08:00`
 
 ## Overall
 
@@ -53,11 +53,12 @@ Updated at: `2026-06-04T09:07:54+08:00`
 - Attempted TII manual batches: `1 / 306`
 - Waiting on captcha: `0`
 - Indexed TII manual batches: `1 / 306`
-- Completed TII manual batches: `0 / 306`
-- Partial TII manual batches: `1`
-- Imported TII policy records: `10`
-- Saved TII detail pages: `0`
-- Current first TII batch: `tii-property-001` is `10 / 952` records, so it is a partial index and needs a fresh captcha session through the local operator to fetch all `96` result pages.
+- Completed TII manual batches: `1 / 306`
+- Partial TII manual batches: `0`
+- Imported TII policy records: `952`
+- Saved TII detail pages: `952`
+- Current first TII batch: `tii-property-001` is complete: `952 / 952` records imported, all `96` result pages saved, and `952` detail pages saved.
+- Remaining TII manual batches: `305 / 306` still require fresh captcha sessions through the local operator.
 - Scope note: these `306` TII batches are captcha-protected manual click-through/import batches and are separate from the `17` automated URL batches above.
 - Captcha boundary: TII result pages require human captcha completion; this project prepares local click-through batches, fetches result/detail pages after human input, and imports saved results, but does not bypass captcha.
 

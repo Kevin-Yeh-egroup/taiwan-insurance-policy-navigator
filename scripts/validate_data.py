@@ -96,10 +96,11 @@ def main() -> None:
             "product_name",
             "sale_status",
             "sale_date",
-            "discontinued_date",
         ]:
             if not record.get(field):
                 fail(f"TII imported record missing {field}: {record.get('id')}")
+        if record.get("sale_status") == "已停售" and not record.get("discontinued_date"):
+            fail(f"TII discontinued record missing discontinued_date: {record.get('id')}")
         if not str(record["detail_url"]).startswith("https://insprod.tii.org.tw/DetailList.aspx?productId="):
             fail(f"TII detail_url is not an official detail URL: {record.get('id')}")
         if "raw_text" in record:

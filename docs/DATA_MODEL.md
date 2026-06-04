@@ -122,25 +122,25 @@ The Insurance Institute discontinued-policy query page requires captcha completi
 
 ```json
 {
-  "record_count": 10,
-  "detail_saved_count": 0,
+  "record_count": 952,
+  "detail_saved_count": 952,
   "indexed_batch_count": 1,
   "indexed_batches": ["tii-property-001"],
-  "completed_batch_count": 0,
-  "completed_batches": [],
-  "partial_batch_count": 1,
-  "pending_manual_batch_count": 306,
+  "completed_batch_count": 1,
+  "completed_batches": ["tii-property-001"],
+  "partial_batch_count": 0,
+  "pending_manual_batch_count": 305,
   "batch_summaries": [
     {
       "batch_id": "tii-property-001",
-      "status": "partial_index",
+      "status": "complete",
       "expected_total_count": 952,
       "expected_total_pages": 96,
-      "saved_page_count": 1,
-      "imported_record_count": 10,
-      "unique_product_id_count": 10,
-      "detail_saved_count": 0,
-      "requires_fresh_captcha_session": true
+      "saved_page_count": 96,
+      "imported_record_count": 952,
+      "unique_product_id_count": 952,
+      "detail_saved_count": 952,
+      "requires_fresh_captcha_session": false
     }
   ],
   "records": [
@@ -150,7 +150,8 @@ The Insurance Institute discontinued-policy query page requires captcha completi
       "insurance_category": "汽車保險",
       "product_id": "101111114057010000",
       "detail_url": "https://insprod.tii.org.tw/DetailList.aspx?productId=101111114057010000",
-      "detail_saved": false,
+      "detail_saved": true,
+      "detail_source_file": "work\\tii-details\\tii-property-001\\101111114057010000.html",
       "product_name": "臺灣產物強制汽車責任保險",
       "sale_status": "已停售",
       "sale_date": "086/12/05",

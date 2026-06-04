@@ -118,10 +118,11 @@ data\batch-progress.json
 - 目前 TII 人工批次已啟動：`1 / 306`。
 - 目前等待驗證碼批次：`0`。
 - 目前 TII 已索引批次：`1 / 306`。
-- 目前 TII 完整批次：`0 / 306`。
-- 目前已匯入 TII 保單結果：`10` 筆。
-- 目前已保存 TII 明細頁：`0` 筆。
-- `tii-property-001` 官方結果總數為 `952` 筆，目前只保存第一頁 `10` 筆；需要重新用 operator 輸入一次驗證碼，才能自動補齊約 `96` 頁。
+- 目前 TII 完整批次：`1 / 306`。
+- 目前已匯入 TII 保單結果：`952` 筆。
+- 目前已保存 TII 明細頁：`952` 筆。
+- `tii-property-001` 官方結果總數為 `952` 筆，目前已保存全部 `96` 個結果頁與 `952` 份明細頁。
+- 剩餘 `305` 個 TII 批次仍需透過 operator 逐批人工輸入驗證碼，送出後由系統自動翻頁、抓明細、匯入。
 
 保發中心頁面本身分為「財產保險」與「人身保險」。目前批次矩陣已依這個入口拆分：
 
@@ -129,7 +130,7 @@ data\batch-progress.json
 - 壽險/人身保險：`33` 家公司 x `6` 個人身保險類別 = `198` 個人工查詢批次。
 - 合計：`306` 個人工查詢批次，另有 `1` 個非產壽險代碼不列入產險/壽險矩陣。
 
-網站上的每個 TII 批次會列出 `categoryId`、`CompanyID`、`f_CategoryId1`。operator 會依批次計畫送出這些欄位；完成條件不是「有第一頁」，而是 `unique_product_id_count == expected_total_count == imported_record_count`。若只抓到部分頁面，資料會標為 `partial_index`，前台會顯示「已索引」而不是「完整」。
+網站上的每個 TII 批次會列出 `categoryId`、`CompanyID`、`f_CategoryId1`。operator 會依批次計畫送出這些欄位；完成條件不是「有第一頁」，而是 `unique_product_id_count == expected_total_count == imported_record_count`。若只抓到部分頁面，資料會標為 `partial_index`，前台會顯示「已索引」而不是「完整」。第一批 `tii-property-001` 已符合完整條件：`952 == 952 == 952`。
 
 如果結果顯示 `robots 擋下`，代表站方規則不允許自動抓取，應改走人工複核或 TII 查詢匯入。
 
