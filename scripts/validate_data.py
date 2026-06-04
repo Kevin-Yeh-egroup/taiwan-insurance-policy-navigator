@@ -96,15 +96,28 @@ def main() -> None:
             "product_name",
             "sale_status",
             "sale_date",
+            "record_identity_key",
+            "identity_basis",
+            "edition_label",
         ]:
             if not record.get(field):
                 fail(f"TII imported record missing {field}: {record.get('id')}")
+        if record.get("identity_basis") == "tii_product_id" and record.get("record_identity_key") != f"tii-product-id:{record.get('product_id')}":
+            fail(f"TII record identity key should preserve productId: {record.get('id')}")
         if record.get("sale_status") == "已停售" and not record.get("discontinued_date"):
             fail(f"TII discontinued record missing discontinued_date: {record.get('id')}")
         if not str(record["detail_url"]).startswith("https://insprod.tii.org.tw/DetailList.aspx?productId="):
             fail(f"TII detail_url is not an official detail URL: {record.get('id')}")
         if "raw_text" in record:
             fail(f"TII imported record should not publish raw_text: {record.get('id')}")
+    same_name_groups: dict[tuple[str, str], set[str]] = {}
+    for record in tii_results.get("records", []):
+        same_name_groups.setdefault((record.get("company", ""), record.get("product_name", "")), set()).add(record.get("product_id", ""))
+    multi_product_name_groups = {key: ids for key, ids in same_name_groups.items() if len({item for item in ids if item}) > 1}
+    for record in tii_results.get("records", []):
+        if (record.get("company", ""), record.get("product_name", "")) in multi_product_name_groups:
+            if int(record.get("same_name_product_id_count") or 0) <= 1:
+                fail(f"TII same-name different-product record missing version marker: {record.get('id')}")
     tii_batch_ids_from_records = sorted({record.get("source_batch_id") for record in tii_results.get("records", [])})
     if tii_batch_ids_from_records != sorted(tii_results.get("indexed_batches", [])):
         fail("TII indexed_batches should be unique source_batch_id values, not page filenames")

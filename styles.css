@@ -862,6 +862,17 @@ select:focus,
   margin-top: 8px;
 }
 
+.version-note {
+  margin: 10px 0 0;
+  padding: 9px 10px;
+  border: 1px solid #fed7aa;
+  border-radius: 8px;
+  background: #fff7ed;
+  color: #7c2d12;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
 .source-list {
   display: grid;
   gap: 10px;

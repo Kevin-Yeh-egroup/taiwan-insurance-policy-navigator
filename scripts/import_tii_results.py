@@ -177,6 +177,38 @@ def load_detail_files(details_dir: Path) -> dict[str, str]:
     return {path.stem: str(path) for path in details_dir.glob("tii-*/*.html")}
 
 
+def record_identity_key(
+    product_id: str,
+    company: str,
+    category: str,
+    product_name: str,
+    sale_date: str,
+    discontinued_date: str,
+) -> str:
+    if product_id:
+        return f"tii-product-id:{product_id}"
+    fallback = "|".join([company, category, product_name, sale_date, discontinued_date])
+    return f"tii-fallback:{fallback}"
+
+
+def add_same_name_metadata(records: list[dict]) -> None:
+    groups: dict[tuple[str, str], set[str]] = {}
+    for record in records:
+        key = (record.get("company", ""), record.get("product_name", ""))
+        product_id = record.get("product_id", "")
+        if key[0] and key[1] and product_id:
+            groups.setdefault(key, set()).add(product_id)
+    same_name_counts = {key: len(product_ids) for key, product_ids in groups.items() if len(product_ids) > 1}
+    for record in records:
+        count = same_name_counts.get((record.get("company", ""), record.get("product_name", "")), 1)
+        record["same_name_product_id_count"] = count
+        record["same_name_version_note"] = (
+            f"同公司同名商品有 {count} 個不同 productId；請依銷售日、停售日、productId 與官方明細分別判讀。"
+            if count > 1
+            else ""
+        )
+
+
 def normalize_records(raw_records: list[dict], batch_meta: dict, detail_files: dict[str, str]) -> list[dict]:
     normalized: list[dict] = []
     seen_product_ids: set[str] = set()
@@ -227,6 +259,15 @@ def normalize_records(raw_records: list[dict], batch_meta: dict, detail_files: d
                 "company": company,
                 "insurance_category": category,
                 "product_id": product_id,
+                "record_identity_key": record_identity_key(
+                    product_id,
+                    company,
+                    category,
+                    product_name,
+                    sale_date,
+                    discontinued_date,
+                ),
+                "identity_basis": "tii_product_id" if product_id else "company_category_name_dates",
                 "detail_url": detail_url,
                 "detail_saved": bool(product_id and product_id in detail_files),
                 "detail_source_file": detail_files.get(product_id, ""),
@@ -234,8 +275,13 @@ def normalize_records(raw_records: list[dict], batch_meta: dict, detail_files: d
                 "sale_status": sale_status,
                 "sale_date": sale_date,
                 "discontinued_date": discontinued_date,
+                "edition_label": (
+                    f"銷售日 {sale_date or '未標示'}｜停售日 {discontinued_date or '未標示'}"
+                    f"｜productId {product_id or '未標示'}"
+                ),
             }
         )
+    add_same_name_metadata(normalized)
     return normalized
 
 

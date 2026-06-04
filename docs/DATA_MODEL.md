@@ -118,7 +118,7 @@ The Insurance Institute discontinued-policy query page requires captcha completi
 
 ## TIIImportedResults
 
-`data/tii-policy-results.json` is the execution/import status for captcha-protected TII batches. A planned batch is not counted as complete until a human finishes the captcha query and the runner imports complete official result-page coverage. Public cards are deduplicated by TII `productId`, because the official result rows can repeat the same product ID across pages.
+`data/tii-policy-results.json` is the execution/import status for captcha-protected TII batches. A planned batch is not counted as complete until a human finishes the captcha query and the runner imports complete official result-page coverage. Public cards are deduplicated only by TII `productId`, because the official result rows can repeat the same product ID across pages. They are not deduplicated by product name: the same company can reuse a name across different years, sale periods, or product IDs, and those records may have different terms.
 
 ```json
 {
@@ -194,13 +194,18 @@ The Insurance Institute discontinued-policy query page requires captcha completi
       "company": "臺灣產物保險股份有限公司",
       "insurance_category": "汽車保險",
       "product_id": "101111114057010000",
+      "record_identity_key": "tii-product-id:101111114057010000",
+      "identity_basis": "tii_product_id",
       "detail_url": "https://insprod.tii.org.tw/DetailList.aspx?productId=101111114057010000",
       "detail_saved": true,
       "detail_source_file": "work\\tii-details\\tii-property-001\\101111114057010000.html",
       "product_name": "臺灣產物強制汽車責任保險",
       "sale_status": "已停售",
       "sale_date": "086/12/05",
-      "discontinued_date": "094/11/06"
+      "discontinued_date": "094/11/06",
+      "edition_label": "銷售日 086/12/05｜停售日 094/11/06｜productId 101111114057010000",
+      "same_name_product_id_count": 1,
+      "same_name_version_note": ""
     }
   ],
   "compliance_note": "This importer parses files saved after a human completes TII captcha. It does not automate or bypass captcha."
@@ -214,3 +219,6 @@ Completion rule:
 - `partial_index`: the batch has usable rows, but the saved pages do not yet match the official total count.
 - `record_count`: public product cards after deduplicating repeated official `productId` rows.
 - `official_row_count`: row coverage reported by saved TII result pages before deduplication.
+- `record_identity_key`: stable public identity. Prefer `tii-product-id:<productId>`; use the company/category/name/date fallback only when an official product ID is absent.
+- `edition_label`: user-facing version cue combining sale date, discontinued date, and `productId`.
+- `same_name_product_id_count` / `same_name_version_note`: marker for same-company same-name records that represent different product IDs. These records must remain separate cards.

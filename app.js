@@ -321,11 +321,17 @@ function renderPolicyInsights() {
       policy_url: state.tiiMetadata?.source_url,
       detail_url: record.detail_url,
       origin: "保發中心",
-      display_version: `銷售日 ${record.sale_date || "未標示"}｜停售日 ${record.discontinued_date || "未標示"}`,
+      version_note: record.same_name_version_note || "",
+      display_version:
+        record.edition_label ||
+        `銷售日 ${record.sale_date || "未標示"}｜停售日 ${record.discontinued_date || "未標示"}｜productId ${
+          record.product_id || "未標示"
+        }`,
       flags: [
         "TII 匯入",
         record.source_batch_id || "人工批次",
         record.product_id ? `productId ${record.product_id}` : "",
+        record.same_name_product_id_count > 1 ? `同名不同版 ${record.same_name_product_id_count}` : "",
         record.detail_saved ? "明細已保存" : "明細待抓取",
       ].filter(Boolean),
     })),
@@ -347,6 +353,11 @@ function renderPolicyInsights() {
                 <div class="policy-flags">
                   ${(policy.flags || []).map((flag) => `<span class="chip">${escapeHtml(flag)}</span>`).join("")}
                 </div>
+                ${
+                  policy.version_note
+                    ? `<p class="version-note">${escapeHtml(policy.version_note)}</p>`
+                    : ""
+                }
               </div>
               <div class="policy-card-actions">
                 ${
@@ -384,6 +395,12 @@ function renderPolicyInsights() {
   const latestDuplicateBatch = [...tiiBatchSummaries]
     .reverse()
     .find((batch) => (batch.duplicate_product_id_count || 0) > 0);
+  const tiiSameNameVersionedCards = (state.tiiResults?.records || []).filter(
+    (record) => (record.same_name_product_id_count || 0) > 1,
+  );
+  const tiiSameNameVersionedGroups = new Set(
+    tiiSameNameVersionedCards.map((record) => `${record.company || ""}||${record.product_name || ""}`),
+  );
   const duplicateNote = latestDuplicateBatch
     ? `<p class="tii-status-note">官方結果目前累計 ${formatNumber.format(
         tiiOfficialRows,
@@ -394,6 +411,13 @@ function renderPolicyInsights() {
       }：官方 ${formatNumber.format(latestDuplicateBatch.official_row_count || 0)} 列 / 去重 ${formatNumber.format(
         latestDuplicateBatch.unique_product_id_count || 0,
       )} 張。</p>`
+    : "";
+  const sameNameVersionNote = tiiSameNameVersionedGroups.size
+    ? `<p class="tii-status-note">已辨識 ${formatNumber.format(
+        tiiSameNameVersionedGroups.size,
+      )} 組同公司同名但不同 productId 的商品，共 ${formatNumber.format(
+        tiiSameNameVersionedCards.length,
+      )} 張卡；本站會依銷售日、停售日、productId 與官方明細分別呈現，不以名稱合併。</p>`
     : "";
   document.getElementById("tiiStatus").innerHTML = `
     <div class="tii-grid">
@@ -411,6 +435,7 @@ function renderPolicyInsights() {
       <span><strong>${formatNumber.format(tiiDuplicateProductRows)}</strong><small>官方重複列</small></span>
     </div>
     ${duplicateNote}
+    ${sameNameVersionNote}
     <p>官方查詢支援公司、保險類別、銷售日、停售日與關鍵字。TII 目前採本機操作台執行：人工輸入驗證碼後，自動翻完整結果頁、抓可用明細頁並匯入本站；本專案不自動破解驗證碼。</p>
     <a href="${escapeHtml(metadata.source_url)}" target="_blank" rel="noreferrer">開啟保發中心查詢</a>
   `;

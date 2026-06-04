@@ -69,8 +69,13 @@ python scripts\tii_operator_server.py
 - 商品類型
 - 銷售狀態
 - 銷售日/停售日
+- productId / 版本提示
 - 條款或官方結果來源
 - 內容重點欄位：理賠/給付、名詞定義、等待期/免責期、除外責任、保費/續保、投保限制
+
+## 同名不同版判讀規則
+
+保單名稱相同不代表條款相同。保險公司可能在不同年度沿用同一個商品名稱，但更換 productId、銷售日、停售日或條款內容。匯入器只會把官方結果中重複列出的同一個 `productId` 去重；同公司同名但不同 `productId` 的保單會保留成不同卡片，並顯示「同名不同版」提示。判讀時要同時看商品名稱、銷售日、停售日、`productId` 與官方明細頁。
 
 ## 重要限制
 
@@ -124,7 +129,6 @@ data\batch-progress.json
 - `tii-property-001` 官方結果總數為 `952` 筆，目前已保存全部 `96` 個結果頁與 `952` 份明細頁。
 - `tii-property-002` 官方結果總數為 `618` 筆，目前已保存全部 `62` 個結果頁與 `617` 份明細頁；另有 `1` 份官方明細頁在同一 session 回傳無效明細。
 - `tii-property-003` 官方結果總數為 `525` 筆，目前已保存全部 `53` 個結果頁與 `525` 份明細頁。
-- `tii-property-004` 已準備驗證碼，仍等待人工輸入。
 - `tii-property-004` 官方結果總數為 `2,667` 列，目前已保存全部 `267` 個結果頁；官方結果內有 `576` 列重複 productId，因此公開站呈現為 `2,091` 張去重商品卡，並已保存 `2,087` 份明細頁；`4` 個官方明細頁在同一 session 內回傳無效明細頁。
 - `tii-property-005` 已準備好驗證碼，等待下一次人工輸入後執行。
 - 剩餘 `302` 個 TII 批次仍需透過 operator 逐批人工輸入驗證碼，送出後由系統自動翻頁、抓明細、匯入。
@@ -135,7 +139,7 @@ data\batch-progress.json
 - 壽險/人身保險：`33` 家公司 x `6` 個人身保險類別 = `198` 個人工查詢批次。
 - 合計：`306` 個人工查詢批次，另有 `1` 個非產壽險代碼不列入產險/壽險矩陣。
 
-網站上的每個 TII 批次會列出 `categoryId`、`CompanyID`、`f_CategoryId1`。operator 會依批次計畫送出這些欄位；完成條件不是「有第一頁」，而是完整官方結果頁覆蓋。一般批次可用 `unique_product_id_count == expected_total_count == imported_record_count` 判定；若官方結果重複列出同一個 productId，則用 `official_row_count == expected_total_count`、完整 saved pages、以及 `duplicate_product_id_count > 0` 判定完整，前台仍只顯示去重後的保單卡。若只抓到部分頁面，資料會標為 `partial_index`，前台會顯示「已索引」而不是「完整」。
+網站上的每個 TII 批次會列出 `categoryId`、`CompanyID`、`f_CategoryId1`。operator 會依批次計畫送出這些欄位；完成條件不是「有第一頁」，而是完整官方結果頁覆蓋。一般批次可用 `unique_product_id_count == expected_total_count == imported_record_count` 判定；若官方結果重複列出同一個 productId，則用 `official_row_count == expected_total_count`、完整 saved pages、以及 `duplicate_product_id_count > 0` 判定完整，前台仍只合併同一個 `productId` 的官方重複列。若同公司同名但 `productId` 不同，前台必須分別顯示。若只抓到部分頁面，資料會標為 `partial_index`，前台會顯示「已索引」而不是「完整」。
 
 如果結果顯示 `robots 擋下`，代表站方規則不允許自動抓取，應改走人工複核或 TII 查詢匯入。
 

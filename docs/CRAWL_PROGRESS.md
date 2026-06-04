@@ -57,6 +57,7 @@ Updated at: `2026-06-04T16:21:26+08:00`
 - Partial TII manual batches: `0`
 - Imported TII policy records: `4,186`
 - Saved TII detail pages: `4,181`
+- Same-company same-name multi-product groups: `66` groups / `140` cards; these are preserved as separate cards because name-only deduplication would merge different versions.
 - Completed TII batches: `tii-property-001` is `952 / 952`; `tii-property-002` is `618 / 618` with `617` saved detail pages and `1` official detail page unavailable in-session; `tii-property-003` is `525 / 525` with `525` saved detail pages; `tii-property-004` is complete by official row coverage with `2,667 / 2,667` official rows, `2,091` deduplicated product cards, `576` official duplicate product-id rows, and `2,087` saved detail pages.
 - Current waiting TII batch: `tii-property-005` is prepared and waiting for a fresh human-entered captcha.
 - Remaining TII manual batches: `302 / 306` still require fresh captcha sessions through the local operator.
