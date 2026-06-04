@@ -1,6 +1,6 @@
 # Crawl Progress
 
-Updated at: `2026-06-04T15:18:59+08:00`
+Updated at: `2026-06-04T15:33:34+08:00`
 
 ## Overall
 
@@ -50,16 +50,16 @@ Updated at: `2026-06-04T15:18:59+08:00`
 - Property-insurance manual batches: `108`
 - Life / personal-insurance manual batches: `198`
 - Total TII manual matrix batches: `306`
-- Attempted TII manual batches: `3 / 306`
+- Attempted TII manual batches: `4 / 306`
 - Waiting on captcha: `1`
-- Indexed TII manual batches: `2 / 306`
-- Completed TII manual batches: `2 / 306`
+- Indexed TII manual batches: `3 / 306`
+- Completed TII manual batches: `3 / 306`
 - Partial TII manual batches: `0`
-- Imported TII policy records: `1,570`
-- Saved TII detail pages: `1,569`
-- Completed TII batches: `tii-property-001` is `952 / 952`; `tii-property-002` is `618 / 618` with `617` saved detail pages and `1` official detail page unavailable in-session.
-- Current waiting TII batch: `tii-property-003` is prepared and waiting for a fresh human-entered captcha.
-- Remaining TII manual batches: `304 / 306` still require fresh captcha sessions through the local operator.
+- Imported TII policy records: `2,095`
+- Saved TII detail pages: `2,094`
+- Completed TII batches: `tii-property-001` is `952 / 952`; `tii-property-002` is `618 / 618` with `617` saved detail pages and `1` official detail page unavailable in-session; `tii-property-003` is `525 / 525` with `525` saved detail pages.
+- Current waiting TII batch: `tii-property-004` is prepared and waiting for a fresh human-entered captcha.
+- Remaining TII manual batches: `303 / 306` still require fresh captcha sessions through the local operator.
 - Scope note: these `306` TII batches are captcha-protected manual click-through/import batches and are separate from the `17` automated URL batches above.
 - Captcha boundary: TII result pages require human captcha completion; this project prepares local click-through batches, fetches result/detail pages after human input, and imports saved results, but does not bypass captcha.
 
