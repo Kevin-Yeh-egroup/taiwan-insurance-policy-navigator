@@ -282,6 +282,7 @@ select:focus,
 .insight-metrics article,
 .insight-card,
 .batch-panel,
+.content-extract-panel,
 .discontinued-panel {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -389,6 +390,84 @@ select:focus,
 .discontinued-panel {
   margin-top: 14px;
   padding: 14px;
+}
+
+.content-extract-panel {
+  display: grid;
+  gap: 14px;
+  margin-top: 14px;
+  padding: 14px;
+}
+
+.content-summary {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.content-summary article,
+.content-field-card {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  padding: 12px;
+  border-radius: 8px;
+  background: var(--surface-3);
+}
+
+.content-summary strong {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.content-summary span {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.content-extract-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.9fr) minmax(0, 1.6fr);
+  gap: 10px;
+  align-items: start;
+}
+
+.content-field-card h3 {
+  margin-bottom: 6px;
+}
+
+.content-sample-list {
+  display: grid;
+  gap: 10px;
+}
+
+.content-sample {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(112px, auto);
+  gap: 12px;
+  align-items: start;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-3);
+}
+
+.content-sample h3 {
+  margin: 8px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.content-sample p {
+  margin: 8px 0;
+  color: var(--muted);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+.content-sample .matched-terms {
+  margin-bottom: 0;
+  color: var(--ink);
 }
 
 .batch-panel {
@@ -1037,6 +1116,8 @@ select:focus,
   .insight-grid,
   .insight-metrics,
   .batch-summary,
+  .content-summary,
+  .content-extract-layout,
   .tii-matrix-summary,
   .metrics,
   .roadmap ol,
@@ -1061,7 +1142,8 @@ select:focus,
     grid-template-columns: 1fr;
   }
 
-  .policy-item {
+  .policy-item,
+  .content-sample {
     grid-template-columns: 1fr;
   }
 

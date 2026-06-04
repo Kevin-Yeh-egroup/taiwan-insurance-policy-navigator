@@ -13,6 +13,7 @@ const state = {
   tiiMetadata: null,
   batchPlan: null,
   batchProgress: null,
+  policyContentExtracts: null,
   crawlByUrlId: new Map(),
   openSourceId: null,
   search: DEFAULT_FILTERS.search,
@@ -107,7 +108,8 @@ function setText(id, value) {
 }
 
 async function loadData() {
-  const [sourceIndex, taxonomy, crawlStatus, policyInsights, tiiMetadata, batchPlan, batchProgress] = await Promise.all([
+  const [sourceIndex, taxonomy, crawlStatus, policyInsights, tiiMetadata, batchPlan, batchProgress, policyContentExtracts] =
+    await Promise.all([
     fetch("./data/source-index.json").then((response) => response.json()),
     fetch("./data/consumer-taxonomy.json").then((response) => response.json()),
     fetch("./data/crawl-status.json").then((response) => response.json()),
@@ -115,6 +117,7 @@ async function loadData() {
     fetch("./data/tii-query-metadata.json").then((response) => response.json()),
     fetch("./data/batch-plan.json").then((response) => response.json()),
     fetch("./data/batch-progress.json").then((response) => (response.ok ? response.json() : null)),
+    fetch("./data/policy-content-extracts.json").then((response) => (response.ok ? response.json() : null)),
   ]);
   state.sourceIndex = sourceIndex;
   state.taxonomy = taxonomy;
@@ -123,6 +126,7 @@ async function loadData() {
   state.tiiMetadata = tiiMetadata;
   state.batchPlan = batchPlan;
   state.batchProgress = batchProgress;
+  state.policyContentExtracts = policyContentExtracts;
   state.crawlByUrlId = new Map(crawlStatus.results.map((item) => [item.url_id, item]));
 }
 
@@ -310,6 +314,7 @@ function renderPolicyInsights() {
     <a href="${escapeHtml(metadata.source_url)}" target="_blank" rel="noreferrer">開啟保發中心查詢</a>
   `;
   renderBatchPlan();
+  renderPolicyContentExtracts();
 }
 
 function renderBatchPlan() {
@@ -493,6 +498,88 @@ function renderTiiMatrix(plan) {
       renderTiiMatrix(plan);
     });
   });
+}
+
+function renderPolicyContentExtracts() {
+  const data = state.policyContentExtracts;
+  const summaryContainer = document.getElementById("contentExtractSummary");
+  const fieldContainer = document.getElementById("contentFieldBars");
+  const sampleContainer = document.getElementById("contentExtractSamples");
+  if (!summaryContainer || !fieldContainer || !sampleContainer) return;
+
+  if (!data?.summary) {
+    setText("contentExtractCount", "尚未產生");
+    summaryContainer.innerHTML =
+      '<div class="empty"><strong>尚未產生內容抽取資料。</strong><span>執行 build_policy_content_extracts.py 後會顯示 PDF/HTML 解析結果。</span></div>';
+    fieldContainer.innerHTML = "";
+    sampleContainer.innerHTML = "";
+    return;
+  }
+
+  const summary = data.summary;
+  setText("contentExtractCount", `${formatNumber.format(summary.extracted_text_count || 0)} 筆已抽文字`);
+  summaryContainer.innerHTML = `
+    <article>
+      <strong>${formatNumber.format(summary.record_count || 0)}</strong>
+      <span>可抓取來源</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(summary.pdf_record_count || 0)}</strong>
+      <span>PDF 已解析</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(summary.html_record_count || 0)}</strong>
+      <span>HTML 已解析</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(summary.records_with_field_hits || 0)}</strong>
+      <span>命中重點欄位</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(summary.total_text_characters || 0)}</strong>
+      <span>抽取字元數</span>
+    </article>
+  `;
+
+  fieldContainer.innerHTML = barRows(summary.field_counts || [], { className: "status-fill" });
+
+  const samples = (data.records || [])
+    .filter((record) => record.extraction_status === "extracted")
+    .sort((a, b) => {
+      const fieldDiff = (b.field_hits || []).length - (a.field_hits || []).length;
+      if (fieldDiff) return fieldDiff;
+      return (b.text_char_count || 0) - (a.text_char_count || 0);
+    })
+    .slice(0, 8);
+
+  sampleContainer.innerHTML = samples
+    .map(
+      (record) => `
+        <article class="content-sample">
+          <div>
+            <div class="source-heading">
+              <strong>${escapeHtml(record.company)}</strong>
+              <span class="badge">${escapeHtml(record.document_kind?.toUpperCase() || "DOC")}</span>
+              <span class="badge ok">${formatNumber.format(record.text_char_count || 0)} 字</span>
+            </div>
+            <h3>${escapeHtml(record.product_name)}</h3>
+            <p>${escapeHtml(record.product_type)}｜解析 ${escapeHtml(record.pages_parsed || 0)} ${
+              record.document_kind === "pdf" ? "頁" : "頁面"
+            }${record.page_count ? ` / 共 ${escapeHtml(record.page_count)} 頁` : ""}</p>
+            <div class="policy-flags">
+              ${(record.field_hits || []).map((field) => `<span class="chip">${escapeHtml(field)}</span>`).join("")}
+            </div>
+            ${
+              record.matched_terms?.length
+                ? `<p class="matched-terms">命中詞：${escapeHtml(record.matched_terms.slice(0, 8).join("、"))}</p>`
+                : ""
+            }
+          </div>
+          <a class="button secondary" href="${escapeHtml(record.policy_url)}" target="_blank" rel="noreferrer">官方來源</a>
+        </article>
+      `,
+    )
+    .join("");
 }
 
 function passesCrawlFilter(item) {

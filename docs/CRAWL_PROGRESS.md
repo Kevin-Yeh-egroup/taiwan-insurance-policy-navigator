@@ -1,6 +1,6 @@
 # Crawl Progress
 
-Updated at: `2026-06-03T14:31:27+08:00`
+Updated at: `2026-06-04T09:07:54+08:00`
 
 ## Overall
 
@@ -19,7 +19,25 @@ Updated at: `2026-06-03T14:31:27+08:00`
 - Reachable page reads: `559`
 - Robots blocked: `532`
 - Errors / timeouts: `252`
-- Note: completed batch means the URL was checked. It does not mean the policy content was fully available for automated extraction.
+- Note: completed batch means the URL was checked. Reachable records then move into policy content extraction.
+
+## Policy Content Extraction
+
+- Reachable policy sources parsed: `559`
+- PDF records parsed: `551`
+- HTML records parsed: `8`
+- Records with parsed text: `559`
+- Records with consumer-important field hits: `555`
+- Parsed text characters: `6,373,892`
+- Field-hit categories:
+  - `理賠/給付`: `554`
+  - `名詞定義`: `532`
+  - `保費/續保`: `482`
+  - `除外責任`: `457`
+  - `投保限制`: `356`
+  - `等待期/免責期`: `104`
+- Public output: `data/policy-content-extracts.json`
+- Public output policy: derived evidence only; full policy text is not published.
 
 ## TII Manual Matrix
 
@@ -58,4 +76,4 @@ Updated at: `2026-06-03T14:31:27+08:00`
 - The crawler is resumable. It skips URL IDs already present in `data/crawl-status.json`.
 - `robots.txt` blocked sources are treated as completed checks, not crawl failures.
 - HTTP 404, connection refused, timeout, and encoding/network errors are marked as review items.
-- Deeper policy-field extraction should only use sources with stable source URLs and source evidence.
+- Deeper reviewed policy-field extraction should only use sources with stable source URLs and source evidence.

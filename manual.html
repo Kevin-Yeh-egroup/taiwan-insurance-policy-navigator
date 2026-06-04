@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,nofollow,noarchive">
-    <title>操作手冊｜保單資訊查詢台</title>
+    <title>保單資訊查詢台操作手冊</title>
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
@@ -12,9 +12,9 @@
       <div class="header-main">
         <p class="eyebrow">User Manual</p>
         <h1>操作手冊</h1>
-        <p class="lede">保單來源查詢、篩選、判讀與複核流程。</p>
+        <p class="lede">用查詢、篩選、內容抽取統計與官方來源連結，快速確認保單資料的可用性與重點欄位。</p>
       </div>
-      <nav class="header-actions" aria-label="主要連結">
+      <nav class="header-actions" aria-label="主要導覽">
         <a class="nav-link" href="./">查詢台</a>
         <a class="nav-link current" href="./manual.html">操作手冊</a>
       </nav>
@@ -27,18 +27,18 @@
           <h2>1. 開始查詢</h2>
         </div>
         <ol class="manual-steps">
-          <li>在「查詢來源」輸入保險公司、商品名稱、關鍵字、網域或 PDF 連結片段。</li>
-          <li>按「查詢」。系統會顯示符合條件的官方來源清冊。</li>
-          <li>需要重來時按「清除條件」。</li>
+          <li>在首頁「查詢來源」輸入保險公司、商品名稱、關鍵字或 PDF 連結。</li>
+          <li>按「查詢」或按 Enter，列表會依目前條件更新。</li>
+          <li>按「清除條件」可回到完整資料集。</li>
         </ol>
         <div class="manual-grid">
           <figure class="manual-figure">
             <img src="./assets/manual/home-desktop.png" alt="桌機版查詢台首頁">
-            <figcaption>桌機版首頁：搜尋框、查詢按鈕、清除條件與狀態篩選都在第一屏。</figcaption>
+            <figcaption>首頁先呈現來源總覽、查詢列、篩選器與資料卡片，適合從公司或關鍵字開始縮小範圍。</figcaption>
           </figure>
           <figure class="manual-figure">
-            <img src="./assets/manual/search-taiwan-life.png" alt="搜尋台灣人壽後的結果">
-            <figcaption>搜尋公司名稱後，結果數會縮小，並優先顯示較可能可開啟的來源。</figcaption>
+            <img src="./assets/manual/search-taiwan-life.png" alt="輸入公司名稱後的查詢結果">
+            <figcaption>輸入公司或商品關鍵字後，系統會同步更新統計與下方來源列表。</figcaption>
           </figure>
         </div>
       </section>
@@ -49,18 +49,18 @@
           <h2>2. 用篩選縮小範圍</h2>
         </div>
         <ol class="manual-steps">
-          <li>「保險公司」用來只看單一公司的來源。</li>
-          <li>「資料類型」可切換商品頁、PDF/檔案、法規/公會、社會保險等來源。</li>
-          <li>「狀態」可快速查看可開啟、網站限制、需人工確認或尚未檢查的來源。</li>
+          <li>用「公司」篩出特定保險公司。</li>
+          <li>用「文件類型」切換 PDF 條款、HTML 頁面、官方查詢頁或其他來源。</li>
+          <li>用「抓取狀態」分辨可開啟、網站限制與需人工確認。</li>
         </ol>
         <div class="manual-grid">
           <figure class="manual-figure">
-            <img src="./assets/manual/filter-ok.png" alt="篩選可開啟來源">
-            <figcaption>「可開啟」代表已確認來源可連線，但不代表條款內容已完成專業審閱。</figcaption>
+            <img src="./assets/manual/filter-ok.png" alt="可開啟來源篩選">
+            <figcaption>「可開啟」表示目前來源可讀取；robots 限制或錯誤來源會保留狀態，避免誤判成資料不存在。</figcaption>
           </figure>
           <figure class="manual-figure">
-            <img src="./assets/manual/mobile-home.png" alt="手機版查詢台首頁">
-            <figcaption>手機版會將查詢、篩選與主要按鈕直向排列，方便單手操作。</figcaption>
+            <img src="./assets/manual/mobile-home.png" alt="手機版首頁">
+            <figcaption>手機版會把查詢、篩選與卡片改成單欄排列，方便現場快速查資料。</figcaption>
           </figure>
         </div>
       </section>
@@ -68,70 +68,74 @@
       <section class="manual-section">
         <div class="section-heading">
           <p class="eyebrow">Insights</p>
-          <h2>3. 看懂保單重點總覽</h2>
+          <h2>3. 看懂圖像化重點</h2>
         </div>
         <ol class="manual-steps">
-          <li>「已整理保單」是從目前文件欄位抽出的保單筆數。</li>
-          <li>「已停售」「仍可投保」「待確認」用來快速判斷後續複核優先順序。</li>
-          <li>「商品類型」與「公司分布」可看出資料集中在哪些保險公司與險種。</li>
-          <li>「保發中心停售查詢」顯示官方查詢入口可用欄位與圖形驗證碼限制。</li>
+          <li>先看「來源總覽」，確認目前資料量、已檢查比例與可開啟來源數。</li>
+          <li>再看「保單內容抽取」，確認系統已解析多少 PDF/HTML、文字量與欄位命中。</li>
+          <li>用「重點欄位命中」判斷哪些資料已碰到理賠/給付、名詞定義、除外責任、等待期、保費續保、投保限制。</li>
+          <li>在「抽取範例」按「官方來源」，可回到保險公司或官方網站核對原始文件。</li>
         </ol>
         <figure class="manual-figure">
-          <img src="./assets/manual/policy-insights.png" alt="保單重點總覽圖像化區塊">
-          <figcaption>保單重點總覽會先呈現整理筆數、停售狀態、商品類型、公司分布與官方 TII 查詢匯入狀態。</figcaption>
+          <img src="./assets/manual/policy-insights.png" alt="保單資料圖像化重點">
+          <figcaption>圖像化區塊把來源、批次、TII 人工查詢與內容抽取進度分開呈現，避免只有文件下載連結。</figcaption>
+        </figure>
+        <figure class="manual-figure">
+          <img src="./assets/manual/policy-content-extraction.png" alt="保單內容抽取區塊">
+          <figcaption>內容抽取區塊顯示已解析來源數、PDF/HTML 數量、欄位命中與抽取範例，用來確認爬蟲確實讀到保單內容。</figcaption>
         </figure>
       </section>
 
       <section class="manual-section">
         <div class="section-heading">
           <p class="eyebrow">Cards</p>
-          <h2>4. 看懂來源卡片</h2>
+          <h2>4. 閱讀來源卡片</h2>
         </div>
         <ol class="manual-steps">
-          <li>第一行是保險公司與來源狀態。</li>
-          <li>標題下方會顯示資料類型、是否為公開候選，以及來源網域。</li>
-          <li>按「開啟來源」會到保險公司、主管機關或公開來源頁面。</li>
-          <li>按「來源資訊」可查看原始連結、HTTP 狀態、內容類型、檢查時間與狀態說明。</li>
+          <li>每張卡片代表一個官方來源 URL。</li>
+          <li>優先看公司、來源類型、抓取狀態與 HTTP 狀態。</li>
+          <li>按「開啟來源」可到原始網站確認文件內容。</li>
+          <li>按「複製連結」可分享官方來源給後續查核。</li>
         </ol>
         <figure class="manual-figure">
-          <img src="./assets/manual/source-card-detail.png" alt="來源卡片與來源資訊展開畫面">
-          <figcaption>來源資訊展開後才顯示技術欄位，避免一般查詢時被 HTTP、url id 等資訊干擾。</figcaption>
+          <img src="./assets/manual/source-card-detail.png" alt="來源卡片細節">
+          <figcaption>來源卡片保留官方 URL、資料來源與抓取結果，方便從整理後資訊回到原始證據。</figcaption>
         </figure>
       </section>
 
       <section class="manual-section">
         <div class="section-heading">
           <p class="eyebrow">Status</p>
-          <h2>5. 判讀狀態</h2>
+          <h2>5. 狀態說明</h2>
         </div>
         <table class="term-table">
           <thead>
             <tr>
               <th>狀態</th>
-              <th>意思</th>
+              <th>意義</th>
               <th>建議動作</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>可開啟</td>
-              <td>來源已完成連線檢查，可作為查找入口。</td>
-              <td>仍需回官方頁面或正式條款確認。</td>
+              <td>網站允許讀取，且來源目前可取得。</td>
+              <td>可進一步查看或整理條款重點。</td>
             </tr>
             <tr>
               <td>網站限制</td>
-              <td>站方 robots 規則不允許自動抓取。</td>
-              <td>用「開啟來源」手動檢查官方頁。</td>
+              <td>robots 規則不允許自動抓取。</td>
+              <td>保留網址，不做自動內容抽取。</td>
             </tr>
             <tr>
               <td>需人工確認</td>
-              <td>連線、格式或伺服器回應異常。</td>
-              <td>排入內部複核，不要直接當成資料不存在。</td>
+              <td>來源逾時、錯誤、404 或格式待確認。</td>
+              <td>後續人工重新檢查。</td>
             </tr>
             <tr>
-              <td>尚未檢查</td>
-              <td>來源已在清冊中，但尚未進入批次檢查。</td>
-              <td>等待下一批檢查或人工開啟來源。</td>
+              <td>人工驗證</td>
+              <td>保發中心停售查詢有圖形驗證碼。</td>
+              <td>人工完成驗證碼後匯入結果。</td>
             </tr>
           </tbody>
         </table>
@@ -140,40 +144,39 @@
       <section class="manual-section">
         <div class="section-heading">
           <p class="eyebrow">Reader Questions</p>
-          <h2>6. 民眾查保單最在乎的七件事</h2>
+          <h2>6. 一般民眾最常問的重點</h2>
         </div>
         <ol class="manual-steps">
-          <li>理賠內容：發生什麼事可以申請、給付條件與申請文件。</li>
-          <li>名詞定義：疾病、醫院、住院、手術、意外等正式定義。</li>
-          <li>等待期/免責期：多久後開始有保障、多久後起賠。</li>
-          <li>除外責任：哪些情況不在保障範圍。</li>
-          <li>保費與續保：費率、續保、停效、復效與解約費用。</li>
-          <li>投保限制：年齡、保額、職業、健康告知與附約限制。</li>
-          <li>官方文件：條款、商品說明書、費率表、文號與版本日期。</li>
+          <li>這張保單哪些情況會理賠或給付？</li>
+          <li>重要名詞怎麼定義，例如疾病、傷害、住院、手術？</li>
+          <li>是否有等待期、免責期或不賠條件？</li>
+          <li>除外責任有哪些？</li>
+          <li>保費、續保、停效、解約或取消有哪些限制？</li>
+          <li>投保年齡、職業、健康告知或承保限制是什麼？</li>
+          <li>官方文件在哪裡，能不能回到原始來源確認？</li>
         </ol>
         <figure class="manual-figure">
-          <img src="./assets/manual/reader-first.png" alt="民眾查保單最在乎的七件事">
-          <figcaption>這七類是後續抽取理賠、定義、等待期、除外責任等欄位的資訊架構。</figcaption>
+          <img src="./assets/manual/reader-first.png" alt="一般讀者關心的保單問題">
+          <figcaption>目前先以欄位命中呈現內容抽取成果；後續可再把命中片段整理成逐張保單的人工審核摘要。</figcaption>
         </figure>
       </section>
 
       <section class="manual-section">
         <div class="section-heading">
-          <p class="eyebrow">Limits</p>
-          <h2>7. 重要限制</h2>
+          <p class="eyebrow">Progress</p>
+          <h2>7. 目前資料進度</h2>
         </div>
-        <p>本站是公開資訊整理與導覽工具，不是保險建議、法律意見、理賠承諾或承保判斷。所有摘要、狀態與欄位都應回到保險公司、主管機關或官方條款確認。</p>
-        <p>「可開啟」只代表來源連線可用，不代表保單條款已完成法律或專業審閱。「網站限制」或「需人工確認」也不代表商品不存在或無法申請理賠。</p>
+        <p>自動保單 URL 批次 <code>policy-url-001</code> 到 <code>policy-url-017</code> 已完成，共處理 <strong>1,343</strong> 個保單 URL。其中 <strong>559</strong> 個可讀取，<strong>532</strong> 個受 robots 規則限制，<strong>252</strong> 個錯誤或逾時。</p>
+        <p>內容抽取已完成所有 <strong>559</strong> 個可讀取來源，包含 <strong>551</strong> 筆 PDF 與 <strong>8</strong> 筆 HTML。系統共解析 <strong>6,373,892</strong> 個文字字元，<strong>555</strong> 筆來源命中至少一個民眾關心欄位。</p>
       </section>
 
       <section class="manual-section">
         <div class="section-heading">
-          <p class="eyebrow">Batch</p>
-          <h2>8. 大量保單分段處理</h2>
+          <p class="eyebrow">TII</p>
+          <h2>8. 保發中心停售保單</h2>
         </div>
-        <p>保單很多時，系統會拆成「保單 URL 自動批次」與「TII 人工驗證碼批次」。每批都有 ID、筆數、公司、類型與處理方式。TII 批次需要人工輸入驗證碼並保存結果，再由匯入器整理。</p>
-        <p>目前 <code>policy-url-001</code> 到 <code>policy-url-017</code> 已執行完成，共處理 1,343 筆保單 URL，其中 559 筆可抓取、532 筆受 robots 限制、252 筆錯誤或逾時。批次完成代表已檢查，不代表每一筆都能自動整理出完整保單內容。</p>
-        <p>保發中心 TII 區塊現在可切換「產險」與「壽險」。產險矩陣有 108 個人工查詢批次，壽險/人身保險矩陣有 198 個人工查詢批次。每一列都會顯示公司、保險類別與查詢欄位代碼，按「開啟查詢頁」後照欄位選擇並輸入驗證碼。</p>
+        <p>保發中心查詢頁分為產險與壽險/人身險。網站目前已建立 <strong>108</strong> 個產險人工查詢批次與 <strong>198</strong> 個壽險/人身險人工查詢批次。</p>
+        <p>因查詢結果需要圖形驗證碼，本專案不破解驗證碼。可在網站上逐批開啟查詢頁，人工完成驗證後再匯入結果。</p>
       </section>
     </main>
   </body>

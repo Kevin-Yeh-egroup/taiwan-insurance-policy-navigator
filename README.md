@@ -1,46 +1,47 @@
-# Taiwan Policy Navigator
+# Taiwan Insurance Policy Navigator
 
-公開保單資訊整理與爬蟲專案草案。目標不是把條款 PDF 全部堆在一起，而是把民眾查保單時最常需要確認的資訊整理成可搜尋、可比較、可回溯來源的欄位。
+Public, noindex insurance-policy navigator for Taiwan insurance source documents. The site turns insurer PDF/HTML sources into searchable source cards, crawl status, and reader-first summaries for claim/benefit terms, definitions, exclusions, renewal/premium notes, waiting periods, and underwriting limits.
 
 ## Current Status
 
-- Local git repo initialized.
+- Local git repo initialized and connected to a public GitHub repository.
+- Vercel Production is live with review-stage noindex controls.
 - 17 user-provided source files were scanned locally.
 - 1,670 unique URLs were extracted.
-- Public-safe source index and crawler status are generated with scripts.
-- Crawl status now covers all 1,666 public crawl candidates (100.0% checked).
-- 919 checked sources are currently reachable, 387 are blocked by robots rules, and 360 need review.
-- Segmented policy URL batches are fully executed: 17/17 batches, 1,343 policy URLs processed, 559 pages reachable, 532 blocked by robots rules, and 252 errors or timeouts.
-- TII captcha-protected batches remain manual; this project does not bypass captcha.
-- TII manual batches now follow the site split: 108 property-insurance batches and 198 life/personal-insurance batches, 306 total.
-- Public GitHub repository is live.
-- Vercel Production is live with review-stage noindex controls.
+- Crawl status covers all 1,666 public crawl candidates.
+- 919 checked sources are reachable, 387 are blocked by robots rules, and 360 need review.
+- Segmented policy URL batches are fully executed: 17/17 batches, 1,343 policy URLs processed, 559 reachable, 532 blocked by robots rules, and 252 errors/timeouts.
+- Policy content extraction is complete for all 559 reachable policy sources: 551 PDF records and 8 HTML records produced parsed text, with 555 records hitting at least one consumer-important field.
+- TII captcha-protected discontinued-policy batches remain manual; this project does not bypass captcha.
+- TII manual batches follow the site split: 108 property-insurance batches and 198 life/personal-insurance batches, 306 total.
 
 Production URL:
 
 <https://taiwan-insurance-policy-navigator.vercel.app/>
 
-操作手冊:
+User manual:
 
 <https://taiwan-insurance-policy-navigator.vercel.app/manual.html>
 
 ## Scope
 
-This site is an information guide. It is not insurance advice, legal advice, claim approval guidance, or a promise that a claim will be paid. Every product page must link back to the original insurer or official source.
+This site is an information guide. It is not insurance advice, legal advice, claim approval guidance, or a promise that a claim will be paid. Every product card links back to the original insurer or official source.
+
+The public data intentionally stores derived evidence only: source URL, crawl status, parsed-text counts, field-hit categories, and short metadata. Full policy text is not published.
 
 ## Consumer Information Architecture
 
-The first public version uses these sections:
+The consumer-facing structure is based on the questions ordinary readers usually ask first:
 
-1. 理賠內容
-2. 名詞定義
-3. 等待期/免責期
-4. 除外責任
-5. 保費與續保
-6. 投保限制
-7. 官方文件
+1. What claim or benefit items are mentioned?
+2. How does the policy define key terms?
+3. Are there waiting periods or exemption periods?
+4. What exclusions or non-payment conditions appear?
+5. What renewal, premium, or cancellation language appears?
+6. Are there underwriting or eligibility limits?
+7. Where is the official source document?
 
-Each field should carry `source_url`, `source_document`, `source_clause_or_page`, `scraped_at`, `verified_at`, and `confidence`.
+Each extracted fact should preserve `source_url`, `source_document`, `source_clause_or_page`, `scraped_at`, `verified_at`, and `confidence` when it becomes a reviewed structured field.
 
 ## Local Commands
 
@@ -54,6 +55,7 @@ python scripts\extract_tii_metadata.py
 python scripts\plan_segmented_batches.py --policy-batch-size 80
 python scripts\run_policy_batch.py --batch-id policy-url-001
 1..17 | ForEach-Object { python scripts\run_policy_batch.py --batch-id ('policy-url-{0:D3}' -f $_) }
+& 'C:\Users\Kevin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' scripts\build_policy_content_extracts.py --delay 0 --timeout 30 --max-pdf-pages 12
 python scripts\validate_data.py
 python -m http.server 4173
 ```
@@ -73,13 +75,12 @@ Then open `http://localhost:4173/`.
 
 ## Publishing Gate
 
-Do not push to GitHub or deploy to Vercel until Kevin approves:
+Kevin has approved this repo as public, Vercel as Production, and noindex as retained. Future changes still need separate approval before:
 
-- repository visibility,
-- public/production target,
-- noindex status,
-- whether the data is ready for public readers,
-- whether any raw extraction files should remain local only.
+- changing repository visibility,
+- removing noindex or allowing indexing,
+- adding private/raw extraction files to public data,
+- changing deployment protection, account settings, domains, or billing.
 
 `noindex` is included for review-stage publishing, but it is not access control.
 
@@ -107,6 +108,8 @@ python scripts\run_policy_batch.py --batch-id policy-url-001
 
 Execution writes `data\policy-batch-results.json` and `data\batch-progress.json`.
 
-Current execution snapshot: `policy-url-001` through `policy-url-017` are complete. The site reports the distinction between executed batches, pages that were actually reachable, robots-blocked URLs, and errors/timeouts.
+Current execution snapshot: `policy-url-001` through `policy-url-017` are complete. The site reports the distinction between executed batches, pages that were reachable, robots-blocked URLs, and errors/timeouts.
+
+Current content extraction snapshot: `559` reachable policy sources were parsed, including `551` PDF records and `8` HTML records. The extraction produced `6,373,892` parsed text characters and field hits for `555` records. The public data stores derived counts, field hits, and source links, not full policy text.
 
 Current TII manual matrix: `27` property insurers x `4` property categories = `108` batches; `33` life/personal insurers x `6` personal-insurance categories = `198` batches. These batches are shown on the site as clickable property/life groups, but result retrieval still requires human captcha completion and import.
