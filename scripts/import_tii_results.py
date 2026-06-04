@@ -113,12 +113,23 @@ def main() -> None:
         elif path.suffix.lower() == ".csv":
             raw_records.extend(load_csv(path))
 
+    normalized_records = normalize_records(raw_records)
+    completed_batches = sorted(
+        {
+            Path(record.get("source_file", "")).stem
+            for record in normalized_records
+            if record.get("source_file")
+        }
+    )
+
     output = {
         "generated_at": datetime.now(TAIPEI).isoformat(timespec="seconds"),
         "source": "manually_saved_tii_query_results",
         "input_dir": str(input_dir),
         "record_count": len(raw_records),
-        "records": normalize_records(raw_records),
+        "completed_batch_count": len(completed_batches),
+        "completed_batches": completed_batches,
+        "records": normalized_records,
         "compliance_note": "This importer parses files saved after a human completes TII captcha. It does not automate or bypass captcha.",
     }
     Path(args.output).write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")

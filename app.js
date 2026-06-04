@@ -11,6 +11,8 @@ const state = {
   crawlStatus: null,
   policyInsights: null,
   tiiMetadata: null,
+  tiiResults: null,
+  tiiExecutionProgress: null,
   batchPlan: null,
   batchProgress: null,
   policyContentExtracts: null,
@@ -117,13 +119,29 @@ function setText(id, value) {
 }
 
 async function loadData() {
-  const [sourceIndex, taxonomy, crawlStatus, policyInsights, tiiMetadata, batchPlan, batchProgress, policyContentExtracts] =
-    await Promise.all([
+  const [
+    sourceIndex,
+    taxonomy,
+    crawlStatus,
+    policyInsights,
+    tiiMetadata,
+    tiiResults,
+    tiiExecutionProgress,
+    batchPlan,
+    batchProgress,
+    policyContentExtracts,
+  ] = await Promise.all([
     fetch("./data/source-index.json").then((response) => response.json()),
     fetch("./data/consumer-taxonomy.json").then((response) => response.json()),
     fetch("./data/crawl-status.json").then((response) => response.json()),
     fetch("./data/policy-insights.json").then((response) => response.json()),
     fetch("./data/tii-query-metadata.json").then((response) => response.json()),
+    fetch("./data/tii-policy-results.json").then((response) =>
+      response.ok ? response.json() : { record_count: 0, records: [], completed_batches: [] },
+    ),
+    fetch("./data/tii-execution-progress.json").then((response) =>
+      response.ok ? response.json() : { summary: { attempted_batches: 0, completed_batches: 0, captcha_required_batches: 0 }, runs: [] },
+    ),
     fetch("./data/batch-plan.json").then((response) => response.json()),
     fetch("./data/batch-progress.json").then((response) => (response.ok ? response.json() : null)),
     fetch("./data/policy-content-extracts.json").then((response) => (response.ok ? response.json() : null)),
@@ -133,6 +151,8 @@ async function loadData() {
   state.crawlStatus = crawlStatus;
   state.policyInsights = policyInsights;
   state.tiiMetadata = tiiMetadata;
+  state.tiiResults = tiiResults;
+  state.tiiExecutionProgress = tiiExecutionProgress;
   state.batchPlan = batchPlan;
   state.batchProgress = batchProgress;
   state.policyContentExtracts = policyContentExtracts;
@@ -316,13 +336,28 @@ function renderPolicyInsights() {
     : '<div class="empty"><strong>目前沒有已停售保單資料。</strong><span>完成 TII 人工驗證碼查詢匯入後會出現在這裡。</span></div>';
 
   const metadata = state.tiiMetadata;
+  const tiiManualCount =
+    state.batchPlan?.summary?.tii_manual_matrix_batch_count || state.batchPlan?.summary?.tii_full_estimated_batch_count || 0;
+  const tiiAttemptedBatches = state.tiiExecutionProgress?.summary?.attempted_batches || 0;
+  const tiiCaptchaRequiredBatches = state.tiiExecutionProgress?.summary?.captcha_required_batches || 0;
+  const tiiCompletedBatches =
+    state.tiiExecutionProgress?.summary?.completed_batches ||
+    state.tiiResults?.completed_batch_count ||
+    state.tiiResults?.completed_batches?.length ||
+    0;
+  const tiiImportedPolicies = state.tiiResults?.record_count || state.tiiResults?.records?.length || 0;
   document.getElementById("tiiStatus").innerHTML = `
     <div class="tii-grid">
       <span><strong>${formatNumber.format(metadata.companies.length)}</strong><small>公司選項</small></span>
       <span><strong>${formatNumber.format(metadata.insurance_categories.length)}</strong><small>保險類別</small></span>
       <span><strong>${metadata.captcha_required ? "需要" : "不需要"}</strong><small>圖形驗證碼</small></span>
+      <span><strong>${formatNumber.format(tiiManualCount)}</strong><small>人工批次</small></span>
+      <span><strong>${formatNumber.format(tiiAttemptedBatches)}</strong><small>已啟動批次</small></span>
+      <span><strong>${formatNumber.format(tiiCaptchaRequiredBatches)}</strong><small>等待驗證碼</small></span>
+      <span><strong>${formatNumber.format(tiiCompletedBatches)}</strong><small>已完成批次</small></span>
+      <span><strong>${formatNumber.format(tiiImportedPolicies)}</strong><small>已匯入保單</small></span>
     </div>
-    <p>官方查詢支援公司、保險類別、銷售日、停售日與關鍵字。因有圖形驗證碼，本專案只做人工完成驗證後的結果匯入，不自動破解。</p>
+    <p>官方查詢支援公司、保險類別、銷售日、停售日與關鍵字。TII 目前是待人工執行狀態：必須人工輸入驗證碼、保存結果，再匯入本站；本專案不自動破解驗證碼。</p>
     <a href="${escapeHtml(metadata.source_url)}" target="_blank" rel="noreferrer">開啟保發中心查詢</a>
   `;
   renderBatchPlan();
@@ -338,13 +373,26 @@ function renderBatchPlan() {
   const tiiManualCount =
     summary.tii_manual_matrix_batch_count || summary.tii_full_estimated_batch_count || summary.tii_priority_batch_count || 0;
   const completedUrlBatches = progress.completed_policy_url_batches || 0;
+  const tiiAttemptedBatches = state.tiiExecutionProgress?.summary?.attempted_batches || 0;
+  const tiiCaptchaRequiredBatches = state.tiiExecutionProgress?.summary?.captcha_required_batches || 0;
+  const tiiCompletedBatches =
+    state.tiiExecutionProgress?.summary?.completed_batches ||
+    state.tiiResults?.completed_batch_count ||
+    state.tiiResults?.completed_batches?.length ||
+    0;
+  const tiiPendingBatches = Math.max(tiiManualCount - tiiCompletedBatches, 0);
+  const tiiImportedPolicies = state.tiiResults?.record_count || state.tiiResults?.records?.length || 0;
   const totalPlanned = summary.policy_url_batch_count + tiiManualCount;
   setText("batchPlanCount", `${formatNumber.format(totalPlanned)} 批次`);
   setText(
     "batchPlanNote",
     `批次分成兩種：${formatNumber.format(summary.policy_url_batch_count)} 個保單 URL 自動批次已執行 ${formatNumber.format(
       completedUrlBatches,
-    )} 個；保發中心 TII 另有 ${formatNumber.format(tiiManualCount)} 個人工驗證碼查詢批次，尚待人工查詢與匯入。`,
+    )} 個；保發中心 TII 另有 ${formatNumber.format(tiiManualCount)} 個人工驗證碼查詢批次，目前已啟動 ${formatNumber.format(
+      tiiAttemptedBatches,
+    )} 個、等待驗證碼 ${formatNumber.format(tiiCaptchaRequiredBatches)} 個、已完成人工批次 ${formatNumber.format(
+      tiiCompletedBatches,
+    )} 個、待人工處理 ${formatNumber.format(tiiPendingBatches)} 個。`,
   );
   document.getElementById("batchSummary").innerHTML = `
     <article>
@@ -360,8 +408,24 @@ function renderBatchPlan() {
       <span>TII 人工批次全量</span>
     </article>
     <article>
-      <strong>${formatNumber.format(summary.tii_priority_batch_count)}</strong>
-      <span>其中優先人工批次</span>
+      <strong>${formatNumber.format(tiiAttemptedBatches)}</strong>
+      <span>TII 已啟動批次</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(tiiCaptchaRequiredBatches)}</strong>
+      <span>TII 等待驗證碼</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(tiiCompletedBatches)}</strong>
+      <span>TII 已完成人工批次</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(tiiPendingBatches)}</strong>
+      <span>TII 待人工批次</span>
+    </article>
+    <article>
+      <strong>${formatNumber.format(tiiImportedPolicies)}</strong>
+      <span>已匯入 TII 保單</span>
     </article>
     <article>
       <strong>${formatNumber.format(processed)}</strong>
@@ -409,7 +473,7 @@ function renderBatchPlan() {
     })),
     ...nextTiiBatches.map((batch) => ({
       id: batch.id,
-      kind: "TII 人工",
+      kind: "TII 待人工",
       title: `${batch.company_label} / ${batch.category_label}`,
       meta: "人工輸入驗證碼後保存結果，再匯入整理",
       priority: "優先",
@@ -488,7 +552,9 @@ function renderTiiMatrix(plan) {
       </article>
     </div>
     <p class="tii-matrix-note">
-      ${escapeHtml(activeGroup.label)}會搭配：${escapeHtml(categoryLabels)}。查詢結果需要人工輸入驗證碼後匯入，系統不繞過驗證碼。
+      ${escapeHtml(activeGroup.label)}會搭配：${escapeHtml(
+        categoryLabels,
+      )}。下方只是待執行的官方查詢入口；每一批都需要人工輸入驗證碼、保存結果並匯入後，才會算完成。
     </p>
     <div class="tii-matrix-list">
       ${activeBatches

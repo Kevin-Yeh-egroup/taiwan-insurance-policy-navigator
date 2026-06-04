@@ -115,3 +115,18 @@ The Insurance Institute discontinued-policy query page requires captcha completi
   "status": "manual_captcha_required"
 }
 ```
+
+## TIIImportedResults
+
+`data/tii-policy-results.json` is the execution/import status for captcha-protected TII batches. A planned batch is not counted as completed until a human finishes the captcha query, saves the result HTML/CSV, and imports it.
+
+```json
+{
+  "record_count": 0,
+  "completed_batch_count": 0,
+  "completed_batches": [],
+  "pending_manual_batch_count": 306,
+  "records": [],
+  "compliance_note": "No TII captcha-protected query result has been imported yet."
+}
+```

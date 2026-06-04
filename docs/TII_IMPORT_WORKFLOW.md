@@ -39,6 +39,19 @@ data\tii-query-metadata.json
 python scripts\import_tii_results.py --input-dir work\tii-results --output data\tii-policy-results.json
 ```
 
+也可以用批次 runner 啟動單一批次。沒有提供驗證碼時，runner 會抓取官方表單與驗證碼圖片，並把該批標記為等待驗證碼：
+
+```powershell
+python scripts\run_tii_batch.py --batch-id tii-property-001
+```
+
+人工讀取驗證碼後，再用同一批次送出：
+
+```powershell
+python scripts\run_tii_batch.py --batch-id tii-property-001 --captcha <人工輸入的驗證碼>
+python scripts\import_tii_results.py --input-dir work\tii-results --output data\tii-policy-results.json
+```
+
 ## 匯入後如何使用
 
 匯入後的停售保單資料會進入同一個前台視覺化模型。前台應優先呈現：
@@ -94,6 +107,10 @@ data\batch-progress.json
 - robots 擋下：`532`
 - 錯誤或逾時：`252`
 - TII 驗證碼批次仍需人工查詢與匯入，不繞過驗證碼。
+- 目前 TII 人工批次已啟動：`1 / 306`。
+- 目前等待驗證碼批次：`1`。
+- 目前 TII 人工批次完成狀態：`0 / 306`。
+- 目前已匯入 TII 保單結果：`0` 筆。
 
 保發中心頁面本身分為「財產保險」與「人身保險」。目前批次矩陣已依這個入口拆分：
 

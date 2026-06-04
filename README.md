@@ -14,7 +14,7 @@ Public, noindex insurance-policy navigator for Taiwan insurance source documents
 - Policy content extraction is complete for all 559 reachable policy sources: 551 PDF records and 8 HTML records produced parsed text, with 555 records hitting at least one consumer-important field.
 - Reader-first focus cards are generated per policy: coverage items, important definitions, special conditions, and claim application cues.
 - TII captcha-protected discontinued-policy batches remain manual; this project does not bypass captcha.
-- TII manual batches follow the site split: 108 property-insurance batches and 198 life/personal-insurance batches, 306 total.
+- TII manual batches follow the site split: 108 property-insurance batches and 198 life/personal-insurance batches, 306 total. Current TII execution/import status is 1 attempted manual batch, 1 waiting on captcha, 0 completed manual batches, and 0 imported TII policy records.
 
 Production URL:
 
@@ -113,4 +113,4 @@ Current execution snapshot: `policy-url-001` through `policy-url-017` are comple
 
 Current content extraction snapshot: `559` reachable policy sources were parsed, including `551` PDF records and `8` HTML records. The extraction produced `6,373,892` parsed text characters and field hits for `555` records. Reader-first focus cards detected `保障項目` in `553` records, `重要定義` in `552`, `特殊項目` in `529`, and `理賠申請` in `539`. The public data stores derived counts, field hits, page hints, and source links, not full policy text.
 
-Current TII manual matrix: `27` property insurers x `4` property categories = `108` batches; `33` life/personal insurers x `6` personal-insurance categories = `198` batches; total `306` manual batches. These batches are shown on the site as clickable property/life groups, but result retrieval still requires human captcha completion and import.
+Current TII manual matrix: `27` property insurers x `4` property categories = `108` batches; `33` life/personal insurers x `6` personal-insurance categories = `198` batches; total `306` manual batches. These batches are shown on the site as clickable property/life groups, but they are not executed automatically. Current status is `1` attempted manual batch, `1` waiting on captcha, `0 / 306` completed manual batches, and `0` imported TII policy records; result retrieval still requires human captcha completion and import.

@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-06-04T10:58:06+08:00",
+  "runs": [
+    {
+      "batch_id": "tii-property-001",
+      "ran_at": "2026-06-04T10:58:06+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "101-臺灣產物保險股份有限公司",
+      "category_label": "汽車保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "101",
+        "f_CategoryId1": "1_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-001-captcha-1.ashx"
+      ],
+      "result_file": ""
+    }
+  ],
+  "summary": {
+    "attempted_batches": 1,
+    "completed_batches": 0,
+    "captcha_required_batches": 1
+  }
+}

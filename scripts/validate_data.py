@@ -22,6 +22,8 @@ def main() -> None:
     crawl_status = load_json("data/crawl-status.json")
     policy_insights = load_json("data/policy-insights.json")
     tii_metadata = load_json("data/tii-query-metadata.json")
+    tii_results = load_json("data/tii-policy-results.json")
+    tii_execution_progress = load_json("data/tii-execution-progress.json")
     batch_plan = load_json("data/batch-plan.json")
     batch_progress = load_json("data/batch-progress.json")
     policy_batch_results = load_json("data/policy-batch-results.json")
@@ -72,6 +74,21 @@ def main() -> None:
     matrix_types = {batch.get("company_type") for batch in batch_plan["tii_manual_matrix_batches"]}
     if not {"property", "life"}.issubset(matrix_types):
         fail("TII manual matrix should include both property and life batches")
+    if tii_results.get("record_count") != len(tii_results.get("records", [])):
+        fail("TII result record_count does not match records length")
+    tii_completed_batches = tii_results.get("completed_batch_count", len(tii_results.get("completed_batches", [])))
+    if tii_completed_batches != len(tii_results.get("completed_batches", [])):
+        fail("TII completed_batch_count does not match completed_batches length")
+    if tii_completed_batches > matrix_count:
+        fail("TII completed batches cannot exceed manual matrix batch count")
+    tii_runs = tii_execution_progress.get("runs", [])
+    tii_execution_summary = tii_execution_progress.get("summary", {})
+    if tii_execution_summary.get("attempted_batches", len(tii_runs)) != len(tii_runs):
+        fail("TII attempted batch count does not match runs length")
+    if tii_execution_summary.get("completed_batches", 0) > len(tii_runs):
+        fail("TII completed execution count cannot exceed attempted runs")
+    if tii_execution_summary.get("attempted_batches", 0) > matrix_count:
+        fail("TII attempted batches cannot exceed manual matrix batch count")
     if not batch_progress.get("batches"):
         fail("batch progress has no executed batches")
     if not policy_batch_results.get("batches"):
@@ -165,6 +182,10 @@ def main() -> None:
                 "policy_url_batches": batch_plan["summary"]["policy_url_batch_count"],
                 "tii_priority_batches": batch_plan["summary"]["tii_priority_batch_count"],
                 "tii_manual_matrix_batches": batch_plan["summary"]["tii_manual_matrix_batch_count"],
+                "tii_attempted_manual_batches": tii_execution_summary.get("attempted_batches", 0),
+                "tii_captcha_required_batches": tii_execution_summary.get("captcha_required_batches", 0),
+                "tii_completed_manual_batches": tii_completed_batches,
+                "tii_imported_records": tii_results["record_count"],
                 "completed_policy_url_batches": batch_progress["summary"]["completed_policy_url_batches"],
                 "policy_url_items_processed": batch_progress["summary"]["policy_url_items_processed"],
                 "policy_content_extracted": content_summary["extracted_text_count"],
