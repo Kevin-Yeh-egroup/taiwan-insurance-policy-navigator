@@ -1,5 +1,37 @@
 # Public Production Log
 
+## 2026-06-05 Sixteenth TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `da1d521`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed sixteenth TII batch data: `dpl_4PMTsyqW9ZRwenSCCzrxZUW9aDd4`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-h1v7ss7tq.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- HTML meta robots remained `noindex,nofollow,noarchive`.
+- `robots.txt` remained `User-agent: *` / `Disallow: /`.
+- Production data shows TII `record_count=23541`, `detail_saved_count=23471`, `indexed_batch_count=16`, `completed_batch_count=16`, `partial_batch_count=0`, and pending manual batches `290`.
+- TII execution progress shows `attempted_batches=17`, `completed_batches=16`, `captcha_required_batches=1`; `tii-property-017` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-016` is complete by official row coverage: `10537 / 10537` official result rows, `8056` imported product cards, `2481` official duplicate product-id rows, `1054` saved result pages, and `8011` saved detail pages; `45` official detail pages returned invalid detail sessions.
+- The local operator now detects completed saved result pages and uses the next captcha only to fetch missing detail pages, which avoids refetching very large batches.
+- Production data preserves `987` same-company same-name multi-product groups as `2438` separate cards.
+- Production UI/data renders `23,541` imported TII policies, `23,471` saved detail pages, `26,958` official result rows, and `3,417` official duplicate rows.
+
 ## 2026-06-05 Fifteenth TII Batch Complete
 
 Repository:
