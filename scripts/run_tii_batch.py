@@ -308,15 +308,19 @@ def fetch_detail_pages(
         links = links[:limit]
 
     saved: list[str] = []
+    already_saved: list[str] = []
     failed: list[dict] = []
     for index, (product_id, url) in enumerate(links, start=1):
+        detail_path = detail_root / f"{product_id}.html"
+        if detail_path.exists():
+            already_saved.append(str(detail_path))
+            continue
         try:
             detail_bytes, _ = read_url(client, url)
             detail_html = detail_bytes.decode("utf-8", errors="replace")
             if any(marker in detail_html for marker in INVALID_DETAIL_MARKERS):
                 failed.append({"product_id": product_id, "url": url, "reason": "invalid_detail_session"})
                 continue
-            detail_path = detail_root / f"{product_id}.html"
             detail_path.write_text(detail_html, encoding="utf-8")
             saved.append(str(detail_path))
         except Exception as exc:  # pragma: no cover - network failures are recorded for manual review.
@@ -326,6 +330,8 @@ def fetch_detail_pages(
     return {
         "detail_link_count": len(links),
         "saved_detail_count": len(saved),
+        "already_saved_detail_count": len(already_saved),
+        "total_saved_detail_count": len(saved) + len(already_saved),
         "failed_detail_count": len(failed),
         "saved_details": saved,
         "failed_details": failed[:20],

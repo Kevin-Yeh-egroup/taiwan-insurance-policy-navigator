@@ -40,15 +40,21 @@ def set_job_status(payload: dict) -> None:
         write_json(JOB_PATH, payload)
 
 
-def run_command(args: list[str]) -> tuple[int, str]:
-    completed = subprocess.run(
-        [PYTHON, *args],
-        cwd=ROOT,
-        text=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.STDOUT,
-        timeout=900,
-    )
+def run_command(args: list[str], timeout: int = 3600) -> tuple[int, str]:
+    try:
+        completed = subprocess.run(
+            [PYTHON, *args],
+            cwd=ROOT,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            timeout=timeout,
+        )
+    except subprocess.TimeoutExpired as exc:
+        output = exc.stdout or ""
+        if isinstance(output, bytes):
+            output = output.decode("utf-8", errors="replace")
+        return 124, output + f"\nTimed out after {timeout} seconds."
     return completed.returncode, completed.stdout
 
 
