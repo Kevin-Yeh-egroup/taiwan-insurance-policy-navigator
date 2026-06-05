@@ -122,14 +122,14 @@ The Insurance Institute discontinued-policy query page requires captcha completi
 
 ```json
 {
-  "record_count": 5577,
-  "detail_saved_count": 5572,
-  "indexed_batch_count": 5,
-  "indexed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005"],
-  "completed_batch_count": 5,
-  "completed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005"],
+  "record_count": 6767,
+  "detail_saved_count": 6758,
+  "indexed_batch_count": 6,
+  "indexed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006"],
+  "completed_batch_count": 6,
+  "completed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006"],
   "partial_batch_count": 0,
-  "pending_manual_batch_count": 301,
+  "pending_manual_batch_count": 300,
   "batch_summaries": [
     {
       "batch_id": "tii-property-001",
@@ -199,6 +199,20 @@ The Insurance Institute discontinued-policy query page requires captcha completi
       "expected_unique_product_id_count": 1391,
       "duplicate_product_id_count": 0,
       "detail_saved_count": 1391,
+      "requires_fresh_captcha_session": false
+    },
+    {
+      "batch_id": "tii-property-006",
+      "status": "complete",
+      "expected_total_count": 1190,
+      "expected_total_pages": 119,
+      "official_row_count": 1190,
+      "saved_page_count": 119,
+      "imported_record_count": 1190,
+      "unique_product_id_count": 1190,
+      "expected_unique_product_id_count": 1190,
+      "duplicate_product_id_count": 0,
+      "detail_saved_count": 1186,
       "requires_fresh_captcha_session": false
     }
   ],
