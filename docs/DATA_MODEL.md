@@ -122,14 +122,14 @@ The Insurance Institute discontinued-policy query page requires captcha completi
 
 ```json
 {
-  "record_count": 9615,
-  "detail_saved_count": 9602,
-  "indexed_batch_count": 8,
-  "indexed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006", "tii-property-007", "tii-property-008"],
-  "completed_batch_count": 8,
-  "completed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006", "tii-property-007", "tii-property-008"],
+  "record_count": 9718,
+  "detail_saved_count": 9705,
+  "indexed_batch_count": 10,
+  "indexed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006", "tii-property-007", "tii-property-008", "tii-property-009", "tii-property-010"],
+  "completed_batch_count": 10,
+  "completed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006", "tii-property-007", "tii-property-008", "tii-property-009", "tii-property-010"],
   "partial_batch_count": 0,
-  "pending_manual_batch_count": 298,
+  "pending_manual_batch_count": 296,
   "batch_summaries": [
     {
       "batch_id": "tii-property-001",
@@ -241,6 +241,34 @@ The Insurance Institute discontinued-policy query page requires captcha completi
       "expected_unique_product_id_count": 2165,
       "duplicate_product_id_count": 360,
       "detail_saved_count": 2161,
+      "requires_fresh_captcha_session": false
+    },
+    {
+      "batch_id": "tii-property-009",
+      "status": "complete",
+      "expected_total_count": 73,
+      "expected_total_pages": 8,
+      "official_row_count": 73,
+      "saved_page_count": 8,
+      "imported_record_count": 73,
+      "unique_product_id_count": 73,
+      "expected_unique_product_id_count": 73,
+      "duplicate_product_id_count": 0,
+      "detail_saved_count": 73,
+      "requires_fresh_captcha_session": false
+    },
+    {
+      "batch_id": "tii-property-010",
+      "status": "complete",
+      "expected_total_count": 30,
+      "expected_total_pages": 3,
+      "official_row_count": 30,
+      "saved_page_count": 3,
+      "imported_record_count": 30,
+      "unique_product_id_count": 30,
+      "expected_unique_product_id_count": 30,
+      "duplicate_product_id_count": 0,
+      "detail_saved_count": 30,
       "requires_fresh_captcha_session": false
     }
   ],
