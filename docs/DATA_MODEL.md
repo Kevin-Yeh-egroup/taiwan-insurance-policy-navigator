@@ -122,14 +122,14 @@ The Insurance Institute discontinued-policy query page requires captcha completi
 
 ```json
 {
-  "record_count": 23541,
-  "detail_saved_count": 23471,
-  "indexed_batch_count": 16,
-  "indexed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006", "tii-property-007", "tii-property-008", "tii-property-009", "tii-property-010", "tii-property-011", "tii-property-012", "tii-property-013", "tii-property-014", "tii-property-015", "tii-property-016"],
-  "completed_batch_count": 16,
-  "completed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006", "tii-property-007", "tii-property-008", "tii-property-009", "tii-property-010", "tii-property-011", "tii-property-012", "tii-property-013", "tii-property-014", "tii-property-015", "tii-property-016"],
+  "record_count": 25714,
+  "detail_saved_count": 25642,
+  "indexed_batch_count": 18,
+  "indexed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006", "tii-property-007", "tii-property-008", "tii-property-009", "tii-property-010", "tii-property-011", "tii-property-012", "tii-property-013", "tii-property-014", "tii-property-015", "tii-property-016", "tii-property-017", "tii-property-018"],
+  "completed_batch_count": 18,
+  "completed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006", "tii-property-007", "tii-property-008", "tii-property-009", "tii-property-010", "tii-property-011", "tii-property-012", "tii-property-013", "tii-property-014", "tii-property-015", "tii-property-016", "tii-property-017", "tii-property-018"],
   "partial_batch_count": 0,
-  "pending_manual_batch_count": 290,
+  "pending_manual_batch_count": 288,
   "batch_summaries": [
     {
       "batch_id": "tii-property-001",
@@ -353,6 +353,34 @@ The Insurance Institute discontinued-policy query page requires captcha completi
       "expected_unique_product_id_count": 8056,
       "duplicate_product_id_count": 2481,
       "detail_saved_count": 8011,
+      "requires_fresh_captcha_session": false
+    },
+    {
+      "batch_id": "tii-property-017",
+      "status": "complete",
+      "expected_total_count": 1233,
+      "expected_total_pages": 124,
+      "official_row_count": 1233,
+      "saved_page_count": 124,
+      "imported_record_count": 1233,
+      "unique_product_id_count": 1233,
+      "expected_unique_product_id_count": 1233,
+      "duplicate_product_id_count": 0,
+      "detail_saved_count": 1233,
+      "requires_fresh_captcha_session": false
+    },
+    {
+      "batch_id": "tii-property-018",
+      "status": "complete",
+      "expected_total_count": 940,
+      "expected_total_pages": 94,
+      "official_row_count": 940,
+      "saved_page_count": 94,
+      "imported_record_count": 940,
+      "unique_product_id_count": 940,
+      "expected_unique_product_id_count": 940,
+      "duplicate_product_id_count": 0,
+      "detail_saved_count": 938,
       "requires_fresh_captcha_session": false
     }
   ],

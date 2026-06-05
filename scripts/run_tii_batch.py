@@ -276,7 +276,8 @@ def fetch_result_pages(
         "official_row_count": official_row_count,
         "unique_product_id_count": len(unique_product_ids),
         "duplicate_product_id_count": duplicate_product_id_count,
-        "saved_pages": saved_pages,
+        "saved_page_count": len(saved_pages),
+        "saved_page_sample": saved_pages[:20],
         "is_complete": bool(total_count and (complete_by_unique_count or complete_by_official_rows)),
     }
 

@@ -297,7 +297,9 @@ def batch_summaries(records: list[dict], batch_meta: dict, expected_counts: dict
         expected_count = int(fetched_pages.get("total_count") or fallback.get("expected_total_count") or 0)
         official_row_count = int(fetched_pages.get("official_row_count") or fallback.get("official_row_count") or 0)
         saved_pages = fetched_pages.get("saved_pages") or []
-        saved_page_count = len(saved_pages) or int(fallback.get("saved_page_count") or 0)
+        saved_page_count = int(fetched_pages.get("saved_page_count") or 0) or len(saved_pages) or int(
+            fallback.get("saved_page_count") or 0
+        )
         imported_count = len(batch_records)
         unique_count = len({record.get("product_id") for record in batch_records if record.get("product_id")})
         expected_unique_count = int(
