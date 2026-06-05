@@ -1,5 +1,38 @@
 # Public Production Log
 
+## 2026-06-05 Twenty-first TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `f0c2855`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed twenty-first TII batch data: `dpl_5ajkRXZGpom84aU88ckxCbWKTggb`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-l89rgeeus.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- Manual page returned `200 OK` and includes the `32,327` record / `21` completed-batch update.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- HTML meta robots remained `noindex,nofollow,noarchive`.
+- `robots.txt` remained `User-agent: *` / `Disallow: /`.
+- Production data shows TII `record_count=32327`, `detail_expected_count=32327`, `detail_saved_count=32209`, `detail_missing_count=118`, `indexed_batch_count=21`, `completed_batch_count=21`, `partial_batch_count=0`, and pending manual batches `285`.
+- TII execution progress shows `attempted_batches=22`, `completed_batches=21`, `captcha_required_batches=1`; `tii-property-022` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-020` is complete by official row coverage: `5159 / 5159` official result rows, `3874` imported product cards, `1285` official duplicate product-id rows, `516` saved result pages, and `3835 / 3874` saved detail pages; `39` official detail pages remain marked for later backfill.
+- `tii-property-021` is complete by official row coverage: `1173 / 1173` official result rows, `1163` imported product cards, `10` official duplicate product-id rows, `118` saved result pages, and `1163 / 1163` saved detail pages.
+- Production data preserves `1164` same-company same-name multi-product groups as `3181` separate cards.
+- Production UI/data renders `32,327` imported TII policies, `32,209` saved detail pages, `118` detail-page backfill gaps, `37,039` official result rows, and `4,712` official duplicate rows.
+
 ## 2026-06-05 Nineteenth TII Batch Complete
 
 Repository:
