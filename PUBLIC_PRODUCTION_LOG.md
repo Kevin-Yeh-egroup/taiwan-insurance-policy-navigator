@@ -1,5 +1,37 @@
 # Public Production Log
 
+## 2026-06-05 Fourteenth TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `ecbc767`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed fourteenth TII batch data: `dpl_8HFwiBuUsWwe9z32vGYn4mo9jsVL`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-1bfzledea.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- HTML meta robots remained `noindex,nofollow,noarchive`.
+- `robots.txt` remained `User-agent: *` / `Disallow: /`.
+- Production data shows TII `record_count=12373`, `detail_saved_count=12357`, `indexed_batch_count=14`, `completed_batch_count=14`, `partial_batch_count=0`, and pending manual batches `292`.
+- TII execution progress shows `attempted_batches=15`, `completed_batches=14`, `captcha_required_batches=1`; `tii-property-015` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-013` is complete by official row coverage: `1599 / 1599` official result rows, `1599` imported product cards, `0` official duplicate product-id rows, `160` saved result pages, and `1599` saved detail pages.
+- `tii-property-014` is complete by official row coverage: `943 / 943` official result rows, `943` imported product cards, `0` official duplicate product-id rows, `95` saved result pages, and `940` saved detail pages; `3` official detail pages returned invalid detail sessions.
+- Production data preserves `265` same-company same-name multi-product groups as `562` separate cards.
+- Production UI/data renders `12,373` imported TII policies, `12,357` saved detail pages, `13,309` official result rows, and `936` official duplicate rows.
+
 ## 2026-06-05 Twelfth TII Batch Complete
 
 Repository:
