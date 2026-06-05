@@ -1,5 +1,37 @@
 # Public Production Log
 
+## 2026-06-05 Fifteenth TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `cc3e63c`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed fifteenth TII batch data: `dpl_E5SDgQFqsu996RGaoYB4QFxJuRAf`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-pj5qywm1i.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- HTML meta robots remained `noindex,nofollow,noarchive`.
+- `robots.txt` remained `User-agent: *` / `Disallow: /`.
+- Production data shows TII `record_count=15485`, `detail_saved_count=15460`, `indexed_batch_count=15`, `completed_batch_count=15`, `partial_batch_count=0`, and pending manual batches `291`.
+- TII execution progress shows `attempted_batches=16`, `completed_batches=15`, `captcha_required_batches=1`; `tii-property-016` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-015` is complete by official row coverage: `3112 / 3112` official result rows, `3112` imported product cards, `0` official duplicate product-id rows, `312` saved result pages, and `3103` saved detail pages; `9` official detail pages returned invalid detail sessions.
+- The local operator now skips already saved detail pages on rerun and reports timeout as a failed job instead of leaving the UI in a running state.
+- Production data preserves `479` same-company same-name multi-product groups as `1085` separate cards.
+- Production UI/data renders `15,485` imported TII policies, `15,460` saved detail pages, `16,421` official result rows, and `936` official duplicate rows.
+
 ## 2026-06-05 Fourteenth TII Batch Complete
 
 Repository:
