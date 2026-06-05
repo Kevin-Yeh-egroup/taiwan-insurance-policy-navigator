@@ -6,6 +6,7 @@ import subprocess
 import sys
 import threading
 import urllib.parse
+from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
@@ -18,6 +19,10 @@ RESULTS_PATH = ROOT / "data" / "tii-policy-results.json"
 WORK_DIR = ROOT / "work" / "tii-execution"
 JOB_PATH = ROOT / "work" / "tii-operator-job.json"
 JOB_LOCK = threading.Lock()
+
+
+def now_iso() -> str:
+    return datetime.now().astimezone().isoformat(timespec="seconds")
 
 
 def load_json(path: Path, fallback: dict) -> dict:
@@ -40,7 +45,7 @@ def set_job_status(payload: dict) -> None:
         write_json(JOB_PATH, payload)
 
 
-def run_command(args: list[str], timeout: int = 3600) -> tuple[int, str]:
+def run_command(args: list[str], timeout: int = 14400) -> tuple[int, str]:
     try:
         completed = subprocess.run(
             [PYTHON, *args],
@@ -58,19 +63,40 @@ def run_command(args: list[str], timeout: int = 3600) -> tuple[int, str]:
     return completed.returncode, completed.stdout
 
 
+def has_complete_saved_pages(batch_id: str) -> bool:
+    saved_pages = list((ROOT / "work" / "tii-results").glob(f"{batch_id}-page-*.html"))
+    marker = ROOT / "work" / "tii-results" / f"{batch_id}-pages-complete.json"
+    if marker.exists():
+        payload = load_json(marker, {})
+        total_pages = int(payload.get("total_pages") or 0)
+        return total_pages > 0 and len(saved_pages) >= total_pages
+
+    progress = load_json(PROGRESS_PATH, {"runs": []})
+    run = next((item for item in progress.get("runs", []) if item.get("batch_id") == batch_id), {})
+    fetched_pages = run.get("fetched_pages") or {}
+    total_pages = int(fetched_pages.get("total_pages") or 0)
+    if not fetched_pages.get("is_complete") or total_pages <= 0:
+        return False
+    return len(saved_pages) >= total_pages
+
+
 def run_batch_job(batch_id: str, captcha: str) -> None:
-    set_job_status({"status": "running", "batch_id": batch_id, "message": "Submitting captcha and fetching pages."})
-    code, output = run_command(
-        [
-            "scripts/run_tii_batch.py",
-            "--batch-id",
-            batch_id,
-            "--captcha",
-            captcha,
-            "--fetch-all-pages",
-            "--fetch-details",
-        ]
+    pages_complete = has_complete_saved_pages(batch_id)
+    started_at = now_iso()
+    set_job_status(
+        {
+            "status": "running",
+            "batch_id": batch_id,
+            "message": "Submitting captcha and fetching missing detail pages."
+            if pages_complete
+            else "Submitting captcha and fetching pages.",
+            "started_at": started_at,
+        }
     )
+    args = ["scripts/run_tii_batch.py", "--batch-id", batch_id, "--captcha", captcha, "--fetch-details"]
+    if not pages_complete:
+        args.append("--fetch-all-pages")
+    code, output = run_command(args)
     if code == 0:
         import_code, import_output = run_command(
             ["scripts/import_tii_results.py", "--input-dir", "work/tii-results", "--output", "data/tii-policy-results.json"]
@@ -80,16 +106,34 @@ def run_batch_job(batch_id: str, captcha: str) -> None:
                 "status": "completed" if import_code == 0 else "import_failed",
                 "batch_id": batch_id,
                 "message": output + "\n\nIMPORT\n" + import_output,
+                "started_at": started_at,
+                "finished_at": now_iso(),
             }
         )
     else:
-        set_job_status({"status": "failed", "batch_id": batch_id, "message": output})
+        set_job_status(
+            {
+                "status": "failed",
+                "batch_id": batch_id,
+                "message": output,
+                "started_at": started_at,
+                "finished_at": now_iso(),
+            }
+        )
 
 
 def start_batch_job(batch_id: str, captcha: str) -> tuple[bool, str]:
     current = job_status()
     if current.get("status") == "running":
         return False, f"Batch {current.get('batch_id')} is already running."
+    set_job_status(
+        {
+            "status": "running",
+            "batch_id": batch_id,
+            "message": "Received captcha. Starting crawler worker.",
+            "started_at": now_iso(),
+        }
+    )
     worker = threading.Thread(target=run_batch_job, args=(batch_id, captcha), daemon=True)
     worker.start()
     return True, f"Batch {batch_id} started. This page will refresh while the crawler runs."
@@ -135,6 +179,26 @@ def captcha_image(batch_id: str) -> Path | None:
     return matches[-1] if matches else None
 
 
+def saved_counts(batch_id: str) -> dict[str, int | bool]:
+    if not batch_id:
+        return {"saved_pages": 0, "expected_pages": 0, "saved_details": 0, "pages_complete": False}
+    results_dir = ROOT / "work" / "tii-results"
+    details_dir = ROOT / "work" / "tii-details" / batch_id
+    saved_pages = len(list(results_dir.glob(f"{batch_id}-page-*.html")))
+    marker = results_dir / f"{batch_id}-pages-complete.json"
+    expected_pages = 0
+    if marker.exists():
+        payload = load_json(marker, {})
+        expected_pages = int(payload.get("total_pages") or 0)
+    saved_details = len(list(details_dir.glob("*.html"))) if details_dir.exists() else 0
+    return {
+        "saved_pages": saved_pages,
+        "expected_pages": expected_pages,
+        "saved_details": saved_details,
+        "pages_complete": bool(expected_pages and saved_pages >= expected_pages),
+    }
+
+
 def ensure_captcha(batch_id: str) -> tuple[bool, str]:
     if not batch_id:
         return False, "All TII batches are completed."
@@ -157,6 +221,13 @@ def html_page(message: str = "") -> bytes:
     job_running = job.get("status") == "running"
     ok, prepare_message = (False, "A batch is running.") if job_running else ensure_captcha(batch_id) if batch_id else (False, "No pending batch.")
     image = captcha_image(batch_id) if ok else None
+    counts = saved_counts(batch_id)
+    progress_hint = (
+        f"已保存清單頁 {counts['saved_pages']}/{counts['expected_pages']}，已保存明細 {counts['saved_details']}。"
+        if counts["expected_pages"]
+        else f"已保存清單頁 {counts['saved_pages']}，已保存明細 {counts['saved_details']}。"
+    )
+    mode_hint = "此批清單頁已完整保存；送出後會只補抓缺少的明細頁。" if counts["pages_complete"] else "送出後會抓完整清單頁，再補抓可用明細頁。"
     image_tag = ""
     if image:
         image_tag = f'<img src="/captcha?batch_id={html.escape(batch_id)}" alt="TII captcha" class="captcha">'
@@ -181,8 +252,12 @@ def html_page(message: str = "") -> bytes:
     .captcha {{ display: block; margin: 12px 0; max-width: 220px; image-rendering: auto; }}
     input, button {{ font: inherit; padding: 9px 12px; }}
     input[name="captcha"] {{ width: min(220px, 100%); margin-left: 8px; font-size: 1.25rem; font-weight: 900; letter-spacing: 0.08em; }}
-    button {{ background: #155eef; color: white; border: 0; border-radius: 8px; font-weight: 800; cursor: pointer; }}
+    button {{ background: #155eef; color: white; border: 0; border-radius: 8px; font-weight: 800; cursor: pointer; min-height: 48px; }}
     button:disabled {{ background: #9aa6bb; cursor: wait; }}
+    form {{ display: grid; gap: 12px; align-items: start; max-width: 420px; }}
+    label {{ display: grid; gap: 6px; font-weight: 700; }}
+    input[name="captcha"] {{ margin-left: 0; }}
+    .hint {{ background: #f4f7fb; border: 1px solid #d7deea; border-radius: 8px; padding: 10px 12px; }}
     table {{ width: 100%; border-collapse: collapse; }}
     td, th {{ border-top: 1px solid #e4e9f2; padding: 8px; text-align: left; }}
     code {{ background: #f4f7fb; padding: 2px 5px; border-radius: 5px; }}
@@ -209,6 +284,7 @@ def html_page(message: str = "") -> bytes:
     <h2>下一批</h2>
     <p><strong>{html.escape(batch_id or '全部完成')}</strong></p>
     <p>{html.escape(batch.get('company_label', ''))} / {html.escape(batch.get('category_label', ''))}</p>
+    <p class="hint">{html.escape(progress_hint)}<br>{html.escape(mode_hint)}</p>
     <p>{html.escape(prepare_message[:600])}</p>
     {image_tag}
     <form method="post" action="/submit">

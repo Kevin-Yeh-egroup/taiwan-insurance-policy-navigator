@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-05T13:51:28+08:00",
+  "generated_at": "2026-06-05T15:47:51+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -14649,9 +14649,9 @@
     },
     {
       "batch_id": "tii-property-016",
-      "ran_at": "2026-06-05T13:51:28+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-05T15:41:19+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "105-富邦產物保險股份有限公司",
       "category_label": "意外保險",
       "query_hint": {
@@ -14665,14 +14665,166 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-016-captcha-1.jpg"
       ],
+      "result_file": "work\\tii-results\\tii-property-016.html",
+      "fetched_pages": {},
+      "fetched_details": {
+        "detail_link_count": 8056,
+        "saved_detail_count": 5391,
+        "already_saved_detail_count": 2620,
+        "total_saved_detail_count": 8011,
+        "failed_detail_count": 45,
+        "failed_details": [
+          {
+            "product_id": "105142118104010000",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104010000",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142118104010001",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104010001",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142118104030004",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104030004",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "10514251900101HV00",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=10514251900101HV00",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "10514251900201HX00",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=10514251900201HX00",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142519004015500",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142519004015500",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142519005017900",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142519005017900",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "10514251900301AZ00",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=10514251900301AZ00",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142118104020500",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020500",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142118104020000",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020000",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142118104020200",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020200",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142118104020100",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020100",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142118104020300",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020300",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142118104010002",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104010002",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142118104020001",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020001",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142117109093200",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142117109093200",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142118104020003",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020003",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142118104010004",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104010004",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142118104020600",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020600",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142117109090004",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142117109090004",
+            "reason": "invalid_detail_session"
+          }
+        ],
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-016\\105241117017010100.html",
+          "work\\tii-details\\tii-property-016\\10514251900601CH00.html",
+          "work\\tii-details\\tii-property-016\\10514251900601CI00.html",
+          "work\\tii-details\\tii-property-016\\10514251900601CJ00.html",
+          "work\\tii-details\\tii-property-016\\10514251900101LP00.html",
+          "work\\tii-details\\tii-property-016\\10514251900101LQ00.html",
+          "work\\tii-details\\tii-property-016\\10514251900101LL00.html",
+          "work\\tii-details\\tii-property-016\\10514251900101LM00.html",
+          "work\\tii-details\\tii-property-016\\10514251900101NC00.html",
+          "work\\tii-details\\tii-property-016\\10514251900101ND00.html",
+          "work\\tii-details\\tii-property-016\\10514251900101NE00.html",
+          "work\\tii-details\\tii-property-016\\10514251900101NF00.html",
+          "work\\tii-details\\tii-property-016\\10514251900101NG00.html",
+          "work\\tii-details\\tii-property-016\\10514251900201ME00.html",
+          "work\\tii-details\\tii-property-016\\10514251900201MF00.html",
+          "work\\tii-details\\tii-property-016\\10514251900201MG00.html",
+          "work\\tii-details\\tii-property-016\\10514251900201MH00.html",
+          "work\\tii-details\\tii-property-016\\10514251900601BN00.html",
+          "work\\tii-details\\tii-property-016\\10514251900601BO00.html",
+          "work\\tii-details\\tii-property-016\\10514251900601BJ00.html"
+        ]
+      }
+    },
+    {
+      "batch_id": "tii-property-017",
+      "ran_at": "2026-06-05T15:47:51+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "106-和泰產物保險股份有限公司",
+      "category_label": "汽車保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "106",
+        "f_CategoryId1": "1_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-017-captcha-1.jpg"
+      ],
       "result_file": "",
       "fetched_pages": {},
       "fetched_details": {}
     }
   ],
   "summary": {
-    "attempted_batches": 16,
-    "completed_batches": 15,
+    "attempted_batches": 17,
+    "completed_batches": 16,
     "captcha_required_batches": 1
   }
 }

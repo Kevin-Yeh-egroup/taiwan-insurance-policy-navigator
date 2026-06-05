@@ -333,7 +333,7 @@ def fetch_detail_pages(
         "already_saved_detail_count": len(already_saved),
         "total_saved_detail_count": len(saved) + len(already_saved),
         "failed_detail_count": len(failed),
-        "saved_details": saved,
+        "saved_detail_sample": saved[:20],
         "failed_details": failed[:20],
     }
 
@@ -369,7 +369,7 @@ def main() -> None:
     parser.add_argument("--fetch-details", action="store_true", help="After result pages are saved, fetch product detail pages in the same TII session.")
     parser.add_argument("--detail-limit", type=int, default=0, help="Optional detail-page limit for testing. 0 means no limit.")
     parser.add_argument("--page-size", type=int, default=10, choices=[10, 20, 30, 40, 50])
-    parser.add_argument("--max-pages", type=int, default=500, help="Safety ceiling for paginated TII result pages.")
+    parser.add_argument("--max-pages", type=int, default=1500, help="Safety ceiling for paginated TII result pages.")
     args = parser.parse_args()
 
     plan = load_json(Path(args.batch_plan))
