@@ -122,14 +122,14 @@ The Insurance Institute discontinued-policy query page requires captcha completi
 
 ```json
 {
-  "record_count": 6767,
-  "detail_saved_count": 6758,
-  "indexed_batch_count": 6,
-  "indexed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006"],
-  "completed_batch_count": 6,
-  "completed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006"],
+  "record_count": 9615,
+  "detail_saved_count": 9602,
+  "indexed_batch_count": 8,
+  "indexed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006", "tii-property-007", "tii-property-008"],
+  "completed_batch_count": 8,
+  "completed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006", "tii-property-007", "tii-property-008"],
   "partial_batch_count": 0,
-  "pending_manual_batch_count": 300,
+  "pending_manual_batch_count": 298,
   "batch_summaries": [
     {
       "batch_id": "tii-property-001",
@@ -213,6 +213,34 @@ The Insurance Institute discontinued-policy query page requires captcha completi
       "expected_unique_product_id_count": 1190,
       "duplicate_product_id_count": 0,
       "detail_saved_count": 1186,
+      "requires_fresh_captcha_session": false
+    },
+    {
+      "batch_id": "tii-property-007",
+      "status": "complete",
+      "expected_total_count": 683,
+      "expected_total_pages": 69,
+      "official_row_count": 683,
+      "saved_page_count": 69,
+      "imported_record_count": 683,
+      "unique_product_id_count": 683,
+      "expected_unique_product_id_count": 683,
+      "duplicate_product_id_count": 0,
+      "detail_saved_count": 683,
+      "requires_fresh_captcha_session": false
+    },
+    {
+      "batch_id": "tii-property-008",
+      "status": "complete",
+      "expected_total_count": 2525,
+      "expected_total_pages": 253,
+      "official_row_count": 2525,
+      "saved_page_count": 253,
+      "imported_record_count": 2165,
+      "unique_product_id_count": 2165,
+      "expected_unique_product_id_count": 2165,
+      "duplicate_product_id_count": 360,
+      "detail_saved_count": 2161,
       "requires_fresh_captcha_session": false
     }
   ],
