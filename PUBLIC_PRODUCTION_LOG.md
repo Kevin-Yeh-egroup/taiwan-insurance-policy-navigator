@@ -1,5 +1,38 @@
 # Public Production Log
 
+## 2026-06-05 Eighteenth TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `0a1c7a7`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed eighteenth TII batch data: `dpl_BSBMSbyGhSSLmg959oETKzcZbBGW`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-7cqfb8cc6.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- HTML meta robots remained `noindex,nofollow,noarchive`.
+- `robots.txt` remained `User-agent: *` / `Disallow: /`.
+- Production data shows TII `record_count=25714`, `detail_saved_count=25642`, `indexed_batch_count=18`, `completed_batch_count=18`, `partial_batch_count=0`, and pending manual batches `288`.
+- TII execution progress shows `attempted_batches=19`, `completed_batches=18`, `captcha_required_batches=1`; `tii-property-019` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-017` is complete: `1233 / 1233` official result rows, `1233` imported product cards, `0` official duplicate product-id rows, `124` saved result pages, and `1233` saved detail pages.
+- `tii-property-018` is complete: `940 / 940` official result rows, `940` imported product cards, `0` official duplicate product-id rows, `94` saved result pages, and `938` saved detail pages; `2` official detail pages returned invalid detail sessions.
+- The runner/importer now stores saved result/detail path samples instead of full path lists in progress JSON, while preserving counts for validation and imports.
+- Production data preserves `1002` same-company same-name multi-product groups as `2470` separate cards.
+- Production UI/data renders `25,714` imported TII policies, `25,642` saved detail pages, `29,131` official result rows, and `3,417` official duplicate rows.
+
 ## 2026-06-05 Sixteenth TII Batch Complete
 
 Repository:
