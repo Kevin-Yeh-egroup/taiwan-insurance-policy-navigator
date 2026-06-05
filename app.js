@@ -386,6 +386,8 @@ function renderPolicyInsights() {
   const tiiCompletedBatches = state.tiiResults?.completed_batch_count || state.tiiResults?.completed_batches?.length || 0;
   const tiiImportedPolicies = state.tiiResults?.record_count || state.tiiResults?.records?.length || 0;
   const tiiDetailSaved = state.tiiResults?.detail_saved_count || 0;
+  const tiiDetailExpected = state.tiiResults?.detail_expected_count || 0;
+  const tiiDetailMissing = state.tiiResults?.detail_missing_count || 0;
   const tiiBatchSummaries = state.tiiResults?.batch_summaries || [];
   const tiiOfficialRows = tiiBatchSummaries.reduce((total, batch) => total + (batch.official_row_count || 0), 0);
   const tiiDuplicateProductRows = tiiBatchSummaries.reduce(
@@ -419,6 +421,13 @@ function renderPolicyInsights() {
         tiiSameNameVersionedCards.length,
       )} 張卡；本站會依銷售日、停售日、productId 與官方明細分別呈現，不以名稱合併。</p>`
     : "";
+  const detailGapNote = tiiDetailMissing
+    ? `<p class="tii-status-note">已保存 ${formatNumber.format(tiiDetailSaved)} / ${formatNumber.format(
+        tiiDetailExpected,
+      )} 個官方明細頁；另有 ${formatNumber.format(
+        tiiDetailMissing,
+      )} 個明細頁在當次 TII session 回傳失效，保單卡仍保留官方清單資料，後續可用新驗證碼補抓明細。</p>`
+    : "";
   document.getElementById("tiiStatus").innerHTML = `
     <div class="tii-grid">
       <span><strong>${formatNumber.format(metadata.companies.length)}</strong><small>公司選項</small></span>
@@ -431,11 +440,13 @@ function renderPolicyInsights() {
       <span><strong>${formatNumber.format(tiiCompletedBatches)}</strong><small>完整批次</small></span>
       <span><strong>${formatNumber.format(tiiImportedPolicies)}</strong><small>已匯入保單</small></span>
       <span><strong>${formatNumber.format(tiiDetailSaved)}</strong><small>已保存明細</small></span>
+      <span><strong>${formatNumber.format(tiiDetailMissing)}</strong><small>待補明細</small></span>
       <span><strong>${formatNumber.format(tiiOfficialRows)}</strong><small>官方結果列</small></span>
       <span><strong>${formatNumber.format(tiiDuplicateProductRows)}</strong><small>官方重複列</small></span>
     </div>
     ${duplicateNote}
     ${sameNameVersionNote}
+    ${detailGapNote}
     <p>官方查詢支援公司、保險類別、銷售日、停售日與關鍵字。TII 目前採本機操作台執行：人工輸入驗證碼後，自動翻完整結果頁、抓可用明細頁並匯入本站；本專案不自動破解驗證碼。</p>
     <a href="${escapeHtml(metadata.source_url)}" target="_blank" rel="noreferrer">開啟保發中心查詢</a>
   `;

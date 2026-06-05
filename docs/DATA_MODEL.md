@@ -122,14 +122,17 @@ The Insurance Institute discontinued-policy query page requires captcha completi
 
 ```json
 {
-  "record_count": 27290,
-  "detail_saved_count": 27211,
-  "indexed_batch_count": 19,
-  "indexed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006", "tii-property-007", "tii-property-008", "tii-property-009", "tii-property-010", "tii-property-011", "tii-property-012", "tii-property-013", "tii-property-014", "tii-property-015", "tii-property-016", "tii-property-017", "tii-property-018", "tii-property-019"],
-  "completed_batch_count": 19,
-  "completed_batches": ["tii-property-001", "tii-property-002", "tii-property-003", "tii-property-004", "tii-property-005", "tii-property-006", "tii-property-007", "tii-property-008", "tii-property-009", "tii-property-010", "tii-property-011", "tii-property-012", "tii-property-013", "tii-property-014", "tii-property-015", "tii-property-016", "tii-property-017", "tii-property-018", "tii-property-019"],
+  "record_count": 32327,
+  "detail_expected_count": 32327,
+  "detail_saved_count": 32209,
+  "detail_missing_count": 118,
+  "detail_coverage_rate": 0.9963,
+  "indexed_batch_count": 21,
+  "indexed_batches": ["tii-property-001", "tii-property-002", "...", "tii-property-021"],
+  "completed_batch_count": 21,
+  "completed_batches": ["tii-property-001", "tii-property-002", "...", "tii-property-021"],
   "partial_batch_count": 0,
-  "pending_manual_batch_count": 287,
+  "pending_manual_batch_count": 285,
   "batch_summaries": [
     {
       "batch_id": "tii-property-001",
@@ -142,8 +145,13 @@ The Insurance Institute discontinued-policy query page requires captcha completi
       "unique_product_id_count": 952,
       "expected_unique_product_id_count": 952,
       "duplicate_product_id_count": 0,
+      "detail_expected_count": 952,
       "detail_saved_count": 952,
-      "requires_fresh_captcha_session": false
+      "detail_missing_count": 0,
+      "detail_coverage_rate": 1.0,
+      "detail_status": "complete",
+      "requires_fresh_captcha_session": false,
+      "requires_detail_backfill_session": false
     },
     {
       "batch_id": "tii-property-002",
@@ -156,8 +164,13 @@ The Insurance Institute discontinued-policy query page requires captcha completi
       "unique_product_id_count": 618,
       "expected_unique_product_id_count": 618,
       "duplicate_product_id_count": 0,
+      "detail_expected_count": 618,
       "detail_saved_count": 617,
-      "requires_fresh_captcha_session": false
+      "detail_missing_count": 1,
+      "detail_coverage_rate": 0.9984,
+      "detail_status": "partial_detail",
+      "requires_fresh_captcha_session": false,
+      "requires_detail_backfill_session": true
     },
     {
       "batch_id": "tii-property-003",
@@ -429,6 +442,10 @@ Completion rule:
 - `partial_index`: the batch has usable rows, but the saved pages do not yet match the official total count.
 - `record_count`: public product cards after deduplicating repeated official `productId` rows.
 - `official_row_count`: row coverage reported by saved TII result pages before deduplication.
+- `detail_expected_count`: expected detail-page count after productId deduplication.
+- `detail_saved_count`: official detail pages saved locally during human-captcha sessions.
+- `detail_missing_count`: detail pages that still need a later backfill session. A batch can have complete official result-page coverage while `detail_status` is `partial_detail`.
+- `requires_detail_backfill_session`: true when the batch has preserved result rows but some official detail pages were unavailable or session-invalid during the run.
 - `record_identity_key`: stable public identity. Prefer `tii-product-id:<productId>`; use the company/category/name/date fallback only when an official product ID is absent.
 - `edition_label`: user-facing version cue combining sale date, discontinued date, and `productId`.
 - `same_name_product_id_count` / `same_name_version_note`: marker for same-company same-name records that represent different product IDs. These records must remain separate cards.

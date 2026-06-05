@@ -314,6 +314,9 @@ def batch_summaries(records: list[dict], batch_meta: dict, expected_counts: dict
             or max(official_row_count - unique_count, 0)
         )
         detail_saved_count = sum(1 for record in batch_records if record.get("detail_saved"))
+        detail_expected_count = expected_unique_count or unique_count
+        detail_missing_count = max(detail_expected_count - detail_saved_count, 0)
+        detail_coverage_rate = round(detail_saved_count / detail_expected_count, 4) if detail_expected_count else 0
         expected_pages = int(fetched_pages.get("total_pages") or fallback.get("expected_total_pages") or 0)
         complete_by_unique_count = bool(expected_count and unique_count == expected_count and imported_count == expected_count)
         complete_by_official_rows = bool(
@@ -343,8 +346,13 @@ def batch_summaries(records: list[dict], batch_meta: dict, expected_counts: dict
                 "unique_product_id_count": unique_count,
                 "expected_unique_product_id_count": expected_unique_count,
                 "duplicate_product_id_count": duplicate_product_id_count,
+                "detail_expected_count": detail_expected_count,
                 "detail_saved_count": detail_saved_count,
+                "detail_missing_count": detail_missing_count,
+                "detail_coverage_rate": detail_coverage_rate,
+                "detail_status": "complete" if detail_missing_count == 0 else "partial_detail",
                 "requires_fresh_captcha_session": status != "complete",
+                "requires_detail_backfill_session": detail_missing_count > 0,
             }
         )
     return summaries
@@ -379,13 +387,19 @@ def main() -> None:
     summaries = batch_summaries(normalized_records, batch_meta, expected_counts)
     indexed_batches = [summary["batch_id"] for summary in summaries]
     completed_batches = [summary["batch_id"] for summary in summaries if summary["status"] == "complete"]
+    detail_expected_count = sum(summary.get("detail_expected_count", 0) for summary in summaries)
+    detail_saved_count = sum(1 for record in normalized_records if record.get("detail_saved"))
+    detail_missing_count = sum(summary.get("detail_missing_count", 0) for summary in summaries)
 
     output = {
         "generated_at": datetime.now(TAIPEI).isoformat(timespec="seconds"),
         "source": "manually_saved_tii_query_results",
         "input_dir": str(input_dir),
         "record_count": len(normalized_records),
-        "detail_saved_count": sum(1 for record in normalized_records if record.get("detail_saved")),
+        "detail_expected_count": detail_expected_count,
+        "detail_saved_count": detail_saved_count,
+        "detail_missing_count": detail_missing_count,
+        "detail_coverage_rate": round(detail_saved_count / detail_expected_count, 4) if detail_expected_count else 0,
         "indexed_batch_count": len(indexed_batches),
         "indexed_batches": indexed_batches,
         "completed_batch_count": len(completed_batches),
