@@ -1,5 +1,38 @@
 # Public Production Log
 
+## 2026-06-08 Thirty-third TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `bf9bc46`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed thirty-third TII batch data: `dpl_ABVzG3P1YMmziYMq1wxbkzpcX3Xq`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-cja0r34wk.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- `data/site-summary.json` returned `200 OK` and includes `imported_policy_records=51736`, `detail_saved_count=51557`, `completed_batch_count=33`, and `pending_manual_batch_count=273`.
+- `data/tii-policy-results.json` returned `200 OK` and includes the same `51736` record / `51557` saved-detail production dataset.
+- Manual page returned `200 OK` and includes the `51,736` record / `33 / 306` completed-batch update plus the `tii-property-034` waiting-batch note.
+- README returned `200 OK` and includes the same `51,736` record / `33 / 306` progress note.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- `robots.txt` returned `200 OK` and remained `User-agent: *` / `Disallow: /`.
+- TII execution progress shows `attempted_batches=34`, `completed_batches=33`, `captcha_required_batches=1`; `tii-property-034` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-032` is complete by official rows: `6486 / 6486` official result rows, `4543` imported product cards, `1943` official duplicate product-id rows, `4531 / 4543` saved detail pages, and `12` detail pages marked for later backfill.
+- `tii-property-033` is complete: `1180 / 1180` official result rows, `1180` imported product cards, and `1180 / 1180` saved detail pages.
+- Production data preserves same-company same-name multi-product groups as separate policy cards and keeps the same-name version timeline with sale date, discontinued date, and policy code.
+
 ## 2026-06-08 Thirty-first TII Batch Complete
 
 Repository:
