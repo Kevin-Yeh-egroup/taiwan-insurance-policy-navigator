@@ -1,5 +1,36 @@
 # Public Production Log
 
+## 2026-06-08 Twenty-seventh TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `518e2ec`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed twenty-seventh TII batch data: `dpl_FQdbqNcQVwY37r3NF6pGbUW4tJLW`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-cec25vo6a.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- Manual page returned `200 OK` and includes the `38,507` record / `27 / 306` completed-batch update plus the `tii-property-028` waiting-batch note.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- `robots.txt` returned `200 OK` and remained `User-agent: *` / `Disallow: /`.
+- Production data shows TII `record_count=38507`, `detail_expected_count=38507`, `detail_saved_count=38374`, `detail_missing_count=133`, `indexed_batch_count=27`, `completed_batch_count=27`, `partial_batch_count=0`, and pending manual batches `279`.
+- TII execution progress shows `attempted_batches=28`, `completed_batches=27`, `captcha_required_batches=1`; `tii-property-028` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-027` is complete by official row coverage: `1462 / 1462` official result rows, `1462` imported product cards, `0` official duplicate product-id rows, `147` saved result pages, and `1455 / 1462` saved detail pages; `7` official detail pages returned invalid detail responses and remain marked for later backfill.
+- Production data preserves `1253` same-company same-name multi-product groups as `3371` separate cards.
+- Discontinued-policy cards keep the same-name version timeline, showing sale date, discontinued date, and policy code without deduplicating by policy name.
+
 ## 2026-06-08 Twenty-sixth TII Batch Complete
 
 Repository:
