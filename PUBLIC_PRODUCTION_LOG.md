@@ -1,5 +1,36 @@
 # Public Production Log
 
+## 2026-06-08 Twenty-fifth TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `cb7af05`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed twenty-fifth TII batch data: `dpl_2WApSjwmpnNyt58zcWYNG7okMFGh`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-1h6mcys4z.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- Manual page returned `200 OK` and includes the `36,435` record / `25 / 306` completed-batch update plus the `tii-property-026` waiting-batch note.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- `robots.txt` returned `200 OK` and remained `User-agent: *` / `Disallow: /`.
+- Production data shows TII `record_count=36435`, `detail_expected_count=36435`, `detail_saved_count=36314`, `detail_missing_count=121`, `indexed_batch_count=25`, `completed_batch_count=25`, `partial_batch_count=0`, and pending manual batches `281`.
+- TII execution progress shows `attempted_batches=26`, `completed_batches=25`, `captcha_required_batches=1`; `tii-property-026` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-025` is complete: `1156 / 1156` official result rows, `1156` imported product cards, `0` official duplicate product-id rows, `116` saved result pages, and `1156 / 1156` saved detail pages.
+- Production data preserves `1228` same-company same-name multi-product groups as `3316` separate cards.
+- Discontinued-policy cards keep the same-name version timeline, showing sale date, discontinued date, and policy code without deduplicating by policy name.
+
 ## 2026-06-08 Twenty-fourth TII Batch Complete
 
 Repository:
