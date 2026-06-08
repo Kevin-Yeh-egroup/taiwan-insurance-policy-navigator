@@ -1,5 +1,37 @@
 # Public Production Log
 
+## 2026-06-08 Twenty-third TII Batches And Version Timeline
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `51f0f43`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed twenty-third TII batch data: `dpl_7VDM5eEn2dDmZHKVmQgcUMhGJJ4g`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-hm7ra6h7r.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- Manual page returned `200 OK` and includes the `33,879` record / `23` completed-batch update plus the same-name version timeline note.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- `robots.txt` remained `User-agent: *` / `Disallow: /`.
+- Production data shows TII `record_count=33879`, `detail_saved_count=33758`, `detail_missing_count=121`, `indexed_batch_count=23`, `completed_batch_count=23`, `partial_batch_count=0`, and pending manual batches `283`.
+- TII execution progress shows `attempted_batches=24`, `completed_batches=23`, `captcha_required_batches=1`; `tii-property-024` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-022` is complete: `706 / 706` official result rows, `706` imported product cards, `71` saved result pages, and `705 / 706` saved detail pages; `1` official detail page remains marked for later backfill.
+- `tii-property-023` is complete: `846 / 846` official result rows, `846` imported product cards, `85` saved result pages, and `844 / 846` saved detail pages; `2` official detail pages remain marked for later backfill.
+- Production data preserves `1183` same-company same-name multi-product groups as `3219` separate cards.
+- Discontinued-policy cards render a same-name version timeline for multi-product groups, showing sale date, discontinued date, and policy code without deduplicating by policy name.
+
 ## 2026-06-05 Twenty-first TII Batch Complete
 
 Repository:
