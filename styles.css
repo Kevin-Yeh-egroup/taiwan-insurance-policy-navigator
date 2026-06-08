@@ -873,6 +873,97 @@ select:focus,
   line-height: 1.5;
 }
 
+.version-timeline {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.version-timeline-head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--ink);
+  font-size: 0.86rem;
+}
+
+.version-timeline-head span,
+.version-timeline p {
+  color: var(--muted);
+  font-size: 0.8rem;
+}
+
+.version-timeline ol {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(132px, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.version-timeline li {
+  position: relative;
+  display: grid;
+  grid-template-columns: 10px minmax(0, 1fr);
+  gap: 7px;
+  min-width: 0;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-3);
+}
+
+.version-timeline li.current {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+.timeline-dot {
+  width: 8px;
+  height: 8px;
+  margin-top: 5px;
+  border-radius: 999px;
+  background: var(--muted);
+}
+
+.version-timeline li.current .timeline-dot {
+  background: #2563eb;
+}
+
+.version-timeline li div {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.version-timeline li strong,
+.version-timeline li span,
+.version-timeline li small {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.version-timeline li strong {
+  color: var(--ink);
+  font-size: 0.82rem;
+}
+
+.version-timeline li span,
+.version-timeline li small {
+  color: var(--muted);
+  font-size: 0.74rem;
+}
+
+.version-timeline p {
+  margin: 0;
+}
+
 .source-list {
   display: grid;
   gap: 10px;

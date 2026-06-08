@@ -1,6 +1,6 @@
 # Crawl Progress
 
-Updated at: `2026-06-05T17:45:00+08:00`
+Updated at: `2026-06-08T09:20:00+08:00`
 
 ## Overall
 
@@ -50,22 +50,22 @@ Updated at: `2026-06-05T17:45:00+08:00`
 - Property-insurance manual batches: `108`
 - Life / personal-insurance manual batches: `198`
 - Total TII manual matrix batches: `306`
-- Attempted TII manual batches: `22 / 306`
+- Attempted TII manual batches: `24 / 306`
 - Waiting on captcha: `1`
-- Indexed TII manual batches: `21 / 306`
-- Completed TII manual batches: `21 / 306`
+- Indexed TII manual batches: `23 / 306`
+- Completed TII manual batches: `23 / 306`
 - Partial TII manual batches: `0`
-- Imported TII policy records: `32,327`
-- TII official result rows before productId deduplication: `37,039`
+- Imported TII policy records: `33,879`
+- TII official result rows before productId deduplication: `38,591`
 - Official duplicate productId rows: `4,712`
-- Saved TII detail pages: `32,209 / 32,327`
-- Detail pages marked for later backfill: `118`
-- Same-company same-name multi-product groups: `1,164` groups / `3,181` cards; these are preserved as separate cards because name-only deduplication would merge different versions.
-- Completed TII batches: `tii-property-001` through `tii-property-021`.
-- Latest completed TII batch: `tii-property-021` is complete by official row coverage with `1,173 / 1,173` official rows, `1,163` deduplicated product cards, `10` official duplicate product-id rows, and `1,163 / 1,163` saved detail pages.
-- Previous large completed TII batch: `tii-property-020` is complete by official row coverage with `5,159 / 5,159` official rows, `3,874` deduplicated product cards, `1,285` official duplicate product-id rows, and `3,835 / 3,874` saved detail pages.
-- Current waiting TII batch: `tii-property-022` is prepared and waiting for a fresh human-entered captcha.
-- Remaining TII manual batches: `285 / 306` still require fresh captcha sessions through the local operator.
+- Saved TII detail pages: `33,758 / 33,879`
+- Detail pages marked for later backfill: `121`
+- Same-company same-name multi-product groups: `1,183` groups / `3,219` cards; these are preserved as separate cards because name-only deduplication would merge different versions.
+- Completed TII batches: `tii-property-001` through `tii-property-023`.
+- Latest completed TII batch: `tii-property-023` is complete with `846 / 846` official rows, `846` product cards, and `844 / 846` saved detail pages.
+- Previous completed TII batch: `tii-property-022` is complete with `706 / 706` official rows, `706` product cards, and `705 / 706` saved detail pages.
+- Current waiting TII batch: `tii-property-024` is prepared and waiting for a fresh human-entered captcha.
+- Remaining TII manual batches: `283 / 306` still require fresh captcha sessions through the local operator.
 - Scope note: these `306` TII batches are captcha-protected manual click-through/import batches and are separate from the `17` automated URL batches above.
 - Captcha boundary: TII result pages require human captcha completion; this project prepares local click-through batches, fetches result/detail pages after human input, and imports saved results, but does not bypass captcha.
 

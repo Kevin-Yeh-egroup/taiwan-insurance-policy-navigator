@@ -318,6 +318,9 @@ function renderPolicyInsights() {
       company: record.company,
       product_type: record.insurance_category || "TII 匯入",
       sale_status: record.sale_status,
+      product_id: record.product_id,
+      sale_date: record.sale_date,
+      discontinued_date: record.discontinued_date,
       policy_url: state.tiiMetadata?.source_url,
       detail_url: record.detail_url,
       origin: "保發中心",
@@ -336,6 +339,7 @@ function renderPolicyInsights() {
       ].filter(Boolean),
     })),
   ];
+  const versionTimelineMap = buildVersionTimelineMap(discontinued);
   setText("discontinuedCount", `${formatNumber.format(discontinued.length)} 筆`);
   document.getElementById("discontinuedList").innerHTML = discontinued.length
     ? discontinued
@@ -358,6 +362,7 @@ function renderPolicyInsights() {
                     ? `<p class="version-note">${escapeHtml(policy.version_note)}</p>`
                     : ""
                 }
+                ${renderVersionTimeline(policy, versionTimelineMap)}
               </div>
               <div class="policy-card-actions">
                 ${
@@ -452,6 +457,87 @@ function renderPolicyInsights() {
   `;
   renderBatchPlan();
   renderPolicyContentExtracts();
+}
+
+function versionTimelineKey(policy) {
+  if (!policy || policy.origin !== "保發中心") return "";
+  return `${policy.company || ""}||${policy.product_name || ""}`;
+}
+
+function parseTaiwanDateForSort(value) {
+  const match = String(value || "").match(/^(\d{2,3})\/(\d{1,2})\/(\d{1,2})$/);
+  if (!match) return Number.MAX_SAFE_INTEGER;
+  const year = Number(match[1]) + 1911;
+  const month = Number(match[2]);
+  const day = Number(match[3]);
+  return year * 10000 + month * 100 + day;
+}
+
+function buildVersionTimelineMap(policies) {
+  const groups = new Map();
+  policies
+    .filter((policy) => policy.origin === "保發中心" && policy.product_name && policy.company)
+    .forEach((policy) => {
+      const key = versionTimelineKey(policy);
+      if (!key) return;
+      if (!groups.has(key)) groups.set(key, []);
+      groups.get(key).push(policy);
+    });
+
+  groups.forEach((items, key) => {
+    const unique = new Map();
+    items.forEach((item) => {
+      const id = item.product_id || item.display_version || item.detail_url;
+      if (id && !unique.has(id)) unique.set(id, item);
+    });
+    const sorted = [...unique.values()].sort((a, b) => {
+      const saleDiff = parseTaiwanDateForSort(a.sale_date) - parseTaiwanDateForSort(b.sale_date);
+      if (saleDiff) return saleDiff;
+      const discontinueDiff =
+        parseTaiwanDateForSort(a.discontinued_date) - parseTaiwanDateForSort(b.discontinued_date);
+      if (discontinueDiff) return discontinueDiff;
+      return String(a.product_id || "").localeCompare(String(b.product_id || ""), "zh-Hant-TW");
+    });
+    groups.set(key, sorted);
+  });
+  return groups;
+}
+
+function renderVersionTimeline(policy, timelineMap) {
+  const key = versionTimelineKey(policy);
+  const versions = key ? timelineMap.get(key) || [] : [];
+  if (versions.length < 2) return "";
+  const visible = versions.slice(0, 8);
+  const hiddenCount = Math.max(versions.length - visible.length, 0);
+  return `
+    <div class="version-timeline" aria-label="同名保單版本時間軸">
+      <div class="version-timeline-head">
+        <strong>同名版本時間軸</strong>
+        <span>${formatNumber.format(versions.length)} 個保單代碼</span>
+      </div>
+      <ol>
+        ${visible
+          .map((version) => {
+            const isCurrent =
+              version.product_id && policy.product_id
+                ? version.product_id === policy.product_id
+                : version.display_version === policy.display_version;
+            return `
+              <li class="${isCurrent ? "current" : ""}">
+                <span class="timeline-dot"></span>
+                <div>
+                  <strong>${escapeHtml(version.sale_date || "銷售日未標示")}</strong>
+                  <span>停售 ${escapeHtml(version.discontinued_date || "未標示")}</span>
+                  <small>${escapeHtml(version.product_id || "保單代碼未標示")}</small>
+                </div>
+              </li>
+            `;
+          })
+          .join("")}
+      </ol>
+      ${hiddenCount ? `<p>另有 ${formatNumber.format(hiddenCount)} 個較早或較晚版本，請用商品名稱搜尋完整展開。</p>` : ""}
+    </div>
+  `;
 }
 
 function renderBatchPlan() {

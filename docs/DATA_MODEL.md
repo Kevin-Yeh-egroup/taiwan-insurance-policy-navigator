@@ -122,17 +122,17 @@ The Insurance Institute discontinued-policy query page requires captcha completi
 
 ```json
 {
-  "record_count": 32327,
-  "detail_expected_count": 32327,
-  "detail_saved_count": 32209,
-  "detail_missing_count": 118,
-  "detail_coverage_rate": 0.9963,
-  "indexed_batch_count": 21,
-  "indexed_batches": ["tii-property-001", "tii-property-002", "...", "tii-property-021"],
-  "completed_batch_count": 21,
-  "completed_batches": ["tii-property-001", "tii-property-002", "...", "tii-property-021"],
+  "record_count": 33879,
+  "detail_expected_count": 33879,
+  "detail_saved_count": 33758,
+  "detail_missing_count": 121,
+  "detail_coverage_rate": 0.9964,
+  "indexed_batch_count": 23,
+  "indexed_batches": ["tii-property-001", "tii-property-002", "...", "tii-property-023"],
+  "completed_batch_count": 23,
+  "completed_batches": ["tii-property-001", "tii-property-002", "...", "tii-property-023"],
   "partial_batch_count": 0,
-  "pending_manual_batch_count": 285,
+  "pending_manual_batch_count": 283,
   "batch_summaries": [
     {
       "batch_id": "tii-property-001",
