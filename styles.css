@@ -131,6 +131,54 @@ main {
   padding: 24px clamp(18px, 4vw, 52px) 52px;
 }
 
+.public-data-summary {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 24px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.summary-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: end;
+}
+
+.summary-metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.summary-metrics article {
+  min-height: 106px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-3);
+}
+
+.summary-metrics span {
+  display: block;
+  color: var(--blue-dark);
+  font-size: 1.65rem;
+  font-weight: 900;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+
+.summary-metrics p {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
 .search-panel {
   display: grid;
   gap: 14px;
@@ -1379,6 +1427,7 @@ select:focus,
 
   .query-form,
   .filter-row,
+  .summary-metrics,
   .policy-focus-grid,
   .insight-grid,
   .roadmap ol,
@@ -1407,6 +1456,7 @@ select:focus,
   }
 
   .header-actions,
+  .summary-heading,
   .query-form,
   .filter-row,
   .policy-focus-grid,
@@ -1422,12 +1472,31 @@ select:focus,
     grid-template-columns: 1fr;
   }
 
+  .summary-heading {
+    display: grid;
+  }
+
+  .summary-heading .nav-link {
+    width: auto;
+    justify-self: start;
+  }
+
   .header-actions {
     display: grid;
   }
 
+  .public-data-summary,
   .search-panel {
     padding: 14px;
+  }
+
+  .summary-metrics article {
+    min-height: 96px;
+    padding: 12px;
+  }
+
+  .summary-metrics span {
+    font-size: 1.35rem;
   }
 
   .button,

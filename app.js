@@ -13,6 +13,7 @@ const state = {
   tiiMetadata: null,
   tiiResults: null,
   tiiExecutionProgress: null,
+  siteSummary: null,
   batchPlan: null,
   batchProgress: null,
   policyContentExtracts: null,
@@ -116,6 +117,43 @@ function kindPurpose(kind) {
 
 function setText(id, value) {
   document.getElementById(id).textContent = value;
+}
+
+function renderSiteSummary(summary) {
+  const tii = summary?.tii || {};
+  const latest = tii.latest_completed_batch || {};
+  const waiting = tii.current_waiting_batch || {};
+  const detailSaved = tii.detail_saved_count || 0;
+  const detailExpected = tii.detail_expected_count || 0;
+  const latestTitle = [latest.batch_id, latest.company_label, latest.category_label].filter(Boolean).join(" / ");
+  const waitingTitle = [waiting.batch_id, waiting.company_label, waiting.category_label].filter(Boolean).join(" / ");
+
+  setText("publicMetricImported", formatNumber.format(tii.imported_policy_records || 0));
+  setText("publicMetricDetails", `${formatNumber.format(detailSaved)} / ${formatNumber.format(detailExpected)}`);
+  setText(
+    "publicMetricBatches",
+    `${formatNumber.format(tii.completed_batches || 0)} / ${formatNumber.format(tii.total_manual_batches || 0)}`,
+  );
+  setText("publicMetricWaiting", formatNumber.format(tii.waiting_captcha_batches || 0));
+  setText(
+    "publicSummaryNote",
+    `最新完成 ${latestTitle || "待匯入"}：${formatNumber.format(
+      latest.imported_record_count || 0,
+    )} 張卡，明細 ${formatNumber.format(latest.detail_saved_count || 0)} / ${formatNumber.format(
+      latest.detail_expected_count || 0,
+    )}。下一批 ${waitingTitle || "尚未準備"}。同名不同 productId 會保留為不同版本卡。`,
+  );
+}
+
+async function loadSiteSummary() {
+  try {
+    const response = await fetch("./data/site-summary.json");
+    if (!response.ok) throw new Error("site-summary not available");
+    state.siteSummary = await response.json();
+    renderSiteSummary(state.siteSummary);
+  } catch {
+    setText("publicSummaryNote", "公開摘要暫時無法載入；下方完整資料載入後仍可查詢。");
+  }
 }
 
 async function loadData() {
@@ -1255,6 +1293,7 @@ function bindEvents() {
 }
 
 async function main() {
+  await loadSiteSummary();
   try {
     await loadData();
     populateFilters();

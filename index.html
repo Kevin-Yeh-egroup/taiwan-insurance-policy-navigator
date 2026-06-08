@@ -21,6 +21,35 @@
     </header>
 
     <main>
+      <section class="public-data-summary" aria-label="公開資料進度">
+        <div class="summary-heading">
+          <div>
+            <p class="eyebrow">Live Dataset</p>
+            <h2>目前公開資料總覽</h2>
+          </div>
+          <a class="nav-link" href="./manual.html">查看手冊</a>
+        </div>
+        <div class="summary-metrics">
+          <article>
+            <span id="publicMetricImported">--</span>
+            <p>已匯入保單</p>
+          </article>
+          <article>
+            <span id="publicMetricDetails">--</span>
+            <p>已保存明細</p>
+          </article>
+          <article>
+            <span id="publicMetricBatches">--</span>
+            <p>已完成批次</p>
+          </article>
+          <article>
+            <span id="publicMetricWaiting">--</span>
+            <p>等待驗證碼</p>
+          </article>
+        </div>
+        <p id="publicSummaryNote" class="result-summary">公開摘要載入中。</p>
+      </section>
+
       <section class="search-panel" aria-label="保單重點查詢">
         <form id="searchForm" class="query-form">
           <label class="query-label" for="searchInput">

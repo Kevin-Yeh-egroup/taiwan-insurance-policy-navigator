@@ -28,6 +28,7 @@ def main() -> None:
     batch_progress = load_json("data/batch-progress.json")
     policy_batch_results = load_json("data/policy-batch-results.json")
     policy_content_extracts = load_json("data/policy-content-extracts.json")
+    site_summary = load_json("data/site-summary.json")
 
     if not source_index.get("urls"):
         fail("source-index has no urls")
@@ -168,6 +169,12 @@ def main() -> None:
         fail("policy batch results has no batches")
     if not policy_content_extracts.get("records"):
         fail("policy content extracts has no records")
+    if site_summary.get("tii", {}).get("imported_policy_records") != tii_results.get("record_count"):
+        fail("site summary TII imported count does not match TII results")
+    if site_summary.get("tii", {}).get("detail_saved_count") != tii_results.get("detail_saved_count"):
+        fail("site summary TII detail saved count does not match TII results")
+    if site_summary.get("tii", {}).get("completed_batches") != tii_results.get("completed_batch_count"):
+        fail("site summary TII completed batch count does not match TII results")
     content_records = policy_content_extracts["records"]
     content_summary = policy_content_extracts.get("summary", {})
     if content_summary.get("record_count") != len(content_records):

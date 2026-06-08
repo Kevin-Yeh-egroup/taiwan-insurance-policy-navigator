@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-06-08T11:42:25+08:00",
+  "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
+  "tii": {
+    "total_manual_batches": 306,
+    "attempted_batches": 31,
+    "waiting_captcha_batches": 1,
+    "indexed_batches": 30,
+    "completed_batches": 30,
+    "pending_manual_batches": 276,
+    "imported_policy_records": 44267,
+    "detail_expected_count": 44267,
+    "detail_saved_count": 44100,
+    "detail_missing_count": 167,
+    "detail_coverage_rate": 0.9962,
+    "official_result_rows": 50188,
+    "official_duplicate_product_rows": 5921,
+    "same_name_version_group_count": 1283,
+    "same_name_version_card_count": 3431,
+    "latest_completed_batch": {
+      "batch_id": "tii-property-030",
+      "company_label": "109-南山產物保險股份有限公司",
+      "category_label": "火災保險",
+      "expected_total_count": 1259,
+      "official_row_count": 1259,
+      "imported_record_count": 1259,
+      "detail_expected_count": 1259,
+      "detail_saved_count": 1226,
+      "detail_missing_count": 33,
+      "detail_status": "partial_detail"
+    },
+    "current_waiting_batch": {
+      "batch_id": "tii-property-031",
+      "company_label": "109-南山產物保險股份有限公司",
+      "category_label": "海上保險"
+    }
+  },
+  "policy_content": {
+    "reachable_policy_sources": 559,
+    "records_with_field_hits": 555,
+    "pdf_records": 551,
+    "html_records": 8
+  },
+  "source_crawl": {
+    "checked": 1666,
+    "ok": 919,
+    "robots_blocked": 387,
+    "errors": 360
+  }
+}
