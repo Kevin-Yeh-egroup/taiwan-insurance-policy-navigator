@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T11:22:27+08:00",
+  "generated_at": "2026-06-09T11:37:28+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -17066,9 +17066,9 @@
     },
     {
       "batch_id": "tii-property-040",
-      "ran_at": "2026-06-09T11:22:27+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-09T11:26:05+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "111-國華產物保險股份有限公司",
       "category_label": "意外保險",
       "query_hint": {
@@ -17082,14 +17082,162 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-040-captcha-1.jpg"
       ],
+      "result_file": "work\\tii-results\\tii-property-040.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 40,
+        "total_pages": 4,
+        "official_row_count": 40,
+        "unique_product_id_count": 40,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 4,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-040-page-001.html",
+          "work\\tii-results\\tii-property-040-page-002.html",
+          "work\\tii-results\\tii-property-040-page-003.html",
+          "work\\tii-results\\tii-property-040-page-004.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 40,
+        "saved_detail_count": 40,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 40,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-040\\111342321031010000.html",
+          "work\\tii-details\\tii-property-040\\111342519002010000.html",
+          "work\\tii-details\\tii-property-040\\111342519004010000.html",
+          "work\\tii-details\\tii-property-040\\111342519005010000.html",
+          "work\\tii-details\\tii-property-040\\111342117008010000.html",
+          "work\\tii-details\\tii-property-040\\111342519001010000.html",
+          "work\\tii-details\\tii-property-040\\111342519003010000.html",
+          "work\\tii-details\\tii-property-040\\111343223044010000.html",
+          "work\\tii-details\\tii-property-040\\111343223047010000.html",
+          "work\\tii-details\\tii-property-040\\111342118023010000.html",
+          "work\\tii-details\\tii-property-040\\111342118024010000.html",
+          "work\\tii-details\\tii-property-040\\111342223049010000.html",
+          "work\\tii-details\\tii-property-040\\111342321033010000.html",
+          "work\\tii-details\\tii-property-040\\111342321033020000.html",
+          "work\\tii-details\\tii-property-040\\111342321033030000.html",
+          "work\\tii-details\\tii-property-040\\111342321033040000.html",
+          "work\\tii-details\\tii-property-040\\111342321033050000.html",
+          "work\\tii-details\\tii-property-040\\111342321033060000.html",
+          "work\\tii-details\\tii-property-040\\111342223042010000.html",
+          "work\\tii-details\\tii-property-040\\111341117017010000.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-property-041",
+      "ran_at": "2026-06-09T11:36:11+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
+      "company_label": "112-旺旺友聯產物保險股份有限公司",
+      "category_label": "汽車保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "112",
+        "f_CategoryId1": "1_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-041-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-property-041.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 1131,
+        "total_pages": 114,
+        "official_row_count": 1131,
+        "unique_product_id_count": 1131,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 114,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-041-page-001.html",
+          "work\\tii-results\\tii-property-041-page-002.html",
+          "work\\tii-results\\tii-property-041-page-003.html",
+          "work\\tii-results\\tii-property-041-page-004.html",
+          "work\\tii-results\\tii-property-041-page-005.html",
+          "work\\tii-results\\tii-property-041-page-006.html",
+          "work\\tii-results\\tii-property-041-page-007.html",
+          "work\\tii-results\\tii-property-041-page-008.html",
+          "work\\tii-results\\tii-property-041-page-009.html",
+          "work\\tii-results\\tii-property-041-page-010.html",
+          "work\\tii-results\\tii-property-041-page-011.html",
+          "work\\tii-results\\tii-property-041-page-012.html",
+          "work\\tii-results\\tii-property-041-page-013.html",
+          "work\\tii-results\\tii-property-041-page-014.html",
+          "work\\tii-results\\tii-property-041-page-015.html",
+          "work\\tii-results\\tii-property-041-page-016.html",
+          "work\\tii-results\\tii-property-041-page-017.html",
+          "work\\tii-results\\tii-property-041-page-018.html",
+          "work\\tii-results\\tii-property-041-page-019.html",
+          "work\\tii-results\\tii-property-041-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 1131,
+        "saved_detail_count": 1131,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 1131,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-041\\112311424060010100.html",
+          "work\\tii-details\\tii-property-041\\112311112061010100.html",
+          "work\\tii-details\\tii-property-041\\112311424067010100.html",
+          "work\\tii-details\\tii-property-041\\112311112094010100.html",
+          "work\\tii-details\\tii-property-041\\112311112041010100.html",
+          "work\\tii-details\\tii-property-041\\112311112035010000.html",
+          "work\\tii-details\\tii-property-041\\112311112036010000.html",
+          "work\\tii-details\\tii-property-041\\112311210001010000.html",
+          "work\\tii-details\\tii-property-041\\112311210002010000.html",
+          "work\\tii-details\\tii-property-041\\112311210003010000.html",
+          "work\\tii-details\\tii-property-041\\112311210022010000.html",
+          "work\\tii-details\\tii-property-041\\112311210004010100.html",
+          "work\\tii-details\\tii-property-041\\112311210006010100.html",
+          "work\\tii-details\\tii-property-041\\112311228059010100.html",
+          "work\\tii-details\\tii-property-041\\112312113035010000.html",
+          "work\\tii-details\\tii-property-041\\112312113036010000.html",
+          "work\\tii-details\\tii-property-041\\112312113047010000.html",
+          "work\\tii-details\\tii-property-041\\112312113094010100.html",
+          "work\\tii-details\\tii-property-041\\112312211001010000.html",
+          "work\\tii-details\\tii-property-041\\112312211002010000.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-property-042",
+      "ran_at": "2026-06-09T11:37:28+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "112-旺旺友聯產物保險股份有限公司",
+      "category_label": "火災保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "112",
+        "f_CategoryId1": "1_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-042-captcha-1.jpg"
+      ],
       "result_file": "",
       "fetched_pages": {},
       "fetched_details": {}
     }
   ],
   "summary": {
-    "attempted_batches": 40,
-    "completed_batches": 39,
+    "attempted_batches": 42,
+    "completed_batches": 41,
     "captcha_required_batches": 1
   }
 }
