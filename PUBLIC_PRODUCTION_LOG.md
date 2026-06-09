@@ -1,5 +1,39 @@
 # Public Production Log
 
+## 2026-06-09 Fiftieth Through Fifty-third TII Batches Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `422d4c5`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed fiftieth through fifty-third TII batch data: `dpl_GGyLtPZaDbHhE276htX6GmNs2y8s`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-pjoedyl8f.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- `data/site-summary.json` returned `200 OK` and includes `imported_policy_records=73052`, `detail_saved_count=71881`, `detail_missing_count=1171`, `completed_batches=53`, `pending_manual_batches=253`, `latest_completed_batch=tii-property-053`, and `current_waiting_batch=tii-property-054`.
+- `data/tii-policy-results.json` range request returned `206 Partial Content` and includes the same `73052` record / `71881` saved-detail production dataset, `detail_missing_count=1171`, `completed_batch_count=53`, and `tii-property-053` in the completed batch list. Full object length reported `75452783` bytes.
+- Manual page returned `200 OK` and includes the `73,052` record / `53 / 306` completed-batch update plus the `tii-property-054` waiting-batch note.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- `robots.txt` returned `200 OK` and remained `User-agent: *` / `Disallow: /`.
+- TII execution progress shows `attempted_batches=54`, `completed_batches=53`, `captcha_required_batches=1`; `tii-property-054` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-050` is complete by official rows: `723 / 723` official result rows, `723` imported product cards, and `722 / 723` saved detail pages, with `1` detail page marked for later backfill.
+- `tii-property-051` is complete by official rows: `864 / 864` official result rows, `864` imported product cards, and `862 / 864` saved detail pages, with `2` detail pages marked for later backfill.
+- `tii-property-052` is complete by official rows: `2359 / 2359` official result rows, `1793` imported product cards, `566` official duplicate product-id rows, and `1790 / 1793` saved detail pages, with `3` detail pages marked for later backfill.
+- `tii-property-053` is complete by official rows: `1013 / 1013` official result rows, `1013` imported product cards, and `93 / 1013` saved detail pages, with `920` detail pages marked for later backfill after the detail session returned invalid for most product IDs.
+- Production data preserves same-company same-name multi-product groups as separate policy cards and keeps the same-name version timeline with sale date, discontinued date, and policy code.
+
 ## 2026-06-09 Forty-ninth TII Batch Complete
 
 Repository:
