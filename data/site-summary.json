@@ -1,38 +1,38 @@
 {
-  "generated_at": "2026-06-09T17:19:57+08:00",
+  "generated_at": "2026-06-09T17:30:52+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 57,
+    "attempted_batches": 58,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 56,
-    "completed_batches": 56,
-    "pending_manual_batches": 250,
-    "imported_policy_records": 77444,
-    "detail_expected_count": 77444,
-    "detail_saved_count": 76268,
+    "indexed_batches": 57,
+    "completed_batches": 57,
+    "pending_manual_batches": 249,
+    "imported_policy_records": 78534,
+    "detail_expected_count": 78534,
+    "detail_saved_count": 77358,
     "detail_missing_count": 1176,
-    "detail_coverage_rate": 0.9848,
-    "official_result_rows": 88199,
+    "detail_coverage_rate": 0.985,
+    "official_result_rows": 89289,
     "official_duplicate_product_rows": 10755,
-    "same_name_version_group_count": 1795,
-    "same_name_version_card_count": 4492,
+    "same_name_version_group_count": 1827,
+    "same_name_version_card_count": 4662,
     "latest_completed_batch": {
-      "batch_id": "tii-property-056",
-      "company_label": "115-國泰世紀產物保險股份有限公司",
-      "category_label": "意外保險",
-      "expected_total_count": 3456,
-      "official_row_count": 3456,
-      "imported_record_count": 3001,
-      "detail_expected_count": 3001,
-      "detail_saved_count": 2997,
-      "detail_missing_count": 4,
-      "detail_status": "partial_detail"
-    },
-    "current_waiting_batch": {
       "batch_id": "tii-property-057",
       "company_label": "117-新安東京海上產物保險股份有限公司",
-      "category_label": "汽車保險"
+      "category_label": "汽車保險",
+      "expected_total_count": 1090,
+      "official_row_count": 1090,
+      "imported_record_count": 1090,
+      "detail_expected_count": 1090,
+      "detail_saved_count": 1090,
+      "detail_missing_count": 0,
+      "detail_status": "complete"
+    },
+    "current_waiting_batch": {
+      "batch_id": "tii-property-058",
+      "company_label": "117-新安東京海上產物保險股份有限公司",
+      "category_label": "火災保險"
     }
   },
   "policy_content": {
