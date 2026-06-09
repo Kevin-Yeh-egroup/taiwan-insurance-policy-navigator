@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T10:33:08+08:00",
+  "generated_at": "2026-06-09T11:05:16+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -16888,9 +16888,9 @@
     },
     {
       "batch_id": "tii-property-037",
-      "ran_at": "2026-06-09T10:33:08+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-09T11:03:57+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "111-國華產物保險股份有限公司",
       "category_label": "汽車保險",
       "query_hint": {
@@ -16904,14 +16904,79 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-037-captcha-1.jpg"
       ],
+      "result_file": "work\\tii-results\\tii-property-037.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 25,
+        "total_pages": 3,
+        "official_row_count": 25,
+        "unique_product_id_count": 25,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 3,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-037-page-001.html",
+          "work\\tii-results\\tii-property-037-page-002.html",
+          "work\\tii-results\\tii-property-037-page-003.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 25,
+        "saved_detail_count": 25,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 25,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-037\\111311110036010000.html",
+          "work\\tii-details\\tii-property-037\\111311112035010000.html",
+          "work\\tii-details\\tii-property-037\\111311112037010100.html",
+          "work\\tii-details\\tii-property-037\\111311112039010100.html",
+          "work\\tii-details\\tii-property-037\\111311112041010000.html",
+          "work\\tii-details\\tii-property-037\\111311114057010000.html",
+          "work\\tii-details\\tii-property-037\\111311116058010000.html",
+          "work\\tii-details\\tii-property-037\\111311116060010000.html",
+          "work\\tii-details\\tii-property-037\\111311210001010000.html",
+          "work\\tii-details\\tii-property-037\\111311210002010000.html",
+          "work\\tii-details\\tii-property-037\\111311210003010000.html",
+          "work\\tii-details\\tii-property-037\\111311210006010100.html",
+          "work\\tii-details\\tii-property-037\\111311210022010000.html",
+          "work\\tii-details\\tii-property-037\\111311210059010100.html",
+          "work\\tii-details\\tii-property-037\\111312111036010000.html",
+          "work\\tii-details\\tii-property-037\\111312113035010000.html",
+          "work\\tii-details\\tii-property-037\\111312113047010000.html",
+          "work\\tii-details\\tii-property-037\\111312113048010100.html",
+          "work\\tii-details\\tii-property-037\\111312113049010100.html",
+          "work\\tii-details\\tii-property-037\\111312115057010000.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-property-038",
+      "ran_at": "2026-06-09T11:05:16+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "111-國華產物保險股份有限公司",
+      "category_label": "火災保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "111",
+        "f_CategoryId1": "1_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-038-captcha-1.jpg"
+      ],
       "result_file": "",
       "fetched_pages": {},
       "fetched_details": {}
     }
   ],
   "summary": {
-    "attempted_batches": 37,
-    "completed_batches": 36,
+    "attempted_batches": 38,
+    "completed_batches": 37,
     "captcha_required_batches": 1
   }
 }
