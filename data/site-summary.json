@@ -1,38 +1,38 @@
 {
-  "generated_at": "2026-06-09T16:07:17+08:00",
+  "generated_at": "2026-06-09T16:20:02+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 54,
+    "attempted_batches": 55,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 53,
-    "completed_batches": 53,
-    "pending_manual_batches": 253,
-    "imported_policy_records": 73052,
-    "detail_expected_count": 73052,
-    "detail_saved_count": 71881,
+    "indexed_batches": 54,
+    "completed_batches": 54,
+    "pending_manual_batches": 252,
+    "imported_policy_records": 73590,
+    "detail_expected_count": 73590,
+    "detail_saved_count": 72419,
     "detail_missing_count": 1171,
-    "detail_coverage_rate": 0.984,
-    "official_result_rows": 83352,
+    "detail_coverage_rate": 0.9841,
+    "official_result_rows": 83890,
     "official_duplicate_product_rows": 10300,
-    "same_name_version_group_count": 1722,
-    "same_name_version_card_count": 4330,
+    "same_name_version_group_count": 1732,
+    "same_name_version_card_count": 4350,
     "latest_completed_batch": {
-      "batch_id": "tii-property-053",
-      "company_label": "115-國泰世紀產物保險股份有限公司",
-      "category_label": "汽車保險",
-      "expected_total_count": 1013,
-      "official_row_count": 1013,
-      "imported_record_count": 1013,
-      "detail_expected_count": 1013,
-      "detail_saved_count": 93,
-      "detail_missing_count": 920,
-      "detail_status": "partial_detail"
-    },
-    "current_waiting_batch": {
       "batch_id": "tii-property-054",
       "company_label": "115-國泰世紀產物保險股份有限公司",
-      "category_label": "火災保險"
+      "category_label": "火災保險",
+      "expected_total_count": 538,
+      "official_row_count": 538,
+      "imported_record_count": 538,
+      "detail_expected_count": 538,
+      "detail_saved_count": 538,
+      "detail_missing_count": 0,
+      "detail_status": "complete"
+    },
+    "current_waiting_batch": {
+      "batch_id": "tii-property-055",
+      "company_label": "115-國泰世紀產物保險股份有限公司",
+      "category_label": "海上保險"
     }
   },
   "policy_content": {

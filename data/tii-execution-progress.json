@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T16:04:17+08:00",
+  "generated_at": "2026-06-09T16:20:01+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -18547,9 +18547,9 @@
     },
     {
       "batch_id": "tii-property-054",
-      "ran_at": "2026-06-09T16:04:17+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-09T16:16:17+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "115-國泰世紀產物保險股份有限公司",
       "category_label": "火災保險",
       "query_hint": {
@@ -18563,14 +18563,96 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-054-captcha-1.jpg"
       ],
+      "result_file": "work\\tii-results\\tii-property-054.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 538,
+        "total_pages": 54,
+        "official_row_count": 538,
+        "unique_product_id_count": 538,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 54,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-054-page-001.html",
+          "work\\tii-results\\tii-property-054-page-002.html",
+          "work\\tii-results\\tii-property-054-page-003.html",
+          "work\\tii-results\\tii-property-054-page-004.html",
+          "work\\tii-results\\tii-property-054-page-005.html",
+          "work\\tii-results\\tii-property-054-page-006.html",
+          "work\\tii-results\\tii-property-054-page-007.html",
+          "work\\tii-results\\tii-property-054-page-008.html",
+          "work\\tii-results\\tii-property-054-page-009.html",
+          "work\\tii-results\\tii-property-054-page-010.html",
+          "work\\tii-results\\tii-property-054-page-011.html",
+          "work\\tii-results\\tii-property-054-page-012.html",
+          "work\\tii-results\\tii-property-054-page-013.html",
+          "work\\tii-results\\tii-property-054-page-014.html",
+          "work\\tii-results\\tii-property-054-page-015.html",
+          "work\\tii-results\\tii-property-054-page-016.html",
+          "work\\tii-results\\tii-property-054-page-017.html",
+          "work\\tii-results\\tii-property-054-page-018.html",
+          "work\\tii-results\\tii-property-054-page-019.html",
+          "work\\tii-results\\tii-property-054-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 538,
+        "saved_detail_count": 538,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 538,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-054\\115122227025010000.html",
+          "work\\tii-details\\tii-property-054\\115122203002010000.html",
+          "work\\tii-details\\tii-property-054\\115121229029010000.html",
+          "work\\tii-details\\tii-property-054\\115121229004010100.html",
+          "work\\tii-details\\tii-property-054\\115121225004010300.html",
+          "work\\tii-details\\tii-property-054\\115122227028010000.html",
+          "work\\tii-details\\tii-property-054\\115321526019010000.html",
+          "work\\tii-details\\tii-property-054\\115321526019010100.html",
+          "work\\tii-details\\tii-property-054\\115321526019010200.html",
+          "work\\tii-details\\tii-property-054\\115321526019010201.html",
+          "work\\tii-details\\tii-property-054\\115321526019010202.html",
+          "work\\tii-details\\tii-property-054\\115321526019010101.html",
+          "work\\tii-details\\tii-property-054\\115321526019010102.html",
+          "work\\tii-details\\tii-property-054\\115321526019010001.html",
+          "work\\tii-details\\tii-property-054\\115321526019010002.html",
+          "work\\tii-details\\tii-property-054\\115121229004010101.html",
+          "work\\tii-details\\tii-property-054\\115121229029010001.html",
+          "work\\tii-details\\tii-property-054\\115121229029020000.html",
+          "work\\tii-details\\tii-property-054\\115121225029010100.html",
+          "work\\tii-details\\tii-property-054\\115121225004010301.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-property-055",
+      "ran_at": "2026-06-09T16:20:01+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "115-國泰世紀產物保險股份有限公司",
+      "category_label": "海上保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "115",
+        "f_CategoryId1": "1_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-055-captcha-1.jpg"
+      ],
       "result_file": "",
       "fetched_pages": {},
       "fetched_details": {}
     }
   ],
   "summary": {
-    "attempted_batches": 54,
-    "completed_batches": 53,
+    "attempted_batches": 55,
+    "completed_batches": 54,
     "captcha_required_batches": 1
   }
 }
