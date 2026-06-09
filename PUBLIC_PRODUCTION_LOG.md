@@ -1,5 +1,36 @@
 # Public Production Log
 
+## 2026-06-09 Thirty-sixth TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `adcfb25`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed thirty-sixth TII batch data: `dpl_C2seGLP1fLYHCBHLmjuFNVJoMfJc`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-ewdwmiql7.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- `data/site-summary.json` returned `200 OK` and includes `imported_policy_records=54949`, `detail_saved_count=54760`, `completed_batches=36`, `pending_manual_batches=270`, and `current_waiting_batch=tii-property-037`.
+- `data/tii-policy-results.json` returned `200 OK` and includes the same `54949` record / `54760` saved-detail production dataset, `completed_batch_count=36`, and `tii-property-036` in the completed batch list.
+- Manual page returned `200 OK` and includes the `54,949` record / `36 / 306` completed-batch update plus the `tii-property-037` waiting-batch note.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- `robots.txt` returned `200 OK` and remained `User-agent: *` / `Disallow: /`.
+- TII execution progress shows `attempted_batches=37`, `completed_batches=36`, `captcha_required_batches=1`; `tii-property-037` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-036` is complete by official rows: `2163 / 2163` official result rows, `1837` imported product cards, `326` official duplicate product-id rows, and `1837 / 1837` saved detail pages.
+- Production data preserves same-company same-name multi-product groups as separate policy cards and keeps the same-name version timeline with sale date, discontinued date, and policy code.
+
 ## 2026-06-09 Thirty-fifth TII Batch Complete
 
 Repository:
