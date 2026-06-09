@@ -1,5 +1,36 @@
 # Public Production Log
 
+## 2026-06-09 Fifty-fourth TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `e627392`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed fifty-fourth TII batch data: `dpl_4rdjHeFEuufQkM32sHrCvrtXT1rC`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-mxg9vbhtc.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- `data/site-summary.json` returned `200 OK` and includes `imported_policy_records=73590`, `detail_saved_count=72419`, `detail_missing_count=1171`, `completed_batches=54`, `pending_manual_batches=252`, `latest_completed_batch=tii-property-054`, and `current_waiting_batch=tii-property-055`.
+- `data/tii-policy-results.json` range request returned `206 Partial Content` and includes the same `73590` record / `72419` saved-detail production dataset, `detail_missing_count=1171`, `completed_batch_count=54`, and `tii-property-054` in the completed batch list. Full object length reported `76012054` bytes.
+- Manual page returned `200 OK` and includes the `73,590` record / `54 / 306` completed-batch update plus the `tii-property-055` waiting-batch note.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- `robots.txt` returned `200 OK` and remained `User-agent: *` / `Disallow: /`.
+- TII execution progress shows `attempted_batches=55`, `completed_batches=54`, `captcha_required_batches=1`; `tii-property-055` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-054` is complete by official rows: `538 / 538` official result rows, `538` imported product cards, and `538 / 538` saved detail pages.
+- Production data preserves same-company same-name multi-product groups as separate policy cards and keeps the same-name version timeline with sale date, discontinued date, and policy code.
+
 ## 2026-06-09 Fiftieth Through Fifty-third TII Batches Complete
 
 Repository:
