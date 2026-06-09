@@ -1,5 +1,36 @@
 # Public Production Log
 
+## 2026-06-09 Fifty-seventh TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `a42b39d`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed fifty-seventh TII batch data: `dpl_CNbaRbBJwCzHFEEqbzabo5eHRfUW`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-mnx5pi6bz.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- `data/site-summary.json` returned `200 OK` and includes `imported_policy_records=78534`, `detail_saved_count=77358`, `detail_missing_count=1176`, `completed_batches=57`, `pending_manual_batches=249`, `latest_completed_batch=tii-property-057`, and `current_waiting_batch=tii-property-058`.
+- `data/tii-policy-results.json` range request returned `206 Partial Content` and includes the same `78534` record / `77358` saved-detail production dataset, `detail_missing_count=1176`, `completed_batch_count=57`, and `tii-property-057` in the completed batch list. Full object length reported `81119831` bytes.
+- Manual page returned `200 OK` and includes the `78,534` record / `57 / 306` completed-batch update plus the `tii-property-058` waiting-batch note.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- `robots.txt` returned `200 OK` and remained `User-agent: *` / `Disallow: /`.
+- TII execution progress shows `attempted_batches=58`, `completed_batches=57`, `captcha_required_batches=1`; `tii-property-058` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-057` is complete by official rows: `1090 / 1090` official result rows, `1090` imported product cards, and `1090 / 1090` saved detail pages.
+- Production data preserves same-company same-name multi-product groups as separate policy cards and keeps the same-name version timeline with sale date, discontinued date, and policy code.
+
 ## 2026-06-09 Fifty-sixth TII Batch Complete
 
 Repository:
