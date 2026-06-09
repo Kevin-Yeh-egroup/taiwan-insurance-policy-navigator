@@ -1,38 +1,38 @@
 {
-  "generated_at": "2026-06-09T13:27:56+08:00",
+  "generated_at": "2026-06-09T13:43:41+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 46,
+    "attempted_batches": 47,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 45,
-    "completed_batches": 45,
-    "pending_manual_batches": 261,
-    "imported_policy_records": 62514,
-    "detail_expected_count": 62514,
-    "detail_saved_count": 62310,
-    "detail_missing_count": 204,
+    "indexed_batches": 46,
+    "completed_batches": 46,
+    "pending_manual_batches": 260,
+    "imported_policy_records": 63191,
+    "detail_expected_count": 63191,
+    "detail_saved_count": 62982,
+    "detail_missing_count": 209,
     "detail_coverage_rate": 0.9967,
-    "official_result_rows": 71524,
+    "official_result_rows": 72201,
     "official_duplicate_product_rows": 9010,
     "same_name_version_group_count": 1561,
     "same_name_version_card_count": 3995,
     "latest_completed_batch": {
-      "batch_id": "tii-property-045",
-      "company_label": "113-新光產物保險股份有限公司",
-      "category_label": "汽車保險",
-      "expected_total_count": 1198,
-      "official_row_count": 1198,
-      "imported_record_count": 1198,
-      "detail_expected_count": 1198,
-      "detail_saved_count": 1198,
-      "detail_missing_count": 0,
-      "detail_status": "complete"
-    },
-    "current_waiting_batch": {
       "batch_id": "tii-property-046",
       "company_label": "113-新光產物保險股份有限公司",
-      "category_label": "火災保險"
+      "category_label": "火災保險",
+      "expected_total_count": 677,
+      "official_row_count": 677,
+      "imported_record_count": 677,
+      "detail_expected_count": 677,
+      "detail_saved_count": 672,
+      "detail_missing_count": 5,
+      "detail_status": "partial_detail"
+    },
+    "current_waiting_batch": {
+      "batch_id": "tii-property-047",
+      "company_label": "113-新光產物保險股份有限公司",
+      "category_label": "海上保險"
     }
   },
   "policy_content": {
