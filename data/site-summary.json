@@ -1,38 +1,38 @@
 {
-  "generated_at": "2026-06-09T14:31:58+08:00",
+  "generated_at": "2026-06-09T15:20:29+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 49,
+    "attempted_batches": 50,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 48,
-    "completed_batches": 48,
-    "pending_manual_batches": 258,
-    "imported_policy_records": 67386,
-    "detail_expected_count": 67386,
-    "detail_saved_count": 67141,
+    "indexed_batches": 49,
+    "completed_batches": 49,
+    "pending_manual_batches": 257,
+    "imported_policy_records": 68659,
+    "detail_expected_count": 68659,
+    "detail_saved_count": 68414,
     "detail_missing_count": 245,
     "detail_coverage_rate": 0.9964,
-    "official_result_rows": 77120,
+    "official_result_rows": 78393,
     "official_duplicate_product_rows": 9734,
-    "same_name_version_group_count": 1596,
-    "same_name_version_card_count": 4065,
+    "same_name_version_group_count": 1658,
+    "same_name_version_card_count": 4198,
     "latest_completed_batch": {
-      "batch_id": "tii-property-048",
-      "company_label": "113-新光產物保險股份有限公司",
-      "category_label": "意外保險",
-      "expected_total_count": 3630,
-      "official_row_count": 3630,
-      "imported_record_count": 2906,
-      "detail_expected_count": 2906,
-      "detail_saved_count": 2872,
-      "detail_missing_count": 34,
-      "detail_status": "partial_detail"
-    },
-    "current_waiting_batch": {
       "batch_id": "tii-property-049",
       "company_label": "114-華南產物保險股份有限公司",
-      "category_label": "汽車保險"
+      "category_label": "汽車保險",
+      "expected_total_count": 1273,
+      "official_row_count": 1273,
+      "imported_record_count": 1273,
+      "detail_expected_count": 1273,
+      "detail_saved_count": 1273,
+      "detail_missing_count": 0,
+      "detail_status": "complete"
+    },
+    "current_waiting_batch": {
+      "batch_id": "tii-property-050",
+      "company_label": "114-華南產物保險股份有限公司",
+      "category_label": "火災保險"
     }
   },
   "policy_content": {
