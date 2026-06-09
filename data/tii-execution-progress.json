@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T12:44:14+08:00",
+  "generated_at": "2026-06-09T12:55:13+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -17537,9 +17537,9 @@
     },
     {
       "batch_id": "tii-property-045",
-      "ran_at": "2026-06-09T12:44:14+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-09T12:54:03+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "113-新光產物保險股份有限公司",
       "category_label": "汽車保險",
       "query_hint": {
@@ -17553,14 +17553,96 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-045-captcha-1.jpg"
       ],
+      "result_file": "work\\tii-results\\tii-property-045.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 1198,
+        "total_pages": 120,
+        "official_row_count": 1198,
+        "unique_product_id_count": 1198,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 120,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-045-page-001.html",
+          "work\\tii-results\\tii-property-045-page-002.html",
+          "work\\tii-results\\tii-property-045-page-003.html",
+          "work\\tii-results\\tii-property-045-page-004.html",
+          "work\\tii-results\\tii-property-045-page-005.html",
+          "work\\tii-results\\tii-property-045-page-006.html",
+          "work\\tii-results\\tii-property-045-page-007.html",
+          "work\\tii-results\\tii-property-045-page-008.html",
+          "work\\tii-results\\tii-property-045-page-009.html",
+          "work\\tii-results\\tii-property-045-page-010.html",
+          "work\\tii-results\\tii-property-045-page-011.html",
+          "work\\tii-results\\tii-property-045-page-012.html",
+          "work\\tii-results\\tii-property-045-page-013.html",
+          "work\\tii-results\\tii-property-045-page-014.html",
+          "work\\tii-results\\tii-property-045-page-015.html",
+          "work\\tii-results\\tii-property-045-page-016.html",
+          "work\\tii-results\\tii-property-045-page-017.html",
+          "work\\tii-results\\tii-property-045-page-018.html",
+          "work\\tii-results\\tii-property-045-page-019.html",
+          "work\\tii-results\\tii-property-045-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 1198,
+        "saved_detail_count": 1198,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 1198,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-045\\113311112038010100.html",
+          "work\\tii-details\\tii-property-045\\113311424063010100.html",
+          "work\\tii-details\\tii-property-045\\113311228059010100.html",
+          "work\\tii-details\\tii-property-045\\113311424060010100.html",
+          "work\\tii-details\\tii-property-045\\113311112036010000.html",
+          "work\\tii-details\\tii-property-045\\113311112037010000.html",
+          "work\\tii-details\\tii-property-045\\113312113041010000.html",
+          "work\\tii-details\\tii-property-045\\113312113047010000.html",
+          "work\\tii-details\\tii-property-045\\113312113078010000.html",
+          "work\\tii-details\\tii-property-045\\113311112039010200.html",
+          "work\\tii-details\\tii-property-045\\113311112041010500.html",
+          "work\\tii-details\\tii-property-045\\113311210022010000.html",
+          "work\\tii-details\\tii-property-045\\113311210001010000.html",
+          "work\\tii-details\\tii-property-045\\113311210002010000.html",
+          "work\\tii-details\\tii-property-045\\113311210003010000.html",
+          "work\\tii-details\\tii-property-045\\113311210004010200.html",
+          "work\\tii-details\\tii-property-045\\113311210006010100.html",
+          "work\\tii-details\\tii-property-045\\113311210012010300.html",
+          "work\\tii-details\\tii-property-045\\113311210020010400.html",
+          "work\\tii-details\\tii-property-045\\113311424067010100.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-property-046",
+      "ran_at": "2026-06-09T12:55:13+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "113-新光產物保險股份有限公司",
+      "category_label": "火災保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "113",
+        "f_CategoryId1": "1_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-046-captcha-1.jpg"
+      ],
       "result_file": "",
       "fetched_pages": {},
       "fetched_details": {}
     }
   ],
   "summary": {
-    "attempted_batches": 45,
-    "completed_batches": 44,
+    "attempted_batches": 46,
+    "completed_batches": 45,
     "captcha_required_batches": 1
   }
 }
