@@ -1,5 +1,36 @@
 # Public Production Log
 
+## 2026-06-09 Thirty-seventh TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `213721a`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed thirty-seventh TII batch data: `dpl_39BbpgbwsS9snazFHkFcv7NR88nF`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-biee1a8zr.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- `data/site-summary.json` returned `200 OK` and includes `imported_policy_records=54974`, `detail_saved_count=54785`, `completed_batches=37`, `pending_manual_batches=269`, `latest_completed_batch=tii-property-037`, and `current_waiting_batch=tii-property-038`.
+- `data/tii-policy-results.json` returned `200 OK` and includes the same `54974` record / `54785` saved-detail production dataset, `completed_batch_count=37`, and `tii-property-037` in the completed batch list.
+- Manual page returned `200 OK` and includes the `54,974` record / `37 / 306` completed-batch update plus the `tii-property-038` waiting-batch note.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- `robots.txt` returned `200 OK` and remained `User-agent: *` / `Disallow: /`.
+- TII execution progress shows `attempted_batches=38`, `completed_batches=37`, `captcha_required_batches=1`; `tii-property-038` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-037` is complete by official rows: `25 / 25` official result rows, `25` imported product cards, and `25 / 25` saved detail pages.
+- Production data preserves same-company same-name multi-product groups as separate policy cards and keeps the same-name version timeline with sale date, discontinued date, and policy code.
+
 ## 2026-06-09 Thirty-sixth TII Batch Complete
 
 Repository:
