@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T15:20:28+08:00",
+  "generated_at": "2026-06-09T16:04:17+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -18085,9 +18085,9 @@
     },
     {
       "batch_id": "tii-property-050",
-      "ran_at": "2026-06-09T15:20:28+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-09T15:33:24+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "114-華南產物保險股份有限公司",
       "category_label": "火災保險",
       "query_hint": {
@@ -18101,14 +18101,476 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-050-captcha-1.jpg"
       ],
+      "result_file": "work\\tii-results\\tii-property-050.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 723,
+        "total_pages": 73,
+        "official_row_count": 723,
+        "unique_product_id_count": 723,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 73,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-050-page-001.html",
+          "work\\tii-results\\tii-property-050-page-002.html",
+          "work\\tii-results\\tii-property-050-page-003.html",
+          "work\\tii-results\\tii-property-050-page-004.html",
+          "work\\tii-results\\tii-property-050-page-005.html",
+          "work\\tii-results\\tii-property-050-page-006.html",
+          "work\\tii-results\\tii-property-050-page-007.html",
+          "work\\tii-results\\tii-property-050-page-008.html",
+          "work\\tii-results\\tii-property-050-page-009.html",
+          "work\\tii-results\\tii-property-050-page-010.html",
+          "work\\tii-results\\tii-property-050-page-011.html",
+          "work\\tii-results\\tii-property-050-page-012.html",
+          "work\\tii-results\\tii-property-050-page-013.html",
+          "work\\tii-results\\tii-property-050-page-014.html",
+          "work\\tii-results\\tii-property-050-page-015.html",
+          "work\\tii-results\\tii-property-050-page-016.html",
+          "work\\tii-results\\tii-property-050-page-017.html",
+          "work\\tii-results\\tii-property-050-page-018.html",
+          "work\\tii-results\\tii-property-050-page-019.html",
+          "work\\tii-results\\tii-property-050-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 723,
+        "saved_detail_count": 722,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 722,
+        "failed_detail_count": 1,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-050\\114121229029010000.html",
+          "work\\tii-details\\tii-property-050\\114121229029011200.html",
+          "work\\tii-details\\tii-property-050\\114121229029010100.html",
+          "work\\tii-details\\tii-property-050\\114121229029010200.html",
+          "work\\tii-details\\tii-property-050\\114121229029010300.html",
+          "work\\tii-details\\tii-property-050\\114121229029010400.html",
+          "work\\tii-details\\tii-property-050\\114121229029010500.html",
+          "work\\tii-details\\tii-property-050\\114121229029010600.html",
+          "work\\tii-details\\tii-property-050\\114121229029010700.html",
+          "work\\tii-details\\tii-property-050\\114121229029010800.html",
+          "work\\tii-details\\tii-property-050\\114121229029010900.html",
+          "work\\tii-details\\tii-property-050\\114121229029011000.html",
+          "work\\tii-details\\tii-property-050\\114121229029011100.html",
+          "work\\tii-details\\tii-property-050\\114122203002010100.html",
+          "work\\tii-details\\tii-property-050\\114122203002010200.html",
+          "work\\tii-details\\tii-property-050\\114122203002010300.html",
+          "work\\tii-details\\tii-property-050\\114122203002010400.html",
+          "work\\tii-details\\tii-property-050\\114122203002010500.html",
+          "work\\tii-details\\tii-property-050\\114122203002010600.html",
+          "work\\tii-details\\tii-property-050\\114122203002010700.html"
+        ],
+        "failed_details": [
+          {
+            "product_id": "114122203002018600",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=114122203002018600",
+            "reason": "invalid_detail_session"
+          }
+        ]
+      }
+    },
+    {
+      "batch_id": "tii-property-051",
+      "ran_at": "2026-06-09T15:41:39+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
+      "company_label": "114-華南產物保險股份有限公司",
+      "category_label": "海上保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "114",
+        "f_CategoryId1": "1_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-051-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-property-051.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 864,
+        "total_pages": 87,
+        "official_row_count": 864,
+        "unique_product_id_count": 864,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 87,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-051-page-001.html",
+          "work\\tii-results\\tii-property-051-page-002.html",
+          "work\\tii-results\\tii-property-051-page-003.html",
+          "work\\tii-results\\tii-property-051-page-004.html",
+          "work\\tii-results\\tii-property-051-page-005.html",
+          "work\\tii-results\\tii-property-051-page-006.html",
+          "work\\tii-results\\tii-property-051-page-007.html",
+          "work\\tii-results\\tii-property-051-page-008.html",
+          "work\\tii-results\\tii-property-051-page-009.html",
+          "work\\tii-results\\tii-property-051-page-010.html",
+          "work\\tii-results\\tii-property-051-page-011.html",
+          "work\\tii-results\\tii-property-051-page-012.html",
+          "work\\tii-results\\tii-property-051-page-013.html",
+          "work\\tii-results\\tii-property-051-page-014.html",
+          "work\\tii-results\\tii-property-051-page-015.html",
+          "work\\tii-results\\tii-property-051-page-016.html",
+          "work\\tii-results\\tii-property-051-page-017.html",
+          "work\\tii-results\\tii-property-051-page-018.html",
+          "work\\tii-results\\tii-property-051-page-019.html",
+          "work\\tii-results\\tii-property-051-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 864,
+        "saved_detail_count": 862,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 862,
+        "failed_detail_count": 2,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-051\\114332208014010000.html",
+          "work\\tii-details\\tii-property-051\\114332117004010000.html",
+          "work\\tii-details\\tii-property-051\\114332117009010000.html",
+          "work\\tii-details\\tii-property-051\\114132117008010000.html",
+          "work\\tii-details\\tii-property-051\\114232105001010000.html",
+          "work\\tii-details\\tii-property-051\\114232105001010100.html",
+          "work\\tii-details\\tii-property-051\\114132508014080001.html",
+          "work\\tii-details\\tii-property-051\\114132105001070101.html",
+          "work\\tii-details\\tii-property-051\\114132105001070001.html",
+          "work\\tii-details\\tii-property-051\\114132108004080001.html",
+          "work\\tii-details\\tii-property-051\\114132108009080001.html",
+          "work\\tii-details\\tii-property-051\\114132105016070000.html",
+          "work\\tii-details\\tii-property-051\\114132105003070000.html",
+          "work\\tii-details\\tii-property-051\\114132105003080000.html",
+          "work\\tii-details\\tii-property-051\\114132507013060000.html",
+          "work\\tii-details\\tii-property-051\\114132105003080001.html",
+          "work\\tii-details\\tii-property-051\\114132105001070002.html",
+          "work\\tii-details\\tii-property-051\\114132105001070102.html",
+          "work\\tii-details\\tii-property-051\\114132205005010600.html",
+          "work\\tii-details\\tii-property-051\\114132205005010700.html"
+        ],
+        "failed_details": [
+          {
+            "product_id": "114132206007072200",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=114132206007072200",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "114132205005016100",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=114132205005016100",
+            "reason": "invalid_detail_session"
+          }
+        ]
+      }
+    },
+    {
+      "batch_id": "tii-property-052",
+      "ran_at": "2026-06-09T15:57:57+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
+      "company_label": "114-華南產物保險股份有限公司",
+      "category_label": "意外保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "114",
+        "f_CategoryId1": "1_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-052-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-property-052.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 2359,
+        "total_pages": 236,
+        "official_row_count": 2359,
+        "unique_product_id_count": 1793,
+        "duplicate_product_id_count": 566,
+        "saved_page_count": 236,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-052-page-001.html",
+          "work\\tii-results\\tii-property-052-page-002.html",
+          "work\\tii-results\\tii-property-052-page-003.html",
+          "work\\tii-results\\tii-property-052-page-004.html",
+          "work\\tii-results\\tii-property-052-page-005.html",
+          "work\\tii-results\\tii-property-052-page-006.html",
+          "work\\tii-results\\tii-property-052-page-007.html",
+          "work\\tii-results\\tii-property-052-page-008.html",
+          "work\\tii-results\\tii-property-052-page-009.html",
+          "work\\tii-results\\tii-property-052-page-010.html",
+          "work\\tii-results\\tii-property-052-page-011.html",
+          "work\\tii-results\\tii-property-052-page-012.html",
+          "work\\tii-results\\tii-property-052-page-013.html",
+          "work\\tii-results\\tii-property-052-page-014.html",
+          "work\\tii-results\\tii-property-052-page-015.html",
+          "work\\tii-results\\tii-property-052-page-016.html",
+          "work\\tii-results\\tii-property-052-page-017.html",
+          "work\\tii-results\\tii-property-052-page-018.html",
+          "work\\tii-results\\tii-property-052-page-019.html",
+          "work\\tii-results\\tii-property-052-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 1793,
+        "saved_detail_count": 1790,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 1790,
+        "failed_detail_count": 3,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-052\\114141118021010000.html",
+          "work\\tii-details\\tii-property-052\\114142519004010000.html",
+          "work\\tii-details\\tii-property-052\\114142519005010000.html",
+          "work\\tii-details\\tii-property-052\\114142519003010000.html",
+          "work\\tii-details\\tii-property-052\\114141117043010000.html",
+          "work\\tii-details\\tii-property-052\\114143223044010000.html",
+          "work\\tii-details\\tii-property-052\\114143223047010000.html",
+          "work\\tii-details\\tii-property-052\\114142223049010000.html",
+          "work\\tii-details\\tii-property-052\\114142223032010000.html",
+          "work\\tii-details\\tii-property-052\\114141117017010000.html",
+          "work\\tii-details\\tii-property-052\\114142117009010000.html",
+          "work\\tii-details\\tii-property-052\\114142118022010000.html",
+          "work\\tii-details\\tii-property-052\\114142117019010000.html",
+          "work\\tii-details\\tii-property-052\\114142118025010000.html",
+          "work\\tii-details\\tii-property-052\\114142117007010000.html",
+          "work\\tii-details\\tii-property-052\\114142519001010000.html",
+          "work\\tii-details\\tii-property-052\\114142117002010000.html",
+          "work\\tii-details\\tii-property-052\\114142117002010100.html",
+          "work\\tii-details\\tii-property-052\\114142117002010200.html",
+          "work\\tii-details\\tii-property-052\\114142117002010300.html"
+        ],
+        "failed_details": [
+          {
+            "product_id": "114142118030013000",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=114142118030013000",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "114142519005022800",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=114142519005022800",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "114142118030013001",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=114142118030013001",
+            "reason": "invalid_detail_session"
+          }
+        ]
+      }
+    },
+    {
+      "batch_id": "tii-property-053",
+      "ran_at": "2026-06-09T16:02:40+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
+      "company_label": "115-國泰世紀產物保險股份有限公司",
+      "category_label": "汽車保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "115",
+        "f_CategoryId1": "1_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-053-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-property-053.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 1013,
+        "total_pages": 102,
+        "official_row_count": 1013,
+        "unique_product_id_count": 1013,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 102,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-053-page-001.html",
+          "work\\tii-results\\tii-property-053-page-002.html",
+          "work\\tii-results\\tii-property-053-page-003.html",
+          "work\\tii-results\\tii-property-053-page-004.html",
+          "work\\tii-results\\tii-property-053-page-005.html",
+          "work\\tii-results\\tii-property-053-page-006.html",
+          "work\\tii-results\\tii-property-053-page-007.html",
+          "work\\tii-results\\tii-property-053-page-008.html",
+          "work\\tii-results\\tii-property-053-page-009.html",
+          "work\\tii-results\\tii-property-053-page-010.html",
+          "work\\tii-results\\tii-property-053-page-011.html",
+          "work\\tii-results\\tii-property-053-page-012.html",
+          "work\\tii-results\\tii-property-053-page-013.html",
+          "work\\tii-results\\tii-property-053-page-014.html",
+          "work\\tii-results\\tii-property-053-page-015.html",
+          "work\\tii-results\\tii-property-053-page-016.html",
+          "work\\tii-results\\tii-property-053-page-017.html",
+          "work\\tii-results\\tii-property-053-page-018.html",
+          "work\\tii-results\\tii-property-053-page-019.html",
+          "work\\tii-results\\tii-property-053-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 1013,
+        "saved_detail_count": 93,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 93,
+        "failed_detail_count": 920,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-053\\115111112035010000.html",
+          "work\\tii-details\\tii-property-053\\115111112041010600.html",
+          "work\\tii-details\\tii-property-053\\115111112037010700.html",
+          "work\\tii-details\\tii-property-053\\115111112094010500.html",
+          "work\\tii-details\\tii-property-053\\115111210001010000.html",
+          "work\\tii-details\\tii-property-053\\115111210002010000.html",
+          "work\\tii-details\\tii-property-053\\115111210003010000.html",
+          "work\\tii-details\\tii-property-053\\115111210004010300.html",
+          "work\\tii-details\\tii-property-053\\115111210006010300.html",
+          "work\\tii-details\\tii-property-053\\115111210059010200.html",
+          "work\\tii-details\\tii-property-053\\115112113047010000.html",
+          "work\\tii-details\\tii-property-053\\115112113078010000.html",
+          "work\\tii-details\\tii-property-053\\115112113041010000.html",
+          "work\\tii-details\\tii-property-053\\115311210007010100.html",
+          "work\\tii-details\\tii-property-053\\115311210011010100.html",
+          "work\\tii-details\\tii-property-053\\115311210012010200.html",
+          "work\\tii-details\\tii-property-053\\115311210023010100.html",
+          "work\\tii-details\\tii-property-053\\115111210022010000.html",
+          "work\\tii-details\\tii-property-053\\115311210024010200.html",
+          "work\\tii-details\\tii-property-053\\115311112065010200.html"
+        ],
+        "failed_details": [
+          {
+            "product_id": "115312113044010301",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115312113044010301",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115311424079010002",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115311424079010002",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115311424067010102",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115311424067010102",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115311223081010001",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115311223081010001",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115112113044010100",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115112113044010100",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115111114057010004",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111114057010004",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115311210005010003",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115311210005010003",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115111114057010003",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111114057010003",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115312113044010302",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115312113044010302",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115111114057010005",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111114057010005",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115311210005010004",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115311210005010004",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115111114057010006",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111114057010006",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115111114057010007",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111114057010007",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115111210001010002",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111210001010002",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115111210002010002",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111210002010002",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115111210003010002",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111210003010002",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115111112094010502",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111112094010502",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115111112035010002",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111112035010002",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115111112041010602",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111112041010602",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "115111112044010802",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111112044010802",
+            "reason": "invalid_detail_session"
+          }
+        ]
+      }
+    },
+    {
+      "batch_id": "tii-property-054",
+      "ran_at": "2026-06-09T16:04:17+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "115-國泰世紀產物保險股份有限公司",
+      "category_label": "火災保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "115",
+        "f_CategoryId1": "1_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-054-captcha-1.jpg"
+      ],
       "result_file": "",
       "fetched_pages": {},
       "fetched_details": {}
     }
   ],
   "summary": {
-    "attempted_batches": 50,
-    "completed_batches": 49,
+    "attempted_batches": 54,
+    "completed_batches": 53,
     "captcha_required_batches": 1
   }
 }
