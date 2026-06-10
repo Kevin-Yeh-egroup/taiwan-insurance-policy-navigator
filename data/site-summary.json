@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-10T14:44:48+08:00",
+  "generated_at": "2026-06-10T14:55:51+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 74,
+    "attempted_batches": 75,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 73,
-    "completed_batches": 73,
-    "pending_manual_batches": 233,
+    "indexed_batches": 74,
+    "completed_batches": 74,
+    "pending_manual_batches": 232,
     "imported_policy_records": 92961,
     "detail_expected_count": 92961,
     "detail_saved_count": 91726,
@@ -18,9 +18,9 @@
     "same_name_version_group_count": 2067,
     "same_name_version_card_count": 5205,
     "latest_completed_batch": {
-      "batch_id": "tii-property-073",
+      "batch_id": "tii-property-074",
       "company_label": "130-法商科法斯產物保險股份有限公司台灣分公司",
-      "category_label": "汽車保險",
+      "category_label": "火災保險",
       "expected_total_count": 0,
       "official_row_count": 0,
       "imported_record_count": 0,
@@ -30,9 +30,9 @@
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "tii-property-074",
+      "batch_id": "tii-property-075",
       "company_label": "130-法商科法斯產物保險股份有限公司台灣分公司",
-      "category_label": "火災保險"
+      "category_label": "海上保險"
     }
   },
   "policy_content": {
