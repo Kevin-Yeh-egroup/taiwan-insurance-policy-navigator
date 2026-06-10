@@ -1,5 +1,38 @@
 # Public Production Log
 
+## 2026-06-10 Sixty-third TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `e3d1281`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed sixty-third TII batch data: `dpl_FQWbhjbjnHAu2Jid2WG9LjefjDyh`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-njfk5futb.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- `data/site-summary.json` returned `200 OK` and includes `imported_policy_records=86176`, `detail_saved_count=84969`, `detail_missing_count=1207`, `completed_batches=63`, `pending_manual_batches=243`, `latest_completed_batch=tii-property-063`, and `current_waiting_batch=tii-property-064`.
+- `data/tii-policy-results.json` range request returned `206 Partial Content` and includes the same `86176` record / `84969` saved-detail production dataset, `detail_missing_count=1207`, `completed_batch_count=63`, and `tii-property-063` in the completed batch list. Full object length reported `89075335` bytes.
+- Manual page returned `200 OK` and retained HTML meta robots `noindex,nofollow,noarchive`.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- `robots.txt` returned `200 OK` and remained `User-agent: *` / `Disallow: /`.
+- Production UI renders `86,176` imported records, `84,969 / 86,176` saved details, `63 / 306` completed batches, and the waiting-batch note for `tii-property-064`.
+- Production human-like check entered keyword `手術` through the visible search form; the query updated the URL and rendered `559` quick-read cards.
+- TII execution progress shows `attempted_batches=64`, `completed_batches=63`, `captcha_required_batches=1`; `tii-property-064` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-063` is complete by official rows: `1437 / 1437` official result rows, `1437` imported product cards, and `1433 / 1437` saved detail pages, with `4` detail pages marked for later backfill.
+- Production data preserves same-company same-name multi-product groups as separate policy cards and keeps the same-name version timeline with sale date, discontinued date, and policy code.
+
 ## 2026-06-10 Sixty-second TII Batch Complete
 
 Repository:
