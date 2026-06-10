@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-10T16:30:32+08:00",
+  "generated_at": "2026-06-10T16:34:20+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -20481,9 +20481,9 @@
     },
     {
       "batch_id": "tii-property-077",
-      "ran_at": "2026-06-10T16:30:32+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-10T16:32:44+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "131-美國環球產物保險股份有限公司",
       "category_label": "汽車保險",
       "query_hint": {
@@ -20497,14 +20497,82 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-077-captcha-1.jpg"
       ],
+      "result_file": "work\\tii-results\\tii-property-077.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 55,
+        "total_pages": 6,
+        "official_row_count": 55,
+        "unique_product_id_count": 55,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 6,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-077-page-001.html",
+          "work\\tii-results\\tii-property-077-page-002.html",
+          "work\\tii-results\\tii-property-077-page-003.html",
+          "work\\tii-results\\tii-property-077-page-004.html",
+          "work\\tii-results\\tii-property-077-page-005.html",
+          "work\\tii-results\\tii-property-077-page-006.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 55,
+        "saved_detail_count": 55,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 55,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-077\\131211112044010100.html",
+          "work\\tii-details\\tii-property-077\\131311112037010100.html",
+          "work\\tii-details\\tii-property-077\\131311210008010000.html",
+          "work\\tii-details\\tii-property-077\\131311424063010100.html",
+          "work\\tii-details\\tii-property-077\\131312113035010000.html",
+          "work\\tii-details\\tii-property-077\\131311112035010000.html",
+          "work\\tii-details\\tii-property-077\\131311210022010000.html",
+          "work\\tii-details\\tii-property-077\\131311228059010100.html",
+          "work\\tii-details\\tii-property-077\\131312211001010000.html",
+          "work\\tii-details\\tii-property-077\\131312211002010000.html",
+          "work\\tii-details\\tii-property-077\\131312211003010000.html",
+          "work\\tii-details\\tii-property-077\\131311112039010100.html",
+          "work\\tii-details\\tii-property-077\\131311210001010000.html",
+          "work\\tii-details\\tii-property-077\\131311210002010000.html",
+          "work\\tii-details\\tii-property-077\\131311210003010000.html",
+          "work\\tii-details\\tii-property-077\\131311210004010100.html",
+          "work\\tii-details\\tii-property-077\\131311210006010100.html",
+          "work\\tii-details\\tii-property-077\\131112113035010000.html",
+          "work\\tii-details\\tii-property-077\\131112113036010000.html",
+          "work\\tii-details\\tii-property-077\\131112113041010000.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-property-078",
+      "ran_at": "2026-06-10T16:34:20+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "131-美國環球產物保險股份有限公司",
+      "category_label": "火災保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "131",
+        "f_CategoryId1": "1_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-078-captcha-1.jpg"
+      ],
       "result_file": "",
       "fetched_pages": {},
       "fetched_details": {}
     }
   ],
   "summary": {
-    "attempted_batches": 77,
-    "completed_batches": 76,
+    "attempted_batches": 78,
+    "completed_batches": 77,
     "captcha_required_batches": 1
   }
 }
