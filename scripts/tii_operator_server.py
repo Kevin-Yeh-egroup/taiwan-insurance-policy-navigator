@@ -5,6 +5,7 @@ import json
 import subprocess
 import sys
 import threading
+import time
 import urllib.parse
 from datetime import datetime
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -19,6 +20,8 @@ RESULTS_PATH = ROOT / "data" / "tii-policy-results.json"
 WORK_DIR = ROOT / "work" / "tii-execution"
 JOB_PATH = ROOT / "work" / "tii-operator-job.json"
 JOB_LOCK = threading.Lock()
+READ_RETRY_ATTEMPTS = 30
+READ_RETRY_DELAY_SECONDS = 0.25
 
 
 def now_iso() -> str:
@@ -28,7 +31,19 @@ def now_iso() -> str:
 def load_json(path: Path, fallback: dict) -> dict:
     if not path.exists():
         return fallback
-    return json.loads(path.read_text(encoding="utf-8-sig"))
+    last_error = ""
+    for _ in range(READ_RETRY_ATTEMPTS):
+        try:
+            text = path.read_text(encoding="utf-8-sig")
+            if not text.strip():
+                raise json.JSONDecodeError("Empty JSON file", text, 0)
+            return json.loads(text)
+        except json.JSONDecodeError as exc:
+            last_error = f"{type(exc).__name__}: {exc}"
+            time.sleep(READ_RETRY_DELAY_SECONDS)
+    payload = dict(fallback)
+    payload["_load_error"] = last_error or "Unable to read JSON file."
+    return payload
 
 
 def write_json(path: Path, payload: dict) -> None:
@@ -154,6 +169,8 @@ def next_batch_id() -> str:
     ordered_batch_ids = batch_order()
     progress = load_json(PROGRESS_PATH, {"runs": []})
     results = load_json(RESULTS_PATH, {"completed_batches": [], "batch_summaries": []})
+    if results.get("_load_error"):
+        return ""
     completed = set(results.get("completed_batches", []))
     partial = [
         summary["batch_id"]
@@ -246,7 +263,11 @@ def html_page(message: str = "") -> bytes:
     mode_hint = "此批清單頁已完整保存；送出後會只補抓缺少的明細頁。" if counts["pages_complete"] else "送出後會抓完整清單頁，再補抓可用明細頁。"
     image_tag = ""
     if image:
-        image_tag = f'<img src="/captcha?batch_id={html.escape(batch_id)}" alt="TII captcha" class="captcha">'
+        image_version = f"{int(image.stat().st_mtime)}-{image.stat().st_size}"
+        image_tag = (
+            f'<img src="/captcha?batch_id={html.escape(batch_id)}&v={html.escape(image_version)}" '
+            'alt="TII captcha" class="captcha">'
+        )
     refresh_link = (
         f'<p><a href="/refresh?batch_id={html.escape(batch_id)}">換一張新的驗證碼</a></p>'
         if batch_id and not job_running
@@ -330,6 +351,11 @@ def html_page(message: str = "") -> bytes:
 
 
 class Handler(BaseHTTPRequestHandler):
+    def send_no_cache_headers(self) -> None:
+        self.send_header("Cache-Control", "no-store, no-cache, max-age=0, must-revalidate")
+        self.send_header("Pragma", "no-cache")
+        self.send_header("Expires", "0")
+
     def do_GET(self) -> None:
         parsed = urllib.parse.urlparse(self.path)
         if parsed.path == "/refresh":
@@ -338,6 +364,7 @@ class Handler(BaseHTTPRequestHandler):
             if batch_id:
                 clear_captcha_session(batch_id)
             self.send_response(303)
+            self.send_no_cache_headers()
             self.send_header("Location", "/submit")
             self.end_headers()
             return
@@ -349,11 +376,13 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_error(404)
                 return
             self.send_response(200)
+            self.send_no_cache_headers()
             self.send_header("Content-Type", "image/jpeg")
             self.end_headers()
             self.wfile.write(image.read_bytes())
             return
         self.send_response(200)
+        self.send_no_cache_headers()
         self.send_header("Content-Type", "text/html; charset=utf-8")
         self.end_headers()
         self.wfile.write(html_page())
@@ -368,6 +397,7 @@ class Handler(BaseHTTPRequestHandler):
         else:
             _, message = start_batch_job(batch_id, captcha)
         self.send_response(200)
+        self.send_no_cache_headers()
         self.send_header("Content-Type", "text/html; charset=utf-8")
         self.end_headers()
         self.wfile.write(html_page(message))
