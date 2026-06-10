@@ -1,5 +1,67 @@
 # Public Production Log
 
+## 2026-06-10 Sixty-sixth TII Batch Complete And Operator Refresh Fix
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `49fb8e8`
+- Operator refresh hardening commit: `5b6e7df`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed sixty-sixth TII batch data: `dpl_3gPjCavcgb7W5XJvZdhxCxj8EhSA`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-p0l1u2nt4.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- `data/site-summary.json` returned `200 OK` and includes `imported_policy_records=90925`, `detail_saved_count=89696`, `detail_missing_count=1229`, `completed_batches=66`, `pending_manual_batches=240`, `latest_completed_batch=tii-property-066`, and `current_waiting_batch=tii-property-067`.
+- `data/tii-policy-results.json` range request returned `206 Partial Content` and includes `record_count=90925`, `detail_saved_count=89696`, `completed_batch_count=66`, and `tii-property-066` in the completed batch list. Full object length reported `94005103` bytes.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- HTML meta robots remained `noindex,nofollow,noarchive`.
+- `robots.txt` returned `200 OK` and remained `User-agent: *` / `Disallow: /`.
+- `tii-property-066` is complete as a true no-result official batch: official total `0`, imported records `0`, saved details `0`, and `no_result_data=true`.
+- Local operator verification after `5b6e7df`: `/submit` shows next batch `tii-property-067`, hidden form batch `tii-property-067`, submit enabled, captcha image URL has a cache-busting `v=` value, and responses include `Cache-Control: no-store, no-cache, max-age=0, must-revalidate`.
+- The operator now retries transient JSON reads while the large `data/tii-policy-results.json` file is being rewritten, so the page should not crash or fall back to a stale batch during import.
+
+## 2026-06-10 Sixty-fifth TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `50de057`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed sixty-fifth TII batch data: `dpl_5edV3tgnKKcYMKkETHuaHA2682xw`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-mz0erh3bo.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- `data/site-summary.json` returned `200 OK` and includes `imported_policy_records=90925`, `detail_saved_count=89696`, `detail_missing_count=1229`, `completed_batches=65`, `pending_manual_batches=241`, `latest_completed_batch=tii-property-065`, and `current_waiting_batch=tii-property-066`.
+- `data/tii-policy-results.json` range request returned `206 Partial Content` and includes `record_count=90925`, `detail_saved_count=89696`, `completed_batch_count=65`, and `tii-property-065` in the completed batch list. Full object length reported `94004414` bytes.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- HTML meta robots remained `noindex,nofollow,noarchive`.
+- `robots.txt` returned `200 OK` and remained `User-agent: *` / `Disallow: /`.
+- `tii-property-065` is complete as a true no-result official batch: official total `0`, imported records `0`, saved details `0`, and `no_result_data=true`.
+- Zero-result TII batches are now indexed as completed batches instead of being treated as failures that ask Kevin to enter the same captcha again.
+
 ## 2026-06-10 Sixty-fourth TII Batch Complete
 
 Repository:
