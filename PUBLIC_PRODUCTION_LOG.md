@@ -1,5 +1,36 @@
 # Public Production Log
 
+## 2026-06-10 Sixtieth TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `d0c41be`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed sixtieth TII batch data: `dpl_F21fLhdKiSKpUgswNDVWWUdSNJ7D`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-dug3rxfo8.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- `data/site-summary.json` returned `200 OK` and includes `imported_policy_records=81681`, `detail_saved_count=80497`, `detail_missing_count=1184`, `completed_batches=60`, `pending_manual_batches=246`, `latest_completed_batch=tii-property-060`, and `current_waiting_batch=tii-property-061`.
+- `data/tii-policy-results.json` range request returned `206 Partial Content` and includes the same `81681` record / `80497` saved-detail production dataset, `detail_missing_count=1184`, `completed_batch_count=60`, and `tii-property-060` in the completed batch list. Full object length reported `84386081` bytes.
+- Manual page returned `200 OK` and includes the `81,681` record / `60 / 306` completed-batch update plus the `tii-property-061` waiting-batch note.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- `robots.txt` returned `200 OK` and remained `User-agent: *` / `Disallow: /`.
+- TII execution progress shows `attempted_batches=61`, `completed_batches=60`, `captcha_required_batches=1`; `tii-property-061` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-060` is complete by official rows: `2390 / 2390` official result rows, `1947` imported product cards, `443` official duplicate product-id rows, and `1944 / 1947` saved detail pages, with `3` detail pages marked for later backfill.
+- Production data preserves same-company same-name multi-product groups as separate policy cards and keeps the same-name version timeline with sale date, discontinued date, and policy code.
+
 ## 2026-06-10 Fifty-ninth TII Batch Complete
 
 Repository:
