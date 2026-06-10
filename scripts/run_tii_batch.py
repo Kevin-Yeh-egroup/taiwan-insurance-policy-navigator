@@ -230,10 +230,23 @@ def fetch_result_pages(
     else:
         page_one_bytes, _ = read_url(client, "https://insprod.tii.org.tw/ResultQueryAll.aspx?page=1")
         page_one_html = page_one_bytes.decode("utf-8", errors="replace")
-    ensure_result_page(page_one_html, batch_id)
     page_one_path = results_dir / f"{batch_id}-page-001.html"
     page_one_path.write_text(page_one_html, encoding="utf-8")
     total_count = result_total_count(page_one_html)
+    if total_count == 0 and "DetailList.aspx?productId=" not in page_one_html:
+        return {
+            "page_size": page_size,
+            "total_count": 0,
+            "total_pages": 0,
+            "official_row_count": 0,
+            "unique_product_id_count": 0,
+            "duplicate_product_id_count": 0,
+            "saved_page_count": 1,
+            "saved_page_sample": [str(page_one_path)],
+            "is_complete": True,
+            "no_result_data": True,
+        }
+    ensure_result_page(page_one_html, batch_id)
     detected_page_size = page_one_html.count("DetailList.aspx?productId=") or page_size
     page_size = detected_page_size
     total_pages = max(math.ceil(total_count / page_size), 1)

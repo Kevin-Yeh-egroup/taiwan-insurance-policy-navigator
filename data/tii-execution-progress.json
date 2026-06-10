@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-10T12:34:46+08:00",
+  "generated_at": "2026-06-10T12:51:52+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -19738,9 +19738,9 @@
     },
     {
       "batch_id": "tii-property-065",
-      "ran_at": "2026-06-10T12:34:46+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-10T12:51:52+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "128-比利時商裕利安宜產物保險股份有限公司台灣分公司",
       "category_label": "汽車保險",
       "query_hint": {
@@ -19754,14 +19754,57 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-065-captcha-1.jpg"
       ],
+      "result_file": "work\\tii-results\\tii-property-065.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 0,
+        "total_pages": 0,
+        "official_row_count": 0,
+        "unique_product_id_count": 0,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-065-page-001.html"
+        ],
+        "is_complete": true,
+        "no_result_data": true
+      },
+      "fetched_details": {
+        "detail_link_count": 0,
+        "saved_detail_count": 0,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 0,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-property-066",
+      "ran_at": "2026-06-10T12:49:49+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "128-比利時商裕利安宜產物保險股份有限公司台灣分公司",
+      "category_label": "火災保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "128",
+        "f_CategoryId1": "1_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-066-captcha-1.jpg"
+      ],
       "result_file": "",
       "fetched_pages": {},
       "fetched_details": {}
     }
   ],
   "summary": {
-    "attempted_batches": 65,
-    "completed_batches": 64,
+    "attempted_batches": 66,
+    "completed_batches": 65,
     "captcha_required_batches": 1
   }
 }

@@ -179,6 +179,13 @@ def captcha_image(batch_id: str) -> Path | None:
     return matches[-1] if matches else None
 
 
+def clear_captcha_session(batch_id: str) -> None:
+    for path in WORK_DIR.glob(f"{batch_id}-captcha-*"):
+        path.unlink(missing_ok=True)
+    for suffix in ["cookies.txt", "form.html"]:
+        (WORK_DIR / f"{batch_id}-{suffix}").unlink(missing_ok=True)
+
+
 def saved_counts(batch_id: str) -> dict[str, int | bool]:
     if not batch_id:
         return {"saved_pages": 0, "expected_pages": 0, "saved_details": 0, "pages_complete": False}
@@ -199,9 +206,11 @@ def saved_counts(batch_id: str) -> dict[str, int | bool]:
     }
 
 
-def ensure_captcha(batch_id: str) -> tuple[bool, str]:
+def ensure_captcha(batch_id: str, force_refresh: bool = False) -> tuple[bool, str]:
     if not batch_id:
         return False, "All TII batches are completed."
+    if force_refresh:
+        clear_captcha_session(batch_id)
     image = captcha_image(batch_id)
     progress = load_json(PROGRESS_PATH, {"runs": []})
     run = next((item for item in progress.get("runs", []) if item.get("batch_id") == batch_id), None)
@@ -219,7 +228,14 @@ def html_page(message: str = "") -> bytes:
     batch_id = next_batch_id()
     batch = batches.get(batch_id, {})
     job_running = job.get("status") == "running"
-    ok, prepare_message = (False, "A batch is running.") if job_running else ensure_captcha(batch_id) if batch_id else (False, "No pending batch.")
+    force_refresh = job.get("status") == "failed" and job.get("batch_id") == batch_id
+    ok, prepare_message = (
+        (False, "A batch is running.")
+        if job_running
+        else ensure_captcha(batch_id, force_refresh=force_refresh)
+        if batch_id
+        else (False, "No pending batch.")
+    )
     image = captcha_image(batch_id) if ok else None
     counts = saved_counts(batch_id)
     progress_hint = (
@@ -231,6 +247,11 @@ def html_page(message: str = "") -> bytes:
     image_tag = ""
     if image:
         image_tag = f'<img src="/captcha?batch_id={html.escape(batch_id)}" alt="TII captcha" class="captcha">'
+    refresh_link = (
+        f'<p><a href="/refresh?batch_id={html.escape(batch_id)}">換一張新的驗證碼</a></p>'
+        if batch_id and not job_running
+        else ""
+    )
     rows = "\n".join(
         f"<tr><td>{html.escape(run.get('batch_id', ''))}</td><td>{html.escape(run.get('status', ''))}</td><td>{html.escape(run.get('ran_at', ''))}</td></tr>"
         for run in progress.get("runs", [])[-10:]
@@ -287,6 +308,7 @@ def html_page(message: str = "") -> bytes:
     <p class="hint">{html.escape(progress_hint)}<br>{html.escape(mode_hint)}</p>
     <p>{html.escape(prepare_message[:600])}</p>
     {image_tag}
+    {refresh_link}
     <form method="post" action="/submit">
       <input type="hidden" name="batch_id" value="{html.escape(batch_id)}">
       <label>人工輸入驗證碼 <input name="captcha" autocomplete="off" inputmode="numeric" required autofocus></label>
@@ -310,6 +332,15 @@ def html_page(message: str = "") -> bytes:
 class Handler(BaseHTTPRequestHandler):
     def do_GET(self) -> None:
         parsed = urllib.parse.urlparse(self.path)
+        if parsed.path == "/refresh":
+            params = urllib.parse.parse_qs(parsed.query)
+            batch_id = params.get("batch_id", [""])[0]
+            if batch_id:
+                clear_captcha_session(batch_id)
+            self.send_response(303)
+            self.send_header("Location", "/submit")
+            self.end_headers()
+            return
         if parsed.path == "/captcha":
             params = urllib.parse.parse_qs(parsed.query)
             batch_id = params.get("batch_id", [""])[0]

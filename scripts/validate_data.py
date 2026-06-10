@@ -119,11 +119,14 @@ def main() -> None:
         if (record.get("company", ""), record.get("product_name", "")) in multi_product_name_groups:
             if int(record.get("same_name_product_id_count") or 0) <= 1:
                 fail(f"TII same-name different-product record missing version marker: {record.get('id')}")
-    tii_batch_ids_from_records = sorted({record.get("source_batch_id") for record in tii_results.get("records", [])})
-    if tii_batch_ids_from_records != sorted(tii_results.get("indexed_batches", [])):
-        fail("TII indexed_batches should be unique source_batch_id values, not page filenames")
     if not isinstance(tii_results.get("batch_summaries", []), list):
         fail("TII batch_summaries should be a list")
+    tii_batch_ids_from_records = {record.get("source_batch_id") for record in tii_results.get("records", [])}
+    tii_batch_ids_from_summaries = {summary.get("batch_id") for summary in tii_results.get("batch_summaries", [])}
+    if tii_batch_ids_from_summaries != set(tii_results.get("indexed_batches", [])):
+        fail("TII indexed_batches should match batch summary ids")
+    if not tii_batch_ids_from_records.issubset(tii_batch_ids_from_summaries):
+        fail("TII record source batches should be included in batch summaries")
     for summary in tii_results.get("batch_summaries", []):
         for field in [
             "batch_id",

@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-10T12:34:47+08:00",
+  "generated_at": "2026-06-10T12:49:50+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 65,
+    "attempted_batches": 66,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 64,
-    "completed_batches": 64,
-    "pending_manual_batches": 242,
+    "indexed_batches": 65,
+    "completed_batches": 65,
+    "pending_manual_batches": 241,
     "imported_policy_records": 90925,
     "detail_expected_count": 90925,
     "detail_saved_count": 89696,
@@ -18,21 +18,21 @@
     "same_name_version_group_count": 2009,
     "same_name_version_card_count": 5074,
     "latest_completed_batch": {
-      "batch_id": "tii-property-064",
-      "company_label": "118-中國信託產物保險股份有限公司",
-      "category_label": "意外保險",
-      "expected_total_count": 7087,
-      "official_row_count": 7087,
-      "imported_record_count": 4749,
-      "detail_expected_count": 4749,
-      "detail_saved_count": 4727,
-      "detail_missing_count": 22,
-      "detail_status": "partial_detail"
-    },
-    "current_waiting_batch": {
       "batch_id": "tii-property-065",
       "company_label": "128-比利時商裕利安宜產物保險股份有限公司台灣分公司",
-      "category_label": "汽車保險"
+      "category_label": "汽車保險",
+      "expected_total_count": 0,
+      "official_row_count": 0,
+      "imported_record_count": 0,
+      "detail_expected_count": 0,
+      "detail_saved_count": 0,
+      "detail_missing_count": 0,
+      "detail_status": "complete"
+    },
+    "current_waiting_batch": {
+      "batch_id": "tii-property-066",
+      "company_label": "128-比利時商裕利安宜產物保險股份有限公司台灣分公司",
+      "category_label": "火災保險"
     }
   },
   "policy_content": {

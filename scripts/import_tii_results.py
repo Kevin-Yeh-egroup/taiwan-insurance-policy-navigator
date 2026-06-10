@@ -290,7 +290,15 @@ def batch_summaries(records: list[dict], batch_meta: dict, expected_counts: dict
     for record in records:
         by_batch.setdefault(record["source_batch_id"], []).append(record)
     summaries: list[dict] = []
-    for batch_id, batch_records in sorted(by_batch.items()):
+    zero_result_batches = {
+        batch_id
+        for batch_id, run in batch_meta.items()
+        if run.get("status") == "submitted_result_saved"
+        and int((run.get("fetched_pages") or {}).get("total_count") or 0) == 0
+        and (run.get("fetched_pages") or {}).get("is_complete")
+    }
+    for batch_id in sorted(set(by_batch) | zero_result_batches):
+        batch_records = by_batch.get(batch_id, [])
         run = batch_meta.get(batch_id, {})
         fetched_pages = run.get("fetched_pages") or {}
         fallback = expected_counts.get(batch_id, {})
@@ -326,7 +334,16 @@ def batch_summaries(records: list[dict], batch_meta: dict, expected_counts: dict
             and unique_count == expected_unique_count
             and (not expected_pages or saved_page_count >= expected_pages)
         )
-        if expected_count and (complete_by_unique_count or complete_by_official_rows):
+        complete_by_no_results = bool(
+            run.get("status") == "submitted_result_saved"
+            and fetched_pages.get("is_complete")
+            and expected_count == 0
+            and official_row_count == 0
+            and imported_count == 0
+        )
+        if complete_by_no_results:
+            status = "complete"
+        elif expected_count and (complete_by_unique_count or complete_by_official_rows):
             status = "complete"
             if not expected_pages:
                 expected_pages = saved_page_count
