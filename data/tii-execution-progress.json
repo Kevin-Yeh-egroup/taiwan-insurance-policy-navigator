@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T17:42:17+08:00",
+  "generated_at": "2026-06-10T09:43:42+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -18995,9 +18995,9 @@
     },
     {
       "batch_id": "tii-property-059",
-      "ran_at": "2026-06-09T17:42:17+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-10T09:36:35+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "117-新安東京海上產物保險股份有限公司",
       "category_label": "海上保險",
       "query_hint": {
@@ -19011,14 +19011,112 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-059-captcha-1.jpg"
       ],
+      "result_file": "work\\tii-results\\tii-property-059.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 623,
+        "total_pages": 63,
+        "official_row_count": 623,
+        "unique_product_id_count": 623,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 63,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-059-page-001.html",
+          "work\\tii-results\\tii-property-059-page-002.html",
+          "work\\tii-results\\tii-property-059-page-003.html",
+          "work\\tii-results\\tii-property-059-page-004.html",
+          "work\\tii-results\\tii-property-059-page-005.html",
+          "work\\tii-results\\tii-property-059-page-006.html",
+          "work\\tii-results\\tii-property-059-page-007.html",
+          "work\\tii-results\\tii-property-059-page-008.html",
+          "work\\tii-results\\tii-property-059-page-009.html",
+          "work\\tii-results\\tii-property-059-page-010.html",
+          "work\\tii-results\\tii-property-059-page-011.html",
+          "work\\tii-results\\tii-property-059-page-012.html",
+          "work\\tii-results\\tii-property-059-page-013.html",
+          "work\\tii-results\\tii-property-059-page-014.html",
+          "work\\tii-results\\tii-property-059-page-015.html",
+          "work\\tii-results\\tii-property-059-page-016.html",
+          "work\\tii-results\\tii-property-059-page-017.html",
+          "work\\tii-results\\tii-property-059-page-018.html",
+          "work\\tii-results\\tii-property-059-page-019.html",
+          "work\\tii-results\\tii-property-059-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 623,
+        "saved_detail_count": 620,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 620,
+        "failed_detail_count": 3,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-059\\117132105001010000.html",
+          "work\\tii-details\\tii-property-059\\117132205005010000.html",
+          "work\\tii-details\\tii-property-059\\117132205006010000.html",
+          "work\\tii-details\\tii-property-059\\117132107008010000.html",
+          "work\\tii-details\\tii-property-059\\117132508014010000.html",
+          "work\\tii-details\\tii-property-059\\117132108004010000.html",
+          "work\\tii-details\\tii-property-059\\117132108009010000.html",
+          "work\\tii-details\\tii-property-059\\117132108013010000.html",
+          "work\\tii-details\\tii-property-059\\117132206007010001.html",
+          "work\\tii-details\\tii-property-059\\117132206007010100.html",
+          "work\\tii-details\\tii-property-059\\117132205006010100.html",
+          "work\\tii-details\\tii-property-059\\117132205006010200.html",
+          "work\\tii-details\\tii-property-059\\117132205006010300.html",
+          "work\\tii-details\\tii-property-059\\117132108009010100.html",
+          "work\\tii-details\\tii-property-059\\117132108009010200.html",
+          "work\\tii-details\\tii-property-059\\117132108009010300.html",
+          "work\\tii-details\\tii-property-059\\117132108013010100.html",
+          "work\\tii-details\\tii-property-059\\117132108013010200.html",
+          "work\\tii-details\\tii-property-059\\117132108013010300.html",
+          "work\\tii-details\\tii-property-059\\117132107008010100.html"
+        ],
+        "failed_details": [
+          {
+            "product_id": "117132205005011600",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=117132205005011600",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "117132205005010001",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=117132205005010001",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "117132205005010002",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=117132205005010002",
+            "reason": "invalid_detail_session"
+          }
+        ]
+      }
+    },
+    {
+      "batch_id": "tii-property-060",
+      "ran_at": "2026-06-10T09:43:42+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "117-新安東京海上產物保險股份有限公司",
+      "category_label": "意外保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "117",
+        "f_CategoryId1": "1_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-060-captcha-1.jpg"
+      ],
       "result_file": "",
       "fetched_pages": {},
       "fetched_details": {}
     }
   ],
   "summary": {
-    "attempted_batches": 59,
-    "completed_batches": 58,
+    "attempted_batches": 60,
+    "completed_batches": 59,
     "captcha_required_batches": 1
   }
 }
