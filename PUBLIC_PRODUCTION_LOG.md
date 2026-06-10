@@ -1,5 +1,36 @@
 # Public Production Log
 
+## 2026-06-10 Sixty-first TII Batch Complete
+
+Repository:
+
+- GitHub: <https://github.com/Kevin-Yeh-egroup/taiwan-insurance-policy-navigator>
+- Visibility: public
+- Branch: `main`
+- Completed-data commit: `4aa9681`
+
+Vercel:
+
+- Project: `taiwan-insurance-policy-navigator`
+- Team: `egroup-task3s-projects`
+- Production URL: <https://taiwan-insurance-policy-navigator.vercel.app/>
+- Verified deployment for completed sixty-first TII batch data: `dpl_9WrzXZkNchvGUH2nHZHXwAjVx2st`
+- Deployment URL: <https://taiwan-insurance-policy-navigator-9tu732uek.vercel.app>
+- Target: production
+- Status: READY
+
+Verification:
+
+- Root returned `200 OK`.
+- `data/site-summary.json` returned `200 OK` and includes `imported_policy_records=83030`, `detail_saved_count=81845`, `detail_missing_count=1185`, `completed_batches=61`, `pending_manual_batches=245`, `latest_completed_batch=tii-property-061`, and `current_waiting_batch=tii-property-062`.
+- `data/tii-policy-results.json` range request returned `206 Partial Content` and includes the same `83030` record / `81845` saved-detail production dataset, `detail_missing_count=1185`, `completed_batch_count=61`, and `tii-property-061` in the completed batch list. Full object length reported `85782136` bytes.
+- Manual page returned `200 OK` and includes the `83,030` record / `61 / 306` completed-batch update plus the `tii-property-062` waiting-batch note.
+- Vercel header remained `X-Robots-Tag: noindex, nofollow, noarchive`.
+- `robots.txt` returned `200 OK` and remained `User-agent: *` / `Disallow: /`.
+- TII execution progress shows `attempted_batches=62`, `completed_batches=61`, `captcha_required_batches=1`; `tii-property-062` is prepared and waiting for a fresh human-entered captcha.
+- `tii-property-061` is complete by official rows: `1349 / 1349` official result rows, `1349` imported product cards, and `1348 / 1349` saved detail pages, with `1` detail page marked for later backfill.
+- Production data preserves same-company same-name multi-product groups as separate policy cards and keeps the same-name version timeline with sale date, discontinued date, and policy code.
+
 ## 2026-06-10 Sixtieth TII Batch Complete
 
 Repository:
