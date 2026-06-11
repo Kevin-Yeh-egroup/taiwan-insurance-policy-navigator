@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-11T14:13:32+08:00",
+  "generated_at": "2026-06-11T14:15:10+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 93,
-    "waiting_captcha_batches": 0,
+    "attempted_batches": 94,
+    "waiting_captcha_batches": 1,
     "indexed_batches": 93,
     "completed_batches": 93,
     "pending_manual_batches": 213,
@@ -30,9 +30,9 @@
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "",
-      "company_label": "",
-      "category_label": ""
+      "batch_id": "tii-property-094",
+      "company_label": "144-三井住友產物保險股份有限公司",
+      "category_label": "火災保險"
     }
   },
   "policy_content": {

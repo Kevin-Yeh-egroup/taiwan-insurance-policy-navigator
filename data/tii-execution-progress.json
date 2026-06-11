@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T14:05:53+08:00",
+  "generated_at": "2026-06-11T14:14:23+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -21849,11 +21849,33 @@
         ],
         "failed_details": []
       }
+    },
+    {
+      "batch_id": "tii-property-094",
+      "ran_at": "2026-06-11T14:14:23+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "144-三井住友產物保險股份有限公司",
+      "category_label": "火災保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "144",
+        "f_CategoryId1": "1_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-094-captcha-1.jpg"
+      ],
+      "result_file": "",
+      "fetched_pages": {},
+      "fetched_details": {}
     }
   ],
   "summary": {
-    "attempted_batches": 93,
+    "attempted_batches": 94,
     "completed_batches": 93,
-    "captcha_required_batches": 0
+    "captcha_required_batches": 1
   }
 }
