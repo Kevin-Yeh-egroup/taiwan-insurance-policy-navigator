@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T12:03:59+08:00",
+  "generated_at": "2026-06-11T13:49:17+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -21641,9 +21641,9 @@
     },
     {
       "batch_id": "tii-property-091",
-      "ran_at": "2026-06-11T12:03:59+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-11T13:40:47+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "142-香港商亞洲保險有限公司台灣分公司",
       "category_label": "海上保險",
       "query_hint": {
@@ -21657,14 +21657,81 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-091-captcha-1.jpg"
       ],
+      "result_file": "work\\tii-results\\tii-property-091.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 44,
+        "total_pages": 5,
+        "official_row_count": 44,
+        "unique_product_id_count": 44,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 5,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-091-page-001.html",
+          "work\\tii-results\\tii-property-091-page-002.html",
+          "work\\tii-results\\tii-property-091-page-003.html",
+          "work\\tii-results\\tii-property-091-page-004.html",
+          "work\\tii-results\\tii-property-091-page-005.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 44,
+        "saved_detail_count": 44,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 44,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-091\\142132205006070001.html",
+          "work\\tii-details\\tii-property-091\\142132206007070001.html",
+          "work\\tii-details\\tii-property-091\\142332205005070002.html",
+          "work\\tii-details\\tii-property-091\\142332205006070002.html",
+          "work\\tii-details\\tii-property-091\\142332205006071701.html",
+          "work\\tii-details\\tii-property-091\\142332205006070201.html",
+          "work\\tii-details\\tii-property-091\\142332205006070301.html",
+          "work\\tii-details\\tii-property-091\\142332205006070401.html",
+          "work\\tii-details\\tii-property-091\\142332205006070501.html",
+          "work\\tii-details\\tii-property-091\\142332205006070101.html",
+          "work\\tii-details\\tii-property-091\\142332205006070701.html",
+          "work\\tii-details\\tii-property-091\\142332205006070801.html",
+          "work\\tii-details\\tii-property-091\\142332205006070901.html",
+          "work\\tii-details\\tii-property-091\\142332205006071001.html",
+          "work\\tii-details\\tii-property-091\\142332205006071101.html",
+          "work\\tii-details\\tii-property-091\\142332205006071201.html",
+          "work\\tii-details\\tii-property-091\\142332205006071301.html",
+          "work\\tii-details\\tii-property-091\\142332205006071401.html",
+          "work\\tii-details\\tii-property-091\\142332205006071501.html",
+          "work\\tii-details\\tii-property-091\\142332205006071601.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-property-092",
+      "ran_at": "2026-06-11T13:49:17+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "142-香港商亞洲保險有限公司台灣分公司",
+      "category_label": "意外保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "142",
+        "f_CategoryId1": "1_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-092-captcha-1.jpg"
+      ],
       "result_file": "",
       "fetched_pages": {},
       "fetched_details": {}
     }
   ],
   "summary": {
-    "attempted_batches": 91,
-    "completed_batches": 90,
+    "attempted_batches": 92,
+    "completed_batches": 91,
     "captcha_required_batches": 1
   }
 }
