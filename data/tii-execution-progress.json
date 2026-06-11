@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T15:33:15+08:00",
+  "generated_at": "2026-06-11T15:44:02+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -22252,9 +22252,9 @@
     },
     {
       "batch_id": "tii-property-100",
-      "ran_at": "2026-06-11T15:33:15+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-11T15:34:14+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "146-法商法國巴黎產物保險股份有限公司",
       "category_label": "意外保險",
       "query_hint": {
@@ -22268,14 +22268,81 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-100-captcha-1.jpg"
       ],
+      "result_file": "work\\tii-results\\tii-property-100.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 45,
+        "total_pages": 5,
+        "official_row_count": 45,
+        "unique_product_id_count": 45,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 5,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-100-page-001.html",
+          "work\\tii-results\\tii-property-100-page-002.html",
+          "work\\tii-results\\tii-property-100-page-003.html",
+          "work\\tii-results\\tii-property-100-page-004.html",
+          "work\\tii-results\\tii-property-100-page-005.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 45,
+        "saved_detail_count": 45,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 45,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-100\\145341223089010000.html",
+          "work\\tii-details\\tii-property-100\\145341223089010001.html",
+          "work\\tii-details\\tii-property-100\\145341526095010000.html",
+          "work\\tii-details\\tii-property-100\\145341526095010001.html",
+          "work\\tii-details\\tii-property-100\\145341526095010100.html",
+          "work\\tii-details\\tii-property-100\\145341526095010101.html",
+          "work\\tii-details\\tii-property-100\\145341526095010200.html",
+          "work\\tii-details\\tii-property-100\\145341526095010201.html",
+          "work\\tii-details\\tii-property-100\\145341526095010202.html",
+          "work\\tii-details\\tii-property-100\\145341526095010102.html",
+          "work\\tii-details\\tii-property-100\\145341526095010002.html",
+          "work\\tii-details\\tii-property-100\\145341526095010003.html",
+          "work\\tii-details\\tii-property-100\\145341526095010103.html",
+          "work\\tii-details\\tii-property-100\\145341223089010002.html",
+          "work\\tii-details\\tii-property-100\\145341526095010203.html",
+          "work\\tii-details\\tii-property-100\\145341526095010204.html",
+          "work\\tii-details\\tii-property-100\\145341526095010104.html",
+          "work\\tii-details\\tii-property-100\\145341223133010000.html",
+          "work\\tii-details\\tii-property-100\\145341223133010001.html",
+          "work\\tii-details\\tii-property-100\\145341223089010003.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-property-101",
+      "ran_at": "2026-06-11T15:44:02+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "196-台灣區漁船產物保險合作社",
+      "category_label": "汽車保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "196",
+        "f_CategoryId1": "1_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-101-captcha-1.jpg"
+      ],
       "result_file": "",
       "fetched_pages": {},
       "fetched_details": {}
     }
   ],
   "summary": {
-    "attempted_batches": 100,
-    "completed_batches": 99,
+    "attempted_batches": 101,
+    "completed_batches": 100,
     "captcha_required_batches": 1
   }
 }
