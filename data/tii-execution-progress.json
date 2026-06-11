@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T14:27:10+08:00",
+  "generated_at": "2026-06-11T14:46:53+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -21934,9 +21934,9 @@
     },
     {
       "batch_id": "tii-property-095",
-      "ran_at": "2026-06-11T14:27:10+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-11T14:32:31+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "144-三井住友產物保險股份有限公司",
       "category_label": "海上保險",
       "query_hint": {
@@ -21950,14 +21950,99 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-095-captcha-1.jpg"
       ],
+      "result_file": "work\\tii-results\\tii-property-095.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 168,
+        "total_pages": 17,
+        "official_row_count": 168,
+        "unique_product_id_count": 168,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 17,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-095-page-001.html",
+          "work\\tii-results\\tii-property-095-page-002.html",
+          "work\\tii-results\\tii-property-095-page-003.html",
+          "work\\tii-results\\tii-property-095-page-004.html",
+          "work\\tii-results\\tii-property-095-page-005.html",
+          "work\\tii-results\\tii-property-095-page-006.html",
+          "work\\tii-results\\tii-property-095-page-007.html",
+          "work\\tii-results\\tii-property-095-page-008.html",
+          "work\\tii-results\\tii-property-095-page-009.html",
+          "work\\tii-results\\tii-property-095-page-010.html",
+          "work\\tii-results\\tii-property-095-page-011.html",
+          "work\\tii-results\\tii-property-095-page-012.html",
+          "work\\tii-results\\tii-property-095-page-013.html",
+          "work\\tii-results\\tii-property-095-page-014.html",
+          "work\\tii-results\\tii-property-095-page-015.html",
+          "work\\tii-results\\tii-property-095-page-016.html",
+          "work\\tii-results\\tii-property-095-page-017.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 168,
+        "saved_detail_count": 167,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 167,
+        "failed_detail_count": 1,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-095\\144132205005010000.html",
+          "work\\tii-details\\tii-property-095\\144132205006010000.html",
+          "work\\tii-details\\tii-property-095\\144132206007010000.html",
+          "work\\tii-details\\tii-property-095\\144132105016070001.html",
+          "work\\tii-details\\tii-property-095\\144132105001070001.html",
+          "work\\tii-details\\tii-property-095\\144132105003070001.html",
+          "work\\tii-details\\tii-property-095\\144132105001070000.html",
+          "work\\tii-details\\tii-property-095\\144132105003070000.html",
+          "work\\tii-details\\tii-property-095\\144132105016070000.html",
+          "work\\tii-details\\tii-property-095\\144132206007075300.html",
+          "work\\tii-details\\tii-property-095\\144132206007075400.html",
+          "work\\tii-details\\tii-property-095\\144132206007075500.html",
+          "work\\tii-details\\tii-property-095\\144132206007075600.html",
+          "work\\tii-details\\tii-property-095\\144132206007075700.html",
+          "work\\tii-details\\tii-property-095\\144132206007070001.html",
+          "work\\tii-details\\tii-property-095\\144132206007070101.html",
+          "work\\tii-details\\tii-property-095\\144132206007070201.html",
+          "work\\tii-details\\tii-property-095\\144132206007070301.html",
+          "work\\tii-details\\tii-property-095\\144132206007070401.html",
+          "work\\tii-details\\tii-property-095\\144132206007070501.html"
+        ],
+        "failed_details": [
+          {
+            "product_id": "144132205005076400",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=144132205005076400",
+            "reason": "invalid_detail_session"
+          }
+        ]
+      }
+    },
+    {
+      "batch_id": "tii-property-096",
+      "ran_at": "2026-06-11T14:46:53+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "144-三井住友產物保險股份有限公司",
+      "category_label": "意外保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "144",
+        "f_CategoryId1": "1_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-096-captcha-1.jpg"
+      ],
       "result_file": "",
       "fetched_pages": {},
       "fetched_details": {}
     }
   ],
   "summary": {
-    "attempted_batches": 95,
-    "completed_batches": 94,
+    "attempted_batches": 96,
+    "completed_batches": 95,
     "captcha_required_batches": 1
   }
 }
