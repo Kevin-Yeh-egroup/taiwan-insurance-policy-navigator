@@ -22,10 +22,23 @@ def latest_run_for_batch(progress: dict, batch_id: str) -> dict:
 
 
 def latest_captcha_run(progress: dict) -> dict:
-    for run in reversed(progress.get("runs", [])):
-        if run.get("status") == "captcha_required":
-            return run
-    return {}
+    return max(
+        (run for run in progress.get("runs", []) if run.get("status") == "captcha_required"),
+        key=lambda run: run.get("ran_at", ""),
+        default={},
+    )
+
+
+def find_latest_completed_run(progress: dict, completed_batch_ids: set[str]) -> dict:
+    return max(
+        (
+            run
+            for run in progress.get("runs", [])
+            if run.get("status") == "submitted_result_saved" and run.get("batch_id") in completed_batch_ids
+        ),
+        key=lambda run: run.get("ran_at", ""),
+        default={},
+    )
 
 
 def main() -> None:
@@ -36,12 +49,15 @@ def main() -> None:
     policy_content = load_json("data/policy-content-extracts.json")
 
     batch_summaries = tii_results.get("batch_summaries", [])
-    latest_completed_id = (tii_results.get("completed_batches") or [""])[-1]
+    completed_batch_ids = set(tii_results.get("completed_batches") or [])
+    latest_completed_run = find_latest_completed_run(tii_progress, completed_batch_ids)
+    latest_completed_id = latest_completed_run.get("batch_id") or (tii_results.get("completed_batches") or [""])[-1]
     latest_completed_summary = next(
         (batch for batch in reversed(batch_summaries) if batch.get("batch_id") == latest_completed_id),
         {},
     )
-    latest_completed_run = latest_run_for_batch(tii_progress, latest_completed_id)
+    if not latest_completed_run:
+        latest_completed_run = latest_run_for_batch(tii_progress, latest_completed_id)
     waiting_run = latest_captcha_run(tii_progress)
 
     same_name_cards = [
