@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T16:47:27+08:00",
+  "generated_at": "2026-06-11T17:13:39+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -22543,9 +22543,9 @@
     },
     {
       "batch_id": "tii-property-106",
-      "ran_at": "2026-06-11T16:47:27+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-11T16:49:18+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "197-聯合保證保險股份有限公司",
       "category_label": "火災保險",
       "query_hint": {
@@ -22559,14 +22559,125 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-106-captcha-1.jpg"
       ],
-      "result_file": "",
-      "fetched_pages": {},
-      "fetched_details": {}
+      "result_file": "work\\tii-results\\tii-property-106.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 0,
+        "total_pages": 0,
+        "official_row_count": 0,
+        "unique_product_id_count": 0,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-106-page-001.html"
+        ],
+        "is_complete": true,
+        "no_result_data": true
+      },
+      "fetched_details": {
+        "detail_link_count": 0,
+        "saved_detail_count": 0,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 0,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-property-107",
+      "ran_at": "2026-06-11T16:57:35+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
+      "company_label": "197-聯合保證保險股份有限公司",
+      "category_label": "海上保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "197",
+        "f_CategoryId1": "1_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-107-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-property-107.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 0,
+        "total_pages": 0,
+        "official_row_count": 0,
+        "unique_product_id_count": 0,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-107-page-001.html"
+        ],
+        "is_complete": true,
+        "no_result_data": true
+      },
+      "fetched_details": {
+        "detail_link_count": 0,
+        "saved_detail_count": 0,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 0,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-property-108",
+      "ran_at": "2026-06-11T17:13:39+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
+      "company_label": "197-聯合保證保險股份有限公司",
+      "category_label": "意外保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "197",
+        "f_CategoryId1": "1_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-108-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-property-108.html",
+      "fetched_pages": {
+        "page_size": 4,
+        "total_count": 4,
+        "total_pages": 1,
+        "official_row_count": 4,
+        "unique_product_id_count": 4,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-108-page-001.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 4,
+        "saved_detail_count": 4,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 4,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-108\\197342321034010100.html",
+          "work\\tii-details\\tii-property-108\\197342321034010000.html",
+          "work\\tii-details\\tii-property-108\\197142321034010001.html",
+          "work\\tii-details\\tii-property-108\\197142321034010101.html"
+        ],
+        "failed_details": []
+      }
     }
   ],
   "summary": {
-    "attempted_batches": 106,
-    "completed_batches": 105,
-    "captcha_required_batches": 1
+    "attempted_batches": 108,
+    "completed_batches": 108,
+    "captcha_required_batches": 0
   }
 }
