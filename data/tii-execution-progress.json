@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T16:00:03+08:00",
+  "generated_at": "2026-06-11T16:37:20+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -22362,9 +22362,9 @@
     },
     {
       "batch_id": "tii-property-102",
-      "ran_at": "2026-06-11T16:00:03+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-11T16:02:21+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "196-台灣區漁船產物保險合作社",
       "category_label": "火災保險",
       "query_hint": {
@@ -22378,14 +22378,152 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-102-captcha-1.jpg"
       ],
+      "result_file": "work\\tii-results\\tii-property-102.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 0,
+        "total_pages": 0,
+        "official_row_count": 0,
+        "unique_product_id_count": 0,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-102-page-001.html"
+        ],
+        "is_complete": true,
+        "no_result_data": true
+      },
+      "fetched_details": {
+        "detail_link_count": 0,
+        "saved_detail_count": 0,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 0,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-property-103",
+      "ran_at": "2026-06-11T16:16:13+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
+      "company_label": "196-台灣區漁船產物保險合作社",
+      "category_label": "海上保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "196",
+        "f_CategoryId1": "1_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-103-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-property-103.html",
+      "fetched_pages": {
+        "page_size": 9,
+        "total_count": 9,
+        "total_pages": 1,
+        "official_row_count": 9,
+        "unique_product_id_count": 9,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-103-page-001.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 9,
+        "saved_detail_count": 9,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 9,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-103\\196131208014000000.html",
+          "work\\tii-details\\tii-property-103\\196331108009000000.html",
+          "work\\tii-details\\tii-property-103\\196331108004000000.html",
+          "work\\tii-details\\tii-property-103\\196132207013010000.html",
+          "work\\tii-details\\tii-property-103\\196132507013020000.html",
+          "work\\tii-details\\tii-property-103\\196132207000030000.html",
+          "work\\tii-details\\tii-property-103\\196132108000010000.html",
+          "work\\tii-details\\tii-property-103\\196132508014010000.html",
+          "work\\tii-details\\tii-property-103\\196132208013010000.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-property-104",
+      "ran_at": "2026-06-11T16:29:48+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
+      "company_label": "196-台灣區漁船產物保險合作社",
+      "category_label": "意外保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "196",
+        "f_CategoryId1": "1_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-104-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-property-104.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 0,
+        "total_pages": 0,
+        "official_row_count": 0,
+        "unique_product_id_count": 0,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-104-page-001.html"
+        ],
+        "is_complete": true,
+        "no_result_data": true
+      },
+      "fetched_details": {
+        "detail_link_count": 0,
+        "saved_detail_count": 0,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 0,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-property-105",
+      "ran_at": "2026-06-11T16:37:20+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "197-聯合保證保險股份有限公司",
+      "category_label": "汽車保險",
+      "query_hint": {
+        "categoryId": "1",
+        "CompanyID": "197",
+        "f_CategoryId1": "1_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-property-105-captcha-1.jpg"
+      ],
       "result_file": "",
       "fetched_pages": {},
       "fetched_details": {}
     }
   ],
   "summary": {
-    "attempted_batches": 102,
-    "completed_batches": 101,
+    "attempted_batches": 105,
+    "completed_batches": 104,
     "captcha_required_batches": 1
   }
 }

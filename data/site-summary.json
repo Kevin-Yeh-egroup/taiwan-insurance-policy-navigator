@@ -1,26 +1,26 @@
 {
-  "generated_at": "2026-06-11T16:00:36+08:00",
+  "generated_at": "2026-06-11T16:37:38+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 102,
+    "attempted_batches": 105,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 101,
-    "completed_batches": 101,
-    "pending_manual_batches": 205,
-    "imported_policy_records": 99814,
-    "detail_expected_count": 99814,
-    "detail_saved_count": 98488,
+    "indexed_batches": 104,
+    "completed_batches": 104,
+    "pending_manual_batches": 202,
+    "imported_policy_records": 99823,
+    "detail_expected_count": 99823,
+    "detail_saved_count": 98497,
     "detail_missing_count": 1326,
     "detail_coverage_rate": 0.9867,
-    "official_result_rows": 114749,
+    "official_result_rows": 114758,
     "official_duplicate_product_rows": 14935,
-    "same_name_version_group_count": 2206,
-    "same_name_version_card_count": 5496,
+    "same_name_version_group_count": 2207,
+    "same_name_version_card_count": 5498,
     "latest_completed_batch": {
-      "batch_id": "tii-property-101",
+      "batch_id": "tii-property-104",
       "company_label": "196-台灣區漁船產物保險合作社",
-      "category_label": "汽車保險",
+      "category_label": "意外保險",
       "expected_total_count": 0,
       "official_row_count": 0,
       "imported_record_count": 0,
@@ -30,9 +30,9 @@
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "tii-property-102",
-      "company_label": "196-台灣區漁船產物保險合作社",
-      "category_label": "火災保險"
+      "batch_id": "tii-property-105",
+      "company_label": "197-聯合保證保險股份有限公司",
+      "category_label": "汽車保險"
     }
   },
   "policy_content": {
