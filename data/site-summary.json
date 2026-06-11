@@ -1,38 +1,38 @@
 {
-  "generated_at": "2026-06-10T17:45:57+08:00",
+  "generated_at": "2026-06-11T09:41:03+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 83,
+    "attempted_batches": 84,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 82,
-    "completed_batches": 82,
-    "pending_manual_batches": 224,
-    "imported_policy_records": 94435,
-    "detail_expected_count": 94435,
-    "detail_saved_count": 93190,
+    "indexed_batches": 83,
+    "completed_batches": 83,
+    "pending_manual_batches": 223,
+    "imported_policy_records": 94557,
+    "detail_expected_count": 94557,
+    "detail_saved_count": 93312,
     "detail_missing_count": 1245,
     "detail_coverage_rate": 0.9868,
-    "official_result_rows": 108564,
+    "official_result_rows": 108686,
     "official_duplicate_product_rows": 14129,
     "same_name_version_group_count": 2085,
     "same_name_version_card_count": 5241,
     "latest_completed_batch": {
-      "batch_id": "tii-property-082",
-      "company_label": "132-美商安達產物保險股份有限公司台灣分公司",
-      "category_label": "火災保險",
-      "expected_total_count": 477,
-      "official_row_count": 477,
-      "imported_record_count": 477,
-      "detail_expected_count": 477,
-      "detail_saved_count": 467,
-      "detail_missing_count": 10,
-      "detail_status": "partial_detail"
-    },
-    "current_waiting_batch": {
       "batch_id": "tii-property-083",
       "company_label": "132-美商安達產物保險股份有限公司台灣分公司",
-      "category_label": "海上保險"
+      "category_label": "海上保險",
+      "expected_total_count": 122,
+      "official_row_count": 122,
+      "imported_record_count": 122,
+      "detail_expected_count": 122,
+      "detail_saved_count": 122,
+      "detail_missing_count": 0,
+      "detail_status": "complete"
+    },
+    "current_waiting_batch": {
+      "batch_id": "tii-property-084",
+      "company_label": "132-美商安達產物保險股份有限公司台灣分公司",
+      "category_label": "意外保險"
     }
   },
   "policy_content": {
