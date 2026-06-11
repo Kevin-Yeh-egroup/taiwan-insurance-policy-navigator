@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-11T14:01:46+08:00",
+  "generated_at": "2026-06-11T14:05:53+08:00",
   "runs": [
     {
       "batch_id": "tii-property-001",
@@ -21784,9 +21784,9 @@
     },
     {
       "batch_id": "tii-property-093",
-      "ran_at": "2026-06-11T14:01:46+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-11T14:05:53+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "144-三井住友產物保險股份有限公司",
       "category_label": "汽車保險",
       "query_hint": {
@@ -21800,14 +21800,60 @@
       "captcha_files": [
         "work\\tii-execution\\tii-property-093-captcha-1.jpg"
       ],
-      "result_file": "",
-      "fetched_pages": {},
-      "fetched_details": {}
+      "result_file": "work\\tii-results\\tii-property-093.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 59,
+        "total_pages": 6,
+        "official_row_count": 59,
+        "unique_product_id_count": 59,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 6,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-093-page-001.html",
+          "work\\tii-results\\tii-property-093-page-002.html",
+          "work\\tii-results\\tii-property-093-page-003.html",
+          "work\\tii-results\\tii-property-093-page-004.html",
+          "work\\tii-results\\tii-property-093-page-005.html",
+          "work\\tii-results\\tii-property-093-page-006.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 59,
+        "saved_detail_count": 59,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 59,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-093\\144311424063190001.html",
+          "work\\tii-details\\tii-property-093\\144111424063010100.html",
+          "work\\tii-details\\tii-property-093\\144311112035120001.html",
+          "work\\tii-details\\tii-property-093\\144311112036120001.html",
+          "work\\tii-details\\tii-property-093\\144311112039120001.html",
+          "work\\tii-details\\tii-property-093\\144311210001100001.html",
+          "work\\tii-details\\tii-property-093\\144311210002100001.html",
+          "work\\tii-details\\tii-property-093\\144311210003100001.html",
+          "work\\tii-details\\tii-property-093\\144311228059100001.html",
+          "work\\tii-details\\tii-property-093\\144311210022100001.html",
+          "work\\tii-details\\tii-property-093\\144311210006100001.html",
+          "work\\tii-details\\tii-property-093\\144111228059010100.html",
+          "work\\tii-details\\tii-property-093\\144111210022010000.html",
+          "work\\tii-details\\tii-property-093\\144111112035010000.html",
+          "work\\tii-details\\tii-property-093\\144111112036010000.html",
+          "work\\tii-details\\tii-property-093\\144111112037010100.html",
+          "work\\tii-details\\tii-property-093\\144111112039010100.html",
+          "work\\tii-details\\tii-property-093\\144111210001010000.html",
+          "work\\tii-details\\tii-property-093\\144111210002010000.html",
+          "work\\tii-details\\tii-property-093\\144111210003010100.html"
+        ],
+        "failed_details": []
+      }
     }
   ],
   "summary": {
     "attempted_batches": 93,
-    "completed_batches": 92,
-    "captcha_required_batches": 1
+    "completed_batches": 93,
+    "captcha_required_batches": 0
   }
 }
