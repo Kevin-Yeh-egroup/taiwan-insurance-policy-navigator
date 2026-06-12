@@ -222,19 +222,16 @@ def normalize_records(raw_records: list[dict], batch_meta: dict, detail_files: d
             compact = compact_cells(cells)
             if len(compact) < 3 or compact[0] == "保險商品名稱":
                 continue
-            sale_date = next((cell for cell in compact if DATE_PATTERN.match(cell)), "")
-            discontinued_date = ""
-            for cell in reversed(compact):
-                if DATE_PATTERN.match(cell):
-                    if cell != sale_date:
-                        discontinued_date = cell
-                    break
-            if not sale_date:
+            date_cells = [cell for cell in compact if DATE_PATTERN.match(cell)]
+            sale_date = date_cells[0] if date_cells else ""
+            discontinued_date = date_cells[-1] if len(date_cells) > 1 else ""
+            status_cell = next((cell for cell in reversed(compact) if "銷售" in cell or "停售" in cell), "")
+            if not sale_date and not product_id:
                 continue
             product_name = compact[0]
             company = normalize_company_label(run_meta.get("company_label", ""))
             category = run_meta.get("category_label", "")
-            sale_status = "已停售" if discontinued_date else "仍可投保或未標示停售"
+            sale_status = status_cell or ("已停售" if discontinued_date else "仍可投保或未標示停售")
         else:
             text = " | ".join(str(value) for value in raw.values())
             company = raw.get("公司名稱") or raw.get("公司") or ""
@@ -427,7 +424,7 @@ def main() -> None:
         "records": normalized_records,
         "compliance_note": "This importer parses files saved after a human completes TII captcha. It does not automate or bypass captcha.",
     }
-    Path(args.output).write_text(json.dumps(output, ensure_ascii=False, indent=2), encoding="utf-8")
+    Path(args.output).write_text(json.dumps(output, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
     print(json.dumps({"record_count": output["record_count"], "output": args.output}, ensure_ascii=False, indent=2))
 
 

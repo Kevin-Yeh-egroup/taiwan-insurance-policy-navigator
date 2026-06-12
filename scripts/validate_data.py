@@ -96,13 +96,21 @@ def main() -> None:
             "detail_url",
             "product_name",
             "sale_status",
-            "sale_date",
             "record_identity_key",
             "identity_basis",
             "edition_label",
         ]:
             if not record.get(field):
                 fail(f"TII imported record missing {field}: {record.get('id')}")
+        undated_official_status = any(
+            status in str(record.get("sale_status", "")) for status in ["未銷售", "未停售"]
+        )
+        if not record.get("sale_date") and not (
+            record.get("identity_basis") == "tii_product_id"
+            and record.get("detail_saved")
+            and undated_official_status
+        ):
+            fail(f"TII imported record missing sale_date: {record.get('id')}")
         if record.get("identity_basis") == "tii_product_id" and record.get("record_identity_key") != f"tii-product-id:{record.get('product_id')}":
             fail(f"TII record identity key should preserve productId: {record.get('id')}")
         if record.get("sale_status") == "已停售" and not record.get("discontinued_date"):
