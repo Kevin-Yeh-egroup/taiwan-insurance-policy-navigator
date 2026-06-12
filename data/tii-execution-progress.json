@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T16:56:59+08:00",
+  "generated_at": "2026-06-12T17:27:31+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -1417,9 +1417,9 @@
     },
     {
       "batch_id": "tii-life-019",
-      "ran_at": "2026-06-12T16:56:59+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-12T17:25:13+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "204-國泰人壽保險股份有限公司",
       "category_label": "傷害保險",
       "query_hint": {
@@ -1432,6 +1432,88 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-019-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-019.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 657,
+        "total_pages": 66,
+        "official_row_count": 657,
+        "unique_product_id_count": 657,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 66,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-019-page-001.html",
+          "work\\tii-results\\tii-life-019-page-002.html",
+          "work\\tii-results\\tii-life-019-page-003.html",
+          "work\\tii-results\\tii-life-019-page-004.html",
+          "work\\tii-results\\tii-life-019-page-005.html",
+          "work\\tii-results\\tii-life-019-page-006.html",
+          "work\\tii-results\\tii-life-019-page-007.html",
+          "work\\tii-results\\tii-life-019-page-008.html",
+          "work\\tii-results\\tii-life-019-page-009.html",
+          "work\\tii-results\\tii-life-019-page-010.html",
+          "work\\tii-results\\tii-life-019-page-011.html",
+          "work\\tii-results\\tii-life-019-page-012.html",
+          "work\\tii-results\\tii-life-019-page-013.html",
+          "work\\tii-results\\tii-life-019-page-014.html",
+          "work\\tii-results\\tii-life-019-page-015.html",
+          "work\\tii-results\\tii-life-019-page-016.html",
+          "work\\tii-results\\tii-life-019-page-017.html",
+          "work\\tii-results\\tii-life-019-page-018.html",
+          "work\\tii-results\\tii-life-019-page-019.html",
+          "work\\tii-results\\tii-life-019-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 657,
+        "saved_detail_count": 657,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 657,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-019\\204221M11A70100.html",
+          "work\\tii-details\\tii-life-019\\204211M11A50200.html",
+          "work\\tii-details\\tii-life-019\\204211M11A51200.html",
+          "work\\tii-details\\tii-life-019\\204247M12D52900.html",
+          "work\\tii-details\\tii-life-019\\204217M12D58200.html",
+          "work\\tii-details\\tii-life-019\\204237M12D58300.html",
+          "work\\tii-details\\tii-life-019\\204217M12D51600.html",
+          "work\\tii-details\\tii-life-019\\204237M12D50900.html",
+          "work\\tii-details\\tii-life-019\\204217M12D61500.html",
+          "work\\tii-details\\tii-life-019\\204217M11A61200.html",
+          "work\\tii-details\\tii-life-019\\204237M12D62500.html",
+          "work\\tii-details\\tii-life-019\\204237M12D64100.html",
+          "work\\tii-details\\tii-life-019\\204247M11ABGA00.html",
+          "work\\tii-details\\tii-life-019\\204297M11ABCE00.html",
+          "work\\tii-details\\tii-life-019\\204211R11ABI000.html",
+          "work\\tii-details\\tii-life-019\\204211R11ABM000.html",
+          "work\\tii-details\\tii-life-019\\204217M11ACP000.html",
+          "work\\tii-details\\tii-life-019\\204211A11A02000.html",
+          "work\\tii-details\\tii-life-019\\204211R11ABO000.html",
+          "work\\tii-details\\tii-life-019\\204211M11A51400.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-020",
+      "ran_at": "2026-06-12T17:27:31+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "204-國泰人壽保險股份有限公司",
+      "category_label": "健康保險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "204",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-020-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -24054,8 +24136,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 127,
-    "completed_batches": 126,
+    "attempted_batches": 128,
+    "completed_batches": 127,
     "captcha_required_batches": 1
   }
 }
