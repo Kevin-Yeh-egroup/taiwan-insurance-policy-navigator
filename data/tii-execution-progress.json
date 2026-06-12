@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-12T16:22:09+08:00",
+  "generated_at": "2026-06-12T16:28:38+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -1038,9 +1038,9 @@
     },
     {
       "batch_id": "tii-life-014",
-      "ran_at": "2026-06-12T16:22:08+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-12T16:26:19+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "203-保誠人壽保險股份有限公司",
       "category_label": "健康保險",
       "query_hint": {
@@ -1054,9 +1054,69 @@
       "captcha_files": [
         "work\\tii-execution\\tii-life-014-captcha-1.jpg"
       ],
-      "result_file": "",
-      "fetched_pages": {},
-      "fetched_details": {}
+      "result_file": "work\\tii-results\\tii-life-014.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 527,
+        "total_pages": 53,
+        "official_row_count": 527,
+        "unique_product_id_count": 527,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 53,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-014-page-001.html",
+          "work\\tii-results\\tii-life-014-page-002.html",
+          "work\\tii-results\\tii-life-014-page-003.html",
+          "work\\tii-results\\tii-life-014-page-004.html",
+          "work\\tii-results\\tii-life-014-page-005.html",
+          "work\\tii-results\\tii-life-014-page-006.html",
+          "work\\tii-results\\tii-life-014-page-007.html",
+          "work\\tii-results\\tii-life-014-page-008.html",
+          "work\\tii-results\\tii-life-014-page-009.html",
+          "work\\tii-results\\tii-life-014-page-010.html",
+          "work\\tii-results\\tii-life-014-page-011.html",
+          "work\\tii-results\\tii-life-014-page-012.html",
+          "work\\tii-results\\tii-life-014-page-013.html",
+          "work\\tii-results\\tii-life-014-page-014.html",
+          "work\\tii-results\\tii-life-014-page-015.html",
+          "work\\tii-results\\tii-life-014-page-016.html",
+          "work\\tii-results\\tii-life-014-page-017.html",
+          "work\\tii-results\\tii-life-014-page-018.html",
+          "work\\tii-results\\tii-life-014-page-019.html",
+          "work\\tii-results\\tii-life-014-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 527,
+        "saved_detail_count": 0,
+        "already_saved_detail_count": 523,
+        "total_saved_detail_count": 523,
+        "failed_detail_count": 4,
+        "saved_detail_sample": [],
+        "failed_details": [
+          {
+            "product_id": "203313MZ1A00321A11Z10000009",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=203313MZ1A00321A11Z10000009",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "203311MZ1A00221A11Z10000003",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=203311MZ1A00221A11Z10000003",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "203311RZ1A00521A11Z10000003",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=203311RZ1A00521A11Z10000003",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "203391EZ1A00121A11Z10000000",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=203391EZ1A00121A11Z10000000",
+            "reason": "invalid_detail_session"
+          }
+        ]
+      }
     },
     {
       "batch_id": "tii-life-015",
@@ -1139,6 +1199,28 @@
         ],
         "failed_details": []
       }
+    },
+    {
+      "batch_id": "tii-life-016",
+      "ran_at": "2026-06-12T16:28:38+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "203-保誠人壽保險股份有限公司",
+      "category_label": "傳統型年金",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "203",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-016-captcha-1.jpg"
+      ],
+      "result_file": "",
+      "fetched_pages": {},
+      "fetched_details": {}
     },
     {
       "batch_id": "tii-property-001",
@@ -23757,8 +23839,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 123,
-    "completed_batches": 122,
+    "attempted_batches": 124,
+    "completed_batches": 123,
     "captcha_required_batches": 1
   }
 }

@@ -1,38 +1,38 @@
 {
-  "generated_at": "2026-06-12T16:25:19+08:00",
+  "generated_at": "2026-06-12T16:28:50+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 123,
+    "attempted_batches": 124,
     "waiting_captcha_batches": 1,
     "indexed_batches": 123,
-    "completed_batches": 122,
-    "pending_manual_batches": 184,
-    "imported_policy_records": 107297,
+    "completed_batches": 123,
+    "pending_manual_batches": 183,
+    "imported_policy_records": 107387,
     "detail_expected_count": 107387,
-    "detail_saved_count": 105957,
-    "detail_missing_count": 1430,
-    "detail_coverage_rate": 0.9867,
+    "detail_saved_count": 106047,
+    "detail_missing_count": 1340,
+    "detail_coverage_rate": 0.9875,
     "official_result_rows": 122575,
-    "official_duplicate_product_rows": 15278,
+    "official_duplicate_product_rows": 15188,
     "same_name_version_group_count": 2209,
     "same_name_version_card_count": 5502,
     "latest_completed_batch": {
-      "batch_id": "tii-property-001",
-      "company_label": "101-臺灣產物保險股份有限公司",
-      "category_label": "汽車保險",
-      "expected_total_count": 962,
-      "official_row_count": 962,
-      "imported_record_count": 962,
-      "detail_expected_count": 962,
-      "detail_saved_count": 962,
-      "detail_missing_count": 0,
-      "detail_status": "complete"
-    },
-    "current_waiting_batch": {
       "batch_id": "tii-life-014",
       "company_label": "203-保誠人壽保險股份有限公司",
-      "category_label": "健康保險"
+      "category_label": "健康保險",
+      "expected_total_count": 527,
+      "official_row_count": 527,
+      "imported_record_count": 527,
+      "detail_expected_count": 527,
+      "detail_saved_count": 523,
+      "detail_missing_count": 4,
+      "detail_status": "partial_detail"
+    },
+    "current_waiting_batch": {
+      "batch_id": "tii-life-016",
+      "company_label": "203-保誠人壽保險股份有限公司",
+      "category_label": "傳統型年金"
     }
   },
   "policy_content": {
