@@ -21,9 +21,17 @@ def latest_run_for_batch(progress: dict, batch_id: str) -> dict:
     return {}
 
 
-def latest_captcha_run(progress: dict) -> dict:
+def active_captcha_runs(progress: dict, completed_batch_ids: set[str]) -> list[dict]:
+    return [
+        run
+        for run in progress.get("runs", [])
+        if run.get("batch_id") not in completed_batch_ids and run.get("status") == "captcha_required"
+    ]
+
+
+def latest_captcha_run(progress: dict, completed_batch_ids: set[str]) -> dict:
     return max(
-        (run for run in progress.get("runs", []) if run.get("status") == "captcha_required"),
+        active_captcha_runs(progress, completed_batch_ids),
         key=lambda run: run.get("ran_at", ""),
         default={},
     )
@@ -58,7 +66,7 @@ def main() -> None:
     )
     if not latest_completed_run:
         latest_completed_run = latest_run_for_batch(tii_progress, latest_completed_id)
-    waiting_run = latest_captcha_run(tii_progress)
+    waiting_run = latest_captcha_run(tii_progress, completed_batch_ids)
 
     same_name_cards = [
         record for record in tii_results.get("records", []) if int(record.get("same_name_product_id_count") or 0) > 1
@@ -80,7 +88,7 @@ def main() -> None:
         "tii": {
             "total_manual_batches": total_manual_batches,
             "attempted_batches": int(progress_summary.get("attempted_batches") or 0),
-            "waiting_captcha_batches": int(progress_summary.get("captcha_required_batches") or 0),
+            "waiting_captcha_batches": len(active_captcha_runs(tii_progress, completed_batch_ids)),
             "indexed_batches": int(tii_results.get("indexed_batch_count") or 0),
             "completed_batches": int(tii_results.get("completed_batch_count") or 0),
             "pending_manual_batches": int(tii_results.get("pending_manual_batch_count") or 0),

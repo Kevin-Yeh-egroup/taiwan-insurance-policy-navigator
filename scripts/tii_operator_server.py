@@ -79,6 +79,13 @@ def run_command(args: list[str], timeout: int = 14400) -> tuple[int, str]:
 
 
 def has_complete_saved_pages(batch_id: str) -> bool:
+    results = load_json(RESULTS_PATH, {"batch_summaries": []})
+    summary = next(
+        (item for item in results.get("batch_summaries", []) if item.get("batch_id") == batch_id),
+        None,
+    )
+    if summary and summary.get("status") != "complete":
+        return False
     saved_pages = list((ROOT / "work" / "tii-results").glob(f"{batch_id}-page-*.html"))
     marker = ROOT / "work" / "tii-results" / f"{batch_id}-pages-complete.json"
     if marker.exists():
@@ -177,7 +184,13 @@ def next_batch_id() -> str:
         for summary in results.get("batch_summaries", [])
         if summary.get("batch_id") in batches and summary.get("status") != "complete"
     ]
-    waiting = [run["batch_id"] for run in progress.get("runs", []) if "captcha" in run.get("status", "")]
+    waiting = [
+        run["batch_id"]
+        for run in progress.get("runs", [])
+        if run.get("batch_id") in batches
+        and run.get("batch_id") not in completed
+        and "captcha" in run.get("status", "")
+    ]
     if waiting:
         waiting_set = set(waiting)
         return next((batch_id for batch_id in ordered_batch_ids if batch_id in waiting_set), sorted(waiting)[0])
@@ -242,6 +255,12 @@ def html_page(message: str = "") -> bytes:
     progress = load_json(PROGRESS_PATH, {"summary": {}, "runs": []})
     results = load_json(RESULTS_PATH, {"record_count": 0, "pending_manual_batch_count": len(batches)})
     job = job_status()
+    completed_result_batches = set(results.get("completed_batches", []))
+    active_captcha_count = sum(
+        1
+        for run in progress.get("runs", [])
+        if run.get("batch_id") not in completed_result_batches and "captcha" in run.get("status", "")
+    )
     batch_id = next_batch_id()
     batch = batches.get(batch_id, {})
     job_running = job.get("status") == "running"
@@ -313,7 +332,7 @@ def html_page(message: str = "") -> bytes:
     <span><strong>{progress.get('summary', {}).get('attempted_batches', 0)}</strong>已啟動</span>
     <span><strong>{results.get('indexed_batch_count', 0)}</strong>已索引</span>
     <span><strong>{results.get('completed_batch_count', 0)}</strong>完整批次</span>
-    <span><strong>{progress.get('summary', {}).get('captcha_required_batches', 0)}</strong>等待驗證碼</span>
+    <span><strong>{active_captcha_count}</strong>等待驗證碼</span>
     <span><strong>{results.get('record_count', 0)}</strong>已匯入保單</span>
     <span><strong>{results.get('detail_saved_count', 0)}</strong>已保存明細</span>
   </div>

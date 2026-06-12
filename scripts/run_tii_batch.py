@@ -212,9 +212,54 @@ def result_total_count(html: str) -> int:
     return int(match.group(1).replace(",", "")) if match else 0
 
 
-def ensure_result_page(html: str, batch_id: str) -> None:
+def normalize_company_label(label: str) -> str:
+    return re.sub(r"^\d+-", "", label or "").strip()
+
+
+def company_markers(label: str) -> list[str]:
+    normalized = normalize_company_label(label)
+    if not normalized:
+        return []
+    markers = {normalized}
+    short = normalized
+    for suffix in [
+        "人壽保險股份有限公司",
+        "產物保險股份有限公司",
+        "保險股份有限公司",
+        "股份有限公司",
+    ]:
+        if short.endswith(suffix):
+            short = short[: -len(suffix)]
+            if short:
+                markers.add(short)
+    return sorted((marker for marker in markers if len(marker) >= 2), key=len, reverse=True)
+
+
+def ensure_result_page(
+    html: str,
+    batch_id: str,
+    expected_company_label: str = "",
+    expected_company_code: str = "",
+) -> None:
     if "DetailList.aspx?productId=" not in html:
         raise SystemExit(f"{batch_id} result page does not contain policy detail links; refusing to mark it completed.")
+    markers = company_markers(expected_company_label)
+    if markers and any(marker in html for marker in markers):
+        return
+    product_ids = re.findall(r"productId=([^&\"'>]+)", html)
+    if expected_company_code and product_ids:
+        matching = sum(1 for product_id in product_ids if product_id.startswith(expected_company_code))
+        if matching / len(product_ids) < 0.6:
+            raise SystemExit(
+                f"{batch_id} result page productId company code does not match expected company "
+                f"{expected_company_code}; refusing to save a mixed query page."
+            )
+        return
+    if markers and not any(marker in html for marker in markers):
+        raise SystemExit(
+            f"{batch_id} result page content does not match expected company {expected_company_label}; "
+            "refusing to save a mixed query page."
+        )
 
 
 def fetch_result_pages(
@@ -223,6 +268,8 @@ def fetch_result_pages(
     results_dir: Path,
     page_size: int = 10,
     max_pages: int = 500,
+    expected_company_label: str = "",
+    expected_company_code: str = "",
 ) -> dict:
     result_file = results_dir / f"{batch_id}.html"
     if result_file.exists():
@@ -246,7 +293,7 @@ def fetch_result_pages(
             "is_complete": True,
             "no_result_data": True,
         }
-    ensure_result_page(page_one_html, batch_id)
+    ensure_result_page(page_one_html, batch_id, expected_company_label, expected_company_code)
     detected_page_size = page_one_html.count("DetailList.aspx?productId=") or page_size
     page_size = detected_page_size
     total_pages = max(math.ceil(total_count / page_size), 1)
@@ -262,7 +309,7 @@ def fetch_result_pages(
             f"https://insprod.tii.org.tw/ResultQueryAll.aspx?page={page}",
         )
         page_html = page_bytes.decode("utf-8", errors="replace")
-        ensure_result_page(page_html, batch_id)
+        ensure_result_page(page_html, batch_id, expected_company_label, expected_company_code)
         page_path = results_dir / f"{batch_id}-page-{page:03d}.html"
         page_path.write_text(page_html, encoding="utf-8")
         saved_pages.append(str(page_path))
@@ -400,7 +447,15 @@ def main() -> None:
     client, cookie_jar = opener(cookie_path)
 
     if args.fetch_all_pages and not args.captcha and cookie_path.exists():
-        fetched_pages = fetch_result_pages(client, args.batch_id, results_dir, args.page_size, args.max_pages)
+        fetched_pages = fetch_result_pages(
+            client,
+            args.batch_id,
+            results_dir,
+            args.page_size,
+            args.max_pages,
+            batch.get("company_label", ""),
+            str(batch.get("company_code") or ""),
+        )
         fetched_details = (
             fetch_detail_pages(client, args.batch_id, results_dir, details_dir, args.detail_limit)
             if args.fetch_details
@@ -476,7 +531,15 @@ def main() -> None:
         result_path = str(result_file)
         status, note = classify_result(result_html, args.captcha)
         if args.fetch_all_pages and status == "submitted_result_saved":
-            fetched_pages = fetch_result_pages(client, args.batch_id, results_dir, args.page_size, args.max_pages)
+            fetched_pages = fetch_result_pages(
+                client,
+                args.batch_id,
+                results_dir,
+                args.page_size,
+                args.max_pages,
+                batch.get("company_label", ""),
+                str(batch.get("company_code") or ""),
+            )
         if args.fetch_details and status == "submitted_result_saved":
             fetched_details = fetch_detail_pages(client, args.batch_id, results_dir, details_dir, args.detail_limit)
     else:

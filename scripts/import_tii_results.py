@@ -107,9 +107,75 @@ def normalize_company_label(label: str) -> str:
     return re.sub(r"^\d+-", "", label or "").strip()
 
 
+def company_markers(label: str) -> list[str]:
+    normalized = normalize_company_label(label)
+    if not normalized:
+        return []
+    markers = {normalized}
+    short = normalized
+    for suffix in [
+        "人壽保險股份有限公司",
+        "產物保險股份有限公司",
+        "保險股份有限公司",
+        "股份有限公司",
+    ]:
+        if short.endswith(suffix):
+            short = short[: -len(suffix)]
+            if short:
+                markers.add(short)
+    return sorted((marker for marker in markers if len(marker) >= 2), key=len, reverse=True)
+
+
+def load_batch_plan(batch_plan_path: Path) -> dict:
+    if not batch_plan_path.exists():
+        return {}
+    plan = json.loads(batch_plan_path.read_text(encoding="utf-8"))
+    return {batch.get("id"): batch for batch in plan.get("tii_manual_matrix_batches", [])}
+
+
+def expected_company_label(batch_id: str, batch_meta: dict, batch_plan: dict) -> str:
+    run = batch_meta.get(batch_id, {})
+    planned = batch_plan.get(batch_id, {})
+    return run.get("company_label") or planned.get("company_label") or ""
+
+
+def expected_company_code(batch_id: str, batch_meta: dict, batch_plan: dict) -> str:
+    run = batch_meta.get(batch_id, {})
+    planned = batch_plan.get(batch_id, {})
+    query_hint = run.get("query_hint") or planned.get("query_hint") or {}
+    return str(query_hint.get("CompanyID") or planned.get("company_code") or "").strip()
+
+
 def source_batch_id(source_file: str) -> str:
     stem = Path(source_file).stem
     return re.sub(r"-page-\d+$", "", stem)
+
+
+def html_matches_batch_company(path: Path, batch_meta: dict, batch_plan: dict) -> bool:
+    batch_id = source_batch_id(path.name)
+    html = path.read_text(encoding="utf-8", errors="replace")
+    if "DetailList.aspx?productId=" not in html:
+        return True
+    markers = company_markers(expected_company_label(batch_id, batch_meta, batch_plan))
+    if markers and any(marker in html for marker in markers):
+        return True
+    expected_code = expected_company_code(batch_id, batch_meta, batch_plan)
+    product_ids = re.findall(r"productId=([^&\"'>]+)", html)
+    if expected_code and product_ids:
+        matching = sum(1 for product_id in product_ids if product_id.startswith(expected_code))
+        return matching / len(product_ids) >= 0.6
+    if not markers:
+        return True
+    return any(marker in html for marker in markers)
+
+
+def invalid_page_sources(input_dir: Path, batch_meta: dict, batch_plan: dict) -> dict[str, list[str]]:
+    invalid: dict[str, list[str]] = {}
+    for path in sorted(input_dir.glob("tii-*-page-*.html")):
+        if html_matches_batch_company(path, batch_meta, batch_plan):
+            continue
+        invalid.setdefault(source_batch_id(path.name), []).append(path.name)
+    return invalid
 
 
 def product_id_from_links(links: list[str]) -> tuple[str, str]:
@@ -137,9 +203,11 @@ def result_total_count(html: str) -> int:
     return int(match.group(1).replace(",", "")) if match else 0
 
 
-def result_expected_counts(input_dir: Path) -> dict[str, dict]:
+def result_expected_counts(input_dir: Path, batch_meta: dict, batch_plan: dict) -> dict[str, dict]:
     counts: dict[str, dict] = {}
     for path in sorted(input_dir.glob("tii-*.html")):
+        if re.search(r"-page-\d+\.html$", path.name) and not html_matches_batch_company(path, batch_meta, batch_plan):
+            continue
         batch_id = source_batch_id(path.name)
         html = path.read_text(encoding="utf-8", errors="replace")
         total_count = result_total_count(html)
@@ -174,7 +242,11 @@ def result_expected_counts(input_dir: Path) -> dict[str, dict]:
 def load_detail_files(details_dir: Path) -> dict[str, str]:
     if not details_dir.exists():
         return {}
-    return {path.stem: str(path) for path in details_dir.glob("tii-*/*.html")}
+    detail_files: dict[str, str] = {}
+    for path in sorted(details_dir.glob("tii-*/*.html")):
+        detail_files.setdefault(path.stem, str(path))
+        detail_files[f"{path.parent.name}:{path.stem}"] = str(path)
+    return detail_files
 
 
 def record_identity_key(
@@ -211,7 +283,7 @@ def add_same_name_metadata(records: list[dict]) -> None:
 
 def normalize_records(raw_records: list[dict], batch_meta: dict, detail_files: dict[str, str]) -> list[dict]:
     normalized: list[dict] = []
-    seen_product_ids: set[str] = set()
+    seen_product_ids_by_batch: dict[str, set[str]] = {}
     for raw in raw_records:
         cells = raw.get("cells")
         source_file = raw.get("source_file", "")
@@ -244,9 +316,11 @@ def normalize_records(raw_records: list[dict], batch_meta: dict, detail_files: d
         if not product_name or product_name == "保險商品名稱":
             continue
         if product_id:
+            seen_product_ids = seen_product_ids_by_batch.setdefault(batch_id, set())
             if product_id in seen_product_ids:
                 continue
             seen_product_ids.add(product_id)
+        detail_source_file = detail_files.get(f"{batch_id}:{product_id}") or detail_files.get(product_id, "")
 
         normalized.append(
             {
@@ -266,8 +340,8 @@ def normalize_records(raw_records: list[dict], batch_meta: dict, detail_files: d
                 ),
                 "identity_basis": "tii_product_id" if product_id else "company_category_name_dates",
                 "detail_url": detail_url,
-                "detail_saved": bool(product_id and product_id in detail_files),
-                "detail_source_file": detail_files.get(product_id, ""),
+                "detail_saved": bool(detail_source_file),
+                "detail_source_file": detail_source_file,
                 "product_name": product_name,
                 "sale_status": sale_status,
                 "sale_date": sale_date,
@@ -282,7 +356,12 @@ def normalize_records(raw_records: list[dict], batch_meta: dict, detail_files: d
     return normalized
 
 
-def batch_summaries(records: list[dict], batch_meta: dict, expected_counts: dict[str, dict]) -> list[dict]:
+def batch_summaries(
+    records: list[dict],
+    batch_meta: dict,
+    expected_counts: dict[str, dict],
+    invalid_sources: dict[str, list[str]],
+) -> list[dict]:
     by_batch: dict[str, list[dict]] = {}
     for record in records:
         by_batch.setdefault(record["source_batch_id"], []).append(record)
@@ -294,7 +373,7 @@ def batch_summaries(records: list[dict], batch_meta: dict, expected_counts: dict
         and int((run.get("fetched_pages") or {}).get("total_count") or 0) == 0
         and (run.get("fetched_pages") or {}).get("is_complete")
     }
-    for batch_id in sorted(set(by_batch) | zero_result_batches):
+    for batch_id in sorted(set(by_batch) | zero_result_batches | set(invalid_sources)):
         batch_records = by_batch.get(batch_id, [])
         run = batch_meta.get(batch_id, {})
         fetched_pages = run.get("fetched_pages") or {}
@@ -323,6 +402,7 @@ def batch_summaries(records: list[dict], batch_meta: dict, expected_counts: dict
         detail_missing_count = max(detail_expected_count - detail_saved_count, 0)
         detail_coverage_rate = round(detail_saved_count / detail_expected_count, 4) if detail_expected_count else 0
         expected_pages = int(fetched_pages.get("total_pages") or fallback.get("expected_total_pages") or 0)
+        page_content_mismatch_count = len(invalid_sources.get(batch_id, []))
         complete_by_unique_count = bool(expected_count and unique_count == expected_count and imported_count == expected_count)
         complete_by_official_rows = bool(
             expected_count
@@ -330,6 +410,7 @@ def batch_summaries(records: list[dict], batch_meta: dict, expected_counts: dict
             and unique_count == imported_count
             and unique_count == expected_unique_count
             and (not expected_pages or saved_page_count >= expected_pages)
+            and page_content_mismatch_count == 0
         )
         complete_by_no_results = bool(
             run.get("status") == "submitted_result_saved"
@@ -338,7 +419,9 @@ def batch_summaries(records: list[dict], batch_meta: dict, expected_counts: dict
             and official_row_count == 0
             and imported_count == 0
         )
-        if complete_by_no_results:
+        if page_content_mismatch_count:
+            status = "partial_index"
+        elif complete_by_no_results:
             status = "complete"
         elif expected_count and (complete_by_unique_count or complete_by_official_rows):
             status = "complete"
@@ -364,6 +447,8 @@ def batch_summaries(records: list[dict], batch_meta: dict, expected_counts: dict
                 "detail_saved_count": detail_saved_count,
                 "detail_missing_count": detail_missing_count,
                 "detail_coverage_rate": detail_coverage_rate,
+                "page_content_mismatch_count": page_content_mismatch_count,
+                "page_content_mismatch_sample": invalid_sources.get(batch_id, [])[:10],
                 "detail_status": "complete" if detail_missing_count == 0 else "partial_detail",
                 "requires_fresh_captcha_session": status != "complete",
                 "requires_detail_backfill_session": detail_missing_count > 0,
@@ -384,21 +469,27 @@ def main() -> None:
     args = parser.parse_args()
 
     input_dir = Path(args.input_dir)
+    batch_meta = load_batch_meta(Path(args.progress))
+    batch_plan = load_batch_plan(Path(args.batch_plan))
+    invalid_sources = invalid_page_sources(input_dir, batch_meta, batch_plan)
     raw_records: list[dict] = []
     for path in sorted(input_dir.glob("*")):
         if not path.name.startswith("tii-"):
             continue
         if path.suffix.lower() in {".html", ".htm"}:
+            if re.search(r"-page-\d+\.html$", path.name) and not html_matches_batch_company(
+                path, batch_meta, batch_plan
+            ):
+                continue
             raw_records.extend(parse_saved_html(path))
         elif path.suffix.lower() == ".csv":
             raw_records.extend(load_csv(path))
 
-    batch_meta = load_batch_meta(Path(args.progress))
     manual_batch_count = load_manual_batch_count(Path(args.batch_plan))
     detail_files = load_detail_files(Path(args.details_dir))
     normalized_records = normalize_records(raw_records, batch_meta, detail_files)
-    expected_counts = result_expected_counts(input_dir)
-    summaries = batch_summaries(normalized_records, batch_meta, expected_counts)
+    expected_counts = result_expected_counts(input_dir, batch_meta, batch_plan)
+    summaries = batch_summaries(normalized_records, batch_meta, expected_counts, invalid_sources)
     indexed_batches = [summary["batch_id"] for summary in summaries]
     completed_batches = [summary["batch_id"] for summary in summaries if summary["status"] == "complete"]
     detail_expected_count = sum(summary.get("detail_expected_count", 0) for summary in summaries)
@@ -419,6 +510,8 @@ def main() -> None:
         "completed_batch_count": len(completed_batches),
         "completed_batches": completed_batches,
         "partial_batch_count": sum(1 for summary in summaries if summary["status"] != "complete"),
+        "page_content_mismatch_batch_count": len(invalid_sources),
+        "page_content_mismatch_sources": invalid_sources,
         "batch_summaries": summaries,
         "pending_manual_batch_count": max(manual_batch_count - len(completed_batches), 0),
         "records": normalized_records,
