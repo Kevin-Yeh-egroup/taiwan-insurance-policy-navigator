@@ -16,6 +16,67 @@ def load_json(path: str) -> dict:
     return json.loads(file_path.read_text(encoding="utf-8"))
 
 
+def load_optional_json(path: str) -> dict:
+    file_path = Path(path)
+    if not file_path.exists():
+        return {}
+    return json.loads(file_path.read_text(encoding="utf-8"))
+
+
+def load_tii_manifest(tii_results: dict) -> dict:
+    manifest_path = tii_results.get("tii_manifest_path") or "data/tii/manifest.json"
+    return load_optional_json(manifest_path)
+
+
+def load_tii_records(tii_results: dict, tii_manifest: dict) -> list[dict]:
+    inline_records = tii_results.get("records") or []
+    if inline_records:
+        return inline_records
+    if not tii_results.get("records_are_sharded"):
+        fail("TII results have no inline records and are not marked as sharded")
+    if not tii_manifest:
+        fail("TII results are sharded but manifest is missing")
+    records: list[dict] = []
+    total_record_shard_bytes = 0
+    for shard in tii_manifest.get("record_shards", []):
+        path = Path(shard.get("path", ""))
+        if not path.exists():
+            fail(f"TII record shard is missing: {path}")
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        shard_records = payload.get("records") or []
+        if payload.get("record_count") != len(shard_records):
+            fail(f"TII record shard count mismatch: {path}")
+        if shard.get("record_count") != len(shard_records):
+            fail(f"TII manifest record shard count mismatch: {path}")
+        total_record_shard_bytes += path.stat().st_size
+        records.extend(shard_records)
+    total_index_records = 0
+    total_index_shard_bytes = 0
+    for shard in tii_manifest.get("index_shards", []):
+        path = Path(shard.get("path", ""))
+        if not path.exists():
+            fail(f"TII index shard is missing: {path}")
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        shard_records = payload.get("records") or []
+        if payload.get("record_count") != len(shard_records):
+            fail(f"TII index shard count mismatch: {path}")
+        if shard.get("record_count") != len(shard_records):
+            fail(f"TII manifest index shard count mismatch: {path}")
+        total_index_records += len(shard_records)
+        total_index_shard_bytes += path.stat().st_size
+    if tii_manifest.get("record_count") != len(records):
+        fail("TII manifest record_count does not match record shards")
+    if total_index_records != len(records):
+        fail("TII compact index shard records do not match full record shards")
+    if tii_results.get("record_count") != len(records):
+        fail("TII result record_count does not match sharded records length")
+    if tii_manifest.get("total_record_bytes") != total_record_shard_bytes:
+        fail("TII manifest total_record_bytes does not match shard files")
+    if tii_manifest.get("total_index_bytes") != total_index_shard_bytes:
+        fail("TII manifest total_index_bytes does not match index shard files")
+    return records
+
+
 def main() -> None:
     source_index = load_json("data/source-index.json")
     taxonomy = load_json("data/consumer-taxonomy.json")
@@ -23,6 +84,8 @@ def main() -> None:
     policy_insights = load_json("data/policy-insights.json")
     tii_metadata = load_json("data/tii-query-metadata.json")
     tii_results = load_json("data/tii-policy-results.json")
+    tii_manifest = load_tii_manifest(tii_results)
+    tii_records = load_tii_records(tii_results, tii_manifest)
     tii_execution_progress = load_json("data/tii-execution-progress.json")
     batch_plan = load_json("data/batch-plan.json")
     batch_progress = load_json("data/batch-progress.json")
@@ -75,7 +138,7 @@ def main() -> None:
     matrix_types = {batch.get("company_type") for batch in batch_plan["tii_manual_matrix_batches"]}
     if not {"property", "life"}.issubset(matrix_types):
         fail("TII manual matrix should include both property and life batches")
-    if tii_results.get("record_count") != len(tii_results.get("records", [])):
+    if tii_results.get("record_count") != len(tii_records):
         fail("TII result record_count does not match records length")
     tii_completed_batches = tii_results.get("completed_batch_count", len(tii_results.get("completed_batches", [])))
     if tii_completed_batches != len(tii_results.get("completed_batches", [])):
@@ -87,7 +150,7 @@ def main() -> None:
         fail("TII completed batches cannot exceed indexed batches")
     if tii_completed_batches > matrix_count:
         fail("TII completed batches cannot exceed manual matrix batch count")
-    for record in tii_results.get("records", []):
+    for record in tii_records:
         for field in [
             "source_batch_id",
             "company",
@@ -120,16 +183,16 @@ def main() -> None:
         if "raw_text" in record:
             fail(f"TII imported record should not publish raw_text: {record.get('id')}")
     same_name_groups: dict[tuple[str, str], set[str]] = {}
-    for record in tii_results.get("records", []):
+    for record in tii_records:
         same_name_groups.setdefault((record.get("company", ""), record.get("product_name", "")), set()).add(record.get("product_id", ""))
     multi_product_name_groups = {key: ids for key, ids in same_name_groups.items() if len({item for item in ids if item}) > 1}
-    for record in tii_results.get("records", []):
+    for record in tii_records:
         if (record.get("company", ""), record.get("product_name", "")) in multi_product_name_groups:
             if int(record.get("same_name_product_id_count") or 0) <= 1:
                 fail(f"TII same-name different-product record missing version marker: {record.get('id')}")
     if not isinstance(tii_results.get("batch_summaries", []), list):
         fail("TII batch_summaries should be a list")
-    tii_batch_ids_from_records = {record.get("source_batch_id") for record in tii_results.get("records", [])}
+    tii_batch_ids_from_records = {record.get("source_batch_id") for record in tii_records}
     tii_batch_ids_from_summaries = {summary.get("batch_id") for summary in tii_results.get("batch_summaries", [])}
     if tii_batch_ids_from_summaries != set(tii_results.get("indexed_batches", [])):
         fail("TII indexed_batches should match batch summary ids")

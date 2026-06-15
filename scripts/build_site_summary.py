@@ -12,6 +12,13 @@ def load_json(path: str) -> dict:
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
+def load_optional_json(path: str) -> dict:
+    file_path = Path(path)
+    if not file_path.exists():
+        return {}
+    return json.loads(file_path.read_text(encoding="utf-8"))
+
+
 def latest_run_for_batch(progress: dict, batch_id: str) -> dict:
     if not batch_id:
         return {}
@@ -51,6 +58,7 @@ def find_latest_completed_run(progress: dict, completed_batch_ids: set[str]) -> 
 
 def main() -> None:
     tii_results = load_json("data/tii-policy-results.json")
+    tii_manifest = load_optional_json(tii_results.get("tii_manifest_path") or "data/tii/manifest.json")
     tii_progress = load_json("data/tii-execution-progress.json")
     batch_plan = load_json("data/batch-plan.json")
     crawl_status = load_json("data/crawl-status.json")
@@ -76,6 +84,16 @@ def main() -> None:
         for record in same_name_cards
         if record.get("company") and record.get("product_name")
     }
+    same_name_group_count = len(same_name_groups) or int(
+        tii_results.get("same_name_version_group_count")
+        or tii_manifest.get("same_name_version_group_count")
+        or 0
+    )
+    same_name_card_count = len(same_name_cards) or int(
+        tii_results.get("same_name_version_card_count")
+        or tii_manifest.get("same_name_version_card_count")
+        or 0
+    )
 
     total_manual_batches = int(batch_plan.get("summary", {}).get("tii_manual_matrix_batch_count") or 0)
     progress_summary = tii_progress.get("summary", {})
@@ -101,8 +119,8 @@ def main() -> None:
             "official_duplicate_product_rows": sum(
                 int(batch.get("duplicate_product_id_count") or 0) for batch in batch_summaries
             ),
-            "same_name_version_group_count": len(same_name_groups),
-            "same_name_version_card_count": len(same_name_cards),
+            "same_name_version_group_count": same_name_group_count,
+            "same_name_version_card_count": same_name_card_count,
             "latest_completed_batch": {
                 "batch_id": latest_completed_id,
                 "company_label": latest_completed_run.get("company_label", ""),

@@ -12,6 +12,9 @@ const state = {
   policyInsights: null,
   tiiMetadata: null,
   tiiResults: null,
+  tiiManifest: null,
+  tiiIndexRecords: null,
+  tiiIndexLoadPromise: null,
   tiiExecutionProgress: null,
   siteSummary: null,
   batchPlan: null,
@@ -56,6 +59,13 @@ function escapeHtml(value) {
 
 function normalize(value) {
   return String(value ?? "").trim().toLowerCase();
+}
+
+function matchesQuery(searchText, query) {
+  const normalizedQuery = normalize(query);
+  if (!normalizedQuery) return true;
+  const haystack = normalize(searchText);
+  return normalizedQuery.split(/\s+/).filter(Boolean).every((term) => haystack.includes(term));
 }
 
 function kindLabel(kind) {
@@ -156,6 +166,11 @@ async function loadSiteSummary() {
   }
 }
 
+async function fetchJsonOrFallback(path, fallback) {
+  const response = await fetch(path);
+  return response.ok ? response.json() : fallback;
+}
+
 async function loadData() {
   const [
     sourceIndex,
@@ -164,6 +179,7 @@ async function loadData() {
     policyInsights,
     tiiMetadata,
     tiiResults,
+    tiiManifest,
     tiiExecutionProgress,
     batchPlan,
     batchProgress,
@@ -174,11 +190,11 @@ async function loadData() {
     fetch("./data/crawl-status.json").then((response) => response.json()),
     fetch("./data/policy-insights.json").then((response) => response.json()),
     fetch("./data/tii-query-metadata.json").then((response) => response.json()),
-    fetch("./data/tii-policy-results.json").then((response) =>
-      response.ok ? response.json() : { record_count: 0, records: [], completed_batches: [] },
-    ),
-    fetch("./data/tii-execution-progress.json").then((response) =>
-      response.ok ? response.json() : { summary: { attempted_batches: 0, completed_batches: 0, captcha_required_batches: 0 }, runs: [] },
+    fetchJsonOrFallback("./data/tii-policy-results.json", { record_count: 0, records: [], completed_batches: [] }),
+    fetchJsonOrFallback("./data/tii/manifest.json", { record_count: 0, index_shards: [], record_shards: [] }),
+    fetchJsonOrFallback(
+      "./data/tii-execution-progress.json",
+      { summary: { attempted_batches: 0, completed_batches: 0, captcha_required_batches: 0 }, runs: [] },
     ),
     fetch("./data/batch-plan.json").then((response) => response.json()),
     fetch("./data/batch-progress.json").then((response) => (response.ok ? response.json() : null)),
@@ -190,6 +206,7 @@ async function loadData() {
   state.policyInsights = policyInsights;
   state.tiiMetadata = tiiMetadata;
   state.tiiResults = tiiResults;
+  state.tiiManifest = tiiManifest;
   state.tiiExecutionProgress = tiiExecutionProgress;
   state.batchPlan = batchPlan;
   state.batchProgress = batchProgress;
@@ -202,12 +219,14 @@ function populateFilters() {
   const kindFilter = document.getElementById("kindFilter");
 
   const policyRecords = state.policyContentExtracts?.records || [];
-  const companies = [...new Set(policyRecords.map((item) => item.company).filter(Boolean))].sort((a, b) =>
-    a.localeCompare(b, "zh-Hant-TW"),
+  const tiiCompanies = (state.tiiManifest?.company_counts || []).map((item) => item.company).filter(Boolean);
+  const tiiCategories = (state.tiiManifest?.category_counts || []).map((item) => item.category).filter(Boolean);
+  const companies = [...new Set([...policyRecords.map((item) => item.company).filter(Boolean), ...tiiCompanies])].sort(
+    (a, b) => a.localeCompare(b, "zh-Hant-TW"),
   );
-  const kinds = [...new Set(policyRecords.map((item) => item.product_type || "其他"))].sort((a, b) =>
-    a.localeCompare(b, "zh-Hant-TW"),
-  );
+  const kinds = [
+    ...new Set([...policyRecords.map((item) => item.product_type || "其他"), ...tiiCategories]),
+  ].sort((a, b) => a.localeCompare(b, "zh-Hant-TW"));
 
   companyFilter.innerHTML = [
     '<option value="all">全部公司</option>',
@@ -336,6 +355,174 @@ function barRows(rows, options = {}) {
     .join("");
 }
 
+function tiiDetailUrl(productId) {
+  return productId ? `https://insprod.tii.org.tw/DetailList.aspx?productId=${encodeURIComponent(productId)}` : "";
+}
+
+function expandTiiIndexRecord(record) {
+  const versionCount = Number(record.v || 1);
+  return {
+    product_name: record.n,
+    company: record.c,
+    product_type: record.k || "TII 匯入",
+    sale_status: record.s,
+    product_id: record.p,
+    sale_date: record.sd,
+    discontinued_date: record.dd,
+    policy_url: state.tiiMetadata?.source_url,
+    detail_url: tiiDetailUrl(record.p),
+    origin: "保發中心",
+    version_note:
+      versionCount > 1
+        ? `同公司同名商品有 ${formatNumber.format(versionCount)} 個不同 productId；請依銷售日、停售日、productId 與官方明細分別判讀。`
+        : "",
+    display_version:
+      record.e ||
+      `銷售日 ${record.sd || "未標示"}｜停售日 ${record.dd || "未標示"}｜productId ${record.p || "未標示"}`,
+    flags: [
+      "TII 匯入",
+      record.b || "人工批次",
+      record.p ? `productId ${record.p}` : "",
+      versionCount > 1 ? `同名不同版 ${versionCount}` : "",
+      record.d ? "明細已保存" : "明細待抓取",
+    ].filter(Boolean),
+  };
+}
+
+function localDiscontinuedPolicies() {
+  return (state.policyInsights.discontinued_policies || []).map((policy) => ({
+    ...policy,
+    origin: "來源文件",
+    display_version: policy.version_text || "版本未標示",
+    flags: policy.content_flags || [],
+  }));
+}
+
+function discontinuedSearchText(policy) {
+  return normalize(
+    [
+      policy.product_name,
+      policy.company,
+      policy.product_type,
+      policy.sale_status,
+      policy.product_id,
+      policy.sale_date,
+      policy.discontinued_date,
+      policy.display_version,
+      policy.origin,
+      ...(policy.flags || []),
+    ].join(" "),
+  );
+}
+
+function discontinuedMatchesFilters(policy) {
+  const query = normalize(state.search);
+  if (state.company !== "all" && policy.company !== state.company) return false;
+  if (state.kind !== "all" && policy.product_type !== state.kind) return false;
+  if (!query) return true;
+  return matchesQuery(discontinuedSearchText(policy), query);
+}
+
+function tiiIndexShardsForCurrentFilters() {
+  return state.tiiManifest?.index_shards || [];
+}
+
+async function ensureTiiIndexLoaded() {
+  if (state.tiiIndexRecords) return state.tiiIndexRecords;
+  if (state.tiiIndexLoadPromise) return state.tiiIndexLoadPromise;
+  const shards = tiiIndexShardsForCurrentFilters();
+  state.tiiIndexLoadPromise = Promise.all(
+    shards.map((shard) =>
+      fetch(`./${shard.path}`).then((response) => {
+        if (!response.ok) throw new Error(`TII index shard not available: ${shard.path}`);
+        return response.json();
+      }),
+    ),
+  ).then((payloads) => {
+    const records = payloads.flatMap((payload) => payload.records || []);
+    state.tiiIndexRecords = records;
+    state.tiiIndexLoadPromise = null;
+    return records;
+  });
+  return state.tiiIndexLoadPromise;
+}
+
+function renderDiscontinuedPolicyItem(policy, versionTimelineMap) {
+  return `
+    <article class="policy-item">
+      <div>
+        <strong>${escapeHtml(policy.product_name)}</strong>
+        <div class="policy-meta">
+          <span>${escapeHtml(policy.company)}</span>
+          <span>${escapeHtml(policy.product_type)}</span>
+          <span>${escapeHtml(policy.display_version || "版本未標示")}</span>
+          <span>${escapeHtml(policy.origin)}</span>
+        </div>
+        <div class="policy-flags">
+          ${(policy.flags || []).map((flag) => `<span class="chip">${escapeHtml(flag)}</span>`).join("")}
+        </div>
+        ${policy.version_note ? `<p class="version-note">${escapeHtml(policy.version_note)}</p>` : ""}
+        ${renderVersionTimeline(policy, versionTimelineMap)}
+      </div>
+      <div class="policy-card-actions">
+        ${
+          policy.detail_url
+            ? `<a class="button secondary" href="${escapeHtml(policy.detail_url)}" target="_blank" rel="noreferrer">官方明細</a>`
+            : ""
+        }
+        ${
+          policy.policy_url
+            ? `<a class="button secondary" href="${escapeHtml(policy.policy_url)}" target="_blank" rel="noreferrer">官方查詢</a>`
+            : '<span class="badge muted">待補來源</span>'
+        }
+      </div>
+    </article>
+  `;
+}
+
+function renderDiscontinuedList() {
+  const localPolicies = localDiscontinuedPolicies();
+  const tiiTotal = Number(state.tiiManifest?.record_count || state.tiiResults?.record_count || 0);
+  const tiiPolicies = state.tiiIndexRecords ? state.tiiIndexRecords.map(expandTiiIndexRecord) : [];
+  const allPolicies = [...localPolicies, ...tiiPolicies];
+  const rows = allPolicies.filter(discontinuedMatchesFilters);
+  const displayCount = state.tiiIndexRecords ? rows.length : localPolicies.length + tiiTotal;
+  const versionTimelineMap = buildVersionTimelineMap(rows);
+  const container = document.getElementById("discontinuedList");
+  setText("discontinuedCount", `${formatNumber.format(displayCount)} 筆`);
+
+  if (!state.tiiIndexRecords) {
+    const localRows = localPolicies.filter(discontinuedMatchesFilters);
+    const localHtml = localRows.slice(0, 12).map((policy) => renderDiscontinuedPolicyItem(policy, versionTimelineMap)).join("");
+    const loadingText = state.tiiIndexLoadPromise ? "TII 索引載入中。" : `TII 已分片保存 ${formatNumber.format(tiiTotal)} 筆。`;
+    container.innerHTML = `
+      ${localHtml}
+      <div class="empty">
+        <strong>${escapeHtml(loadingText)}</strong>
+        <span>輸入關鍵字查詢，或先載入 compact 索引後再看保發中心清單。</span>
+        ${state.tiiIndexLoadPromise ? "" : '<button class="button secondary" type="button" data-load-tii-index>載入 TII 索引</button>'}
+      </div>
+    `;
+    return;
+  }
+
+  if (!rows.length) {
+    container.innerHTML =
+      '<div class="empty"><strong>找不到符合條件的停售保單。</strong><span>請改用公司、商品名稱、productId、銷售日或停售日查詢。</span></div>';
+    return;
+  }
+
+  container.innerHTML = rows.slice(0, 120).map((policy) => renderDiscontinuedPolicyItem(policy, versionTimelineMap)).join("");
+  if (rows.length > 120) {
+    container.insertAdjacentHTML(
+      "beforeend",
+      `<div class="empty"><strong>目前先顯示前 120 筆。</strong><span>符合條件共 ${formatNumber.format(
+        rows.length,
+      )} 筆；請用公司、類別、productId 或日期縮小範圍。</span></div>`,
+    );
+  }
+}
+
 function renderPolicyInsights() {
   renderInsightMetrics();
   document.getElementById("statusBars").innerHTML = barRows(state.policyInsights.status_counts, {
@@ -343,82 +530,7 @@ function renderPolicyInsights() {
   });
   document.getElementById("typeBars").innerHTML = barRows(state.policyInsights.type_counts.slice(0, 8));
   document.getElementById("companyBars").innerHTML = barRows(state.policyInsights.company_counts.slice(0, 8));
-
-  const discontinued = [
-    ...(state.policyInsights.discontinued_policies || []).map((policy) => ({
-      ...policy,
-      origin: "來源文件",
-      display_version: policy.version_text || "版本未標示",
-      flags: policy.content_flags || [],
-    })),
-    ...(state.tiiResults?.records || []).map((record) => ({
-      product_name: record.product_name,
-      company: record.company,
-      product_type: record.insurance_category || "TII 匯入",
-      sale_status: record.sale_status,
-      product_id: record.product_id,
-      sale_date: record.sale_date,
-      discontinued_date: record.discontinued_date,
-      policy_url: state.tiiMetadata?.source_url,
-      detail_url: record.detail_url,
-      origin: "保發中心",
-      version_note: record.same_name_version_note || "",
-      display_version:
-        record.edition_label ||
-        `銷售日 ${record.sale_date || "未標示"}｜停售日 ${record.discontinued_date || "未標示"}｜productId ${
-          record.product_id || "未標示"
-        }`,
-      flags: [
-        "TII 匯入",
-        record.source_batch_id || "人工批次",
-        record.product_id ? `productId ${record.product_id}` : "",
-        record.same_name_product_id_count > 1 ? `同名不同版 ${record.same_name_product_id_count}` : "",
-        record.detail_saved ? "明細已保存" : "明細待抓取",
-      ].filter(Boolean),
-    })),
-  ];
-  const versionTimelineMap = buildVersionTimelineMap(discontinued);
-  setText("discontinuedCount", `${formatNumber.format(discontinued.length)} 筆`);
-  document.getElementById("discontinuedList").innerHTML = discontinued.length
-    ? discontinued
-        .map(
-          (policy) => `
-            <article class="policy-item">
-              <div>
-                <strong>${escapeHtml(policy.product_name)}</strong>
-                <div class="policy-meta">
-                  <span>${escapeHtml(policy.company)}</span>
-                  <span>${escapeHtml(policy.product_type)}</span>
-                  <span>${escapeHtml(policy.display_version || "版本未標示")}</span>
-                  <span>${escapeHtml(policy.origin)}</span>
-                </div>
-                <div class="policy-flags">
-                  ${(policy.flags || []).map((flag) => `<span class="chip">${escapeHtml(flag)}</span>`).join("")}
-                </div>
-                ${
-                  policy.version_note
-                    ? `<p class="version-note">${escapeHtml(policy.version_note)}</p>`
-                    : ""
-                }
-                ${renderVersionTimeline(policy, versionTimelineMap)}
-              </div>
-              <div class="policy-card-actions">
-                ${
-                  policy.detail_url
-                    ? `<a class="button secondary" href="${escapeHtml(policy.detail_url)}" target="_blank" rel="noreferrer">官方明細</a>`
-                    : ""
-                }
-                ${
-                  policy.policy_url
-                    ? `<a class="button secondary" href="${escapeHtml(policy.policy_url)}" target="_blank" rel="noreferrer">官方查詢</a>`
-                    : '<span class="badge muted">待補來源</span>'
-                }
-              </div>
-            </article>
-          `,
-        )
-        .join("")
-    : '<div class="empty"><strong>目前沒有已停售保單資料。</strong><span>完成 TII 人工驗證碼查詢匯入後會出現在這裡。</span></div>';
+  renderDiscontinuedList();
 
   const metadata = state.tiiMetadata;
   const tiiManualCount =
@@ -440,12 +552,10 @@ function renderPolicyInsights() {
   const latestDuplicateBatch = [...tiiBatchSummaries]
     .reverse()
     .find((batch) => (batch.duplicate_product_id_count || 0) > 0);
-  const tiiSameNameVersionedCards = (state.tiiResults?.records || []).filter(
-    (record) => (record.same_name_product_id_count || 0) > 1,
-  );
-  const tiiSameNameVersionedGroups = new Set(
-    tiiSameNameVersionedCards.map((record) => `${record.company || ""}||${record.product_name || ""}`),
-  );
+  const tiiSameNameVersionedCardCount =
+    state.tiiResults?.same_name_version_card_count || state.tiiManifest?.same_name_version_card_count || 0;
+  const tiiSameNameVersionedGroupCount =
+    state.tiiResults?.same_name_version_group_count || state.tiiManifest?.same_name_version_group_count || 0;
   const duplicateNote = latestDuplicateBatch
     ? `<p class="tii-status-note">官方結果目前累計 ${formatNumber.format(
         tiiOfficialRows,
@@ -457,11 +567,11 @@ function renderPolicyInsights() {
         latestDuplicateBatch.unique_product_id_count || 0,
       )} 張。</p>`
     : "";
-  const sameNameVersionNote = tiiSameNameVersionedGroups.size
+  const sameNameVersionNote = tiiSameNameVersionedGroupCount
     ? `<p class="tii-status-note">已辨識 ${formatNumber.format(
-        tiiSameNameVersionedGroups.size,
+        tiiSameNameVersionedGroupCount,
       )} 組同公司同名但不同 productId 的商品，共 ${formatNumber.format(
-        tiiSameNameVersionedCards.length,
+        tiiSameNameVersionedCardCount,
       )} 張卡；本站會依銷售日、停售日、productId 與官方明細分別呈現，不以名稱合併。</p>`
     : "";
   const detailGapNote = tiiDetailMissing
@@ -967,7 +1077,7 @@ function filteredPolicyRecords() {
       if (state.kind !== "all" && (record.product_type || "其他") !== state.kind) return false;
       if (!passesPolicyFocus(record)) return false;
       if (!query) return true;
-      return policySearchText(record).includes(query);
+      return matchesQuery(policySearchText(record), query);
     })
     .sort((a, b) => {
       const scoreDiff = (b.focus_score || 0) - (a.focus_score || 0);
@@ -1095,7 +1205,7 @@ function filteredUrls() {
       if (state.company !== "all" && item.company !== state.company) return false;
       if (!query) return true;
       const result = state.crawlByUrlId.get(item.id);
-      return normalize(
+      return matchesQuery(
         [
           item.company,
           item.domain,
@@ -1107,7 +1217,8 @@ function filteredUrls() {
           result?.title,
           result?.content_type,
         ].join(" "),
-      ).includes(query);
+        query,
+      );
     })
     .sort((a, b) => {
       const scoreDiff = resultSortScore(a) - resultSortScore(b);
@@ -1212,11 +1323,32 @@ function renderSources(options = {}) {
   if (options.scroll) document.getElementById("results").scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
+function shouldAutoLoadTiiIndex() {
+  return Boolean(state.search || state.company !== "all" || state.kind !== "all");
+}
+
+async function refreshTiiDiscontinuedForFilters() {
+  renderDiscontinuedList();
+  if (state.tiiIndexRecords || !shouldAutoLoadTiiIndex()) return;
+  try {
+    const loadPromise = ensureTiiIndexLoaded();
+    renderDiscontinuedList();
+    await loadPromise;
+    renderDiscontinuedList();
+  } catch (error) {
+    document.getElementById("discontinuedList").insertAdjacentHTML(
+      "beforeend",
+      `<div class="empty"><strong>TII 索引載入失敗。</strong><span>${escapeHtml(error.message)}</span></div>`,
+    );
+  }
+}
+
 function runSearch(options = {}) {
   state.openSourceId = null;
   state.search = document.getElementById("searchInput").value.trim();
   renderPolicyCards();
   renderSources(options);
+  refreshTiiDiscontinuedForFilters();
   updateUrl();
 }
 
@@ -1239,6 +1371,7 @@ function resetFilters() {
   syncControls();
   renderPolicyCards();
   renderSources();
+  renderDiscontinuedList();
   updateUrl();
   document.getElementById("searchInput").focus();
 }
@@ -1256,6 +1389,7 @@ function bindEvents() {
     state.company = event.target.value;
     renderPolicyCards();
     renderSources();
+    refreshTiiDiscontinuedForFilters();
     updateUrl();
   });
 
@@ -1264,6 +1398,7 @@ function bindEvents() {
     state.kind = event.target.value;
     renderPolicyCards();
     renderSources();
+    refreshTiiDiscontinuedForFilters();
     updateUrl();
   });
 
@@ -1272,6 +1407,7 @@ function bindEvents() {
     state.crawl = event.target.value;
     renderPolicyCards();
     renderSources();
+    renderDiscontinuedList();
     updateUrl();
   });
 
@@ -1282,6 +1418,7 @@ function bindEvents() {
     state.crawl = button.dataset.crawl;
     renderPolicyCards();
     renderSources();
+    renderDiscontinuedList();
     updateUrl();
   });
 
@@ -1289,6 +1426,23 @@ function bindEvents() {
     const button = event.target.closest(".copy-link");
     if (!button) return;
     copyText(button.dataset.url, button);
+  });
+
+  document.getElementById("discontinuedList").addEventListener("click", async (event) => {
+    const button = event.target.closest("[data-load-tii-index]");
+    if (!button) return;
+    button.disabled = true;
+    try {
+      const loadPromise = ensureTiiIndexLoaded();
+      renderDiscontinuedList();
+      await loadPromise;
+      renderDiscontinuedList();
+    } catch (error) {
+      document.getElementById("discontinuedList").insertAdjacentHTML(
+        "beforeend",
+        `<div class="empty"><strong>TII 索引載入失敗。</strong><span>${escapeHtml(error.message)}</span></div>`,
+      );
+    }
   });
 }
 
@@ -1305,6 +1459,7 @@ async function main() {
     renderPolicyCards();
     renderSources();
     bindEvents();
+    if (shouldAutoLoadTiiIndex()) refreshTiiDiscontinuedForFilters();
   } catch (error) {
     document.querySelector("main").innerHTML = `
       <section class="notice">

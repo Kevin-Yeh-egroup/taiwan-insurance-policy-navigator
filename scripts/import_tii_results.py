@@ -10,6 +10,8 @@ from datetime import datetime, timezone, timedelta
 from html.parser import HTMLParser
 from pathlib import Path
 
+from build_tii_shards import build_shards, slim_results
+
 
 TAIPEI = timezone(timedelta(hours=8))
 DATE_PATTERN = re.compile(r"^\d{3}/\d{2}/\d{2}$")
@@ -466,6 +468,7 @@ def main() -> None:
     parser.add_argument("--progress", default="data/tii-execution-progress.json", help="TII execution progress JSON")
     parser.add_argument("--batch-plan", default="data/batch-plan.json", help="Batch plan JSON")
     parser.add_argument("--details-dir", default="work/tii-details", help="Directory with saved TII detail HTML files")
+    parser.add_argument("--shard-root", default="data/tii", help="Directory for sharded TII public data")
     args = parser.parse_args()
 
     input_dir = Path(args.input_dir)
@@ -517,8 +520,22 @@ def main() -> None:
         "records": normalized_records,
         "compliance_note": "This importer parses files saved after a human completes TII captcha. It does not automate or bypass captcha.",
     }
-    Path(args.output).write_text(json.dumps(output, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
-    print(json.dumps({"record_count": output["record_count"], "output": args.output}, ensure_ascii=False, indent=2))
+    manifest = build_shards(output, Path(args.shard_root))
+    slim_output = slim_results(output, manifest)
+    Path(args.output).write_text(json.dumps(slim_output, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    print(
+        json.dumps(
+            {
+                "record_count": output["record_count"],
+                "output": args.output,
+                "manifest": str(Path(args.shard_root) / "manifest.json"),
+                "index_shards": len(manifest.get("index_shards", [])),
+                "record_shards": len(manifest.get("record_shards", [])),
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":
