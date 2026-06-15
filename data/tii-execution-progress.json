@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T15:51:44+08:00",
+  "generated_at": "2026-06-15T16:05:28+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -2702,9 +2702,9 @@
     },
     {
       "batch_id": "tii-life-035",
-      "ran_at": "2026-06-15T15:51:44+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-15T15:57:17+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "206-南山人壽保險股份有限公司",
       "category_label": "投資型壽險",
       "query_hint": {
@@ -2717,6 +2717,88 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-035-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-035.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 423,
+        "total_pages": 43,
+        "official_row_count": 423,
+        "unique_product_id_count": 423,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 43,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-035-page-001.html",
+          "work\\tii-results\\tii-life-035-page-002.html",
+          "work\\tii-results\\tii-life-035-page-003.html",
+          "work\\tii-results\\tii-life-035-page-004.html",
+          "work\\tii-results\\tii-life-035-page-005.html",
+          "work\\tii-results\\tii-life-035-page-006.html",
+          "work\\tii-results\\tii-life-035-page-007.html",
+          "work\\tii-results\\tii-life-035-page-008.html",
+          "work\\tii-results\\tii-life-035-page-009.html",
+          "work\\tii-results\\tii-life-035-page-010.html",
+          "work\\tii-results\\tii-life-035-page-011.html",
+          "work\\tii-results\\tii-life-035-page-012.html",
+          "work\\tii-results\\tii-life-035-page-013.html",
+          "work\\tii-results\\tii-life-035-page-014.html",
+          "work\\tii-results\\tii-life-035-page-015.html",
+          "work\\tii-results\\tii-life-035-page-016.html",
+          "work\\tii-results\\tii-life-035-page-017.html",
+          "work\\tii-results\\tii-life-035-page-018.html",
+          "work\\tii-results\\tii-life-035-page-019.html",
+          "work\\tii-results\\tii-life-035-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 423,
+        "saved_detail_count": 423,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 423,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-035\\206121M31A30100.html",
+          "work\\tii-details\\tii-life-035\\206141M31A30100.html",
+          "work\\tii-details\\tii-life-035\\206141M31A30200.html",
+          "work\\tii-details\\tii-life-035\\206141M31A30201.html",
+          "work\\tii-details\\tii-life-035\\206141M31A30101.html",
+          "work\\tii-details\\tii-life-035\\206121M31A30101.html",
+          "work\\tii-details\\tii-life-035\\206141M31A30102.html",
+          "work\\tii-details\\tii-life-035\\206141M31A30202.html",
+          "work\\tii-details\\tii-life-035\\206191E31A30100.html",
+          "work\\tii-details\\tii-life-035\\206121M31A30200.html",
+          "work\\tii-details\\tii-life-035\\206141M31A30203.html",
+          "work\\tii-details\\tii-life-035\\206141M31A30103.html",
+          "work\\tii-details\\tii-life-035\\206121M31A30300.html",
+          "work\\tii-details\\tii-life-035\\206141M31A30204.html",
+          "work\\tii-details\\tii-life-035\\206141M31A30104.html",
+          "work\\tii-details\\tii-life-035\\206141M31A30205.html",
+          "work\\tii-details\\tii-life-035\\206121M31A30301.html",
+          "work\\tii-details\\tii-life-035\\206121M31A30201.html",
+          "work\\tii-details\\tii-life-035\\206121M31A30102.html",
+          "work\\tii-details\\tii-life-035\\206121M31A30202.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-036",
+      "ran_at": "2026-06-15T16:05:28+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "206-南山人壽保險股份有限公司",
+      "category_label": "投資型年金",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "206",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-036-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -25339,8 +25421,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 143,
-    "completed_batches": 142,
+    "attempted_batches": 144,
+    "completed_batches": 143,
     "captcha_required_batches": 1
   }
 }
