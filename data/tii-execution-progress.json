@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T16:31:43+08:00",
+  "generated_at": "2026-06-15T16:53:48+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -2860,9 +2860,9 @@
     },
     {
       "batch_id": "tii-life-037",
-      "ran_at": "2026-06-15T16:31:43+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-15T16:53:48+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "207-國華人壽保險股份有限公司",
       "category_label": "傷害保險",
       "query_hint": {
@@ -2876,9 +2876,62 @@
       "captcha_files": [
         "work\\tii-execution\\tii-life-037-captcha-1.jpg"
       ],
-      "result_file": "",
-      "fetched_pages": {},
-      "fetched_details": {}
+      "result_file": "work\\tii-results\\tii-life-037.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 125,
+        "total_pages": 13,
+        "official_row_count": 125,
+        "unique_product_id_count": 125,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 13,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-037-page-001.html",
+          "work\\tii-results\\tii-life-037-page-002.html",
+          "work\\tii-results\\tii-life-037-page-003.html",
+          "work\\tii-results\\tii-life-037-page-004.html",
+          "work\\tii-results\\tii-life-037-page-005.html",
+          "work\\tii-results\\tii-life-037-page-006.html",
+          "work\\tii-results\\tii-life-037-page-007.html",
+          "work\\tii-results\\tii-life-037-page-008.html",
+          "work\\tii-results\\tii-life-037-page-009.html",
+          "work\\tii-results\\tii-life-037-page-010.html",
+          "work\\tii-results\\tii-life-037-page-011.html",
+          "work\\tii-results\\tii-life-037-page-012.html",
+          "work\\tii-results\\tii-life-037-page-013.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 125,
+        "saved_detail_count": 125,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 125,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-037\\207217M11A00200.html",
+          "work\\tii-details\\tii-life-037\\207217R11A00200.html",
+          "work\\tii-details\\tii-life-037\\207217M11A00100.html",
+          "work\\tii-details\\tii-life-037\\207247M11A00100.html",
+          "work\\tii-details\\tii-life-037\\207247M11A00101.html",
+          "work\\tii-details\\tii-life-037\\207221M11A00100.html",
+          "work\\tii-details\\tii-life-037\\207217R11A00400.html",
+          "work\\tii-details\\tii-life-037\\207217R11A00500.html",
+          "work\\tii-details\\tii-life-037\\207217R11A00300.html",
+          "work\\tii-details\\tii-life-037\\207221R11A00100.html",
+          "work\\tii-details\\tii-life-037\\207291A11A00100.html",
+          "work\\tii-details\\tii-life-037\\207297A11A00100.html",
+          "work\\tii-details\\tii-life-037\\207291A11A00200.html",
+          "work\\tii-details\\tii-life-037\\207297A11A00200.html",
+          "work\\tii-details\\tii-life-037\\207221R11A00200.html",
+          "work\\tii-details\\tii-life-037\\207221M11A00200.html",
+          "work\\tii-details\\tii-life-037\\207211R11A00102.html",
+          "work\\tii-details\\tii-life-037\\207211R11A00202.html",
+          "work\\tii-details\\tii-life-037\\207211A11A00101.html",
+          "work\\tii-details\\tii-life-037\\207211A11A00201.html"
+        ],
+        "failed_details": []
+      }
     },
     {
       "batch_id": "tii-property-001",
@@ -25498,7 +25551,7 @@
   ],
   "summary": {
     "attempted_batches": 145,
-    "completed_batches": 144,
-    "captcha_required_batches": 1
+    "completed_batches": 145,
+    "captcha_required_batches": 0
   }
 }
