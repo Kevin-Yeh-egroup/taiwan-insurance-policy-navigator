@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T11:04:18+08:00",
+  "generated_at": "2026-06-15T11:12:53+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -2057,6 +2057,28 @@
         ],
         "failed_details": []
       }
+    },
+    {
+      "batch_id": "tii-life-027",
+      "ran_at": "2026-06-15T11:12:53+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "205-凱基人壽保險股份有限公司(原中國人壽)",
+      "category_label": "傳統型壽險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "205",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-027-captcha-1.jpg"
+      ],
+      "result_file": "",
+      "fetched_pages": {},
+      "fetched_details": {}
     },
     {
       "batch_id": "tii-property-001",
@@ -24675,8 +24697,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 134,
+    "attempted_batches": 135,
     "completed_batches": 134,
-    "captcha_required_batches": 0
+    "captcha_required_batches": 1
   }
 }
