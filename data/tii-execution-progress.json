@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T10:58:24+08:00",
+  "generated_at": "2026-06-15T11:04:18+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -1978,9 +1978,9 @@
     },
     {
       "batch_id": "tii-life-026",
-      "ran_at": "2026-06-15T10:58:24+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-15T11:04:18+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "205-凱基人壽保險股份有限公司(原中國人壽)",
       "category_label": "健康保險",
       "query_hint": {
@@ -1994,9 +1994,69 @@
       "captcha_files": [
         "work\\tii-execution\\tii-life-026-captcha-1.jpg"
       ],
-      "result_file": "",
-      "fetched_pages": {},
-      "fetched_details": {}
+      "result_file": "work\\tii-results\\tii-life-026.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 982,
+        "total_pages": 99,
+        "official_row_count": 982,
+        "unique_product_id_count": 982,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 99,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-026-page-001.html",
+          "work\\tii-results\\tii-life-026-page-002.html",
+          "work\\tii-results\\tii-life-026-page-003.html",
+          "work\\tii-results\\tii-life-026-page-004.html",
+          "work\\tii-results\\tii-life-026-page-005.html",
+          "work\\tii-results\\tii-life-026-page-006.html",
+          "work\\tii-results\\tii-life-026-page-007.html",
+          "work\\tii-results\\tii-life-026-page-008.html",
+          "work\\tii-results\\tii-life-026-page-009.html",
+          "work\\tii-results\\tii-life-026-page-010.html",
+          "work\\tii-results\\tii-life-026-page-011.html",
+          "work\\tii-results\\tii-life-026-page-012.html",
+          "work\\tii-results\\tii-life-026-page-013.html",
+          "work\\tii-results\\tii-life-026-page-014.html",
+          "work\\tii-results\\tii-life-026-page-015.html",
+          "work\\tii-results\\tii-life-026-page-016.html",
+          "work\\tii-results\\tii-life-026-page-017.html",
+          "work\\tii-results\\tii-life-026-page-018.html",
+          "work\\tii-results\\tii-life-026-page-019.html",
+          "work\\tii-results\\tii-life-026-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 982,
+        "saved_detail_count": 982,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 982,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-026\\205311R11A04900.html",
+          "work\\tii-details\\tii-life-026\\205337M12D04800.html",
+          "work\\tii-details\\tii-life-026\\205317A12B03300.html",
+          "work\\tii-details\\tii-life-026\\205317A12B03400.html",
+          "work\\tii-details\\tii-life-026\\205317A12B03500.html",
+          "work\\tii-details\\tii-life-026\\205317A12B03600.html",
+          "work\\tii-details\\tii-life-026\\205317A12B03700.html",
+          "work\\tii-details\\tii-life-026\\205317A12B03800.html",
+          "work\\tii-details\\tii-life-026\\205317A12B03900.html",
+          "work\\tii-details\\tii-life-026\\205317A12B04000.html",
+          "work\\tii-details\\tii-life-026\\205317A12B04100.html",
+          "work\\tii-details\\tii-life-026\\205311R11A01600.html",
+          "work\\tii-details\\tii-life-026\\205341R11A02100.html",
+          "work\\tii-details\\tii-life-026\\205341R12B01900.html",
+          "work\\tii-details\\tii-life-026\\205321R11A02300.html",
+          "work\\tii-details\\tii-life-026\\205391R12D01500.html",
+          "work\\tii-details\\tii-life-026\\205391R11A02000.html",
+          "work\\tii-details\\tii-life-026\\205311A11A05900.html",
+          "work\\tii-details\\tii-life-026\\205311E11A06100.html",
+          "work\\tii-details\\tii-life-026\\205321R11A02301.html"
+        ],
+        "failed_details": []
+      }
     },
     {
       "batch_id": "tii-property-001",
@@ -24616,7 +24676,7 @@
   ],
   "summary": {
     "attempted_batches": 134,
-    "completed_batches": 133,
-    "captcha_required_batches": 1
+    "completed_batches": 134,
+    "captcha_required_batches": 0
   }
 }
