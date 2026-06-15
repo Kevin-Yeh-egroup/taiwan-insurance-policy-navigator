@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-15T14:45:53+08:00",
+  "generated_at": "2026-06-15T14:47:06+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 140,
-    "waiting_captcha_batches": 0,
+    "attempted_batches": 141,
+    "waiting_captcha_batches": 1,
     "indexed_batches": 140,
     "completed_batches": 140,
     "pending_manual_batches": 166,
@@ -30,9 +30,9 @@
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "",
-      "company_label": "",
-      "category_label": ""
+      "batch_id": "tii-life-033",
+      "company_label": "206-南山人壽保險股份有限公司",
+      "category_label": "傳統型壽險"
     }
   },
   "policy_content": {
