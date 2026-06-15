@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-15T12:06:19+08:00",
+  "generated_at": "2026-06-15T12:07:53+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 136,
-    "waiting_captcha_batches": 0,
+    "attempted_batches": 137,
+    "waiting_captcha_batches": 1,
     "indexed_batches": 136,
     "completed_batches": 136,
     "pending_manual_batches": 170,
@@ -30,9 +30,9 @@
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "",
-      "company_label": "",
-      "category_label": ""
+      "batch_id": "tii-life-029",
+      "company_label": "205-凱基人壽保險股份有限公司(原中國人壽)",
+      "category_label": "投資型壽險"
     }
   },
   "policy_content": {
