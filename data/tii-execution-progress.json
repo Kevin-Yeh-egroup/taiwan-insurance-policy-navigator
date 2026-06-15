@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T11:53:48+08:00",
+  "generated_at": "2026-06-15T11:57:10+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -2142,9 +2142,9 @@
     },
     {
       "batch_id": "tii-life-028",
-      "ran_at": "2026-06-15T11:53:48+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-15T11:57:10+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "205-凱基人壽保險股份有限公司(原中國人壽)",
       "category_label": "傳統型年金",
       "query_hint": {
@@ -2158,9 +2158,65 @@
       "captcha_files": [
         "work\\tii-execution\\tii-life-028-captcha-1.jpg"
       ],
-      "result_file": "",
-      "fetched_pages": {},
-      "fetched_details": {}
+      "result_file": "work\\tii-results\\tii-life-028.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 153,
+        "total_pages": 16,
+        "official_row_count": 153,
+        "unique_product_id_count": 149,
+        "duplicate_product_id_count": 4,
+        "saved_page_count": 16,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-028-page-001.html",
+          "work\\tii-results\\tii-life-028-page-002.html",
+          "work\\tii-results\\tii-life-028-page-003.html",
+          "work\\tii-results\\tii-life-028-page-004.html",
+          "work\\tii-results\\tii-life-028-page-005.html",
+          "work\\tii-results\\tii-life-028-page-006.html",
+          "work\\tii-results\\tii-life-028-page-007.html",
+          "work\\tii-results\\tii-life-028-page-008.html",
+          "work\\tii-results\\tii-life-028-page-009.html",
+          "work\\tii-results\\tii-life-028-page-010.html",
+          "work\\tii-results\\tii-life-028-page-011.html",
+          "work\\tii-results\\tii-life-028-page-012.html",
+          "work\\tii-results\\tii-life-028-page-013.html",
+          "work\\tii-results\\tii-life-028-page-014.html",
+          "work\\tii-results\\tii-life-028-page-015.html",
+          "work\\tii-results\\tii-life-028-page-016.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 149,
+        "saved_detail_count": 149,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 149,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-028\\205491M21A02700.html",
+          "work\\tii-details\\tii-life-028\\205491M21A02800.html",
+          "work\\tii-details\\tii-life-028\\205411M11A02600.html",
+          "work\\tii-details\\tii-life-028\\205411M11A02500.html",
+          "work\\tii-details\\tii-life-028\\205411M11A02501.html",
+          "work\\tii-details\\tii-life-028\\205411M11A02601.html",
+          "work\\tii-details\\tii-life-028\\205491M21A02801.html",
+          "work\\tii-details\\tii-life-028\\205491M21A02701.html",
+          "work\\tii-details\\tii-life-028\\205491M21A02702.html",
+          "work\\tii-details\\tii-life-028\\205491M21A02802.html",
+          "work\\tii-details\\tii-life-028\\205491M21A02803.html",
+          "work\\tii-details\\tii-life-028\\205491M21A02703.html",
+          "work\\tii-details\\tii-life-028\\205491M21A02804.html",
+          "work\\tii-details\\tii-life-028\\205491M21A02805.html",
+          "work\\tii-details\\tii-life-028\\205491M21A02704.html",
+          "work\\tii-details\\tii-life-028\\205411M11A02602.html",
+          "work\\tii-details\\tii-life-028\\205411M11A02502.html",
+          "work\\tii-details\\tii-life-028\\205411M11A02503.html",
+          "work\\tii-details\\tii-life-028\\205411M11A02603.html",
+          "work\\tii-details\\tii-life-028\\205491M21A02705.html"
+        ],
+        "failed_details": []
+      }
     },
     {
       "batch_id": "tii-property-001",
@@ -24780,7 +24836,7 @@
   ],
   "summary": {
     "attempted_batches": 136,
-    "completed_batches": 135,
-    "captcha_required_batches": 1
+    "completed_batches": 136,
+    "captcha_required_batches": 0
   }
 }
