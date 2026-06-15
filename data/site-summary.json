@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-15T17:01:44+08:00",
+  "generated_at": "2026-06-15T17:03:04+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 145,
-    "waiting_captcha_batches": 0,
+    "attempted_batches": 146,
+    "waiting_captcha_batches": 1,
     "indexed_batches": 145,
     "completed_batches": 145,
     "pending_manual_batches": 161,
@@ -30,9 +30,9 @@
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "",
-      "company_label": "",
-      "category_label": ""
+      "batch_id": "tii-life-038",
+      "company_label": "207-國華人壽保險股份有限公司",
+      "category_label": "健康保險"
     }
   },
   "policy_content": {

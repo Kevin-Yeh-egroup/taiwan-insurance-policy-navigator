@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T16:53:48+08:00",
+  "generated_at": "2026-06-15T17:02:57+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -2932,6 +2932,28 @@
         ],
         "failed_details": []
       }
+    },
+    {
+      "batch_id": "tii-life-038",
+      "ran_at": "2026-06-15T17:02:57+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "207-國華人壽保險股份有限公司",
+      "category_label": "健康保險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "207",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-038-captcha-1.jpg"
+      ],
+      "result_file": "",
+      "fetched_pages": {},
+      "fetched_details": {}
     },
     {
       "batch_id": "tii-property-001",
@@ -25550,8 +25572,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 145,
+    "attempted_batches": 146,
     "completed_batches": 145,
-    "captcha_required_batches": 0
+    "captcha_required_batches": 1
   }
 }
