@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T11:49:10+08:00",
+  "generated_at": "2026-06-16T12:11:51+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -3674,9 +3674,9 @@
     },
     {
       "batch_id": "tii-life-049",
-      "ran_at": "2026-06-16T11:49:10+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-16T12:07:54+08:00",
+      "status": "submitted_result_saved",
+      "note": "Recovered progress from imported batch summary after stale import failure state.",
       "company_label": "209-富邦人壽保險股份有限公司",
       "category_label": "傷害保險",
       "query_hint": {
@@ -3689,6 +3689,41 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-049-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-049.html",
+      "fetched_pages": {
+        "total_count": 802,
+        "total_pages": 81,
+        "official_row_count": 802,
+        "unique_product_id_count": 802,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 81,
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 802,
+        "saved_detail_count": 802,
+        "total_saved_detail_count": 802,
+        "failed_detail_count": 0
+      }
+    },
+    {
+      "batch_id": "tii-life-050",
+      "ran_at": "2026-06-16T12:11:51+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "209-富邦人壽保險股份有限公司",
+      "category_label": "健康保險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "209",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-050-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -26311,8 +26346,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 157,
-    "completed_batches": 156,
+    "attempted_batches": 158,
+    "completed_batches": 157,
     "captcha_required_batches": 1
   }
 }
