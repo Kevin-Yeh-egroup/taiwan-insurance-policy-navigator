@@ -1,38 +1,38 @@
 {
-  "generated_at": "2026-06-16T14:15:11+08:00",
+  "generated_at": "2026-06-16T14:34:39+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 161,
+    "attempted_batches": 162,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 160,
-    "completed_batches": 160,
-    "pending_manual_batches": 146,
-    "imported_policy_records": 128795,
-    "detail_expected_count": 128795,
-    "detail_saved_count": 127453,
+    "indexed_batches": 161,
+    "completed_batches": 161,
+    "pending_manual_batches": 145,
+    "imported_policy_records": 129542,
+    "detail_expected_count": 129542,
+    "detail_saved_count": 128200,
     "detail_missing_count": 1342,
     "detail_coverage_rate": 0.9896,
-    "official_result_rows": 144910,
+    "official_result_rows": 145657,
     "official_duplicate_product_rows": 16115,
-    "same_name_version_group_count": 2259,
-    "same_name_version_card_count": 5603,
+    "same_name_version_group_count": 2260,
+    "same_name_version_card_count": 5605,
     "latest_completed_batch": {
-      "batch_id": "tii-life-052",
-      "company_label": "209-富邦人壽保險股份有限公司",
-      "category_label": "傳統型年金",
-      "expected_total_count": 131,
-      "official_row_count": 131,
-      "imported_record_count": 129,
-      "detail_expected_count": 129,
-      "detail_saved_count": 127,
-      "detail_missing_count": 2,
-      "detail_status": "partial_detail"
-    },
-    "current_waiting_batch": {
       "batch_id": "tii-life-053",
       "company_label": "209-富邦人壽保險股份有限公司",
-      "category_label": "投資型壽險"
+      "category_label": "投資型壽險",
+      "expected_total_count": 747,
+      "official_row_count": 747,
+      "imported_record_count": 747,
+      "detail_expected_count": 747,
+      "detail_saved_count": 747,
+      "detail_missing_count": 0,
+      "detail_status": "complete"
+    },
+    "current_waiting_batch": {
+      "batch_id": "tii-life-054",
+      "company_label": "209-富邦人壽保險股份有限公司",
+      "category_label": "投資型年金"
     }
   },
   "policy_content": {
