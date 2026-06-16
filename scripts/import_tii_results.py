@@ -475,6 +475,7 @@ def main() -> None:
     batch_meta = load_batch_meta(Path(args.progress))
     batch_plan = load_batch_plan(Path(args.batch_plan))
     invalid_sources = invalid_page_sources(input_dir, batch_meta, batch_plan)
+    skipped_captcha_sources: dict[str, list[str]] = {}
     raw_records: list[dict] = []
     for path in sorted(input_dir.glob("*")):
         if not path.name.startswith("tii-"):
@@ -484,7 +485,12 @@ def main() -> None:
                 path, batch_meta, batch_plan
             ):
                 continue
-            raw_records.extend(parse_saved_html(path))
+            try:
+                raw_records.extend(parse_saved_html(path))
+            except ValueError as exc:
+                if "contains captcha error" not in str(exc):
+                    raise
+                skipped_captcha_sources.setdefault(source_batch_id(path.name), []).append(path.name)
         elif path.suffix.lower() == ".csv":
             raw_records.extend(load_csv(path))
 
@@ -515,6 +521,8 @@ def main() -> None:
         "partial_batch_count": sum(1 for summary in summaries if summary["status"] != "complete"),
         "page_content_mismatch_batch_count": len(invalid_sources),
         "page_content_mismatch_sources": invalid_sources,
+        "skipped_captcha_error_source_count": sum(len(sources) for sources in skipped_captcha_sources.values()),
+        "skipped_captcha_error_sources": skipped_captcha_sources,
         "batch_summaries": summaries,
         "pending_manual_batch_count": max(manual_batch_count - len(completed_batches), 0),
         "records": normalized_records,

@@ -66,15 +66,20 @@ def main() -> None:
 
     batch_summaries = tii_results.get("batch_summaries", [])
     completed_batch_ids = set(tii_results.get("completed_batches") or [])
+    batch_plan_by_id = {batch.get("id"): batch for batch in batch_plan.get("tii_manual_matrix_batches", [])}
+    batch_order_index = {batch.get("id"): index for index, batch in enumerate(batch_plan.get("tii_manual_matrix_batches", []))}
     latest_completed_run = find_latest_completed_run(tii_progress, completed_batch_ids)
-    latest_completed_id = latest_completed_run.get("batch_id") or (tii_results.get("completed_batches") or [""])[-1]
+    latest_completed_id = latest_completed_run.get("batch_id") or max(
+        completed_batch_ids,
+        key=lambda batch_id: batch_order_index.get(batch_id, -1),
+        default="",
+    )
     latest_completed_summary = next(
         (batch for batch in reversed(batch_summaries) if batch.get("batch_id") == latest_completed_id),
         {},
     )
-    if not latest_completed_run:
-        latest_completed_run = latest_run_for_batch(tii_progress, latest_completed_id)
     waiting_run = latest_captcha_run(tii_progress, completed_batch_ids)
+    latest_completed_plan = batch_plan_by_id.get(latest_completed_id, {})
 
     same_name_cards = [
         record for record in tii_results.get("records", []) if int(record.get("same_name_product_id_count") or 0) > 1
@@ -123,8 +128,8 @@ def main() -> None:
             "same_name_version_card_count": same_name_card_count,
             "latest_completed_batch": {
                 "batch_id": latest_completed_id,
-                "company_label": latest_completed_run.get("company_label", ""),
-                "category_label": latest_completed_run.get("category_label", ""),
+                "company_label": latest_completed_run.get("company_label") or latest_completed_plan.get("company_label", ""),
+                "category_label": latest_completed_run.get("category_label") or latest_completed_plan.get("category_label", ""),
                 "expected_total_count": int(latest_completed_summary.get("expected_total_count") or 0),
                 "official_row_count": int(latest_completed_summary.get("official_row_count") or 0),
                 "imported_record_count": int(latest_completed_summary.get("imported_record_count") or 0),
