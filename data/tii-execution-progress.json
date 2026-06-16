@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-15T17:54:34+08:00",
+  "generated_at": "2026-06-16T09:14:54+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -3230,9 +3230,9 @@
     },
     {
       "batch_id": "tii-life-042",
-      "ran_at": "2026-06-15T17:54:34+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-16T09:02:41+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "207-國華人壽保險股份有限公司",
       "category_label": "投資型年金",
       "query_hint": {
@@ -3246,9 +3246,33 @@
       "captcha_files": [
         "work\\tii-execution\\tii-life-042-captcha-1.jpg"
       ],
-      "result_file": "",
-      "fetched_pages": {},
-      "fetched_details": {}
+      "result_file": "work\\tii-results\\tii-life-042.html",
+      "fetched_pages": {
+        "page_size": 3,
+        "total_count": 3,
+        "total_pages": 1,
+        "official_row_count": 3,
+        "unique_product_id_count": 3,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-042-page-001.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 3,
+        "saved_detail_count": 3,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 3,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-042\\207421M32C00100.html",
+          "work\\tii-details\\tii-life-042\\207421M32C00101.html",
+          "work\\tii-details\\tii-life-042\\207421M32C00102.html"
+        ],
+        "failed_details": []
+      }
     },
     {
       "batch_id": "tii-property-001",
@@ -25868,7 +25892,7 @@
   ],
   "summary": {
     "attempted_batches": 150,
-    "completed_batches": 149,
-    "captcha_required_batches": 1
+    "completed_batches": 150,
+    "captcha_required_batches": 0
   }
 }
