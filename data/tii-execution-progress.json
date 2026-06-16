@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T09:50:40+08:00",
+  "generated_at": "2026-06-16T09:59:55+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -3297,6 +3297,28 @@
         "total_saved_detail_count": 673,
         "failed_detail_count": 0
       }
+    },
+    {
+      "batch_id": "tii-life-044",
+      "ran_at": "2026-06-16T09:59:55+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "208-新光人壽保險股份有限公司(115年起與台新合併)",
+      "category_label": "健康保險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "208",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-044-captcha-1.jpg"
+      ],
+      "result_file": "",
+      "fetched_pages": {},
+      "fetched_details": {}
     },
     {
       "batch_id": "tii-property-001",
@@ -25915,8 +25937,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 151,
+    "attempted_batches": 152,
     "completed_batches": 151,
-    "captcha_required_batches": 0
+    "captcha_required_batches": 1
   }
 }

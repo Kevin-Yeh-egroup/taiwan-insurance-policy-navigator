@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-16T09:58:30+08:00",
+  "generated_at": "2026-06-16T10:00:05+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 151,
-    "waiting_captcha_batches": 0,
+    "attempted_batches": 152,
+    "waiting_captcha_batches": 1,
     "indexed_batches": 151,
     "completed_batches": 151,
     "pending_manual_batches": 155,
@@ -30,9 +30,9 @@
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "",
-      "company_label": "",
-      "category_label": ""
+      "batch_id": "tii-life-044",
+      "company_label": "208-新光人壽保險股份有限公司(115年起與台新合併)",
+      "category_label": "健康保險"
     }
   },
   "policy_content": {
