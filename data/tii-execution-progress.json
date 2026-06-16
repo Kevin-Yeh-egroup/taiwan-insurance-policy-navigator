@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T16:14:11+08:00",
+  "generated_at": "2026-06-16T16:27:38+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -4277,9 +4277,9 @@
     },
     {
       "batch_id": "tii-life-057",
-      "ran_at": "2026-06-16T16:14:11+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-16T16:17:30+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "210-國寶人壽保險股份有限公司",
       "category_label": "傳統型壽險",
       "query_hint": {
@@ -4292,6 +4292,86 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-057-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-057.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 179,
+        "total_pages": 18,
+        "official_row_count": 179,
+        "unique_product_id_count": 179,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 18,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-057-page-001.html",
+          "work\\tii-results\\tii-life-057-page-002.html",
+          "work\\tii-results\\tii-life-057-page-003.html",
+          "work\\tii-results\\tii-life-057-page-004.html",
+          "work\\tii-results\\tii-life-057-page-005.html",
+          "work\\tii-results\\tii-life-057-page-006.html",
+          "work\\tii-results\\tii-life-057-page-007.html",
+          "work\\tii-results\\tii-life-057-page-008.html",
+          "work\\tii-results\\tii-life-057-page-009.html",
+          "work\\tii-results\\tii-life-057-page-010.html",
+          "work\\tii-results\\tii-life-057-page-011.html",
+          "work\\tii-results\\tii-life-057-page-012.html",
+          "work\\tii-results\\tii-life-057-page-013.html",
+          "work\\tii-results\\tii-life-057-page-014.html",
+          "work\\tii-results\\tii-life-057-page-015.html",
+          "work\\tii-results\\tii-life-057-page-016.html",
+          "work\\tii-results\\tii-life-057-page-017.html",
+          "work\\tii-results\\tii-life-057-page-018.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 179,
+        "saved_detail_count": 179,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 179,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-057\\210131R11A00100.html",
+          "work\\tii-details\\tii-life-057\\210137M11A00100.html",
+          "work\\tii-details\\tii-life-057\\210137M11A00200.html",
+          "work\\tii-details\\tii-life-057\\210141M11A00300.html",
+          "work\\tii-details\\tii-life-057\\210131M11A00200.html",
+          "work\\tii-details\\tii-life-057\\210121M11A01500.html",
+          "work\\tii-details\\tii-life-057\\210121M11A01800.html",
+          "work\\tii-details\\tii-life-057\\210121M11A02000.html",
+          "work\\tii-details\\tii-life-057\\210191E11A00100.html",
+          "work\\tii-details\\tii-life-057\\210141M11A01300.html",
+          "work\\tii-details\\tii-life-057\\210137M11A00101.html",
+          "work\\tii-details\\tii-life-057\\210141M11A01400.html",
+          "work\\tii-details\\tii-life-057\\210141M11A01301.html",
+          "work\\tii-details\\tii-life-057\\210191M22B00100.html",
+          "work\\tii-details\\tii-life-057\\210141M11A01302.html",
+          "work\\tii-details\\tii-life-057\\210141M11A00301.html",
+          "work\\tii-details\\tii-life-057\\210131R11A00101.html",
+          "work\\tii-details\\tii-life-057\\210131M11A00201.html",
+          "work\\tii-details\\tii-life-057\\210121M11A02001.html",
+          "work\\tii-details\\tii-life-057\\210121M11A01801.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-058",
+      "ran_at": "2026-06-16T16:27:38+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "210-國寶人壽保險股份有限公司",
+      "category_label": "傳統型年金",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "210",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-058-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -26914,8 +26994,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 165,
-    "completed_batches": 164,
+    "attempted_batches": 166,
+    "completed_batches": 165,
     "captcha_required_batches": 1
   }
 }
