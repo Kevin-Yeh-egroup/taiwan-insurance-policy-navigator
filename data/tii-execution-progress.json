@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T15:19:12+08:00",
+  "generated_at": "2026-06-17T15:27:40+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -6508,9 +6508,9 @@
     },
     {
       "batch_id": "tii-life-088",
-      "ran_at": "2026-06-17T15:19:12+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-17T15:20:55+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "217-宏泰人壽保險股份有限公司",
       "category_label": "傳統型年金",
       "query_hint": {
@@ -6523,6 +6523,133 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-088-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-088.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 10,
+        "total_pages": 1,
+        "official_row_count": 10,
+        "unique_product_id_count": 10,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-088-page-001.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 10,
+        "saved_detail_count": 10,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 10,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-088\\217421M21A00100.html",
+          "work\\tii-details\\tii-life-088\\217421M21A00200.html",
+          "work\\tii-details\\tii-life-088\\217421M21A00201.html",
+          "work\\tii-details\\tii-life-088\\217411MA1A00123A11Z10000000.html",
+          "work\\tii-details\\tii-life-088\\217411MZ1A00123A11Z10000000.html",
+          "work\\tii-details\\tii-life-088\\217411MZ1A00123A11Z10000001.html",
+          "work\\tii-details\\tii-life-088\\217421MA1A00323A11Z10000000.html",
+          "work\\tii-details\\tii-life-088\\217421MA1A00323A11Z10000001.html",
+          "work\\tii-details\\tii-life-088\\217421MA1A00323A11Z10000002.html",
+          "work\\tii-details\\tii-life-088\\217421MA1A00323A11Z10000003.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-089",
+      "ran_at": "2026-06-17T15:24:45+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
+      "company_label": "217-宏泰人壽保險股份有限公司",
+      "category_label": "投資型壽險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "217",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-089-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-089.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 114,
+        "total_pages": 12,
+        "official_row_count": 114,
+        "unique_product_id_count": 114,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 12,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-089-page-001.html",
+          "work\\tii-results\\tii-life-089-page-002.html",
+          "work\\tii-results\\tii-life-089-page-003.html",
+          "work\\tii-results\\tii-life-089-page-004.html",
+          "work\\tii-results\\tii-life-089-page-005.html",
+          "work\\tii-results\\tii-life-089-page-006.html",
+          "work\\tii-results\\tii-life-089-page-007.html",
+          "work\\tii-results\\tii-life-089-page-008.html",
+          "work\\tii-results\\tii-life-089-page-009.html",
+          "work\\tii-results\\tii-life-089-page-010.html",
+          "work\\tii-results\\tii-life-089-page-011.html",
+          "work\\tii-results\\tii-life-089-page-012.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 114,
+        "saved_detail_count": 114,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 114,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-089\\217191M31A00100.html",
+          "work\\tii-details\\tii-life-089\\217191M31A00200.html",
+          "work\\tii-details\\tii-life-089\\217191M31A00201.html",
+          "work\\tii-details\\tii-life-089\\217191M31A00101.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00100.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00101.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00102.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00103.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00104.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00105.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00106.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00107.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00108.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00109.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00110.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00111.html",
+          "work\\tii-details\\tii-life-089\\217191E31A00100.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00112.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00113.html",
+          "work\\tii-details\\tii-life-089\\217141M31A00114.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-090",
+      "ran_at": "2026-06-17T15:27:40+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "217-宏泰人壽保險股份有限公司",
+      "category_label": "投資型年金",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "217",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-090-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -29145,8 +29272,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 196,
-    "completed_batches": 195,
+    "attempted_batches": 198,
+    "completed_batches": 197,
     "captcha_required_batches": 1
   }
 }
