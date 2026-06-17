@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-17T13:51:03+08:00",
+  "generated_at": "2026-06-17T13:57:01+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 186,
+    "attempted_batches": 187,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 185,
-    "completed_batches": 185,
-    "pending_manual_batches": 121,
+    "indexed_batches": 186,
+    "completed_batches": 186,
+    "pending_manual_batches": 120,
     "imported_policy_records": 134948,
     "detail_expected_count": 134948,
     "detail_saved_count": 133606,
@@ -18,21 +18,21 @@
     "same_name_version_group_count": 2282,
     "same_name_version_card_count": 5649,
     "latest_completed_batch": {
-      "batch_id": "tii-life-077",
+      "batch_id": "tii-life-078",
       "company_label": "215-幸福人壽保險股份有限公司",
-      "category_label": "投資型壽險",
-      "expected_total_count": 20,
-      "official_row_count": 20,
-      "imported_record_count": 20,
-      "detail_expected_count": 20,
-      "detail_saved_count": 20,
+      "category_label": "投資型年金",
+      "expected_total_count": 0,
+      "official_row_count": 0,
+      "imported_record_count": 0,
+      "detail_expected_count": 0,
+      "detail_saved_count": 0,
       "detail_missing_count": 0,
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "tii-life-078",
-      "company_label": "215-幸福人壽保險股份有限公司",
-      "category_label": "投資型年金"
+      "batch_id": "tii-life-079",
+      "company_label": "216-遠雄人壽保險事業股份有限公司",
+      "category_label": "傷害保險"
     }
   },
   "policy_content": {
