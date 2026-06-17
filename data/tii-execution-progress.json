@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T17:29:13+08:00",
+  "generated_at": "2026-06-17T17:36:44+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -7231,9 +7231,9 @@
     },
     {
       "batch_id": "tii-life-098",
-      "ran_at": "2026-06-17T17:29:13+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-17T17:33:41+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "220-中華郵政股份有限公司",
       "category_label": "健康保險",
       "query_hint": {
@@ -7246,6 +7246,59 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-098-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-098.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 10,
+        "total_pages": 1,
+        "official_row_count": 10,
+        "unique_product_id_count": 10,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-098-page-001.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 10,
+        "saved_detail_count": 10,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 10,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-098\\220311R11A00100.html",
+          "work\\tii-details\\tii-life-098\\220311R11A00101.html",
+          "work\\tii-details\\tii-life-098\\220311R11A00102.html",
+          "work\\tii-details\\tii-life-098\\220311RZ1A00121A11Z10000003.html",
+          "work\\tii-details\\tii-life-098\\220311RZ1A00111A11Z10000004.html",
+          "work\\tii-details\\tii-life-098\\220311RZ1A00121A11Z10000005.html",
+          "work\\tii-details\\tii-life-098\\220311RZ1A00121A11Z10000006.html",
+          "work\\tii-details\\tii-life-098\\220311RZ1A00121A11Z10000007.html",
+          "work\\tii-details\\tii-life-098\\220311RZ1A00121A11Z10000008.html",
+          "work\\tii-details\\tii-life-098\\220311RZ1A00121A11Z10000009.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-099",
+      "ran_at": "2026-06-17T17:36:44+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "220-中華郵政股份有限公司",
+      "category_label": "傳統型壽險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "220",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-099-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -29868,8 +29921,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 206,
-    "completed_batches": 205,
+    "attempted_batches": 207,
+    "completed_batches": 206,
     "captcha_required_batches": 1
   }
 }
