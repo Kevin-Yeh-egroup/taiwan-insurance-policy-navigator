@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T17:36:44+08:00",
+  "generated_at": "2026-06-17T17:50:33+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -7284,9 +7284,9 @@
     },
     {
       "batch_id": "tii-life-099",
-      "ran_at": "2026-06-17T17:36:44+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-17T17:43:30+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "220-中華郵政股份有限公司",
       "category_label": "傳統型壽險",
       "query_hint": {
@@ -7299,6 +7299,131 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-099-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-099.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 239,
+        "total_pages": 24,
+        "official_row_count": 239,
+        "unique_product_id_count": 226,
+        "duplicate_product_id_count": 13,
+        "saved_page_count": 24,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-099-page-001.html",
+          "work\\tii-results\\tii-life-099-page-002.html",
+          "work\\tii-results\\tii-life-099-page-003.html",
+          "work\\tii-results\\tii-life-099-page-004.html",
+          "work\\tii-results\\tii-life-099-page-005.html",
+          "work\\tii-results\\tii-life-099-page-006.html",
+          "work\\tii-results\\tii-life-099-page-007.html",
+          "work\\tii-results\\tii-life-099-page-008.html",
+          "work\\tii-results\\tii-life-099-page-009.html",
+          "work\\tii-results\\tii-life-099-page-010.html",
+          "work\\tii-results\\tii-life-099-page-011.html",
+          "work\\tii-results\\tii-life-099-page-012.html",
+          "work\\tii-results\\tii-life-099-page-013.html",
+          "work\\tii-results\\tii-life-099-page-014.html",
+          "work\\tii-results\\tii-life-099-page-015.html",
+          "work\\tii-results\\tii-life-099-page-016.html",
+          "work\\tii-results\\tii-life-099-page-017.html",
+          "work\\tii-results\\tii-life-099-page-018.html",
+          "work\\tii-results\\tii-life-099-page-019.html",
+          "work\\tii-results\\tii-life-099-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 226,
+        "saved_detail_count": 226,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 226,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-099\\220121M11A00200.html",
+          "work\\tii-details\\tii-life-099\\220141M11A00100.html",
+          "work\\tii-details\\tii-life-099\\220121M11A00300.html",
+          "work\\tii-details\\tii-life-099\\220121M11A00100.html",
+          "work\\tii-details\\tii-life-099\\220121M11A00400.html",
+          "work\\tii-details\\tii-life-099\\220121M11A00500.html",
+          "work\\tii-details\\tii-life-099\\220121M11A00101.html",
+          "work\\tii-details\\tii-life-099\\220121M11A00600.html",
+          "work\\tii-details\\tii-life-099\\220131M11A00100.html",
+          "work\\tii-details\\tii-life-099\\220121M11A00700.html",
+          "work\\tii-details\\tii-life-099\\220121M11A00800.html",
+          "work\\tii-details\\tii-life-099\\220141M11A00200.html",
+          "work\\tii-details\\tii-life-099\\220141M11A00201.html",
+          "work\\tii-details\\tii-life-099\\220121M11A00801.html",
+          "work\\tii-details\\tii-life-099\\220121M11A00701.html",
+          "work\\tii-details\\tii-life-099\\220131M11A00101.html",
+          "work\\tii-details\\tii-life-099\\220121M11A00601.html",
+          "work\\tii-details\\tii-life-099\\220121M11A00501.html",
+          "work\\tii-details\\tii-life-099\\220121M11A00102.html",
+          "work\\tii-details\\tii-life-099\\220121M11A00401.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-100",
+      "ran_at": "2026-06-17T17:47:43+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
+      "company_label": "220-中華郵政股份有限公司",
+      "category_label": "傳統型年金",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "220",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-100-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-100.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 0,
+        "total_pages": 0,
+        "official_row_count": 0,
+        "unique_product_id_count": 0,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-100-page-001.html"
+        ],
+        "is_complete": true,
+        "no_result_data": true
+      },
+      "fetched_details": {
+        "detail_link_count": 0,
+        "saved_detail_count": 0,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 0,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-101",
+      "ran_at": "2026-06-17T17:50:33+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "220-中華郵政股份有限公司",
+      "category_label": "投資型壽險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "220",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-101-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -29921,8 +30046,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 207,
-    "completed_batches": 206,
+    "attempted_batches": 209,
+    "completed_batches": 208,
     "captcha_required_batches": 1
   }
 }
