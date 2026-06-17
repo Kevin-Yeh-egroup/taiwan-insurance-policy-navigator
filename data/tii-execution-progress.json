@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T10:05:17+08:00",
+  "generated_at": "2026-06-17T10:17:20+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -4755,9 +4755,9 @@
     },
     {
       "batch_id": "tii-life-064",
-      "ran_at": "2026-06-17T10:05:17+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-17T10:13:59+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "211-三商美邦人壽保險股份有限公司",
       "category_label": "傳統型年金",
       "query_hint": {
@@ -4770,6 +4770,74 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-064-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-064.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 54,
+        "total_pages": 6,
+        "official_row_count": 54,
+        "unique_product_id_count": 54,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 6,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-064-page-001.html",
+          "work\\tii-results\\tii-life-064-page-002.html",
+          "work\\tii-results\\tii-life-064-page-003.html",
+          "work\\tii-results\\tii-life-064-page-004.html",
+          "work\\tii-results\\tii-life-064-page-005.html",
+          "work\\tii-results\\tii-life-064-page-006.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 54,
+        "saved_detail_count": 54,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 54,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-064\\211421M21A00100.html",
+          "work\\tii-details\\tii-life-064\\211421M21A00200.html",
+          "work\\tii-details\\tii-life-064\\211421M21A00300.html",
+          "work\\tii-details\\tii-life-064\\211421M21A00400.html",
+          "work\\tii-details\\tii-life-064\\211421M21A00500.html",
+          "work\\tii-details\\tii-life-064\\211411M11A00600.html",
+          "work\\tii-details\\tii-life-064\\211411M11A00601.html",
+          "work\\tii-details\\tii-life-064\\211421M21A00401.html",
+          "work\\tii-details\\tii-life-064\\211421M21A00700.html",
+          "work\\tii-details\\tii-life-064\\211421M21A00701.html",
+          "work\\tii-details\\tii-life-064\\211411M11A00602.html",
+          "work\\tii-details\\tii-life-064\\211421M21A00402.html",
+          "work\\tii-details\\tii-life-064\\211421M21A00501.html",
+          "work\\tii-details\\tii-life-064\\211411M11A00603.html",
+          "work\\tii-details\\tii-life-064\\211411M11A00604.html",
+          "work\\tii-details\\tii-life-064\\211421M21A00502.html",
+          "work\\tii-details\\tii-life-064\\211421M21A00403.html",
+          "work\\tii-details\\tii-life-064\\211421M21A00900.html",
+          "work\\tii-details\\tii-life-064\\211421M21A00901.html",
+          "work\\tii-details\\tii-life-064\\211421M21A01100.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-065",
+      "ran_at": "2026-06-17T10:17:20+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "211-三商美邦人壽保險股份有限公司",
+      "category_label": "投資型壽險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "211",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-065-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -27392,8 +27460,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 172,
-    "completed_batches": 171,
+    "attempted_batches": 173,
+    "completed_batches": 172,
     "captcha_required_batches": 1
   }
 }
