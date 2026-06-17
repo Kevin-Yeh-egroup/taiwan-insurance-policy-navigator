@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T15:37:21+08:00",
+  "generated_at": "2026-06-17T15:45:50+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -6711,9 +6711,9 @@
     },
     {
       "batch_id": "tii-life-091",
-      "ran_at": "2026-06-17T15:37:21+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-17T15:42:54+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "218-安聯人壽保險股份有限公司",
       "category_label": "傷害保險",
       "query_hint": {
@@ -6726,6 +6726,88 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-091-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-091.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 196,
+        "total_pages": 20,
+        "official_row_count": 196,
+        "unique_product_id_count": 196,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 20,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-091-page-001.html",
+          "work\\tii-results\\tii-life-091-page-002.html",
+          "work\\tii-results\\tii-life-091-page-003.html",
+          "work\\tii-results\\tii-life-091-page-004.html",
+          "work\\tii-results\\tii-life-091-page-005.html",
+          "work\\tii-results\\tii-life-091-page-006.html",
+          "work\\tii-results\\tii-life-091-page-007.html",
+          "work\\tii-results\\tii-life-091-page-008.html",
+          "work\\tii-results\\tii-life-091-page-009.html",
+          "work\\tii-results\\tii-life-091-page-010.html",
+          "work\\tii-results\\tii-life-091-page-011.html",
+          "work\\tii-results\\tii-life-091-page-012.html",
+          "work\\tii-results\\tii-life-091-page-013.html",
+          "work\\tii-results\\tii-life-091-page-014.html",
+          "work\\tii-results\\tii-life-091-page-015.html",
+          "work\\tii-results\\tii-life-091-page-016.html",
+          "work\\tii-results\\tii-life-091-page-017.html",
+          "work\\tii-results\\tii-life-091-page-018.html",
+          "work\\tii-results\\tii-life-091-page-019.html",
+          "work\\tii-results\\tii-life-091-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 196,
+        "saved_detail_count": 196,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 196,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-091\\218211A11A00100.html",
+          "work\\tii-details\\tii-life-091\\218211M11A00100.html",
+          "work\\tii-details\\tii-life-091\\218211R11A00100.html",
+          "work\\tii-details\\tii-life-091\\218221M11A00100.html",
+          "work\\tii-details\\tii-life-091\\218217M11A00100.html",
+          "work\\tii-details\\tii-life-091\\218217M11A00300.html",
+          "work\\tii-details\\tii-life-091\\218227M11A00100.html",
+          "work\\tii-details\\tii-life-091\\218217M11A00200.html",
+          "work\\tii-details\\tii-life-091\\218211R11A00101.html",
+          "work\\tii-details\\tii-life-091\\218211M11A00101.html",
+          "work\\tii-details\\tii-life-091\\218211A11A00101.html",
+          "work\\tii-details\\tii-life-091\\218211R11A00102.html",
+          "work\\tii-details\\tii-life-091\\218227M11A00101.html",
+          "work\\tii-details\\tii-life-091\\218221M11A00101.html",
+          "work\\tii-details\\tii-life-091\\218221M11A00102.html",
+          "work\\tii-details\\tii-life-091\\218221M11A00201.html",
+          "work\\tii-details\\tii-life-091\\218221M11A00202.html",
+          "work\\tii-details\\tii-life-091\\218217M11A00301.html",
+          "work\\tii-details\\tii-life-091\\218217M11A00101.html",
+          "work\\tii-details\\tii-life-091\\218211R11A00103.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-092",
+      "ran_at": "2026-06-17T15:45:50+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "218-安聯人壽保險股份有限公司",
+      "category_label": "健康保險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "218",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-092-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -29348,8 +29430,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 199,
-    "completed_batches": 198,
+    "attempted_batches": 200,
+    "completed_batches": 199,
     "captcha_required_batches": 1
   }
 }
