@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-17T17:55:02+08:00",
+  "generated_at": "2026-06-17T17:58:59+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 210,
+    "attempted_batches": 211,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 209,
-    "completed_batches": 209,
-    "pending_manual_batches": 97,
+    "indexed_batches": 210,
+    "completed_batches": 210,
+    "pending_manual_batches": 96,
     "imported_policy_records": 142930,
     "detail_expected_count": 142930,
     "detail_saved_count": 141588,
@@ -18,9 +18,9 @@
     "same_name_version_group_count": 2289,
     "same_name_version_card_count": 5663,
     "latest_completed_batch": {
-      "batch_id": "tii-life-101",
+      "batch_id": "tii-life-102",
       "company_label": "220-中華郵政股份有限公司",
-      "category_label": "投資型壽險",
+      "category_label": "投資型年金",
       "expected_total_count": 0,
       "official_row_count": 0,
       "imported_record_count": 0,
@@ -30,9 +30,9 @@
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "tii-life-102",
-      "company_label": "220-中華郵政股份有限公司",
-      "category_label": "投資型年金"
+      "batch_id": "tii-life-103",
+      "company_label": "221-第一金人壽保險股份有限公司",
+      "category_label": "傷害保險"
     }
   },
   "policy_content": {

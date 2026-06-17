@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T17:55:54+08:00",
+  "generated_at": "2026-06-17T17:58:46+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -7492,6 +7492,28 @@
         "saved_detail_sample": [],
         "failed_details": []
       }
+    },
+    {
+      "batch_id": "tii-life-103",
+      "ran_at": "2026-06-17T17:58:46+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "221-第一金人壽保險股份有限公司",
+      "category_label": "傷害保險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "221",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-103-captcha-1.jpg"
+      ],
+      "result_file": "",
+      "fetched_pages": {},
+      "fetched_details": {}
     },
     {
       "batch_id": "tii-property-001",
@@ -30110,8 +30132,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 210,
+    "attempted_batches": 211,
     "completed_batches": 210,
-    "captcha_required_batches": 0
+    "captcha_required_batches": 1
   }
 }
