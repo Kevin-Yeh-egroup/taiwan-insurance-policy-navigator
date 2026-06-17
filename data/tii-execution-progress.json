@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T17:12:01+08:00",
+  "generated_at": "2026-06-17T17:29:13+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -7082,9 +7082,9 @@
     },
     {
       "batch_id": "tii-life-096",
-      "ran_at": "2026-06-17T17:12:01+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-17T17:22:33+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "218-安聯人壽保險股份有限公司",
       "category_label": "投資型年金",
       "query_hint": {
@@ -7097,6 +7097,155 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-096-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-096.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 688,
+        "total_pages": 69,
+        "official_row_count": 688,
+        "unique_product_id_count": 688,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 69,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-096-page-001.html",
+          "work\\tii-results\\tii-life-096-page-002.html",
+          "work\\tii-results\\tii-life-096-page-003.html",
+          "work\\tii-results\\tii-life-096-page-004.html",
+          "work\\tii-results\\tii-life-096-page-005.html",
+          "work\\tii-results\\tii-life-096-page-006.html",
+          "work\\tii-results\\tii-life-096-page-007.html",
+          "work\\tii-results\\tii-life-096-page-008.html",
+          "work\\tii-results\\tii-life-096-page-009.html",
+          "work\\tii-results\\tii-life-096-page-010.html",
+          "work\\tii-results\\tii-life-096-page-011.html",
+          "work\\tii-results\\tii-life-096-page-012.html",
+          "work\\tii-results\\tii-life-096-page-013.html",
+          "work\\tii-results\\tii-life-096-page-014.html",
+          "work\\tii-results\\tii-life-096-page-015.html",
+          "work\\tii-results\\tii-life-096-page-016.html",
+          "work\\tii-results\\tii-life-096-page-017.html",
+          "work\\tii-results\\tii-life-096-page-018.html",
+          "work\\tii-results\\tii-life-096-page-019.html",
+          "work\\tii-results\\tii-life-096-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 688,
+        "saved_detail_count": 688,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 688,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-096\\218421M31A00100.html",
+          "work\\tii-details\\tii-life-096\\218421M31A00200.html",
+          "work\\tii-details\\tii-life-096\\218421M32C00100.html",
+          "work\\tii-details\\tii-life-096\\218421M32C00101.html",
+          "work\\tii-details\\tii-life-096\\218421M31A00101.html",
+          "work\\tii-details\\tii-life-096\\218421M31A00300.html",
+          "work\\tii-details\\tii-life-096\\218411M31A00100.html",
+          "work\\tii-details\\tii-life-096\\218421M31A00401.html",
+          "work\\tii-details\\tii-life-096\\218421M31A00102.html",
+          "work\\tii-details\\tii-life-096\\218421M31A00201.html",
+          "work\\tii-details\\tii-life-096\\218421M32C00102.html",
+          "work\\tii-details\\tii-life-096\\218421M31A00502.html",
+          "work\\tii-details\\tii-life-096\\218421M31A00402.html",
+          "work\\tii-details\\tii-life-096\\218421M31A00600.html",
+          "work\\tii-details\\tii-life-096\\218421M32C00103.html",
+          "work\\tii-details\\tii-life-096\\218421M31A00700.html",
+          "work\\tii-details\\tii-life-096\\218421M31A00503.html",
+          "work\\tii-details\\tii-life-096\\218421M31A00202.html",
+          "work\\tii-details\\tii-life-096\\218421M31A00103.html",
+          "work\\tii-details\\tii-life-096\\218421M31A00301.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-097",
+      "ran_at": "2026-06-17T17:26:26+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
+      "company_label": "220-中華郵政股份有限公司",
+      "category_label": "傷害保險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "220",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-097-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-097.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 42,
+        "total_pages": 5,
+        "official_row_count": 42,
+        "unique_product_id_count": 42,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 5,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-097-page-001.html",
+          "work\\tii-results\\tii-life-097-page-002.html",
+          "work\\tii-results\\tii-life-097-page-003.html",
+          "work\\tii-results\\tii-life-097-page-004.html",
+          "work\\tii-results\\tii-life-097-page-005.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 42,
+        "saved_detail_count": 42,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 42,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-097\\220211R11A00100.html",
+          "work\\tii-details\\tii-life-097\\220211R11A00101.html",
+          "work\\tii-details\\tii-life-097\\220211R11A00102.html",
+          "work\\tii-details\\tii-life-097\\220211R11A00103.html",
+          "work\\tii-details\\tii-life-097\\220211R11A00104.html",
+          "work\\tii-details\\tii-life-097\\220211R11A00105.html",
+          "work\\tii-details\\tii-life-097\\220291R12D00100.html",
+          "work\\tii-details\\tii-life-097\\220211R11A00106.html",
+          "work\\tii-details\\tii-life-097\\220211R11A00107.html",
+          "work\\tii-details\\tii-life-097\\220211R11A00108.html",
+          "work\\tii-details\\tii-life-097\\220291R12D00101.html",
+          "work\\tii-details\\tii-life-097\\220211R41A00100.html",
+          "work\\tii-details\\tii-life-097\\220211RZ1A00121A11Z10000009.html",
+          "work\\tii-details\\tii-life-097\\220211RZ1A00221A11A10000001.html",
+          "work\\tii-details\\tii-life-097\\220211RZ1D00121A11Z10000002.html",
+          "work\\tii-details\\tii-life-097\\220211RZ1D00121A11Z10000003.html",
+          "work\\tii-details\\tii-life-097\\220211RZ1A00121A11Z10000010.html",
+          "work\\tii-details\\tii-life-097\\220211RZ1D00121A11Z10000004.html",
+          "work\\tii-details\\tii-life-097\\220211RZ1D00121A11Z10000005.html",
+          "work\\tii-details\\tii-life-097\\220211RZ1A00221A11A10000003.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-098",
+      "ran_at": "2026-06-17T17:29:13+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "220-中華郵政股份有限公司",
+      "category_label": "健康保險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "220",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-098-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -29719,8 +29868,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 204,
-    "completed_batches": 203,
+    "attempted_batches": 206,
+    "completed_batches": 205,
     "captcha_required_batches": 1
   }
 }
