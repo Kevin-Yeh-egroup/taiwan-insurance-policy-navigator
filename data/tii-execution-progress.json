@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T17:56:35+08:00",
+  "generated_at": "2026-06-17T09:42:43+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -4509,9 +4509,9 @@
     },
     {
       "batch_id": "tii-life-061",
-      "ran_at": "2026-06-16T17:56:35+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-17T09:13:48+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "211-三商美邦人壽保險股份有限公司",
       "category_label": "傷害保險",
       "query_hint": {
@@ -4524,6 +4524,170 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-061-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-061.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 293,
+        "total_pages": 30,
+        "official_row_count": 293,
+        "unique_product_id_count": 293,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 30,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-061-page-001.html",
+          "work\\tii-results\\tii-life-061-page-002.html",
+          "work\\tii-results\\tii-life-061-page-003.html",
+          "work\\tii-results\\tii-life-061-page-004.html",
+          "work\\tii-results\\tii-life-061-page-005.html",
+          "work\\tii-results\\tii-life-061-page-006.html",
+          "work\\tii-results\\tii-life-061-page-007.html",
+          "work\\tii-results\\tii-life-061-page-008.html",
+          "work\\tii-results\\tii-life-061-page-009.html",
+          "work\\tii-results\\tii-life-061-page-010.html",
+          "work\\tii-results\\tii-life-061-page-011.html",
+          "work\\tii-results\\tii-life-061-page-012.html",
+          "work\\tii-results\\tii-life-061-page-013.html",
+          "work\\tii-results\\tii-life-061-page-014.html",
+          "work\\tii-results\\tii-life-061-page-015.html",
+          "work\\tii-results\\tii-life-061-page-016.html",
+          "work\\tii-results\\tii-life-061-page-017.html",
+          "work\\tii-results\\tii-life-061-page-018.html",
+          "work\\tii-results\\tii-life-061-page-019.html",
+          "work\\tii-results\\tii-life-061-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 293,
+        "saved_detail_count": 293,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 293,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-061\\211211M11A00100.html",
+          "work\\tii-details\\tii-life-061\\211211A11A00300.html",
+          "work\\tii-details\\tii-life-061\\211211R11A00200.html",
+          "work\\tii-details\\tii-life-061\\211217M11A00400.html",
+          "work\\tii-details\\tii-life-061\\211221M11A00100.html",
+          "work\\tii-details\\tii-life-061\\211217M11A00500.html",
+          "work\\tii-details\\tii-life-061\\211247M12A00100.html",
+          "work\\tii-details\\tii-life-061\\211247A12A00100.html",
+          "work\\tii-details\\tii-life-061\\211221M11A00101.html",
+          "work\\tii-details\\tii-life-061\\211211A11A00600.html",
+          "work\\tii-details\\tii-life-061\\211247M12A00101.html",
+          "work\\tii-details\\tii-life-061\\211247A12A00101.html",
+          "work\\tii-details\\tii-life-061\\211221M11A00102.html",
+          "work\\tii-details\\tii-life-061\\211217M11A00501.html",
+          "work\\tii-details\\tii-life-061\\211211M11A00101.html",
+          "work\\tii-details\\tii-life-061\\211211R11A00201.html",
+          "work\\tii-details\\tii-life-061\\211217M11A00401.html",
+          "work\\tii-details\\tii-life-061\\211221M11A00103.html",
+          "work\\tii-details\\tii-life-061\\211217M11A00502.html",
+          "work\\tii-details\\tii-life-061\\211247A12A00102.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-062",
+      "ran_at": "2026-06-17T09:37:42+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
+      "company_label": "211-三商美邦人壽保險股份有限公司",
+      "category_label": "健康保險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "211",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-062-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-062.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 837,
+        "total_pages": 84,
+        "official_row_count": 837,
+        "unique_product_id_count": 837,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 84,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-062-page-001.html",
+          "work\\tii-results\\tii-life-062-page-002.html",
+          "work\\tii-results\\tii-life-062-page-003.html",
+          "work\\tii-results\\tii-life-062-page-004.html",
+          "work\\tii-results\\tii-life-062-page-005.html",
+          "work\\tii-results\\tii-life-062-page-006.html",
+          "work\\tii-results\\tii-life-062-page-007.html",
+          "work\\tii-results\\tii-life-062-page-008.html",
+          "work\\tii-results\\tii-life-062-page-009.html",
+          "work\\tii-results\\tii-life-062-page-010.html",
+          "work\\tii-results\\tii-life-062-page-011.html",
+          "work\\tii-results\\tii-life-062-page-012.html",
+          "work\\tii-results\\tii-life-062-page-013.html",
+          "work\\tii-results\\tii-life-062-page-014.html",
+          "work\\tii-results\\tii-life-062-page-015.html",
+          "work\\tii-results\\tii-life-062-page-016.html",
+          "work\\tii-results\\tii-life-062-page-017.html",
+          "work\\tii-results\\tii-life-062-page-018.html",
+          "work\\tii-results\\tii-life-062-page-019.html",
+          "work\\tii-results\\tii-life-062-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 837,
+        "saved_detail_count": 837,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 837,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-062\\211311M11A00400.html",
+          "work\\tii-details\\tii-life-062\\211311M12B00300.html",
+          "work\\tii-details\\tii-life-062\\211311R11A00100.html",
+          "work\\tii-details\\tii-life-062\\211311R11A00200.html",
+          "work\\tii-details\\tii-life-062\\211311R11A00500.html",
+          "work\\tii-details\\tii-life-062\\211311R11A00600.html",
+          "work\\tii-details\\tii-life-062\\211311R11A00700.html",
+          "work\\tii-details\\tii-life-062\\211317M11A00800.html",
+          "work\\tii-details\\tii-life-062\\211317M11A00900.html",
+          "work\\tii-details\\tii-life-062\\211327M11A00200.html",
+          "work\\tii-details\\tii-life-062\\211341R11A00100.html",
+          "work\\tii-details\\tii-life-062\\211341R11A00200.html",
+          "work\\tii-details\\tii-life-062\\211351R11A00100.html",
+          "work\\tii-details\\tii-life-062\\211357M11A00200.html",
+          "work\\tii-details\\tii-life-062\\211361R11A00100.html",
+          "work\\tii-details\\tii-life-062\\211391R11A00100.html",
+          "work\\tii-details\\tii-life-062\\211391R11A00200.html",
+          "work\\tii-details\\tii-life-062\\211397A11A00300.html",
+          "work\\tii-details\\tii-life-062\\211321R11A00100.html",
+          "work\\tii-details\\tii-life-062\\211321R11A00101.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-063",
+      "ran_at": "2026-06-17T09:42:43+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "211-三商美邦人壽保險股份有限公司",
+      "category_label": "傳統型壽險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "211",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-063-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -27146,8 +27310,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 169,
-    "completed_batches": 168,
+    "attempted_batches": 171,
+    "completed_batches": 170,
     "captcha_required_batches": 1
   }
 }
