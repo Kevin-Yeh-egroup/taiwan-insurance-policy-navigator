@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-17T13:44:55+08:00",
+  "generated_at": "2026-06-17T13:50:43+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -5689,9 +5689,9 @@
     },
     {
       "batch_id": "tii-life-077",
-      "ran_at": "2026-06-17T13:44:55+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-17T13:47:59+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "215-幸福人壽保險股份有限公司",
       "category_label": "投資型壽險",
       "query_hint": {
@@ -5704,6 +5704,70 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-077-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-077.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 20,
+        "total_pages": 2,
+        "official_row_count": 20,
+        "unique_product_id_count": 20,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 2,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-077-page-001.html",
+          "work\\tii-results\\tii-life-077-page-002.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 20,
+        "saved_detail_count": 20,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 20,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-077\\215141M31A00100.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00101.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00102.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00103.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00104.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00105.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00106.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00107.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00200.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00201.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00202.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00203.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00204.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00205.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00206.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00207.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00208.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00209.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00210.html",
+          "work\\tii-details\\tii-life-077\\215141M31A00211.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-078",
+      "ran_at": "2026-06-17T13:50:43+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "215-幸福人壽保險股份有限公司",
+      "category_label": "投資型年金",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "215",
+        "f_CategoryId1": "2_6",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-078-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -28326,8 +28390,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 185,
-    "completed_batches": 184,
+    "attempted_batches": 186,
+    "completed_batches": 185,
     "captcha_required_batches": 1
   }
 }
