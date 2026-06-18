@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T17:15:07+08:00",
+  "generated_at": "2026-06-18T17:26:28+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -8836,9 +8836,9 @@
     },
     {
       "batch_id": "tii-life-123",
-      "ran_at": "2026-06-18T17:15:07+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-18T17:23:03+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "254-中國信託人壽保險股份有限公司",
       "category_label": "傳統型壽險",
       "query_hint": {
@@ -8851,6 +8851,88 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-123-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-123.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 384,
+        "total_pages": 39,
+        "official_row_count": 384,
+        "unique_product_id_count": 361,
+        "duplicate_product_id_count": 23,
+        "saved_page_count": 39,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-123-page-001.html",
+          "work\\tii-results\\tii-life-123-page-002.html",
+          "work\\tii-results\\tii-life-123-page-003.html",
+          "work\\tii-results\\tii-life-123-page-004.html",
+          "work\\tii-results\\tii-life-123-page-005.html",
+          "work\\tii-results\\tii-life-123-page-006.html",
+          "work\\tii-results\\tii-life-123-page-007.html",
+          "work\\tii-results\\tii-life-123-page-008.html",
+          "work\\tii-results\\tii-life-123-page-009.html",
+          "work\\tii-results\\tii-life-123-page-010.html",
+          "work\\tii-results\\tii-life-123-page-011.html",
+          "work\\tii-results\\tii-life-123-page-012.html",
+          "work\\tii-results\\tii-life-123-page-013.html",
+          "work\\tii-results\\tii-life-123-page-014.html",
+          "work\\tii-results\\tii-life-123-page-015.html",
+          "work\\tii-results\\tii-life-123-page-016.html",
+          "work\\tii-results\\tii-life-123-page-017.html",
+          "work\\tii-results\\tii-life-123-page-018.html",
+          "work\\tii-results\\tii-life-123-page-019.html",
+          "work\\tii-results\\tii-life-123-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 361,
+        "saved_detail_count": 361,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 361,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-123\\254131M11A20600.html",
+          "work\\tii-details\\tii-life-123\\254131R11A20100.html",
+          "work\\tii-details\\tii-life-123\\254137M11A22500.html",
+          "work\\tii-details\\tii-life-123\\254191R12B20300.html",
+          "work\\tii-details\\tii-life-123\\254141M11A24600.html",
+          "work\\tii-details\\tii-life-123\\254137M12B22700.html",
+          "work\\tii-details\\tii-life-123\\254137M11A22800.html",
+          "work\\tii-details\\tii-life-123\\254137M11A22900.html",
+          "work\\tii-details\\tii-life-123\\254131M11A24800.html",
+          "work\\tii-details\\tii-life-123\\254191E12G20400.html",
+          "work\\tii-details\\tii-life-123\\254131R11A20500.html",
+          "work\\tii-details\\tii-life-123\\254141M12B24100.html",
+          "work\\tii-details\\tii-life-123\\254131M11A20700.html",
+          "work\\tii-details\\tii-life-123\\254131R11A21000.html",
+          "work\\tii-details\\tii-life-123\\254141M11A20900.html",
+          "work\\tii-details\\tii-life-123\\254141M11A21200.html",
+          "work\\tii-details\\tii-life-123\\254141M11A24300.html",
+          "work\\tii-details\\tii-life-123\\254141M11A20901.html",
+          "work\\tii-details\\tii-life-123\\254121M11A20201.html",
+          "work\\tii-details\\tii-life-123\\254121M12C24501.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-124",
+      "ran_at": "2026-06-18T17:26:28+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "254-中國信託人壽保險股份有限公司",
+      "category_label": "傳統型年金",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "254",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-124-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -31473,8 +31555,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 231,
-    "completed_batches": 227,
+    "attempted_batches": 232,
+    "completed_batches": 228,
     "captcha_required_batches": 4
   }
 }
