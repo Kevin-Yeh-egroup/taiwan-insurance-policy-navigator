@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T10:00:20+08:00",
+  "generated_at": "2026-06-18T10:05:07+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -7681,9 +7681,9 @@
     },
     {
       "batch_id": "tii-life-106",
-      "ran_at": "2026-06-18T10:00:20+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-18T10:01:16+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "221-第一金人壽保險股份有限公司",
       "category_label": "傳統型年金",
       "query_hint": {
@@ -7696,6 +7696,75 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-106-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-106.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 68,
+        "total_pages": 7,
+        "official_row_count": 68,
+        "unique_product_id_count": 68,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 7,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-106-page-001.html",
+          "work\\tii-results\\tii-life-106-page-002.html",
+          "work\\tii-results\\tii-life-106-page-003.html",
+          "work\\tii-results\\tii-life-106-page-004.html",
+          "work\\tii-results\\tii-life-106-page-005.html",
+          "work\\tii-results\\tii-life-106-page-006.html",
+          "work\\tii-results\\tii-life-106-page-007.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 68,
+        "saved_detail_count": 68,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 68,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-106\\221421M21AISA00.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISB00.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISC00.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISA01.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISD00.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISE00.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISD01.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISD02.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISE01.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISB01.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISB02.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISE02.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISD03.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISD04.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISE03.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISB03.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISB04.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISE04.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISD05.html",
+          "work\\tii-details\\tii-life-106\\221421M21AISF00.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-107",
+      "ran_at": "2026-06-18T10:05:07+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "221-第一金人壽保險股份有限公司",
+      "category_label": "投資型壽險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "221",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-107-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -30318,8 +30387,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 214,
-    "completed_batches": 212,
+    "attempted_batches": 215,
+    "completed_batches": 213,
     "captcha_required_batches": 2
   }
 }
