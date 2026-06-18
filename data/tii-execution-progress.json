@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-18T12:01:49+08:00",
+  "generated_at": "2026-06-18T12:08:29+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -7914,9 +7914,9 @@
     },
     {
       "batch_id": "tii-life-109",
-      "ran_at": "2026-06-18T12:01:49+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-18T12:05:50+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "222-合作金庫人壽保險股份有限公司",
       "category_label": "傷害保險",
       "query_hint": {
@@ -7929,6 +7929,78 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-109-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-109.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 92,
+        "total_pages": 10,
+        "official_row_count": 92,
+        "unique_product_id_count": 92,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 10,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-109-page-001.html",
+          "work\\tii-results\\tii-life-109-page-002.html",
+          "work\\tii-results\\tii-life-109-page-003.html",
+          "work\\tii-results\\tii-life-109-page-004.html",
+          "work\\tii-results\\tii-life-109-page-005.html",
+          "work\\tii-results\\tii-life-109-page-006.html",
+          "work\\tii-results\\tii-life-109-page-007.html",
+          "work\\tii-results\\tii-life-109-page-008.html",
+          "work\\tii-results\\tii-life-109-page-009.html",
+          "work\\tii-results\\tii-life-109-page-010.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 92,
+        "saved_detail_count": 92,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 92,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-109\\222217M11A00100.html",
+          "work\\tii-details\\tii-life-109\\222217M11A00200.html",
+          "work\\tii-details\\tii-life-109\\222291A11A00100.html",
+          "work\\tii-details\\tii-life-109\\222291M11A00100.html",
+          "work\\tii-details\\tii-life-109\\222291R11A00100.html",
+          "work\\tii-details\\tii-life-109\\222291A11A00200.html",
+          "work\\tii-details\\tii-life-109\\222291A11A00201.html",
+          "work\\tii-details\\tii-life-109\\222217M11A00300.html",
+          "work\\tii-details\\tii-life-109\\222221A11A00100.html",
+          "work\\tii-details\\tii-life-109\\222221M11A00100.html",
+          "work\\tii-details\\tii-life-109\\222221M11A00101.html",
+          "work\\tii-details\\tii-life-109\\222221A11A00101.html",
+          "work\\tii-details\\tii-life-109\\222291R11A00200.html",
+          "work\\tii-details\\tii-life-109\\222291R11A00201.html",
+          "work\\tii-details\\tii-life-109\\222291R11A00101.html",
+          "work\\tii-details\\tii-life-109\\222291M11A00101.html",
+          "work\\tii-details\\tii-life-109\\222221A11A00102.html",
+          "work\\tii-details\\tii-life-109\\222221M11A00102.html",
+          "work\\tii-details\\tii-life-109\\222291R11A00202.html",
+          "work\\tii-details\\tii-life-109\\222291RZ1A00121A11Z10000002.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-110",
+      "ran_at": "2026-06-18T12:08:29+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "222-合作金庫人壽保險股份有限公司",
+      "category_label": "健康保險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "222",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-110-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -30551,8 +30623,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 217,
-    "completed_batches": 215,
+    "attempted_batches": 218,
+    "completed_batches": 216,
     "captcha_required_batches": 2
   }
 }
