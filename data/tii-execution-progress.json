@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T16:34:25+08:00",
+  "generated_at": "2026-06-22T16:46:28+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -10182,9 +10182,9 @@
     },
     {
       "batch_id": "tii-life-141",
-      "ran_at": "2026-06-22T16:34:25+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-22T16:42:44+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "257-英屬百慕達商友邦人壽保險股份有限公司台灣分公司",
       "category_label": "傳統型壽險",
       "query_hint": {
@@ -10197,6 +10197,88 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-141-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-141.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 511,
+        "total_pages": 52,
+        "official_row_count": 511,
+        "unique_product_id_count": 484,
+        "duplicate_product_id_count": 27,
+        "saved_page_count": 52,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-141-page-001.html",
+          "work\\tii-results\\tii-life-141-page-002.html",
+          "work\\tii-results\\tii-life-141-page-003.html",
+          "work\\tii-results\\tii-life-141-page-004.html",
+          "work\\tii-results\\tii-life-141-page-005.html",
+          "work\\tii-results\\tii-life-141-page-006.html",
+          "work\\tii-results\\tii-life-141-page-007.html",
+          "work\\tii-results\\tii-life-141-page-008.html",
+          "work\\tii-results\\tii-life-141-page-009.html",
+          "work\\tii-results\\tii-life-141-page-010.html",
+          "work\\tii-results\\tii-life-141-page-011.html",
+          "work\\tii-results\\tii-life-141-page-012.html",
+          "work\\tii-results\\tii-life-141-page-013.html",
+          "work\\tii-results\\tii-life-141-page-014.html",
+          "work\\tii-results\\tii-life-141-page-015.html",
+          "work\\tii-results\\tii-life-141-page-016.html",
+          "work\\tii-results\\tii-life-141-page-017.html",
+          "work\\tii-results\\tii-life-141-page-018.html",
+          "work\\tii-results\\tii-life-141-page-019.html",
+          "work\\tii-results\\tii-life-141-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 484,
+        "saved_detail_count": 484,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 484,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-141\\257121M11A01100.html",
+          "work\\tii-details\\tii-life-141\\257121M11A01200.html",
+          "work\\tii-details\\tii-life-141\\257121M11A01300.html",
+          "work\\tii-details\\tii-life-141\\257121M11A01400.html",
+          "work\\tii-details\\tii-life-141\\257121M11A01500.html",
+          "work\\tii-details\\tii-life-141\\257121M11A00600.html",
+          "work\\tii-details\\tii-life-141\\257121M11A00700.html",
+          "work\\tii-details\\tii-life-141\\257121M11A00800.html",
+          "work\\tii-details\\tii-life-141\\257121M11A00900.html",
+          "work\\tii-details\\tii-life-141\\257121M11A01000.html",
+          "work\\tii-details\\tii-life-141\\257141M11A00300.html",
+          "work\\tii-details\\tii-life-141\\257141M12B00200.html",
+          "work\\tii-details\\tii-life-141\\257121M11A00500.html",
+          "work\\tii-details\\tii-life-141\\257121M11A01700.html",
+          "work\\tii-details\\tii-life-141\\257121M11A01800.html",
+          "work\\tii-details\\tii-life-141\\257121M11A01900.html",
+          "work\\tii-details\\tii-life-141\\257121M11A02000.html",
+          "work\\tii-details\\tii-life-141\\257121M11A02100.html",
+          "work\\tii-details\\tii-life-141\\257121M12G00100.html",
+          "work\\tii-details\\tii-life-141\\257121M11A02200.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-142",
+      "ran_at": "2026-06-22T16:46:28+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "257-英屬百慕達商友邦人壽保險股份有限公司台灣分公司",
+      "category_label": "傳統型年金",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "257",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-142-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -32819,8 +32901,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 249,
-    "completed_batches": 245,
+    "attempted_batches": 250,
+    "completed_batches": 246,
     "captcha_required_batches": 4
   }
 }
