@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T16:46:28+08:00",
+  "generated_at": "2026-06-22T16:58:47+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -10264,9 +10264,9 @@
     },
     {
       "batch_id": "tii-life-142",
-      "ran_at": "2026-06-22T16:46:28+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-22T16:55:02+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "257-英屬百慕達商友邦人壽保險股份有限公司台灣分公司",
       "category_label": "傳統型年金",
       "query_hint": {
@@ -10279,6 +10279,52 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-142-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-142.html",
+      "fetched_pages": {
+        "page_size": 3,
+        "total_count": 3,
+        "total_pages": 1,
+        "official_row_count": 3,
+        "unique_product_id_count": 3,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-142-page-001.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 3,
+        "saved_detail_count": 3,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 3,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-142\\257411M11A00100.html",
+          "work\\tii-details\\tii-life-142\\257421MA1A00123A11Z10000000.html",
+          "work\\tii-details\\tii-life-142\\257421MA1A00223A11Z10000000.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-143",
+      "ran_at": "2026-06-22T16:58:47+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "257-英屬百慕達商友邦人壽保險股份有限公司台灣分公司",
+      "category_label": "投資型壽險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "257",
+        "f_CategoryId1": "2_5",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-143-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -32901,8 +32947,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 250,
-    "completed_batches": 246,
+    "attempted_batches": 251,
+    "completed_batches": 247,
     "captcha_required_batches": 4
   }
 }
