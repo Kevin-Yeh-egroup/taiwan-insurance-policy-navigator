@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-22T10:01:23+08:00",
+  "generated_at": "2026-06-22T10:19:33+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -9285,9 +9285,9 @@
     },
     {
       "batch_id": "tii-life-129",
-      "ran_at": "2026-06-22T10:01:23+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-22T10:12:37+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "255-台新人壽保險股份有限公司(115年起併入新光)",
       "category_label": "傳統型壽險",
       "query_hint": {
@@ -9300,6 +9300,88 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-129-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-129.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 751,
+        "total_pages": 76,
+        "official_row_count": 751,
+        "unique_product_id_count": 681,
+        "duplicate_product_id_count": 70,
+        "saved_page_count": 76,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-129-page-001.html",
+          "work\\tii-results\\tii-life-129-page-002.html",
+          "work\\tii-results\\tii-life-129-page-003.html",
+          "work\\tii-results\\tii-life-129-page-004.html",
+          "work\\tii-results\\tii-life-129-page-005.html",
+          "work\\tii-results\\tii-life-129-page-006.html",
+          "work\\tii-results\\tii-life-129-page-007.html",
+          "work\\tii-results\\tii-life-129-page-008.html",
+          "work\\tii-results\\tii-life-129-page-009.html",
+          "work\\tii-results\\tii-life-129-page-010.html",
+          "work\\tii-results\\tii-life-129-page-011.html",
+          "work\\tii-results\\tii-life-129-page-012.html",
+          "work\\tii-results\\tii-life-129-page-013.html",
+          "work\\tii-results\\tii-life-129-page-014.html",
+          "work\\tii-results\\tii-life-129-page-015.html",
+          "work\\tii-results\\tii-life-129-page-016.html",
+          "work\\tii-results\\tii-life-129-page-017.html",
+          "work\\tii-results\\tii-life-129-page-018.html",
+          "work\\tii-results\\tii-life-129-page-019.html",
+          "work\\tii-results\\tii-life-129-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 681,
+        "saved_detail_count": 681,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 681,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-129\\255191A11A12300.html",
+          "work\\tii-details\\tii-life-129\\255191A11A12301.html",
+          "work\\tii-details\\tii-life-129\\255191A11A12400.html",
+          "work\\tii-details\\tii-life-129\\255191A11A12401.html",
+          "work\\tii-details\\tii-life-129\\255191A11A12500.html",
+          "work\\tii-details\\tii-life-129\\255191A11A12501.html",
+          "work\\tii-details\\tii-life-129\\255131M11A10800.html",
+          "work\\tii-details\\tii-life-129\\255131M11A10900.html",
+          "work\\tii-details\\tii-life-129\\255121M11A10600.html",
+          "work\\tii-details\\tii-life-129\\255121M12C10700.html",
+          "work\\tii-details\\tii-life-129\\255131R11A11000.html",
+          "work\\tii-details\\tii-life-129\\255131R11A11100.html",
+          "work\\tii-details\\tii-life-129\\255131R11A11200.html",
+          "work\\tii-details\\tii-life-129\\255141M11A10100.html",
+          "work\\tii-details\\tii-life-129\\255121M22C12700.html",
+          "work\\tii-details\\tii-life-129\\255121M22C12701.html",
+          "work\\tii-details\\tii-life-129\\255141M21A12600.html",
+          "work\\tii-details\\tii-life-129\\255121M22C12702.html",
+          "work\\tii-details\\tii-life-129\\255121M12C10701.html",
+          "work\\tii-details\\tii-life-129\\255191A11A12800.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-130",
+      "ran_at": "2026-06-22T10:19:33+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "255-台新人壽保險股份有限公司(115年起併入新光)",
+      "category_label": "傳統型年金",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "255",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-130-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -31922,8 +32004,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 237,
-    "completed_batches": 233,
+    "attempted_batches": 238,
+    "completed_batches": 234,
     "captcha_required_batches": 4
   }
 }
