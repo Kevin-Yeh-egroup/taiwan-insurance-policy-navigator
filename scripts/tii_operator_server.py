@@ -264,14 +264,15 @@ def html_page(message: str = "") -> bytes:
     batch_id = next_batch_id()
     batch = batches.get(batch_id, {})
     job_running = job.get("status") == "running"
-    force_refresh = job.get("status") == "failed" and job.get("batch_id") == batch_id
     ok, prepare_message = (
         (False, "A batch is running.")
         if job_running
-        else ensure_captcha(batch_id, force_refresh=force_refresh)
+        else ensure_captcha(batch_id)
         if batch_id
         else (False, "No pending batch.")
     )
+    if ok and job.get("status") == "failed" and job.get("batch_id") == batch_id:
+        prepare_message = "上一輪驗證碼被官方判定錯誤。這張會固定到你送出或手動換圖為止。"
     image = captcha_image(batch_id) if ok else None
     counts = saved_counts(batch_id)
     progress_hint = (
