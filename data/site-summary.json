@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-22T15:30:21+08:00",
+  "generated_at": "2026-06-22T15:36:21+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 244,
+    "attempted_batches": 245,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 243,
-    "completed_batches": 243,
-    "pending_manual_batches": 63,
+    "indexed_batches": 244,
+    "completed_batches": 244,
+    "pending_manual_batches": 62,
     "imported_policy_records": 150617,
     "detail_expected_count": 150617,
     "detail_saved_count": 149275,
@@ -18,21 +18,21 @@
     "same_name_version_group_count": 2305,
     "same_name_version_card_count": 5695,
     "latest_completed_batch": {
-      "batch_id": "tii-life-135",
+      "batch_id": "tii-life-136",
       "company_label": "256-安達國際人壽保險股份有限公司(原康健人壽)",
-      "category_label": "傳統型壽險",
-      "expected_total_count": 243,
-      "official_row_count": 243,
-      "imported_record_count": 227,
-      "detail_expected_count": 227,
-      "detail_saved_count": 227,
+      "category_label": "傳統型年金",
+      "expected_total_count": 0,
+      "official_row_count": 0,
+      "imported_record_count": 0,
+      "detail_expected_count": 0,
+      "detail_saved_count": 0,
       "detail_missing_count": 0,
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "tii-life-136",
+      "batch_id": "tii-life-137",
       "company_label": "256-安達國際人壽保險股份有限公司(原康健人壽)",
-      "category_label": "傳統型年金"
+      "category_label": "投資型壽險"
     }
   },
   "policy_content": {
