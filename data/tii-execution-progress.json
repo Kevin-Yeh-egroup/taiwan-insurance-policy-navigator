@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T16:34:08+08:00",
+  "generated_at": "2026-06-23T16:50:51+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -11215,9 +11215,9 @@
     },
     {
       "batch_id": "tii-life-157",
-      "ran_at": "2026-06-23T16:34:08+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-23T16:36:57+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "262-環球瑞泰人壽保險股份有限公司",
       "category_label": "傷害保險",
       "query_hint": {
@@ -11230,6 +11230,73 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-157-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-157.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 47,
+        "total_pages": 5,
+        "official_row_count": 47,
+        "unique_product_id_count": 47,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 5,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-157-page-001.html",
+          "work\\tii-results\\tii-life-157-page-002.html",
+          "work\\tii-results\\tii-life-157-page-003.html",
+          "work\\tii-results\\tii-life-157-page-004.html",
+          "work\\tii-results\\tii-life-157-page-005.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 47,
+        "saved_detail_count": 47,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 47,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-157\\262211M11A00100.html",
+          "work\\tii-details\\tii-life-157\\262211R11A00200.html",
+          "work\\tii-details\\tii-life-157\\262217M11A00100.html",
+          "work\\tii-details\\tii-life-157\\262221M11A00100.html",
+          "work\\tii-details\\tii-life-157\\262221M11A00300.html",
+          "work\\tii-details\\tii-life-157\\262221M11A00200.html",
+          "work\\tii-details\\tii-life-157\\262211R11A00100.html",
+          "work\\tii-details\\tii-life-157\\262217M11A00200.html",
+          "work\\tii-details\\tii-life-157\\262291R11A00100.html",
+          "work\\tii-details\\tii-life-157\\262217A11A00100.html",
+          "work\\tii-details\\tii-life-157\\262211R11A00300.html",
+          "work\\tii-details\\tii-life-157\\262211R11A00301.html",
+          "work\\tii-details\\tii-life-157\\262221M11A00101.html",
+          "work\\tii-details\\tii-life-157\\262221M11A00301.html",
+          "work\\tii-details\\tii-life-157\\262221R11A00100.html",
+          "work\\tii-details\\tii-life-157\\262221M11A00302.html",
+          "work\\tii-details\\tii-life-157\\262211R11A00201.html",
+          "work\\tii-details\\tii-life-157\\262211R11A00101.html",
+          "work\\tii-details\\tii-life-157\\262211M11A00101.html",
+          "work\\tii-details\\tii-life-157\\262291R11A00101.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-158",
+      "ran_at": "2026-06-23T16:50:51+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "262-環球瑞泰人壽保險股份有限公司",
+      "category_label": "健康保險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "262",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-158-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -33852,8 +33919,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 265,
-    "completed_batches": 260,
+    "attempted_batches": 266,
+    "completed_batches": 261,
     "captcha_required_batches": 5
   }
 }
