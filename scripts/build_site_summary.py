@@ -68,12 +68,14 @@ def main() -> None:
     completed_batch_ids = set(tii_results.get("completed_batches") or [])
     batch_plan_by_id = {batch.get("id"): batch for batch in batch_plan.get("tii_manual_matrix_batches", [])}
     batch_order_index = {batch.get("id"): index for index, batch in enumerate(batch_plan.get("tii_manual_matrix_batches", []))}
-    latest_completed_run = find_latest_completed_run(tii_progress, completed_batch_ids)
-    latest_completed_id = latest_completed_run.get("batch_id") or max(
+    latest_completed_id = max(
         completed_batch_ids,
         key=lambda batch_id: batch_order_index.get(batch_id, -1),
         default="",
     )
+    latest_completed_run = find_latest_completed_run(tii_progress, {latest_completed_id})
+    if not latest_completed_run:
+        latest_completed_run = latest_run_for_batch(tii_progress, latest_completed_id)
     latest_completed_summary = next(
         (batch for batch in reversed(batch_summaries) if batch.get("batch_id") == latest_completed_id),
         {},

@@ -477,7 +477,7 @@ def main() -> None:
     invalid_sources = invalid_page_sources(input_dir, batch_meta, batch_plan)
     skipped_captcha_sources: dict[str, list[str]] = {}
     raw_records: list[dict] = []
-    for path in sorted(input_dir.glob("*")):
+    for path in sorted(input_dir.glob("tii-*")):
         if not path.name.startswith("tii-"):
             continue
         if path.suffix.lower() in {".html", ".htm"}:
