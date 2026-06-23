@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-23T11:00:46+08:00",
+  "generated_at": "2026-06-23T11:11:01+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 256,
+    "attempted_batches": 257,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 255,
-    "completed_batches": 255,
-    "pending_manual_batches": 51,
+    "indexed_batches": 256,
+    "completed_batches": 256,
+    "pending_manual_batches": 50,
     "imported_policy_records": 153067,
     "detail_expected_count": 153067,
     "detail_saved_count": 151725,
@@ -18,21 +18,21 @@
     "same_name_version_group_count": 2305,
     "same_name_version_card_count": 5695,
     "latest_completed_batch": {
-      "batch_id": "tii-life-147",
+      "batch_id": "tii-life-148",
       "company_label": "258-英屬百慕達商宏利人壽保險國際股份有限公司台灣分公司",
-      "category_label": "傳統型壽險",
-      "expected_total_count": 125,
-      "official_row_count": 125,
-      "imported_record_count": 125,
-      "detail_expected_count": 125,
-      "detail_saved_count": 125,
+      "category_label": "傳統型年金",
+      "expected_total_count": 0,
+      "official_row_count": 0,
+      "imported_record_count": 0,
+      "detail_expected_count": 0,
+      "detail_saved_count": 0,
       "detail_missing_count": 0,
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "tii-life-148",
+      "batch_id": "tii-life-149",
       "company_label": "258-英屬百慕達商宏利人壽保險國際股份有限公司台灣分公司",
-      "category_label": "傳統型年金"
+      "category_label": "投資型壽險"
     }
   },
   "policy_content": {
