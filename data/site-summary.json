@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-24T17:37:36+08:00",
+  "generated_at": "2026-06-24T17:39:44+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 299,
-    "waiting_captcha_batches": 0,
+    "attempted_batches": 300,
+    "waiting_captcha_batches": 1,
     "indexed_batches": 299,
     "completed_batches": 299,
     "pending_manual_batches": 7,
@@ -30,9 +30,9 @@
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "",
-      "company_label": "",
-      "category_label": ""
+      "batch_id": "tii-life-192",
+      "company_label": "271-英屬百慕達商匯豐人壽保險國際有限公司台灣分公司",
+      "category_label": "投資型年金"
     }
   },
   "policy_content": {
