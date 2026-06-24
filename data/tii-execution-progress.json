@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T18:23:22+08:00",
+  "generated_at": "2026-06-24T18:25:43+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -13809,9 +13809,9 @@
     },
     {
       "batch_id": "tii-life-198",
-      "ran_at": "2026-06-24T18:23:22+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-24T18:25:43+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "272-英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
       "category_label": "投資型年金",
       "query_hint": {
@@ -13825,9 +13825,43 @@
       "captcha_files": [
         "work\\tii-execution\\tii-life-198-captcha-1.jpg"
       ],
-      "result_file": "",
-      "fetched_pages": {},
-      "fetched_details": {}
+      "result_file": "work\\tii-results\\tii-life-198.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 12,
+        "total_pages": 2,
+        "official_row_count": 12,
+        "unique_product_id_count": 12,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 2,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-198-page-001.html",
+          "work\\tii-results\\tii-life-198-page-002.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 12,
+        "saved_detail_count": 12,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 12,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-198\\272421M31A00100.html",
+          "work\\tii-details\\tii-life-198\\272421M31A00101.html",
+          "work\\tii-details\\tii-life-198\\272421M31A00102.html",
+          "work\\tii-details\\tii-life-198\\272421M31A00200.html",
+          "work\\tii-details\\tii-life-198\\272421M31A00300.html",
+          "work\\tii-details\\tii-life-198\\272421M31A00301.html",
+          "work\\tii-details\\tii-life-198\\272421M31A00201.html",
+          "work\\tii-details\\tii-life-198\\272421M31A00103.html",
+          "work\\tii-details\\tii-life-198\\272421M31A00104.html",
+          "work\\tii-details\\tii-life-198\\272421M31A00202.html",
+          "work\\tii-details\\tii-life-198\\272421M31A00203.html",
+          "work\\tii-details\\tii-life-198\\272421M31A00105.html"
+        ],
+        "failed_details": []
+      }
     },
     {
       "batch_id": "tii-property-001",
@@ -36447,7 +36481,7 @@
   ],
   "summary": {
     "attempted_batches": 306,
-    "completed_batches": 301,
-    "captcha_required_batches": 5
+    "completed_batches": 302,
+    "captcha_required_batches": 4
   }
 }
