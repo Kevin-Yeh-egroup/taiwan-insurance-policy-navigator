@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T14:37:41+08:00",
+  "generated_at": "2026-06-24T14:55:36+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -12411,9 +12411,9 @@
     },
     {
       "batch_id": "tii-life-174",
-      "ran_at": "2026-06-24T14:37:41+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-24T14:52:08+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "267-法商法國巴黎人壽保險股份有限公司台灣分公司",
       "category_label": "投資型年金",
       "query_hint": {
@@ -12426,6 +12426,88 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-174-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-174.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 639,
+        "total_pages": 64,
+        "official_row_count": 639,
+        "unique_product_id_count": 639,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 64,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-174-page-001.html",
+          "work\\tii-results\\tii-life-174-page-002.html",
+          "work\\tii-results\\tii-life-174-page-003.html",
+          "work\\tii-results\\tii-life-174-page-004.html",
+          "work\\tii-results\\tii-life-174-page-005.html",
+          "work\\tii-results\\tii-life-174-page-006.html",
+          "work\\tii-results\\tii-life-174-page-007.html",
+          "work\\tii-results\\tii-life-174-page-008.html",
+          "work\\tii-results\\tii-life-174-page-009.html",
+          "work\\tii-results\\tii-life-174-page-010.html",
+          "work\\tii-results\\tii-life-174-page-011.html",
+          "work\\tii-results\\tii-life-174-page-012.html",
+          "work\\tii-results\\tii-life-174-page-013.html",
+          "work\\tii-results\\tii-life-174-page-014.html",
+          "work\\tii-results\\tii-life-174-page-015.html",
+          "work\\tii-results\\tii-life-174-page-016.html",
+          "work\\tii-results\\tii-life-174-page-017.html",
+          "work\\tii-results\\tii-life-174-page-018.html",
+          "work\\tii-results\\tii-life-174-page-019.html",
+          "work\\tii-results\\tii-life-174-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 639,
+        "saved_detail_count": 639,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 639,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-174\\267421M31A00100.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00200.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00201.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00101.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00102.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00202.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00300.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00103.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00203.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00400.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00401.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00204.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00301.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00104.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00105.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00302.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00402.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00500.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00600.html",
+          "work\\tii-details\\tii-life-174\\267421M31A00403.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-175",
+      "ran_at": "2026-06-24T14:55:36+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "269-安達保險股份有限公司",
+      "category_label": "傷害保險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "269",
+        "f_CategoryId1": "3_1",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-175-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -35048,8 +35130,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 282,
-    "completed_batches": 277,
+    "attempted_batches": 283,
+    "completed_batches": 278,
     "captcha_required_batches": 5
   }
 }
