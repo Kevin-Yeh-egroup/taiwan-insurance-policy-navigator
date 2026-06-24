@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T09:37:20+08:00",
+  "generated_at": "2026-06-24T10:35:18+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -11570,9 +11570,9 @@
     },
     {
       "batch_id": "tii-life-163",
-      "ran_at": "2026-06-24T09:37:20+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-24T10:10:08+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "264-全球人壽保險股份有限公司",
       "category_label": "傷害保險",
       "query_hint": {
@@ -11585,6 +11585,170 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-163-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-163.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 294,
+        "total_pages": 30,
+        "official_row_count": 294,
+        "unique_product_id_count": 294,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 30,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-163-page-001.html",
+          "work\\tii-results\\tii-life-163-page-002.html",
+          "work\\tii-results\\tii-life-163-page-003.html",
+          "work\\tii-results\\tii-life-163-page-004.html",
+          "work\\tii-results\\tii-life-163-page-005.html",
+          "work\\tii-results\\tii-life-163-page-006.html",
+          "work\\tii-results\\tii-life-163-page-007.html",
+          "work\\tii-results\\tii-life-163-page-008.html",
+          "work\\tii-results\\tii-life-163-page-009.html",
+          "work\\tii-results\\tii-life-163-page-010.html",
+          "work\\tii-results\\tii-life-163-page-011.html",
+          "work\\tii-results\\tii-life-163-page-012.html",
+          "work\\tii-results\\tii-life-163-page-013.html",
+          "work\\tii-results\\tii-life-163-page-014.html",
+          "work\\tii-results\\tii-life-163-page-015.html",
+          "work\\tii-results\\tii-life-163-page-016.html",
+          "work\\tii-results\\tii-life-163-page-017.html",
+          "work\\tii-results\\tii-life-163-page-018.html",
+          "work\\tii-results\\tii-life-163-page-019.html",
+          "work\\tii-results\\tii-life-163-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 294,
+        "saved_detail_count": 294,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 294,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-163\\264214M11AGIX00.html",
+          "work\\tii-details\\tii-life-163\\264211M11AIPA00.html",
+          "work\\tii-details\\tii-life-163\\264211R11AIPI00.html",
+          "work\\tii-details\\tii-life-163\\264211R11AIPM00.html",
+          "work\\tii-details\\tii-life-163\\264214M11AGSX00.html",
+          "work\\tii-details\\tii-life-163\\264211R11AXAR00.html",
+          "work\\tii-details\\tii-life-163\\264211R11AXMR00.html",
+          "work\\tii-details\\tii-life-163\\264211R11AXAH00.html",
+          "work\\tii-details\\tii-life-163\\264211R11AADR00.html",
+          "work\\tii-details\\tii-life-163\\264217M11AGPA00.html",
+          "work\\tii-details\\tii-life-163\\264247M11AGOH00.html",
+          "work\\tii-details\\tii-life-163\\264211R11AIPI01.html",
+          "work\\tii-details\\tii-life-163\\264211M11AIPA01.html",
+          "work\\tii-details\\tii-life-163\\264211R11AIPM01.html",
+          "work\\tii-details\\tii-life-163\\264221A11AHS01.html",
+          "work\\tii-details\\tii-life-163\\264221A11AMR01.html",
+          "work\\tii-details\\tii-life-163\\264221M11ATA01.html",
+          "work\\tii-details\\tii-life-163\\264291R11ATTR00.html",
+          "work\\tii-details\\tii-life-163\\264291R11ATTR01.html",
+          "work\\tii-details\\tii-life-163\\264221M11ATA02.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-164",
+      "ran_at": "2026-06-24T10:31:55+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
+      "company_label": "264-全球人壽保險股份有限公司",
+      "category_label": "健康保險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "264",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-164-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-164.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 655,
+        "total_pages": 66,
+        "official_row_count": 655,
+        "unique_product_id_count": 655,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 66,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-164-page-001.html",
+          "work\\tii-results\\tii-life-164-page-002.html",
+          "work\\tii-results\\tii-life-164-page-003.html",
+          "work\\tii-results\\tii-life-164-page-004.html",
+          "work\\tii-results\\tii-life-164-page-005.html",
+          "work\\tii-results\\tii-life-164-page-006.html",
+          "work\\tii-results\\tii-life-164-page-007.html",
+          "work\\tii-results\\tii-life-164-page-008.html",
+          "work\\tii-results\\tii-life-164-page-009.html",
+          "work\\tii-results\\tii-life-164-page-010.html",
+          "work\\tii-results\\tii-life-164-page-011.html",
+          "work\\tii-results\\tii-life-164-page-012.html",
+          "work\\tii-results\\tii-life-164-page-013.html",
+          "work\\tii-results\\tii-life-164-page-014.html",
+          "work\\tii-results\\tii-life-164-page-015.html",
+          "work\\tii-results\\tii-life-164-page-016.html",
+          "work\\tii-results\\tii-life-164-page-017.html",
+          "work\\tii-results\\tii-life-164-page-018.html",
+          "work\\tii-results\\tii-life-164-page-019.html",
+          "work\\tii-results\\tii-life-164-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 655,
+        "saved_detail_count": 655,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 655,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-164\\264324M11AGTC00.html",
+          "work\\tii-details\\tii-life-164\\264311R11AMIR00.html",
+          "work\\tii-details\\tii-life-164\\264311R11AXHX00.html",
+          "work\\tii-details\\tii-life-164\\264391R11AHIR00.html",
+          "work\\tii-details\\tii-life-164\\264341R11AWOP00.html",
+          "work\\tii-details\\tii-life-164\\264331R11ADWQ00.html",
+          "work\\tii-details\\tii-life-164\\264321R11AXDW00.html",
+          "work\\tii-details\\tii-life-164\\264321M11AHCB00.html",
+          "work\\tii-details\\tii-life-164\\264321R11AHCR00.html",
+          "work\\tii-details\\tii-life-164\\264317M11AGDH00.html",
+          "work\\tii-details\\tii-life-164\\264317M11AGHI00.html",
+          "work\\tii-details\\tii-life-164\\264317M11AGHS00.html",
+          "work\\tii-details\\tii-life-164\\264327M11AGCL00.html",
+          "work\\tii-details\\tii-life-164\\264357R11AGDD00.html",
+          "work\\tii-details\\tii-life-164\\264341R11AWPR00.html",
+          "work\\tii-details\\tii-life-164\\264391R11AKDR00.html",
+          "work\\tii-details\\tii-life-164\\264391R11AKDR01.html",
+          "work\\tii-details\\tii-life-164\\264341R11AWPR01.html",
+          "work\\tii-details\\tii-life-164\\264341R11AWOP01.html",
+          "work\\tii-details\\tii-life-164\\264331R11ADWQ01.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-165",
+      "ran_at": "2026-06-24T10:35:18+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "264-全球人壽保險股份有限公司",
+      "category_label": "傳統型壽險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "264",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-165-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -34207,8 +34371,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 271,
-    "completed_batches": 266,
+    "attempted_batches": 273,
+    "completed_batches": 268,
     "captcha_required_batches": 5
   }
 }
