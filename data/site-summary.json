@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-24T14:07:38+08:00",
+  "generated_at": "2026-06-24T14:11:38+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 280,
+    "attempted_batches": 281,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 279,
-    "completed_batches": 279,
-    "pending_manual_batches": 27,
+    "indexed_batches": 280,
+    "completed_batches": 280,
+    "pending_manual_batches": 26,
     "imported_policy_records": 157947,
     "detail_expected_count": 157947,
     "detail_saved_count": 156605,
@@ -18,21 +18,21 @@
     "same_name_version_group_count": 2306,
     "same_name_version_card_count": 5697,
     "latest_completed_batch": {
-      "batch_id": "tii-life-171",
+      "batch_id": "tii-life-172",
       "company_label": "267-法商法國巴黎人壽保險股份有限公司台灣分公司",
-      "category_label": "傳統型壽險",
-      "expected_total_count": 414,
-      "official_row_count": 414,
-      "imported_record_count": 379,
-      "detail_expected_count": 379,
-      "detail_saved_count": 379,
+      "category_label": "傳統型年金",
+      "expected_total_count": 0,
+      "official_row_count": 0,
+      "imported_record_count": 0,
+      "detail_expected_count": 0,
+      "detail_saved_count": 0,
       "detail_missing_count": 0,
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "tii-life-172",
+      "batch_id": "tii-life-173",
       "company_label": "267-法商法國巴黎人壽保險股份有限公司台灣分公司",
-      "category_label": "傳統型年金"
+      "category_label": "投資型壽險"
     }
   },
   "policy_content": {
