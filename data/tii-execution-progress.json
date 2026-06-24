@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T15:10:19+08:00",
+  "generated_at": "2026-06-24T15:17:15+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -12569,9 +12569,9 @@
     },
     {
       "batch_id": "tii-life-176",
-      "ran_at": "2026-06-24T15:10:19+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-24T15:14:00+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "269-安達保險股份有限公司",
       "category_label": "健康保險",
       "query_hint": {
@@ -12584,6 +12584,75 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-176-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-176.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 67,
+        "total_pages": 7,
+        "official_row_count": 67,
+        "unique_product_id_count": 67,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 7,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-176-page-001.html",
+          "work\\tii-results\\tii-life-176-page-002.html",
+          "work\\tii-results\\tii-life-176-page-003.html",
+          "work\\tii-results\\tii-life-176-page-004.html",
+          "work\\tii-results\\tii-life-176-page-005.html",
+          "work\\tii-results\\tii-life-176-page-006.html",
+          "work\\tii-results\\tii-life-176-page-007.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 67,
+        "saved_detail_count": 67,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 67,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-176\\269317M11A01101.html",
+          "work\\tii-details\\tii-life-176\\269327M11A01400.html",
+          "work\\tii-details\\tii-life-176\\269397M11A01500.html",
+          "work\\tii-details\\tii-life-176\\269357M11A01700.html",
+          "work\\tii-details\\tii-life-176\\269337M11A01800.html",
+          "work\\tii-details\\tii-life-176\\269311M11A00800.html",
+          "work\\tii-details\\tii-life-176\\269317A11A02500.html",
+          "work\\tii-details\\tii-life-176\\269337M11A01801.html",
+          "work\\tii-details\\tii-life-176\\269357M11A01701.html",
+          "work\\tii-details\\tii-life-176\\269327M11A01401.html",
+          "work\\tii-details\\tii-life-176\\269397M11A01501.html",
+          "work\\tii-details\\tii-life-176\\269311M11A02600.html",
+          "work\\tii-details\\tii-life-176\\269321A11A02800.html",
+          "work\\tii-details\\tii-life-176\\269321M11A02900.html",
+          "work\\tii-details\\tii-life-176\\269321R11A02700.html",
+          "work\\tii-details\\tii-life-176\\269391M11A03000.html",
+          "work\\tii-details\\tii-life-176\\269321R11A03200.html",
+          "work\\tii-details\\tii-life-176\\269311A11A03300.html",
+          "work\\tii-details\\tii-life-176\\269317M11A01102.html",
+          "work\\tii-details\\tii-life-176\\269311M11A00801.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-177",
+      "ran_at": "2026-06-24T15:17:15+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "269-安達保險股份有限公司",
+      "category_label": "傳統型壽險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "269",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-177-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -35206,8 +35275,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 284,
-    "completed_batches": 279,
+    "attempted_batches": 285,
+    "completed_batches": 280,
     "captcha_required_batches": 5
   }
 }
