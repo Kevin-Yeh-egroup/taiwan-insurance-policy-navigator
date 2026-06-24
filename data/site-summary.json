@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-24T18:02:40+08:00",
+  "generated_at": "2026-06-24T18:12:17+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 303,
+    "attempted_batches": 305,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 302,
-    "completed_batches": 302,
-    "pending_manual_batches": 4,
+    "indexed_batches": 304,
+    "completed_batches": 304,
+    "pending_manual_batches": 2,
     "imported_policy_records": 163135,
     "detail_expected_count": 163135,
     "detail_saved_count": 161793,
@@ -18,9 +18,9 @@
     "same_name_version_group_count": 2311,
     "same_name_version_card_count": 5707,
     "latest_completed_batch": {
-      "batch_id": "tii-life-194",
+      "batch_id": "tii-life-196",
       "company_label": "272-英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
-      "category_label": "健康保險",
+      "category_label": "傳統型年金",
       "expected_total_count": 0,
       "official_row_count": 0,
       "imported_record_count": 0,
@@ -30,9 +30,9 @@
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "tii-life-195",
+      "batch_id": "tii-life-197",
       "company_label": "272-英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
-      "category_label": "傳統型壽險"
+      "category_label": "投資型壽險"
     }
   },
   "policy_content": {
