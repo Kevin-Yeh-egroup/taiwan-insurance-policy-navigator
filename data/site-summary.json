@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-24T17:46:29+08:00",
+  "generated_at": "2026-06-24T17:51:08+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
     "attempted_batches": 301,
-    "waiting_captcha_batches": 1,
-    "indexed_batches": 300,
-    "completed_batches": 300,
-    "pending_manual_batches": 6,
+    "waiting_captcha_batches": 0,
+    "indexed_batches": 301,
+    "completed_batches": 301,
+    "pending_manual_batches": 5,
     "imported_policy_records": 163135,
     "detail_expected_count": 163135,
     "detail_saved_count": 161793,
@@ -18,21 +18,21 @@
     "same_name_version_group_count": 2311,
     "same_name_version_card_count": 5707,
     "latest_completed_batch": {
-      "batch_id": "tii-life-192",
-      "company_label": "271-英屬百慕達商匯豐人壽保險國際有限公司台灣分公司",
-      "category_label": "投資型年金",
-      "expected_total_count": 12,
-      "official_row_count": 12,
-      "imported_record_count": 12,
-      "detail_expected_count": 12,
-      "detail_saved_count": 12,
+      "batch_id": "tii-life-193",
+      "company_label": "272-英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "category_label": "傷害保險",
+      "expected_total_count": 0,
+      "official_row_count": 0,
+      "imported_record_count": 0,
+      "detail_expected_count": 0,
+      "detail_saved_count": 0,
       "detail_missing_count": 0,
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "tii-life-193",
-      "company_label": "272-英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
-      "category_label": "傷害保險"
+      "batch_id": "",
+      "company_label": "",
+      "category_label": ""
     }
   },
   "policy_content": {
