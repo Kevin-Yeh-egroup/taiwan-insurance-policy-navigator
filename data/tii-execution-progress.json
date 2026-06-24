@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T15:17:15+08:00",
+  "generated_at": "2026-06-24T15:31:11+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -12638,9 +12638,9 @@
     },
     {
       "batch_id": "tii-life-177",
-      "ran_at": "2026-06-24T15:17:15+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-24T15:27:37+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "269-安達保險股份有限公司",
       "category_label": "傳統型壽險",
       "query_hint": {
@@ -12653,6 +12653,49 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-177-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-177.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 0,
+        "total_pages": 0,
+        "official_row_count": 0,
+        "unique_product_id_count": 0,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-177-page-001.html"
+        ],
+        "is_complete": true,
+        "no_result_data": true
+      },
+      "fetched_details": {
+        "detail_link_count": 0,
+        "saved_detail_count": 0,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 0,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-178",
+      "ran_at": "2026-06-24T15:31:11+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "269-安達保險股份有限公司",
+      "category_label": "傳統型年金",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "269",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-178-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -35275,8 +35318,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 285,
-    "completed_batches": 280,
+    "attempted_batches": 286,
+    "completed_batches": 281,
     "captcha_required_batches": 5
   }
 }
