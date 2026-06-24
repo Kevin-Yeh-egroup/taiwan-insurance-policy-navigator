@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-24T09:33:03+08:00",
+  "generated_at": "2026-06-24T09:38:05+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 270,
+    "attempted_batches": 271,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 269,
-    "completed_batches": 269,
-    "pending_manual_batches": 37,
+    "indexed_batches": 270,
+    "completed_batches": 270,
+    "pending_manual_batches": 36,
     "imported_policy_records": 154921,
     "detail_expected_count": 154921,
     "detail_saved_count": 153579,
@@ -18,21 +18,21 @@
     "same_name_version_group_count": 2305,
     "same_name_version_card_count": 5695,
     "latest_completed_batch": {
-      "batch_id": "tii-life-161",
+      "batch_id": "tii-life-162",
       "company_label": "262-環球瑞泰人壽保險股份有限公司",
-      "category_label": "投資型壽險",
-      "expected_total_count": 47,
-      "official_row_count": 47,
-      "imported_record_count": 47,
-      "detail_expected_count": 47,
-      "detail_saved_count": 47,
+      "category_label": "投資型年金",
+      "expected_total_count": 0,
+      "official_row_count": 0,
+      "imported_record_count": 0,
+      "detail_expected_count": 0,
+      "detail_saved_count": 0,
       "detail_missing_count": 0,
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "tii-life-162",
-      "company_label": "262-環球瑞泰人壽保險股份有限公司",
-      "category_label": "投資型年金"
+      "batch_id": "tii-life-163",
+      "company_label": "264-全球人壽保險股份有限公司",
+      "category_label": "傷害保險"
     }
   },
   "policy_content": {
