@@ -1,13 +1,13 @@
 {
-  "generated_at": "2026-06-24T15:31:34+08:00",
+  "generated_at": "2026-06-24T15:39:26+08:00",
   "public_url": "https://taiwan-insurance-policy-navigator.vercel.app/",
   "tii": {
     "total_manual_batches": 306,
-    "attempted_batches": 286,
+    "attempted_batches": 287,
     "waiting_captcha_batches": 1,
-    "indexed_batches": 285,
-    "completed_batches": 285,
-    "pending_manual_batches": 21,
+    "indexed_batches": 286,
+    "completed_batches": 286,
+    "pending_manual_batches": 20,
     "imported_policy_records": 160708,
     "detail_expected_count": 160708,
     "detail_saved_count": 159366,
@@ -18,9 +18,9 @@
     "same_name_version_group_count": 2311,
     "same_name_version_card_count": 5707,
     "latest_completed_batch": {
-      "batch_id": "tii-life-177",
+      "batch_id": "tii-life-178",
       "company_label": "269-安達保險股份有限公司",
-      "category_label": "傳統型壽險",
+      "category_label": "傳統型年金",
       "expected_total_count": 0,
       "official_row_count": 0,
       "imported_record_count": 0,
@@ -30,9 +30,9 @@
       "detail_status": "complete"
     },
     "current_waiting_batch": {
-      "batch_id": "tii-life-178",
+      "batch_id": "tii-life-179",
       "company_label": "269-安達保險股份有限公司",
-      "category_label": "傳統型年金"
+      "category_label": "投資型壽險"
     }
   },
   "policy_content": {
