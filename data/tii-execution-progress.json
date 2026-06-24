@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T17:02:54+08:00",
+  "generated_at": "2026-06-24T17:17:12+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -13254,9 +13254,9 @@
     },
     {
       "batch_id": "tii-life-187",
-      "ran_at": "2026-06-24T17:02:54+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-24T17:07:59+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "271-英屬百慕達商匯豐人壽保險國際有限公司台灣分公司",
       "category_label": "傷害保險",
       "query_hint": {
@@ -13269,6 +13269,104 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-187-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-187.html",
+      "fetched_pages": {
+        "page_size": 4,
+        "total_count": 4,
+        "total_pages": 1,
+        "official_row_count": 4,
+        "unique_product_id_count": 4,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-187-page-001.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 4,
+        "saved_detail_count": 4,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 4,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-187\\271211R11A00100.html",
+          "work\\tii-details\\tii-life-187\\271211R11A00101.html",
+          "work\\tii-details\\tii-life-187\\271211R11A00102.html",
+          "work\\tii-details\\tii-life-187\\271211R11A00103.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-188",
+      "ran_at": "2026-06-24T17:13:52+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
+      "company_label": "271-英屬百慕達商匯豐人壽保險國際有限公司台灣分公司",
+      "category_label": "健康保險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "271",
+        "f_CategoryId1": "3_2",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-188-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-188.html",
+      "fetched_pages": {
+        "page_size": 8,
+        "total_count": 8,
+        "total_pages": 1,
+        "official_row_count": 8,
+        "unique_product_id_count": 8,
+        "duplicate_product_id_count": 0,
+        "saved_page_count": 1,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-188-page-001.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 8,
+        "saved_detail_count": 8,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 8,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-188\\271311M12B00300.html",
+          "work\\tii-details\\tii-life-188\\271311M12B00301.html",
+          "work\\tii-details\\tii-life-188\\271311M12B00302.html",
+          "work\\tii-details\\tii-life-188\\271311M12B00303.html",
+          "work\\tii-details\\tii-life-188\\271311M12B00304.html",
+          "work\\tii-details\\tii-life-188\\271311M12B00400.html",
+          "work\\tii-details\\tii-life-188\\271311M12B00500.html",
+          "work\\tii-details\\tii-life-188\\271311M12B00501.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-189",
+      "ran_at": "2026-06-24T17:17:12+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "271-英屬百慕達商匯豐人壽保險國際有限公司台灣分公司",
+      "category_label": "傳統型壽險",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "271",
+        "f_CategoryId1": "2_3",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-189-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -35891,8 +35989,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 295,
-    "completed_batches": 290,
+    "attempted_batches": 297,
+    "completed_batches": 292,
     "captcha_required_batches": 5
   }
 }
