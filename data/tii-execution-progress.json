@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T12:44:51+08:00",
+  "generated_at": "2026-06-24T14:07:11+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -12204,9 +12204,9 @@
     },
     {
       "batch_id": "tii-life-171",
-      "ran_at": "2026-06-24T12:44:51+08:00",
-      "status": "captcha_required",
-      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "ran_at": "2026-06-24T14:03:55+08:00",
+      "status": "submitted_result_saved",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "267-法商法國巴黎人壽保險股份有限公司台灣分公司",
       "category_label": "傳統型壽險",
       "query_hint": {
@@ -12219,6 +12219,88 @@
       "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
       "captcha_files": [
         "work\\tii-execution\\tii-life-171-captcha-1.jpg"
+      ],
+      "result_file": "work\\tii-results\\tii-life-171.html",
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 414,
+        "total_pages": 42,
+        "official_row_count": 414,
+        "unique_product_id_count": 379,
+        "duplicate_product_id_count": 35,
+        "saved_page_count": 42,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-life-171-page-001.html",
+          "work\\tii-results\\tii-life-171-page-002.html",
+          "work\\tii-results\\tii-life-171-page-003.html",
+          "work\\tii-results\\tii-life-171-page-004.html",
+          "work\\tii-results\\tii-life-171-page-005.html",
+          "work\\tii-results\\tii-life-171-page-006.html",
+          "work\\tii-results\\tii-life-171-page-007.html",
+          "work\\tii-results\\tii-life-171-page-008.html",
+          "work\\tii-results\\tii-life-171-page-009.html",
+          "work\\tii-results\\tii-life-171-page-010.html",
+          "work\\tii-results\\tii-life-171-page-011.html",
+          "work\\tii-results\\tii-life-171-page-012.html",
+          "work\\tii-results\\tii-life-171-page-013.html",
+          "work\\tii-results\\tii-life-171-page-014.html",
+          "work\\tii-results\\tii-life-171-page-015.html",
+          "work\\tii-results\\tii-life-171-page-016.html",
+          "work\\tii-results\\tii-life-171-page-017.html",
+          "work\\tii-results\\tii-life-171-page-018.html",
+          "work\\tii-results\\tii-life-171-page-019.html",
+          "work\\tii-results\\tii-life-171-page-020.html"
+        ],
+        "is_complete": true
+      },
+      "fetched_details": {
+        "detail_link_count": 379,
+        "saved_detail_count": 379,
+        "already_saved_detail_count": 0,
+        "total_saved_detail_count": 379,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-life-171\\267137M11A00100.html",
+          "work\\tii-details\\tii-life-171\\267137M11A00200.html",
+          "work\\tii-details\\tii-life-171\\267137M11A00300.html",
+          "work\\tii-details\\tii-life-171\\267141M11A00100.html",
+          "work\\tii-details\\tii-life-171\\267131M11A00100.html",
+          "work\\tii-details\\tii-life-171\\267121M11A00200.html",
+          "work\\tii-details\\tii-life-171\\267141M11A00101.html",
+          "work\\tii-details\\tii-life-171\\267131M11A00101.html",
+          "work\\tii-details\\tii-life-171\\267131M11A00200.html",
+          "work\\tii-details\\tii-life-171\\267131M11A00102.html",
+          "work\\tii-details\\tii-life-171\\267131M11A00201.html",
+          "work\\tii-details\\tii-life-171\\267121M11A00201.html",
+          "work\\tii-details\\tii-life-171\\267131M11A00300.html",
+          "work\\tii-details\\tii-life-171\\267131M11A00400.html",
+          "work\\tii-details\\tii-life-171\\267131M11A00202.html",
+          "work\\tii-details\\tii-life-171\\267121M11A00202.html",
+          "work\\tii-details\\tii-life-171\\267131M11A00103.html",
+          "work\\tii-details\\tii-life-171\\267137M11A00301.html",
+          "work\\tii-details\\tii-life-171\\267137M11A00201.html",
+          "work\\tii-details\\tii-life-171\\267137M11A00101.html"
+        ],
+        "failed_details": []
+      }
+    },
+    {
+      "batch_id": "tii-life-172",
+      "ran_at": "2026-06-24T14:07:11+08:00",
+      "status": "captcha_required",
+      "note": "Fetched official form and captcha image; no captcha was provided, so the batch is not completed.",
+      "company_label": "267-法商法國巴黎人壽保險股份有限公司台灣分公司",
+      "category_label": "傳統型年金",
+      "query_hint": {
+        "categoryId": "2",
+        "CompanyID": "267",
+        "f_CategoryId1": "2_4",
+        "endDate2": "",
+        "fQueryAll": ""
+      },
+      "form_action": "https://insprod.tii.org.tw/ResultQueryAll.aspx",
+      "captcha_files": [
+        "work\\tii-execution\\tii-life-172-captcha-1.jpg"
       ],
       "result_file": "",
       "fetched_pages": {},
@@ -34841,8 +34923,8 @@
     }
   ],
   "summary": {
-    "attempted_batches": 279,
-    "completed_batches": 274,
+    "attempted_batches": 280,
+    "completed_batches": 275,
     "captcha_required_batches": 5
   }
 }
