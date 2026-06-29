@@ -27,9 +27,15 @@ const state = {
   kind: DEFAULT_FILTERS.kind,
   crawl: DEFAULT_FILTERS.crawl,
   tiiMode: "property",
+  portfolioItems: [],
+  portfolioSuggestions: [],
+  portfolioDetailItem: null,
+  portfolioCompany: "all",
+  portfolioBucket: "all",
 };
 
 const formatNumber = new Intl.NumberFormat("zh-Hant-TW");
+const PORTFOLIO_STORAGE_KEY = "taiwanPolicyNavigator.portfolio.v1";
 
 const crawlLabels = {
   all: "全部",
@@ -47,6 +53,58 @@ const policyFocusLabels = {
 };
 
 const focusOrder = ["coverage", "definitions", "special", "claims"];
+
+const coverageBuckets = [
+  {
+    id: "life",
+    label: "壽險",
+    summary: "身故、完全失能、壽險主約或投資型壽險。",
+    categories: ["傳統型壽險", "投資型壽險"],
+    keywords: ["壽險", "身故", "死亡", "完全失能", "生死合險", "定期壽", "終身壽", "投資型壽險"],
+  },
+  {
+    id: "medical",
+    label: "醫療險",
+    summary: "住院、手術、實支實付、日額、門診或健康醫療。",
+    categories: ["健康保險"],
+    keywords: ["醫療", "健康", "住院", "手術", "實支", "日額", "門診", "病房", "雜費", "住院醫療"],
+  },
+  {
+    id: "accident",
+    label: "意外險",
+    summary: "傷害、意外、平安、燒燙傷、骨折或意外失能。",
+    categories: ["傷害保險", "意外保險"],
+    keywords: ["傷害", "意外", "平安", "燒燙傷", "骨折", "意外失能", "旅行平安"],
+  },
+  {
+    id: "cancer",
+    label: "癌症險",
+    summary: "癌症、惡性腫瘤、防癌或癌症醫療給付。",
+    categories: [],
+    keywords: ["癌", "癌症", "防癌", "抗癌", "惡性腫瘤", "原位癌", "初期癌"],
+  },
+  {
+    id: "critical",
+    label: "重大疾病險",
+    summary: "重大疾病、重大傷病、特定傷病或一次金保障。",
+    categories: [],
+    keywords: ["重大疾病", "重大傷病", "特定傷病", "重大疾", "心肌梗塞", "腦中風", "癱瘓", "洗腎", "冠狀動脈"],
+  },
+  {
+    id: "longterm",
+    label: "長照險",
+    summary: "長期照顧、失智、認知功能障礙或長期看護。",
+    categories: [],
+    keywords: ["長期照顧", "長照", "長期看護", "失智", "認知功能障礙", "照護", "扶助"],
+  },
+  {
+    id: "annuity",
+    label: "年金/退休",
+    summary: "年金、退休、生存金或長期現金流安排。",
+    categories: ["傳統型年金", "投資型年金"],
+    keywords: ["年金", "退休", "生存金", "養老", "即期年金", "利率變動型年金"],
+  },
+];
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -151,7 +209,7 @@ function renderSiteSummary(summary) {
       latest.imported_record_count || 0,
     )} 張卡，明細 ${formatNumber.format(latest.detail_saved_count || 0)} / ${formatNumber.format(
       latest.detail_expected_count || 0,
-    )}。下一批 ${waitingTitle || "尚未準備"}。同名不同 productId 會保留為不同版本卡。`,
+    )}。下一批 ${waitingTitle || "尚未準備"}。同名不同版本會保留為不同卡片。`,
   );
 }
 
@@ -374,15 +432,14 @@ function expandTiiIndexRecord(record) {
     origin: "保發中心",
     version_note:
       versionCount > 1
-        ? `同公司同名商品有 ${formatNumber.format(versionCount)} 個不同 productId；請依銷售日、停售日、productId 與官方明細分別判讀。`
+        ? `同公司同名商品有 ${formatNumber.format(versionCount)} 個不同版本；請依銷售日、停售日與官方明細分別判讀。`
         : "",
     display_version:
       record.e ||
-      `銷售日 ${record.sd || "未標示"}｜停售日 ${record.dd || "未標示"}｜productId ${record.p || "未標示"}`,
+      `銷售日 ${record.sd || "未標示"}｜停售日 ${record.dd || "未標示"}`,
     flags: [
       "TII 匯入",
       record.b || "人工批次",
-      record.p ? `productId ${record.p}` : "",
       versionCount > 1 ? `同名不同版 ${versionCount}` : "",
       record.d ? "明細已保存" : "明細待抓取",
     ].filter(Boolean),
@@ -438,13 +495,638 @@ async function ensureTiiIndexLoaded() {
         return response.json();
       }),
     ),
-  ).then((payloads) => {
-    const records = payloads.flatMap((payload) => payload.records || []);
-    state.tiiIndexRecords = records;
-    state.tiiIndexLoadPromise = null;
-    return records;
-  });
+  )
+    .then((payloads) => {
+      const records = payloads.flatMap((payload) => payload.records || []);
+      state.tiiIndexRecords = records;
+      state.tiiIndexLoadPromise = null;
+      return records;
+    })
+    .catch((error) => {
+      state.tiiIndexLoadPromise = null;
+      throw error;
+    });
   return state.tiiIndexLoadPromise;
+}
+
+function loadPortfolioItems() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(PORTFOLIO_STORAGE_KEY) || "[]");
+    state.portfolioItems = Array.isArray(saved)
+      ? saved.filter((item) => item?.product_name).map((item) => ({ ...item, id: portfolioItemId(item) }))
+      : [];
+  } catch {
+    state.portfolioItems = [];
+  }
+}
+
+function savePortfolioItems() {
+  try {
+    localStorage.setItem(PORTFOLIO_STORAGE_KEY, JSON.stringify(state.portfolioItems));
+  } catch {
+    // Local storage can be unavailable in privacy modes; the in-memory set still works.
+  }
+}
+
+function populatePortfolioFilters() {
+  const companySelect = document.getElementById("portfolioCompanyFilter");
+  const localCompanies = (state.policyContentExtracts?.records || []).map((item) => item.company).filter(Boolean);
+  const tiiCompanies = (state.tiiManifest?.company_counts || []).map((item) => item.company).filter(Boolean);
+  const companies = [...new Set([...tiiCompanies, ...localCompanies])].sort((a, b) => a.localeCompare(b, "zh-Hant-TW"));
+  companySelect.innerHTML = [
+    '<option value="all">全部公司</option>',
+    ...companies.map((company) => `<option value="${escapeHtml(company)}">${escapeHtml(company)}</option>`),
+  ].join("");
+  companySelect.value = state.portfolioCompany;
+  document.getElementById("portfolioBucketFilter").value = state.portfolioBucket;
+}
+
+function portfolioKey(value) {
+  return normalize(value).replace(/\s+/g, " ").slice(0, 180);
+}
+
+function inferPortfolioBucket(item) {
+  const sourceBatch = String(item.source_batch_id || item.source_batch || item.record_id || "");
+  const company = String(item.company || "");
+  const type = String(item.product_type || item.insurance_category || "");
+  if (item.bucket) return item.bucket;
+  if (sourceBatch.includes("tii-property")) return "property";
+  if (sourceBatch.includes("tii-life")) return "life";
+  if (/產物|產險|火災|海上|汽車|車體|強制汽車/.test(`${company} ${type}`)) return "property";
+  return "life";
+}
+
+function portfolioBucketLabel(bucket) {
+  return bucket === "property" ? "產險 / 財產保險" : "壽險 / 人身保險";
+}
+
+function companyMatchesFilter(company, selectedCompany) {
+  if (selectedCompany === "all") return true;
+  const current = normalize(company);
+  const selected = normalize(selectedCompany);
+  return current === selected || current.includes(selected) || selected.includes(current);
+}
+
+function itemMatchesPortfolioFilters(item) {
+  if (!companyMatchesFilter(item.company, state.portfolioCompany)) return false;
+  if (state.portfolioBucket !== "all" && inferPortfolioBucket(item) !== state.portfolioBucket) return false;
+  return true;
+}
+
+function portfolioIdentityFingerprint(item) {
+  return portfolioKey(
+    [
+      item.product_id || "no-product-id",
+      item.company || "",
+      inferPortfolioBucket(item),
+      item.product_type || "",
+      item.product_name || "",
+      item.sale_date || "",
+      item.discontinued_date || "",
+      item.display_version || "",
+    ].join("|"),
+  );
+}
+
+function portfolioItemId(item) {
+  if (item.product_id) return `product:${item.product_id}:${portfolioIdentityFingerprint(item)}`;
+  if (item.record_id) return `record:${item.record_id}:${portfolioIdentityFingerprint(item)}`;
+  if (item.policy_url) return `url:${item.policy_url}`;
+  return `manual:${portfolioKey([item.company, item.product_name, item.display_version].join("|"))}`;
+}
+
+function policyContentToPortfolioItem(record) {
+  const item = {
+    id: "",
+    record_id: record.url_id || record.id,
+    source_kind: "content",
+    product_name: record.product_name || "未命名保單",
+    company: record.company || "未標示公司",
+    product_type: record.product_type || "其他",
+    bucket: inferPortfolioBucket(record),
+    sale_status: record.sale_status || "狀態待確認",
+    product_id: record.product_id || "",
+    display_version: record.version_text || record.extracted_at || "條款解析",
+    policy_url: record.policy_url || "",
+    detail_url: record.detail_url || "",
+    origin: "條款解析",
+    focus_score: record.focus_score || 0,
+    matched_terms: record.matched_terms || [],
+    field_hits: record.field_hits || [],
+    reader_focus: record.reader_focus || [],
+    flags: [
+      record.document_kind ? record.document_kind.toUpperCase() : "",
+      `${formatNumber.format(record.focus_score || 0)}/4 重點`,
+      record.confidence || "",
+    ].filter(Boolean),
+    search_text: policySearchText(record),
+  };
+  item.id = portfolioItemId(item);
+  return item;
+}
+
+function tiiIndexToPortfolioItem(record) {
+  const expanded = expandTiiIndexRecord(record);
+  const item = {
+    id: "",
+    record_id: record.i,
+    source_kind: "tii",
+    product_name: expanded.product_name || "未命名保單",
+    company: expanded.company || "未標示公司",
+    product_type: expanded.product_type || "TII 匯入",
+    bucket: String(record.b || "").includes("tii-property") ? "property" : "life",
+    source_batch_id: record.b || "",
+    sale_status: expanded.sale_status || "狀態待確認",
+    product_id: expanded.product_id || "",
+    sale_date: expanded.sale_date || "",
+    discontinued_date: expanded.discontinued_date || "",
+    display_version: expanded.display_version || "",
+    policy_url: expanded.policy_url || "",
+    detail_url: expanded.detail_url || "",
+    origin: expanded.origin || "保發中心",
+    version_note: expanded.version_note || "",
+    flags: expanded.flags || [],
+    search_text: tiiSearchText(record),
+  };
+  item.id = portfolioItemId(item);
+  return item;
+}
+
+function manualPortfolioItem(query) {
+  const item = {
+    id: "",
+    source_kind: "manual",
+    product_name: query,
+    company: "自行輸入",
+    product_type: "待分類",
+    bucket: state.portfolioBucket === "all" ? "" : state.portfolioBucket,
+    sale_status: "待對照資料庫",
+    product_id: "",
+    display_version: "手動加入",
+    origin: "自行輸入",
+    flags: ["手動項目", "待官方複核"],
+    matched_terms: [query],
+    field_hits: [],
+    reader_focus: [],
+    search_text: normalize(query),
+  };
+  item.id = portfolioItemId(item);
+  return item;
+}
+
+function tiiSearchText(record) {
+  return normalize([record.n, record.c, record.k, record.p, record.s, record.sd, record.dd, record.e, record.b].join(" "));
+}
+
+function portfolioSearchText(item, options = {}) {
+  const focusText = (item.reader_focus || [])
+    .flatMap((focus) => [focus.label, focus.reader_question, focus.summary, ...(focus.terms || [])])
+    .join(" ");
+  return normalize(
+    [
+      options.excludeCompany ? "" : item.company,
+      item.product_name,
+      item.product_type,
+      item.sale_status,
+      item.product_id,
+      item.sale_date,
+      item.discontinued_date,
+      item.display_version,
+      item.origin,
+      ...(item.flags || []),
+      ...(item.field_hits || []),
+      ...(item.matched_terms || []),
+      focusText,
+      item.search_text,
+    ].join(" "),
+  );
+}
+
+function coverageDetectionText(item) {
+  return normalize(
+    [
+      item.product_name,
+      item.product_type,
+      item.product_id,
+      item.sale_status,
+      item.display_version,
+      ...(item.flags || []),
+    ].join(" "),
+  );
+}
+
+function portfolioMatchScore(item, query) {
+  const normalizedQuery = normalize(query);
+  const productName = normalize(item.product_name);
+  const productId = normalize(item.product_id);
+  const productType = normalize(item.product_type);
+  let score = 0;
+  if (productId && productId === normalizedQuery) score += 120;
+  if (productId && productId.includes(normalizedQuery)) score += 70;
+  if (productName === normalizedQuery) score += 90;
+  if (productName.includes(normalizedQuery)) score += 45;
+  if (productType.includes(normalizedQuery)) score += 24;
+  if (matchesQuery(portfolioSearchText(item), query)) score += 18;
+  if (item.source_kind === "content") score += 8 + (item.focus_score || 0);
+  if (item.detail_url) score += 5;
+  if ((item.flags || []).some((flag) => String(flag).includes("同名不同版"))) score += 2;
+  return score;
+}
+
+function isLikelyProductCode(query) {
+  const compact = String(query || "").replace(/\s+/g, "");
+  return compact.length >= 8 && /[A-Za-z]/.test(compact) && /\d/.test(compact);
+}
+
+function uniquePortfolioCandidates(items) {
+  const seen = new Set();
+  return items.filter((item) => {
+    const key = portfolioIdentityFingerprint(item);
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function exactProductIdMatches(items, query) {
+  const normalizedQuery = normalize(query);
+  return items.filter((item) => item.product_id && normalize(item.product_id) === normalizedQuery);
+}
+
+function exactNameMatches(items, query) {
+  const normalizedQuery = normalize(query);
+  return items.filter((item) => normalize(item.product_name) === normalizedQuery);
+}
+
+async function findPortfolioMatches(query) {
+  const localMatches = (state.policyContentExtracts?.records || [])
+    .map(policyContentToPortfolioItem)
+    .filter(itemMatchesPortfolioFilters)
+    .filter((item) => matchesQuery(portfolioSearchText(item), query))
+    .map((item) => ({ ...item, match_score: portfolioMatchScore(item, query) }))
+    .filter((item) => item.match_score > 0);
+
+  const shouldLoadTii =
+    isLikelyProductCode(query) || localMatches.length < 5 || state.portfolioCompany !== "all" || state.portfolioBucket !== "all";
+  let tiiMatches = [];
+  if (shouldLoadTii) {
+    const records = await ensureTiiIndexLoaded();
+    tiiMatches = records
+      .filter((record) => matchesQuery(tiiSearchText(record), query))
+      .map(tiiIndexToPortfolioItem)
+      .filter(itemMatchesPortfolioFilters)
+      .map((item) => ({ ...item, match_score: portfolioMatchScore(item, query) }))
+      .filter((item) => item.match_score > 0);
+  }
+
+  return uniquePortfolioCandidates([...localMatches, ...tiiMatches])
+    .sort((a, b) => {
+      const scoreDiff = (b.match_score || 0) - (a.match_score || 0);
+      if (scoreDiff) return scoreDiff;
+      const companyDiff = String(a.company || "").localeCompare(String(b.company || ""), "zh-Hant-TW");
+      if (companyDiff) return companyDiff;
+      return String(a.product_name || "").localeCompare(String(b.product_name || ""), "zh-Hant-TW");
+    })
+    .slice(0, 18);
+}
+
+function detectCoverageBuckets(item) {
+  const text = coverageDetectionText(item);
+  const category = normalize(item.product_type);
+  return coverageBuckets
+    .map((bucket) => {
+      const categoryMatched = (bucket.categories || []).some((itemCategory) => category === normalize(itemCategory));
+      const matchedKeywords = bucket.keywords.filter((keyword) => text.includes(normalize(keyword)));
+      const isMatched = categoryMatched || matchedKeywords.length > 0;
+      return isMatched ? { ...bucket, matchedKeywords } : null;
+    })
+    .filter(Boolean);
+}
+
+function coverageBadgeHtml(item) {
+  const buckets = detectCoverageBuckets(item);
+  if (!buckets.length) return '<span class="chip muted">待分類</span>';
+  return buckets.map((bucket) => `<span class="chip">${escapeHtml(bucket.label)}</span>`).join("");
+}
+
+function policyCodeBadgeHtml(item) {
+  return "";
+}
+
+function policyTitleHtml(item) {
+  return `<span class="policy-title-text">${escapeHtml(item.product_name)}</span>${policyCodeBadgeHtml(item)}`;
+}
+
+function identityMetaHtml(item) {
+  const rows = [
+    portfolioBucketLabel(inferPortfolioBucket(item)),
+    item.sale_date ? `銷售日 ${item.sale_date}` : "",
+    item.discontinued_date ? `停售日 ${item.discontinued_date}` : item.sale_status || "",
+  ].filter(Boolean);
+  return rows.map((row) => `<span>${escapeHtml(row)}</span>`).join("");
+}
+
+function identityWarningHtml(item) {
+  const messages = [];
+  if (item.version_note) messages.push(item.version_note);
+  if (!messages.length) return "";
+  return `<p class="identity-warning">${messages.map(escapeHtml).join(" ")}</p>`;
+}
+
+function addPortfolioItem(item) {
+  const normalizedItem = { ...item, id: item.id || portfolioItemId(item) };
+  const exists = state.portfolioItems.some((current) => current.id === normalizedItem.id);
+  if (!exists) {
+    state.portfolioItems = [...state.portfolioItems, normalizedItem];
+    savePortfolioItems();
+  }
+  renderPortfolio();
+  return !exists;
+}
+
+function removePortfolioItem(id) {
+  state.portfolioItems = state.portfolioItems.filter((item) => item.id !== id);
+  savePortfolioItems();
+  renderPortfolio();
+}
+
+function clearPortfolio() {
+  state.portfolioItems = [];
+  state.portfolioSuggestions = [];
+  state.portfolioDetailItem = null;
+  savePortfolioItems();
+  renderPortfolio();
+  renderPortfolioDetail(null);
+  setText("portfolioHint", "已清空集合。可以重新輸入保單名稱或險種。");
+}
+
+function renderPortfolioSuggestions(matches, query) {
+  const container = document.getElementById("portfolioSuggestions");
+  state.portfolioSuggestions = matches;
+  if (!matches.length) {
+    container.innerHTML = "";
+    return;
+  }
+  container.innerHTML = `
+    <div class="suggestion-heading">
+      <strong>找到 ${formatNumber.format(matches.length)} 個候選</strong>
+      <span>請選擇要加入集合的保單。</span>
+    </div>
+    <div class="suggestion-list">
+      ${matches
+        .slice(0, 8)
+        .map(
+          (item, index) => `
+            <article class="suggestion-item">
+              <div>
+                <strong class="policy-title-line">${policyTitleHtml(item)}</strong>
+                <div class="policy-meta">
+                  <span>${escapeHtml(item.company)}</span>
+                  <span>${escapeHtml(item.product_type)}</span>
+                  ${identityMetaHtml(item)}
+                </div>
+                <div class="policy-flags">${coverageBadgeHtml(item)}</div>
+              </div>
+              <button class="button secondary" type="button" data-view-suggestion="${index}">查看摘要</button>
+            </article>
+          `,
+        )
+        .join("")}
+    </div>
+    ${
+      matches.length > 8
+        ? `<p class="result-summary">「${escapeHtml(query)}」還有更多候選，請用公司或完整名稱縮小範圍。</p>`
+        : ""
+    }
+  `;
+}
+
+function focusByKeyForPortfolio(item, key) {
+  return (item.reader_focus || []).find((focus) => focus.key === key);
+}
+
+function coverageSummaryForItem(item) {
+  const buckets = detectCoverageBuckets(item).map((bucket) => bucket.label);
+  if (buckets.length) return `系統依商品名稱與險種判斷，這張保單可能對應 ${buckets.join("、")}。`;
+  if (item.product_type && item.product_type !== "待分類") return `目前可確認的險種為 ${item.product_type}。`;
+  return "目前先保留為待分類項目，建議用完整保單名稱或公司再查一次。";
+}
+
+function focusSummaryHtml(item) {
+  const cards = [
+    ["coverage", "保障項目"],
+    ["definitions", "重要定義"],
+    ["special", "特殊項目"],
+    ["claims", "理賠申請"],
+  ].map(([key, label]) => {
+    const focus = focusByKeyForPortfolio(item, key);
+    const terms = focus?.terms?.length ? focus.terms.slice(0, 6) : [];
+    return `
+      <article class="portfolio-summary-card">
+        <strong>${escapeHtml(focus?.label || label)}</strong>
+        <p>${escapeHtml(focus?.summary || "目前沒有已解析條款摘要；可先用官方明細確認條款內容。")}</p>
+        ${
+          terms.length
+            ? `<div class="chips">${terms.map((term) => `<span class="chip">${escapeHtml(term)}</span>`).join("")}</div>`
+            : ""
+        }
+      </article>
+    `;
+  });
+  return cards.join("");
+}
+
+function renderPortfolioDetail(item) {
+  const container = document.getElementById("portfolioDetail");
+  state.portfolioDetailItem = item || null;
+  if (!item) {
+    container.innerHTML = "";
+    return;
+  }
+  const detailLink = item.detail_url || item.policy_url || "";
+  container.innerHTML = `
+    <article class="portfolio-detail-card">
+      <div class="portfolio-detail-top">
+        <div>
+          <p class="eyebrow">Policy Summary</p>
+          <h3 class="policy-title-line">${policyTitleHtml(item)}</h3>
+        </div>
+        <button class="button ghost" type="button" data-close-portfolio-detail>關閉</button>
+      </div>
+      <div class="policy-meta detail-meta">
+        <span>${escapeHtml(item.company)}</span>
+        <span>${escapeHtml(item.product_type)}</span>
+        ${identityMetaHtml(item)}
+      </div>
+      <div class="portfolio-detail-grid">
+        <section>
+          <h4>保障摘要</h4>
+          <p>${escapeHtml(coverageSummaryForItem(item))}</p>
+          <div class="policy-flags">${coverageBadgeHtml(item)}</div>
+        </section>
+        <section>
+          <h4>核對資訊</h4>
+          <dl class="identity-list">
+            <div><dt>公司</dt><dd>${escapeHtml(item.company)}</dd></div>
+            <div><dt>險種</dt><dd>${escapeHtml(item.product_type)}</dd></div>
+            ${item.sale_date ? `<div><dt>銷售日</dt><dd>${escapeHtml(item.sale_date)}</dd></div>` : ""}
+            ${item.discontinued_date ? `<div><dt>停售日</dt><dd>${escapeHtml(item.discontinued_date)}</dd></div>` : ""}
+          </dl>
+        </section>
+      </div>
+      <section>
+        <h4>保障內容摘要</h4>
+        <div class="portfolio-summary-grid">${focusSummaryHtml(item)}</div>
+      </section>
+      ${identityWarningHtml(item)}
+      <div class="portfolio-detail-actions">
+        <button class="button primary" type="button" data-confirm-add-portfolio>確認加入集合</button>
+        ${detailLink ? `<a class="button secondary" href="${escapeHtml(detailLink)}" target="_blank" rel="noreferrer">官方來源</a>` : ""}
+      </div>
+    </article>
+  `;
+}
+
+function renderPortfolioList() {
+  const container = document.getElementById("portfolioList");
+  setText("portfolioCount", `${formatNumber.format(state.portfolioItems.length)} 張`);
+  if (!state.portfolioItems.length) {
+    container.innerHTML =
+      '<div class="empty"><strong>尚未加入保單。</strong><span>從上方輸入保單名稱或險種，就會形成自己的保障集合。</span></div>';
+    return;
+  }
+  container.innerHTML = state.portfolioItems
+    .map(
+      (item) => `
+        <article class="portfolio-item">
+          <div>
+            <strong class="policy-title-line">${policyTitleHtml(item)}</strong>
+            <div class="policy-meta">
+              <span>${escapeHtml(item.company)}</span>
+              <span>${escapeHtml(item.product_type)}</span>
+              ${identityMetaHtml(item)}
+            </div>
+            <div class="policy-flags">
+              ${coverageBadgeHtml(item)}
+              ${(item.flags || []).slice(0, 3).map((flag) => `<span class="chip muted">${escapeHtml(flag)}</span>`).join("")}
+            </div>
+          </div>
+          <div class="portfolio-actions">
+            ${
+              item.detail_url
+                ? `<a class="button secondary" href="${escapeHtml(item.detail_url)}" target="_blank" rel="noreferrer">官方明細</a>`
+                : item.policy_url
+                  ? `<a class="button secondary" href="${escapeHtml(item.policy_url)}" target="_blank" rel="noreferrer">官方來源</a>`
+                  : ""
+            }
+            <button class="button ghost" type="button" data-remove-portfolio="${escapeHtml(item.id)}">移除</button>
+          </div>
+        </article>
+      `,
+    )
+    .join("");
+}
+
+function renderCoverageBuckets() {
+  const container = document.getElementById("coverageBuckets");
+  const bucketMatches = coverageBuckets.map((bucket) => ({
+    ...bucket,
+    items: state.portfolioItems.filter((item) => detectCoverageBuckets(item).some((match) => match.id === bucket.id)),
+  }));
+  const activeCount = bucketMatches.filter((bucket) => bucket.items.length).length;
+  setText("coverageScore", `${formatNumber.format(activeCount)}/${formatNumber.format(coverageBuckets.length)} 類`);
+  container.innerHTML = bucketMatches
+    .map((bucket) => {
+      const hasItems = bucket.items.length > 0;
+      return `
+        <article class="coverage-bucket ${hasItems ? "active" : ""}">
+          <div class="coverage-bucket-top">
+            <strong>${escapeHtml(bucket.label)}</strong>
+            <span>${formatNumber.format(bucket.items.length)} 張</span>
+          </div>
+          <p>${escapeHtml(bucket.summary)}</p>
+          <div class="coverage-meter" aria-hidden="true"><span style="width:${hasItems ? "100" : "0"}%"></span></div>
+          <div class="coverage-examples">
+            ${
+              hasItems
+                ? bucket.items
+                    .slice(0, 4)
+                    .map((item) => `<span>${escapeHtml(item.product_name)}</span>`)
+                    .join("")
+                : "<span>尚未加入對應保單</span>"
+            }
+          </div>
+        </article>
+      `;
+    })
+    .join("");
+}
+
+function renderPortfolio() {
+  renderPortfolioList();
+  renderCoverageBuckets();
+}
+
+async function runPortfolioSearch(query) {
+  const cleanedQuery = String(query || "").trim();
+  if (!cleanedQuery) {
+    setText("portfolioHint", "請先輸入保單名稱或險種。");
+    document.getElementById("portfolioInput").focus();
+    return;
+  }
+  setText("portfolioHint", "正在查找可加入的保單。");
+  renderPortfolioSuggestions([], cleanedQuery);
+  try {
+    const matches = await findPortfolioMatches(cleanedQuery);
+    const productIdMatches = exactProductIdMatches(matches, cleanedQuery);
+    if (productIdMatches.length === 1) {
+      renderPortfolioSuggestions(productIdMatches, cleanedQuery);
+      renderPortfolioDetail(productIdMatches[0]);
+      setText(
+        "portfolioHint",
+        `已找到「${productIdMatches[0].product_name}」。請先看摘要，確認後再加入集合。`,
+      );
+      return;
+    }
+    if (productIdMatches.length > 1) {
+      renderPortfolioSuggestions(productIdMatches, cleanedQuery);
+      setText("portfolioHint", "找到多筆候選，請先核對公司、險種、銷售日/停售日與官方明細，不要自動加入。");
+      return;
+    }
+
+    const nameMatches = exactNameMatches(matches, cleanedQuery);
+    if (nameMatches.length === 1) {
+      renderPortfolioSuggestions(nameMatches, cleanedQuery);
+      renderPortfolioDetail(nameMatches[0]);
+      setText(
+        "portfolioHint",
+        `已找到「${nameMatches[0].product_name}」。請先看摘要，確認後再加入集合。`,
+      );
+      return;
+    }
+    if (nameMatches.length > 1) {
+      renderPortfolioSuggestions(nameMatches, cleanedQuery);
+      setText("portfolioHint", "同名商品有多個候選，請用公司、險種與銷售日期確認真正版本。");
+      return;
+    }
+    if (matches.length === 1) {
+      renderPortfolioSuggestions(matches, cleanedQuery);
+      renderPortfolioDetail(matches[0]);
+      setText("portfolioHint", `已找到「${matches[0].product_name}」。請先看摘要，確認後再加入集合。`);
+      return;
+    }
+    if (matches.length) {
+      renderPortfolioSuggestions(matches, cleanedQuery);
+      setText("portfolioHint", "找到多個候選，請選擇正確的公司或版本後加入。");
+      return;
+    }
+    const manualItem = manualPortfolioItem(cleanedQuery);
+    renderPortfolioSuggestions([], cleanedQuery);
+    renderPortfolioDetail(manualItem);
+    setText("portfolioHint", `沒有直接對到資料庫，已建立手動項目摘要；確認名稱無誤後可加入集合。`);
+  } catch (error) {
+    setText("portfolioHint", `查找時發生問題：${error.message}`);
+  }
 }
 
 function renderDiscontinuedPolicyItem(policy, versionTimelineMap) {
@@ -508,7 +1190,7 @@ function renderDiscontinuedList() {
 
   if (!rows.length) {
     container.innerHTML =
-      '<div class="empty"><strong>找不到符合條件的停售保單。</strong><span>請改用公司、商品名稱、productId、銷售日或停售日查詢。</span></div>';
+      '<div class="empty"><strong>找不到符合條件的停售保單。</strong><span>請改用公司、商品名稱、銷售日或停售日查詢。</span></div>';
     return;
   }
 
@@ -518,7 +1200,7 @@ function renderDiscontinuedList() {
       "beforeend",
       `<div class="empty"><strong>目前先顯示前 120 筆。</strong><span>符合條件共 ${formatNumber.format(
         rows.length,
-      )} 筆；請用公司、類別、productId 或日期縮小範圍。</span></div>`,
+      )} 筆；請用公司、類別或日期縮小範圍。</span></div>`,
     );
   }
 }
@@ -559,9 +1241,9 @@ function renderPolicyInsights() {
   const duplicateNote = latestDuplicateBatch
     ? `<p class="tii-status-note">官方結果目前累計 ${formatNumber.format(
         tiiOfficialRows,
-      )} 列；本站用 productId 去重呈現 ${formatNumber.format(
+      )} 列；本站依官方商品識別去重呈現 ${formatNumber.format(
         tiiImportedPolicies,
-      )} 張保單卡，已辨識 ${formatNumber.format(tiiDuplicateProductRows)} 列官方重複 productId。最新重複批次 ${
+      )} 張保單卡，已辨識 ${formatNumber.format(tiiDuplicateProductRows)} 列官方重複資料。最新重複批次 ${
         latestDuplicateBatch.batch_id
       }：官方 ${formatNumber.format(latestDuplicateBatch.official_row_count || 0)} 列 / 去重 ${formatNumber.format(
         latestDuplicateBatch.unique_product_id_count || 0,
@@ -570,9 +1252,9 @@ function renderPolicyInsights() {
   const sameNameVersionNote = tiiSameNameVersionedGroupCount
     ? `<p class="tii-status-note">已辨識 ${formatNumber.format(
         tiiSameNameVersionedGroupCount,
-      )} 組同公司同名但不同 productId 的商品，共 ${formatNumber.format(
+      )} 組同公司同名但不同版本的商品，共 ${formatNumber.format(
         tiiSameNameVersionedCardCount,
-      )} 張卡；本站會依銷售日、停售日、productId 與官方明細分別呈現，不以名稱合併。</p>`
+      )} 張卡；本站會依銷售日、停售日與官方明細分別呈現，不以名稱合併。</p>`
     : "";
   const detailGapNote = tiiDetailMissing
     ? `<p class="tii-status-note">已保存 ${formatNumber.format(tiiDetailSaved)} / ${formatNumber.format(
@@ -661,7 +1343,7 @@ function renderVersionTimeline(policy, timelineMap) {
     <div class="version-timeline" aria-label="同名保單版本時間軸">
       <div class="version-timeline-head">
         <strong>同名版本時間軸</strong>
-        <span>${formatNumber.format(versions.length)} 個保單代碼</span>
+        <span>${formatNumber.format(versions.length)} 個版本</span>
       </div>
       <ol>
         ${visible
@@ -676,7 +1358,6 @@ function renderVersionTimeline(policy, timelineMap) {
                 <div>
                   <strong>${escapeHtml(version.sale_date || "銷售日未標示")}</strong>
                   <span>停售 ${escapeHtml(version.discontinued_date || "未標示")}</span>
-                  <small>${escapeHtml(version.product_id || "保單代碼未標示")}</small>
                 </div>
               </li>
             `;
@@ -1377,6 +2058,65 @@ function resetFilters() {
 }
 
 function bindEvents() {
+  document.getElementById("portfolioForm").addEventListener("submit", (event) => {
+    event.preventDefault();
+    runPortfolioSearch(document.getElementById("portfolioInput").value);
+  });
+
+  document.getElementById("clearPortfolio").addEventListener("click", clearPortfolio);
+
+  document.getElementById("portfolioQuickAdds").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-portfolio-query]");
+    if (!button) return;
+    document.getElementById("portfolioInput").value = button.dataset.portfolioQuery;
+    runPortfolioSearch(button.dataset.portfolioQuery);
+  });
+
+  document.getElementById("portfolioCompanyFilter").addEventListener("change", (event) => {
+    state.portfolioCompany = event.target.value;
+    state.portfolioDetailItem = null;
+    renderPortfolioDetail(null);
+    const query = document.getElementById("portfolioInput").value.trim();
+    if (query) runPortfolioSearch(query);
+  });
+
+  document.getElementById("portfolioBucketFilter").addEventListener("change", (event) => {
+    state.portfolioBucket = event.target.value;
+    state.portfolioDetailItem = null;
+    renderPortfolioDetail(null);
+    const query = document.getElementById("portfolioInput").value.trim();
+    if (query) runPortfolioSearch(query);
+  });
+
+  document.getElementById("portfolioSuggestions").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-view-suggestion]");
+    if (!button) return;
+    const item = state.portfolioSuggestions[Number(button.dataset.viewSuggestion)];
+    if (!item) return;
+    renderPortfolioDetail(item);
+    setText("portfolioHint", `正在查看「${item.product_name}」摘要。確認後可加入集合。`);
+  });
+
+  document.getElementById("portfolioDetail").addEventListener("click", (event) => {
+    const closeButton = event.target.closest("[data-close-portfolio-detail]");
+    if (closeButton) {
+      renderPortfolioDetail(null);
+      return;
+    }
+    const addButton = event.target.closest("[data-confirm-add-portfolio]");
+    if (!addButton || !state.portfolioDetailItem) return;
+    const item = state.portfolioDetailItem;
+    const added = addPortfolioItem(item);
+    setText("portfolioHint", added ? `已加入「${item.product_name}」。` : `「${item.product_name}」已在集合中。`);
+  });
+
+  document.getElementById("portfolioList").addEventListener("click", (event) => {
+    const button = event.target.closest("[data-remove-portfolio]");
+    if (!button) return;
+    removePortfolioItem(button.dataset.removePortfolio);
+    setText("portfolioHint", "已從集合移除。");
+  });
+
   document.getElementById("searchForm").addEventListener("submit", (event) => {
     event.preventDefault();
     runSearch();
@@ -1456,6 +2196,9 @@ async function main() {
     renderPolicyInsights();
     renderTaxonomy();
     renderDomainChart();
+    loadPortfolioItems();
+    populatePortfolioFilters();
+    renderPortfolio();
     renderPolicyCards();
     renderSources();
     bindEvents();

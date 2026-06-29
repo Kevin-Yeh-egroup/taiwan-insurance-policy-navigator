@@ -19,6 +19,9 @@ PROGRESS_PATH = ROOT / "data" / "tii-execution-progress.json"
 RESULTS_PATH = ROOT / "data" / "tii-policy-results.json"
 WORK_DIR = ROOT / "work" / "tii-execution"
 JOB_PATH = ROOT / "work" / "tii-operator-job.json"
+DOCUMENT_DOWNLOAD_SCOPE = "life"
+DOCUMENT_DOWNLOAD_BATCH_SIZE = 800
+DOCUMENT_DOWNLOAD_PROGRESS_PATH = ROOT / "work" / "tii-documents" / "document-download-progress.json"
 JOB_LOCK = threading.Lock()
 READ_RETRY_ATTEMPTS = 30
 READ_RETRY_DELAY_SECONDS = 0.25
@@ -144,19 +147,88 @@ def run_batch_job(batch_id: str, captcha: str) -> None:
         )
 
 
-def start_batch_job(batch_id: str, captcha: str) -> tuple[bool, str]:
+def run_document_job(batch_id: str, captcha: str, document_offset: int = 0) -> None:
+    started_at = now_iso()
+    set_job_status(
+        {
+            "status": "running",
+            "mode": "document_download",
+            "batch_id": batch_id,
+            "document_offset": document_offset,
+            "message": f"Submitting captcha and downloading up to {DOCUMENT_DOWNLOAD_BATCH_SIZE} core documents.",
+            "started_at": started_at,
+        }
+    )
+    args = [
+        "scripts/run_tii_batch.py",
+        "--batch-id",
+        batch_id,
+        "--captcha",
+        captcha,
+        "--fetch-details",
+        "--fetch-documents",
+        "--document-priority",
+        "core",
+        "--document-limit",
+        str(DOCUMENT_DOWNLOAD_BATCH_SIZE),
+        "--document-offset",
+        str(document_offset),
+        "--progress",
+        str(DOCUMENT_DOWNLOAD_PROGRESS_PATH),
+    ]
+    code, output = run_command(args)
+    extract_output = ""
+    extract_code = 0
+    if code == 0:
+        batch = batch_map().get(batch_id, {})
+        company_type = str(batch.get("company_type") or DOCUMENT_DOWNLOAD_SCOPE)
+        record_paths = sorted((ROOT / "data" / "tii" / "records" / company_type).glob("*.json"))
+        extract_args = [
+            "scripts/extract_tii_document_content.py",
+            "--batch-id",
+            batch_id,
+            "--output",
+            f"data/tii/document-content/{batch_id}.json",
+            "--raw-output",
+            f"work/tii-document-text/{batch_id}-text.json",
+            "--max-pages",
+            "20",
+        ]
+        if record_paths:
+            extract_args.append("--records")
+            extract_args.extend(str(path.relative_to(ROOT)) for path in record_paths)
+        extract_code, extract_output = run_command(extract_args)
+    set_job_status(
+        {
+            "status": "completed" if code == 0 and extract_code == 0 else "failed",
+            "mode": "document_download",
+            "batch_id": batch_id,
+            "document_offset": document_offset,
+            "message": output + ("\n\nEXTRACT\n" + extract_output if extract_output else ""),
+            "started_at": started_at,
+            "finished_at": now_iso(),
+        }
+    )
+
+
+def start_batch_job(batch_id: str, captcha: str, mode: str = "batch", document_offset: int = 0) -> tuple[bool, str]:
     current = job_status()
     if current.get("status") == "running":
         return False, f"Batch {current.get('batch_id')} is already running."
     set_job_status(
         {
             "status": "running",
+            "mode": mode,
             "batch_id": batch_id,
+            "document_offset": document_offset,
             "message": "Received captcha. Starting crawler worker.",
             "started_at": now_iso(),
         }
     )
-    worker = threading.Thread(target=run_batch_job, args=(batch_id, captcha), daemon=True)
+    if mode in {"document_pilot", "document_download"}:
+        worker = threading.Thread(target=run_document_job, args=(batch_id, captcha, document_offset), daemon=True)
+    else:
+        worker = threading.Thread(target=run_batch_job, args=(batch_id, captcha), daemon=True)
     worker.start()
     return True, f"Batch {batch_id} started. This page will refresh while the crawler runs."
 
@@ -236,17 +308,65 @@ def saved_counts(batch_id: str) -> dict[str, int | bool]:
     }
 
 
-def ensure_captcha(batch_id: str, force_refresh: bool = False) -> tuple[bool, str]:
+def document_status(batch_id: str) -> dict:
+    status_path = ROOT / "work" / "tii-documents" / batch_id / "_document-download-status.json"
+    return load_json(status_path, {}) if status_path.exists() else {}
+
+
+def document_content_path(batch_id: str) -> Path:
+    return ROOT / "data" / "tii" / "document-content" / f"{batch_id}.json"
+
+
+def next_document_work_item() -> dict:
+    batches = batch_map()
+    ordered_batch_ids = [
+        batch_id
+        for batch_id in batch_order()
+        if batches.get(batch_id, {}).get("company_type") == DOCUMENT_DOWNLOAD_SCOPE
+    ]
+    for batch_id in ordered_batch_ids:
+        status = document_status(batch_id)
+        if not status:
+            return {"batch_id": batch_id, "document_offset": 0, "reason": "not_started"}
+        total = int(status.get("total_document_link_count") or 0)
+        offset = int(status.get("document_offset") or 0)
+        window = int(status.get("document_link_count") or 0)
+        limit = int(status.get("document_limit") or 0)
+        if not status.get("total_scanned_all_details") and limit and window >= limit:
+            return {
+                "batch_id": batch_id,
+                "document_offset": offset + window,
+                "reason": "limit_boundary_recheck",
+                "total_document_link_count": total,
+            }
+        if total and offset + window < total:
+            return {
+                "batch_id": batch_id,
+                "document_offset": offset + window,
+                "reason": "partial",
+                "total_document_link_count": total,
+            }
+        if total and not document_content_path(batch_id).exists():
+            return {
+                "batch_id": batch_id,
+                "document_offset": 0,
+                "reason": "needs_extract_refresh",
+                "total_document_link_count": total,
+            }
+    return {"batch_id": "", "document_offset": 0, "reason": "complete"}
+
+
+def ensure_captcha(batch_id: str, force_refresh: bool = False, progress_path: Path = PROGRESS_PATH) -> tuple[bool, str]:
     if not batch_id:
         return False, "All TII batches are completed."
     if force_refresh:
         clear_captcha_session(batch_id)
     image = captcha_image(batch_id)
-    progress = load_json(PROGRESS_PATH, {"runs": []})
+    progress = load_json(progress_path, {"runs": []})
     run = next((item for item in progress.get("runs", []) if item.get("batch_id") == batch_id), None)
     if image and run and run.get("status") == "captcha_required":
         return True, "Captcha already prepared."
-    code, output = run_command(["scripts/run_tii_batch.py", "--batch-id", batch_id])
+    code, output = run_command(["scripts/run_tii_batch.py", "--batch-id", batch_id, "--progress", str(progress_path)])
     return code == 0, output
 
 
@@ -261,26 +381,44 @@ def html_page(message: str = "") -> bytes:
         for run in progress.get("runs", [])
         if run.get("batch_id") not in completed_result_batches and "captcha" in run.get("status", "")
     )
-    batch_id = next_batch_id()
+    normal_batch_id = next_batch_id()
+    document_item = next_document_work_item() if not normal_batch_id else {"batch_id": "", "document_offset": 0}
+    mode = "batch" if normal_batch_id else "document_download" if document_item.get("batch_id") else "idle"
+    batch_id = normal_batch_id or str(document_item.get("batch_id") or "")
+    document_offset = int(document_item.get("document_offset") or 0)
     batch = batches.get(batch_id, {})
     job_running = job.get("status") == "running"
+    pilot_mode = mode == "document_download"
+    captcha_progress_path = DOCUMENT_DOWNLOAD_PROGRESS_PATH if pilot_mode else PROGRESS_PATH
     ok, prepare_message = (
         (False, "A batch is running.")
         if job_running
-        else ensure_captcha(batch_id)
-        if batch_id
+        else ensure_captcha(batch_id, progress_path=captcha_progress_path)
+        if batch_id and mode != "idle"
         else (False, "No pending batch.")
     )
     if ok and job.get("status") == "failed" and job.get("batch_id") == batch_id:
         prepare_message = "上一輪驗證碼被官方判定錯誤。這張會固定到你送出或手動換圖為止。"
     image = captcha_image(batch_id) if ok else None
     counts = saved_counts(batch_id)
+    docs = document_status(batch_id)
     progress_hint = (
         f"已保存清單頁 {counts['saved_pages']}/{counts['expected_pages']}，已保存明細 {counts['saved_details']}。"
         if counts["expected_pages"]
         else f"已保存清單頁 {counts['saved_pages']}，已保存明細 {counts['saved_details']}。"
     )
-    mode_hint = "此批清單頁已完整保存；送出後會只補抓缺少的明細頁。" if counts["pages_complete"] else "送出後會抓完整清單頁，再補抓可用明細頁。"
+    mode_hint = (
+        f"文件下載模式：送出後會重開 {batch_id} 的明細頁，從第 {document_offset + 1} 份核心文件開始，最多下載 {DOCUMENT_DOWNLOAD_BATCH_SIZE} 份並自動抽文字。"
+        if pilot_mode
+        else "此批清單頁已完整保存；送出後會只補抓缺少的明細頁。"
+        if counts["pages_complete"]
+        else "送出後會抓完整清單頁，再補抓可用明細頁。"
+    )
+    document_hint = (
+        f"文件下載：視窗 {docs.get('document_offset', 0)} + {docs.get('document_link_count', 0)} / {docs.get('total_document_link_count', docs.get('document_link_count', 0))}；新增 {docs.get('saved_document_count', 0)}，已存在 {docs.get('already_saved_document_count', 0)}，失敗 {docs.get('failed_document_count', 0)}。"
+        if docs
+        else "這個文件批次尚未開始。"
+    )
     image_tag = ""
     if image:
         image_version = f"{int(image.stat().st_mtime)}-{image.stat().st_size}"
@@ -297,13 +435,15 @@ def html_page(message: str = "") -> bytes:
         f"<tr><td>{html.escape(run.get('batch_id', ''))}</td><td>{html.escape(run.get('status', ''))}</td><td>{html.escape(run.get('ran_at', ''))}</td></tr>"
         for run in progress.get("runs", [])[-10:]
     )
+    page_title = "TII 人身保險文件下載" if pilot_mode else "TII 人工驗證碼批次執行台"
+    submit_label = "送出並下載/抽取文件" if pilot_mode else "送出並抓完整批次"
     body = f"""<!doctype html>
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   {('<meta http-equiv="refresh" content="8">' if job_running else '')}
-  <title>TII Operator</title>
+  <title>{html.escape(page_title)}</title>
   <style>
     body {{ font-family: system-ui, sans-serif; margin: 24px; line-height: 1.6; color: #162033; }}
     main {{ max-width: 900px; margin: 0 auto; }}
@@ -327,8 +467,8 @@ def html_page(message: str = "") -> bytes:
 </head>
 <body>
 <main>
-  <h1>TII 人工驗證碼批次執行台</h1>
-  <p>這個頁面只在本機使用。它不破解驗證碼；人工輸入一個驗證碼後，系統會自動抓該批所有結果分頁、可用明細頁並匯入。</p>
+  <h1>{html.escape(page_title)}</h1>
+  <p>這個頁面只在本機使用。它不破解驗證碼；人工輸入一個驗證碼後，系統會在同一個 TII session 內執行。</p>
   <div class="stats">
     <span><strong>{progress.get('summary', {}).get('attempted_batches', 0)}</strong>已啟動</span>
     <span><strong>{results.get('indexed_batch_count', 0)}</strong>已索引</span>
@@ -343,17 +483,20 @@ def html_page(message: str = "") -> bytes:
     <pre>{html.escape(str(job.get('message', ''))[:1600])}</pre>
   </div>
   <div class="panel">
-    <h2>下一批</h2>
+    <h2>{'文件下載 pilot' if pilot_mode else '下一批'}</h2>
     <p><strong>{html.escape(batch_id or '全部完成')}</strong></p>
     <p>{html.escape(batch.get('company_label', ''))} / {html.escape(batch.get('category_label', ''))}</p>
     <p class="hint">{html.escape(progress_hint)}<br>{html.escape(mode_hint)}</p>
+    <p class="hint">{html.escape(document_hint)}</p>
     <p>{html.escape(prepare_message[:600])}</p>
     {image_tag}
     {refresh_link}
     <form method="post" action="/submit">
       <input type="hidden" name="batch_id" value="{html.escape(batch_id)}">
+      <input type="hidden" name="mode" value="{html.escape(mode)}">
+      <input type="hidden" name="document_offset" value="{document_offset}">
       <label>人工輸入驗證碼 <input name="captcha" autocomplete="off" inputmode="numeric" required autofocus></label>
-      <button type="submit" {('disabled' if job_running else '')}>送出並抓完整批次</button>
+      <button type="submit" {('disabled' if job_running else '')}>{html.escape(submit_label)}</button>
     </form>
   </div>
   <div class="panel">
@@ -411,11 +554,16 @@ class Handler(BaseHTTPRequestHandler):
         length = int(self.headers.get("Content-Length", "0"))
         data = urllib.parse.parse_qs(self.rfile.read(length).decode("utf-8"))
         batch_id = data.get("batch_id", [""])[0]
+        mode = data.get("mode", ["batch"])[0]
+        try:
+            document_offset = int(data.get("document_offset", ["0"])[0] or 0)
+        except ValueError:
+            document_offset = 0
         captcha = data.get("captcha", [""])[0].strip()
         if not batch_id or not captcha:
             message = "Missing batch_id or captcha."
         else:
-            _, message = start_batch_job(batch_id, captcha)
+            _, message = start_batch_job(batch_id, captcha, mode, document_offset)
         self.send_response(200)
         self.send_no_cache_headers()
         self.send_header("Content-Type", "text/html; charset=utf-8")

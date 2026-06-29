@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import html
 import json
 import math
 import re
@@ -19,8 +20,15 @@ DEFAULT_PROGRESS = Path("data/tii-execution-progress.json")
 DEFAULT_WORK_DIR = Path("work/tii-execution")
 DEFAULT_RESULTS_DIR = Path("work/tii-results")
 DEFAULT_DETAILS_DIR = Path("work/tii-details")
+DEFAULT_DOCUMENTS_DIR = Path("work/tii-documents")
 TOTAL_PATTERN = re.compile(r"總共找到.*?([\d,]+).*?筆", re.DOTALL)
 INVALID_DETAIL_MARKERS = ["識別碼錯誤", "錯誤"]
+OPEN2_LINK_RE = re.compile(
+    r"<a\b[^>]*href\s*=\s*['\"]?(?P<href>Open2\.ashx\?id=[^'\"\s>]+)['\"]?[^>]*>(?P<label>.*?)</a>",
+    re.IGNORECASE | re.DOTALL,
+)
+TAG_RE = re.compile(r"<[^>]+>")
+WHITESPACE_RE = re.compile(r"\s+")
 
 
 class FormParser(HTMLParser):
@@ -178,6 +186,136 @@ def parse_detail_link_rows(html: str, base_url: str = "https://insprod.tii.org.t
         product_id = match.group(1)
         links.append((product_id, urllib.parse.urljoin(base_url, href)))
     return links
+
+
+def clean_text(value: str) -> str:
+    value = html.unescape(value or "")
+    value = TAG_RE.sub(" ", value)
+    return WHITESPACE_RE.sub(" ", value).strip()
+
+
+def open2_id_from_href(href: str) -> str:
+    parsed = urllib.parse.urlparse(urllib.parse.urljoin("https://insprod.tii.org.tw/", href))
+    return urllib.parse.parse_qs(parsed.query).get("id", [""])[0]
+
+
+def safe_filename(filename: str, fallback: str) -> str:
+    value = clean_text(filename) or fallback
+    value = re.sub(r'[<>:"/\\|?*\x00-\x1f]+', "_", value).strip(" .")
+    return value[:180] or fallback
+
+
+def document_type_from_filename(filename: str) -> str:
+    stem = Path(filename).stem.upper()
+    match = re.search(r"-([A-Z])(?:\d+)?$", stem)
+    suffix = match.group(1) if match else ""
+    if suffix == "A":
+        return "policy_terms"
+    if suffix == "F":
+        return "product_summary"
+    return "attachment"
+
+
+def parse_document_links(detail_html: str, base_url: str = "https://insprod.tii.org.tw/") -> list[dict]:
+    links: list[dict] = []
+    seen: set[str] = set()
+    for match in OPEN2_LINK_RE.finditer(detail_html):
+        href = html.unescape(match.group("href"))
+        open2_id = open2_id_from_href(href)
+        if not open2_id or open2_id in seen:
+            continue
+        seen.add(open2_id)
+        filename = safe_filename(clean_text(match.group("label")), f"{open2_id}.bin")
+        links.append(
+            {
+                "open2_id": open2_id,
+                "url": urllib.parse.urljoin(base_url, href),
+                "filename": filename,
+                "document_type": document_type_from_filename(filename),
+            }
+        )
+    return links
+
+
+def looks_like_document(content: bytes, filename: str) -> bool:
+    if content.startswith(b"%PDF-"):
+        return True
+    if content.startswith(b"\xd0\xcf\x11\xe0") or content.startswith(b"PK\x03\x04"):
+        return True
+    suffix = Path(filename).suffix.lower()
+    if suffix in {".pdf", ".doc", ".docx"} and not content.lstrip().lower().startswith(b"<html"):
+        return len(content) > 1024
+    return False
+
+
+def document_links_for_detail(detail_html: str, document_priority: str) -> list[dict[str, str]]:
+    links = parse_document_links(detail_html)
+    if document_priority == "core":
+        links = [link for link in links if link["document_type"] in {"policy_terms", "product_summary"}]
+    return links
+
+
+def download_documents_for_detail(
+    client: urllib.request.OpenerDirector,
+    product_id: str,
+    detail_html: str,
+    batch_id: str,
+    documents_dir: Path,
+    document_priority: str = "core",
+    limit_remaining: int = 0,
+    skip_count: int = 0,
+    delay_seconds: float = 0.2,
+) -> dict:
+    links = document_links_for_detail(detail_html, document_priority)
+    total_link_count = len(links)
+    skipped_count = min(max(skip_count, 0), len(links))
+    if skipped_count:
+        links = links[skipped_count:]
+    if limit_remaining > 0:
+        links = links[:limit_remaining]
+
+    saved: list[str] = []
+    already_saved: list[str] = []
+    failed: list[dict] = []
+    product_root = documents_dir / batch_id / product_id
+    product_root.mkdir(parents=True, exist_ok=True)
+    for index, link in enumerate(links, start=1):
+        filename = safe_filename(link["filename"], f"{link['open2_id']}.bin")
+        target = product_root / filename
+        if target.exists() and target.stat().st_size > 1024:
+            already_saved.append(str(target))
+            continue
+        try:
+            content, final_url = read_url(client, link["url"])
+            if not looks_like_document(content, filename):
+                failed.append(
+                    {
+                        "product_id": product_id,
+                        "filename": filename,
+                        "url": link["url"],
+                        "final_url": final_url,
+                        "reason": "not_a_document",
+                        "byte_count": len(content),
+                    }
+                )
+                continue
+            target.write_bytes(content)
+            saved.append(str(target))
+        except Exception as exc:  # pragma: no cover - network failures are recorded for manual review.
+            failed.append({"product_id": product_id, "filename": filename, "url": link["url"], "reason": str(exc)})
+        if delay_seconds and index < len(links):
+            time.sleep(delay_seconds)
+    return {
+        "total_document_link_count": total_link_count,
+        "skipped_document_count": skipped_count,
+        "document_link_count": len(links),
+        "saved_document_count": len(saved),
+        "already_saved_document_count": len(already_saved),
+        "failed_document_count": len(failed),
+        "saved_document_sample": saved[:20],
+        "already_saved_document_sample": already_saved[:20],
+        "failed_documents": failed[:20],
+    }
 
 
 def build_payload(form: dict, batch: dict, captcha: str | None) -> dict:
@@ -349,6 +487,11 @@ def fetch_detail_pages(
     details_dir: Path,
     limit: int = 0,
     delay_seconds: float = 0.2,
+    fetch_documents: bool = False,
+    documents_dir: Path = DEFAULT_DOCUMENTS_DIR,
+    document_priority: str = "core",
+    document_limit: int = 0,
+    document_offset: int = 0,
 ) -> dict:
     detail_root = details_dir / batch_id
     detail_root.mkdir(parents=True, exist_ok=True)
@@ -371,23 +514,94 @@ def fetch_detail_pages(
     saved: list[str] = []
     already_saved: list[str] = []
     failed: list[dict] = []
+    document_saved_count = 0
+    document_already_saved_count = 0
+    document_failed_count = 0
+    document_total_link_count = 0
+    document_skipped_count = 0
+    document_link_count = 0
+    document_saved_sample: list[str] = []
+    document_already_saved_sample: list[str] = []
+    document_failures: list[dict] = []
+    document_skip_remaining = max(document_offset, 0)
     for index, (product_id, url) in enumerate(links, start=1):
         detail_path = detail_root / f"{product_id}.html"
-        if detail_path.exists():
+        detail_html = ""
+        detail_existed = detail_path.exists()
+        if detail_existed and not fetch_documents:
             already_saved.append(str(detail_path))
-            continue
-        try:
-            detail_bytes, _ = read_url(client, url)
-            detail_html = detail_bytes.decode("utf-8", errors="replace")
-            if any(marker in detail_html for marker in INVALID_DETAIL_MARKERS):
-                failed.append({"product_id": product_id, "url": url, "reason": "invalid_detail_session"})
+            detail_html = detail_path.read_text(encoding="utf-8", errors="replace")
+        else:
+            try:
+                detail_bytes, _ = read_url(client, url)
+                detail_html = detail_bytes.decode("utf-8", errors="replace")
+                if any(marker in detail_html for marker in INVALID_DETAIL_MARKERS):
+                    failed.append({"product_id": product_id, "url": url, "reason": "invalid_detail_session"})
+                    continue
+                detail_path.write_text(detail_html, encoding="utf-8")
+                if detail_existed:
+                    already_saved.append(str(detail_path))
+                else:
+                    saved.append(str(detail_path))
+            except Exception as exc:  # pragma: no cover - network failures are recorded for manual review.
+                failed.append({"product_id": product_id, "url": url, "reason": str(exc)})
                 continue
-            detail_path.write_text(detail_html, encoding="utf-8")
-            saved.append(str(detail_path))
-        except Exception as exc:  # pragma: no cover - network failures are recorded for manual review.
-            failed.append({"product_id": product_id, "url": url, "reason": str(exc)})
+        if fetch_documents and detail_html:
+            detail_document_count = len(document_links_for_detail(detail_html, document_priority))
+            document_total_link_count += detail_document_count
+            if document_skip_remaining >= detail_document_count:
+                document_skipped_count += detail_document_count
+                document_skip_remaining -= detail_document_count
+                continue
+            remaining = max(document_limit - document_link_count, 0) if document_limit else 0
+            if document_limit and remaining <= 0:
+                continue
+            document_result = download_documents_for_detail(
+                client,
+                product_id,
+                detail_html,
+                batch_id,
+                documents_dir,
+                document_priority=document_priority,
+                limit_remaining=remaining,
+                skip_count=document_skip_remaining,
+                delay_seconds=delay_seconds,
+            )
+            skipped_now = int(document_result.get("skipped_document_count") or 0)
+            document_skip_remaining = max(document_skip_remaining - skipped_now, 0)
+            document_skipped_count += skipped_now
+            document_link_count += int(document_result.get("document_link_count") or 0)
+            document_saved_count += int(document_result.get("saved_document_count") or 0)
+            document_already_saved_count += int(document_result.get("already_saved_document_count") or 0)
+            document_failed_count += int(document_result.get("failed_document_count") or 0)
+            document_saved_sample.extend(document_result.get("saved_document_sample") or [])
+            document_already_saved_sample.extend(document_result.get("already_saved_document_sample") or [])
+            document_failures.extend(document_result.get("failed_documents") or [])
         if delay_seconds and index < len(links):
             time.sleep(delay_seconds)
+    document_status_path = ""
+    if fetch_documents:
+        document_status_path = str(documents_dir / batch_id / "_document-download-status.json")
+        write_json(
+            Path(document_status_path),
+            {
+                "batch_id": batch_id,
+                "generated_at": now(),
+                "priority": document_priority,
+                "total_scanned_all_details": True,
+                "total_document_link_count": document_total_link_count,
+                "document_offset": document_offset,
+                "document_limit": document_limit,
+                "skipped_document_count": document_skipped_count,
+                "document_link_count": document_link_count,
+                "saved_document_count": document_saved_count,
+                "already_saved_document_count": document_already_saved_count,
+                "failed_document_count": document_failed_count,
+                "saved_document_sample": document_saved_sample[:50],
+                "already_saved_document_sample": document_already_saved_sample[:50],
+                "failed_documents": document_failures,
+            },
+        )
     return {
         "detail_link_count": len(links),
         "saved_detail_count": len(saved),
@@ -396,6 +610,23 @@ def fetch_detail_pages(
         "failed_detail_count": len(failed),
         "saved_detail_sample": saved[:20],
         "failed_details": failed[:20],
+        "document_downloads": {
+            "enabled": fetch_documents,
+            "priority": document_priority,
+            "total_scanned_all_details": True,
+            "total_document_link_count": document_total_link_count,
+            "document_offset": document_offset,
+            "document_limit": document_limit,
+            "skipped_document_count": document_skipped_count,
+            "document_link_count": document_link_count,
+            "saved_document_count": document_saved_count,
+            "already_saved_document_count": document_already_saved_count,
+            "failed_document_count": document_failed_count,
+            "status_path": document_status_path,
+            "saved_document_sample": document_saved_sample[:20],
+            "already_saved_document_sample": document_already_saved_sample[:20],
+            "failed_documents": document_failures[:20],
+        },
     }
 
 
@@ -426,8 +657,13 @@ def main() -> None:
     parser.add_argument("--work-dir", default=str(DEFAULT_WORK_DIR))
     parser.add_argument("--results-dir", default=str(DEFAULT_RESULTS_DIR))
     parser.add_argument("--details-dir", default=str(DEFAULT_DETAILS_DIR))
+    parser.add_argument("--documents-dir", default=str(DEFAULT_DOCUMENTS_DIR))
     parser.add_argument("--fetch-all-pages", action="store_true", help="After a successful captcha, fetch all result pages.")
     parser.add_argument("--fetch-details", action="store_true", help="After result pages are saved, fetch product detail pages in the same TII session.")
+    parser.add_argument("--fetch-documents", action="store_true", help="Download official documents from saved detail pages in the same TII session.")
+    parser.add_argument("--document-priority", choices=["core", "all"], default="core")
+    parser.add_argument("--document-limit", type=int, default=0, help="Optional document download limit for testing. 0 means no limit.")
+    parser.add_argument("--document-offset", type=int, default=0, help="Skip this many matching documents before downloading.")
     parser.add_argument("--detail-limit", type=int, default=0, help="Optional detail-page limit for testing. 0 means no limit.")
     parser.add_argument("--page-size", type=int, default=10, choices=[10, 20, 30, 40, 50])
     parser.add_argument("--max-pages", type=int, default=1500, help="Safety ceiling for paginated TII result pages.")
@@ -438,9 +674,11 @@ def main() -> None:
     work_dir = Path(args.work_dir)
     results_dir = Path(args.results_dir)
     details_dir = Path(args.details_dir)
+    documents_dir = Path(args.documents_dir)
     work_dir.mkdir(parents=True, exist_ok=True)
     results_dir.mkdir(parents=True, exist_ok=True)
     details_dir.mkdir(parents=True, exist_ok=True)
+    documents_dir.mkdir(parents=True, exist_ok=True)
 
     cookie_path = work_dir / f"{args.batch_id}-cookies.txt"
     form_path = work_dir / f"{args.batch_id}-form.html"
@@ -457,7 +695,18 @@ def main() -> None:
             str(batch.get("company_code") or ""),
         )
         fetched_details = (
-            fetch_detail_pages(client, args.batch_id, results_dir, details_dir, args.detail_limit)
+            fetch_detail_pages(
+                client,
+                args.batch_id,
+                results_dir,
+                details_dir,
+                args.detail_limit,
+                fetch_documents=args.fetch_documents,
+                documents_dir=documents_dir,
+                document_priority=args.document_priority,
+                document_limit=args.document_limit,
+                document_offset=args.document_offset,
+            )
             if args.fetch_details
             else {}
         )
@@ -541,7 +790,18 @@ def main() -> None:
                 str(batch.get("company_code") or ""),
             )
         if args.fetch_details and status == "submitted_result_saved":
-            fetched_details = fetch_detail_pages(client, args.batch_id, results_dir, details_dir, args.detail_limit)
+            fetched_details = fetch_detail_pages(
+                client,
+                args.batch_id,
+                results_dir,
+                details_dir,
+                args.detail_limit,
+                fetch_documents=args.fetch_documents,
+                documents_dir=documents_dir,
+                document_priority=args.document_priority,
+                document_limit=args.document_limit,
+                document_offset=args.document_offset,
+            )
     else:
         status, note = classify_result(form_html, None)
 

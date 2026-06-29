@@ -4,23 +4,95 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,nofollow,noarchive">
-    <title>保單資訊查詢台</title>
+    <title>我的保障整理器</title>
     <link rel="stylesheet" href="./styles.css">
   </head>
   <body>
     <header class="app-header">
       <div class="header-main">
         <p class="eyebrow">Taiwan Policy Navigator</p>
-        <h1>保單資訊查詢台</h1>
-        <p class="lede">先看每張保單的保障項目、重要定義與特殊限制，再回官方來源複核。</p>
+        <h1>我的保障整理器</h1>
+        <p class="lede">輸入保單名稱或險種，先建立自己的保單集合，再看壽險、醫療、意外、癌症、重大疾病、長照等保障分布。</p>
       </div>
       <nav class="header-actions" aria-label="主要連結">
-        <a class="nav-link current" href="./">查詢台</a>
+        <a class="nav-link current" href="./">整理器</a>
         <a class="nav-link" href="./manual.html">操作手冊</a>
       </nav>
     </header>
 
     <main>
+      <section class="portfolio-builder" aria-label="建立我的保障集合">
+        <div class="portfolio-builder-head">
+          <div>
+            <p class="eyebrow">My Coverage Set</p>
+            <h2>建立我的保險集合</h2>
+          </div>
+          <span class="privacy-note">僅儲存在此裝置</span>
+        </div>
+        <form id="portfolioForm" class="portfolio-form">
+          <label class="portfolio-query" for="portfolioInput">
+            <span>輸入保單名稱或險種</span>
+            <input id="portfolioInput" type="search" autocomplete="off" placeholder="例如：住院醫療、癌症、長期照顧">
+          </label>
+          <button class="button primary" type="submit">查找保單</button>
+          <button class="button secondary" id="clearPortfolio" type="button">清空集合</button>
+        </form>
+        <div class="portfolio-filter-row" aria-label="保單搜尋篩選">
+          <label>
+            <span>保險公司</span>
+            <select id="portfolioCompanyFilter"></select>
+          </label>
+          <label>
+            <span>壽險 / 產險</span>
+            <select id="portfolioBucketFilter">
+              <option value="all">全部</option>
+              <option value="life">壽險 / 人身保險</option>
+              <option value="property">產險 / 財產保險</option>
+            </select>
+          </label>
+        </div>
+        <div id="portfolioQuickAdds" class="quick-add-row" aria-label="常用保障項目">
+          <button type="button" data-portfolio-query="壽險">壽險</button>
+          <button type="button" data-portfolio-query="醫療">醫療險</button>
+          <button type="button" data-portfolio-query="傷害">意外險</button>
+          <button type="button" data-portfolio-query="癌">癌症險</button>
+          <button type="button" data-portfolio-query="重大">重大疾病</button>
+          <button type="button" data-portfolio-query="長期照顧">長照險</button>
+        </div>
+        <p id="portfolioHint" class="result-summary" aria-live="polite">先輸入一張保單或一個險種，系統會從已解析條款與保發中心索引中找出可加入的項目。</p>
+        <div class="identity-reminder">
+          <strong>選保單前先核對身份</strong>
+          <span>同名不代表同一版，請以公司、險種、銷售日/停售日與官方明細一起確認。</span>
+        </div>
+        <div id="portfolioSuggestions" class="portfolio-suggestions"></div>
+        <div id="portfolioDetail" class="portfolio-detail-panel"></div>
+        <div class="portfolio-layout">
+          <section class="portfolio-panel" aria-label="我的保單集合">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Selected Policies</p>
+                <h2>我的保單集合</h2>
+              </div>
+              <span id="portfolioCount" class="result-count">0 張</span>
+            </div>
+            <div id="portfolioList" class="portfolio-list"></div>
+          </section>
+          <section class="coverage-panel" aria-label="保障整理">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Coverage Map</p>
+                <h2>保障整理</h2>
+              </div>
+              <span id="coverageScore" class="result-count">0/7 類</span>
+            </div>
+            <div id="coverageBuckets" class="coverage-buckets"></div>
+          </section>
+        </div>
+      </section>
+
+      <details class="advanced-explorer">
+        <summary>進階資料庫查詢與來源狀態</summary>
+        <div class="advanced-explorer-body">
       <section class="public-data-summary" aria-label="公開資料進度">
         <div class="summary-heading">
           <div>
@@ -252,6 +324,8 @@
           <li><strong>Phase 4</strong><span>人工抽查、風險審核、Kevin 核准後接 GitHub 與 Vercel Production。</span></li>
         </ol>
       </section>
+        </div>
+      </details>
 
       <section class="notice">
         <strong>重要聲明</strong>
