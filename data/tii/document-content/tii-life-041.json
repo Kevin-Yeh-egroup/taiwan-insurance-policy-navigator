@@ -1,0 +1,2757 @@
+{
+  "generated_at": "2026-06-30T16:39:07+08:00",
+  "summary": {
+    "generated_at": "2026-06-30T16:39:07+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-life-041",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 13,
+    "document_count": 26,
+    "extracted_document_count": 26,
+    "no_text_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 26,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 13,
+    "product_summary_document_count": 13,
+    "total_text_characters": 326621,
+    "focus_counts": [
+      {
+        "label": "保障項目",
+        "count": 13
+      },
+      {
+        "label": "特殊項目",
+        "count": 13
+      },
+      {
+        "label": "理賠申請",
+        "count": 13
+      },
+      {
+        "label": "重要定義",
+        "count": 9
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "壽險",
+        "count": 13
+      },
+      {
+        "label": "意外險",
+        "count": 9
+      },
+      {
+        "label": "失能/殘扶",
+        "count": 9
+      },
+      {
+        "label": "豁免/附加條款",
+        "count": 4
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 26
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "207141E31A00107",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "國華人壽東方明珠變額萬能壽險投資標的異動批註條款(第7次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "100/01/03",
+      "discontinued_date": "101/01/01",
+      "source_batch_id": "tii-life-041",
+      "coverage_tags": [
+        "壽險",
+        "豁免/附加條款"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 7909,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207141E31A00107-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...明珠變額萬能壽險投資標的異動批註條款 本保險為不分紅保險單，不參加紅利分配，並無紅利給付項目。 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令，惟為確保權益..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207141E31A00107-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...、附件三：本契約收取費用一覽表、附表二：基金經理 費及基金保管費一覽表即不再適用。 除外責任 無"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：申請、通知。",
+          "terms": [
+            "申請",
+            "通知"
+          ],
+          "pages": [
+            1,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "207141E31A00107-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...約第十二條子帳戶之轉換改依下列方式辦理： 要保人於本契約有效期間內，得以書面向本公司申請不同子帳戶間之轉換，並應於申請書中載明轉出的 子帳戶及其單位數及指定欲轉入之子帳戶。..."
+            },
+            {
+              "document": "207141E31A00107-A.pdf",
+              "page": 3,
+              "term": "申請",
+              "snippet": "...基金需遞延一營業日。 舉例說明：要保人於 97 年 1 月 28 日中午 12 時前申請子帳戶之轉換 交易日 1 月 28 日（一） 1 月 29 日（二） 1 月 30..."
+            },
+            {
+              "document": "207141E31A00107-A.pdf",
+              "page": 4,
+              "term": "申請",
+              "snippet": "...表） （四）基金贖回手續費用 本公司承擔。 （五）基金轉換費用 每一保單年度第五次起申請子帳戶轉換時，每次收取轉換費用新台 幣五百元。本公司得依照行政院主計處公告之消費者物..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207141E31A00107-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 188177,
+          "page_count": 6,
+          "pages_parsed": 6,
+          "text_char_count": 6426,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207141E31A00107-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 103713,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1483,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207141E31A00108",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "國華人壽東方明珠變額萬能壽險投資標的異動批註條款(第8次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/01/01",
+      "discontinued_date": "101/11/18",
+      "source_batch_id": "tii-life-041",
+      "coverage_tags": [
+        "壽險",
+        "豁免/附加條款"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 21058,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207141E31A00108-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...明珠變額萬能壽險投資標的異動批註條款 本保險為不分紅保險單，不參加紅利分配，並無紅利給付項目。 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令，惟為確保權益..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207141E31A00108-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...、附件三：本契約收取費用一覽表、附表二：基金經理 費及基金保管費一覽表即不再適用。 除外責任 無"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：申請、通知。",
+          "terms": [
+            "申請",
+            "通知"
+          ],
+          "pages": [
+            1,
+            8,
+            9,
+            11
+          ],
+          "evidence": [
+            {
+              "document": "207141E31A00108-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...約第十二條子帳戶之轉換改依下列方式辦理： 要保人於本契約有效期間內，得以書面向本公司申請不同子帳戶間之轉換，並應於申請書中載明轉出的 子帳戶及其單位數及指定欲轉入之子帳戶。..."
+            },
+            {
+              "document": "207141E31A00108-A.pdf",
+              "page": 8,
+              "term": "申請",
+              "snippet": "...基金需遞延一營業日。 舉例說明：要保人於 97 年 1 月 28 日中午 12 時前申請子帳戶之轉換 交易日 1 月 28 日（一） 1 月 29 日（二） 1 月 30..."
+            },
+            {
+              "document": "207141E31A00108-A.pdf",
+              "page": 9,
+              "term": "申請",
+              "snippet": "...表） （四）基金贖回手續費用 本公司承擔。 （五）基金轉換費用 每一保單年度第五次起申請子帳戶轉換時，每次收取轉換費用新台 幣五百元。本公司得依照行政院主計處公告之消費者物..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207141E31A00108-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 243255,
+          "page_count": 11,
+          "pages_parsed": 11,
+          "text_char_count": 12957,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207141E31A00108-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 169490,
+          "page_count": 7,
+          "pages_parsed": 7,
+          "text_char_count": 8101,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207141E31A00109",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "國華人壽東方明珠變額萬能壽險投資標的異動批註條款(第9次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/11/19",
+      "discontinued_date": "102/02/03",
+      "source_batch_id": "tii-life-041",
+      "coverage_tags": [
+        "壽險",
+        "豁免/附加條款"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 21156,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207141E31A00109-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...明珠變額萬能壽險投資標的異動批註條款 本保險為不分紅保險單，不參加紅利分配，並無紅利給付項目。 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令，惟為確保權益..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207141E31A00109-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...、附件三：本契約收取費用一覽表、附表二：基金經理 費及基金保管費一覽表即不再適用。 除外責任 無"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：申請、通知。",
+          "terms": [
+            "申請",
+            "通知"
+          ],
+          "pages": [
+            1,
+            8,
+            9,
+            11
+          ],
+          "evidence": [
+            {
+              "document": "207141E31A00109-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...約第十二條子帳戶之轉換改依下列方式辦理： 要保人於本契約有效期間內，得以書面向本公司申請不同子帳戶間之轉換，並應於申請書中載明轉出的 子帳戶及其單位數及指定欲轉入之子帳戶。..."
+            },
+            {
+              "document": "207141E31A00109-A.pdf",
+              "page": 8,
+              "term": "申請",
+              "snippet": "...基金需遞延一營業日。 舉例說明：要保人於 97 年 1 月 28 日中午 12 時前申請子帳戶之轉換 交易日 1 月 28 日（一） 1 月 29 日（二） 1 月 30..."
+            },
+            {
+              "document": "207141E31A00109-A.pdf",
+              "page": 9,
+              "term": "申請",
+              "snippet": "...表） （四）基金贖回手續費用 本公司承擔。 （五）基金轉換費用 每一保單年度第五次起申請子帳戶轉換時，每次收取轉換費用新台 幣五百元。本公司得依照行政院主計處公告之消費者物..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207141E31A00109-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 244047,
+          "page_count": 11,
+          "pages_parsed": 11,
+          "text_char_count": 13046,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207141E31A00109-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 170181,
+          "page_count": 7,
+          "pages_parsed": 7,
+          "text_char_count": 8110,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207141E31A00110",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "國華人壽東方明珠變額萬能壽險投資標的異動批註條款(第10次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/02/04",
+      "discontinued_date": "102/03/29",
+      "source_batch_id": "tii-life-041",
+      "coverage_tags": [
+        "壽險",
+        "豁免/附加條款"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 21065,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207141E31A00110-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...明珠變額萬能壽險投資標的異動批註條款 本保險為不分紅保險單，不參加紅利分配，並無紅利給付項目。 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令，惟為確保權益..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207141E31A00110-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...、附件三：本契約收取費用一覽表、附表二：基金經理 費及基金保管費一覽表即不再適用。 除外責任 無"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：申請、通知。",
+          "terms": [
+            "申請",
+            "通知"
+          ],
+          "pages": [
+            1,
+            8,
+            9,
+            11
+          ],
+          "evidence": [
+            {
+              "document": "207141E31A00110-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...約第十二條子帳戶之轉換改依下列方式辦理： 要保人於本契約有效期間內，得以書面向本公司申請不同子帳戶間之轉換，並應於申請書中載明轉出的 子帳戶及其單位數及指定欲轉入之子帳戶。..."
+            },
+            {
+              "document": "207141E31A00110-A.pdf",
+              "page": 8,
+              "term": "申請",
+              "snippet": "...基金需遞延一營業日。 舉例說明：要保人於 97 年 1 月 28 日中午 12 時前申請子帳戶之轉換 交易日 1 月 28 日（一） 1 月 29 日（二） 1 月 30..."
+            },
+            {
+              "document": "207141E31A00110-A.pdf",
+              "page": 9,
+              "term": "申請",
+              "snippet": "...表） （四）基金贖回手續費用 本公司承擔。 （五）基金轉換費用 每一保單年度第五次起申請子帳戶轉換時，每次收取轉換費用新台 幣五百元。本公司得依照行政院主計處公告之消費者物..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207141E31A00110-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 243689,
+          "page_count": 11,
+          "pages_parsed": 11,
+          "text_char_count": 12996,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207141E31A00110-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 169344,
+          "page_count": 7,
+          "pages_parsed": 7,
+          "text_char_count": 8069,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207141M31A00211",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "國華人壽彩繪人生變額萬能壽險(第11次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "100/01/03",
+      "discontinued_date": "101/01/01",
+      "source_batch_id": "tii-life-041",
+      "coverage_tags": [
+        "壽險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 23309,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險範圍、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00211-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "01G 國華人壽彩繪人生變額萬能壽險契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本..."
+            },
+            {
+              "document": "207141M31A00211-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "01G 國華人壽彩繪人生變額萬能壽險契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為不分紅..."
+            },
+            {
+              "document": "207141M31A00211-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "01G 國華人壽彩繪人生變額萬能壽險契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為..."
+            },
+            {
+              "document": "207141M31A00211-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1 國華人壽彩繪人生變額萬能壽險 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未成年人..."
+            },
+            {
+              "document": "207141M31A00211-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1 國華人壽彩繪人生變額萬能壽險 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：名詞定義、定義、傷害、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1,
+            7,
+            13
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00211-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、保險金額：係指本保險單所載明之保險金額。要..."
+            },
+            {
+              "document": "207141M31A00211-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、保險金額：係指本保險單所載明之保險金額。要..."
+            },
+            {
+              "document": "207141M31A00211-A.pdf",
+              "page": 7,
+              "term": "傷害",
+              "snippet": "...險金或喪葬費用保險金；如要保人或受益人能提出證明 文件，足以認為被保險人極可能因意外傷害事故而死亡者，本公司應依意外傷害事故發生日為準，依第 十八條約定返還保單帳戶價值或給..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：除外責任、限制、投保年齡、保險期間。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間"
+          ],
+          "pages": [
+            2,
+            3,
+            5,
+            8,
+            9,
+            14
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00211-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": "...險費扣除「保費費用」另加上第二十條之基本保險費加 值給付後用以投資配置之金額。 六、投保年齡：係指按投保時被保險人以足歲計算之年齡，但未滿一歲的零數超過六個月者加算一歲。 七、..."
+            },
+            {
+              "document": "207141M31A00211-A.pdf",
+              "page": 3,
+              "term": "限制",
+              "snippet": "...公司認定符合或於滿期日仍生存者，本公司依 照本契約的約定，給付保險金。 保險費繳交之限制 第七條： 本契約保險金額與保單帳戶價值兩者之總和除以保單帳戶價值之比率，應於要保人..."
+            },
+            {
+              "document": "207141M31A00211-A.pdf",
+              "page": 3,
+              "term": "保險期間",
+              "snippet": "...本契約效力的恢復 第九條： 本契約停止效力後，要保人得在停效日起二年內，申請復效。但保險期間屆滿後不得申請復效。 要保人於停止效力之日起六個月內提出前項復效申請，並經要保人清償..."
+            },
+            {
+              "document": "207141M31A00211-F.pdf",
+              "page": 2,
+              "term": "除外責任",
+              "snippet": "...值總和給付「滿期保險金」，本契約項下之保單帳戶價 值即為結清，本契約效力即行終止。 除外責任 有下列情形之一者，本公司不負給付保險金的責任。 一、要保人故意致被保險人於死。 二..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00211-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...一、保險金額：係指本保險單所載明之保險金額。要保人在本契約有效期間內，經本公司同意得申請 變更保險金額。如該保險金額有所變更時，以變更後之保險金額為準。 二、基本保險費：係..."
+            },
+            {
+              "document": "207141M31A00211-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...約指定保管銀行上午十一時匯率買入 價格計算。 四、投資標的之轉換：本公司根據收到轉換申請書後次三資產評價日當日依本契約指定保管銀行上午 十一時匯率買入價格計算。但投資標的屬..."
+            },
+            {
+              "document": "207141M31A00211-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...行股份有限 公司，但本公司得變更上述指定保管銀行，惟必須提前十日以書面或其他適當方式通知要保 人。 貨幣單位與匯率計算 第三條： 本契約保險費之收取、給付各項保險金、解約金..."
+            },
+            {
+              "document": "207141M31A00211-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...要保時間之先後者，各該保險公司應依其喪葬費用保險金額與扣除要保時間在先之保 險公司應理賠之金額後所餘之限額比例分擔其責任。 受益人檢齊契約條款第二十五條所需文件，送達本公司..."
+            },
+            {
+              "document": "207141M31A00211-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...契約條款第三十九條所 約定之時效，本公司不負給付保險金之責任。但本公司將以受益人檢齊申請身故保險金之 所須文件並送達本公司之次二資產評價日之保單帳戶價值返還予應得之人。 本..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207141M31A00211-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 363085,
+          "page_count": 17,
+          "pages_parsed": 17,
+          "text_char_count": 19869,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207141M31A00211-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 136547,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 3440,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207141M31A00212",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "國華人壽彩繪人生變額萬能壽險(第12次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/01/01",
+      "discontinued_date": "101/06/30",
+      "source_batch_id": "tii-life-041",
+      "coverage_tags": [
+        "壽險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 33832,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險範圍、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00212-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "1 01G 國華人壽彩繪人生變額萬能壽險契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本..."
+            },
+            {
+              "document": "207141M31A00212-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1 01G 國華人壽彩繪人生變額萬能壽險契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為不分紅..."
+            },
+            {
+              "document": "207141M31A00212-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1 01G 國華人壽彩繪人生變額萬能壽險契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為..."
+            },
+            {
+              "document": "207141M31A00212-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1 國華人壽彩繪人生變額萬能壽險 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未成年人..."
+            },
+            {
+              "document": "207141M31A00212-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1 國華人壽彩繪人生變額萬能壽險 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：名詞定義、定義、傷害、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1,
+            7,
+            18
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00212-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、保險金額：係指本保險單所載明之保險金額。要..."
+            },
+            {
+              "document": "207141M31A00212-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、保險金額：係指本保險單所載明之保險金額。要..."
+            },
+            {
+              "document": "207141M31A00212-A.pdf",
+              "page": 7,
+              "term": "傷害",
+              "snippet": "...險金或喪葬費用保險金；如要保人或受益人能提出證明 文件，足以認為被保險人極可能因意外傷害事故而死亡者，本公司應依意外傷害事故發生日為準，依第 十八條約定返還保單帳戶價值或給..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：除外責任、限制、投保年齡、保險期間。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間"
+          ],
+          "pages": [
+            2,
+            3,
+            5,
+            8,
+            9,
+            19
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00212-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": "...險費扣除「保費費用」另加上第二十條之基本保險費加 值給付後用以投資配置之金額。 六、投保年齡：係指按投保時被保險人以足歲計算之年齡，但未滿一歲的零數超過六個月者加算一歲。 七、..."
+            },
+            {
+              "document": "207141M31A00212-A.pdf",
+              "page": 3,
+              "term": "限制",
+              "snippet": "...公司認定符合或於滿期日仍生存者，本公司依 照本契約的約定，給付保險金。 保險費繳交之限制 第七條： 本契約保險金額與保單帳戶價值兩者之總和除以保單帳戶價值之比率，應於要保人..."
+            },
+            {
+              "document": "207141M31A00212-A.pdf",
+              "page": 3,
+              "term": "保險期間",
+              "snippet": "...本契約效力的恢復 第九條： 本契約停止效力後，要保人得在停效日起二年內，申請復效。但保險期間屆滿後不得申請復效。 要保人於停止效力之日起六個月內提出前項復效申請，並經要保人清償..."
+            },
+            {
+              "document": "207141M31A00212-F.pdf",
+              "page": 2,
+              "term": "除外責任",
+              "snippet": "...值總和給付「滿期保險金」，本契約項下之保單帳戶價 值即為結清，本契約效力即行終止。 除外責任 有下列情形之一者，本公司不負給付保險金的責任。 一、要保人故意致被保險人於死。 二..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00212-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...一、保險金額：係指本保險單所載明之保險金額。要保人在本契約有效期間內，經本公司同意得申請 變更保險金額。如該保險金額有所變更時，以變更後之保險金額為準。 二、基本保險費：係..."
+            },
+            {
+              "document": "207141M31A00212-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...約指定保管銀行上午十一時匯率買入 價格計算。 四、投資標的之轉換：本公司根據收到轉換申請書後次三資產評價日當日依本契約指定保管銀行上午 十一時匯率買入價格計算。但投資標的屬..."
+            },
+            {
+              "document": "207141M31A00212-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...行股份有限 公司，但本公司得變更上述指定保管銀行，惟必須提前十日以書面或其他適當方式通知要保 人。 貨幣單位與匯率計算 第三條： 本契約保險費之收取、給付各項保險金、解約金..."
+            },
+            {
+              "document": "207141M31A00212-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...要保時間之先後者，各該保險公司應依其喪葬費用保險金額與扣除要保時間在先之保 險公司應理賠之金額後所餘之限額比例分擔其責任。 受益人檢齊契約條款第二十五條所需文件，送達本公司..."
+            },
+            {
+              "document": "207141M31A00212-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...契約條款第三十九條所 約定之時效，本公司不負給付保險金之責任。但本公司將以受益人檢齊申請身故保險金之 所須文件並送達本公司之次二資產評價日之保單帳戶價值返還予應得之人。 本..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207141M31A00212-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 437424,
+          "page_count": 22,
+          "pages_parsed": 20,
+          "text_char_count": 24074,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207141M31A00212-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 192995,
+          "page_count": 8,
+          "pages_parsed": 8,
+          "text_char_count": 9758,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207141M31A00213",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "國華人壽彩繪人生變額萬能壽險(101)(第13次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/07/01",
+      "discontinued_date": "101/11/18",
+      "source_batch_id": "tii-life-041",
+      "coverage_tags": [
+        "壽險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 33916,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險範圍、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00213-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "1-22 01K 國華人壽彩繪人生變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本..."
+            },
+            {
+              "document": "207141M31A00213-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1-22 01K 國華人壽彩繪人生變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為不分紅..."
+            },
+            {
+              "document": "207141M31A00213-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1-22 01K 國華人壽彩繪人生變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為..."
+            },
+            {
+              "document": "207141M31A00213-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1 國華人壽彩繪人生變額萬能壽險(101) 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未成年人..."
+            },
+            {
+              "document": "207141M31A00213-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1 國華人壽彩繪人生變額萬能壽險(101) 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：名詞定義、定義、傷害、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1,
+            7,
+            18
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00213-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、保險金額：係指本保險單所載明之保險金額。要..."
+            },
+            {
+              "document": "207141M31A00213-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、保險金額：係指本保險單所載明之保險金額。要..."
+            },
+            {
+              "document": "207141M31A00213-A.pdf",
+              "page": 7,
+              "term": "傷害",
+              "snippet": "...險金或喪葬費用保險金；如要保人或受益人能提出證明 文件，足以認為被保險人極可能因意外傷害事故而死亡者，本公司應依意外傷害事故發生日為準，依第 十八條約定返還保單帳戶價值或給..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：除外責任、限制、投保年齡、保險期間。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間"
+          ],
+          "pages": [
+            2,
+            3,
+            5,
+            8,
+            9,
+            19
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00213-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": "...險費扣除「保費費用」另加上第二十條之基本保險費加 值給付後用以投資配置之金額。 六、投保年齡：係指按投保時被保險人以足歲計算之年齡，但未滿一歲的零數超過六個月者加算一歲。 七、..."
+            },
+            {
+              "document": "207141M31A00213-A.pdf",
+              "page": 3,
+              "term": "限制",
+              "snippet": "...公司認定符合或於滿期日仍生存者，本公司依 照本契約的約定，給付保險金。 保險費繳交之限制 第七條： 本契約保險金額與保單帳戶價值兩者之總和除以保單帳戶價值之比率，應於要保人..."
+            },
+            {
+              "document": "207141M31A00213-A.pdf",
+              "page": 3,
+              "term": "保險期間",
+              "snippet": "...本契約效力的恢復 第九條： 本契約停止效力後，要保人得在停效日起二年內，申請復效。但保險期間屆滿後不得申請復效。"
+            },
+            {
+              "document": "207141M31A00213-F.pdf",
+              "page": 2,
+              "term": "除外責任",
+              "snippet": "...值總和給付「滿期保險金」，本契約項下之保單帳戶價 值即為結清，本契約效力即行終止。 除外責任 有下列情形之一者，本公司不負給付保險金的責任。 一、要保人故意致被保險人於死。 二..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00213-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...一、保險金額：係指本保險單所載明之保險金額。要保人在本契約有效期間內，經本公司同意得申請 變更保險金額。如該保險金額有所變更時，以變更後之保險金額為準。 二、基本保險費：係..."
+            },
+            {
+              "document": "207141M31A00213-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...約指定保管銀行上午十一時匯率買入 價格計算。 四、投資標的之轉換：本公司根據收到轉換申請書後次三資產評價日當日依本契約指定保管銀行上午"
+            },
+            {
+              "document": "207141M31A00213-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...行股份有限 公司，但本公司得變更上述指定保管銀行，惟必須提前十日以書面或其他適當方式通知要保 人。 貨幣單位與匯率計算 第三條： 本契約保險費之收取、給付各項保險金、解約金..."
+            },
+            {
+              "document": "207141M31A00213-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...要保時間之先後者，各該保險公司應依其喪葬費用保險金額與扣除要保時間在先之保 險公司應理賠之金額後所餘之限額比例分擔其責任。 受益人檢齊契約條款第二十五條所需文件，送達本公司..."
+            },
+            {
+              "document": "207141M31A00213-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...契約條款第三十九條所 約定之時效，本公司不負給付保險金之責任。但本公司將以受益人檢齊申請身故保險金之 所須文件並送達本公司之次二資產評價日之保單帳戶價值返還予應得之人。 本..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207141M31A00213-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 437898,
+          "page_count": 22,
+          "pages_parsed": 20,
+          "text_char_count": 24149,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207141M31A00213-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 194683,
+          "page_count": 8,
+          "pages_parsed": 8,
+          "text_char_count": 9767,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207141M31A00214",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "國華人壽彩繪人生變額萬能壽險(101)(第14次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/11/19",
+      "discontinued_date": "102/02/03",
+      "source_batch_id": "tii-life-041",
+      "coverage_tags": [
+        "壽險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 34072,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險範圍、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00214-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "1-22 01K 國華人壽彩繪人生變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本..."
+            },
+            {
+              "document": "207141M31A00214-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1-22 01K 國華人壽彩繪人生變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為不分紅..."
+            },
+            {
+              "document": "207141M31A00214-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1-22 01K 國華人壽彩繪人生變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為..."
+            },
+            {
+              "document": "207141M31A00214-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1 國華人壽彩繪人生變額萬能壽險(101) 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未成年人..."
+            },
+            {
+              "document": "207141M31A00214-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1 國華人壽彩繪人生變額萬能壽險(101) 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：名詞定義、定義、傷害、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1,
+            7,
+            18
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00214-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、保險金額：係指本保險單所載明之保險金額。要..."
+            },
+            {
+              "document": "207141M31A00214-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、保險金額：係指本保險單所載明之保險金額。要..."
+            },
+            {
+              "document": "207141M31A00214-A.pdf",
+              "page": 7,
+              "term": "傷害",
+              "snippet": "...險金或喪葬費用保險金；如要保人或受益人能提出證明 文件，足以認為被保險人極可能因意外傷害事故而死亡者，本公司應依意外傷害事故發生日為準，依第 十八條約定返還保單帳戶價值或給..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：除外責任、限制、投保年齡、保險期間。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間"
+          ],
+          "pages": [
+            2,
+            3,
+            5,
+            8,
+            9,
+            19
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00214-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": "...險費扣除「保費費用」另加上第二十條之基本保險費加 值給付後用以投資配置之金額。 六、投保年齡：係指按投保時被保險人以足歲計算之年齡，但未滿一歲的零數超過六個月者加算一歲。 七、..."
+            },
+            {
+              "document": "207141M31A00214-A.pdf",
+              "page": 3,
+              "term": "限制",
+              "snippet": "...公司認定符合或於滿期日仍生存者，本公司依 照本契約的約定，給付保險金。 保險費繳交之限制 第七條： 本契約保險金額與保單帳戶價值兩者之總和除以保單帳戶價值之比率，應於要保人..."
+            },
+            {
+              "document": "207141M31A00214-A.pdf",
+              "page": 3,
+              "term": "保險期間",
+              "snippet": "...本契約效力的恢復 第九條： 本契約停止效力後，要保人得在停效日起二年內，申請復效。但保險期間屆滿後不得申請復效。"
+            },
+            {
+              "document": "207141M31A00214-F.pdf",
+              "page": 2,
+              "term": "除外責任",
+              "snippet": "...值總和給付「滿期保險金」，本契約項下之保單帳戶價 值即為結清，本契約效力即行終止。 除外責任 有下列情形之一者，本公司不負給付保險金的責任。 一、要保人故意致被保險人於死。 二..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00214-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...一、保險金額：係指本保險單所載明之保險金額。要保人在本契約有效期間內，經本公司同意得申請 變更保險金額。如該保險金額有所變更時，以變更後之保險金額為準。 二、基本保險費：係..."
+            },
+            {
+              "document": "207141M31A00214-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...約指定保管銀行上午十一時匯率買入 價格計算。 四、投資標的之轉換：本公司根據收到轉換申請書後次三資產評價日當日依本契約指定保管銀行上午"
+            },
+            {
+              "document": "207141M31A00214-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...行股份有限 公司，但本公司得變更上述指定保管銀行，惟必須提前十日以書面或其他適當方式通知要保 人。 貨幣單位與匯率計算 第三條： 本契約保險費之收取、給付各項保險金、解約金..."
+            },
+            {
+              "document": "207141M31A00214-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...要保時間之先後者，各該保險公司應依其喪葬費用保險金額與扣除要保時間在先之保 險公司應理賠之金額後所餘之限額比例分擔其責任。 受益人檢齊契約條款第二十五條所需文件，送達本公司..."
+            },
+            {
+              "document": "207141M31A00214-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...契約條款第三十九條所 約定之時效，本公司不負給付保險金之責任。但本公司將以受益人檢齊申請身故保險金之 所須文件並送達本公司之次二資產評價日之保單帳戶價值返還予應得之人。 本..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207141M31A00214-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 437958,
+          "page_count": 22,
+          "pages_parsed": 20,
+          "text_char_count": 24283,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207141M31A00214-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 194680,
+          "page_count": 8,
+          "pages_parsed": 8,
+          "text_char_count": 9789,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207141M31A00215",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "國華人壽彩繪人生變額萬能壽險(101)(第15次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/02/04",
+      "discontinued_date": "102/03/29",
+      "source_batch_id": "tii-life-041",
+      "coverage_tags": [
+        "壽險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 34042,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險範圍、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00215-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "1-22 01K 國華人壽彩繪人生變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本..."
+            },
+            {
+              "document": "207141M31A00215-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1-22 01K 國華人壽彩繪人生變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為不分紅..."
+            },
+            {
+              "document": "207141M31A00215-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1-22 01K 國華人壽彩繪人生變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為..."
+            },
+            {
+              "document": "207141M31A00215-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1 國華人壽彩繪人生變額萬能壽險(101) 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未成年人..."
+            },
+            {
+              "document": "207141M31A00215-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1 國華人壽彩繪人生變額萬能壽險(101) 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：名詞定義、定義、傷害、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1,
+            7,
+            18
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00215-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、保險金額：係指本保險單所載明之保險金額。要..."
+            },
+            {
+              "document": "207141M31A00215-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、保險金額：係指本保險單所載明之保險金額。要..."
+            },
+            {
+              "document": "207141M31A00215-A.pdf",
+              "page": 7,
+              "term": "傷害",
+              "snippet": "...險金或喪葬費用保險金；如要保人或受益人能提出證明 文件，足以認為被保險人極可能因意外傷害事故而死亡者，本公司應依意外傷害事故發生日為準，依第 十八條約定返還保單帳戶價值或給..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：除外責任、限制、投保年齡、保險期間。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            8,
+            9,
+            19
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00215-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": "...險費扣除「保費費用」另加上第二十條之基本保險費加 值給付後用以投資配置之金額。 六、投保年齡：係指按投保時被保險人以足歲計算之年齡，但未滿一歲的零數超過六個月者加算一歲。 七、..."
+            },
+            {
+              "document": "207141M31A00215-A.pdf",
+              "page": 3,
+              "term": "限制",
+              "snippet": "...公司認定符合或於滿期日仍生存者，本公司依 照本契約的約定，給付保險金。 保險費繳交之限制 第七條： 本契約保險金額與保單帳戶價值兩者之總和除以保單帳戶價值之比率，應於要保人..."
+            },
+            {
+              "document": "207141M31A00215-A.pdf",
+              "page": 4,
+              "term": "保險期間",
+              "snippet": "4-22 本契約停止效力後，要保人得在停效日起二年內，申請復效。但保險期間屆滿後不得申請復效。 要保人於停止效力之日起六個月內提出前項復效申請，並經要保人清償..."
+            },
+            {
+              "document": "207141M31A00215-F.pdf",
+              "page": 2,
+              "term": "除外責任",
+              "snippet": "...值總和給付「滿期保險金」，本契約項下之保單帳戶價 值即為結清，本契約效力即行終止。 除外責任 有下列情形之一者，本公司不負給付保險金的責任。 一、要保人故意致被保險人於死。 二..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00215-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...一、保險金額：係指本保險單所載明之保險金額。要保人在本契約有效期間內，經本公司同意得申請 變更保險金額。如該保險金額有所變更時，以變更後之保險金額為準。 二、基本保險費：係..."
+            },
+            {
+              "document": "207141M31A00215-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...行股份有限 公司，但本公司得變更上述指定保管銀行，惟必須提前十日以書面或其他適當方式通知要保 人。 貨幣單位與匯率計算 第三條： 本契約保險費之收取、給付各項保險金、解約金..."
+            },
+            {
+              "document": "207141M31A00215-A.pdf",
+              "page": 3,
+              "term": "申請",
+              "snippet": "3-22 四、投資標的之轉換：本公司根據收到轉換申請書後次三資產評價日當日依本契約指定保管銀行上午 十一時匯率買入價格計算。但投資標的屬..."
+            },
+            {
+              "document": "207141M31A00215-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...要保時間之先後者，各該保險公司應依其喪葬費用保險金額與扣除要保時間在先之保 險公司應理賠之金額後所餘之限額比例分擔其責任。 受益人檢齊契約條款第二十五條所需文件，送達本公司..."
+            },
+            {
+              "document": "207141M31A00215-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...契約條款第三十九條所 約定之時效，本公司不負給付保險金之責任。但本公司將以受益人檢齊申請身故保險金之 所須文件並送達本公司之次二資產評價日之保單帳戶價值返還予應得之人。 本..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207141M31A00215-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 437640,
+          "page_count": 22,
+          "pages_parsed": 20,
+          "text_char_count": 24282,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207141M31A00215-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 194490,
+          "page_count": 8,
+          "pages_parsed": 8,
+          "text_char_count": 9760,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207141M31A00303",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "國華人壽雙鑫報喜變額萬能壽險(第3次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "100/04/15",
+      "discontinued_date": "101/01/01",
+      "source_batch_id": "tii-life-041",
+      "coverage_tags": [
+        "壽險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 23751,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險範圍、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00303-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "01I 國華人壽雙鑫報喜變額萬能壽險契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本..."
+            },
+            {
+              "document": "207141M31A00303-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "01I 國華人壽雙鑫報喜變額萬能壽險契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為不分紅..."
+            },
+            {
+              "document": "207141M31A00303-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "01I 國華人壽雙鑫報喜變額萬能壽險契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為..."
+            },
+            {
+              "document": "207141M31A00303-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1 國華人壽雙鑫報喜變額萬能壽險 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未成年人..."
+            },
+            {
+              "document": "207141M31A00303-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1 國華人壽雙鑫報喜變額萬能壽險 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：名詞定義、定義、傷害、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1,
+            6,
+            16
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00303-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、 保險金額：係指本保險單所載明之保險金額。..."
+            },
+            {
+              "document": "207141M31A00303-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、 保險金額：係指本保險單所載明之保險金額。..."
+            },
+            {
+              "document": "207141M31A00303-A.pdf",
+              "page": 6,
+              "term": "傷害",
+              "snippet": "...險金或喪葬費用保險金；如要保人或受益人能提出證明 文件，足以認為被保險人極可能因意外傷害事故而死亡者，本公司應依意外傷害事故發生日為準，依第 十八條約定返還保單帳戶價值或給..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：除外責任、限制、投保年齡、保險期間。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00303-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...費」乘以附件三本契約收取費用一覽表中「保 費費用表」所列之百分率所得之數額。 六、 投保年齡：係指按投保時被保險人以足歲計算之年齡，但未滿一歲的零數超過六個月者加算一歲。 七、..."
+            },
+            {
+              "document": "207141M31A00303-A.pdf",
+              "page": 3,
+              "term": "限制",
+              "snippet": "...公司認定符合或於滿期日仍生存者，本公司依 照本契約的約定，給付保險金。 保險費繳交之限制 第七條： 本契約身故保險金或喪葬費用保險金除以保單帳戶價值之比率，應於要保人投保及..."
+            },
+            {
+              "document": "207141M31A00303-A.pdf",
+              "page": 3,
+              "term": "保險期間",
+              "snippet": "...本契約效力的恢復 第九條： 本契約停止效力後，要保人得在停效日起二年內，申請復效。但保險期間屆滿後不得申請復效。 要保人於停止效力之日起六個月內提出前項復效申請，並經要保人清償..."
+            },
+            {
+              "document": "207141M31A00303-F.pdf",
+              "page": 2,
+              "term": "除外責任",
+              "snippet": "...之保單帳戶價值給付滿期保險金，本契約項下之保單帳戶即為結清，本契約效力即行 終止。 除外責任 有下列情形之一者，本公司不負給付保險金的責任。 一、要保人故意致被保險人於死。 二..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00303-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...、 保險金額：係指本保險單所載明之保險金額。要保人在本契約有效期間內，經本公司同意得申請變 更保險金額。惟保險金額於投保時或變更時需符合附表一保額倍數表。如該保險金額有所變..."
+            },
+            {
+              "document": "207141M31A00303-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...商業銀行股份有限公司，但本公司得變更上述指定匯利率參考銀行， 並以書面或其他適當方式通知要保人。 貨幣單位與匯率計算 第三條： 本契約保險費之收取、給付各項保險金、解約金(..."
+            },
+            {
+              "document": "207141M31A00303-A.pdf",
+              "page": 3,
+              "term": "申請",
+              "snippet": "...保險責任。 本契約效力的恢復 第九條： 本契約停止效力後，要保人得在停效日起二年內，申請復效。但保險期間屆滿後不得申請復效。 要保人於停止效力之日起六個月內提出前項復效申請..."
+            },
+            {
+              "document": "207141M31A00303-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...要保時間之先後者，各該保險公司應依其喪葬費用保險金額與扣除要保時間在先之保 險公司應理賠之金額後所餘之限額比例分擔其責任。 受益人檢齊契約條款第二十四條所需文件，送達本公司..."
+            },
+            {
+              "document": "207141M31A00303-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...契約條款第三十八條所 約定之時效，本公司不負給付保險金之責任。但本公司將以受益人檢齊申請身故保險金之 所需文件並送達本公司之次二資產評價日之保單帳戶價值返還予應得之人。 本..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207141M31A00303-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 388788,
+          "page_count": 19,
+          "pages_parsed": 19,
+          "text_char_count": 21846,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207141M31A00303-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 106434,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1905,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207141M31A00304",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "國華人壽雙鑫報喜變額萬能壽險(第4次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/01/01",
+      "discontinued_date": "101/06/30",
+      "source_batch_id": "tii-life-041",
+      "coverage_tags": [
+        "壽險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 24094,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險範圍、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00304-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "1 01I 國華人壽雙鑫報喜變額萬能壽險契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本..."
+            },
+            {
+              "document": "207141M31A00304-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1 01I 國華人壽雙鑫報喜變額萬能壽險契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為不分紅..."
+            },
+            {
+              "document": "207141M31A00304-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1 01I 國華人壽雙鑫報喜變額萬能壽險契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為..."
+            },
+            {
+              "document": "207141M31A00304-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1 國華人壽雙鑫報喜變額萬能壽險 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未成年人..."
+            },
+            {
+              "document": "207141M31A00304-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1 國華人壽雙鑫報喜變額萬能壽險 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：名詞定義、定義、傷害、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1,
+            6,
+            17
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00304-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、 保險金額：係指本保險單所載明之保險金額。..."
+            },
+            {
+              "document": "207141M31A00304-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、 保險金額：係指本保險單所載明之保險金額。..."
+            },
+            {
+              "document": "207141M31A00304-A.pdf",
+              "page": 6,
+              "term": "傷害",
+              "snippet": "...險金或喪葬費用保險金；如要保人或受益人能提出證明 文件，足以認為被保險人極可能因意外傷害事故而死亡者，本公司應依意外傷害事故發生日為準，依第 十八條約定返還保單帳戶價值或給..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：除外責任、限制、投保年齡、保險期間。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00304-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...費」乘以附件三本契約收取費用一覽表中「保 費費用表」所列之百分率所得之數額。 六、 投保年齡：係指按投保時被保險人以足歲計算之年齡，但未滿一歲的零數超過六個月者加算一歲。 七、..."
+            },
+            {
+              "document": "207141M31A00304-A.pdf",
+              "page": 3,
+              "term": "限制",
+              "snippet": "...公司認定符合或於滿期日仍生存者，本公司依 照本契約的約定，給付保險金。 保險費繳交之限制 第七條： 本契約身故保險金或喪葬費用保險金除以保單帳戶價值之比率，應於要保人投保及..."
+            },
+            {
+              "document": "207141M31A00304-A.pdf",
+              "page": 3,
+              "term": "保險期間",
+              "snippet": "...本契約效力的恢復 第九條： 本契約停止效力後，要保人得在停效日起二年內，申請復效。但保險期間屆滿後不得申請復效。 要保人於停止效力之日起六個月內提出前項復效申請，並經要保人清償..."
+            },
+            {
+              "document": "207141M31A00304-F.pdf",
+              "page": 2,
+              "term": "除外責任",
+              "snippet": "...之保單帳戶價值給付滿期保險金，本契約項下之保單帳戶即為結清，本契約效力即行 終止。 除外責任 有下列情形之一者，本公司不負給付保險金的責任。 一、要保人故意致被保險人於死。 二..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00304-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...、 保險金額：係指本保險單所載明之保險金額。要保人在本契約有效期間內，經本公司同意得申請變 更保險金額。惟保險金額於投保時或變更時需符合附表一保額倍數表。如該保險金額有所變..."
+            },
+            {
+              "document": "207141M31A00304-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...商業銀行股份有限公司，但本公司得變更上述指定匯利率參考銀行， 並以書面或其他適當方式通知要保人。 貨幣單位與匯率計算 第三條： 本契約保險費之收取、給付各項保險金、解約金(..."
+            },
+            {
+              "document": "207141M31A00304-A.pdf",
+              "page": 3,
+              "term": "申請",
+              "snippet": "...保險責任。 本契約效力的恢復 第九條： 本契約停止效力後，要保人得在停效日起二年內，申請復效。但保險期間屆滿後不得申請復效。 要保人於停止效力之日起六個月內提出前項復效申請..."
+            },
+            {
+              "document": "207141M31A00304-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...要保時間之先後者，各該保險公司應依其喪葬費用保險金額與扣除要保時間在先之保 險公司應理賠之金額後所餘之限額比例分擔其責任。 受益人檢齊契約條款第二十四條所需文件，送達本公司..."
+            },
+            {
+              "document": "207141M31A00304-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...契約條款第三十八條所 約定之時效，本公司不負給付保險金之責任。但本公司將以受益人檢齊申請身故保險金之 所需文件並送達本公司之次二資產評價日之保單帳戶價值返還予應得之人。 本..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207141M31A00304-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 388682,
+          "page_count": 20,
+          "pages_parsed": 20,
+          "text_char_count": 22189,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207141M31A00304-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 106298,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1905,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207141M31A00305",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "國華人壽雙鑫報喜變額萬能壽險(101)(第5次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/07/01",
+      "discontinued_date": "102/02/03",
+      "source_batch_id": "tii-life-041",
+      "coverage_tags": [
+        "壽險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 24190,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險範圍、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00305-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "1-20 01M 國華人壽雙鑫報喜變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本..."
+            },
+            {
+              "document": "207141M31A00305-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1-20 01M 國華人壽雙鑫報喜變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為不分紅..."
+            },
+            {
+              "document": "207141M31A00305-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1-20 01M 國華人壽雙鑫報喜變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為..."
+            },
+            {
+              "document": "207141M31A00305-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1 國華人壽雙鑫報喜變額萬能壽險(101) 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未成年人..."
+            },
+            {
+              "document": "207141M31A00305-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1 國華人壽雙鑫報喜變額萬能壽險(101) 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：名詞定義、定義、傷害、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1,
+            6,
+            17
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00305-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、 保險金額：係指本保險單所載明之保險金額。..."
+            },
+            {
+              "document": "207141M31A00305-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、 保險金額：係指本保險單所載明之保險金額。..."
+            },
+            {
+              "document": "207141M31A00305-A.pdf",
+              "page": 6,
+              "term": "傷害",
+              "snippet": "...險金或喪葬費用保險金；如要保人或受益人能提出證明 文件，足以認為被保險人極可能因意外傷害事故而死亡者，本公司應依意外傷害事故發生日為準，依第 十八條約定返還保單帳戶價值或給..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：除外責任、限制、投保年齡、保險期間。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00305-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...費」乘以附件三本契約收取費用一覽表中「保 費費用表」所列之百分率所得之數額。 六、 投保年齡：係指按投保時被保險人以足歲計算之年齡，但未滿一歲的零數超過六個月者加算一歲。 七、..."
+            },
+            {
+              "document": "207141M31A00305-A.pdf",
+              "page": 3,
+              "term": "限制",
+              "snippet": "...公司認定符合或於滿期日仍生存者，本公司依 照本契約的約定，給付保險金。 保險費繳交之限制 第七條： 本契約身故保險金或喪葬費用保險金除以保單帳戶價值之比率，應於要保人投保及..."
+            },
+            {
+              "document": "207141M31A00305-A.pdf",
+              "page": 3,
+              "term": "保險期間",
+              "snippet": "...本契約效力的恢復 第九條： 本契約停止效力後，要保人得在停效日起二年內，申請復效。但保險期間屆滿後不得申請復效。 要保人於停止效力之日起六個月內提出前項復效申請，並經要保人清償..."
+            },
+            {
+              "document": "207141M31A00305-F.pdf",
+              "page": 2,
+              "term": "除外責任",
+              "snippet": "...之保單帳戶價值給付滿期保險金，本契約項下之保單帳戶即為結清，本契約效力即行 終止。 除外責任 有下列情形之一者，本公司不負給付保險金的責任。 一、要保人故意致被保險人於死。 二..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00305-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...、 保險金額：係指本保險單所載明之保險金額。要保人在本契約有效期間內，經本公司同意得申請變 更保險金額。惟保險金額於投保時或變更時需符合附表一保額倍數表。如該保險金額有所變..."
+            },
+            {
+              "document": "207141M31A00305-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...商業銀行股份有限公司，但本公司得變更上述指定匯利率參考銀行， 並以書面或其他適當方式通知要保人。 貨幣單位與匯率計算 第三條： 本契約保險費之收取、給付各項保險金、解約金(..."
+            },
+            {
+              "document": "207141M31A00305-A.pdf",
+              "page": 3,
+              "term": "申請",
+              "snippet": "...保險責任。 本契約效力的恢復 第九條： 本契約停止效力後，要保人得在停效日起二年內，申請復效。但保險期間屆滿後不得申請復效。 要保人於停止效力之日起六個月內提出前項復效申請..."
+            },
+            {
+              "document": "207141M31A00305-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...要保時間之先後者，各該保險公司應依其喪葬費用保險金額與扣除要保時間在先之保 險公司應理賠之金額後所餘之限額比例分擔其責任。 受益人檢齊契約條款第二十四條所需文件，送達本公司..."
+            },
+            {
+              "document": "207141M31A00305-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...契約條款第三十八條所 約定之時效，本公司不負給付保險金之責任。但本公司將以受益人檢齊申請身故保險金之 所需文件並送達本公司之次二資產評價日之保單帳戶價值返還予應得之人。 本..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207141M31A00305-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 389123,
+          "page_count": 20,
+          "pages_parsed": 20,
+          "text_char_count": 22280,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207141M31A00305-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 107904,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1910,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207141M31A00306",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "國華人壽雙鑫報喜變額萬能壽險(101)(第6次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/02/04",
+      "discontinued_date": "102/03/29",
+      "source_batch_id": "tii-life-041",
+      "coverage_tags": [
+        "壽險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 24227,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險範圍、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00306-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "1-20 01M 國華人壽雙鑫報喜變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本..."
+            },
+            {
+              "document": "207141M31A00306-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1-20 01M 國華人壽雙鑫報喜變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為不分紅..."
+            },
+            {
+              "document": "207141M31A00306-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1-20 01M 國華人壽雙鑫報喜變額萬能壽險(101)契約條款 (給付項目：身故保險金或喪葬費用保險金與保單帳戶價值之返還、完全殘廢保險金、滿期保險 金) 本保險為..."
+            },
+            {
+              "document": "207141M31A00306-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "1 國華人壽雙鑫報喜變額萬能壽險(101) 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未成年人..."
+            },
+            {
+              "document": "207141M31A00306-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "1 國華人壽雙鑫報喜變額萬能壽險(101) 保險商品內容說明 承保範圍 ◎身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還： 訂立本契約時，以未滿十五足歲之未..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：名詞定義、定義、傷害、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1,
+            6,
+            17
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00306-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、 保險金額：係指本保險單所載明之保險金額。..."
+            },
+            {
+              "document": "207141M31A00306-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所用名詞定義如下： 一、 保險金額：係指本保險單所載明之保險金額。..."
+            },
+            {
+              "document": "207141M31A00306-A.pdf",
+              "page": 6,
+              "term": "傷害",
+              "snippet": "...險金或喪葬費用保險金；如要保人或受益人能提出證明 文件，足以認為被保險人極可能因意外傷害事故而死亡者，本公司應依意外傷害事故發生日為準，依第 十八條約定返還保單帳戶價值或給..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：除外責任、限制、投保年齡、保險期間。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00306-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...費」乘以附件三本契約收取費用一覽表中「保 費費用表」所列之百分率所得之數額。 六、 投保年齡：係指按投保時被保險人以足歲計算之年齡，但未滿一歲的零數超過六個月者加算一歲。 七、..."
+            },
+            {
+              "document": "207141M31A00306-A.pdf",
+              "page": 3,
+              "term": "限制",
+              "snippet": "...公司認定符合或於滿期日仍生存者，本公司依 照本契約的約定，給付保險金。 保險費繳交之限制 第七條： 本契約身故保險金或喪葬費用保險金除以保單帳戶價值之比率，應於要保人投保及..."
+            },
+            {
+              "document": "207141M31A00306-A.pdf",
+              "page": 3,
+              "term": "保險期間",
+              "snippet": "...本契約效力的恢復 第九條： 本契約停止效力後，要保人得在停效日起二年內，申請復效。但保險期間屆滿後不得申請復效。 要保人於停止效力之日起六個月內提出前項復效申請，並經要保人清償..."
+            },
+            {
+              "document": "207141M31A00306-F.pdf",
+              "page": 2,
+              "term": "除外責任",
+              "snippet": "...之保單帳戶價值給付滿期保險金，本契約項下之保單帳戶即為結清，本契約效力即行 終止。 除外責任 有下列情形之一者，本公司不負給付保險金的責任。 一、要保人故意致被保險人於死。 二..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "207141M31A00306-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...、 保險金額：係指本保險單所載明之保險金額。要保人在本契約有效期間內，經本公司同意得申請變 更保險金額。惟保險金額於投保時或變更時需符合附表一保額倍數表。如該保險金額有所變..."
+            },
+            {
+              "document": "207141M31A00306-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...商業銀行股份有限公司，但本公司得變更上述指定匯利率參考銀行， 並以書面或其他適當方式通知要保人。 貨幣單位與匯率計算 第三條： 本契約保險費之收取、給付各項保險金、解約金(..."
+            },
+            {
+              "document": "207141M31A00306-A.pdf",
+              "page": 3,
+              "term": "申請",
+              "snippet": "...保險責任。 本契約效力的恢復 第九條： 本契約停止效力後，要保人得在停效日起二年內，申請復效。但保險期間屆滿後不得申請復效。 要保人於停止效力之日起六個月內提出前項復效申請..."
+            },
+            {
+              "document": "207141M31A00306-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...要保時間之先後者，各該保險公司應依其喪葬費用保險金額與扣除要保時間在先之保 險公司應理賠之金額後所餘之限額比例分擔其責任。 受益人檢齊契約條款第二十四條所需文件，送達本公司..."
+            },
+            {
+              "document": "207141M31A00306-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...契約條款第三十八條所 約定之時效，本公司不負給付保險金之責任。但本公司將以受益人檢齊申請身故保險金之 所需文件並送達本公司之次二資產評價日之保單帳戶價值返還予應得之人。 本..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207141M31A00306-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 389303,
+          "page_count": 20,
+          "pages_parsed": 20,
+          "text_char_count": 22317,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207141M31A00306-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 107904,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1910,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    }
+  ]
+}
