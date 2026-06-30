@@ -1,0 +1,1321 @@
+{
+  "generated_at": "2026-06-30T16:38:35+08:00",
+  "summary": {
+    "generated_at": "2026-06-30T16:38:35+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-life-040",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 7,
+    "document_count": 14,
+    "extracted_document_count": 14,
+    "no_text_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 14,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 7,
+    "product_summary_document_count": 7,
+    "total_text_characters": 44898,
+    "focus_counts": [
+      {
+        "label": "保障項目",
+        "count": 7
+      },
+      {
+        "label": "重要定義",
+        "count": 7
+      },
+      {
+        "label": "特殊項目",
+        "count": 7
+      },
+      {
+        "label": "理賠申請",
+        "count": 7
+      }
+    ],
+    "coverage_tag_counts": [],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 14
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "207421M21A00307",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "國華人壽好利HIGH利率變動型年金保險(甲型)(第7次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "099/10/18",
+      "discontinued_date": "101/06/30",
+      "source_batch_id": "tii-life-040",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 7217,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、身故。",
+          "terms": [
+            "給付項目",
+            "身故"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00307-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "國華人壽好利 HIGH 利率變動型年金保險（甲型） （給付項目： 年金給付開始日前：身故返還保單價值準備金 年金給付開始日後：年金的給付） 本商品..."
+            },
+            {
+              "document": "207421M21A00307-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "國華人壽好利 HIGH 利率變動型年金保險（甲型） （給付項目： 年金給付開始日前：身故返還保單價值準備金 年金給付開始日後：年金的給付） 本商品經本公司合格簽署人員檢視其..."
+            },
+            {
+              "document": "207421M21A00307-A.pdf",
+              "page": 2,
+              "term": "身故",
+              "snippet": "...任，以同意承保時溯自預 收相當於第一期保險費金額時開始。但本公司同意承保前而被保險人身故時，本公司無息退還要保人所 繳保險費。 本公司自預收相當於第一期保險費之金額後十五日..."
+            },
+            {
+              "document": "207421M21A00307-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...品內容說明 承保範圍 ◎返還年金保單價值準備金： 被保險人於本契約年金給付開始日之前身故者，本公司返還年金保單價值準備金，本契 約效力即行終止。 ◎年金給付： 【甲型】：..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00307-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證..."
+            },
+            {
+              "document": "207421M21A00307-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：限制、投保年齡。",
+          "terms": [
+            "限制",
+            "投保年齡"
+          ],
+          "pages": [
+            2,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00307-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...年金保單價值準 備金，其超出的部分之年金保單價值準備金返還予要保人。 契約的終止及其限制 第九條： 要保人得於年金給付開始日前終止本契約，本公司應於接到通知後一個月內償付解..."
+            },
+            {
+              "document": "207421M21A00307-A.pdf",
+              "page": 4,
+              "term": "投保年齡",
+              "snippet": "...處理 第十七條： 要保人在申請投保時，應將被保險人出生年月日在要保書填明。被保險人的投保年齡，以足歲計算，但 未滿一歲的零數超過六個月者，加算一歲。 被保險人的投保年齡發生錯誤..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00307-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...額： 第一保單年度： 一、已繳保險費扣除附加費用（如附表）。 二、扣除要保人依第十條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以單利法計算之金額。 第二保單年度..."
+            },
+            {
+              "document": "207421M21A00307-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "...年金金額若低於新台幣一萬元時，本公司改依年金保單價值準備金於年金給付開始日一 次給付受益人，本契約即行終止。 如年金給付開始日的年金保單價值準備金已逾年領年金金額新台幣一百二..."
+            },
+            {
+              "document": "207421M21A00307-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...定地點交付，或由本公司派員前往收取，並交付 本公司開發之憑證。 年金保單價值準備金的通知與計算 第六條： 年金給付開始日前，本公司於本契約每一保單年度末，應以書面通知要保人..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207421M21A00307-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 191670,
+          "page_count": 6,
+          "pages_parsed": 6,
+          "text_char_count": 6504,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207421M21A00307-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 98311,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 713,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207421M21A00308",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "國華人壽好利HIGH利率變動型年金保險(甲型)(第8次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/07/01",
+      "discontinued_date": "102/03/29",
+      "source_batch_id": "tii-life-040",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 7324,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、身故。",
+          "terms": [
+            "給付項目",
+            "身故"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00308-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "國華人壽好利 HIGH 利率變動型年金保險（甲型） （給付項目： 年金給付開始日前：身故返還保單價值準備金 年金給付開始日後：年金的給付） 本商品..."
+            },
+            {
+              "document": "207421M21A00308-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "國華人壽好利 HIGH 利率變動型年金保險（甲型） （給付項目： 年金給付開始日前：身故返還保單價值準備金 年金給付開始日後：年金的給付） 本商品經本公司合格簽署人員檢視其..."
+            },
+            {
+              "document": "207421M21A00308-A.pdf",
+              "page": 2,
+              "term": "身故",
+              "snippet": "...任，以同意承保時溯自預 收相當於第一期保險費金額時開始。但本公司同意承保前而被保險人身故時，本公司無息退還要保人所 繳保險費。 本公司自預收相當於第一期保險費之金額後十五日..."
+            },
+            {
+              "document": "207421M21A00308-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...品內容說明 承保範圍 ◎返還年金保單價值準備金： 被保險人於本契約年金給付開始日之前身故者，本公司返還年金保單價值準備金，本契 約效力即行終止。 ◎年金給付： 【甲型】：..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00308-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證..."
+            },
+            {
+              "document": "207421M21A00308-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：限制、投保年齡。",
+          "terms": [
+            "限制",
+            "投保年齡"
+          ],
+          "pages": [
+            2,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00308-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...年金保單價值準 備金，其超出的部分之年金保單價值準備金返還予要保人。 契約的終止及其限制 第九條： 要保人得於年金給付開始日前終止本契約，本公司應於接到通知後一個月內償付解..."
+            },
+            {
+              "document": "207421M21A00308-A.pdf",
+              "page": 4,
+              "term": "投保年齡",
+              "snippet": "...處理 第十七條： 要保人在申請投保時，應將被保險人出生年月日在要保書填明。被保險人的投保年齡，以足歲計算，但 未滿一歲的零數超過六個月者，加算一歲。 被保險人的投保年齡發生錯誤..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00308-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...額： 第一保單年度： 一、已繳保險費扣除附加費用（如附表）。 二、扣除要保人依第十條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以單利法計算之金額。 第二保單年度..."
+            },
+            {
+              "document": "207421M21A00308-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "...年金金額若低於新台幣一萬元時，本公司改依年金保單價值準備金於年金給付開始日一 次給付受益人，本契約即行終止。 如年金給付開始日的年金保單價值準備金已逾年領年金金額新台幣一百二..."
+            },
+            {
+              "document": "207421M21A00308-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...定地點交付，或由本公司派員前往收取，並交付 本公司開發之憑證。 年金保單價值準備金的通知與計算 第六條： 年金給付開始日前，本公司於本契約每一保單年度末，應以書面通知要保人..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207421M21A00308-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 190937,
+          "page_count": 6,
+          "pages_parsed": 6,
+          "text_char_count": 6611,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207421M21A00308-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 98311,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 713,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207421M21A00406",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "國華人壽好利HIGH利率變動型年金保險(乙型)(第6次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "099/10/18",
+      "discontinued_date": "101/06/30",
+      "source_batch_id": "tii-life-040",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 6658,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、身故。",
+          "terms": [
+            "給付項目",
+            "身故"
+          ],
+          "pages": [
+            1,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00406-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "國華人壽好利 HIGH 利率變動型年金保險（乙型） （給付項目： 年金給付開始日前：身故返還保單價值準備金 年金給付開始日後：年金的給付） 本商品..."
+            },
+            {
+              "document": "207421M21A00406-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "國華人壽好利 HIGH 利率變動型年金保險（乙型） （給付項目： 年金給付開始日前：身故返還保單價值準備金 年金給付開始日後：年金的給付） 本商品經本公司合格簽署人員檢視其..."
+            },
+            {
+              "document": "207421M21A00406-A.pdf",
+              "page": 3,
+              "term": "身故",
+              "snippet": "...險單借款及其應付 利息後）之百分之十為限，唯最低金額仍需符合第一項之規定。 被保險人身故的通知與返還年金保單價值準備金 第十一條： 被保險人身故後，要保人或受益人應於知悉被..."
+            },
+            {
+              "document": "207421M21A00406-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...品內容說明 承保範圍 ◎返還年金保單價值準備金： 被保險人於本契約年金給付開始日之前身故者，本公司返還年金保單價值準備金，本契 約效力即行終止。 ◎年金給付： 【甲型】：..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00406-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證..."
+            },
+            {
+              "document": "207421M21A00406-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：限制、投保年齡。",
+          "terms": [
+            "限制",
+            "投保年齡"
+          ],
+          "pages": [
+            2,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00406-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...年金保單價 值準備金，其超出的部分之年金保單價值準備金返還予要保人。 契約的終止及其限制 第九條： 要保人得於年金給付開始日前終止本契約，本公司應於接到通知後一個月內償付解..."
+            },
+            {
+              "document": "207421M21A00406-A.pdf",
+              "page": 4,
+              "term": "投保年齡",
+              "snippet": "...處理 第十七條： 要保人在申請投保時，應將被保險人出生年月日在要保書填明。被保險人的投保年齡，以足歲計算，但 未滿一歲的零數超過六個月者，加算一歲。 被保險人的投保年齡發生錯誤..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00406-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...額： 第一保單年度： 一、已繳保險費扣除附加費用（如附表）。 二、扣除要保人依第十條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以單利法計算之金額。 第二保單年度..."
+            },
+            {
+              "document": "207421M21A00406-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "...年金金額若低於新台幣一萬元時，本公司改依年金保單價值準備金於年金給 付開始日一次給付受益人，本契約即行終止。 如年金給付開始日的年金保單價值準備金已逾年領年金給付金額新台幣一..."
+            },
+            {
+              "document": "207421M21A00406-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...定地點交付，或由本公司派員前往收取，並交付 本公司開發之憑證。 年金保單價值準備金的通知與計算 第六條： 年金給付開始日前，本公司於本契約每一保單年度末，應以書面通知要保人..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207421M21A00406-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 178771,
+          "page_count": 6,
+          "pages_parsed": 6,
+          "text_char_count": 5945,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207421M21A00406-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 98312,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 713,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207421M21A00407",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "國華人壽好利HIGH利率變動型年金保險(乙型)(第7次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/07/01",
+      "discontinued_date": "102/03/29",
+      "source_batch_id": "tii-life-040",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 6765,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、身故。",
+          "terms": [
+            "給付項目",
+            "身故"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00407-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "國華人壽好利 HIGH 利率變動型年金保險（乙型） （給付項目： 年金給付開始日前：身故返還保單價值準備金 年金給付開始日後：年金的給付） 本商品..."
+            },
+            {
+              "document": "207421M21A00407-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "國華人壽好利 HIGH 利率變動型年金保險（乙型） （給付項目： 年金給付開始日前：身故返還保單價值準備金 年金給付開始日後：年金的給付） 本商品經本公司合格簽署人員檢視其..."
+            },
+            {
+              "document": "207421M21A00407-A.pdf",
+              "page": 2,
+              "term": "身故",
+              "snippet": "...任，以同意承保時溯自預 收相當於第一期保險費金額時開始。但本公司同意承保前而被保險人身故時，本公司無息退還要保人所 繳保險費。 本公司自預收相當於第一期保險費之金額後十五日..."
+            },
+            {
+              "document": "207421M21A00407-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...品內容說明 承保範圍 ◎返還年金保單價值準備金： 被保險人於本契約年金給付開始日之前身故者，本公司返還年金保單價值準備金，本契 約效力即行終止。 ◎年金給付： 【甲型】：..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00407-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證..."
+            },
+            {
+              "document": "207421M21A00407-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：限制、投保年齡。",
+          "terms": [
+            "限制",
+            "投保年齡"
+          ],
+          "pages": [
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00407-A.pdf",
+              "page": 3,
+              "term": "限制",
+              "snippet": "契約的終止及其限制 第九條： 要保人得於年金給付開始日前終止本契約，本公司應於接到通知後一個月內償付解..."
+            },
+            {
+              "document": "207421M21A00407-A.pdf",
+              "page": 4,
+              "term": "投保年齡",
+              "snippet": "...處理 第十七條： 要保人在申請投保時，應將被保險人出生年月日在要保書填明。被保險人的投保年齡，以足歲計算，但 未滿一歲的零數超過六個月者，加算一歲。 被保險人的投保年齡發生錯誤..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00407-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...額： 第一保單年度： 一、已繳保險費扣除附加費用（如附表）。 二、扣除要保人依第十條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以單利法計算之金額。 第二保單年度..."
+            },
+            {
+              "document": "207421M21A00407-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "...年金金額若低於新台幣一萬元時，本公司改依年金保單價值準備金於年金給 付開始日一次給付受益人，本契約即行終止。 如年金給付開始日的年金保單價值準備金已逾年領年金給付金額新台幣一..."
+            },
+            {
+              "document": "207421M21A00407-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...定地點交付，或由本公司派員前往收取，並交付 本公司開發之憑證。 年金保單價值準備金的通知與計算 第六條： 年金給付開始日前，本公司於本契約每一保單年度末，應以書面通知要保人..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207421M21A00407-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 178392,
+          "page_count": 6,
+          "pages_parsed": 6,
+          "text_char_count": 6052,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207421M21A00407-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 98312,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 713,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207421M21A00500",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "國華人壽多利HIGH利率變動型年金保險(甲型)",
+      "sale_status": "已停售",
+      "sale_date": "100/01/03",
+      "discontinued_date": "100/10/18",
+      "source_batch_id": "tii-life-040",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 5507,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、身故。",
+          "terms": [
+            "給付項目",
+            "身故"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00500-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "01J 國華人壽多利 HIGH 利率變動型年金保險（甲型） （給付項目：年金、返還年金保單價值準備金） 本保險為不分紅保險單，不參加紅利分配，並無紅利給付..."
+            },
+            {
+              "document": "207421M21A00500-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...任，以同意承保時溯自預 收相當於第一期保險費金額時開始。但本公司同意承保前而被保險人身故時，本公司無息退還要保人所 繳保險費。 本公司自預收相當於第一期保險費之金額後十五日..."
+            },
+            {
+              "document": "207421M21A00500-A.pdf",
+              "page": 2,
+              "term": "身故",
+              "snippet": "...範圍內，本公司不扣除解約費用，超過部分仍依第九條第二項 約定扣除解約費用。 被保險人身故的通知與返還年金保單價值準備金 第十一條："
+            },
+            {
+              "document": "207421M21A00500-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...品內容說明 承保範圍 ◎返還年金保單價值準備金： 被保險人於本契約年金給付開始日之前身故者，本公司返還年金保單價值準備金，本契 約效力即行終止。 ◎年金給付： 被保險人於本..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00500-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證..."
+            },
+            {
+              "document": "207421M21A00500-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：限制、投保年齡。",
+          "terms": [
+            "限制",
+            "投保年齡"
+          ],
+          "pages": [
+            2,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00500-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...年金保單價值準 備金，其超出的部份之年金保單價值準備金返還予要保人。 契約的終止及其限制 第九條： 要保人得於年金給付開始日前終止本契約，本公司應於接到通知後一個月內償付解..."
+            },
+            {
+              "document": "207421M21A00500-A.pdf",
+              "page": 4,
+              "term": "投保年齡",
+              "snippet": "...處理 第十七條： 要保人在申請投保時，應將被保險人出生年月日在要保書填明。被保險人的投保年齡，以足歲計算，但 未滿一歲的零數超過六個月者，加算一歲。 被保險人的投保年齡發生錯誤..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00500-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...： 第一保單年度： 一、已繳保險費扣除附加費用（如附表一）。 二、扣除要保人依第十條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以單利法計算之金額。 第二保單年度..."
+            },
+            {
+              "document": "207421M21A00500-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "...年金金額若低於新台幣一萬元時，本公司改依年金保單價值準備金於年金給付開始日一 次給付受益人，本契約即行終止。 如年金給付開始日的年金保單價值準備金已逾年領年金金額新台幣一百二..."
+            },
+            {
+              "document": "207421M21A00500-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "年金保單價值準備金的通知與計算 第六條： 年金給付開始日前，本公司於本契約每一保單年度末，應以書面通知要保人..."
+            },
+            {
+              "document": "207421M21A00500-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...若於本契約有效期間內且於保證期間內身故時，本公司將其未支領年金餘額依 約定給付予身故受益人或其他應得之人，本契約效力即行終止。 ※「預定利率」及「年金金額」於年金給付開始日起..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207421M21A00500-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 171737,
+          "page_count": 5,
+          "pages_parsed": 5,
+          "text_char_count": 5098,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207421M21A00500-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 93928,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 409,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207421M21A00501",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "國華人壽多利HIGH利率變動型年金保險(甲型)(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "100/10/19",
+      "discontinued_date": "101/06/30",
+      "source_batch_id": "tii-life-040",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 5655,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、身故。",
+          "terms": [
+            "給付項目",
+            "身故"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00501-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "01J國華人壽多利 HIGH利率變動型年金保險（甲型） （給付項目：年金、返還年金保單價值準備金） 本保險為不分紅保險單，不參加紅利分配，並無紅利給付..."
+            },
+            {
+              "document": "207421M21A00501-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...任，以同意承保時溯自預 收相當於第一期保險費金額時開始。但本公司同意承保前而被保險人身故時，本公司無息退還要保人所 繳保險費。 本公司自預收相當於第一期保險費之金額後十五日..."
+            },
+            {
+              "document": "207421M21A00501-A.pdf",
+              "page": 2,
+              "term": "身故",
+              "snippet": "...範圍內，本公司不扣除解約費用，超過部分仍依第九條第二項 約定扣除解約費用。 被保險人身故的通知與返還年金保單價值準備金"
+            },
+            {
+              "document": "207421M21A00501-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...品內容說明 承保範圍 ◎返還年金保單價值準備金： 被保險人於本契約年金給付開始日之前身故者，本公司返還年金保單價值準備金，本契 約效力即行終止。 ◎年金給付： 被保險人於本..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00501-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證..."
+            },
+            {
+              "document": "207421M21A00501-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：限制、投保年齡。",
+          "terms": [
+            "限制",
+            "投保年齡"
+          ],
+          "pages": [
+            2,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00501-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...年金保單價值準 備金，其超出的部份之年金保單價值準備金返還予要保人。 契約的終止及其限制 第九條： 要保人得於年金給付開始日前終止本契約，本公司應於接到通知後一個月內償付解..."
+            },
+            {
+              "document": "207421M21A00501-A.pdf",
+              "page": 4,
+              "term": "投保年齡",
+              "snippet": "...處理 第十七條： 要保人在申請投保時，應將被保險人出生年月日在要保書填明。被保險人的投保年齡，以足歲計算，但 未滿一歲的零數超過六個月者，加算一歲。 被保險人的投保年齡發生錯誤..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00501-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...： 第一保單年度： 一、已繳保險費扣除附加費用（如附表一）。 二、扣除要保人依第十條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以單利法計算之金額。 第二保單年度..."
+            },
+            {
+              "document": "207421M21A00501-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "...年金金額若低於新台幣一萬元時，本公司改依年金保單價值準備金於年金給付開始日一 次給付受益人，本契約即行終止。 如年金給付開始日的年金保單價值準備金已逾年領年金金額新台幣一百二..."
+            },
+            {
+              "document": "207421M21A00501-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "本公司開發之憑證。 年金保單價值準備金的通知與計算 第六條： 年金給付開始日前，本公司於本契約每一保單年度末，應以書面通知要保人..."
+            },
+            {
+              "document": "207421M21A00501-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...若於本契約有效期間內且於保證期間內身故時，本公司將其未支領年金餘額依 約定給付予身故受益人或其他應得之人，本契約效力即行終止。 ※「預定利率」及「年金金額」於年金給付開始日起..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207421M21A00501-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 44448,
+          "page_count": 5,
+          "pages_parsed": 5,
+          "text_char_count": 5247,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207421M21A00501-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 12063,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 408,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "207421M21A00502",
+      "company": "國華人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "國華人壽多利HIGH利率變動型年金保險(甲型)(第2次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/07/01",
+      "discontinued_date": "102/03/29",
+      "source_batch_id": "tii-life-040",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 5772,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、身故。",
+          "terms": [
+            "給付項目",
+            "身故"
+          ],
+          "pages": [
+            1,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00502-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "01J 國華人壽多利 HIGH 利率變動型年金保險（甲型） （給付項目：年金、返還年金保單價值準備金） 本保險為不分紅保險單，不參加紅利分配，並無紅利給付..."
+            },
+            {
+              "document": "207421M21A00502-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...任，以同意承保時溯自預 收相當於第一期保險費金額時開始。但本公司同意承保前而被保險人身故時，本公司無息退還要保人所 繳保險費。 本公司自預收相當於第一期保險費之金額後十五日..."
+            },
+            {
+              "document": "207421M21A00502-A.pdf",
+              "page": 3,
+              "term": "身故",
+              "snippet": "被保險人身故的通知與返還年金保單價值準備金 第十一條： 被保險人身故後，要保人或身故受益人應於知..."
+            },
+            {
+              "document": "207421M21A00502-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...品內容說明 承保範圍 ◎返還年金保單價值準備金： 被保險人於本契約年金給付開始日之前身故者，本公司返還年金保單價值準備金，本契 約效力即行終止。 ◎年金給付： 被保險人於本..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00502-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...當事人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證..."
+            },
+            {
+              "document": "207421M21A00502-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人的真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人 的解釋為原則。 名詞定義 第二條： 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：限制、投保年齡。",
+          "terms": [
+            "限制",
+            "投保年齡"
+          ],
+          "pages": [
+            2,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00502-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...年金保單價值準 備金，其超出的部份之年金保單價值準備金返還予要保人。 契約的終止及其限制 第九條： 要保人得於年金給付開始日前終止本契約，本公司應於接到通知後一個月內償付解..."
+            },
+            {
+              "document": "207421M21A00502-A.pdf",
+              "page": 4,
+              "term": "投保年齡",
+              "snippet": "...處理 第十七條： 要保人在申請投保時，應將被保險人出生年月日在要保書填明。被保險人的投保年齡，以足歲計算，但 未滿一歲的零數超過六個月者，加算一歲。 被保險人的投保年齡發生錯誤..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "document": "207421M21A00502-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...： 第一保單年度： 一、已繳保險費扣除附加費用（如附表一）。 二、扣除要保人依第十條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以單利法計算之金額。 第二保單年度..."
+            },
+            {
+              "document": "207421M21A00502-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "...年金金額若低於新台幣一萬元時，本公司改依年金保單價值準備金於年金給付開始日一 次給付受益人，本契約即行終止。 如年金給付開始日的年金保單價值準備金已逾年領年金金額新台幣一百二..."
+            },
+            {
+              "document": "207421M21A00502-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...定地點交付，或由本公司派員前往收取，並交付 本公司開發之憑證。 年金保單價值準備金的通知與計算 第六條： 年金給付開始日前，本公司於本契約每一保單年度末，應以書面通知要保人..."
+            },
+            {
+              "document": "207421M21A00502-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...若於本契約有效期間內且於保證期間內身故時，本公司將其未支領年金餘額依 約定給付予身故受益人或其他應得之人，本契約效力即行終止。 ※「預定利率」及「年金金額」於年金給付開始日起..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "207421M21A00502-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 173779,
+          "page_count": 5,
+          "pages_parsed": 5,
+          "text_char_count": 5364,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "207421M21A00502-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 12063,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 408,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    }
+  ]
+}
