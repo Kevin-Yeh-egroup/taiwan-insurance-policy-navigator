@@ -325,6 +325,8 @@ def next_document_work_item() -> dict:
         if batches.get(batch_id, {}).get("company_type") == DOCUMENT_DOWNLOAD_SCOPE
     ]
     for batch_id in ordered_batch_ids:
+        if document_content_path(batch_id).exists():
+            continue
         status = document_status(batch_id)
         if not status:
             return {"batch_id": batch_id, "document_offset": 0, "reason": "not_started"}
