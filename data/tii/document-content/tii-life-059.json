@@ -1,0 +1,294 @@
+{
+  "generated_at": "2026-07-06T17:43:01+08:00",
+  "summary": {
+    "generated_at": "2026-07-06T17:43:01+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-life-059",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 1,
+    "document_count": 2,
+    "extracted_document_count": 2,
+    "no_text_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 1,
+    "legacy_doc_document_count": 1,
+    "policy_terms_document_count": 1,
+    "product_summary_document_count": 1,
+    "total_text_characters": 20889,
+    "focus_counts": [
+      {
+        "label": "保障項目",
+        "count": 1
+      },
+      {
+        "label": "重要定義",
+        "count": 1
+      },
+      {
+        "label": "特殊項目",
+        "count": 1
+      },
+      {
+        "label": "理賠申請",
+        "count": 1
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "壽險",
+        "count": 1
+      },
+      {
+        "label": "意外險",
+        "count": 1
+      },
+      {
+        "label": "失能/殘扶",
+        "count": 1
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 2
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "210121M31A00100",
+      "company": "國寶人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "國寶人壽國寶理財家保證收益變額壽險",
+      "sale_status": "已停售",
+      "sale_date": "093/06/10",
+      "discontinued_date": "093/07/09",
+      "source_batch_id": "tii-life-059",
+      "coverage_tags": [
+        "壽險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 20889,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            6,
+            9,
+            10,
+            11
+          ],
+          "evidence": [
+            {
+              "document": "210121M31A001-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...財保字第0930705098號 免費保戶服務暨申訴電話：0800-087-999 【給付項目】：１、身故或完全殘廢保險金 ２、滿期保險金 ※本保險為不分紅保險單，不參加紅利分配..."
+            },
+            {
+              "document": "210121M31A001-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...免費保戶服務暨申訴電話：0800-087-999 【給付項目】：１、身故或完全殘廢保險金 ２、滿期保險金 ※本保險為不分紅保險單，不參加紅利分配，並無紅利給付項目。 ※本商..."
+            },
+            {
+              "document": "210121M31A001-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...705098號 免費保戶服務暨申訴電話：0800-087-999 【給付項目】：１、身故或完全殘廢保險金 ２、滿期保險金 ※本保險為不分紅保險單，不參加紅利分配，並無紅利給..."
+            },
+            {
+              "document": "210121M31A001-F.doc",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...2 債券連結指數，有機會獲得較高的報酬率 3 結合保險、投資與儲蓄，一舉三得 身故保險金 或 完全殘廢保險金 投資保費運用起始日(不含)以前： 被保險人於本契約有效期間身故..."
+            },
+            {
+              "document": "210121M31A001-F.doc",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...酬率 2 債券連結指數，有機會獲得較高的報酬率 3 結合保險、投資與儲蓄，一舉三得 身故保險金 或 完全殘廢保險金 投資保費運用起始日(不含)以前： 被保險人於本契約有效期..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、傷害、醫師、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "醫師",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1,
+            3,
+            8,
+            11
+          ],
+          "evidence": [
+            {
+              "document": "210121M31A001-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...，不得拘泥於所用的文字；如有疑義時，以作有利於被保 險人的解釋為準。 第 二 條：【名詞定義】 一、本契約所稱「保險金額」係指保險單上所載以新台幣計價之投保金額，倘爾後該投保金..."
+            },
+            {
+              "document": "210121M31A001-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字；如有疑義時，以作有利於被保 險人的解釋為準。 第 二 條：【名詞定義】 一、本契約所稱「保險金額」係指保險單上所載以新台幣計價之投保金額，倘爾後該投保金..."
+            },
+            {
+              "document": "210121M31A001-A.pdf",
+              "page": 1,
+              "term": "醫師",
+              "snippet": "...十七、本契約所稱「投資標的貨幣」係指投資標的用以計價之貨幣別。 十八、本契約所稱「醫師」係指領有醫師證書而合法執業者，且非要保人或被保險人本人、或其配 偶、父母、子女。..."
+            },
+            {
+              "document": "210121M31A001-F.doc",
+              "page": 1,
+              "term": "醫師",
+              "snippet": "...完全殘廢保險金 投資保費運用起始日(不含)以前： 被保險人於本契約有效期間身故或經醫師診斷確定致成第一級殘廢者，本公司按「總保險費」或「保險金額」較高者給付「身故保險金」..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、投保年齡。",
+          "terms": [
+            "除外責任",
+            "投保年齡"
+          ],
+          "pages": [
+            1,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "210121M31A001-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...稱「危險保費」係指提供被保險人身故及完全殘廢保障之費用，本公司將依據被保險 人性別、投保年齡、預定利率、預定危險發生率及保險金額計算之（如附件一）。 七、本契約所稱「身故及完全..."
+            },
+            {
+              "document": "210121M31A001-A.pdf",
+              "page": 4,
+              "term": "除外責任",
+              "snippet": "...件： 一、保險單或其謄本。 二、保險金申請書。 三、受益人的身分證明。 第十九條：【除外責任】 被保險人有下列情形之一者，本公司不負給付保險金的責任： 一、受益人故意致被保險人..."
+            },
+            {
+              "document": "210121M31A001-A.pdf",
+              "page": 4,
+              "term": "投保年齡",
+              "snippet": "...戶價值，本 公司按第八條約定辦理。 第廿一條：【年齡的計算及錯誤的處理】 被保險人的投保年齡，以足歲計算，但是未滿一歲的零數超過六個月者加算一歲，要保人在申請投 保時，應將被保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "210121M31A001-A.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...價值，均以新 台幣為貨幣單位。 本契約投資保費運用起始日（含）以後之帳戶價值的計算與通知以投資標的貨幣為貨幣單位。 第 四 條：【匯率計算】 本公司於投資保費運用起始日，根..."
+            },
+            {
+              "document": "210121M31A001-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...規定負保險責任。 第 七 條：【減少保險金額】 要保人在本契約投資保費運用期間內，得申請減少保險金額，但每次減少之保險金額不得低於新台 幣壹萬元整，且減少保額後的保險金額不..."
+            },
+            {
+              "document": "210121M31A001-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "...通知要保人，如要保人死亡、失蹤或居住所不明，通知不能送達時，本 公司得將該項通知送達受益人，該項通知送達受益人時，視同已送達要保人。 １Ｖ－２－"
+            },
+            {
+              "document": "210121M31A001-F.doc",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...成第一級殘廢者，本公司按其身故或經醫師診斷確定殘廢當時之「保險金額 」及「本公司收齊理賠申請文件後第一個評價日之帳戶價值」之總和，給付「身故保險金」或「完全殘廢保險金」，本..."
+            },
+            {
+              "document": "210121M31A001-F.doc",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...一級殘廢者，本公司按其身故或經醫師診斷確定殘廢當時之「保險金額 」及「本公司收齊理賠申請文件後第一個評價日之帳戶價值」之總和，給付「身故保險金」或「完全殘廢保險金」，本契約..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "210121M31A001-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 866811,
+          "page_count": 11,
+          "pages_parsed": 11,
+          "text_char_count": 20033,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "210121M31A001-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 76288,
+          "page_count": null,
+          "pages_parsed": 1,
+          "text_char_count": 856,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    }
+  ]
+}
