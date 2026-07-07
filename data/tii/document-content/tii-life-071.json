@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-07T17:39:04+08:00",
+  "generated_at": "2026-07-07T17:38:28+08:00",
   "summary": {
-    "generated_at": "2026-07-07T17:39:04+08:00",
+    "generated_at": "2026-07-07T17:38:28+08:00",
     "source": "local TII files downloaded through captcha session",
     "batch_id": "tii-life-071",
     "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
@@ -14,7 +14,7 @@
     "legacy_doc_document_count": 3,
     "policy_terms_document_count": 50,
     "product_summary_document_count": 49,
-    "total_text_characters": 1113126,
+    "total_text_characters": 1113113,
     "focus_counts": [
       {
         "label": "保障項目",
@@ -9234,7 +9234,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 20869,
+      "text_char_count": 20856,
       "reader_focus": [
         {
           "key": "coverage",
@@ -9443,7 +9443,7 @@
           "file_size": 82446,
           "page_count": 23,
           "pages_parsed": 20,
-          "text_char_count": 19062,
+          "text_char_count": 19049,
           "extraction_status": "extracted",
           "error": null
         },
