@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-07T16:12:52+08:00",
+  "generated_at": "2026-07-07T16:17:50+08:00",
   "summary": {
-    "generated_at": "2026-07-07T16:12:52+08:00",
+    "generated_at": "2026-07-07T16:17:50+08:00",
     "source": "local TII files downloaded through captcha session",
     "batch_id": "tii-life-069",
     "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
@@ -14,7 +14,7 @@
     "legacy_doc_document_count": 29,
     "policy_terms_document_count": 390,
     "product_summary_document_count": 370,
-    "total_text_characters": 4421665,
+    "total_text_characters": 4421468,
     "focus_counts": [
       {
         "label": "保障項目",
@@ -1870,7 +1870,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 15808,
+      "text_char_count": 15804,
       "reader_focus": [
         {
           "key": "coverage",
@@ -2072,7 +2072,7 @@
           "file_size": 407855,
           "page_count": 18,
           "pages_parsed": 18,
-          "text_char_count": 15296,
+          "text_char_count": 15292,
           "extraction_status": "extracted",
           "error": null
         },
@@ -3250,7 +3250,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 15808,
+      "text_char_count": 15804,
       "reader_focus": [
         {
           "key": "coverage",
@@ -3452,7 +3452,7 @@
           "file_size": 407855,
           "page_count": 18,
           "pages_parsed": 18,
-          "text_char_count": 15296,
+          "text_char_count": 15292,
           "extraction_status": "extracted",
           "error": null
         },
@@ -4630,7 +4630,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 15808,
+      "text_char_count": 15804,
       "reader_focus": [
         {
           "key": "coverage",
@@ -4832,7 +4832,7 @@
           "file_size": 407855,
           "page_count": 18,
           "pages_parsed": 18,
-          "text_char_count": 15296,
+          "text_char_count": 15292,
           "extraction_status": "extracted",
           "error": null
         },
@@ -6010,7 +6010,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 15808,
+      "text_char_count": 15804,
       "reader_focus": [
         {
           "key": "coverage",
@@ -6212,7 +6212,7 @@
           "file_size": 407855,
           "page_count": 18,
           "pages_parsed": 18,
-          "text_char_count": 15296,
+          "text_char_count": 15292,
           "extraction_status": "extracted",
           "error": null
         },
@@ -12678,7 +12678,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 9727,
+      "text_char_count": 9723,
       "reader_focus": [
         {
           "key": "coverage",
@@ -12876,7 +12876,7 @@
           "file_size": 32387,
           "page_count": 11,
           "pages_parsed": 11,
-          "text_char_count": 9430,
+          "text_char_count": 9426,
           "extraction_status": "extracted",
           "error": null
         },
@@ -12908,7 +12908,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 9726,
+      "text_char_count": 9722,
       "reader_focus": [
         {
           "key": "coverage",
@@ -13106,7 +13106,7 @@
           "file_size": 32393,
           "page_count": 11,
           "pages_parsed": 11,
-          "text_char_count": 9429,
+          "text_char_count": 9425,
           "extraction_status": "extracted",
           "error": null
         },
@@ -13821,7 +13821,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 10766,
+      "text_char_count": 10758,
       "reader_focus": [
         {
           "key": "coverage",
@@ -14019,7 +14019,7 @@
           "file_size": 34344,
           "page_count": 12,
           "pages_parsed": 12,
-          "text_char_count": 10393,
+          "text_char_count": 10385,
           "extraction_status": "extracted",
           "error": null
         },
@@ -18098,7 +18098,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 11830,
+      "text_char_count": 11836,
       "reader_focus": [
         {
           "key": "coverage",
@@ -18128,13 +18128,13 @@
               "document": "212121M11AN5205-A.pdf",
               "page": 1,
               "term": "給付項目",
-              "snippet": "...人生還本終身保險 B型 （本契約 於訂立契約前已提供要保人不低於三日之審閱期間） （給付項目：生存保險金、身故保險金或喪葬費用保險金、全殘廢保險金） （本商品為不分紅保險單，不..."
+              "snippet": "...生還本終身保險 B 型 （本契約 於訂立契約前已提供要保人不低於三日之審閱期間） （給付項目：生存保險金、身故保險金或喪葬費用保險金、全殘廢保險金） （本商品為不分紅保險單，不..."
             },
             {
               "document": "212121M11AN5205-A.pdf",
               "page": 1,
               "term": "保險金",
-              "snippet": "...險 B型 （本契約 於訂立契約前已提供要保人不低於三日之審閱期間） （給付項目：生存保險金、身故保險金或喪葬費用保險金、全殘廢保險金） （本商品為不分紅保險單，不參加紅利分配..."
+              "snippet": "...B 型 （本契約 於訂立契約前已提供要保人不低於三日之審閱期間） （給付項目：生存保險金、身故保險金或喪葬費用保險金、全殘廢保險金） （本商品為不分紅保險單，不參加紅利分配..."
             },
             {
               "document": "212121M11AN5205-A.pdf",
@@ -18291,7 +18291,7 @@
           "file_size": 38643,
           "page_count": 11,
           "pages_parsed": 11,
-          "text_char_count": 11511,
+          "text_char_count": 11517,
           "extraction_status": "extracted",
           "error": null
         },
@@ -18323,7 +18323,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 11830,
+      "text_char_count": 11836,
       "reader_focus": [
         {
           "key": "coverage",
@@ -18353,13 +18353,13 @@
               "document": "212121M11AN5206-A.pdf",
               "page": 1,
               "term": "給付項目",
-              "snippet": "...人生還本終身保險 B型 （本契約 於訂立契約前已提供要保人不低於三日之審閱期間） （給付項目：生存保險金、身故保險金或喪葬費用保險金、全殘廢保險金） （本商品為不分紅保險單，不..."
+              "snippet": "...生還本終身保險 B 型 （本契約 於訂立契約前已提供要保人不低於三日之審閱期間） （給付項目：生存保險金、身故保險金或喪葬費用保險金、全殘廢保險金） （本商品為不分紅保險單，不..."
             },
             {
               "document": "212121M11AN5206-A.pdf",
               "page": 1,
               "term": "保險金",
-              "snippet": "...險 B型 （本契約 於訂立契約前已提供要保人不低於三日之審閱期間） （給付項目：生存保險金、身故保險金或喪葬費用保險金、全殘廢保險金） （本商品為不分紅保險單，不參加紅利分配..."
+              "snippet": "...B 型 （本契約 於訂立契約前已提供要保人不低於三日之審閱期間） （給付項目：生存保險金、身故保險金或喪葬費用保險金、全殘廢保險金） （本商品為不分紅保險單，不參加紅利分配..."
             },
             {
               "document": "212121M11AN5206-A.pdf",
@@ -18516,7 +18516,7 @@
           "file_size": 38643,
           "page_count": 11,
           "pages_parsed": 11,
-          "text_char_count": 11511,
+          "text_char_count": 11517,
           "extraction_status": "extracted",
           "error": null
         },
@@ -19454,7 +19454,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 11823,
+      "text_char_count": 11811,
       "reader_focus": [
         {
           "key": "coverage",
@@ -19651,7 +19651,7 @@
           "file_size": 36881,
           "page_count": 12,
           "pages_parsed": 12,
-          "text_char_count": 11420,
+          "text_char_count": 11408,
           "extraction_status": "extracted",
           "error": null
         },
@@ -26628,7 +26628,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 15415,
+      "text_char_count": 15413,
       "reader_focus": [
         {
           "key": "coverage",
@@ -26832,7 +26832,7 @@
           "file_size": 557513,
           "page_count": 15,
           "pages_parsed": 15,
-          "text_char_count": 14969,
+          "text_char_count": 14967,
           "extraction_status": "extracted",
           "error": null
         },
@@ -28504,7 +28504,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 15415,
+      "text_char_count": 15413,
       "reader_focus": [
         {
           "key": "coverage",
@@ -28708,7 +28708,7 @@
           "file_size": 557513,
           "page_count": 15,
           "pages_parsed": 15,
-          "text_char_count": 14969,
+          "text_char_count": 14967,
           "extraction_status": "extracted",
           "error": null
         },
@@ -37703,7 +37703,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 7844,
+      "text_char_count": 7839,
       "reader_focus": [
         {
           "key": "coverage",
@@ -37896,7 +37896,7 @@
           "file_size": 25280,
           "page_count": 9,
           "pages_parsed": 9,
-          "text_char_count": 7552,
+          "text_char_count": 7547,
           "extraction_status": "extracted",
           "error": null
         },
@@ -37929,7 +37929,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 7844,
+      "text_char_count": 7839,
       "reader_focus": [
         {
           "key": "coverage",
@@ -38122,7 +38122,7 @@
           "file_size": 25280,
           "page_count": 9,
           "pages_parsed": 9,
-          "text_char_count": 7552,
+          "text_char_count": 7547,
           "extraction_status": "extracted",
           "error": null
         },
@@ -44090,7 +44090,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 8677,
+      "text_char_count": 8675,
       "reader_focus": [
         {
           "key": "coverage",
@@ -44296,7 +44296,7 @@
           "file_size": 393954,
           "page_count": 11,
           "pages_parsed": 11,
-          "text_char_count": 8164,
+          "text_char_count": 8162,
           "extraction_status": "extracted",
           "error": null
         },
@@ -45270,7 +45270,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 8677,
+      "text_char_count": 8675,
       "reader_focus": [
         {
           "key": "coverage",
@@ -45476,7 +45476,7 @@
           "file_size": 393954,
           "page_count": 11,
           "pages_parsed": 11,
-          "text_char_count": 8164,
+          "text_char_count": 8162,
           "extraction_status": "extracted",
           "error": null
         },
@@ -47352,7 +47352,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 7878,
+      "text_char_count": 7872,
       "reader_focus": [
         {
           "key": "coverage",
@@ -47546,7 +47546,7 @@
           "file_size": 23904,
           "page_count": 9,
           "pages_parsed": 9,
-          "text_char_count": 7586,
+          "text_char_count": 7580,
           "extraction_status": "extracted",
           "error": null
         },
@@ -51132,7 +51132,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 14967,
+      "text_char_count": 14966,
       "reader_focus": [
         {
           "key": "coverage",
@@ -51347,7 +51347,7 @@
           "file_size": 589232,
           "page_count": 18,
           "pages_parsed": 18,
-          "text_char_count": 14512,
+          "text_char_count": 14511,
           "extraction_status": "extracted",
           "error": null
         },
@@ -53989,7 +53989,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 10456,
+      "text_char_count": 10454,
       "reader_focus": [
         {
           "key": "coverage",
@@ -54190,7 +54190,7 @@
           "file_size": 374427,
           "page_count": 12,
           "pages_parsed": 12,
-          "text_char_count": 9905,
+          "text_char_count": 9903,
           "extraction_status": "extracted",
           "error": null
         },
@@ -55128,7 +55128,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 10456,
+      "text_char_count": 10454,
       "reader_focus": [
         {
           "key": "coverage",
@@ -55329,7 +55329,7 @@
           "file_size": 374427,
           "page_count": 12,
           "pages_parsed": 12,
-          "text_char_count": 9905,
+          "text_char_count": 9903,
           "extraction_status": "extracted",
           "error": null
         },
@@ -58334,7 +58334,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 7683,
+      "text_char_count": 7680,
       "reader_focus": [
         {
           "key": "coverage",
@@ -58533,7 +58533,7 @@
           "file_size": 340689,
           "page_count": 9,
           "pages_parsed": 9,
-          "text_char_count": 7251,
+          "text_char_count": 7248,
           "extraction_status": "extracted",
           "error": null
         },
@@ -59701,7 +59701,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 7997,
+      "text_char_count": 7995,
       "reader_focus": [
         {
           "key": "coverage",
@@ -59900,7 +59900,7 @@
           "file_size": 340472,
           "page_count": 9,
           "pages_parsed": 9,
-          "text_char_count": 7564,
+          "text_char_count": 7562,
           "extraction_status": "extracted",
           "error": null
         },
@@ -63737,7 +63737,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 10456,
+      "text_char_count": 10454,
       "reader_focus": [
         {
           "key": "coverage",
@@ -63938,7 +63938,7 @@
           "file_size": 374427,
           "page_count": 12,
           "pages_parsed": 12,
-          "text_char_count": 9905,
+          "text_char_count": 9903,
           "extraction_status": "extracted",
           "error": null
         },
@@ -67643,7 +67643,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 15474,
+      "text_char_count": 15446,
       "reader_focus": [
         {
           "key": "coverage",
@@ -67851,7 +67851,7 @@
           "file_size": 167589,
           "page_count": 16,
           "pages_parsed": 16,
-          "text_char_count": 15160,
+          "text_char_count": 15132,
           "extraction_status": "extracted",
           "error": null
         },
@@ -67883,7 +67883,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 15474,
+      "text_char_count": 15446,
       "reader_focus": [
         {
           "key": "coverage",
@@ -68091,7 +68091,7 @@
           "file_size": 167589,
           "page_count": 16,
           "pages_parsed": 16,
-          "text_char_count": 15160,
+          "text_char_count": 15132,
           "extraction_status": "extracted",
           "error": null
         },
@@ -69939,7 +69939,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 7926,
+      "text_char_count": 7922,
       "reader_focus": [
         {
           "key": "coverage",
@@ -70133,7 +70133,7 @@
           "file_size": 26059,
           "page_count": 9,
           "pages_parsed": 9,
-          "text_char_count": 7624,
+          "text_char_count": 7620,
           "extraction_status": "extracted",
           "error": null
         },
@@ -70165,7 +70165,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 7926,
+      "text_char_count": 7922,
       "reader_focus": [
         {
           "key": "coverage",
@@ -70359,7 +70359,7 @@
           "file_size": 26059,
           "page_count": 9,
           "pages_parsed": 9,
-          "text_char_count": 7624,
+          "text_char_count": 7620,
           "extraction_status": "extracted",
           "error": null
         },
@@ -76733,7 +76733,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 16259,
+      "text_char_count": 16233,
       "reader_focus": [
         {
           "key": "coverage",
@@ -76958,7 +76958,7 @@
           "file_size": 73978,
           "page_count": 19,
           "pages_parsed": 19,
-          "text_char_count": 15815,
+          "text_char_count": 15789,
           "extraction_status": "extracted",
           "error": null
         },
@@ -76994,7 +76994,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 16259,
+      "text_char_count": 16233,
       "reader_focus": [
         {
           "key": "coverage",
@@ -77219,7 +77219,7 @@
           "file_size": 73978,
           "page_count": 19,
           "pages_parsed": 19,
-          "text_char_count": 15815,
+          "text_char_count": 15789,
           "extraction_status": "extracted",
           "error": null
         },
@@ -81255,7 +81255,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 3445,
+      "text_char_count": 3436,
       "reader_focus": [
         {
           "key": "coverage",
@@ -81332,13 +81332,13 @@
               "document": "212191E11AERP01-A.pdf",
               "page": 2,
               "term": "傷害",
-              "snippet": "...實際 年齡未達 15足歲之被保險人適用保險商品之費率，分別比較如下各表。 「朝陽人壽傷害保險附約」年繳保費費率表 單位：元／每 10萬元保額 「朝陽人壽萬得福傷害保險附約」..."
+              "snippet": "...實際 年齡未達15 足歲之被保險人適用保險商品之費率，分別比較如下各表。 「朝陽人壽傷害保險附約」年繳保費費率表 單位：元／每10萬元保額 「朝陽人壽萬得福傷害保險附約」年..."
             },
             {
               "document": "212191E11AERP01-A.pdf",
               "page": 3,
               "term": "傷害",
-              "snippet": "...註前及批註後之費率比例計算，舉例說明如下： ※某甲於 95年 5月 8日向本公司購買傷害險保險附約，保單週年日為每年5月 8日。 某甲於 98年 11月 3日滿 14足歲，..."
+              "snippet": "...前及批註後之費率比例計算，舉例說明如下： ※某甲於95 年 5月 8 日向本公司購買傷害險保險附約，保單週年日為每年5月8日。 某甲於 98年 11月 3 日滿14 足歲，..."
             },
             {
               "document": "212191E11AERP01-F.pdf",
@@ -81386,7 +81386,7 @@
               "document": "212191E11AERP01-A.pdf",
               "page": 3,
               "term": "續保",
-              "snippet": "...實際年齡未達 15足歲之被保險人職業類別皆為第一類，因此僅表列第一類費率。 註 4：續保當時被保險人實際年齡超過 14足歲未滿十五足歲者，該年度保險費之計算，分 別依被保險..."
+              "snippet": "...：實際年齡未達15足歲之被保險人職業類別皆為第一類，因此僅表列第一類費率。 註 4：續保當時被保險人實際年齡超過 14 足歲未滿十五足歲者，該年度保險費之計算，分 別依被保..."
             },
             {
               "document": "212191E11AERP01-F.pdf",
@@ -81418,7 +81418,7 @@
               "document": "212191E11AERP01-A.pdf",
               "page": 1,
               "term": "理賠",
-              "snippet": "...間之先後者，各該 保險 公司應依其喪葬費用保險金額與扣除要保時間在先 之保險 公司應理賠之金額後所餘之限額比例分擔其責任。"
+              "snippet": "...保時間之先後者，各該 保險公司應依其喪葬費用保險金額與扣除要保時間在先 之保險公司應理賠之金額後所餘之限額比例分擔其責任。"
             }
           ]
         }
@@ -81433,7 +81433,7 @@
           "file_size": 17900,
           "page_count": 3,
           "pages_parsed": 3,
-          "text_char_count": 2120,
+          "text_char_count": 2111,
           "extraction_status": "extracted",
           "error": null
         },
@@ -81620,7 +81620,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 1328,
+      "text_char_count": 1324,
       "reader_focus": [
         {
           "key": "coverage",
@@ -81745,7 +81745,7 @@
           "file_size": 11059,
           "page_count": 2,
           "pages_parsed": 2,
-          "text_char_count": 1297,
+          "text_char_count": 1293,
           "extraction_status": "extracted",
           "error": null
         },
@@ -84386,7 +84386,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 11094,
+      "text_char_count": 11093,
       "reader_focus": [
         {
           "key": "coverage",
@@ -84582,7 +84582,7 @@
           "file_size": 377411,
           "page_count": 11,
           "pages_parsed": 11,
-          "text_char_count": 10764,
+          "text_char_count": 10763,
           "extraction_status": "extracted",
           "error": null
         },
@@ -85083,7 +85083,7 @@
       ],
       "document_count": 2,
       "extracted_document_count": 2,
-      "text_char_count": 11113,
+      "text_char_count": 11114,
       "reader_focus": [
         {
           "key": "coverage",
@@ -85290,7 +85290,7 @@
           "file_size": 37535,
           "page_count": 12,
           "pages_parsed": 12,
-          "text_char_count": 10782,
+          "text_char_count": 10783,
           "extraction_status": "extracted",
           "error": null
         },

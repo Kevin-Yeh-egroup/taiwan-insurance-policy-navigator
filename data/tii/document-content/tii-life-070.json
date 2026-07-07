@@ -1,0 +1,1310 @@
+{
+  "generated_at": "2026-07-07T17:39:02+08:00",
+  "summary": {
+    "generated_at": "2026-07-07T17:39:02+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-life-070",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 7,
+    "document_count": 14,
+    "extracted_document_count": 14,
+    "no_text_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 12,
+    "legacy_doc_document_count": 2,
+    "policy_terms_document_count": 7,
+    "product_summary_document_count": 7,
+    "total_text_characters": 40172,
+    "focus_counts": [
+      {
+        "label": "保障項目",
+        "count": 7
+      },
+      {
+        "label": "重要定義",
+        "count": 7
+      },
+      {
+        "label": "特殊項目",
+        "count": 7
+      },
+      {
+        "label": "理賠申請",
+        "count": 7
+      }
+    ],
+    "coverage_tag_counts": [],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 14
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "212421M21A00100",
+      "company": "朝陽人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "興農人壽利率變動型年金保險甲型",
+      "sale_status": "已停售",
+      "sale_date": "091/04/29",
+      "discontinued_date": "096/09/01",
+      "source_batch_id": "tii-life-070",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 5529,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：保險金、身故、保險範圍。",
+          "terms": [
+            "保險金",
+            "身故",
+            "保險範圍"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "document": "212421M21A001-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...保險單作為承保的憑證。要保人在本公司簽發保險單前先交付相當於第一 期保險費而被保險人身故時無息退還要保人所繳保險費。 第四條【契約撤銷權】 要保人於保險單送達的翌日起算十日..."
+            },
+            {
+              "document": "212421M21A001-A.pdf",
+              "page": 2,
+              "term": "身故",
+              "snippet": "...人未支領之年金餘額得申請提前給付；其申請人在被保險人生存時為被保險人本 人，被保險人身故時為被保險人身故受益人。本公司將依未領取期數金額貼現給付之， 其貼現利率適用第九條所..."
+            },
+            {
+              "document": "212421M21A001-A.pdf",
+              "page": 3,
+              "term": "身故",
+              "snippet": "...準備金視為契約之部分終止，其解約金計算依第十條第二 項規定辦理。 第十二條【被保險人身故的通知與返還年金保單價值準備金的申請時間】 要保人或被保險人身故受益人應於知悉被保險..."
+            },
+            {
+              "document": "212421M21A001-F.doc",
+              "page": 1,
+              "term": "保險範圍",
+              "snippet": "保險範圍：至一百一十歲生存年金給付。；承保範圍0歲 \\b200\\公會編碼送保發\\45利率變動..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "212421M21A001-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...的真意，不得拘泥於所用的文字；如有疑義時，以作 有利於被保險人的解釋為準。 第二條【名詞定義】 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證給付 年..."
+            },
+            {
+              "document": "212421M21A001-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...意，不得拘泥於所用的文字；如有疑義時，以作 有利於被保險人的解釋為準。 第二條【名詞定義】 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證給付 年..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：限制。",
+          "terms": [
+            "限制"
+          ],
+          "pages": [
+            3
+          ],
+          "evidence": [
+            {
+              "document": "212421M21A001-A.pdf",
+              "page": 3,
+              "term": "限制",
+              "snippet": "...保單價值 準備金，其超出的部份之保單價值準備金返還予要保人。 第十條【契約的終止及其限制】 要保人得於年金給付開始日前終止本契約，本 公司應於接到通知後一個月內償付解約 金..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "document": "212421M21A001-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...保單年度： 一、已繳保險費扣除附加費用（如附加費用附表）。 二、扣除要保人依第十一條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以單利法計算之金額。 第二保單年度..."
+            },
+            {
+              "document": "212421M21A001-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "...申請提前給付；其申請人在被保險人生存時為被保險人本 人，被保險人身故時為被保險人身故受益人。本公司將依未領取期數金額貼現給付之， 其貼現利率適用第九條所採用之預定利率。 第九..."
+            },
+            {
+              "document": "212421M21A001-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...繳納之不定額保險費，需向本公司所在地 或指定地點交付。 第六條【年金保單價值準備金的通知與計算】 年金給付開始日前本公司於本契約每一保單年 度末應依約定方式通知要保人其年金..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "212421M21A001-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 20577,
+          "page_count": 5,
+          "pages_parsed": 5,
+          "text_char_count": 5428,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "212421M21A001-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 19456,
+          "page_count": null,
+          "pages_parsed": 1,
+          "text_char_count": 101,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "212421M21A00200",
+      "company": "朝陽人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "興農人壽利率變動型年金保險乙型",
+      "sale_status": "已停售",
+      "sale_date": "091/04/29",
+      "discontinued_date": "096/09/01",
+      "source_batch_id": "tii-life-070",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 5170,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：保險金、身故、保險範圍。",
+          "terms": [
+            "保險金",
+            "身故",
+            "保險範圍"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "212421M21A002-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...保險單作為承保的憑證。要保人在本公司簽發保險單前先交付相當於第一 期保險費而被保險人身故時無息退還要保人所繳保險費。 第四條【契約撤銷權】 要保人於保險單送達的翌日起算十日..."
+            },
+            {
+              "document": "212421M21A002-A.pdf",
+              "page": 2,
+              "term": "身故",
+              "snippet": "...人未支領之年金餘額得申請提前給付；其申請人在被保險人生存時為被保險人本 人，被保險人身故時為被保險人身故受益人。本公司將依未領取期數金額貼現給付之， 其貼現利率適用第九條所..."
+            },
+            {
+              "document": "212421M21A002-A.pdf",
+              "page": 3,
+              "term": "身故",
+              "snippet": "...備金視為契約之部分終止，其解約金計算，依第十條第 二項規定辦理。 第十二條【被保險人身故的通知與返還年金保單價值準備金的申請時間】 要保人或被保險人身故受益人應於知悉被保險..."
+            },
+            {
+              "document": "212421M21A002-F.doc",
+              "page": 1,
+              "term": "保險範圍",
+              "snippet": "保險範圍：至一百一十歲生存年金給付。；承保範圍0歲 \\b200\\公會編碼送保發\\46利率變動..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "212421M21A002-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...的真意，不得拘泥於所用的文字；如有疑義時，以作 有利於被保險人的解釋為準。 第二條【名詞定義】 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證給付 年..."
+            },
+            {
+              "document": "212421M21A002-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...意，不得拘泥於所用的文字；如有疑義時，以作 有利於被保險人的解釋為準。 第二條【名詞定義】 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證給付 年..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：限制。",
+          "terms": [
+            "限制"
+          ],
+          "pages": [
+            3
+          ],
+          "evidence": [
+            {
+              "document": "212421M21A002-A.pdf",
+              "page": 3,
+              "term": "限制",
+              "snippet": "...保單價值 準備金，其超出的部份之保單價值準備金返還予要保人。 第十條【契約的終止及其限制】 要保人得於年金給付開始日前終止本契約，本 公司應於接到通知後一個月內償付解約 金..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "document": "212421M21A002-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...保單年度： 一、已繳保險費扣除附加費用（如附加費用附表）。 二、扣除要保人依第十一條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以單利法計算之金額。 第二保單年度..."
+            },
+            {
+              "document": "212421M21A002-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "...申請提前給付；其申請人在被保險人生存時為被保險人本 人，被保險人身故時為被保險人身故受益人。本公司將依未領取期數金額貼現給付之， 其貼現利率適用第九條所採用之預定利率，每年未..."
+            },
+            {
+              "document": "212421M21A002-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...繳納之不定額保險費，需向本公司所在地 或指定地點交付。 第六條【年金保單價值準備金的通知與計算】 年金給付開始日前本公司於本契約每一保單年度末應依約定方式通知要保人其年金保..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "212421M21A002-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 19963,
+          "page_count": 5,
+          "pages_parsed": 5,
+          "text_char_count": 5069,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "212421M21A002-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 19456,
+          "page_count": null,
+          "pages_parsed": 1,
+          "text_char_count": 101,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "212421M21AISC00",
+      "company": "朝陽人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "朝陽人壽鑫利率變動型年金保險",
+      "sale_status": "已停售",
+      "sale_date": "101/03/01",
+      "discontinued_date": "101/07/17",
+      "source_batch_id": "tii-life-070",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 5878,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、身故。",
+          "terms": [
+            "給付項目",
+            "身故"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISC00-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "朝陽人壽鑫利率變動型年金保險 （本商品為不分紅保險單，不參加紅利分配，並無紅利給付項目） （給付項目：年金，返還年金保單價值準備金） ※本商品經本公司合格簽署人員檢視其內..."
+            },
+            {
+              "document": "212421M21AISC00-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...任，以同意承保時溯自預收 相當於第一期保險費金額時開始。但本公司同意承保前而被保險人身故時，本公司無息退還要保人所繳保 險費。 本公司自預收相當於第一期保險費之金額後十五日..."
+            },
+            {
+              "document": "212421M21AISC00-A.pdf",
+              "page": 2,
+              "term": "身故",
+              "snippet": "...至保證期間屆滿。如被保險人於 保證期間屆滿仍生存時，本公司繼續給付年金金額至被保險人身故之該保單年度末或被保險人保險年齡達 一一○歲較早發生者止，本契約效力即行終止。 要保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISC00-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所稱「年金給付開始日」係指依本契約約定開始給付第一次年金之日。 本契約所稱「..."
+            },
+            {
+              "document": "212421M21AISC00-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所稱「年金給付開始日」係指依本契約約定開始給付第一次年金之日。 本契約所稱「..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：限制、投保年齡、除外責任。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "除外責任"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISC00-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...值 準備金，其超出的部份之年金保單價值準備金返還予要保人。 第十一條 契約的終止及其限制 要保人得於年金給付開始日前終止本契約，本公司應於接到通知後一個月內償付解約金，逾期..."
+            },
+            {
+              "document": "212421M21AISC00-A.pdf",
+              "page": 3,
+              "term": "投保年齡",
+              "snippet": "...計算及錯誤的處理 要保人在申請投保時，應將被保險人出生年月日在要保書填明。被保險人的投保年齡，以足歲計算，但未 滿一歲的零數超過六個月者，加算一歲。 被保險人的投保年齡發生錯誤..."
+            },
+            {
+              "document": "212421M21AISC00-A.pdf",
+              "page": 4,
+              "term": "投保年齡",
+              "snippet": "二、因投保年齡錯誤，致本公司短發年金金額者，本公司應計算實付年金金額與應付年金金額的差額，於 下次..."
+            },
+            {
+              "document": "212421M21AISC00-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...壽鑫利率變動型年金保險 保險商品內容說明 承保內容 年金、返還年金保單價值準備金。 除外責任 無"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISC00-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...逾期未交付者，則本契約自應繳日起進入保險費停繳期。 於本契約年金累積期間內，要保人得申請終止保險費停繳期並繼續交付分期保險費。 第七條 年金保單價值準備金的通知與計算 年金..."
+            },
+            {
+              "document": "212421M21AISC00-A.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...組合收益，扣除相關費用，並 參考市場利率訂定之，且不得為負數。本公司每年將以約定方式通知要保人；另要保人可透過本公司網站 或撥免付費電話查詢。 本契約所稱「年金預定利率」係..."
+            },
+            {
+              "document": "212421M21AISC00-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...值準備金與當年度已繳保險費扣除附加費用（如附表一）後之和。 二、扣除要保人依第十二條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以日單利年複利計算之金額。 第八條..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "212421M21AISC00-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 184806,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 5827,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "212421M21AISC00-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 32164,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 51,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "212421M21AISC01",
+      "company": "朝陽人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "朝陽人壽鑫利率變動型年金保險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/07/18",
+      "discontinued_date": "103/03/11",
+      "source_batch_id": "tii-life-070",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 5806,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、身故。",
+          "terms": [
+            "給付項目",
+            "身故"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISC01-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "朝陽人壽鑫利率變動型年金保險 （本保險為不分紅保險單，不參加紅利分配，並無紅利給付項目） （給付項目：年金、返還年金保單價值準備金） ※本商品經本公司合格簽署人員檢視其內..."
+            },
+            {
+              "document": "212421M21AISC01-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...分期給付之金額。 本契約所稱「未支領之年金餘額」係指被保險人於本契約約定之保證期間內身故時，剩餘保證期間內未領 取之年金金額。 本契約所稱「宣告利率」係指本公司於本契約生效..."
+            },
+            {
+              "document": "212421M21AISC01-A.pdf",
+              "page": 2,
+              "term": "身故",
+              "snippet": "...至保證期間屆滿。如被保險人於 保證期間屆滿仍生存時，本公司繼續給付年金金額至被保險人身故之該保單年度末或被保險人保險年齡達 一一○歲較早發生者止，本契約效力即行終止。 要保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISC01-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所稱「年金給付開始日」係指依本契約約定開始給付第一次年金之日。 本契約所稱「..."
+            },
+            {
+              "document": "212421M21AISC01-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所稱「年金給付開始日」係指依本契約約定開始給付第一次年金之日。 本契約所稱「..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：限制、投保年齡、除外責任。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "除外責任"
+          ],
+          "pages": [
+            1,
+            2,
+            3
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISC01-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...值 準備金，其超出的部份之年金保單價值準備金返還予要保人。 第十一條 契約的終止及其限制 要保人得於年金給付開始日前終止本契約，本公司應於接到通知後一個月內償付解約金，逾期..."
+            },
+            {
+              "document": "212421M21AISC01-A.pdf",
+              "page": 3,
+              "term": "投保年齡",
+              "snippet": "...計算及錯誤的處理 要保人在申請投保時，應將被保險人出生年月日在要保書填明。被保險人的投保年齡，以足歲計算，但未 滿一歲的零數超過六個月者，加算一歲。 被保險人的投保年齡發生錯誤..."
+            },
+            {
+              "document": "212421M21AISC01-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...壽鑫利率變動型年金保險 保險商品內容說明 承保內容 年金、返還年金保單價值準備金。 除外責任 無"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISC01-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...逾期未交付者，則本契約自應繳日起進入保險費停繳期。 於本契約年金累積期間內，要保人得申請終止保險費停繳期並繼續交付分期保險費。 第七條 年金保單價值準備金的通知與計算 年金..."
+            },
+            {
+              "document": "212421M21AISC01-A.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...組合收益，扣除相關費用，並 參考市場利率訂定之，且不得為負數。本公司每年將以約定方式通知要保人；另要保人可透過本公司網站 或撥免付費電話查詢。 本契約所稱「年金預定利率」係..."
+            },
+            {
+              "document": "212421M21AISC01-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...值準備金與當年度已繳保險費扣除附加費用（如附表一）後之和。 二、扣除要保人依第十二條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以日單利年複利計算之金額。 第八條..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "212421M21AISC01-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 184988,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 5755,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "212421M21AISC01-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 32164,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 51,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "212421M21AISC02",
+      "company": "朝陽人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "朝陽人壽鑫利率變動型年金保險(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "103/03/12",
+      "discontinued_date": "104/08/03",
+      "source_batch_id": "tii-life-070",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 5870,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、身故。",
+          "terms": [
+            "給付項目",
+            "身故"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISC02-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "朝陽人壽鑫利率變動型年金保險 （本保險為不分紅保險單，不參加紅利分配，並無紅利給付項目） （給付項目：年金、返還年金保單價值準備金） ※本商品經本公司合格簽署人員檢視其內..."
+            },
+            {
+              "document": "212421M21AISC02-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...分期給付之金額。 本契約所稱「未支領之年金餘額」係指被保險人於本契約約定之保證期間內身故時，剩餘保證期間內未領 取之年金金額。 本契約所稱「宣告利率」係指本公司於本契約生效..."
+            },
+            {
+              "document": "212421M21AISC02-A.pdf",
+              "page": 2,
+              "term": "身故",
+              "snippet": "...至保證期間屆滿。如被保險人於 保證期間屆滿仍生存時，本公司繼續給付年金金額至被保險人身故之該保單年度末或被保險人保險年齡達 一一○歲較早發生者止，本契約效力即行終止。 要保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISC02-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所稱「年金給付開始日」係指依本契約約定開始給付第一次年金之日。 本契約所稱「..."
+            },
+            {
+              "document": "212421M21AISC02-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所稱「年金給付開始日」係指依本契約約定開始給付第一次年金之日。 本契約所稱「..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：限制、投保年齡、除外責任。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "除外責任"
+          ],
+          "pages": [
+            1,
+            2,
+            3
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISC02-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...值 準備金，其超出的部份之年金保單價值準備金返還予要保人。 第十一條 契約的終止及其限制 要保人得於年金給付開始日前終止本契約，本公司應於接到通知後一個月內償付解約金，逾期..."
+            },
+            {
+              "document": "212421M21AISC02-A.pdf",
+              "page": 3,
+              "term": "投保年齡",
+              "snippet": "...計算及錯誤的處理 要保人在申請投保時，應將被保險人出生年月日在要保書填明。被保險人的投保年齡，以足歲計算，但未 滿一歲的零數超過六個月者，加算一歲。 被保險人的投保年齡發生錯誤..."
+            },
+            {
+              "document": "212421M21AISC02-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...壽鑫利率變動型年金保險 保險商品內容說明 承保內容 年金、返還年金保單價值準備金。 除外責任 無"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISC02-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...逾期未交付者，則本契約自應繳日起進入保險費停繳期。 於本契約年金累積期間內，要保人得申請終止保險費停繳期並繼續交付分期保險費。 第七條 年金保單價值準備金的通知與計算 年金..."
+            },
+            {
+              "document": "212421M21AISC02-A.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...組合收益，扣除相關費用，並 參考市場利率訂定之，且不得為負數。本公司每年將以約定方式通知要保人；另要保人可透過本公司網站 或撥免付費電話查詢。 本契約所稱「年金預定利率」係..."
+            },
+            {
+              "document": "212421M21AISC02-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...值準備金與當年度已繳保險費扣除附加費用（如附表一）後之和。 二、扣除要保人依第十二條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以日單利年複利計算之金額。 第八條..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "212421M21AISC02-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 120173,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 5819,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "212421M21AISC02-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 32164,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 51,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "212421M21AISD00",
+      "company": "朝陽人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "朝陽人壽利百代利率變動型年金保險",
+      "sale_status": "已停售",
+      "sale_date": "101/07/01",
+      "discontinued_date": "102/11/01",
+      "source_batch_id": "tii-life-070",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 5945,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、身故。",
+          "terms": [
+            "給付項目",
+            "身故"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISD00-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "朝陽人壽利百代利率變動型年金保險 （本保險為不分紅保險單，不參加紅利分配，並無紅利給付項目） （給付項目：年金、返還年金保單價值準備金） ※本商品經本公司合格簽署人員檢視其內..."
+            },
+            {
+              "document": "212421M21AISD00-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...分期給付之金額。 本契約所稱「未支領之年金餘額」係指被保險人於本契約約定之保證期間內身故時，剩餘保證期間內未領 取之年金金額。 本契約所稱「宣告利率」係指本公司於本契約生效..."
+            },
+            {
+              "document": "212421M21AISD00-A.pdf",
+              "page": 2,
+              "term": "身故",
+              "snippet": "...至保證期間屆滿。如被保險人於 保證期間屆滿仍生存時，本公司繼續給付年金金額至被保險人身故之該保單年度末或被保險人保險年齡達 一一○歲較早發生者止，本契約效力即行終止。 要保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISD00-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所稱「年金給付開始日」係指依本契約約定開始給付第一次年金之日。 本契約所稱「..."
+            },
+            {
+              "document": "212421M21AISD00-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所稱「年金給付開始日」係指依本契約約定開始給付第一次年金之日。 本契約所稱「..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：限制、投保年齡、除外責任。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "除外責任"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISD00-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...值 準備金，其超出的部份之年金保單價值準備金返還予要保人。 第十一條 契約的終止及其限制 要保人得於年金給付開始日前終止本契約，本公司應於接到通知後一個月內償付解約金，逾期..."
+            },
+            {
+              "document": "212421M21AISD00-A.pdf",
+              "page": 3,
+              "term": "投保年齡",
+              "snippet": "...計算及錯誤的處理 要保人在申請投保時，應將被保險人出生年月日在要保書填明。被保險人的投保年齡，以足歲計 算，但未 滿一歲的零數超過六個月者，加算一歲。 被保險人的投保年齡發生錯..."
+            },
+            {
+              "document": "212421M21AISD00-A.pdf",
+              "page": 4,
+              "term": "投保年齡",
+              "snippet": "者，受益人應將其無息退還本公司。 二、因投保年齡錯誤，致本公司短發年金金額者，本公司應計算實付年金金額與應付年金金額的差額，於 下次..."
+            },
+            {
+              "document": "212421M21AISD00-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...利百代利率變動型年金保險 保險商品內容說明 承保內容 年金、返還年金保單價值準備金 除外責任 無"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "212421M21AISD00-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...逾期未交付者，則本契約自應繳日起進入保險費停繳期。 於本契約年金累積期間內，要保人得申請終止保險費停繳期並繼續交付分期保險費。 第七條 年金保單價值準備金的通知與計算 年金..."
+            },
+            {
+              "document": "212421M21AISD00-A.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...合收益，扣除相關費用，並 參考市場利率訂定之，且不得為負數 。本公司每年將以約定方式通知要保人；另要保人可透過本公司網站 或撥免付費電話查詢。 本契約所稱「年金預定利率」係..."
+            },
+            {
+              "document": "212421M21AISD00-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...值準備金與當年度已繳保險費扣除附加費用（如附表一）後之和。 二、扣除要保人依第十二條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以日單利年複利計算之金額。 第八條..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "212421M21AISD00-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 184473,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 5893,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "212421M21AISD00-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 133170,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 52,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "212421MA1AISC22A11Z10000003",
+      "company": "朝陽人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "朝陽人壽鑫利率變動型年金保險(第3次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "104/08/04",
+      "discontinued_date": "105/08/31",
+      "source_batch_id": "tii-life-070",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 5974,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、身故。",
+          "terms": [
+            "給付項目",
+            "身故"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "212421MA1AISC22A11Z10000003-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...頁 朝陽人壽鑫利率變動型年金保險 （本保險為不分紅保險單，不參加紅利分配，並無紅利給付項目） （給付項目：年金、返還年金保單價值準備金） ※本商品經本公司合格簽署人員檢視其內..."
+            },
+            {
+              "document": "212421MA1AISC22A11Z10000003-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...分期給付之金額。 本契約所稱「未支領之年金餘額」係指被保險人於本契約約定之保證期間內身故時，剩餘保證期間內未領 取之年金金額。 本契約所稱「宣告利率」係指本公司於本契約生效..."
+            },
+            {
+              "document": "212421MA1AISC22A11Z10000003-A.pdf",
+              "page": 2,
+              "term": "身故",
+              "snippet": "...至保證期間屆滿。如被保險人於 保證期間屆滿仍生存時，本公司繼續給付年金金額至被保險人身故之該保單年度末或被保險人保險年齡達 一一○歲較早發生者止，本契約效力即行終止。 要保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "212421MA1AISC22A11Z10000003-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...真意，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所稱「年金給付開始日」係指依本契約約定開始給付第一次年金之日。 本契約所稱「..."
+            },
+            {
+              "document": "212421MA1AISC22A11Z10000003-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...，不得拘泥於所用的文字；如有疑義時，以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所稱「年金給付開始日」係指依本契約約定開始給付第一次年金之日。 本契約所稱「..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：限制、投保年齡、除外責任、不保事項。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "除外責任",
+            "不保事項"
+          ],
+          "pages": [
+            1,
+            2,
+            3
+          ],
+          "evidence": [
+            {
+              "document": "212421MA1AISC22A11Z10000003-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...值 準備金，其超出的部份之年金保單價值準備金返還予要保人。 第十一條 契約的終止及其限制 要保人得於年金給付開始日前終止本契約，本公司應於接到通知後一個月內償付解約金，逾期..."
+            },
+            {
+              "document": "212421MA1AISC22A11Z10000003-A.pdf",
+              "page": 3,
+              "term": "投保年齡",
+              "snippet": "...計算及錯誤的處理 要保人在申請投保時，應將被保險人出生年月日在要保書填明。被保險人的投保年齡，以足歲計算，但未 滿一歲的零數超過六個月者，加算一歲。 被保險人的投保年齡發生錯誤..."
+            },
+            {
+              "document": "212421MA1AISC22A11Z10000003-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...壽鑫利率變動型年金保險 保險商品內容說明 承保內容 年金、返還年金保單價值準備金。 除外責任或不保事項 無。"
+            },
+            {
+              "document": "212421MA1AISC22A11Z10000003-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...動型年金保險 保險商品內容說明 承保內容 年金、返還年金保單價值準備金。 除外責任或不保事項 無。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "212421MA1AISC22A11Z10000003-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...逾期未交付者，則本契約自應繳日起進入保險費停繳期。 於本契約年金累積期間內，要保人得申請終止保險費停繳期並繼續交付分期保險費。 第七條 年金保單價值準備金的通知與計算 年金..."
+            },
+            {
+              "document": "212421MA1AISC22A11Z10000003-A.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...組合收益，扣除相關費用，並 參考市場利率訂定之，且不得為負數。本公司每年將以約定方式通知要保人；另要保人可透過本公司網站 或撥免付費電話查詢。 本契約所稱「年金預定利率」係..."
+            },
+            {
+              "document": "212421MA1AISC22A11Z10000003-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...值準備金與當年度已繳保險費扣除附加費用（如附表一）後之和。 二、扣除要保人依第十二條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以日單利年複利計算之金額。 第八條..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "212421MA1AISC22A11Z10000003-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 125514,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 5917,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "212421MA1AISC22A11Z10000003-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 108421,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 57,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    }
+  ]
+}
