@@ -1,0 +1,1574 @@
+{
+  "generated_at": "2026-07-08T15:45:06+08:00",
+  "summary": {
+    "generated_at": "2026-07-08T15:45:06+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-life-076",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 15,
+    "document_count": 30,
+    "extracted_document_count": 29,
+    "no_text_document_count": 1,
+    "error_document_count": 0,
+    "pdf_document_count": 27,
+    "legacy_doc_document_count": 3,
+    "policy_terms_document_count": 15,
+    "product_summary_document_count": 15,
+    "total_text_characters": 80720,
+    "focus_counts": [
+      {
+        "label": "理賠申請",
+        "count": 6
+      },
+      {
+        "label": "保障項目",
+        "count": 4
+      },
+      {
+        "label": "重要定義",
+        "count": 4
+      },
+      {
+        "label": "特殊項目",
+        "count": 3
+      }
+    ],
+    "coverage_tag_counts": [],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 29
+      },
+      {
+        "label": "no_text",
+        "count": 1
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "215411M11A00000",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽即期年金保險（SPIA）",
+      "sale_status": "已停售",
+      "sale_date": "102/09/23",
+      "discontinued_date": "103/10/27",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 4061,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：身故。",
+          "terms": [
+            "身故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215411M11A00000-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...本契約保證期間屆滿後 ， 每屆保單週年日 仍生存時 ， 本公司給付年金金額至被保險人身故或保險年齡達一一○歲之保單週 年日為止，本契約效力即行終止。 【年金的申領】 被保險..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215411M11A00000-F.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "幸福人壽即期年金保險(SPIA) 產品介紹 承保範圍 【名詞定義】 本契約名詞定義如下： 一、 「保證期間」 ：係指依本契約約定，不論被保險人生存與..."
+            },
+            {
+              "document": "215411M11A00000-F.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "幸福人壽即期年金保險(SPIA) 產品介紹 承保範圍 【名詞定義】 本契約名詞定義如下： 一、 「保證期間」 ：係指依本契約約定，不論被保險人生存與..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：申請、申領、檢具、受益人。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215411M11A00000-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...，應提出可資證明被保險人生存之文 件。但於保證期間內不在此限。 保證期間年金受益人得申請提前給付 ， 其計算之貼現利率為本保單之預定利率。 身故受益人不適用前項年金提前給付..."
+            },
+            {
+              "document": "215411M11A00000-F.pdf",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...至被保險人身故或保險年齡達一一○歲之保單週 年日為止，本契約效力即行終止。 【年金的申領】 被保險人於生存期間每年支領年金給付時，應提出可資證明被保險人生存之文 件。但於保..."
+            },
+            {
+              "document": "215411M11A00000-F.pdf",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...給付申請之約定。 被保險人身故後仍有未支領之年金餘額時 ， 身故受益人申領年金給付應檢具下列 文件： 一、保險單或其謄本。 二、被保險人死亡證明文件及除戶戶籍謄本。 三、受..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215411M11A00000-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 120947,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3396,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215411M11A00000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 77938,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 665,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215421M21A00000",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽利率變動型年金保險（DAD）",
+      "sale_status": "已停售",
+      "sale_date": "103/02/12",
+      "discontinued_date": "103/12/31",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 4132,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215421M21A00000-F.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "幸福人壽利率變動型年金保險（DAD） 產品介紹 承保範圍 【名詞定義】 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證給付年金..."
+            },
+            {
+              "document": "215421M21A00000-F.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "幸福人壽利率變動型年金保險（DAD） 產品介紹 承保範圍 【名詞定義】 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證給付年金..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215421M21A00000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...，部分提領費用率如附表二，超過部 分及第二次以上，則依附表二之解約費用規定辦理。 【除外責任】 無"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：申請、受益人、通知。",
+          "terms": [
+            "申請",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215421M21A00000-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...第一保單月份： 一、 已繳保險費扣除附加費用（如附表一）。 二、 扣除要保人依第十條申請減少之金額。 三、 每日依前二款之淨額加計按各曆月宣告利率以日單利法計算之金額。 第..."
+            },
+            {
+              "document": "215421M21A00000-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...之年金金額若低於新台幣六萬元時，本公司改依年金保單價值準備金於年金給付開始日一次給付受益人， 本契約即行終止。 如年金給付開始日的年金保單價值準備金已逾年領年金金額新台幣 一..."
+            },
+            {
+              "document": "215421M21A00000-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...利率按全年度日數依比 例計算（1/365 或 1/366） 。本公司每年將以郵寄方式通知要保人；另要保人可透過本公司網站或撥免付費電話查詢。 本契約所稱「預定利率」係指本公..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215421M21A00000-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 133649,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 2827,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215421M21A00000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 105694,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1305,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215421M21A00001",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽利率變動型年金保險（DAD）(第一次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "104/01/01",
+      "discontinued_date": "104/07/01",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 4126,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215421M21A00001-F.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "幸福人壽利率變動型年金保險（DAD） 產品介紹 承保範圍 【名詞定義】 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證給付年金..."
+            },
+            {
+              "document": "215421M21A00001-F.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "幸福人壽利率變動型年金保險（DAD） 產品介紹 承保範圍 【名詞定義】 本契約所稱「保證期間」係指依本契約約定，不論被保險人生存與否，本公司保證給付年金..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215421M21A00001-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...，部分提領費用率如附表二，超過部 分及第二次以上，則依附表二之解約費用規定辦理。 【除外責任】 無"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：申請、受益人、通知。",
+          "terms": [
+            "申請",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215421M21A00001-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...第一保單月份： 一、 已繳保險費扣除附加費用（如附表一）。 二、 扣除要保人依第十條申請減少之金額。 三、 每日依前二款之淨額加計按各曆月宣告利率以日單利法計算之金額。 第..."
+            },
+            {
+              "document": "215421M21A00001-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...之年金金額若低於新台幣六萬元時，本公司改依年金保單價值準備金於年金給付開始日一次給付受益人， 本契約即行終止。 如年金給付開始日的年金保單價值準備金已逾年領年金金額新台幣 一..."
+            },
+            {
+              "document": "215421M21A00001-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...利率按全年度日數依比 例計算（1/365 或 1/366） 。本公司每年將以郵寄方式通知要保人；另要保人可透過本公司網站或撥免付費電話查詢。 本契約所稱「預定利率」係指本公..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215421M21A00001-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 133663,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 2821,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215421M21A00001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 105694,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1305,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215421M22C00100",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽幸福一生利率變動型年金保險(DAA01)",
+      "sale_status": "已停售",
+      "sale_date": "092/03/19",
+      "discontinued_date": "093/04/01",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 3915,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：身故、殘廢。",
+          "terms": [
+            "身故",
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215421M22C001-F.doc",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...第0910750284號函核准 發行公司 幸福人壽保險公司 產品介紹 承保範圍 一、身故返還保單價值準備金 被保險人於本契約有效期間之遞延期間內身故者，本公司返還給付日之前..."
+            },
+            {
+              "document": "215421M22C001-F.doc",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...貼現率為計算年金金額之預定利率。 本公司返還保單價值準備金後，本契約即行終止。 二、殘廢返還保單價值準備金 被保險人於本契約有效期間之遞延期間內致成附表所列第一級殘廢程度之..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：申領、通知。",
+          "terms": [
+            "申領",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215421M22C001-F.doc",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...三十日前，本公司應主動以書面通知要保人。 要保人於遞延期滿前，得以書面通知本公司改為申領遞延期滿一次領回年金，其金額為遞延期滿時之保單價值準備金。其書面通知，需於遞延期滿前..."
+            },
+            {
+              "document": "215421M22C001-F.doc",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...。 三、遞延期滿一次領回年金選擇權 本契約遞延期間期滿之三十日前，本公司應主動以書面通知要保人。 要保人於遞延期滿前，得以書面通知本公司改為申領遞延期滿一次領回年金，其金額..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215421M22C001-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 194126,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3365,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215421M22C001-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 20992,
+          "page_count": null,
+          "pages_parsed": 1,
+          "text_char_count": 550,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215421M22C00200",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽幸福一生利率變動型年金保險(DAA02)",
+      "sale_status": "已停售",
+      "sale_date": "093/04/01",
+      "discontinued_date": "094/06/01",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 6660,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、身故、殘廢。",
+          "terms": [
+            "給付項目",
+            "身故",
+            "殘廢"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "215421M22C002-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...準備金、遞延期滿一次領回年金、年金） 本保險為不分紅保險單、不參予紅利分配、並無紅利給付項目 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令，惟為確保權益，..."
+            },
+            {
+              "document": "215421M22C002-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...發給保險單 作為承保的憑證。要保人在本公司簽發保險單前先 交付相當於保險費而被保險人身故時無息退還要保 人所繳保險費。 【契約撤銷權】 第四條 ： 要保人於保險單送達翌日起..."
+            },
+            {
+              "document": "215421M22C002-A.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...貼現率為計算年金金額之預定 利率。 本公司返還保單價值準備金後，本契約即行終止。 【殘廢返還保單價值準備金】 第八條： 幸福人壽幸福一生利率變動型年金保險保單條款(DAA)..."
+            },
+            {
+              "document": "215421M22C002-F.doc",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...第0910750284號函核准 發行公司 幸福人壽保險公司 產品介紹 承保範圍 一、身故返還保單價值準備金 被保險人於本契約有效期間之遞延期間內身故者，本公司返還給付日之前..."
+            },
+            {
+              "document": "215421M22C002-F.doc",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...貼現率為計算年金金額之預定利率。 本公司返還保單價值準備金後，本契約即行終止。 二、殘廢返還保單價值準備金 被保險人於本契約有效期間之遞延期間內致成附表所列第一級殘廢程度之..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：名詞定義、定義。",
+          "terms": [
+            "名詞定義",
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215421M22C002-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...事人的真意，不得拘 泥於所用的文字；如有疑義時，以作有利於被保險 人的解釋為準。 【名詞定義】 第二條： 本契約所稱「保證期間」係指依本契約約定，不論 被保險人生存與否，本公司..."
+            },
+            {
+              "document": "215421M22C002-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...的真意，不得拘 泥於所用的文字；如有疑義時，以作有利於被保險 人的解釋為準。 【名詞定義】 第二條： 本契約所稱「保證期間」係指依本契約約定，不論 被保險人生存與否，本公司..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：限制、投保年齡。",
+          "terms": [
+            "限制",
+            "投保年齡"
+          ],
+          "pages": [
+            2,
+            3
+          ],
+          "evidence": [
+            {
+              "document": "215421M22C002-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...屆滿後之生存期間，每屆滿一 年仍生存時，本公司按年金金額給付年金。 【契約的終止及其限制】 第十三條 ： 要保人得於年金開始給付日前終止本契約。 本契約解約金為本公司給付解..."
+            },
+            {
+              "document": "215421M22C002-A.pdf",
+              "page": 3,
+              "term": "投保年齡",
+              "snippet": "...，應將被保險人出生年月日在要保書填明。如果 發生錯誤應依照下列規定辦理。 一、 真實投保年齡較本契約所載最高年齡為大者， 本契約無效，本公司無息退還所繳保險費；若 其錯誤原因歸..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "215421M22C002-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...費用（上限為保費的3.5%）。 二、保單年度初之保單價值準備金扣除要保人依第 十四條申請減少之金額。 三、依前二款之淨額加計其每日餘額按宣告利率計 算之金額。 第二保單年度..."
+            },
+            {
+              "document": "215421M22C002-A.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...。本宣告利率之宣告 時間為每月第一營業日，其保證期間為一年。本公 司每年將以郵寄方式通知要保人；另要保人可透過 本公司網站或撥免付費電話(0800)-885000查詢。 本..."
+            },
+            {
+              "document": "215421M22C002-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...始給付日的三十日前以書面通 知本公司變更年金開始給付日；變更後的年金開始 給付日須在申請日三十日之後，且須在被保險人保 險年齡達金八十歲之保單週年日之前。 本公司應於年金開..."
+            },
+            {
+              "document": "215421M22C002-F.doc",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...三十日前，本公司應主動以書面通知要保人。 要保人於遞延期滿前，得以書面通知本公司改為申領遞延期滿一次領回年金，其金額為遞延期滿時之保單價值準備金。其書面通知，需於遞延期滿前..."
+            },
+            {
+              "document": "215421M22C002-F.doc",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...行終止。 三、遞延期滿一次領回年金 本契約遞延期間期滿之三十日前，本公司應主動以書面通知要保人。 要保人於遞延期滿前，得以書面通知本公司改為申領遞延期滿一次領回年金，其金額..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215421M22C002-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 25098,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 5901,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215421M22C002-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 20480,
+          "page_count": null,
+          "pages_parsed": 1,
+          "text_char_count": 759,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215421M22C00300",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽幸福一生利率變動型年金保險(DAC)",
+      "sale_status": "已停售",
+      "sale_date": "094/06/01",
+      "discontinued_date": "096/04/19",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 4147,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：身故、殘廢。",
+          "terms": [
+            "身故",
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215421M22C003-F.doc",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...第0910750284號函核准 發行公司 幸福人壽保險公司 產品介紹 承保範圍 一、身故返還保單價值準備金 被保險人於本契約有效期間之遞延期間內身故者，本公司返還給付日之前..."
+            },
+            {
+              "document": "215421M22C003-F.doc",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...貼現率為計算年金金額之預定利率。 本公司返還保單價值準備金後，本契約即行終止。 二、殘廢返還保單價值準備金 被保險人於本契約有效期間之遞延期間內致成附表所列第一級殘廢程度之..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：申領、通知。",
+          "terms": [
+            "申領",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215421M22C003-F.doc",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...三十日前，本公司應主動以書面通知要保人。 要保人於遞延期滿前，得以書面通知本公司改為申領遞延期滿一次領回年金，其金額為遞延期滿時之保單價值準備金。其書面通知，需於遞延期滿前..."
+            },
+            {
+              "document": "215421M22C003-F.doc",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...行終止。 三、遞延期滿一次領回年金 本契約遞延期間期滿之三十日前，本公司應主動以書面通知要保人。 要保人於遞延期滿前，得以書面通知本公司改為申領遞延期滿一次領回年金，其金額..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215421M22C003-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 203140,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3470,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215421M22C003-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 20992,
+          "page_count": null,
+          "pages_parsed": 1,
+          "text_char_count": 677,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215421M22C00301",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽幸福一生利率變動型年金保險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/04/20",
+      "discontinued_date": "096/08/31",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 3848,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215421M22C00301-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 216774,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3294,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215421M22C00301-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 153648,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 554,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215421M22C00302",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽幸福一生利率變動型年金保險(DAC)(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/09/01",
+      "discontinued_date": "096/12/31",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 3885,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215421M22C00302-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 219961,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3307,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215421M22C00302-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 155056,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 578,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215421M22C00303",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽幸福一生利率變動型年金保險(DAC)(第3次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "097/01/01",
+      "discontinued_date": "098/01/31",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 3885,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215421M22C00303-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 219961,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3307,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215421M22C00303-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 155056,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 578,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215421M22C00304",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽幸福一生利率變動型年金保險(DAC)(第4次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "098/02/01",
+      "discontinued_date": "098/07/14",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 3882,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215421M22C00304-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 260649,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3346,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215421M22C00304-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 154159,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 536,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215421M22C00500",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽達樂利率變動型年金保險(DAB)",
+      "sale_status": "已停售",
+      "sale_date": "095/01/25",
+      "discontinued_date": "096/04/01",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 1,
+      "text_char_count": 6928,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215421M22C005-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 449658,
+          "page_count": 6,
+          "pages_parsed": 6,
+          "text_char_count": 6928,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215421M22C005-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 206070,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 0,
+          "extraction_status": "no_text",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215421M22C00501",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽達樂利率變動型年金保險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/04/02",
+      "discontinued_date": "096/08/31",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 7742,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215421M22C00501-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 445599,
+          "page_count": 6,
+          "pages_parsed": 6,
+          "text_char_count": 6902,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215421M22C00501-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 92172,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 840,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215421M22C00502",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽達樂利率變動型年金保險(DAB)(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/09/01",
+      "discontinued_date": "096/12/31",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 7827,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215421M22C00502-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 446419,
+          "page_count": 6,
+          "pages_parsed": 6,
+          "text_char_count": 6987,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215421M22C00502-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 92172,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 840,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215421M22C00503",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽達樂利率變動型年金保險(甲型)(DAB)(第3次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "097/01/01",
+      "discontinued_date": "098/01/31",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 7827,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215421M22C00503-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 446419,
+          "page_count": 6,
+          "pages_parsed": 6,
+          "text_char_count": 6987,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215421M22C00503-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 92172,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 840,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215421M22C00504",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "幸福人壽達樂利率變動型年金保險(甲型)(DAB)(第4次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "098/02/01",
+      "discontinued_date": "098/07/14",
+      "source_batch_id": "tii-life-076",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 7855,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215421M22C00504-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 457429,
+          "page_count": 6,
+          "pages_parsed": 6,
+          "text_char_count": 7007,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215421M22C00504-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 94144,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 848,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    }
+  ]
+}
