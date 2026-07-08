@@ -1,0 +1,2057 @@
+{
+  "generated_at": "2026-07-08T15:49:32+08:00",
+  "summary": {
+    "generated_at": "2026-07-08T15:49:32+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-life-077",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 20,
+    "document_count": 39,
+    "extracted_document_count": 39,
+    "no_text_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 37,
+    "legacy_doc_document_count": 2,
+    "policy_terms_document_count": 20,
+    "product_summary_document_count": 19,
+    "total_text_characters": 251507,
+    "focus_counts": [
+      {
+        "label": "保障項目",
+        "count": 4
+      },
+      {
+        "label": "特殊項目",
+        "count": 4
+      },
+      {
+        "label": "理賠申請",
+        "count": 4
+      },
+      {
+        "label": "重要定義",
+        "count": 2
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "壽險",
+        "count": 20
+      },
+      {
+        "label": "失能/殘扶",
+        "count": 3
+      },
+      {
+        "label": "意外險",
+        "count": 2
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 39
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "215141M31A00100",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽超越變額萬能壽險(UVL)",
+      "sale_status": "已停售",
+      "sale_date": "093/07/16",
+      "discontinued_date": "093/07/15",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 12569,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            7
+          ],
+          "evidence": [
+            {
+              "document": "215141M31A001-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...契約所有該投資標的之 單位計算而得。 幸福人壽超越變額萬能壽險保單條款(UVL) (給付項目：身故保險金、完全殘廢保險金、祝壽保險金) 營業登記：台保字第 006 號 核准文號..."
+            },
+            {
+              "document": "215141M31A001-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...期間內致成附表一「殘廢等級與程度」 所列第一級七項殘廢程度之一者。 三、本契約所稱「保險金額」係指被保險人身故或 致成完全殘廢時本公司依照本契約約定給付的 保險金額。 四、本..."
+            },
+            {
+              "document": "215141M31A001-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...等級與程度」 所列第一級七項殘廢程度之一者。 三、本契約所稱「保險金額」係指被保險人身故或 致成完全殘廢時本公司依照本契約約定給付的 保險金額。 四、本契約所稱「目標保險費..."
+            },
+            {
+              "document": "215141M31A001-F.doc",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...920711262號函核准 發行公司 幸福人壽保險公司 產品介紹 承保範圍 一、身故保險金 被保險人於本契約有效期間內身故者，本公司按下列金額給付「身故保險金」： 甲型：本公..."
+            },
+            {
+              "document": "215141M31A001-F.doc",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...第0920711262號函核准 發行公司 幸福人壽保險公司 產品介紹 承保範圍 一、身故保險金 被保險人於本契約有效期間內身故者，本公司按下列金額給付「身故保險金」： 甲型..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：傷害、意外傷害事故。",
+          "terms": [
+            "傷害",
+            "意外傷害事故"
+          ],
+          "pages": [
+            4
+          ],
+          "evidence": [
+            {
+              "document": "215141M31A001-A.pdf",
+              "page": 4,
+              "term": "傷害",
+              "snippet": "...約定給付身故保險金；如要保人或 受益人能提出證明文件，足以認為被保險人極可能 因意外傷害事故而死亡者，本公司應依意外傷害事 故發生日為準，依第十九條約定給付身故保險金。 前..."
+            },
+            {
+              "document": "215141M31A001-A.pdf",
+              "page": 4,
+              "term": "意外傷害事故",
+              "snippet": "...九條約定給付身故保險金；如要保人或 受益人能提出證明文件，足以認為被保險人極可能 因意外傷害事故而死亡者，本公司應依意外傷害事 故發生日為準，依第十九條約定給付身故保險金。 前項身..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、投保年齡。",
+          "terms": [
+            "除外責任",
+            "投保年齡"
+          ],
+          "pages": [
+            1,
+            2,
+            5,
+            6
+          ],
+          "evidence": [
+            {
+              "document": "215141M31A001-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": "...當月無該日時， 指該月之末日。 二十一、本契約所稱「到達年齡」係指保險單面頁 所載之投保年齡加上本契約之保單年度 後，再減去一。 【貨幣單位與匯率計算】 第三條 本契約保險費之..."
+            },
+            {
+              "document": "215141M31A001-A.pdf",
+              "page": 5,
+              "term": "除外責任",
+              "snippet": "...謄本。 二、被保險人生存之證明文件。 三、保險金申請書。 四、受益人的身分證明。 【除外責任】 第二十五條 被保險人、要保人或受益人有下列情形之一者，本 公司不負給付保險金的責..."
+            },
+            {
+              "document": "215141M31A001-A.pdf",
+              "page": 6,
+              "term": "投保年齡",
+              "snippet": "...資標的核准發行之主管機構核准之。 【年齡的計算及錯誤的處理】 第三十一條 被保險人的投保年齡，以足歲計算，但是未滿一歲 的零數超過六個月者加算一歲，要保人在申請投保 時，應將被..."
+            },
+            {
+              "document": "215141M31A001-F.doc",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...」予受益人，惟其保單價值總額之計算改以達96歲之保單週年日後第二個資產評估日為準。 除外責任 詳保險契約條款第二十五條 吀椀洀攀猀 一攀眀 刀漀洀愀渀 俾僾凾勾哾嗾图埾嫾峾廾"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：申請、保險金的申領、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "evidence": [
+            {
+              "document": "215141M31A001-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...計算。 二、返還保單價值總額、各項保險金及解約金（含 部分提領）給付： 本公司於收齊申請文件後第二個資產評估日根 據匯率參考機構之收盤買入匯率計算。 三、每月扣除額： 本公..."
+            },
+            {
+              "document": "215141M31A001-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...當本契約保單價值總額不足以支付每月扣除額時， 除第二十九條之規定外，本公司將以書面通知要保 人交付約定之目標保險費及超額保險費，自書面通 知送達翌日起算三十日為寬限期間。..."
+            },
+            {
+              "document": "215141M31A001-A.pdf",
+              "page": 3,
+              "term": "申請",
+              "snippet": "...通知要保人。 前項第二款及第三款調整後，要保人應於接獲本公 司通知後十五日內向本公司申請投資標的的轉換或 終止；若未於前述期間內提出申請時，視為要保人 同意以該通知規定之方..."
+            },
+            {
+              "document": "215141M31A001-F.doc",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...效期間內身故者，本公司按下列金額給付「身故保險金」： 甲型：本公司收齊第二十條約定之申領文件後第二個資產評估日計算之保單價值總額的一點一倍，但不得低於基本保額。 乙型：基本..."
+            },
+            {
+              "document": "215141M31A001-F.doc",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...生存時，本契約效力即行終止。本公司按第十九條「身故保險金」之金額給付「祝壽保險金」予受益人，惟其保單價值總額之計算改以達96歲之保單週年日後第二個資產評估日為準。 除外責任..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A001-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 38246,
+          "page_count": 7,
+          "pages_parsed": 7,
+          "text_char_count": 11989,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A001-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 20480,
+          "page_count": null,
+          "pages_parsed": 1,
+          "text_char_count": 580,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00101",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽超越變額萬能壽險(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "093/07/16",
+      "discontinued_date": "095/06/20",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 6607,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A002-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 295143,
+          "page_count": 8,
+          "pages_parsed": 8,
+          "text_char_count": 6607,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00102",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽超越變額萬能壽險(第2次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "095/06/21",
+      "discontinued_date": "095/10/24",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 7794,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：保險金、身故、殘廢。",
+          "terms": [
+            "保險金",
+            "身故",
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215141M31A003-F.doc",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "幸福人壽超越變額萬能壽險(UVL) 產品介紹 承保範圍 一、身故保險金 被保險人於本契約有效期間內身故者，本公司按下列金額給付「身故保險金」： 甲型：本公..."
+            },
+            {
+              "document": "215141M31A003-F.doc",
+              "page": 1,
+              "term": "身故",
+              "snippet": "幸福人壽超越變額萬能壽險(UVL) 產品介紹 承保範圍 一、身故保險金 被保險人於本契約有效期間內身故者，本公司按下列金額給付「身故保險金」： 甲型..."
+            },
+            {
+              "document": "215141M31A003-F.doc",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...本公司收齊第二十條約定之申領文件後第二個資產評估日計算之保單價值總額之和。 二、完全殘廢保險金 被保險人於本契約有效期間內致成完全殘廢者，本公司按下列金額給付「完全殘廢保險..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215141M31A003-F.doc",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...」予受益人，惟其保單價值總額之計算改以達96歲之保單週年日後第二個資產評估日為準。 除外責任 詳保險契約條款第二十五條 吀椀洀攀猀 一攀眀 刀漀洀愀渀 爀椀愀氀 唀渀椀挀漀搀攀..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：申領、受益人。",
+          "terms": [
+            "申領",
+            "受益人"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215141M31A003-F.doc",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...效期間內身故者，本公司按下列金額給付「身故保險金」： 甲型：本公司收齊第二十條約定之申領文件後第二個資產評估日計算之保單價值總額的一點一倍，但不得低於基本保額。 乙型：基本..."
+            },
+            {
+              "document": "215141M31A003-F.doc",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...生存時，本契約效力即行終止。本公司按第十九條「身故保險金」之金額給付「祝壽保險金」予受益人，惟其保單價值總額之計算改以達96歲之保單週年日後第二個資產評估日為準。 除外責任..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A003-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 276144,
+          "page_count": 10,
+          "pages_parsed": 10,
+          "text_char_count": 7306,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A003-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 19456,
+          "page_count": null,
+          "pages_parsed": 1,
+          "text_char_count": 488,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00103",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽超越變額萬能壽險(第3次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "095/10/25",
+      "discontinued_date": "096/02/11",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 8434,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00103-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 204900,
+          "page_count": 10,
+          "pages_parsed": 10,
+          "text_char_count": 7268,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00103-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 309234,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1166,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00104",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽超越變額萬能壽險(第4次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/02/12",
+      "discontinued_date": "096/05/01",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 8864,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00104-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 312184,
+          "page_count": 10,
+          "pages_parsed": 10,
+          "text_char_count": 7200,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00104-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 140926,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1664,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00105",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽超越變額萬能壽險(第5次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/05/02",
+      "discontinued_date": "096/05/06",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 8322,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00105-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 313090,
+          "page_count": 10,
+          "pages_parsed": 10,
+          "text_char_count": 7224,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00105-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 143888,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1098,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00106",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽超越變額萬能壽險(第6次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/05/07",
+      "discontinued_date": "096/05/29",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 8300,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00106-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 312375,
+          "page_count": 10,
+          "pages_parsed": 10,
+          "text_char_count": 7203,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00106-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 144202,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1097,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00107",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽超越變額萬能壽險(第7次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/05/30",
+      "discontinued_date": "096/08/31",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 8264,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00107-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 310317,
+          "page_count": 9,
+          "pages_parsed": 9,
+          "text_char_count": 7167,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00107-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 144184,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1097,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00200",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽優越變額萬能終身壽險",
+      "sale_status": "已停售",
+      "sale_date": "096/07/21",
+      "discontinued_date": "096/07/25",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 14022,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00200-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 581253,
+          "page_count": 11,
+          "pages_parsed": 11,
+          "text_char_count": 12595,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00200-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 155552,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1427,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00201",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽優越變額萬能終身壽險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/07/26",
+      "discontinued_date": "096/08/31",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 14018,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00201-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 580997,
+          "page_count": 11,
+          "pages_parsed": 11,
+          "text_char_count": 12591,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00201-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 155552,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1427,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00202",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽優越變額萬能終身壽險(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/09/01",
+      "discontinued_date": "096/09/30",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 14127,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00202-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 583015,
+          "page_count": 11,
+          "pages_parsed": 11,
+          "text_char_count": 12700,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00202-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 155552,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1427,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00203",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽優越變額萬能終身壽險(第3次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/10/01",
+      "discontinued_date": "097/01/14",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 14726,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00203-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 519008,
+          "page_count": 11,
+          "pages_parsed": 11,
+          "text_char_count": 12813,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00203-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 154505,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1913,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00204",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽優越變額萬能終身壽險(VL2)(第4次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "097/01/15",
+      "discontinued_date": "098/08/31",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 15467,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00204-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 514706,
+          "page_count": 11,
+          "pages_parsed": 11,
+          "text_char_count": 12964,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00204-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 167747,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2503,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00205",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽優越變額萬能終身壽險(VL2)(第五次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "098/09/01",
+      "discontinued_date": "099/04/20",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 15008,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00205-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 514751,
+          "page_count": 11,
+          "pages_parsed": 11,
+          "text_char_count": 13010,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00205-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 195462,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 1998,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00206",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽優越變額萬能終身壽險(VL2)(第六次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "099/04/21",
+      "discontinued_date": "099/08/31",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 14317,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00206-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 441011,
+          "page_count": 11,
+          "pages_parsed": 11,
+          "text_char_count": 12515,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00206-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 179487,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 1802,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00207",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽優越變額萬能終身壽險(VL2)(第七次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "099/09/01",
+      "discontinued_date": "099/10/31",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 14600,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00207-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 486108,
+          "page_count": 12,
+          "pages_parsed": 12,
+          "text_char_count": 12277,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00207-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 180232,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 2323,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00208",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽優越變額萬能終身壽險(VL2)(第八次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "099/11/01",
+      "discontinued_date": "101/07/15",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 14163,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00208-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 486359,
+          "page_count": 12,
+          "pages_parsed": 12,
+          "text_char_count": 12299,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00208-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 145671,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 1864,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00209",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽優越變額萬能終身壽險(VL2)(第九次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/07/16",
+      "discontinued_date": "102/10/06",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 14191,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00209-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 490377,
+          "page_count": 12,
+          "pages_parsed": 12,
+          "text_char_count": 12327,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00209-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 145657,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 1864,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00210",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽優越變額萬能終身壽險(VL2)(第10次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/10/07",
+      "discontinued_date": "103/04/30",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 15312,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：身故、殘廢。",
+          "terms": [
+            "身故",
+            "殘廢"
+          ],
+          "pages": [
+            1,
+            2
+          ],
+          "evidence": [
+            {
+              "document": "215141M31A00210-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "幸福人壽優越變額萬能終身壽險(VL2) 保險商品內容說明 承保範圍 一、 身故保險金 被保險人於本契約有效期間內身故者，本公司按下列金額給付「身故保險金」： 甲型..."
+            },
+            {
+              "document": "215141M31A00210-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...額與扣除要保時間在先之保險公司應理賠之金額後 所餘之限額比例分擔其責任。 三、 完全殘廢保險金 被保險人於本契約有效期間內致成完全殘廢者 ， 本公司按下列金額給付 「完全殘..."
+            },
+            {
+              "document": "215141M31A00210-F.pdf",
+              "page": 2,
+              "term": "身故",
+              "snippet": "...意自殺或自成完全殘廢。但自契約訂立或復效之日起二年後故意自殺致死者，本公 司仍負給付身故保險金或喪葬費用保險金之責任。 三、被保險人因犯罪處死或拒捕或越獄致死或殘廢。 前項..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215141M31A00210-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...據收齊申領文件後第二個資產評估日計算之保單價值總額給付予受益人，本 契約效力終止。 除外責任"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：受益人、通知。",
+          "terms": [
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "215141M31A00210-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...公司收齊第二十四條約定之申 領文件後第二個資產評估日計算之保單價 值總額之和。 若因受益人延遲通知而致本公司於被保險人身故後仍依第十八條約定扣繳危險保險費時，本 公司應無息退..."
+            },
+            {
+              "document": "215141M31A00210-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...二十四條約定之申 領文件後第二個資產評估日計算之保單價 值總額之和。 若因受益人延遲通知而致本公司於被保險人身故後仍依第十八條約定扣繳危險保險費時，本 公司應無息退還該危險..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00210-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 440117,
+          "page_count": 12,
+          "pages_parsed": 12,
+          "text_char_count": 12324,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00210-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 196424,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2988,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "215141M31A00211",
+      "company": "幸福人壽保險股份有限公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "幸福人壽優越變額萬能終身壽險(VL2)(第11次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "103/05/01",
+      "discontinued_date": "104/04/30",
+      "source_batch_id": "tii-life-077",
+      "coverage_tags": [
+        "壽險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 22402,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險範圍、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "215141M31A00211-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...103.05.22 福算字第 1386 號 幸福人壽優越變額萬能終身壽險(VL2) 給付項目：身故保險金、喪葬費用保險金、完全殘廢保險金"
+            },
+            {
+              "document": "215141M31A00211-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...有效期間內致成附表一「殘廢等級與程度」 所列七項殘廢程度之一者。 三、本契約所稱「 保險金額」係指被保險人身故或 致成完全殘廢時本公司依照本契約約定給付的 保險金額。 四、本..."
+            },
+            {
+              "document": "215141M31A00211-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...殘廢等級與程度」 所列七項殘廢程度之一者。 三、本契約所稱「 保險金額」係指被保險人身故或 致成完全殘廢時本公司依照本契約約定給付的 保險金額。 四、本契約所稱「目標保險費..."
+            },
+            {
+              "document": "215141M31A00211-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "幸福人壽優越變額萬能終身壽險(VL2) 保險商品內容說明 承保範圍 一、 身故保險金 被保險人於本契約有效期間內身故者，本公司按下列金額給付「身故保險金」： 甲型..."
+            },
+            {
+              "document": "215141M31A00211-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...額與扣除要保時間在先之保險公司應理賠之金額後 所餘之限額比例分擔其責任。 三、 完全殘廢保險金 被保險人於本契約有效期間內致成完全殘廢者 ， 本公司按下列金額給付 「完全殘..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：傷害、意外傷害事故。",
+          "terms": [
+            "傷害",
+            "意外傷害事故"
+          ],
+          "pages": [
+            3,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "215141M31A00211-A.pdf",
+              "page": 3,
+              "term": "傷害",
+              "snippet": "...喪葬費用保險 金」 ；如要保人或受益人能提出證明文件，足以認為 被保險人極可能因意外傷害事故而死亡者，本公司 應依意外傷害事故發生日為準，依本契約給付「身 故保險金」或「喪..."
+            },
+            {
+              "document": "215141M31A00211-A.pdf",
+              "page": 3,
+              "term": "意外傷害事故",
+              "snippet": "...或「喪葬費用保險 金」 ；如要保人或受益人能提出證明文件，足以認為 被保險人極可能因意外傷害事故而死亡者，本公司 應依意外傷害事故發生日為準，依本契約給付「身 故保險金」或「喪葬費..."
+            },
+            {
+              "document": "215141M31A00211-A.pdf",
+              "page": 8,
+              "term": "傷害",
+              "snippet": "...視 力測定之。 (2)失明係指視力永久在萬國式視力表零點零二以下而言 。 (3)以自傷害之日起經過六個月的治療為判定原則，但眼 球摘出等明顯無法復原之情況，不在此限。 2...."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：除外責任、限制、投保年齡、保險期間。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5,
+            6,
+            7
+          ],
+          "evidence": [
+            {
+              "document": "215141M31A00211-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": "...當月無該日時，指 該月之末日。 二十一、本契約所稱「到達年齡」係指保險單面頁 所載之投保年齡加上本契約之保單年度後，再 減去一。 二十二、本契約所稱「死亡給付」係指「身故保險..."
+            },
+            {
+              "document": "215141M31A00211-A.pdf",
+              "page": 3,
+              "term": "保險期間",
+              "snippet": "...契約效力的恢復】 第八條 本契約停止效力後，要保人得在停效日起二年內， 申請復效。但保險期間屆滿後不得申請復效。 要保人於停止效力之日起六個月內提出前項復效申 請，並經要保人清..."
+            },
+            {
+              "document": "215141M31A00211-A.pdf",
+              "page": 5,
+              "term": "限制",
+              "snippet": "...標的之價值總額扣除提領 費用，其提領費用如附表二。 【死亡給付與保單帳戶價值最低比率限制】 第二十條 本契約保險死亡給付對保單帳戶價值之比率，應於 要保人投保、每次繳交保險..."
+            },
+            {
+              "document": "215141M31A00211-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...據收齊申領文件後第二個資產評估日計算之保單價值總額給付予受益人，本 契約效力終止。 除外責任"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "evidence": [
+            {
+              "document": "215141M31A00211-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...計算。 二、返還保單價值總額、各項保險金及解約金（含 部分提領）給付： 本公司於收齊申請文件後第二個資產評估日根 據匯率參考機構之收盤買入匯率計算。 三、每月扣除額： 本公..."
+            },
+            {
+              "document": "215141M31A00211-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "...市府分行，但本公司得變更上述匯率參考機構， 惟必頇提前 10 日以書面或其他約定方式通知要保人 。 【契約撤銷權】 第四條 要保人於保險單送達的翌日起算十日內，得以書面 檢..."
+            },
+            {
+              "document": "215141M31A00211-A.pdf",
+              "page": 3,
+              "term": "申請",
+              "snippet": "...額 。 【本契約效力的恢復】 第八條 本契約停止效力後，要保人得在停效日起二年內， 申請復效。但保險期間屆滿後不得申請復效。 要保人於停止效力之日起六個月內提出前項復效申..."
+            },
+            {
+              "document": "215141M31A00211-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...公司收齊第二十四條約定之申 領文件後第二個資產評估日計算之保單價 值總額之和。 若因受益人延遲通知而致本公司於被保險人身故後仍依第十八條約定扣繳危險保險費時，本 公司應無息退..."
+            },
+            {
+              "document": "215141M31A00211-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...二十四條約定之申 領文件後第二個資產評估日計算之保單價 值總額之和。 若因受益人延遲通知而致本公司於被保險人身故後仍依第十八條約定扣繳危險保險費時，本 公司應無息退還該危險..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "215141M31A00211-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 593271,
+          "page_count": 12,
+          "pages_parsed": 12,
+          "text_char_count": 19414,
+          "extraction_status": "extracted",
+          "error": null
+        },
+        {
+          "file_name": "215141M31A00211-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 196424,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2988,
+          "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    }
+  ]
+}
