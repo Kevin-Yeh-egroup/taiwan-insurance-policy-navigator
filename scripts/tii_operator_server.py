@@ -180,9 +180,39 @@ def run_document_job(batch_id: str, captcha: str, document_offset: int = 0) -> N
     extract_output = ""
     extract_code = 0
     if code == 0:
+        download_status = document_status(batch_id)
+        total_documents = int(download_status.get("total_document_link_count") or 0)
+        completed_offset = int(download_status.get("document_offset") or 0)
+        completed_window = int(download_status.get("document_link_count") or 0)
+        if total_documents and completed_offset + completed_window < total_documents:
+            set_job_status(
+                {
+                    "status": "completed",
+                    "mode": "document_download",
+                    "batch_id": batch_id,
+                    "document_offset": document_offset,
+                    "message": output,
+                    "started_at": started_at,
+                    "finished_at": now_iso(),
+                }
+            )
+            return
+
         batch = batch_map().get(batch_id, {})
         company_type = str(batch.get("company_type") or DOCUMENT_DOWNLOAD_SCOPE)
         record_paths = sorted((ROOT / "data" / "tii" / "records" / company_type).glob("*.json"))
+        extract_progress_path = document_extract_progress_path(batch_id)
+        extract_progress_path.unlink(missing_ok=True)
+        set_job_status(
+            {
+                "status": "running",
+                "mode": "document_extract",
+                "batch_id": batch_id,
+                "document_offset": document_offset,
+                "message": "Document download complete. Extracting policy summaries.",
+                "started_at": started_at,
+            }
+        )
         extract_args = [
             "scripts/extract_tii_document_content.py",
             "--batch-id",
@@ -191,6 +221,8 @@ def run_document_job(batch_id: str, captcha: str, document_offset: int = 0) -> N
             f"data/tii/document-content/{batch_id}.json",
             "--raw-output",
             f"work/tii-document-text/{batch_id}-text.json",
+            "--progress-output",
+            str(extract_progress_path.relative_to(ROOT)),
             "--max-pages",
             "20",
         ]
@@ -201,7 +233,7 @@ def run_document_job(batch_id: str, captcha: str, document_offset: int = 0) -> N
     set_job_status(
         {
             "status": "completed" if code == 0 and extract_code == 0 else "failed",
-            "mode": "document_download",
+            "mode": "document_extract" if code == 0 else "document_download",
             "batch_id": batch_id,
             "document_offset": document_offset,
             "message": output + ("\n\nEXTRACT\n" + extract_output if extract_output else ""),
@@ -317,6 +349,10 @@ def document_content_path(batch_id: str) -> Path:
     return ROOT / "data" / "tii" / "document-content" / f"{batch_id}.json"
 
 
+def document_extract_progress_path(batch_id: str) -> Path:
+    return ROOT / "work" / "tii-document-text" / f"{batch_id}-progress.json"
+
+
 def next_document_work_item() -> dict:
     batches = batch_map()
     ordered_batch_ids = [
@@ -404,6 +440,21 @@ def html_page(message: str = "") -> bytes:
     image = captcha_image(batch_id) if ok else None
     counts = saved_counts(batch_id)
     docs = document_status(batch_id)
+    extract_progress = (
+        load_json(document_extract_progress_path(batch_id), {})
+        if batch_id and job.get("mode") == "document_extract"
+        else {}
+    )
+    extract_hint = ""
+    if extract_progress:
+        current_index = int(extract_progress.get("current_index") or 0)
+        total_files = int(extract_progress.get("total_files") or 0)
+        percent = (current_index / total_files * 100) if total_files else 0
+        current_file = Path(str(extract_progress.get("current_file") or "")).name
+        extract_hint = (
+            f"Extracting policy summaries: {current_index:,}/{total_files:,} "
+            f"({percent:.1f}%) {current_file}"
+        )
     progress_hint = (
         f"已保存清單頁 {counts['saved_pages']}/{counts['expected_pages']}，已保存明細 {counts['saved_details']}。"
         if counts["expected_pages"]
@@ -483,6 +534,7 @@ def html_page(message: str = "") -> bytes:
     <h2>背景工作</h2>
     <p><strong>{html.escape(job.get('status', 'idle'))}</strong> {html.escape(job.get('batch_id', ''))}</p>
     <pre>{html.escape(str(job.get('message', ''))[:1600])}</pre>
+    {f'<p class="hint">{html.escape(extract_hint)}</p>' if extract_hint else ''}
   </div>
   <div class="panel">
     <h2>{'文件下載 pilot' if pilot_mode else '下一批'}</h2>
