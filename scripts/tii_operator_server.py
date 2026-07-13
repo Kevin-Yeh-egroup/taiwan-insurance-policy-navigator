@@ -185,6 +185,7 @@ def run_document_job(batch_id: str, captcha: str, document_offset: int = 0) -> N
         completed_offset = int(download_status.get("document_offset") or 0)
         completed_window = int(download_status.get("document_link_count") or 0)
         if total_documents and completed_offset + completed_window < total_documents:
+            clear_captcha_session(batch_id)
             set_job_status(
                 {
                     "status": "completed",
