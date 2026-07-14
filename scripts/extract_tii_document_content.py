@@ -3,7 +3,10 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import os
 import re
+import subprocess
+import tempfile
 import unicodedata
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
@@ -245,6 +248,78 @@ def extract_pdfium_pages(path: Path, pages_to_parse: int) -> tuple[str, list[dic
     return normalize_text(" ".join(parts)), page_texts
 
 
+def normalize_ocr_text(text: str) -> str:
+    normalized = normalize_text(text)
+    return re.sub(r"(?<=[\u4e00-\u9fff])\s+(?=[\u4e00-\u9fff])", "", normalized)
+
+
+def extract_windows_ocr_pages(path: Path, pages_to_parse: int) -> tuple[str, list[dict[str, Any]]]:
+    if os.name != "nt" or pdfium is None:
+        return "", []
+
+    helper = Path(__file__).with_name("ocr_pdf_windows.ps1")
+    if not helper.exists():
+        return "", []
+
+    try:
+        with tempfile.TemporaryDirectory(prefix="tii-ocr-") as temp_dir:
+            temp_root = Path(temp_dir)
+            output_path = temp_root / "ocr.json"
+            document = pdfium.PdfDocument(str(path))
+            try:
+                for index in range(min(len(document), pages_to_parse)):
+                    page = document[index]
+                    width, height = page.get_size()
+                    max_dimension = max(width, height)
+                    scale = min(2.0, 2200 / max_dimension) if max_dimension else 2.0
+                    bitmap = page.render(scale=scale)
+                    image = bitmap.to_pil()
+                    image.save(temp_root / f"page-{index + 1:04d}.png")
+                    image.close()
+                    bitmap.close()
+                    page.close()
+            finally:
+                document.close()
+
+            completed = subprocess.run(
+                [
+                    "powershell.exe",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(helper),
+                    "-ImageDirectory",
+                    str(temp_root),
+                    "-OutputPath",
+                    str(output_path),
+                ],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=max(90, pages_to_parse * 20),
+                creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+                check=False,
+            )
+            if completed.returncode != 0 or not output_path.exists():
+                return "", []
+
+            payload = json.loads(output_path.read_text(encoding="utf-8"))
+            page_texts = []
+            parts = []
+            for item in payload.get("pages", []):
+                page_text = normalize_ocr_text(str(item.get("text") or ""))
+                if not page_text:
+                    continue
+                page_number = int(item.get("page") or len(page_texts) + 1)
+                page_texts.append({"page": page_number, "text": page_text})
+                parts.append(page_text)
+            return normalize_ocr_text(" ".join(parts)), page_texts
+    except Exception:
+        return "", []
+
+
 def classify_document(path: Path) -> str:
     match = re.search(r"-([A-Z])(?:\d+)?\.[^.]+$", path.name, flags=re.IGNORECASE)
     if not match:
@@ -262,7 +337,7 @@ def detect_file_kind(path: Path, data: bytes) -> str:
     return "unknown"
 
 
-def extract_pdf_text(path: Path, max_pages: int) -> tuple[str, int, int, list[dict[str, Any]]]:
+def extract_pdf_text(path: Path, max_pages: int) -> tuple[str, int, int, list[dict[str, Any]], str]:
     reader = PdfReader(BytesIO(path.read_bytes()), strict=False)
     page_count = len(reader.pages)
     pages_to_parse = page_count if max_pages <= 0 else min(page_count, max_pages)
@@ -278,14 +353,23 @@ def extract_pdf_text(path: Path, max_pages: int) -> tuple[str, int, int, list[di
             parts.append(normalized)
             page_texts.append({"page": index + 1, "text": normalized})
     text = normalize_text(" ".join(parts))
+    extraction_method = "pypdf"
     if text and text_garble_ratio(text) >= 0.2:
         fallback_text, fallback_pages = extract_pdfium_pages(path, pages_to_parse)
         if (
             len(fallback_text) >= 50
             and text_garble_ratio(fallback_text) + 0.1 < text_garble_ratio(text)
         ):
-            return fallback_text, page_count, pages_to_parse, fallback_pages
-    return text, page_count, pages_to_parse, page_texts
+            text = fallback_text
+            page_texts = fallback_pages
+            extraction_method = "pdfium"
+
+    if not text or text_garble_ratio(text) >= 0.2:
+        ocr_text, ocr_pages = extract_windows_ocr_pages(path, pages_to_parse)
+        if len(ocr_text) >= 50 and text_garble_ratio(ocr_text) < 0.2:
+            return ocr_text, page_count, pages_to_parse, ocr_pages, "windows_ocr"
+
+    return text, page_count, pages_to_parse, page_texts, extraction_method if text else "none"
 
 
 def extract_legacy_doc_text(data: bytes) -> tuple[str, list[dict[str, Any]]]:
@@ -441,6 +525,7 @@ def extract_document(path: Path, product_id: str, max_pages: int) -> tuple[dict[
         "pages_parsed": 0,
         "text_char_count": 0,
         "extraction_status": "not_started",
+        "extraction_method": None,
         "reader_focus": [],
         "error": None,
     }
@@ -448,11 +533,17 @@ def extract_document(path: Path, product_id: str, max_pages: int) -> tuple[dict[
     page_texts: list[dict[str, Any]] = []
     try:
         if file_kind == "pdf":
-            text, page_count, pages_parsed, page_texts = extract_pdf_text(path, max_pages)
-            base.update({"page_count": page_count, "pages_parsed": pages_parsed})
+            text, page_count, pages_parsed, page_texts, extraction_method = extract_pdf_text(path, max_pages)
+            base.update(
+                {
+                    "page_count": page_count,
+                    "pages_parsed": pages_parsed,
+                    "extraction_method": extraction_method,
+                }
+            )
         elif file_kind == "doc":
             text, page_texts = extract_legacy_doc_text(data)
-            base.update({"pages_parsed": 1 if text else 0})
+            base.update({"pages_parsed": 1 if text else 0, "extraction_method": "legacy_doc"})
         elif file_kind == "docx":
             base.update({"extraction_status": "unsupported_docx"})
             return base, ""
@@ -541,6 +632,7 @@ def build_product_record(
                     "pages_parsed",
                     "text_char_count",
                     "extraction_status",
+                    "extraction_method",
                     "error",
                 ]
             }
@@ -567,6 +659,7 @@ def summarize(records: list[dict[str, Any]], documents: list[dict[str, Any]], ge
         "extracted_document_count": len(extracted_documents),
         "no_text_document_count": sum(doc["extraction_status"] == "no_text" for doc in documents),
         "garbled_document_count": sum(doc["extraction_status"] == "garbled" for doc in documents),
+        "ocr_document_count": sum(doc.get("extraction_method") == "windows_ocr" for doc in documents),
         "error_document_count": sum(doc["extraction_status"] == "error" for doc in documents),
         "pdf_document_count": sum(doc["document_kind"] == "pdf" for doc in documents),
         "legacy_doc_document_count": sum(doc["document_kind"] == "doc" for doc in documents),
