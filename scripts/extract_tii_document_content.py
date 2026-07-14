@@ -4,6 +4,7 @@ import argparse
 import json
 import logging
 import re
+import unicodedata
 from collections import Counter, defaultdict
 from datetime import datetime, timedelta, timezone
 from io import BytesIO
@@ -14,6 +15,11 @@ try:
     from pypdf import PdfReader
 except ImportError as exc:  # pragma: no cover - dependency boundary
     raise SystemExit("Missing pypdf. Use the Codex Python runtime that includes pypdf.") from exc
+
+try:
+    import pypdfium2 as pdfium
+except ImportError:  # pragma: no cover - optional fallback for legacy PDF encodings
+    pdfium = None
 
 
 TAIPEI = timezone(timedelta(hours=8))
@@ -29,6 +35,12 @@ DOCUMENT_TYPES = {
 }
 
 COVERAGE_RULES = [
+    {
+        "label": "年金險",
+        "name_terms": ["年金", "利率變動型年金"],
+        "text_terms": ["年金給付", "年金金額", "年金保單價值準備金"],
+        "category_terms": ["年金"],
+    },
     {
         "label": "壽險",
         "name_terms": ["壽險", "終身壽險", "定期壽險", "生存保險", "死亡保險"],
@@ -101,6 +113,9 @@ FOCUS_GROUPS = [
             "傷害",
             "海外突發疾病",
             "豁免保險費",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額",
         ],
     },
     {
@@ -120,6 +135,10 @@ FOCUS_GROUPS = [
             "重大傷病",
             "等待期間",
             "意外傷害事故",
+            "保證期間",
+            "年金給付期間",
+            "宣告利率",
+            "預定利率",
         ],
     },
     {
@@ -138,6 +157,10 @@ FOCUS_GROUPS = [
             "同一次住院",
             "自負額",
             "既往症",
+            "契約撤銷權",
+            "年金給付開始日",
+            "年金保單價值準備金",
+            "變更年金給付開始日",
         ],
     },
     {
@@ -178,7 +201,48 @@ def write_progress(path: Path | None, payload: dict[str, Any]) -> None:
 
 
 def normalize_text(text: str) -> str:
-    return re.sub(r"\s+", " ", text).strip()
+    normalized = unicodedata.normalize("NFKC", text)
+    return re.sub(r"\s+", " ", normalized).strip()
+
+
+def text_garble_ratio(text: str) -> float:
+    visible = [char for char in text if not char.isspace()]
+    if not visible:
+        return 0.0
+
+    def is_readable(char: str) -> bool:
+        codepoint = ord(char)
+        if 0x3400 <= codepoint <= 0x4DBF or 0x4E00 <= codepoint <= 0x9FFF:
+            return True
+        if char.isascii() and char.isprintable():
+            return True
+        return char in "，。、；：！？「」『』（）《》〈〉【】—…．％・"
+
+    suspicious = sum(not is_readable(char) for char in visible)
+    return suspicious / len(visible)
+
+
+def extract_pdfium_pages(path: Path, pages_to_parse: int) -> tuple[str, list[dict[str, Any]]]:
+    if pdfium is None:
+        return "", []
+    parts: list[str] = []
+    page_texts: list[dict[str, Any]] = []
+    try:
+        document = pdfium.PdfDocument(str(path))
+        for index in range(min(len(document), pages_to_parse)):
+            page = document[index]
+            text_page = page.get_textpage()
+            page_text = text_page.get_text_range()
+            text_page.close()
+            page.close()
+            normalized = normalize_text(page_text)
+            if normalized:
+                parts.append(normalized)
+                page_texts.append({"page": index + 1, "text": normalized})
+        document.close()
+    except Exception:
+        return "", []
+    return normalize_text(" ".join(parts)), page_texts
 
 
 def classify_document(path: Path) -> str:
@@ -213,7 +277,15 @@ def extract_pdf_text(path: Path, max_pages: int) -> tuple[str, int, int, list[di
         if normalized:
             parts.append(normalized)
             page_texts.append({"page": index + 1, "text": normalized})
-    return normalize_text(" ".join(parts)), page_count, pages_to_parse, page_texts
+    text = normalize_text(" ".join(parts))
+    if text and text_garble_ratio(text) >= 0.2:
+        fallback_text, fallback_pages = extract_pdfium_pages(path, pages_to_parse)
+        if (
+            len(fallback_text) >= 50
+            and text_garble_ratio(fallback_text) + 0.1 < text_garble_ratio(text)
+        ):
+            return fallback_text, page_count, pages_to_parse, fallback_pages
+    return text, page_count, pages_to_parse, page_texts
 
 
 def extract_legacy_doc_text(data: bytes) -> tuple[str, list[dict[str, Any]]]:
@@ -388,11 +460,14 @@ def extract_document(path: Path, product_id: str, max_pages: int) -> tuple[dict[
             base.update({"extraction_status": "unsupported_file"})
             return base, ""
 
-        focus = detect_focus(page_texts, path.name)
+        extraction_status = "extracted" if text else "no_text"
+        if file_kind == "pdf" and text and text_garble_ratio(text) >= 0.2:
+            extraction_status = "garbled"
+        focus = detect_focus(page_texts, path.name) if extraction_status == "extracted" else []
         base.update(
             {
                 "text_char_count": len(text),
-                "extraction_status": "extracted" if text else "no_text",
+                "extraction_status": extraction_status,
                 "reader_focus": focus,
             }
         )
@@ -446,7 +521,11 @@ def build_product_record(
         "coverage_tags": coverage_tags,
         "document_count": len(documents),
         "extracted_document_count": len(extracted_docs),
-        "text_char_count": sum(doc.get("text_char_count", 0) for doc in documents),
+        "text_char_count": sum(
+            doc.get("text_char_count", 0)
+            for doc in documents
+            if doc["extraction_status"] == "extracted"
+        ),
         "reader_focus": focus,
         "focus_score": sum(1 for card in focus if card["status"] == "detected"),
         "confidence": "parsed" if extracted_docs else "unreviewed",
@@ -487,6 +566,7 @@ def summarize(records: list[dict[str, Any]], documents: list[dict[str, Any]], ge
         "document_count": len(documents),
         "extracted_document_count": len(extracted_documents),
         "no_text_document_count": sum(doc["extraction_status"] == "no_text" for doc in documents),
+        "garbled_document_count": sum(doc["extraction_status"] == "garbled" for doc in documents),
         "error_document_count": sum(doc["extraction_status"] == "error" for doc in documents),
         "pdf_document_count": sum(doc["document_kind"] == "pdf" for doc in documents),
         "legacy_doc_document_count": sum(doc["document_kind"] == "doc" for doc in documents),
@@ -558,7 +638,7 @@ def main() -> None:
         else:
             document, text = extract_document(path, product_id, args.max_pages)
         documents_by_product[product_id].append(document)
-        if text:
+        if text and document["extraction_status"] == "extracted":
             texts_by_product[product_id].append(text)
         raw_documents.append(
             {
