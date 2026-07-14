@@ -265,6 +265,7 @@ def download_documents_for_detail(
     limit_remaining: int = 0,
     skip_count: int = 0,
     delay_seconds: float = 0.2,
+    max_attempts: int = 3,
 ) -> dict:
     links = document_links_for_detail(detail_html, document_priority)
     total_link_count = len(links)
@@ -285,24 +286,36 @@ def download_documents_for_detail(
         if target.exists() and target.stat().st_size > 1024:
             already_saved.append(str(target))
             continue
-        try:
-            content, final_url = read_url(client, link["url"])
-            if not looks_like_document(content, filename):
-                failed.append(
-                    {
-                        "product_id": product_id,
-                        "filename": filename,
-                        "url": link["url"],
-                        "final_url": final_url,
-                        "reason": "not_a_document",
-                        "byte_count": len(content),
-                    }
-                )
-                continue
-            target.write_bytes(content)
-            saved.append(str(target))
-        except Exception as exc:  # pragma: no cover - network failures are recorded for manual review.
-            failed.append({"product_id": product_id, "filename": filename, "url": link["url"], "reason": str(exc)})
+        failure: dict | None = None
+        for attempt in range(1, max(max_attempts, 1) + 1):
+            try:
+                content, final_url = read_url(client, link["url"])
+                if looks_like_document(content, filename):
+                    target.write_bytes(content)
+                    saved.append(str(target))
+                    failure = None
+                    break
+                failure = {
+                    "product_id": product_id,
+                    "filename": filename,
+                    "url": link["url"],
+                    "final_url": final_url,
+                    "reason": "not_a_document",
+                    "byte_count": len(content),
+                    "attempt_count": attempt,
+                }
+            except Exception as exc:  # pragma: no cover - network failures are recorded for manual review.
+                failure = {
+                    "product_id": product_id,
+                    "filename": filename,
+                    "url": link["url"],
+                    "reason": str(exc),
+                    "attempt_count": attempt,
+                }
+            if attempt < max(max_attempts, 1) and delay_seconds:
+                time.sleep(delay_seconds * attempt)
+        if failure:
+            failed.append(failure)
         if delay_seconds and index < len(links):
             time.sleep(delay_seconds)
     return {
@@ -315,6 +328,56 @@ def download_documents_for_detail(
         "saved_document_sample": saved[:20],
         "already_saved_document_sample": already_saved[:20],
         "failed_documents": failed[:20],
+    }
+
+
+def repair_missing_documents(
+    client: urllib.request.OpenerDirector,
+    detail_root: Path,
+    detail_links: list[tuple[str, str]],
+    batch_id: str,
+    documents_dir: Path,
+    document_priority: str,
+    delay_seconds: float,
+) -> dict:
+    repaired_count = 0
+    repaired_sample: list[str] = []
+    already_saved_count = 0
+    unresolved_count = 0
+    failures: list[dict] = []
+    missing_details: list[str] = []
+    expected_document_count = 0
+    for product_id, _ in detail_links:
+        detail_path = detail_root / f"{product_id}.html"
+        if not detail_path.exists():
+            missing_details.append(product_id)
+            continue
+        detail_html = detail_path.read_text(encoding="utf-8", errors="replace")
+        result = download_documents_for_detail(
+            client,
+            product_id,
+            detail_html,
+            batch_id,
+            documents_dir,
+            document_priority=document_priority,
+            delay_seconds=delay_seconds,
+        )
+        expected_document_count += int(result.get("total_document_link_count") or 0)
+        repaired_count += int(result.get("saved_document_count") or 0)
+        repaired_sample.extend(result.get("saved_document_sample") or [])
+        already_saved_count += int(result.get("already_saved_document_count") or 0)
+        unresolved_count += int(result.get("failed_document_count") or 0)
+        failures.extend(result.get("failed_documents") or [])
+    return {
+        "attempted": True,
+        "expected_document_count": expected_document_count,
+        "available_document_count": already_saved_count + repaired_count,
+        "repaired_document_count": repaired_count,
+        "repaired_document_sample": repaired_sample[:20],
+        "unresolved_document_count": unresolved_count,
+        "missing_detail_count": len(missing_details),
+        "missing_detail_sample": missing_details[:20],
+        "failed_documents": failures,
     }
 
 
@@ -523,6 +586,16 @@ def fetch_detail_pages(
     document_saved_sample: list[str] = []
     document_already_saved_sample: list[str] = []
     document_failures: list[dict] = []
+    document_repair = {
+        "attempted": False,
+        "expected_document_count": 0,
+        "available_document_count": 0,
+        "repaired_document_count": 0,
+        "unresolved_document_count": 0,
+        "missing_detail_count": 0,
+        "missing_detail_sample": [],
+        "failed_documents": [],
+    }
     document_skip_remaining = max(document_offset, 0)
     for index, (product_id, url) in enumerate(links, start=1):
         detail_path = detail_root / f"{product_id}.html"
@@ -579,6 +652,28 @@ def fetch_detail_pages(
             document_failures.extend(document_result.get("failed_documents") or [])
         if delay_seconds and index < len(links):
             time.sleep(delay_seconds)
+    final_document_window = (
+        fetch_documents
+        and document_total_link_count > 0
+        and (not document_limit or document_offset + document_link_count >= document_total_link_count)
+    )
+    if final_document_window:
+        document_repair = repair_missing_documents(
+            client,
+            detail_root,
+            links,
+            batch_id,
+            documents_dir,
+            document_priority,
+            delay_seconds,
+        )
+        document_total_link_count = max(
+            document_total_link_count,
+            int(document_repair.get("expected_document_count") or 0),
+        )
+        document_saved_count += int(document_repair.get("repaired_document_count") or 0)
+        document_failed_count = int(document_repair.get("unresolved_document_count") or 0)
+        document_failures = list(document_repair.get("failed_documents") or [])
     document_status_path = ""
     if fetch_documents:
         document_status_path = str(documents_dir / batch_id / "_document-download-status.json")
@@ -597,6 +692,12 @@ def fetch_detail_pages(
                 "saved_document_count": document_saved_count,
                 "already_saved_document_count": document_already_saved_count,
                 "failed_document_count": document_failed_count,
+                "final_repair_attempted": document_repair["attempted"],
+                "available_document_count": document_repair["available_document_count"],
+                "repaired_document_count": document_repair["repaired_document_count"],
+                "unresolved_document_count": document_repair["unresolved_document_count"],
+                "missing_detail_count": document_repair["missing_detail_count"],
+                "missing_detail_sample": document_repair["missing_detail_sample"],
                 "saved_document_sample": document_saved_sample[:50],
                 "already_saved_document_sample": document_already_saved_sample[:50],
                 "failed_documents": document_failures,
@@ -622,6 +723,11 @@ def fetch_detail_pages(
             "saved_document_count": document_saved_count,
             "already_saved_document_count": document_already_saved_count,
             "failed_document_count": document_failed_count,
+            "final_repair_attempted": document_repair["attempted"],
+            "available_document_count": document_repair["available_document_count"],
+            "repaired_document_count": document_repair["repaired_document_count"],
+            "unresolved_document_count": document_repair["unresolved_document_count"],
+            "missing_detail_count": document_repair["missing_detail_count"],
             "status_path": document_status_path,
             "saved_document_sample": document_saved_sample[:20],
             "already_saved_document_sample": document_already_saved_sample[:20],
