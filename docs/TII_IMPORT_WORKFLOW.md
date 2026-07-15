@@ -60,6 +60,13 @@ python scripts\tii_operator_server.py
 
 然後開啟 <http://127.0.0.1:8765/>。這個頁面只在本機執行，Kevin 只需要輸入官方圖片中的驗證碼；送出後會自動查詢該批、翻完整結果頁、抓可用明細頁、重新匯入 `data\tii-policy-results.json`，再準備下一批驗證碼。
 
+下載條款並完成內容解析後，operator 會同時產生：
+
+- `data\tii\document-content\<batch-id>.json`：保留頁碼與短證據片段的公開整理檔。
+- `data\tii\document-summaries\<batch-id>.json`：供網站按需載入的精簡摘要，不含完整條款文字。
+
+若摘要格式有調整，可執行 `python scripts\build_tii_document_summaries.py` 由既有公開整理檔重建全部網站摘要。
+
 ## 匯入後如何使用
 
 匯入後的停售保單資料會進入同一個前台視覺化模型。前台應優先呈現：

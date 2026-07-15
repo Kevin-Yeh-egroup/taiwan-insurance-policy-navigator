@@ -1,0 +1,50 @@
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+
+from extract_tii_document_content import compact_document_summary
+
+
+def write_json(path: Path, payload: dict) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser(description="Build compact, browser-facing TII document summary shards.")
+    parser.add_argument("--input-dir", type=Path, default=Path("data/tii/document-content"))
+    parser.add_argument("--output-dir", type=Path, default=Path("data/tii/document-summaries"))
+    parser.add_argument("--batch-id", default=None)
+    args = parser.parse_args()
+
+    source_paths = sorted(args.input_dir.glob("*.json"))
+    if args.batch_id:
+        source_paths = [path for path in source_paths if path.stem == args.batch_id]
+    if not source_paths:
+        raise SystemExit("No TII document-content files matched the requested scope.")
+
+    total_records = 0
+    for source_path in source_paths:
+        public_output = json.loads(source_path.read_text(encoding="utf-8"))
+        compact = compact_document_summary(public_output, source_path.stem)
+        write_json(args.output_dir / source_path.name, compact)
+        total_records += compact["record_count"]
+
+    print(
+        json.dumps(
+            {
+                "status": "ok",
+                "batch_count": len(source_paths),
+                "record_count": total_records,
+                "output_dir": str(args.output_dir),
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
+
+
+if __name__ == "__main__":
+    main()

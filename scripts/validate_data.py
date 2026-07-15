@@ -316,6 +316,35 @@ def main() -> None:
     summary_focus_counts = {item["label"]: item["count"] for item in content_summary["focus_counts"]}
     if focus_counts != summary_focus_counts:
         fail("policy content reader focus counts do not match records")
+
+    document_content_paths = sorted(Path("data/tii/document-content").glob("*.json"))
+    document_summary_paths = sorted(Path("data/tii/document-summaries").glob("*.json"))
+    if {path.stem for path in document_summary_paths} != {path.stem for path in document_content_paths}:
+        fail("TII browser document summaries do not cover every document-content batch")
+    allowed_summary_fields = {"product_id", "coverage_tags", "reader_focus"}
+    allowed_focus_fields = {"key", "label", "summary", "terms"}
+    for path in document_summary_paths:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        records = payload.get("records") or []
+        if payload.get("batch_id") != path.stem or payload.get("record_count") != len(records):
+            fail(f"TII browser document summary metadata mismatch: {path}")
+        product_ids = set()
+        for record in records:
+            if set(record) != allowed_summary_fields:
+                fail(f"TII browser document summary has unexpected fields: {path}")
+            product_id = record.get("product_id")
+            if not product_id or product_id in product_ids:
+                fail(f"TII browser document summary has invalid product id: {path}")
+            product_ids.add(product_id)
+            if not isinstance(record.get("coverage_tags"), list) or not isinstance(record.get("reader_focus"), list):
+                fail(f"TII browser document summary lists are invalid: {path}")
+            focus_keys = set()
+            for card in record["reader_focus"]:
+                if set(card) != allowed_focus_fields or card.get("key") not in required_focus_keys:
+                    fail(f"TII browser document summary focus card is invalid: {path}")
+                if card["key"] in focus_keys or not isinstance(card.get("terms"), list):
+                    fail(f"TII browser document summary focus card is duplicated: {path}")
+                focus_keys.add(card["key"])
     known_ids = {item["id"] for item in source_index["urls"]}
     for result in crawl_status["results"]:
         if result["url_id"] not in known_ids:
@@ -345,6 +374,7 @@ def main() -> None:
                 "policy_url_items_processed": batch_progress["summary"]["policy_url_items_processed"],
                 "policy_content_extracted": content_summary["extracted_text_count"],
                 "policy_content_field_hits": content_summary["records_with_field_hits"],
+                "tii_document_summary_batches": len(document_summary_paths),
             },
             ensure_ascii=False,
             indent=2,

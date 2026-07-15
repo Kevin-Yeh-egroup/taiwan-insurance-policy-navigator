@@ -220,6 +220,8 @@ def run_document_job(batch_id: str, captcha: str, document_offset: int = 0) -> N
             batch_id,
             "--output",
             f"data/tii/document-content/{batch_id}.json",
+            "--summary-output",
+            f"data/tii/document-summaries/{batch_id}.json",
             "--raw-output",
             f"work/tii-document-text/{batch_id}-text.json",
             "--progress-output",

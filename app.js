@@ -15,6 +15,8 @@ const state = {
   tiiManifest: null,
   tiiIndexRecords: null,
   tiiIndexLoadPromise: null,
+  tiiDocumentSummaryCache: new Map(),
+  tiiDocumentSummaryPromises: new Map(),
   tiiExecutionProgress: null,
   siteSummary: null,
   batchPlan: null,
@@ -710,6 +712,7 @@ function coverageDetectionText(item) {
       item.product_id,
       item.sale_status,
       item.display_version,
+      ...(item.coverage_tags || []),
       ...(item.flags || []),
     ].join(" "),
   );
@@ -913,6 +916,9 @@ function coverageSummaryForItem(item) {
 }
 
 function focusSummaryHtml(item) {
+  const missingSummary = item.document_summary_loading
+    ? "正在載入已整理的條款摘要。"
+    : "目前沒有已解析條款摘要；可先用官方明細確認條款內容。";
   const cards = [
     ["coverage", "保障項目"],
     ["definitions", "重要定義"],
@@ -924,7 +930,7 @@ function focusSummaryHtml(item) {
     return `
       <article class="portfolio-summary-card">
         <strong>${escapeHtml(focus?.label || label)}</strong>
-        <p>${escapeHtml(focus?.summary || "目前沒有已解析條款摘要；可先用官方明細確認條款內容。")}</p>
+        <p>${escapeHtml(focus?.summary || missingSummary)}</p>
         ${
           terms.length
             ? `<div class="chips">${terms.map((term) => `<span class="chip">${escapeHtml(term)}</span>`).join("")}</div>`
@@ -980,11 +986,69 @@ function renderPortfolioDetail(item) {
       </section>
       ${identityWarningHtml(item)}
       <div class="portfolio-detail-actions">
-        <button class="button primary" type="button" data-confirm-add-portfolio>確認加入集合</button>
+        <button class="button primary" type="button" data-confirm-add-portfolio ${item.document_summary_loading ? "disabled aria-busy=\"true\"" : ""}>${item.document_summary_loading ? "載入條款摘要中" : "確認加入集合"}</button>
         ${detailLink ? `<a class="button secondary" href="${escapeHtml(detailLink)}" target="_blank" rel="noreferrer">官方來源</a>` : ""}
       </div>
     </article>
   `;
+}
+
+async function loadTiiDocumentSummaryBatch(batchId) {
+  if (!/^tii-(life|property)-\d{3}$/.test(batchId)) return null;
+  if (state.tiiDocumentSummaryCache.has(batchId)) return state.tiiDocumentSummaryCache.get(batchId);
+  if (state.tiiDocumentSummaryPromises.has(batchId)) return state.tiiDocumentSummaryPromises.get(batchId);
+
+  const promise = fetch(`./data/tii/document-summaries/${encodeURIComponent(batchId)}.json`)
+    .then((response) => {
+      if (response.status === 404) return null;
+      if (!response.ok) throw new Error(`條款摘要載入失敗：${response.status}`);
+      return response.json();
+    })
+    .then((payload) => {
+      state.tiiDocumentSummaryCache.set(batchId, payload);
+      state.tiiDocumentSummaryPromises.delete(batchId);
+      return payload;
+    })
+    .catch((error) => {
+      state.tiiDocumentSummaryPromises.delete(batchId);
+      throw error;
+    });
+  state.tiiDocumentSummaryPromises.set(batchId, promise);
+  return promise;
+}
+
+async function enrichPortfolioItemWithDocumentSummary(item) {
+  const batchId = String(item.source_batch_id || "");
+  if (item.source_kind !== "tii" || !batchId || !item.product_id) return item;
+  const payload = await loadTiiDocumentSummaryBatch(batchId);
+  const summary = payload?.records?.find((record) => record.product_id === item.product_id);
+  if (!summary) return item;
+  return {
+    ...item,
+    coverage_tags: summary.coverage_tags || [],
+    reader_focus: summary.reader_focus || [],
+    document_summary_loaded: true,
+  };
+}
+
+async function openPortfolioDetail(item) {
+  if (item.source_kind !== "tii" || !item.source_batch_id || !item.product_id) {
+    renderPortfolioDetail(item);
+    return item;
+  }
+
+  renderPortfolioDetail({ ...item, document_summary_loading: true });
+  try {
+    const enriched = await enrichPortfolioItemWithDocumentSummary(item);
+    const suggestionIndex = state.portfolioSuggestions.findIndex((candidate) => candidate.id === item.id);
+    if (suggestionIndex >= 0) state.portfolioSuggestions[suggestionIndex] = enriched;
+    renderPortfolioDetail(enriched);
+    return enriched;
+  } catch (error) {
+    renderPortfolioDetail(item);
+    setText("portfolioHint", `${error.message}；仍可使用官方明細確認。`);
+    return item;
+  }
 }
 
 function renderPortfolioList() {
@@ -1081,7 +1145,7 @@ async function runPortfolioSearch(query) {
     const productIdMatches = exactProductIdMatches(matches, cleanedQuery);
     if (productIdMatches.length === 1) {
       renderPortfolioSuggestions(productIdMatches, cleanedQuery);
-      renderPortfolioDetail(productIdMatches[0]);
+      await openPortfolioDetail(productIdMatches[0]);
       setText(
         "portfolioHint",
         `已找到「${productIdMatches[0].product_name}」。請先看摘要，確認後再加入集合。`,
@@ -1097,7 +1161,7 @@ async function runPortfolioSearch(query) {
     const nameMatches = exactNameMatches(matches, cleanedQuery);
     if (nameMatches.length === 1) {
       renderPortfolioSuggestions(nameMatches, cleanedQuery);
-      renderPortfolioDetail(nameMatches[0]);
+      await openPortfolioDetail(nameMatches[0]);
       setText(
         "portfolioHint",
         `已找到「${nameMatches[0].product_name}」。請先看摘要，確認後再加入集合。`,
@@ -1111,7 +1175,7 @@ async function runPortfolioSearch(query) {
     }
     if (matches.length === 1) {
       renderPortfolioSuggestions(matches, cleanedQuery);
-      renderPortfolioDetail(matches[0]);
+      await openPortfolioDetail(matches[0]);
       setText("portfolioHint", `已找到「${matches[0].product_name}」。請先看摘要，確認後再加入集合。`);
       return;
     }
@@ -2088,12 +2152,12 @@ function bindEvents() {
     if (query) runPortfolioSearch(query);
   });
 
-  document.getElementById("portfolioSuggestions").addEventListener("click", (event) => {
+  document.getElementById("portfolioSuggestions").addEventListener("click", async (event) => {
     const button = event.target.closest("[data-view-suggestion]");
     if (!button) return;
     const item = state.portfolioSuggestions[Number(button.dataset.viewSuggestion)];
     if (!item) return;
-    renderPortfolioDetail(item);
+    await openPortfolioDetail(item);
     setText("portfolioHint", `正在查看「${item.product_name}」摘要。確認後可加入集合。`);
   });
 

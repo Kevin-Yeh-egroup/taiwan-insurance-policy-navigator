@@ -101,6 +101,12 @@ python scripts\import_tii_results.py --input-dir work\tii-results --output data\
 python scripts\build_site_summary.py
 ```
 
+Document extraction writes detailed public-safe results to `data\tii\document-content\` and a smaller browser-facing copy to `data\tii\document-summaries\`. The website loads the compact batch only when a user opens a matching policy summary. Rebuild all compact files after schema changes with:
+
+```powershell
+python scripts\build_tii_document_summaries.py
+```
+
 For a large policy universe, use segmented batches instead of one full crawl:
 
 ```powershell

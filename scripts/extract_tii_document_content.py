@@ -697,6 +697,31 @@ def summarize(records: list[dict[str, Any]], documents: list[dict[str, Any]], ge
     }
 
 
+def compact_document_summary(public_output: dict[str, Any], batch_id: str) -> dict[str, Any]:
+    records = []
+    for record in public_output.get("records", []):
+        records.append(
+            {
+                "product_id": record.get("product_id", ""),
+                "coverage_tags": record.get("coverage_tags") or [],
+                "reader_focus": [
+                    {
+                        key: card.get(key)
+                        for key in ["key", "label", "summary", "terms"]
+                    }
+                    for card in record.get("reader_focus", [])
+                    if card.get("status") == "detected"
+                ],
+            }
+        )
+    return {
+        "generated_at": public_output.get("generated_at"),
+        "batch_id": batch_id,
+        "record_count": len(records),
+        "records": records,
+    }
+
+
 def find_document_files(documents_root: Path, batch_id: str, limit: int | None) -> list[Path]:
     batch_root = documents_root / batch_id
     if not batch_root.exists():
@@ -715,6 +740,7 @@ def main() -> None:
     parser.add_argument("--documents-root", type=Path, default=Path("work/tii-documents"))
     parser.add_argument("--records", type=Path, nargs="+", default=[Path("data/tii/records/life/health.json")])
     parser.add_argument("--output", type=Path, default=Path("data/tii/document-content-pilot.json"))
+    parser.add_argument("--summary-output", type=Path, default=None)
     parser.add_argument("--raw-output", type=Path, default=Path("work/tii-document-text/document-text.json"))
     parser.add_argument("--max-pages", type=int, default=20)
     parser.add_argument("--limit", type=int, default=None)
@@ -793,6 +819,12 @@ def main() -> None:
         "documents": raw_documents,
     }
     write_json(args.output, public_output)
+    if args.summary_output:
+        args.summary_output.parent.mkdir(parents=True, exist_ok=True)
+        args.summary_output.write_text(
+            json.dumps(compact_document_summary(public_output, args.batch_id), ensure_ascii=False, separators=(",", ":")),
+            encoding="utf-8",
+        )
     write_json(args.raw_output, raw_output)
     write_progress(
         args.progress_output,
