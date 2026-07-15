@@ -338,27 +338,46 @@ def detect_file_kind(path: Path, data: bytes) -> str:
 
 
 def extract_pdf_text(path: Path, max_pages: int) -> tuple[str, int, int, list[dict[str, Any]], str]:
-    reader = PdfReader(BytesIO(path.read_bytes()), strict=False)
-    page_count = len(reader.pages)
-    pages_to_parse = page_count if max_pages <= 0 else min(page_count, max_pages)
     parts: list[str] = []
     page_texts: list[dict[str, Any]] = []
-    for index in range(pages_to_parse):
+    pypdf_error: Exception | None = None
+    try:
+        reader = PdfReader(BytesIO(path.read_bytes()), strict=False)
+        page_count = len(reader.pages)
+        pages_to_parse = page_count if max_pages <= 0 else min(page_count, max_pages)
+        for index in range(pages_to_parse):
+            try:
+                page_text = reader.pages[index].extract_text() or ""
+            except Exception:
+                page_text = ""
+            normalized = normalize_text(page_text)
+            if normalized:
+                parts.append(normalized)
+                page_texts.append({"page": index + 1, "text": normalized})
+    except Exception as exc:
+        pypdf_error = exc
+        if pdfium is None:
+            raise
         try:
-            page_text = reader.pages[index].extract_text() or ""
+            document = pdfium.PdfDocument(str(path))
+            try:
+                page_count = len(document)
+            finally:
+                document.close()
         except Exception:
-            page_text = ""
-        normalized = normalize_text(page_text)
-        if normalized:
-            parts.append(normalized)
-            page_texts.append({"page": index + 1, "text": normalized})
+            raise pypdf_error
+        pages_to_parse = page_count if max_pages <= 0 else min(page_count, max_pages)
+
     text = normalize_text(" ".join(parts))
     extraction_method = "pypdf"
-    if text and text_garble_ratio(text) >= 0.2:
+    if pypdf_error is not None or not text or text_garble_ratio(text) >= 0.2:
         fallback_text, fallback_pages = extract_pdfium_pages(path, pages_to_parse)
         if (
             len(fallback_text) >= 50
-            and text_garble_ratio(fallback_text) + 0.1 < text_garble_ratio(text)
+            and (
+                not text
+                or text_garble_ratio(fallback_text) + 0.1 < text_garble_ratio(text)
+            )
         ):
             text = fallback_text
             page_texts = fallback_pages
