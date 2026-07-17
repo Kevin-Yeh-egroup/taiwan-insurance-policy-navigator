@@ -1,0 +1,973 @@
+{
+  "generated_at": "2026-07-17T09:13:49+08:00",
+  "summary": {
+    "generated_at": "2026-07-17T09:13:49+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-life-197",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 7,
+    "document_count": 14,
+    "extracted_document_count": 10,
+    "no_text_document_count": 0,
+    "garbled_document_count": 4,
+    "ocr_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 14,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 7,
+    "product_summary_document_count": 7,
+    "total_text_characters": 74498,
+    "focus_counts": [
+      {
+        "label": "特殊項目",
+        "count": 6
+      },
+      {
+        "label": "保障項目",
+        "count": 2
+      },
+      {
+        "label": "重要定義",
+        "count": 2
+      },
+      {
+        "label": "理賠申請",
+        "count": 2
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "豁免/附加條款",
+        "count": 4
+      },
+      {
+        "label": "壽險",
+        "count": 3
+      },
+      {
+        "label": "意外險",
+        "count": 2
+      },
+      {
+        "label": "失能/殘扶",
+        "count": 2
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 10
+      },
+      {
+        "label": "garbled",
+        "count": 4
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "272141M31A00101",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "蘇黎世國際人壽國際創富外幣變額壽險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "098/11/27",
+      "discontinued_date": "099/10/28",
+      "source_batch_id": "tii-life-197",
+      "coverage_tags": [
+        "壽險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 1,
+      "text_char_count": 21870,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "272141M31A00101-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...壽國際創富外幣變額壽險 保險單條款 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:身故保險金、全殘廢保險金及祝壽保險金 1. 本商品經英屬曼島商蘇黎世國..."
+            },
+            {
+              "document": "272141M31A00101-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...險單條款 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:身故保險金、全殘廢保險金及祝壽保險金 1. 本商品經英屬曼島商蘇黎世國際人壽保險股份有限公司台..."
+            },
+            {
+              "document": "272141M31A00101-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...保險單條款 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:身故保險金、全殘廢保險金及祝壽保險金 1. 本商品經英屬曼島商蘇黎世國際人壽保險股份有限..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、傷害、醫師、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "醫師",
+            "意外傷害事故"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            6,
+            8,
+            16
+          ],
+          "evidence": [
+            {
+              "document": "272141M31A00101-A.pdf",
+              "page": 2,
+              "term": "名詞定義",
+              "snippet": "2 節 頁次 第一條 保險契約的構成 3 第二條 名詞定義 3 第三條 保險責任的開始及交付保險費 4 第四條 契約撤銷權 4 第五條 寬限期..."
+            },
+            {
+              "document": "272141M31A00101-A.pdf",
+              "page": 2,
+              "term": "定義",
+              "snippet": "2 節 頁次 第一條 保險契約的構成 3 第二條 名詞定義 3 第三條 保險責任的開始及交付保險費 4 第四條 契約撤銷權 4 第五條 寬限期..."
+            },
+            {
+              "document": "272141M31A00101-A.pdf",
+              "page": 3,
+              "term": "名詞定義",
+              "snippet": "...意,不得 拘泥於所用的文字;如有疑義時,以作有利於被 保險人的解釋為原則。 第二條\u001a名詞定義 一、基本保險金額 係指在保險單首頁所約定之保險金額。對基本保 險金額之任何變更,除..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：除外責任、限制、投保年齡、契約撤銷權。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "契約撤銷權"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            7,
+            9,
+            10
+          ],
+          "evidence": [
+            {
+              "document": "272141M31A00101-A.pdf",
+              "page": 2,
+              "term": "除外責任",
+              "snippet": "...六條 祝壽保險金的申領 9 第二十七條 保險費及保險給付之收付方式 9 第二十八條 除外責任 9 第二十九條 受益人之受益權 9 第三十條 特殊情事之處理 9 第三十一條 保險..."
+            },
+            {
+              "document": "272141M31A00101-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...第四條 契約撤銷權 4 第五條 寬限期間及契約效力之停止 4 第六條 保險費的交付限制 4 第七條 本契約效力的恢復 4 第八條 幣別及匯率 5 第九條 告知義務與本契約..."
+            },
+            {
+              "document": "272141M31A00101-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": "...第三十一條 保險單紅利的計算及給付 10 第三十二條 保險單借款 10 第三十三條 投保年齡的計算及錯誤的處理 10 第三十四條 受益人的指定及變更 10 第三十五條 減少基本..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：申請、保險金的申領、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "272141M31A00101-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "...回 5 第十二條 基本保險金額扣除額之計算 6 第十三條 保險事故的通知與保險金的 申請時間 6 第十四條 失蹤處理 6 第十五條 投資標的之購買 6 第十六條 保險單費用..."
+            },
+            {
+              "document": "272141M31A00101-A.pdf",
+              "page": 2,
+              "term": "保險金的申領",
+              "snippet": "...條 保險單投資帳戶價值之通知 8 第二十一條 身故保險金的給付 8 第二十二條 身故保險金的申領 8 節 頁次 第二十三條 全殘廢保險金的給付 8 第二十四條 全殘廢保險金的申領..."
+            },
+            {
+              "document": "272141M31A00101-A.pdf",
+              "page": 2,
+              "term": "申領",
+              "snippet": "...單投資帳戶價值之通知 8 第二十一條 身故保險金的給付 8 第二十二條 身故保險金的申領 8 節 頁次 第二十三條 全殘廢保險金的給付 8 第二十四條 全殘廢保險金的申領..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272141M31A00101-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 764612,
+          "page_count": 22,
+          "pages_parsed": 20,
+          "text_char_count": 21870,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272141M31A00101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 110032,
+          "page_count": 6,
+          "pages_parsed": 6,
+          "text_char_count": 11096,
+          "extraction_status": "garbled",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272141M31A00102",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "蘇黎世國際人壽國際創富外幣變額壽險(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "099/10/29",
+      "discontinued_date": "101/06/28",
+      "source_batch_id": "tii-life-197",
+      "coverage_tags": [
+        "壽險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 0,
+      "text_char_count": 0,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "unreviewed",
+      "documents": [
+        {
+          "file_name": "272141M31A00102-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 679550,
+          "page_count": 28,
+          "pages_parsed": 20,
+          "text_char_count": 40045,
+          "extraction_status": "garbled",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272141M31A00102-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 110032,
+          "page_count": 6,
+          "pages_parsed": 6,
+          "text_char_count": 11096,
+          "extraction_status": "garbled",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272141M31A00103",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "蘇黎世國際人壽國際創富外幣變額壽險(第3次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/06/29",
+      "discontinued_date": "101/10/01",
+      "source_batch_id": "tii-life-197",
+      "coverage_tags": [
+        "壽險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 29816,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "272141M31A00103-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...險單,,,,不參加紅利分配不參加紅利分配不參加紅利分配不參加紅利分配,,,,並無紅利給付項目並無紅利給付項目並無紅利給付項目並無紅利給付項目)))) 給付項目給付項目給付項目給..."
+            },
+            {
+              "document": "272141M31A00103-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...無紅利給付項目並無紅利給付項目)))) 給付項目給付項目給付項目給付項目::::身故保險金身故保險金身故保險金身故保險金、、、、全殘廢保險金及祝壽保險金全殘廢保險金及祝壽保險..."
+            },
+            {
+              "document": "272141M31A00103-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...目並無紅利給付項目並無紅利給付項目)))) 給付項目給付項目給付項目給付項目::::身故保險金身故保險金身故保險金身故保險金、、、、全殘廢保險金及祝壽保險金全殘廢保險金及祝..."
+            },
+            {
+              "document": "272141M31A00103-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...保險商品內容說明保險商品內容說明保險商品內容說明保險商品內容說明 ㄧ、承保範圍:身故保險金、全殘廢保險金及祝壽保險金 二、除外責任: 有下列情形之一者,本公司不負給付保險金的..."
+            },
+            {
+              "document": "272141M31A00103-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...險 保險商品內容說明保險商品內容說明保險商品內容說明保險商品內容說明 ㄧ、承保範圍:身故保險金、全殘廢保險金及祝壽保險金 二、除外責任: 有下列情形之一者,本公司不負給付保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、傷害、醫師、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "醫師",
+            "意外傷害事故"
+          ],
+          "pages": [
+            2,
+            4,
+            5,
+            9,
+            12
+          ],
+          "evidence": [
+            {
+              "document": "272141M31A00103-A.pdf",
+              "page": 2,
+              "term": "名詞定義",
+              "snippet": ".......................................1 第二條 名詞定義............................................."
+            },
+            {
+              "document": "272141M31A00103-A.pdf",
+              "page": 2,
+              "term": "定義",
+              "snippet": ".....................................1 第二條 名詞定義............................................."
+            },
+            {
+              "document": "272141M31A00103-A.pdf",
+              "page": 4,
+              "term": "名詞定義",
+              "snippet": "...用的文字;如有疑義時, 以作有利於被保險人的解釋為原則。 第二條第二條第二條第二條 名詞定義名詞定義名詞定義名詞定義 一一一一、、、、基本保險金額基本保險金額基本保險金額基本保..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：除外責任、限制、投保年齡、契約撤銷權。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "契約撤銷權"
+          ],
+          "pages": [
+            1,
+            2,
+            4,
+            6,
+            11,
+            14,
+            15
+          ],
+          "evidence": [
+            {
+              "document": "272141M31A00103-A.pdf",
+              "page": 2,
+              "term": "除外責任",
+              "snippet": "....................................10 第二十八條 除外責任............................................."
+            },
+            {
+              "document": "272141M31A00103-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": ".................................3 第六條 保險費的交付限制............................................."
+            },
+            {
+              "document": "272141M31A00103-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": "....................................11 第三十三條 投保年齡的計算及錯誤的處理...................................."
+            },
+            {
+              "document": "272141M31A00103-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...品內容說明保險商品內容說明 ㄧ、承保範圍:身故保險金、全殘廢保險金及祝壽保險金 二、除外責任: 有下列情形之一者,本公司不負給付保險金的責任: 1. 被保險人故意自殺或自成殘廢..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：申請、保險金的申領、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            4,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "evidence": [
+            {
+              "document": "272141M31A00103-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "..........................5 第十三條 保險事故的通知與保險金的申請時間..........................................."
+            },
+            {
+              "document": "272141M31A00103-A.pdf",
+              "page": 2,
+              "term": "保險金的申領",
+              "snippet": "...................................9 第二十二條 身故保險金的申領............................................."
+            },
+            {
+              "document": "272141M31A00103-A.pdf",
+              "page": 2,
+              "term": "申領",
+              "snippet": "...............................9 第二十二條 身故保險金的申領............................................."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272141M31A00103-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 680182,
+          "page_count": 27,
+          "pages_parsed": 20,
+          "text_char_count": 24970,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272141M31A00103-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 166929,
+          "page_count": 6,
+          "pages_parsed": 6,
+          "text_char_count": 4846,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272191E31A00100",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "蘇黎世國際人壽共同基金投資標的批註條款",
+      "sale_status": "已停售",
+      "sale_date": "101/07/16",
+      "discontinued_date": "102/07/07",
+      "source_batch_id": "tii-life-197",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 1,
+      "text_char_count": 3013,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "272191E31A00100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...簡稱本批註條款), 適用於:蘇黎世國際人壽睿智人生變額年金保險。 /square4 除外責任:同適用於本批註條款之主契約所約定之除外責任。 /square4 投資標的 投資標..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272191E31A00100-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 2690328,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 597,
+          "extraction_status": "garbled",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272191E31A00100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 133175,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3013,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272191E31A00101",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "蘇黎世國際人壽共同基金投資標的批註條款(第01次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/07/08",
+      "discontinued_date": "102/10/10",
+      "source_batch_id": "tii-life-197",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 6028,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "272191E31A00101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...註條款」(以下簡稱本批註條款), 適用於:蘇黎世國際人壽睿智人生變額年金保險。  除外責任:同適用於本批註條款之主契約所約定之除外責任。  投資標的 投資標 的幣別 投資標..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272191E31A00101-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 609283,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3475,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272191E31A00101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 191544,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2553,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272191E31A00102",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "蘇黎世國際人壽共同基金投資標的批註條款(第02次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/10/11",
+      "discontinued_date": "103/01/19",
+      "source_batch_id": "tii-life-197",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 6502,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "272191E31A00102-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...註條款」(以下簡稱本批註條款), 適用於:蘇黎世國際人壽睿智人生變額年金保險。  除外責任:同適用於本批註條款之主契約所約定之除外責任。  投資標的 投資標 的幣別 投資標..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272191E31A00102-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 619857,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3949,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272191E31A00102-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 191544,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2553,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272191E31A00103",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型壽險",
+      "product_name": "蘇黎世國際人壽共同基金投資標的批註條款(第03次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "103/01/20",
+      "discontinued_date": "103/03/07",
+      "source_batch_id": "tii-life-197",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 7269,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "272191E31A00103-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...註條款」(以下簡稱本批註條款), 適用於:蘇黎世國際人壽睿智人生變額年金保險。  除外責任:同適用於本批註條款之主契約所約定之除外責任。  投資標的 投資標 的幣別 投資標..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272191E31A00103-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 627868,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 4053,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272191E31A00103-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 254053,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3216,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

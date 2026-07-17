@@ -1,0 +1,25 @@
+{
+  "generated_at": "2026-07-16T14:17:24+08:00",
+  "summary": {
+    "generated_at": "2026-07-16T14:17:24+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-life-180",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 0,
+    "document_count": 0,
+    "extracted_document_count": 0,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 0,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 0,
+    "total_text_characters": 0,
+    "focus_counts": [],
+    "coverage_tag_counts": [],
+    "status_counts": []
+  },
+  "records": []
+}

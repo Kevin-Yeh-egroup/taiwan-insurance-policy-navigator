@@ -1,0 +1,2322 @@
+{
+  "generated_at": "2026-07-17T09:15:00+08:00",
+  "summary": {
+    "generated_at": "2026-07-17T09:15:00+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-life-198",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 12,
+    "document_count": 24,
+    "extracted_document_count": 20,
+    "no_text_document_count": 0,
+    "garbled_document_count": 4,
+    "ocr_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 24,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 12,
+    "product_summary_document_count": 12,
+    "total_text_characters": 206021,
+    "focus_counts": [
+      {
+        "label": "保障項目",
+        "count": 12
+      },
+      {
+        "label": "特殊項目",
+        "count": 9
+      },
+      {
+        "label": "重要定義",
+        "count": 8
+      },
+      {
+        "label": "理賠申請",
+        "count": 8
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "年金險",
+        "count": 12
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 20
+      },
+      {
+        "label": "garbled",
+        "count": 4
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "272421M31A00100",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型年金",
+      "product_name": "蘇黎世國際人壽富裕年年變額年金保險",
+      "sale_status": "已停售",
+      "sale_date": "100/06/02",
+      "discontinued_date": "100/10/31",
+      "source_batch_id": "tii-life-198",
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 1,
+      "text_char_count": 2488,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：年金給付、未支領之年金餘額。",
+          "terms": [
+            "年金給付",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00100-F.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...明保險商品內容說明保險商品內容說明保險商品內容說明 /square4 承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的 投資標..."
+            },
+            {
+              "document": "272421M31A00100-F.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...商品內容說明 /square4 承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的 投資標 的幣別 投資標的名稱 是否有單 位淨值 投資標..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272421M31A00100-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 369700,
+          "page_count": 18,
+          "pages_parsed": 18,
+          "text_char_count": 8861,
+          "extraction_status": "garbled",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272421M31A00100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 109824,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2488,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272421M31A00101",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型年金",
+      "product_name": "蘇黎世國際人壽富裕年年變額年金保險(第01次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "100/11/01",
+      "discontinued_date": "101/03/15",
+      "source_batch_id": "tii-life-198",
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 24811,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1,
+            2,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00101-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "(本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經..."
+            },
+            {
+              "document": "272421M31A00101-A.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "(本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視..."
+            },
+            {
+              "document": "272421M31A00101-A.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...加紅利分配 , 並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令,惟為確保..."
+            },
+            {
+              "document": "272421M31A00101-F.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...明保險商品內容說明保險商品內容說明保險商品內容說明 /square4 承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的 投資標..."
+            },
+            {
+              "document": "272421M31A00101-F.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...商品內容說明 /square4 承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的 投資標 的幣別 投資標的名稱 是否有 單位 淨值 投資..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：名詞定義、定義、保證期間、年金給付期間、宣告利率、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "宣告利率",
+            "預定利率"
+          ],
+          "pages": [
+            2,
+            4,
+            5,
+            7,
+            8,
+            10,
+            11
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00101-A.pdf",
+              "page": 2,
+              "term": "名詞定義",
+              "snippet": "...................................... 4 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00101-A.pdf",
+              "page": 2,
+              "term": "定義",
+              "snippet": ".................................... 4 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00101-A.pdf",
+              "page": 4,
+              "term": "名詞定義",
+              "snippet": "...真意,不得拘泥於所用的文字;如有疑義時,以作有利於被保險人的解釋 為原則。 第二條\u001a名詞定義 本契約所用之名詞,定義如下: 一、 基本帳戶保險費: 係指要保人於投保當時自行規劃..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00101-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": ".............................. 7 第十三條 契約的終止及其限制 ............................................"
+            },
+            {
+              "document": "272421M31A00101-A.pdf",
+              "page": 2,
+              "term": "契約撤銷權",
+              "snippet": "...................................... 6 第五條 契約撤銷權 ............................................"
+            },
+            {
+              "document": "272421M31A00101-A.pdf",
+              "page": 3,
+              "term": "投保年齡",
+              "snippet": ".................................... 11 第三十條 投保年齡的計算及錯誤的處理 ..................................."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00101-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": ".......................... 10 第二十四條 返還保單帳戶價值的申請 ............................................"
+            },
+            {
+              "document": "272421M31A00101-A.pdf",
+              "page": 2,
+              "term": "申領",
+              "snippet": "................................ 10 第二十五條 年金的申領 ............................................"
+            },
+            {
+              "document": "272421M31A00101-A.pdf",
+              "page": 2,
+              "term": "通知",
+              "snippet": "............................... 6 第九條 保單帳戶價值的通知 ............................................"
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272421M31A00101-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 527224,
+          "page_count": 19,
+          "pages_parsed": 19,
+          "text_char_count": 21736,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272421M31A00101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 124472,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3075,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272421M31A00102",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型年金",
+      "product_name": "蘇黎世國際人壽富裕年年變額年金保險(第02次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/03/16",
+      "discontinued_date": "102/07/07",
+      "source_batch_id": "tii-life-198",
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 1,
+      "text_char_count": 3075,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：年金給付、未支領之年金餘額。",
+          "terms": [
+            "年金給付",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00102-F.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...明保險商品內容說明保險商品內容說明保險商品內容說明 /square4 承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的 投資標..."
+            },
+            {
+              "document": "272421M31A00102-F.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...商品內容說明 /square4 承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的 投資標 的幣別 投資標的名稱 是否有 單位 淨值 投資..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272421M31A00102-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 4823857,
+          "page_count": 16,
+          "pages_parsed": 16,
+          "text_char_count": 32486,
+          "extraction_status": "garbled",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272421M31A00102-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 124472,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3075,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272421M31A00103",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型年金",
+      "product_name": "蘇黎世國際人壽富裕年年變額年金保險(第03次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/07/08",
+      "discontinued_date": "102/10/10",
+      "source_batch_id": "tii-life-198",
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 25622,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00103-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...2) 蘇壽商字第 013 號函備查 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經..."
+            },
+            {
+              "document": "272421M31A00103-A.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...3 號函備查 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視..."
+            },
+            {
+              "document": "272421M31A00103-A.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令,惟為確保..."
+            },
+            {
+              "document": "272421M31A00103-F.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...明保險商品內容說明保險商品內容說明保險商品內容說明 /square4 承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的 投資標投..."
+            },
+            {
+              "document": "272421M31A00103-F.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...商品內容說明 /square4 承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的 投資標投資標投資標投資標 的幣別的幣別的幣別的幣別 投..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：名詞定義、定義、保證期間、年金給付期間、宣告利率、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "宣告利率",
+            "預定利率"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10,
+            12
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00103-A.pdf",
+              "page": 2,
+              "term": "名詞定義",
+              "snippet": "...................................... 3 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00103-A.pdf",
+              "page": 2,
+              "term": "定義",
+              "snippet": ".................................... 3 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00103-A.pdf",
+              "page": 3,
+              "term": "名詞定義",
+              "snippet": "...真意,不得拘泥於所用的文字;如有疑義時,以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所用之名詞,定義如下: 一、基本帳戶保險費: 係指要保人於投保當時自行規劃於..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00103-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": ".............................. 7 第十三條 契約的終止及其限制 ............................................"
+            },
+            {
+              "document": "272421M31A00103-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": ".................................... 11 第三十條 投保年齡的計算及錯誤的處理 ..................................."
+            },
+            {
+              "document": "272421M31A00103-A.pdf",
+              "page": 2,
+              "term": "契約撤銷權",
+              "snippet": "...................................... 5 第五條 契約撤銷權 ............................................"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00103-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": ".......................... 10 第二十四條 返還保單帳戶價值的申請 ............................................"
+            },
+            {
+              "document": "272421M31A00103-A.pdf",
+              "page": 2,
+              "term": "申領",
+              "snippet": "................................ 10 第二十五條 年金的申領 ............................................"
+            },
+            {
+              "document": "272421M31A00103-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "................................... 12 第三十一條 受益人的指定及變更 ......................................"
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272421M31A00103-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 865328,
+          "page_count": 20,
+          "pages_parsed": 20,
+          "text_char_count": 22383,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272421M31A00103-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 144498,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 3239,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272421M31A00104",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型年金",
+      "product_name": "蘇黎世國際人壽富裕年年變額年金保險(第04次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/10/11",
+      "discontinued_date": "103/01/19",
+      "source_batch_id": "tii-life-198",
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 25851,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00104-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...2) 蘇壽商字第 022 號函備查 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經..."
+            },
+            {
+              "document": "272421M31A00104-A.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...2 號函備查 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視..."
+            },
+            {
+              "document": "272421M31A00104-A.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令,惟為確保..."
+            },
+            {
+              "document": "272421M31A00104-F.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...明保險商品內容說明保險商品內容說明保險商品內容說明 /square4 承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的 投資標投..."
+            },
+            {
+              "document": "272421M31A00104-F.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...商品內容說明 /square4 承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的 投資標投資標投資標投資標 的幣別的幣別的幣別的幣別 投..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：名詞定義、定義、保證期間、年金給付期間、宣告利率、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "宣告利率",
+            "預定利率"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10,
+            12
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00104-A.pdf",
+              "page": 2,
+              "term": "名詞定義",
+              "snippet": "...................................... 3 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00104-A.pdf",
+              "page": 2,
+              "term": "定義",
+              "snippet": ".................................... 3 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00104-A.pdf",
+              "page": 3,
+              "term": "名詞定義",
+              "snippet": "...真意,不得拘泥於所用的文字;如有疑義時,以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所用之名詞,定義如下: 一、基本帳戶保險費: 係指要保人於投保當時自行規劃於..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00104-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": ".............................. 7 第十三條 契約的終止及其限制 ............................................"
+            },
+            {
+              "document": "272421M31A00104-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": ".................................... 11 第三十條 投保年齡的計算及錯誤的處理 ..................................."
+            },
+            {
+              "document": "272421M31A00104-A.pdf",
+              "page": 2,
+              "term": "契約撤銷權",
+              "snippet": "...................................... 5 第五條 契約撤銷權 ............................................"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00104-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": ".......................... 10 第二十四條 返還保單帳戶價值的申請 ............................................"
+            },
+            {
+              "document": "272421M31A00104-A.pdf",
+              "page": 2,
+              "term": "申領",
+              "snippet": "................................ 10 第二十五條 年金的申領 ............................................"
+            },
+            {
+              "document": "272421M31A00104-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "................................... 12 第三十一條 受益人的指定及變更 ......................................"
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272421M31A00104-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 871461,
+          "page_count": 20,
+          "pages_parsed": 20,
+          "text_char_count": 22612,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272421M31A00104-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 144498,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 3239,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272421M31A00105",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型年金",
+      "product_name": "蘇黎世國際人壽富裕年年變額年金保險(第05次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "103/01/20",
+      "discontinued_date": "103/03/07",
+      "source_batch_id": "tii-life-198",
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 25997,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00105-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...3) 蘇壽商字第 001 號函備查 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經..."
+            },
+            {
+              "document": "272421M31A00105-A.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...1 號函備查 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視..."
+            },
+            {
+              "document": "272421M31A00105-A.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令,惟為確保..."
+            },
+            {
+              "document": "272421M31A00105-F.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...共3頁 - 蘇黎世國際人壽富裕年年變額年金保險 保險商品內容說明  承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額  投資標的 投資標 的幣別 投資標..."
+            },
+            {
+              "document": "272421M31A00105-F.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...年金保險 保險商品內容說明  承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額  投資標的 投資標 的幣別 投資標的名稱 是否有 單位 淨值 投資標的所屬公司名..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：名詞定義、定義、保證期間、年金給付期間、宣告利率、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "宣告利率",
+            "預定利率"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10,
+            12
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00105-A.pdf",
+              "page": 2,
+              "term": "名詞定義",
+              "snippet": "...................................... 3 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00105-A.pdf",
+              "page": 2,
+              "term": "定義",
+              "snippet": ".................................... 3 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00105-A.pdf",
+              "page": 3,
+              "term": "名詞定義",
+              "snippet": "...真意,不得拘泥於所用的文字;如有疑義時,以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所用之名詞,定義如下: 一、基本帳戶保險費: 係指要保人於投保當時自行規劃於..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00105-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": ".............................. 7 第十三條 契約的終止及其限制 ............................................"
+            },
+            {
+              "document": "272421M31A00105-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": ".................................... 11 第三十條 投保年齡的計算及錯誤的處理 ..................................."
+            },
+            {
+              "document": "272421M31A00105-A.pdf",
+              "page": 2,
+              "term": "契約撤銷權",
+              "snippet": "...................................... 5 第五條 契約撤銷權 ............................................"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00105-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": ".......................... 10 第二十四條 返還保單帳戶價值的申請 ............................................"
+            },
+            {
+              "document": "272421M31A00105-A.pdf",
+              "page": 2,
+              "term": "申領",
+              "snippet": "................................ 10 第二十五條 年金的申領 ............................................"
+            },
+            {
+              "document": "272421M31A00105-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "................................... 12 第三十一條 受益人的指定及變更 ......................................"
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272421M31A00105-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 877845,
+          "page_count": 20,
+          "pages_parsed": 20,
+          "text_char_count": 22713,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272421M31A00105-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 210305,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3284,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272421M31A00200",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型年金",
+      "product_name": "蘇黎世國際人壽優利人生變額年金保險",
+      "sale_status": "已停售",
+      "sale_date": "101/06/04",
+      "discontinued_date": "102/07/07",
+      "source_batch_id": "tii-life-198",
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 1,
+      "text_char_count": 3163,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：年金給付、未支領之年金餘額。",
+          "terms": [
+            "年金給付",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00200-F.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...明保險商品內容說明保險商品內容說明保險商品內容說明 /square4 承保範圍 : 年金給付、返還保單帳戶價值、未支領之年金餘額 /square4 不保事項或除外責任:無 /s..."
+            },
+            {
+              "document": "272421M31A00200-F.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...容說明保險商品內容說明 /square4 承保範圍 : 年金給付、返還保單帳戶價值、未支領之年金餘額 /square4 不保事項或除外責任:無 /square4 投資標的 本契約所稱「..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、不保事項。",
+          "terms": [
+            "除外責任",
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00200-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...範圍 : 年金給付、返還保單帳戶價值、未支領之年金餘額 /square4 不保事項或除外責任:無 /square4 投資標的 本契約所稱「投資標的」係指本公司提供要保人選擇以累..."
+            },
+            {
+              "document": "272421M31A00200-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...e4 承保範圍 : 年金給付、返還保單帳戶價值、未支領之年金餘額 /square4 不保事項或除外責任:無 /square4 投資標的 本契約所稱「投資標的」係指本公司提供要保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272421M31A00200-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 1905391,
+          "page_count": 16,
+          "pages_parsed": 16,
+          "text_char_count": 32380,
+          "extraction_status": "garbled",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272421M31A00200-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 144760,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3163,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272421M31A00201",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型年金",
+      "product_name": "蘇黎世國際人壽優利人生變額年金保險(第01次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/07/08",
+      "discontinued_date": "102/10/10",
+      "source_batch_id": "tii-life-198",
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 25147,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00201-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...2) 蘇壽商字第 014 號函備查 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經..."
+            },
+            {
+              "document": "272421M31A00201-A.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...4 號函備查 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視..."
+            },
+            {
+              "document": "272421M31A00201-A.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令,惟為確保..."
+            },
+            {
+              "document": "272421M31A00201-F.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...明保險商品內容說明保險商品內容說明保險商品內容說明 /square4 承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的 投資標投..."
+            },
+            {
+              "document": "272421M31A00201-F.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...商品內容說明 /square4 承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的 投資標投資標投資標投資標 的幣別的幣別的幣別的幣別 投..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：名詞定義、定義、保證期間、年金給付期間、宣告利率、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "宣告利率",
+            "預定利率"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10,
+            12
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00201-A.pdf",
+              "page": 2,
+              "term": "名詞定義",
+              "snippet": ".......................................3 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00201-A.pdf",
+              "page": 2,
+              "term": "定義",
+              "snippet": ".....................................3 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00201-A.pdf",
+              "page": 3,
+              "term": "名詞定義",
+              "snippet": "...真意,不得拘泥於所用的文字;如有疑義時,以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所用之名詞,定義如下: 一、基本帳戶保險費: 係指要保人於投保當時自行規劃於..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00201-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...............................7 第十三條 契約的終止及其限制 ............................................"
+            },
+            {
+              "document": "272421M31A00201-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": ".................................... 11 第三十條 投保年齡的計算及錯誤的處理 ..................................."
+            },
+            {
+              "document": "272421M31A00201-A.pdf",
+              "page": 2,
+              "term": "契約撤銷權",
+              "snippet": ".......................................5 第五條 契約撤銷權 ............................................"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00201-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": ".......................... 10 第二十四條 返還保單帳戶價值的申請 ............................................"
+            },
+            {
+              "document": "272421M31A00201-A.pdf",
+              "page": 2,
+              "term": "申領",
+              "snippet": "................................ 10 第二十五條 年金的申領 ............................................"
+            },
+            {
+              "document": "272421M31A00201-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "................................... 12 第三十一條 受益人的指定及變更 ......................................"
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272421M31A00201-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 861306,
+          "page_count": 20,
+          "pages_parsed": 20,
+          "text_char_count": 21911,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272421M31A00201-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 145013,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 3236,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272421M31A00202",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型年金",
+      "product_name": "蘇黎世國際人壽優利人生變額年金保險(第02次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/10/11",
+      "discontinued_date": "103/01/19",
+      "source_batch_id": "tii-life-198",
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 25612,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00202-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...02) 蘇壽商字第 023號函備查 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經..."
+            },
+            {
+              "document": "272421M31A00202-A.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...23號函備查 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視..."
+            },
+            {
+              "document": "272421M31A00202-A.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令,惟為確保..."
+            },
+            {
+              "document": "272421M31A00202-F.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...明保險商品內容說明保險商品內容說明保險商品內容說明 /square4 承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的 投資標投..."
+            },
+            {
+              "document": "272421M31A00202-F.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...商品內容說明 /square4 承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的 投資標投資標投資標投資標 的幣別的幣別的幣別的幣別 投..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：名詞定義、定義、保證期間、年金給付期間、宣告利率、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "宣告利率",
+            "預定利率"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10,
+            12
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00202-A.pdf",
+              "page": 2,
+              "term": "名詞定義",
+              "snippet": ".......................................3 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00202-A.pdf",
+              "page": 2,
+              "term": "定義",
+              "snippet": ".....................................3 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00202-A.pdf",
+              "page": 3,
+              "term": "名詞定義",
+              "snippet": "...真意,不得拘泥於所用的文字;如有疑義時,以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所用之名詞,定義如下: 一、基本帳戶保險費: 係指要保人於投保當時自行規劃於..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00202-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...............................7 第十三條 契約的終止及其限制 ............................................"
+            },
+            {
+              "document": "272421M31A00202-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": ".................................... 11 第三十條 投保年齡的計算及錯誤的處理 ..................................."
+            },
+            {
+              "document": "272421M31A00202-A.pdf",
+              "page": 2,
+              "term": "契約撤銷權",
+              "snippet": ".......................................5 第五條 契約撤銷權 ............................................"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00202-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": ".......................... 10 第二十四條 返還保單帳戶價值的申請 ............................................"
+            },
+            {
+              "document": "272421M31A00202-A.pdf",
+              "page": 2,
+              "term": "申領",
+              "snippet": "................................ 10 第二十五條 年金的申領 ............................................"
+            },
+            {
+              "document": "272421M31A00202-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "................................... 12 第三十一條 受益人的指定及變更 ......................................"
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272421M31A00202-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 871000,
+          "page_count": 20,
+          "pages_parsed": 20,
+          "text_char_count": 22376,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272421M31A00202-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 145013,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 3236,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272421M31A00203",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型年金",
+      "product_name": "蘇黎世國際人壽優利人生變額年金保險(第03次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "103/01/20",
+      "discontinued_date": "103/03/07",
+      "source_batch_id": "tii-life-198",
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 25764,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00203-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...03) 蘇壽商字第 002號函備查 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經..."
+            },
+            {
+              "document": "272421M31A00203-A.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...02號函備查 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視..."
+            },
+            {
+              "document": "272421M31A00203-A.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令,惟為確保..."
+            },
+            {
+              "document": "272421M31A00203-F.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...共3頁 - 蘇黎世國際人壽優利人生變額年金保險 保險商品內容說明  承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額  投資標的 投資標 的幣別 投資標..."
+            },
+            {
+              "document": "272421M31A00203-F.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...年金保險 保險商品內容說明  承保範圍 : 年金給付、加值給付、返還保單帳戶價值、未支領之年金餘額  投資標的 投資標 的幣別 投資標的名稱 是否有 單位 淨值 投資標的所屬公司名..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：名詞定義、定義、保證期間、年金給付期間、宣告利率、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "宣告利率",
+            "預定利率"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            7,
+            8,
+            10,
+            12
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00203-A.pdf",
+              "page": 2,
+              "term": "名詞定義",
+              "snippet": ".......................................3 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00203-A.pdf",
+              "page": 2,
+              "term": "定義",
+              "snippet": ".....................................3 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00203-A.pdf",
+              "page": 3,
+              "term": "名詞定義",
+              "snippet": "...真意,不得拘泥於所用的文字;如有疑義時,以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所用之名詞,定義如下: 一、基本帳戶保險費: 係指要保人於投保當時自行規劃於..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00203-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": "...............................7 第十三條 契約的終止及其限制 ............................................"
+            },
+            {
+              "document": "272421M31A00203-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": ".................................... 11 第三十條 投保年齡的計算及錯誤的處理 ..................................."
+            },
+            {
+              "document": "272421M31A00203-A.pdf",
+              "page": 2,
+              "term": "契約撤銷權",
+              "snippet": ".......................................5 第五條 契約撤銷權 ............................................"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00203-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": ".......................... 10 第二十四條 返還保單帳戶價值的申請 ............................................"
+            },
+            {
+              "document": "272421M31A00203-A.pdf",
+              "page": 2,
+              "term": "申領",
+              "snippet": "................................ 10 第二十五條 年金的申領 ............................................"
+            },
+            {
+              "document": "272421M31A00203-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "................................... 12 第三十一條 受益人的指定及變更 ......................................"
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272421M31A00203-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 877385,
+          "page_count": 20,
+          "pages_parsed": 20,
+          "text_char_count": 22480,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272421M31A00203-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 210042,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3284,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272421M31A00300",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型年金",
+      "product_name": "蘇黎世國際人壽睿智人生變額年金保險",
+      "sale_status": "已停售",
+      "sale_date": "101/07/16",
+      "discontinued_date": "102/07/07",
+      "source_batch_id": "tii-life-198",
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 1,
+      "text_char_count": 399,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：年金給付、未支領之年金餘額。",
+          "terms": [
+            "年金給付",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00300-F.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...明保險商品內容說明保險商品內容說明保險商品內容說明 /square4 承保範圍 : 年金給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的: 共同基金: ㄧ、..."
+            },
+            {
+              "document": "272421M31A00300-F.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...容說明保險商品內容說明 /square4 承保範圍 : 年金給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的: 共同基金: ㄧ、貨幣型基金: 二、其他基金: 投資標..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272421M31A00300-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 970586,
+          "page_count": 12,
+          "pages_parsed": 12,
+          "text_char_count": 28244,
+          "extraction_status": "garbled",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272421M31A00300-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 56266,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 399,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "272421M31A00301",
+      "company": "英屬曼島商蘇黎世國際人壽保險股份有限公司台灣分公司",
+      "insurance_category": "投資型年金",
+      "product_name": "蘇黎世國際人壽睿智人生變額年金保險(第01次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/07/08",
+      "discontinued_date": "103/03/07",
+      "source_batch_id": "tii-life-198",
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 18092,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00301-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...2) 蘇壽商字第 015 號函備查 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格..."
+            },
+            {
+              "document": "272421M31A00301-A.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...5 號函備查 (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視其內容業已..."
+            },
+            {
+              "document": "272421M31A00301-A.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...紅保險單,不參加紅利分配,並無紅利給付項目) 給付項目:年金給付、返還保單帳戶價值、未支領之年金餘額 1. 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令,惟為確保..."
+            },
+            {
+              "document": "272421M31A00301-F.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...明保險商品內容說明保險商品內容說明保險商品內容說明 /square4 承保範圍 : 年金給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的: 共同基金: ㄧ、..."
+            },
+            {
+              "document": "272421M31A00301-F.pdf",
+              "page": 1,
+              "term": "未支領之年金餘額",
+              "snippet": "...容說明保險商品內容說明 /square4 承保範圍 : 年金給付、返還保單帳戶價值、未支領之年金餘額 /square4 投資標的: 共同基金: ㄧ、貨幣型基金: 二、其他基金: 投資標..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：名詞定義、定義、保證期間、年金給付期間、宣告利率、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "宣告利率",
+            "預定利率"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            6,
+            7,
+            8,
+            10,
+            11
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00301-A.pdf",
+              "page": 2,
+              "term": "名詞定義",
+              "snippet": "...................................... 3 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00301-A.pdf",
+              "page": 2,
+              "term": "定義",
+              "snippet": ".................................... 3 第二條 名詞定義 ............................................"
+            },
+            {
+              "document": "272421M31A00301-A.pdf",
+              "page": 3,
+              "term": "名詞定義",
+              "snippet": "...真意,不得拘泥於所用的文字;如有疑義時,以作有利於被保險人的 解釋為原則。 第二條 名詞定義 本契約所用之名詞,定義如下: 一、躉繳保險費: 係指依本公司與要保人雙方同意而由要..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00301-A.pdf",
+              "page": 2,
+              "term": "限制",
+              "snippet": ".............................. 6 第十三條 契約的終止及其限制 ............................................"
+            },
+            {
+              "document": "272421M31A00301-A.pdf",
+              "page": 2,
+              "term": "投保年齡",
+              "snippet": "................................... 11 第二十九條 投保年齡的計算及錯誤的處理 ..................................."
+            },
+            {
+              "document": "272421M31A00301-A.pdf",
+              "page": 2,
+              "term": "契約撤銷權",
+              "snippet": "...................................... 5 第五條 契約撤銷權 ............................................"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            2,
+            3,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "evidence": [
+            {
+              "document": "272421M31A00301-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "........................... 9 第二十三條 返還保單帳戶價值的申請 ............................................"
+            },
+            {
+              "document": "272421M31A00301-A.pdf",
+              "page": 2,
+              "term": "申領",
+              "snippet": "................................. 9 第二十四條 年金的申領 ............................................"
+            },
+            {
+              "document": "272421M31A00301-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": ".................................... 11 第三十條 受益人的指定及變更 ......................................"
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "272421M31A00301-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 728125,
+          "page_count": 16,
+          "pages_parsed": 16,
+          "text_char_count": 17693,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "272421M31A00301-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 56266,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 399,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    }
+  ]
+}
