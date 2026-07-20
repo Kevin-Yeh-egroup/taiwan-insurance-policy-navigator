@@ -449,3 +449,71 @@ Completion rule:
 - `record_identity_key`: stable public identity. Prefer `tii-product-id:<productId>`; use the company/category/name/date fallback only when an official product ID is absent.
 - `edition_label`: user-facing version cue combining sale date, discontinued date, and `productId`.
 - `same_name_product_id_count` / `same_name_version_note`: marker for same-company same-name records that represent different product IDs. These records must remain separate cards.
+
+## Coverage Calculation Schema
+
+Every official TII category can use the same search, detail, collection, edit, and coverage-group flow. Amounts are shown only when reviewed terms provide enough structure to calculate or label them safely.
+
+```json
+{
+  "selection_type": "plan_unit",
+  "selection_source": "terms",
+  "plan_options": [
+    {
+      "value": "B",
+      "label": "計畫 B",
+      "coverage_entries": [
+        {
+          "name": "住院醫療保險金",
+          "amount": 1000,
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "source_ref": "給付附表"
+        }
+      ]
+    }
+  ]
+}
+```
+
+`selection_type` controls the only inputs a user may edit:
+
+- `face_amount`: positive-integer `face_amount` only.
+- `plan`: one reviewed `plan_name`; no quantity field.
+- `unit`: positive-integer `unit_count` only.
+- `plan_unit`: both a reviewed plan and a positive-integer unit count.
+- `fixed`: terms define the amount and no user input is needed.
+- `unknown`: terms have not established the amount input; the product remains usable but displays `金額尚待整理`.
+
+Any mode other than `unknown` must be backed by `selection_source: terms` or a reviewed plan option table. Existing user values never create a mode by themselves.
+
+Each `coverage_entry` is terms-owned and cannot be edited by the user. Supported `calculation_basis` values are `fixed_amount`, `percentage_of_base`, `plan_schedule_lookup`, `per_unit`, `per_unit_per_day`, `per_day`, `reimbursement_with_cap`, `table_multiplier`, `tiered_or_stepped`, `additional_benefit`, and `unknown`. `amount_role`, `limit_scope`, and `aggregation_rule` preserve whether a number is a payout, base, cap, or reference and whether benefits may be combined.
+
+`limit_scope` includes `per_surgery` for surgery schedules. Percentage fields may exceed 100 when a reviewed terms table defines a multiplier, such as a surgery schedule ranging from 10% to 500%; the validator permits reviewed values up to 1000% and the UI keeps the full range instead of clipping it to 100%.
+
+For `reimbursement_with_cap`, a legacy `basis` of `per_unit` or `daily_per_unit` means the reviewed table amount is a per-unit limit. The displayed policy limit must multiply that amount by the user's positive-integer `unit_count`; without a unit count, the UI must request it instead of presenting the per-unit amount as the whole-policy cap.
+
+For a verified benefit whose per-unit amount changes by policy year or another terms-defined tier, `amount_tiers` stores each reviewed label and amount as structured data. The UI may calculate every displayed tier from the user's unit count, but it must not collapse the tiers into one estimated payout or ask the user to edit the terms-owned tier labels.
+
+```json
+{
+  "name": "罹患癌症保險金",
+  "basis": "per_unit",
+  "calculation_basis": "tiered_or_stepped",
+  "amount_tiers": [
+    { "label": "第 1 至 20 保單年度", "amount": 50000 },
+    { "label": "第 21 保單年度起", "amount": 75000 }
+  ]
+}
+```
+
+Safety rules:
+
+- Do not infer an input mode or amount from product-name keywords.
+- Do not convert an unsupported calculation basis into a fixed payout.
+- Do not total entries with different bases, scopes, or aggregation rules by default.
+- Show the selected plan, unit count, or face amount together with the derived benefit rows so the user can verify the basis.
+- Preserve official product identity and version separately from the coverage calculation schema.

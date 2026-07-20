@@ -14,7 +14,7 @@ Public, noindex insurance-policy navigator for Taiwan insurance source documents
 - Policy content extraction is complete for all 559 reachable policy sources: 551 PDF records and 8 HTML records produced parsed text, with 555 records hitting at least one consumer-important field.
 - Reader-first focus cards are generated per policy: coverage items, important definitions, special conditions, and claim application cues.
 - TII captcha-protected discontinued-policy batches remain manual; this project does not bypass captcha.
-- TII manual batches follow the site split: 108 property-insurance batches and 198 life/personal-insurance batches, 306 total. Current TII execution/import status is 63 attempted manual batches, 1 waiting on captcha, 62 indexed manual batches, 62 complete manual batches, 84,739 imported TII policy records, 83,536 saved detail pages, and 1,203 detail pages marked for later backfill.
+- TII manual batches follow the site split: 108 property-insurance batches and 198 life/personal-insurance batches, 306 total. All 306 batches are indexed and complete, with 163,154 imported product records, 161,812 saved detail pages, and 1,342 detail pages marked for later backfill.
 
 Production URL:
 
@@ -58,6 +58,8 @@ python scripts\run_policy_batch.py --batch-id policy-url-001
 1..17 | ForEach-Object { python scripts\run_policy_batch.py --batch-id ('policy-url-{0:D3}' -f $_) }
 & 'C:\Users\Kevin\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe' scripts\build_policy_content_extracts.py --delay 0 --timeout 30 --max-pdf-pages 12
 python scripts\validate_data.py
+python scripts\audit_tii_coverage_data.py
+node scripts\test_coverage_model.js
 python -m http.server 4173
 ```
 
@@ -107,6 +109,19 @@ Document extraction writes detailed public-safe results to `data\tii\document-co
 python scripts\build_tii_document_summaries.py
 ```
 
+Plan-based products need an additional reviewed table extraction step before rebuilding the compact summary. The extractor only writes amounts when the expected headings, every plan row, and shared table cells are all present:
+
+```powershell
+python scripts\extract_tii_plan_benefits.py --batch-id tii-life-001 --dry-run
+python scripts\extract_tii_plan_benefits.py --batch-id tii-life-001
+python scripts\build_tii_document_summaries.py --batch-id tii-life-001
+python scripts\validate_data.py
+```
+
+The browser receives a reviewed `selection_type` (`face_amount`, `plan`, `unit`, `plan_unit`, `fixed`, or `unknown`) and terms-derived `coverage_entries`. A product only asks for the fields required by its reviewed terms: for example, a plan product does not ask for units unless it is explicitly `plan_unit`. Benefit notes preserve calculation conditions such as disability percentages, reimbursement limits, additional benefits, daily limits, and aggregation rules. Reviewed `amount_tiers` preserve policy-year or other terms-defined amount schedules so every tier can be shown and calculated from a unit count without collapsing it into an estimate. Keyword hits are never converted into amounts.
+
+The collection flow is available to all 10 official TII categories. They are summarized into 11 consumer-facing coverage groups across personal and property insurance. Products without reviewed amount tables can still be searched, viewed, added, and edited, but the interface shows `金額尚待整理` instead of estimating a benefit.
+
 For a large policy universe, use segmented batches instead of one full crawl:
 
 ```powershell
@@ -127,6 +142,6 @@ Current execution snapshot: `policy-url-001` through `policy-url-017` are comple
 
 Current content extraction snapshot: `559` reachable policy sources were parsed, including `551` PDF records and `8` HTML records. The extraction produced `6,373,892` parsed text characters and field hits for `555` records. Reader-first focus cards detected `保障項目` in `553` records, `重要定義` in `552`, `特殊項目` in `529`, and `理賠申請` in `539`. The public data stores derived counts, field hits, page hints, and source links, not full policy text.
 
-Current TII manual matrix: `27` property insurers x `4` property categories = `108` batches; `33` life/personal insurers x `6` personal-insurance categories = `198` batches; total `306` manual batches. These batches are shown on the site as clickable property/life groups, but captcha still requires human input. Current status is `63` attempted manual batches, `1` waiting on captcha, `62 / 306` indexed manual batches, `62 / 306` complete manual batches, `84,739` imported TII policy records, `83,536 / 84,739` saved detail pages, and `1,203` detail pages marked for later backfill. Completed range: `tii-property-001` through `tii-property-062`. Latest completed batches: `tii-property-061` completed with `1,349 / 1,349` official rows, `1,349` product cards, and `1,348 / 1,349` saved detail pages, with `1` detail page marked for later backfill; `tii-property-062` completed with `1,709 / 1,709` official rows, `1,709` product cards, and `1,691 / 1,709` saved detail pages, with `18` detail pages marked for later backfill. `tii-property-063` is prepared and waiting for a fresh human-entered captcha. The remaining `244` TII batches still require fresh operator captcha sessions.
+Current TII manual matrix: `27` property insurers x `4` property categories = `108` batches; `33` life/personal insurers x `6` personal-insurance categories = `198` batches; total `306` manual batches. All `306 / 306` batches are indexed and complete. The public index contains `163,154` deduplicated product records; `161,812 / 163,154` official detail pages are saved and `1,342` detail pages remain marked for later backfill. Captcha still requires human input when a future refresh or detail backfill is run.
 
 TII identity rule: public cards are deduplicated only when the official result repeats the same `productId`. Do not deduplicate by policy name. The same company can reuse the same product name across different years, sale periods, or product IDs, and those records can have different terms. Imported records therefore preserve `record_identity_key`, `identity_basis`, `edition_label`, and same-name version markers so users can compare sale date, discontinued date, `productId`, and official detail pages separately. The discontinued-policy card UI now renders a same-name version timeline when a company has multiple `productId` records for the same product name.

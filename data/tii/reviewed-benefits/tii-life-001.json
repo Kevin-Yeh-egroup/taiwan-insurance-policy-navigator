@@ -1,0 +1,626 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-17T15:38:49+08:00",
+  "batch_id": "tii-life-001",
+  "record_count": 2,
+  "records": [
+    {
+      "product_id": "201211MZ1G07721A11Z10000000",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v4",
+      "parser_id": "accident-abcd-v1",
+      "source_file": "201211MZ1G07721A11Z10000000-A.pdf",
+      "source_document_sha256": "221b4592f531354a483a869ae88bb862c907774be41e9338dcf5a19e851adfce",
+      "schedule_sha256": "5beae2a5d19bb94cad3ccbf7d2a0d7863b637cd3b8a8afb8dc3fee81597170a0",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-17T15:26:49+08:00",
+      "review_note": "重新核對附表一四個計畫及條款給付限制，並確認目前公開 plan_options 的保障雜湊與重新解析結果完全一致；補齊先前缺少的審核台帳。",
+      "selection_type": "plan",
+      "input_mode": "plan",
+      "selection_source": "terms",
+      "plan_options": [
+        {
+          "value": "A",
+          "label": "計畫 A",
+          "coverage_entries": [
+            {
+              "id": "accidental-death",
+              "name": "意外傷害身故保險金",
+              "amount": 1000000,
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "符合條款約定的意外傷害身故時給付。",
+              "source_ref": "保單條款第五條及附表一，第 11 頁"
+            },
+            {
+              "id": "accidental-disability",
+              "name": "意外傷害失能保險金",
+              "amount": 1000000,
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "實際給付依附表二比例（5% 至 100%）計算，約為 50,000 元至 1,000,000 元。",
+              "source_ref": "保單條款第六條、附表一，第 11 頁及附表二",
+              "rate_min_percent": 5,
+              "rate_max_percent": 100
+            },
+            {
+              "id": "injury-medical",
+              "name": "傷害醫療保險金",
+              "amount": 100000,
+              "basis": "per_injury_limit",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_injury",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "同一次傷害採實支實付，累計給付不超過本限額。",
+              "source_ref": "保單條款第七條及附表一，第 11 頁"
+            },
+            {
+              "id": "aviation-accidental-death",
+              "name": "航空大眾運輸意外傷害身故保險金",
+              "amount": 1000000,
+              "basis": "additional_benefit",
+              "calculation_basis": "additional_benefit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "本項為額外給付；加上一般意外身故保險金，符合航空事故身故時合計 2,000,000 元。",
+              "source_ref": "保單條款第八條及附表一，第 11 頁"
+            },
+            {
+              "id": "hospital-daily",
+              "name": "住院醫療日額保險金",
+              "amount": 1600,
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "按實際住院日數給付，含入院及出院當日；同一保單年度同一次住院最高 365 日。",
+              "source_ref": "保單條款第九條及附表一，第 11 頁"
+            }
+          ]
+        },
+        {
+          "value": "B",
+          "label": "計畫 B",
+          "coverage_entries": [
+            {
+              "id": "accidental-death",
+              "name": "意外傷害身故保險金",
+              "amount": 2000000,
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "符合條款約定的意外傷害身故時給付。",
+              "source_ref": "保單條款第五條及附表一，第 11 頁"
+            },
+            {
+              "id": "accidental-disability",
+              "name": "意外傷害失能保險金",
+              "amount": 2000000,
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "實際給付依附表二比例（5% 至 100%）計算，約為 100,000 元至 2,000,000 元。",
+              "source_ref": "保單條款第六條、附表一，第 11 頁及附表二",
+              "rate_min_percent": 5,
+              "rate_max_percent": 100
+            },
+            {
+              "id": "injury-medical",
+              "name": "傷害醫療保險金",
+              "amount": 200000,
+              "basis": "per_injury_limit",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_injury",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "同一次傷害採實支實付，累計給付不超過本限額。",
+              "source_ref": "保單條款第七條及附表一，第 11 頁"
+            },
+            {
+              "id": "aviation-accidental-death",
+              "name": "航空大眾運輸意外傷害身故保險金",
+              "amount": 1000000,
+              "basis": "additional_benefit",
+              "calculation_basis": "additional_benefit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "本項為額外給付；加上一般意外身故保險金，符合航空事故身故時合計 3,000,000 元。",
+              "source_ref": "保單條款第八條及附表一，第 11 頁"
+            },
+            {
+              "id": "hospital-daily",
+              "name": "住院醫療日額保險金",
+              "amount": 1600,
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "按實際住院日數給付，含入院及出院當日；同一保單年度同一次住院最高 365 日。",
+              "source_ref": "保單條款第九條及附表一，第 11 頁"
+            }
+          ]
+        },
+        {
+          "value": "C",
+          "label": "計畫 C",
+          "coverage_entries": [
+            {
+              "id": "accidental-death",
+              "name": "意外傷害身故保險金",
+              "amount": 3000000,
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "符合條款約定的意外傷害身故時給付。",
+              "source_ref": "保單條款第五條及附表一，第 11 頁"
+            },
+            {
+              "id": "accidental-disability",
+              "name": "意外傷害失能保險金",
+              "amount": 3000000,
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "實際給付依附表二比例（5% 至 100%）計算，約為 150,000 元至 3,000,000 元。",
+              "source_ref": "保單條款第六條、附表一，第 11 頁及附表二",
+              "rate_min_percent": 5,
+              "rate_max_percent": 100
+            },
+            {
+              "id": "injury-medical",
+              "name": "傷害醫療保險金",
+              "amount": 300000,
+              "basis": "per_injury_limit",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_injury",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "同一次傷害採實支實付，累計給付不超過本限額。",
+              "source_ref": "保單條款第七條及附表一，第 11 頁"
+            },
+            {
+              "id": "aviation-accidental-death",
+              "name": "航空大眾運輸意外傷害身故保險金",
+              "amount": 1000000,
+              "basis": "additional_benefit",
+              "calculation_basis": "additional_benefit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "本項為額外給付；加上一般意外身故保險金，符合航空事故身故時合計 4,000,000 元。",
+              "source_ref": "保單條款第八條及附表一，第 11 頁"
+            },
+            {
+              "id": "hospital-daily",
+              "name": "住院醫療日額保險金",
+              "amount": 1600,
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "按實際住院日數給付，含入院及出院當日；同一保單年度同一次住院最高 365 日。",
+              "source_ref": "保單條款第九條及附表一，第 11 頁"
+            }
+          ]
+        },
+        {
+          "value": "D",
+          "label": "計畫 D",
+          "coverage_entries": [
+            {
+              "id": "accidental-death",
+              "name": "意外傷害身故保險金",
+              "amount": 4000000,
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "符合條款約定的意外傷害身故時給付。",
+              "source_ref": "保單條款第五條及附表一，第 11 頁"
+            },
+            {
+              "id": "accidental-disability",
+              "name": "意外傷害失能保險金",
+              "amount": 4000000,
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "實際給付依附表二比例（5% 至 100%）計算，約為 200,000 元至 4,000,000 元。",
+              "source_ref": "保單條款第六條、附表一，第 11 頁及附表二",
+              "rate_min_percent": 5,
+              "rate_max_percent": 100
+            },
+            {
+              "id": "injury-medical",
+              "name": "傷害醫療保險金",
+              "amount": 400000,
+              "basis": "per_injury_limit",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_injury",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "同一次傷害採實支實付，累計給付不超過本限額。",
+              "source_ref": "保單條款第七條及附表一，第 11 頁"
+            },
+            {
+              "id": "aviation-accidental-death",
+              "name": "航空大眾運輸意外傷害身故保險金",
+              "amount": 1000000,
+              "basis": "additional_benefit",
+              "calculation_basis": "additional_benefit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "本項為額外給付；加上一般意外身故保險金，符合航空事故身故時合計 5,000,000 元。",
+              "source_ref": "保單條款第八條及附表一，第 11 頁"
+            },
+            {
+              "id": "hospital-daily",
+              "name": "住院醫療日額保險金",
+              "amount": 1600,
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "按實際住院日數給付，含入院及出院當日；同一保單年度同一次住院最高 365 日。",
+              "source_ref": "保單條款第九條及附表一，第 11 頁"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "201211MZ1G07721A11Z10000002",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v4",
+      "parser_id": "accident-abcd-v1",
+      "source_file": "201211MZ1G07721A11Z10000002-A.pdf",
+      "source_document_sha256": "214b62e2b161e26228cfeeda8743b3edc2f8cbeeedd0f8775a457c17f6b675f2",
+      "schedule_sha256": "b8c23c1ab0ef90ad61ab9577d6fdebbfaf8b5f5fdd11dae0eba0a917cb946764",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-17T15:26:49+08:00",
+      "review_note": "重新核對附表一四個計畫及條款給付限制，並確認目前公開 plan_options 的保障雜湊與重新解析結果完全一致；補齊先前缺少的審核台帳。",
+      "selection_type": "plan",
+      "input_mode": "plan",
+      "selection_source": "terms",
+      "plan_options": [
+        {
+          "value": "A",
+          "label": "計畫 A",
+          "coverage_entries": [
+            {
+              "id": "accidental-death",
+              "name": "意外傷害身故保險金",
+              "amount": 1000000,
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "符合條款約定的意外傷害身故時給付。",
+              "source_ref": "保單條款第六條及附表一，第 12 頁"
+            },
+            {
+              "id": "accidental-disability",
+              "name": "意外傷害失能保險金",
+              "amount": 1000000,
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "實際給付依附表二比例（5% 至 100%）計算，約為 50,000 元至 1,000,000 元。",
+              "source_ref": "保單條款第七條、附表一，第 12 頁及附表二",
+              "rate_min_percent": 5,
+              "rate_max_percent": 100
+            },
+            {
+              "id": "injury-medical",
+              "name": "傷害醫療保險金",
+              "amount": 100000,
+              "basis": "per_injury_limit",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_injury",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "同一次傷害採實支實付，累計給付不超過本限額。",
+              "source_ref": "保單條款第八條及附表一，第 12 頁"
+            },
+            {
+              "id": "aviation-accidental-death",
+              "name": "航空大眾運輸意外傷害身故保險金",
+              "amount": 1000000,
+              "basis": "additional_benefit",
+              "calculation_basis": "additional_benefit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "本項為額外給付；加上一般意外身故保險金，符合航空事故身故時合計 2,000,000 元。",
+              "source_ref": "保單條款第九條及附表一，第 12 頁"
+            },
+            {
+              "id": "hospital-daily",
+              "name": "住院醫療日額保險金",
+              "amount": 1600,
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "按實際住院日數給付，含入院及出院當日；同一保單年度同一次住院最高 365 日。",
+              "source_ref": "保單條款第十條及附表一，第 12 頁"
+            }
+          ]
+        },
+        {
+          "value": "B",
+          "label": "計畫 B",
+          "coverage_entries": [
+            {
+              "id": "accidental-death",
+              "name": "意外傷害身故保險金",
+              "amount": 2000000,
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "符合條款約定的意外傷害身故時給付。",
+              "source_ref": "保單條款第六條及附表一，第 12 頁"
+            },
+            {
+              "id": "accidental-disability",
+              "name": "意外傷害失能保險金",
+              "amount": 2000000,
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "實際給付依附表二比例（5% 至 100%）計算，約為 100,000 元至 2,000,000 元。",
+              "source_ref": "保單條款第七條、附表一，第 12 頁及附表二",
+              "rate_min_percent": 5,
+              "rate_max_percent": 100
+            },
+            {
+              "id": "injury-medical",
+              "name": "傷害醫療保險金",
+              "amount": 200000,
+              "basis": "per_injury_limit",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_injury",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "同一次傷害採實支實付，累計給付不超過本限額。",
+              "source_ref": "保單條款第八條及附表一，第 12 頁"
+            },
+            {
+              "id": "aviation-accidental-death",
+              "name": "航空大眾運輸意外傷害身故保險金",
+              "amount": 1000000,
+              "basis": "additional_benefit",
+              "calculation_basis": "additional_benefit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "本項為額外給付；加上一般意外身故保險金，符合航空事故身故時合計 3,000,000 元。",
+              "source_ref": "保單條款第九條及附表一，第 12 頁"
+            },
+            {
+              "id": "hospital-daily",
+              "name": "住院醫療日額保險金",
+              "amount": 1600,
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "按實際住院日數給付，含入院及出院當日；同一保單年度同一次住院最高 365 日。",
+              "source_ref": "保單條款第十條及附表一，第 12 頁"
+            }
+          ]
+        },
+        {
+          "value": "C",
+          "label": "計畫 C",
+          "coverage_entries": [
+            {
+              "id": "accidental-death",
+              "name": "意外傷害身故保險金",
+              "amount": 3000000,
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "符合條款約定的意外傷害身故時給付。",
+              "source_ref": "保單條款第六條及附表一，第 12 頁"
+            },
+            {
+              "id": "accidental-disability",
+              "name": "意外傷害失能保險金",
+              "amount": 3000000,
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "實際給付依附表二比例（5% 至 100%）計算，約為 150,000 元至 3,000,000 元。",
+              "source_ref": "保單條款第七條、附表一，第 12 頁及附表二",
+              "rate_min_percent": 5,
+              "rate_max_percent": 100
+            },
+            {
+              "id": "injury-medical",
+              "name": "傷害醫療保險金",
+              "amount": 300000,
+              "basis": "per_injury_limit",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_injury",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "同一次傷害採實支實付，累計給付不超過本限額。",
+              "source_ref": "保單條款第八條及附表一，第 12 頁"
+            },
+            {
+              "id": "aviation-accidental-death",
+              "name": "航空大眾運輸意外傷害身故保險金",
+              "amount": 1000000,
+              "basis": "additional_benefit",
+              "calculation_basis": "additional_benefit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "本項為額外給付；加上一般意外身故保險金，符合航空事故身故時合計 4,000,000 元。",
+              "source_ref": "保單條款第九條及附表一，第 12 頁"
+            },
+            {
+              "id": "hospital-daily",
+              "name": "住院醫療日額保險金",
+              "amount": 1600,
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "按實際住院日數給付，含入院及出院當日；同一保單年度同一次住院最高 365 日。",
+              "source_ref": "保單條款第十條及附表一，第 12 頁"
+            }
+          ]
+        },
+        {
+          "value": "D",
+          "label": "計畫 D",
+          "coverage_entries": [
+            {
+              "id": "accidental-death",
+              "name": "意外傷害身故保險金",
+              "amount": 4000000,
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "符合條款約定的意外傷害身故時給付。",
+              "source_ref": "保單條款第六條及附表一，第 12 頁"
+            },
+            {
+              "id": "accidental-disability",
+              "name": "意外傷害失能保險金",
+              "amount": 4000000,
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "實際給付依附表二比例（5% 至 100%）計算，約為 200,000 元至 4,000,000 元。",
+              "source_ref": "保單條款第七條、附表一，第 12 頁及附表二",
+              "rate_min_percent": 5,
+              "rate_max_percent": 100
+            },
+            {
+              "id": "injury-medical",
+              "name": "傷害醫療保險金",
+              "amount": 400000,
+              "basis": "per_injury_limit",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_injury",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "同一次傷害採實支實付，累計給付不超過本限額。",
+              "source_ref": "保單條款第八條及附表一，第 12 頁"
+            },
+            {
+              "id": "aviation-accidental-death",
+              "name": "航空大眾運輸意外傷害身故保險金",
+              "amount": 1000000,
+              "basis": "additional_benefit",
+              "calculation_basis": "additional_benefit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "本項為額外給付；加上一般意外身故保險金，符合航空事故身故時合計 5,000,000 元。",
+              "source_ref": "保單條款第九條及附表一，第 12 頁"
+            },
+            {
+              "id": "hospital-daily",
+              "name": "住院醫療日額保險金",
+              "amount": 1600,
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "按實際住院日數給付，含入院及出院當日；同一保單年度同一次住院最高 365 日。",
+              "source_ref": "保單條款第十條及附表一，第 12 頁"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

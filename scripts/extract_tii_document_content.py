@@ -59,7 +59,7 @@ COVERAGE_RULES = [
     {
         "label": "意外險",
         "name_terms": ["傷害", "意外", "平安", "燒燙傷", "骨折"],
-        "text_terms": ["意外傷害事故", "傷害保險金", "燒燙傷保險金", "骨折保險金"],
+        "text_terms": ["傷害保險金", "燒燙傷保險金", "骨折保險金"],
         "category_terms": ["傷害"],
     },
     {
@@ -517,6 +517,26 @@ def infer_coverage_tags(text: str, product_name: str, insurance_category: str) -
     return tags
 
 
+def infer_structured_coverage_tags(record: dict[str, Any]) -> list[str] | None:
+    entries = list(record.get("coverage_entries") or [])
+    for option in record.get("plan_options") or []:
+        if isinstance(option, dict):
+            entries.extend(option.get("coverage_entries") or [])
+    if not entries:
+        return None
+
+    benefit_names = " ".join(
+        str(entry.get("name") or "")
+        for entry in entries
+        if isinstance(entry, dict)
+    )
+    return infer_coverage_tags(
+        benefit_names,
+        str(record.get("product_name") or ""),
+        str(record.get("insurance_category") or ""),
+    )
+
+
 def load_records(paths: list[Path]) -> dict[str, dict[str, Any]]:
     records: dict[str, dict[str, Any]] = {}
     for path in paths:
@@ -700,20 +720,37 @@ def summarize(records: list[dict[str, Any]], documents: list[dict[str, Any]], ge
 def compact_document_summary(public_output: dict[str, Any], batch_id: str) -> dict[str, Any]:
     records = []
     for record in public_output.get("records", []):
-        records.append(
-            {
-                "product_id": record.get("product_id", ""),
-                "coverage_tags": record.get("coverage_tags") or [],
-                "reader_focus": [
-                    {
-                        key: card.get(key)
-                        for key in ["key", "label", "summary", "terms"]
-                    }
-                    for card in record.get("reader_focus", [])
-                    if card.get("status") == "detected"
-                ],
-            }
-        )
+        structured_tags = infer_structured_coverage_tags(record)
+        summary = {
+            "product_id": record.get("product_id", ""),
+            "coverage_tags": (
+                structured_tags
+                if structured_tags is not None
+                else record.get("coverage_tags") or []
+            ),
+            "reader_focus": [
+                {
+                    key: card.get(key)
+                    for key in ["key", "label", "summary", "terms"]
+                }
+                for card in record.get("reader_focus", [])
+                if card.get("status") == "detected"
+            ],
+        }
+        for field in [
+            "selection_type",
+            "input_mode",
+            "selection_source",
+            "selection_label",
+            "selection_guidance",
+            "unit_fields",
+            "version_characteristics",
+            "plan_options",
+            "coverage_entries",
+        ]:
+            if record.get(field):
+                summary[field] = record[field]
+        records.append(summary)
     return {
         "generated_at": public_output.get("generated_at"),
         "batch_id": batch_id,

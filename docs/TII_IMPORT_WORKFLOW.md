@@ -67,6 +67,26 @@ python scripts\tii_operator_server.py
 
 若摘要格式有調整，可執行 `python scripts\build_tii_document_summaries.py` 由既有公開整理檔重建全部網站摘要。
 
+### 計畫別保障與金額
+
+計畫型商品不能只顯示「計畫 A／B／C」，必須從條款附表建立各計畫專屬的保障項目、金額、給付基準與限制註記。執行順序：
+
+```powershell
+python scripts\scan_tii_benefit_candidates.py --batch-id tii-life-001
+python scripts\extract_tii_plan_benefits.py --batch-id tii-life-001 --dry-run
+python scripts\extract_tii_plan_benefits.py --batch-id tii-life-001
+python scripts\extract_tii_plan_benefits.py --batch-id tii-life-001 --approval-file work\tii-benefit-approvals\tii-life-001.json --dry-run
+python scripts\extract_tii_plan_benefits.py --batch-id tii-life-001 --approval-file work\tii-benefit-approvals\tii-life-001.json
+python scripts\build_tii_document_summaries.py --batch-id tii-life-001
+python scripts\validate_data.py
+```
+
+候選掃描結果只會寫入忽略版控的 `work\tii-benefit-candidates\`，不能當成 Verified Benefits。抽取器預設也只建立 `work\tii-benefit-proposals\` 提案；只有核准檔中的來源檔、PDF 雜湊、解析器版本及計畫表雜湊全部一致，才會同步到 `data\tii\reviewed-benefits\` 與公開 content。
+
+全量整理時先執行 `python scripts\scan_tii_benefit_candidates.py --output work\tii-benefit-candidates\all-life-v3.json`，再執行 `python scripts\build_tii_benefit_queue.py`。工作佇列固定以 `batch_id + product_id` 當版本鍵，並按條款版型分組；同名商品、跨公司移轉商品或相同金額表都不得因此合併版本。產險四類在條款文件尚未下載前，佇列必須標成 `blocked_missing_documents`，不可把沒有本機文件誤寫成沒有保障。
+
+抽取器只有在完整表頭、所有計畫列及合併儲存格金額都可確認時才會建立提案；不完整或不同格式的表格必須跳過，不能用關鍵字推估金額。同一 `productId` 若有多份符合文件，會降級為人工檢查，不得自動選第一份。已確認的輸入模式要標記 `selection_source: terms`。失能比例、實支實付限額、額外給付與每日給付等條件要保留在 `note`，來源頁則保留在 `source_ref`。
+
 ## 匯入後如何使用
 
 匯入後的停售保單資料會進入同一個前台視覺化模型。前台應優先呈現：

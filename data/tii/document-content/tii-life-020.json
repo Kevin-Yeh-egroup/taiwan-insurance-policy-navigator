@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T20:33:28+08:00",
+  "generated_at": "2026-07-17T16:25:34+08:00",
   "summary": {
     "generated_at": "2026-06-26T20:33:28+08:00",
     "source": "local TII files downloaded through captcha session",
@@ -130310,6 +130310,91 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "hospital-room-limit",
+          "name": "每日病房費用保險金限額",
+          "amount": 100,
+          "basis": "daily_per_unit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_day",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數。按實際自行負擔及非健保給付範圍的費用核付；未以健保身分就醫時按實際費用的 65% 給付，仍受限額約束。",
+          "source_ref": "保單條款第六條及附表一及保單條款第十條"
+        },
+        {
+          "id": "inpatient-medical-limit",
+          "name": "每次住院醫療費用保險金限額",
+          "amount": 3000,
+          "basis": "per_unit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數。按實際自行負擔及非健保給付範圍的費用核付；未以健保身分就醫時按實際費用的 65% 給付，仍受限額約束。",
+          "source_ref": "保單條款第七條及附表一及保單條款第十條"
+        },
+        {
+          "id": "pre-post-outpatient-limit",
+          "name": "住院前後門診醫療費用限額",
+          "amount": 60,
+          "basis": "daily_per_unit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_day",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數。住院前後七日因同一事故門診時，每日以一次為限；每次上限為每日病房費用保險金限額的 60%。",
+          "source_ref": "保單條款第七條及附表一"
+        },
+        {
+          "id": "accident-emergency-limit",
+          "name": "意外急診醫療費用限額",
+          "amount": 5000,
+          "basis": "per_event",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因意外傷害事故於二十四小時內接受急診時，按實際費用給付；本項併入住院醫療費用保險金限額計算。",
+          "source_ref": "保單條款第七條及附表一"
+        },
+        {
+          "id": "hospital-surgery-limit-base",
+          "name": "每次手術費用保險金限額基數",
+          "amount": 4000,
+          "basis": "per_unit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數。實際限額為基數乘以附表二手術比例（10% 至 500%），並依實際手術費核付。",
+          "source_ref": "保單條款第八條及附表一及附表二",
+          "rate_min_percent": 10,
+          "rate_max_percent": 500
+        },
+        {
+          "id": "hospital-daily-option",
+          "name": "住院日額補償保險金",
+          "amount": 100,
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數。可改選按實際住院日數給付；選擇本項後不得再申領三項實支保險金。",
+          "source_ref": "保單條款第九條及附表一"
+        }
       ]
     },
     {
@@ -130577,6 +130662,91 @@
           "text_char_count": 3565,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "hospital-room-limit",
+          "name": "每日病房費用保險金限額",
+          "amount": 100,
+          "basis": "daily_per_unit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_day",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數。按實際自行負擔及非健保給付範圍的費用核付；未以健保身分就醫時按實際費用的 65% 給付，仍受限額約束。",
+          "source_ref": "保單條款第六條及附表一及保單條款第十條"
+        },
+        {
+          "id": "inpatient-medical-limit",
+          "name": "每次住院醫療費用保險金限額",
+          "amount": 3000,
+          "basis": "per_unit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數。按實際自行負擔及非健保給付範圍的費用核付；未以健保身分就醫時按實際費用的 65% 給付，仍受限額約束。",
+          "source_ref": "保單條款第七條及附表一及保單條款第十條"
+        },
+        {
+          "id": "pre-post-outpatient-limit",
+          "name": "住院前後門診醫療費用限額",
+          "amount": 60,
+          "basis": "daily_per_unit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_day",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數。住院前後七日因同一事故門診時，每日以一次為限；每次上限為每日病房費用保險金限額的 60%。",
+          "source_ref": "保單條款第七條及附表一"
+        },
+        {
+          "id": "accident-emergency-limit",
+          "name": "意外急診醫療費用限額",
+          "amount": 5000,
+          "basis": "per_event",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因意外傷害事故於二十四小時內接受急診時，按實際費用給付；本項併入住院醫療費用保險金限額計算。",
+          "source_ref": "保單條款第七條及附表一"
+        },
+        {
+          "id": "hospital-surgery-limit-base",
+          "name": "每次手術費用保險金限額基數",
+          "amount": 4000,
+          "basis": "per_unit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數。實際限額為基數乘以附表二手術比例（10% 至 500%），並依實際手術費核付。",
+          "source_ref": "保單條款第八條及附表一及附表二",
+          "rate_min_percent": 10,
+          "rate_max_percent": 500
+        },
+        {
+          "id": "hospital-daily-option",
+          "name": "住院日額補償保險金",
+          "amount": 100,
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數。可改選按實際住院日數給付；選擇本項後不得再申領三項實支保險金。",
+          "source_ref": "保單條款第九條及附表一"
         }
       ]
     },

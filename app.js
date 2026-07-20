@@ -32,12 +32,25 @@ const state = {
   portfolioItems: [],
   portfolioSuggestions: [],
   portfolioDetailItem: null,
+  editingPortfolioId: null,
   portfolioCompany: "all",
   portfolioBucket: "all",
+  portfolioSuggestionPage: 1,
+  portfolioSuggestionPageSize: 10,
+  policyPage: 1,
+  policyPageSize: 20,
 };
 
 const formatNumber = new Intl.NumberFormat("zh-Hant-TW");
 const PORTFOLIO_STORAGE_KEY = "taiwanPolicyNavigator.portfolio.v1";
+const PORTFOLIO_PAGE_SIZES = [5, 10, 20, 50, 100];
+const POLICY_PAGE_SIZES = [20, 50, 100, 200];
+const coverageModel = window.PolicyCoverageModel;
+if (!coverageModel) throw new Error("保障計算模組載入失敗");
+const COVERAGE_AMOUNT_BASES = coverageModel.CALCULATION_BASES;
+const coverageBuckets = coverageModel.COVERAGE_BUCKETS;
+let portfolioCompanyFilterTimer = null;
+let portfolioSearchGeneration = 0;
 
 const crawlLabels = {
   all: "全部",
@@ -55,58 +68,6 @@ const policyFocusLabels = {
 };
 
 const focusOrder = ["coverage", "definitions", "special", "claims"];
-
-const coverageBuckets = [
-  {
-    id: "life",
-    label: "壽險",
-    summary: "身故、完全失能、壽險主約或投資型壽險。",
-    categories: ["傳統型壽險", "投資型壽險"],
-    keywords: ["壽險", "身故", "死亡", "完全失能", "生死合險", "定期壽", "終身壽", "投資型壽險"],
-  },
-  {
-    id: "medical",
-    label: "醫療險",
-    summary: "住院、手術、實支實付、日額、門診或健康醫療。",
-    categories: ["健康保險"],
-    keywords: ["醫療", "健康", "住院", "手術", "實支", "日額", "門診", "病房", "雜費", "住院醫療"],
-  },
-  {
-    id: "accident",
-    label: "意外險",
-    summary: "傷害、意外、平安、燒燙傷、骨折或意外失能。",
-    categories: ["傷害保險", "意外保險"],
-    keywords: ["傷害", "意外", "平安", "燒燙傷", "骨折", "意外失能", "旅行平安"],
-  },
-  {
-    id: "cancer",
-    label: "癌症險",
-    summary: "癌症、惡性腫瘤、防癌或癌症醫療給付。",
-    categories: [],
-    keywords: ["癌", "癌症", "防癌", "抗癌", "惡性腫瘤", "原位癌", "初期癌"],
-  },
-  {
-    id: "critical",
-    label: "重大疾病險",
-    summary: "重大疾病、重大傷病、特定傷病或一次金保障。",
-    categories: [],
-    keywords: ["重大疾病", "重大傷病", "特定傷病", "重大疾", "心肌梗塞", "腦中風", "癱瘓", "洗腎", "冠狀動脈"],
-  },
-  {
-    id: "longterm",
-    label: "長照險",
-    summary: "長期照顧、失智、認知功能障礙或長期看護。",
-    categories: [],
-    keywords: ["長期照顧", "長照", "長期看護", "失智", "認知功能障礙", "照護", "扶助"],
-  },
-  {
-    id: "annuity",
-    label: "年金/退休",
-    summary: "年金、退休、生存金或長期現金流安排。",
-    categories: ["傳統型年金", "投資型年金"],
-    keywords: ["年金", "退休", "生存金", "養老", "即期年金", "利率變動型年金"],
-  },
-];
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -126,6 +87,362 @@ function matchesQuery(searchText, query) {
   if (!normalizedQuery) return true;
   const haystack = normalize(searchText);
   return normalizedQuery.split(/\s+/).filter(Boolean).every((term) => haystack.includes(term));
+}
+
+function clampNumber(value, min, max) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return min;
+  return Math.min(Math.max(number, min), max);
+}
+
+function normalizeUnitCount(value) {
+  return coverageModel.normalizeUnitCount(value);
+}
+
+function unitText(value) {
+  const units = normalizeUnitCount(value);
+  return units ? `${formatNumber.format(units)} 單位` : "未填單位數";
+}
+
+function planText(value, item) {
+  const plan = String(value || "").trim();
+  if (!plan) return "";
+  const option = normalizePlanOptions(item).find(
+    (candidate) => candidate.value === plan || candidate.label === plan,
+  );
+  if (option) return option.label;
+  const indexedPlan = /^plan-(\d+)$/i.exec(plan);
+  const indexedLabels = [
+    "計畫一",
+    "計畫二",
+    "計畫三",
+    "計畫四",
+    "計畫五",
+    "計畫六",
+    "計畫七",
+    "計畫八",
+    "計畫九",
+    "計畫十",
+    "計畫十一",
+    "計畫十二",
+  ];
+  if (indexedPlan) return indexedLabels[Number(indexedPlan[1]) - 1] || `計畫 ${indexedPlan[1]}`;
+  return /^(計畫|方案)/.test(plan) ? plan : `計畫 ${plan}`;
+}
+
+function normalizeCoverageAmount(value) {
+  return coverageModel.normalizeMoneyAmount(value);
+}
+
+function faceAmountText(item) {
+  const amount = normalizeCoverageAmount(item?.face_amount);
+  const label = coverageModel.selectionRequirements(item).label;
+  return amount ? `${label} ${formatNumber.format(amount)} 元` : `未填${label}`;
+}
+
+function normalizeCoverageEntries(entries) {
+  return coverageModel.normalizeCoverageEntries(entries);
+}
+
+function normalizePlanOptions(item) {
+  return coverageModel.normalizePlanOptions(item);
+}
+
+function declaredSelectionMode(item) {
+  return coverageModel.declaredSelectionMode(item);
+}
+
+function portfolioSelectionMode(item) {
+  return coverageModel.selectionMode(item);
+}
+
+function effectiveCoverageEntries(item) {
+  return coverageModel.effectiveCoverageEntries(item);
+}
+
+function coverageSelection(value) {
+  return value && typeof value === "object" ? value : { unit_count: value };
+}
+
+function coverageEntryUnitCount(entry, selection) {
+  const key = String(entry?.unit_key || "").trim();
+  return normalizeUnitCount(key ? selection?.unit_counts?.[key] : selection?.unit_count);
+}
+
+function coverageEntryText(entry, selectedValues) {
+  const normalized = coverageModel.normalizeCoverageEntry(entry, 0);
+  const selection = coverageSelection(selectedValues);
+  const amount = normalized.amount;
+  const result = coverageModel.coverageValue(normalized, selection);
+  const name = normalized.name || "保障項目";
+  const formattedAmount = amount ? `${formatNumber.format(amount)} 元` : "金額尚待整理";
+  const units = coverageEntryUnitCount(normalized, selection);
+  const rateRange = [normalized.rate_min, normalized.rate_max]
+    .filter(Boolean)
+    .map((rate) => `${formatNumber.format(rate * 100)}%`)
+    .join("～");
+
+  if (result.state === "needs_plan") return `${name}：請先選擇計畫，再依條款附表顯示金額`;
+  if (result.state === "amount_overflow") return `${name}：金額超出可安全計算範圍，請回條款確認`;
+  if (!amount && !normalizeCoverageAmount(selection.face_amount)) {
+    return normalized.note ? `${name}：${normalized.note}` : `${name}：金額尚待整理`;
+  }
+  if (normalized.calculation_basis === "per_unit") {
+    return result.value
+      ? `${name}：每單位 ${formattedAmount} × ${formatNumber.format(units)} 單位 = ${formatNumber.format(result.value)} 元`
+      : `${name}：每單位 ${formattedAmount}；請補上單位數`;
+  }
+  if (normalized.calculation_basis === "per_unit_per_day") {
+    return result.value
+      ? `${name}：每單位／每日 ${formattedAmount} × ${formatNumber.format(units)} 單位 = 每日 ${formatNumber.format(result.value)} 元`
+      : `${name}：每單位／每日 ${formattedAmount}；請補上單位數`;
+  }
+  if (normalized.calculation_basis === "percentage_of_base") {
+    const base = result.reference_amount || normalizeCoverageAmount(selection.face_amount);
+    const unitBased = ["per_unit", "daily_per_unit"].includes(normalized.basis);
+    if (result.state === "needs_unit_count") {
+      return `${name}：每單位基準額 ${formattedAmount}；請補上單位數後依條款比例表計算`;
+    }
+    if (result.value && normalized.rate) {
+      return `${name}：${unitBased && units ? `${formatNumber.format(units)} 單位，` : ""}基準額 ${formatNumber.format(base)} 元 × ${formatNumber.format(normalized.rate * 100)}% = ${formatNumber.format(result.value)} 元`;
+    }
+    return `${name}：${unitBased && units ? `${formatNumber.format(units)} 單位，` : ""}基準額 ${formatNumber.format(base)} 元；${rateRange ? `依條款比例 ${rateRange}` : "依條款比例表計算"}`;
+  }
+  if (normalized.calculation_basis === "table_multiplier") {
+    const base = result.reference_amount || amount;
+    return result.value
+      ? `${name}：基準額 ${formatNumber.format(base)} 元 × ${normalized.multiplier} 倍 = ${formatNumber.format(result.value)} 元`
+      : `${name}：基準額 ${formatNumber.format(base)} 元；依條款倍數表計算`;
+  }
+  if (normalized.calculation_basis === "reimbursement_with_cap") {
+    const scope = coverageModel.LIMIT_SCOPES[normalized.limit_scope] || coverageModel.LIMIT_SCOPES.unknown;
+    const unitBased = ["per_unit", "daily_per_unit"].includes(normalized.basis);
+    if (result.state === "needs_unit_count") {
+      return `${name}：每單位 ${scope}最高 ${formattedAmount}；請補上單位數`;
+    }
+    if (normalized.amount_tiers.length) {
+      const caps = normalized.amount_tiers
+        .map((tier) => `${tier.label} ${scope}最高 ${formatNumber.format(tier.amount)} 元`)
+        .join("；");
+      return `${name}：${caps}；實際給付依支出與條款`;
+    }
+    const limit = result.value || amount;
+    return `${name}：${unitBased && units ? `${formatNumber.format(units)} 單位，` : ""}${scope}最高 ${formatNumber.format(limit)} 元；實際給付依支出與條款`;
+  }
+  if (normalized.calculation_basis === "per_day") return `${name}：每日 ${formattedAmount}`;
+  if (normalized.calculation_basis === "additional_benefit") return `${name}：額外給付 ${formattedAmount}`;
+  if (normalized.calculation_basis === "tiered_or_stepped") {
+    if (result.tier_values?.length) {
+      const tiers = result.tier_values
+        .map((tier) =>
+          tier.value
+            ? `${tier.label} ${formatNumber.format(tier.value)} 元`
+            : `${tier.label}每單位 ${formatNumber.format(tier.reference_amount)} 元`,
+        )
+        .join("；");
+      return `${name}：${units ? `${formatNumber.format(units)} 單位，` : ""}${tiers}${units ? "" : "；請補上單位數"}`;
+    }
+    return `${name}：${formattedAmount}；依條款級距或階梯表計算`;
+  }
+  if (normalized.calculation_basis === "unknown" && normalized.note) return `${name}：${normalized.note}`;
+  if (normalized.calculation_basis === "unknown") return `${name}：${formattedAmount}；計算方式尚待條款整理`;
+  const role = coverageModel.AMOUNT_ROLES[normalized.amount_role] || coverageModel.AMOUNT_ROLES.unknown;
+  return `${name}：${role} ${formattedAmount}`;
+}
+
+function coverageEntryValueText(entry, selectedValues) {
+  const text = coverageEntryText(entry, selectedValues);
+  const separator = text.indexOf("：");
+  return separator >= 0 ? text.slice(separator + 1) : text;
+}
+
+function positiveIntegerInputValue(input, label = "單位數", max = 9999, allowBlank = false) {
+  const rawValue = String(input?.value || "").trim();
+  if (allowBlank && !rawValue) {
+    input?.setCustomValidity("");
+    return null;
+  }
+  const value = Number(rawValue);
+  const valid = /^[1-9]\d*$/.test(rawValue) && value <= max;
+  input?.setCustomValidity(valid ? "" : `${label}請輸入 1 到 ${formatNumber.format(max)} 的正整數`);
+  if (!valid) input?.reportValidity();
+  return valid ? value : null;
+}
+
+function portfolioSelectionFieldsHtml(item) {
+  const requirements = coverageModel.selectionRequirements(item);
+  const planOptions = requirements.plan_options;
+  const mode = requirements.mode;
+  const selectedPlan = String(item?.plan_name || "").trim();
+  const planControl = planOptions.length
+    ? `<select data-selection-plan>
+        <option value="">請選擇計畫／方案</option>
+        ${planOptions
+          .map(
+            (option) =>
+              `<option value="${escapeHtml(option.value)}" ${option.value === selectedPlan || option.label === selectedPlan ? "selected" : ""}>${escapeHtml(option.label)}</option>`,
+          )
+          .join("")}
+      </select>`
+    : `<input type="text" maxlength="60" value="${escapeHtml(selectedPlan)}" placeholder="例如：計畫 B" data-selection-plan>`;
+  const defaultGuidance = {
+    face_amount: "依這個版本的條款，請填保單首頁記載的契約保險金額。",
+    plan: "依這個版本的條款選擇計畫；保障項目與金額會自動帶入。",
+    unit: "依這個版本的條款填投保單位數；只能輸入正整數。",
+    multi_unit: "這個商品有兩組以上的投保單位，請依保單首頁分別填寫。",
+    plan_unit: "這個商品的條款同時使用計畫與單位，兩項都需填寫。",
+    fixed: "條款已整理為固定給付，不需輸入保額、計畫或單位。",
+    unknown: "金額輸入方式尚未從條款確認；可以先加入集合，系統不會推估金額。",
+  }[mode];
+  const guidance = requirements.guidance || defaultGuidance;
+  const unitFields = requirements.unit_fields
+    .map(
+      (field) => `
+        <label data-selection-field="unit_counts">
+          <span>${escapeHtml(field.label)}</span>
+          <input type="number" min="1" max="9999" step="1" inputmode="numeric" value="${escapeHtml(normalizeUnitCount(item?.unit_counts?.[field.key]) || "")}" placeholder="請輸入正整數" data-selection-unit-key="${escapeHtml(field.key)}">
+        </label>`,
+    )
+    .join("");
+
+  return `
+    <div class="portfolio-selection-fields" data-selection-fields>
+      <div class="selection-guidance ${mode === "unknown" ? "pending" : ""}">
+        <strong>${escapeHtml(requirements.label)}</strong>
+        <span>${escapeHtml(guidance)}</span>
+      </div>
+      <input type="hidden" value="${escapeHtml(mode)}" data-selection-mode>
+      <label data-selection-field="face_amount" ${requirements.fields.includes("face_amount") ? "" : "hidden"}>
+        <span>${escapeHtml(mode === "face_amount" ? requirements.label : "契約保險金額")}</span>
+        <div class="money-input">
+          <input type="number" min="1" max="${coverageModel.MAX_MONEY_AMOUNT}" step="1" inputmode="numeric" value="${escapeHtml(normalizeCoverageAmount(item?.face_amount) || "")}" placeholder="請輸入保單記載金額" data-selection-face-amount>
+          <span>元</span>
+        </div>
+      </label>
+      <label data-selection-field="unit" ${requirements.fields.includes("unit_count") ? "" : "hidden"}>
+        <span>單位數</span>
+        <input type="number" min="1" max="9999" step="1" inputmode="numeric" value="${escapeHtml(normalizeUnitCount(item?.unit_count) || "")}" placeholder="請輸入正整數" data-selection-unit>
+      </label>
+      ${requirements.fields.includes("unit_counts") ? unitFields : ""}
+      <label data-selection-field="plan" ${requirements.fields.includes("plan_name") ? "" : "hidden"}>
+        <span>計畫別</span>
+        ${planControl}
+      </label>
+    </div>
+  `;
+}
+
+function readPortfolioSelection(container, item) {
+  const requirements = coverageModel.selectionRequirements(item);
+  const mode = container.querySelector("[data-selection-mode]")?.value || requirements.mode;
+  const selection = {
+    selection_mode: mode,
+    selection_type: mode,
+    face_amount: null,
+    unit_count: null,
+    unit_counts: {},
+    plan_name: "",
+  };
+  if (requirements.fields.includes("plan_name")) {
+    const planInput = container.querySelector("[data-selection-plan]");
+    const planName = String(planInput?.value || "").trim();
+    planInput?.setCustomValidity(planName ? "" : "請選擇或輸入計畫別");
+    if (!planName) {
+      planInput?.reportValidity();
+      return null;
+    }
+    selection.plan_name = planName;
+  }
+  if (requirements.fields.includes("unit_count")) {
+    const unitInput = container.querySelector("[data-selection-unit]");
+    const unitCount = positiveIntegerInputValue(unitInput);
+    if (unitCount === null) return null;
+    selection.unit_count = unitCount;
+  }
+  if (requirements.fields.includes("unit_counts")) {
+    for (const field of requirements.unit_fields) {
+      const unitInput = container.querySelector(`[data-selection-unit-key="${CSS.escape(field.key)}"]`);
+      const unitCount = positiveIntegerInputValue(unitInput, field.label);
+      if (unitCount === null) return null;
+      selection.unit_counts[field.key] = unitCount;
+    }
+  }
+  if (requirements.fields.includes("face_amount")) {
+    const amountInput = container.querySelector("[data-selection-face-amount]");
+    const faceAmount = positiveIntegerInputValue(amountInput, requirements.label, coverageModel.MAX_MONEY_AMOUNT);
+    if (faceAmount === null) return null;
+    selection.face_amount = faceAmount;
+  }
+  return selection;
+}
+
+function syncPortfolioSelectionFields(container) {
+  if (!container) return;
+  const mode = container.querySelector("[data-selection-mode]")?.value || "unknown";
+  const requiredFields = coverageModel.SELECTION_MODES[mode]?.fields || [];
+  container.querySelectorAll("[data-selection-field]").forEach((field) => {
+    const fieldKey = field.dataset.selectionField === "plan" ? "plan_name" : field.dataset.selectionField === "unit" ? "unit_count" : field.dataset.selectionField;
+    field.hidden = !requiredFields.includes(fieldKey);
+  });
+}
+
+function portfolioSelectionText(item) {
+  const mode = portfolioSelectionMode(item);
+  if (mode === "face_amount") return faceAmountText(item);
+  if (mode === "plan") return planText(item?.plan_name, item) || "尚未選擇計畫";
+  if (mode === "unit") return unitText(item?.unit_count);
+  if (mode === "multi_unit") {
+    const fields = coverageModel.selectionRequirements(item).unit_fields;
+    return fields
+      .map((field) => `${field.label} ${normalizeUnitCount(item?.unit_counts?.[field.key]) || "未填"} 單位`)
+      .join("、");
+  }
+  if (mode === "plan_unit") {
+    return [planText(item?.plan_name, item) || "尚未選擇計畫", unitText(item?.unit_count)].join("、");
+  }
+  if (mode === "fixed") return "條款固定給付";
+  return "金額尚待整理";
+}
+
+function clampPage(page, totalPages) {
+  return Math.min(Math.max(Number(page) || 1, 1), Math.max(totalPages, 1));
+}
+
+function paginationRange(totalCount, page, pageSize) {
+  if (!totalCount) return { start: 0, end: 0 };
+  const start = (page - 1) * pageSize + 1;
+  const end = Math.min(page * pageSize, totalCount);
+  return { start, end };
+}
+
+function paginationHtml(scope, totalCount, page, pageSize, pageSizeOptions) {
+  const totalPages = Math.max(Math.ceil(totalCount / pageSize), 1);
+  const currentPage = clampPage(page, totalPages);
+  const range = paginationRange(totalCount, currentPage, pageSize);
+  const pageOptions = Array.from({ length: totalPages }, (_, index) => index + 1)
+    .map((pageNumber) => `<option value="${pageNumber}" ${pageNumber === currentPage ? "selected" : ""}>第 ${formatNumber.format(pageNumber)} 頁</option>`)
+    .join("");
+  const sizeOptions = pageSizeOptions
+    .map((size) => `<option value="${size}" ${size === pageSize ? "selected" : ""}>每頁 ${formatNumber.format(size)} 筆</option>`)
+    .join("");
+
+  return `
+    <div class="pagination-row" data-pagination="${escapeHtml(scope)}">
+      <p>第 ${formatNumber.format(currentPage)} / ${formatNumber.format(totalPages)} 頁，顯示 ${formatNumber.format(range.start)}-${formatNumber.format(range.end)} / ${formatNumber.format(totalCount)} 筆</p>
+      <div class="pagination-controls">
+        <button class="button ghost compact" type="button" data-page-action="${escapeHtml(scope)}" data-page-target="${currentPage - 1}" ${currentPage <= 1 ? "disabled" : ""}>上一頁</button>
+        <label>
+          <span>頁碼</span>
+          <select data-page-select="${escapeHtml(scope)}">${pageOptions}</select>
+        </label>
+        <label>
+          <span>每頁筆數</span>
+          <select data-page-size="${escapeHtml(scope)}">${sizeOptions}</select>
+        </label>
+        <button class="button ghost compact" type="button" data-page-action="${escapeHtml(scope)}" data-page-target="${currentPage + 1}" ${currentPage >= totalPages ? "disabled" : ""}>下一頁</button>
+      </div>
+    </div>
+  `;
 }
 
 function kindLabel(kind) {
@@ -515,7 +832,31 @@ function loadPortfolioItems() {
   try {
     const saved = JSON.parse(localStorage.getItem(PORTFOLIO_STORAGE_KEY) || "[]");
     state.portfolioItems = Array.isArray(saved)
-      ? saved.filter((item) => item?.product_name).map((item) => ({ ...item, id: portfolioItemId(item) }))
+      ? saved
+          .filter((item) => item?.product_name)
+          .map((item) => {
+            const selectionMode = portfolioSelectionMode(item);
+            const selectionFields = coverageModel.SELECTION_MODES[selectionMode]?.fields || [];
+            return {
+              ...item,
+              id: portfolioItemId(item),
+              selection_mode: selectionMode,
+              selection_type: selectionMode,
+              selection_source: item.selection_source || "",
+              face_amount: selectionFields.includes("face_amount") ? normalizeCoverageAmount(item.face_amount) : null,
+              unit_count: selectionFields.includes("unit_count") ? normalizeUnitCount(item.unit_count ?? item.units) : null,
+              unit_counts: selectionFields.includes("unit_counts")
+                ? Object.fromEntries(
+                    coverageModel
+                      .normalizeUnitFields(item)
+                      .map((field) => [field.key, normalizeUnitCount(item.unit_counts?.[field.key])])
+                      .filter(([, value]) => value),
+                  )
+                : {},
+              plan_name: selectionFields.includes("plan_name") ? String(item.plan_name || "").trim() : "",
+              coverage_entries: normalizeCoverageEntries(item.coverage_entries),
+            };
+          })
       : [];
   } catch {
     state.portfolioItems = [];
@@ -531,15 +872,13 @@ function savePortfolioItems() {
 }
 
 function populatePortfolioFilters() {
-  const companySelect = document.getElementById("portfolioCompanyFilter");
+  const companyInput = document.getElementById("portfolioCompanyFilter");
+  const companyOptions = document.getElementById("portfolioCompanyOptions");
   const localCompanies = (state.policyContentExtracts?.records || []).map((item) => item.company).filter(Boolean);
   const tiiCompanies = (state.tiiManifest?.company_counts || []).map((item) => item.company).filter(Boolean);
   const companies = [...new Set([...tiiCompanies, ...localCompanies])].sort((a, b) => a.localeCompare(b, "zh-Hant-TW"));
-  companySelect.innerHTML = [
-    '<option value="all">全部公司</option>',
-    ...companies.map((company) => `<option value="${escapeHtml(company)}">${escapeHtml(company)}</option>`),
-  ].join("");
-  companySelect.value = state.portfolioCompany;
+  companyOptions.innerHTML = companies.map((company) => `<option value="${escapeHtml(company)}"></option>`).join("");
+  companyInput.value = state.portfolioCompany === "all" ? "" : state.portfolioCompany;
   document.getElementById("portfolioBucketFilter").value = state.portfolioBucket;
 }
 
@@ -563,7 +902,7 @@ function portfolioBucketLabel(bucket) {
 }
 
 function companyMatchesFilter(company, selectedCompany) {
-  if (selectedCompany === "all") return true;
+  if (!selectedCompany || selectedCompany === "all") return true;
   const current = normalize(company);
   const selected = normalize(selectedCompany);
   return current === selected || current.includes(selected) || selected.includes(current);
@@ -671,6 +1010,11 @@ function manualPortfolioItem(query) {
     field_hits: [],
     reader_focus: [],
     search_text: normalize(query),
+    selection_type: "unknown",
+    selection_mode: "unknown",
+    face_amount: null,
+    unit_count: null,
+    unit_counts: {},
   };
   item.id = portfolioItemId(item);
   return item;
@@ -761,6 +1105,13 @@ function exactNameMatches(items, query) {
   return items.filter((item) => normalize(item.product_name) === normalizedQuery);
 }
 
+function exactNameVersionFamilyMatches(items, query) {
+  const normalizedQuery = normalize(query);
+  const familyName = coverageModel.productVersionFamilyName(query);
+  if (!familyName || familyName !== normalizedQuery) return exactNameMatches(items, query);
+  return items.filter((item) => coverageModel.productVersionFamilyName(item.product_name) === familyName);
+}
+
 async function findPortfolioMatches(query) {
   const localMatches = (state.policyContentExtracts?.records || [])
     .map(policyContentToPortfolioItem)
@@ -789,27 +1140,29 @@ async function findPortfolioMatches(query) {
       const companyDiff = String(a.company || "").localeCompare(String(b.company || ""), "zh-Hant-TW");
       if (companyDiff) return companyDiff;
       return String(a.product_name || "").localeCompare(String(b.product_name || ""), "zh-Hant-TW");
-    })
-    .slice(0, 18);
+    });
 }
 
 function detectCoverageBuckets(item) {
-  const text = coverageDetectionText(item);
-  const category = normalize(item.product_type);
-  return coverageBuckets
-    .map((bucket) => {
-      const categoryMatched = (bucket.categories || []).some((itemCategory) => category === normalize(itemCategory));
-      const matchedKeywords = bucket.keywords.filter((keyword) => text.includes(normalize(keyword)));
-      const isMatched = categoryMatched || matchedKeywords.length > 0;
-      return isMatched ? { ...bucket, matchedKeywords } : null;
-    })
-    .filter(Boolean);
+  return coverageModel.detectCoverageBuckets(item);
 }
 
 function coverageBadgeHtml(item) {
   const buckets = detectCoverageBuckets(item);
   if (!buckets.length) return '<span class="chip muted">待分類</span>';
   return buckets.map((bucket) => `<span class="chip">${escapeHtml(bucket.label)}</span>`).join("");
+}
+
+function selectionModeBadgeHtml(item) {
+  const requirements = coverageModel.selectionRequirements(item);
+  const summaryNotLoaded =
+    requirements.mode === "unknown" &&
+    item?.source_kind === "tii" &&
+    item?.source_batch_id &&
+    !item?.document_summary_loaded;
+  const label = summaryNotLoaded ? "查看保障與金額" : requirements.label;
+  const pendingClass = requirements.mode === "unknown" ? " muted" : "";
+  return `<span class="chip${pendingClass}">${escapeHtml(label)}</span>`;
 }
 
 function policyCodeBadgeHtml(item) {
@@ -837,18 +1190,60 @@ function identityWarningHtml(item) {
 }
 
 function addPortfolioItem(item) {
-  const normalizedItem = { ...item, id: item.id || portfolioItemId(item) };
-  const exists = state.portfolioItems.some((current) => current.id === normalizedItem.id);
-  if (!exists) {
+  const selectionMode = portfolioSelectionMode(item);
+  const selectionFields = coverageModel.SELECTION_MODES[selectionMode]?.fields || [];
+  const normalizedItem = {
+    ...item,
+    id: item.id || portfolioItemId(item),
+    selection_mode: selectionMode,
+    selection_type: item.selection_type || selectionMode,
+    face_amount: selectionFields.includes("face_amount") ? normalizeCoverageAmount(item.face_amount) : null,
+    unit_count: selectionFields.includes("unit_count") ? normalizeUnitCount(item.unit_count) : null,
+    unit_counts: selectionFields.includes("unit_counts")
+      ? Object.fromEntries(
+          coverageModel
+            .normalizeUnitFields(item)
+            .map((field) => [field.key, normalizeUnitCount(item.unit_counts?.[field.key])])
+            .filter(([, value]) => value),
+        )
+      : {},
+    plan_name: selectionFields.includes("plan_name") ? String(item.plan_name || "").trim() : "",
+    coverage_entries: normalizeCoverageEntries(item.coverage_entries),
+  };
+  const existingIndex = state.portfolioItems.findIndex((current) => current.id === normalizedItem.id);
+  if (existingIndex >= 0) {
+    state.portfolioItems = state.portfolioItems.map((current, index) =>
+      index === existingIndex
+        ? {
+            ...current,
+            ...normalizedItem,
+            selection_mode: normalizedItem.selection_mode,
+            selection_type: normalizedItem.selection_type,
+            face_amount: normalizedItem.face_amount,
+            unit_count: normalizedItem.unit_count,
+            unit_counts: normalizedItem.unit_counts,
+            plan_name: normalizedItem.plan_name,
+            coverage_entries: normalizedItem.coverage_entries.length
+              ? normalizedItem.coverage_entries
+              : normalizeCoverageEntries(current.coverage_entries),
+          }
+        : current,
+    );
+    savePortfolioItems();
+    renderPortfolio();
+    return "updated";
+  }
+  if (existingIndex < 0) {
     state.portfolioItems = [...state.portfolioItems, normalizedItem];
     savePortfolioItems();
   }
   renderPortfolio();
-  return !exists;
+  return "added";
 }
 
 function removePortfolioItem(id) {
   state.portfolioItems = state.portfolioItems.filter((item) => item.id !== id);
+  if (state.editingPortfolioId === id) state.editingPortfolioId = null;
   savePortfolioItems();
   renderPortfolio();
 }
@@ -857,6 +1252,7 @@ function clearPortfolio() {
   state.portfolioItems = [];
   state.portfolioSuggestions = [];
   state.portfolioDetailItem = null;
+  state.editingPortfolioId = null;
   savePortfolioItems();
   renderPortfolio();
   renderPortfolioDetail(null);
@@ -870,16 +1266,22 @@ function renderPortfolioSuggestions(matches, query) {
     container.innerHTML = "";
     return;
   }
+  const totalPages = Math.max(Math.ceil(matches.length / state.portfolioSuggestionPageSize), 1);
+  state.portfolioSuggestionPage = clampPage(state.portfolioSuggestionPage, totalPages);
+  const startIndex = (state.portfolioSuggestionPage - 1) * state.portfolioSuggestionPageSize;
+  const visibleMatches = matches.slice(startIndex, startIndex + state.portfolioSuggestionPageSize);
   container.innerHTML = `
     <div class="suggestion-heading">
       <strong>找到 ${formatNumber.format(matches.length)} 個候選</strong>
-      <span>請選擇要加入集合的保單。</span>
+      <span>請先核對摘要與版本，再加入集合。</span>
     </div>
+    ${paginationHtml("portfolio", matches.length, state.portfolioSuggestionPage, state.portfolioSuggestionPageSize, PORTFOLIO_PAGE_SIZES)}
     <div class="suggestion-list">
-      ${matches
-        .slice(0, 8)
+      ${visibleMatches
         .map(
-          (item, index) => `
+          (item, visibleIndex) => {
+            const index = startIndex + visibleIndex;
+            return `
             <article class="suggestion-item">
               <div>
                 <strong class="policy-title-line">${policyTitleHtml(item)}</strong>
@@ -888,19 +1290,19 @@ function renderPortfolioSuggestions(matches, query) {
                   <span>${escapeHtml(item.product_type)}</span>
                   ${identityMetaHtml(item)}
                 </div>
-                <div class="policy-flags">${coverageBadgeHtml(item)}</div>
+                <div class="policy-flags">${coverageBadgeHtml(item)}${selectionModeBadgeHtml(item)}</div>
               </div>
-              <button class="button secondary" type="button" data-view-suggestion="${index}">查看摘要</button>
+              <div class="suggestion-actions">
+                <button class="button primary" type="button" data-view-suggestion="${index}">查看</button>
+              </div>
             </article>
-          `,
+          `;
+          },
         )
         .join("")}
     </div>
-    ${
-      matches.length > 8
-        ? `<p class="result-summary">「${escapeHtml(query)}」還有更多候選，請用公司或完整名稱縮小範圍。</p>`
-        : ""
-    }
+    ${matches.length > state.portfolioSuggestionPageSize ? paginationHtml("portfolio", matches.length, state.portfolioSuggestionPage, state.portfolioSuggestionPageSize, PORTFOLIO_PAGE_SIZES) : ""}
+    <p class="result-summary">「${escapeHtml(query)}」共有 ${formatNumber.format(matches.length)} 個候選；若同名很多，請用公司與銷售日期核對版本。</p>
   `;
 }
 
@@ -942,6 +1344,44 @@ function focusSummaryHtml(item) {
   return cards.join("");
 }
 
+function coveragePreviewHtml(item) {
+  const options = normalizePlanOptions(item);
+  const selectedPlan = options.find(
+    (option) => option.value === item?.plan_name || option.label === item?.plan_name,
+  );
+  const entries = effectiveCoverageEntries(item);
+  const needsPlan = options.length && !selectedPlan;
+  const verified = hasVerifiedBenefits(item);
+  return `
+    <section class="portfolio-benefit-preview" data-plan-benefit-preview>
+      <div class="portfolio-benefit-preview-top">
+        <div>
+          <p class="eyebrow">${verified ? "Verified Benefits" : "Benefit Status"}</p>
+          <h4>${selectedPlan ? `${escapeHtml(selectedPlan.label)} 的保障與金額` : needsPlan ? "選擇計畫後查看保障與金額" : "條款保障與金額"}</h4>
+        </div>
+        ${entries.length ? `<span class="chip">${formatNumber.format(entries.length)} 項保障</span>` : '<span class="chip muted">金額待整理</span>'}
+      </div>
+      ${
+        needsPlan
+          ? '<p class="portfolio-benefit-empty">請先選擇計畫；系統會依條款附表顯示該計畫的保障項目、金額與給付基準。</p>'
+          : portfolioCoverageEntriesHtml(selectedPlan ? { ...item, plan_name: selectedPlan.value } : item)
+      }
+    </section>
+  `;
+}
+
+function refreshPortfolioBenefitPreview() {
+  if (!state.portfolioDetailItem) return;
+  const preview = document.querySelector("#portfolioDetail [data-plan-benefit-preview]");
+  if (!preview) return;
+  preview.outerHTML = coveragePreviewHtml(state.portfolioDetailItem);
+}
+
+function hasVerifiedBenefits(item) {
+  if (normalizeCoverageEntries(item?.coverage_entries || item?.benefit_rules).length) return true;
+  return normalizePlanOptions(item).some((option) => option.coverage_entries.length > 0);
+}
+
 function renderPortfolioDetail(item) {
   const container = document.getElementById("portfolioDetail");
   state.portfolioDetailItem = item || null;
@@ -950,6 +1390,10 @@ function renderPortfolioDetail(item) {
     return;
   }
   const detailLink = item.detail_url || item.policy_url || "";
+  const showFallbackSummary = !hasVerifiedBenefits(item);
+  const isInPortfolio = state.portfolioItems.some(
+    (portfolioItem) => portfolioItem.id === portfolioItemId(item),
+  );
   container.innerHTML = `
     <article class="portfolio-detail-card">
       <div class="portfolio-detail-top">
@@ -968,7 +1412,7 @@ function renderPortfolioDetail(item) {
         <section>
           <h4>保障摘要</h4>
           <p>${escapeHtml(coverageSummaryForItem(item))}</p>
-          <div class="policy-flags">${coverageBadgeHtml(item)}</div>
+          <div class="policy-flags">${coverageBadgeHtml(item)}${selectionModeBadgeHtml(item)}</div>
         </section>
         <section>
           <h4>核對資訊</h4>
@@ -980,13 +1424,19 @@ function renderPortfolioDetail(item) {
           </dl>
         </section>
       </div>
-      <section>
-        <h4>保障內容摘要</h4>
-        <div class="portfolio-summary-grid">${focusSummaryHtml(item)}</div>
-      </section>
+      ${
+        showFallbackSummary
+          ? `<details class="coverage-detail" open>
+              <summary>保障內容摘要與險種細項</summary>
+              <div class="portfolio-summary-grid">${focusSummaryHtml(item)}</div>
+            </details>`
+          : ""
+      }
       ${identityWarningHtml(item)}
+      ${portfolioSelectionFieldsHtml(item)}
+      ${coveragePreviewHtml(item)}
       <div class="portfolio-detail-actions">
-        <button class="button primary" type="button" data-confirm-add-portfolio ${item.document_summary_loading ? "disabled aria-busy=\"true\"" : ""}>${item.document_summary_loading ? "載入條款摘要中" : "確認加入集合"}</button>
+        <button class="button primary" type="button" data-confirm-add-portfolio ${item.document_summary_loading ? "disabled aria-busy=\"true\"" : ""}>${item.document_summary_loading ? "載入條款摘要中" : isInPortfolio ? "更新集合" : "加入"}</button>
         ${detailLink ? `<a class="button secondary" href="${escapeHtml(detailLink)}" target="_blank" rel="noreferrer">官方來源</a>` : ""}
       </div>
     </article>
@@ -1027,6 +1477,14 @@ async function enrichPortfolioItemWithDocumentSummary(item) {
     ...item,
     coverage_tags: summary.coverage_tags || [],
     reader_focus: summary.reader_focus || [],
+    selection_type: summary.selection_type || summary.input_mode || item.selection_type || "",
+    input_mode: summary.input_mode || item.input_mode || "",
+    selection_source: summary.selection_source || item.selection_source || "",
+    selection_label: summary.selection_label || item.selection_label || "",
+    selection_guidance: summary.selection_guidance || item.selection_guidance || "",
+    unit_fields: summary.unit_fields || item.unit_fields || [],
+    plan_options: summary.plan_options || item.plan_options || [],
+    coverage_entries: normalizeCoverageEntries(summary.coverage_entries || item.coverage_entries),
     document_summary_loaded: true,
   };
 }
@@ -1051,17 +1509,79 @@ async function openPortfolioDetail(item) {
   }
 }
 
+function portfolioCoverageEntriesHtml(item, options = {}) {
+  const entries = effectiveCoverageEntries(item);
+  if (entries.length) {
+    const visibleEntries = options.compact ? entries.slice(0, 3) : entries;
+    const remainingEntries = options.compact ? entries.slice(3) : [];
+    const entryHtml = (entry) => {
+      const valueText = coverageEntryValueText(entry, item);
+      return `
+        <div>
+          <dt>${escapeHtml(entry.name || "保障項目")}</dt>
+          <dd>
+            <strong>${escapeHtml(valueText)}</strong>
+            <span class="benefit-meta">${escapeHtml(coverageModel.AMOUNT_ROLES[entry.amount_role] || coverageModel.AMOUNT_ROLES.unknown)} · ${escapeHtml(coverageModel.LIMIT_SCOPES[entry.limit_scope] || coverageModel.LIMIT_SCOPES.unknown)}</span>
+            ${entry.note && entry.note !== valueText ? `<small>${escapeHtml(entry.note)}</small>` : ""}
+            ${entry.conditions?.length ? `<small>${escapeHtml(entry.conditions.join("；"))}</small>` : ""}
+            ${entry.source_ref ? `<small class="portfolio-benefit-reference">${escapeHtml(entry.source_ref)}</small>` : ""}
+          </dd>
+        </div>
+      `;
+    };
+    return `
+      <p class="portfolio-benefit-source">依條款資料整理</p>
+      <dl class="portfolio-benefit-list">
+        ${visibleEntries.map(entryHtml).join("")}
+      </dl>
+      ${
+        remainingEntries.length
+          ? `<details class="portfolio-benefit-more"><summary>查看其餘 ${formatNumber.format(remainingEntries.length)} 項保障</summary><dl class="portfolio-benefit-list">${remainingEntries.map(entryHtml).join("")}</dl></details>`
+          : ""
+      }
+    `;
+  }
+
+  const coverageFocus = focusByKeyForPortfolio(item, "coverage");
+  if (coverageFocus?.summary) {
+    const terms = coverageFocus.terms?.slice(0, 6) || [];
+    return `
+      <div class="portfolio-terms-summary">
+        <p class="portfolio-benefit-source">條款保障摘要</p>
+        <p>${escapeHtml(coverageFocus.summary)}</p>
+        ${terms.length ? `<div class="chips">${terms.map((term) => `<span class="chip">${escapeHtml(term)}</span>`).join("")}</div>` : ""}
+      </div>
+    `;
+  }
+
+  return '<p class="portfolio-benefit-empty">條款保障項目尚未完成結構化，暫不顯示推估內容。</p>';
+}
+
+function portfolioEditFormHtml(item) {
+  return `
+    <form class="portfolio-edit-form" data-portfolio-edit-form="${escapeHtml(item.id)}">
+      <p class="portfolio-edit-note">只調整條款指定的契約保險金額、計畫或單位；保障項目不可自行修改。</p>
+      ${portfolioSelectionFieldsHtml(item)}
+      <div class="portfolio-edit-actions">
+        <button class="button ghost" type="button" data-cancel-portfolio-edit>取消</button>
+        <button class="button primary" type="submit">儲存</button>
+      </div>
+    </form>
+  `;
+}
+
 function renderPortfolioList() {
   const container = document.getElementById("portfolioList");
-  setText("portfolioCount", `${formatNumber.format(state.portfolioItems.length)} 張`);
+  setText("portfolioCount", `${formatNumber.format(state.portfolioItems.length)} 個險種`);
   if (!state.portfolioItems.length) {
     container.innerHTML =
       '<div class="empty"><strong>尚未加入保單。</strong><span>從上方輸入保單名稱或險種，就會形成自己的保障集合。</span></div>';
     return;
   }
   container.innerHTML = state.portfolioItems
-    .map(
-      (item) => `
+    .map((item) => {
+      const isEditing = state.editingPortfolioId === item.id;
+      return `
         <article class="portfolio-item">
           <div>
             <strong class="policy-title-line">${policyTitleHtml(item)}</strong>
@@ -1069,11 +1589,12 @@ function renderPortfolioList() {
               <span>${escapeHtml(item.company)}</span>
               <span>${escapeHtml(item.product_type)}</span>
               ${identityMetaHtml(item)}
+              <span>${escapeHtml(portfolioSelectionText(item))}</span>
             </div>
             <div class="policy-flags">
-              ${coverageBadgeHtml(item)}
-              ${(item.flags || []).slice(0, 3).map((flag) => `<span class="chip muted">${escapeHtml(flag)}</span>`).join("")}
+              ${coverageBadgeHtml(item)}${selectionModeBadgeHtml(item)}
             </div>
+            ${portfolioCoverageEntriesHtml(item, { compact: true })}
           </div>
           <div class="portfolio-actions">
             ${
@@ -1083,11 +1604,13 @@ function renderPortfolioList() {
                   ? `<a class="button secondary" href="${escapeHtml(item.policy_url)}" target="_blank" rel="noreferrer">官方來源</a>`
                   : ""
             }
+            <button class="button secondary" type="button" data-edit-portfolio="${escapeHtml(item.id)}">編輯</button>
             <button class="button ghost" type="button" data-remove-portfolio="${escapeHtml(item.id)}">移除</button>
           </div>
+          ${isEditing ? portfolioEditFormHtml(item) : ""}
         </article>
-      `,
-    )
+      `;
+    })
     .join("");
 }
 
@@ -1099,28 +1622,56 @@ function renderCoverageBuckets() {
   }));
   const activeCount = bucketMatches.filter((bucket) => bucket.items.length).length;
   setText("coverageScore", `${formatNumber.format(activeCount)}/${formatNumber.format(coverageBuckets.length)} 類`);
-  container.innerHTML = bucketMatches
-    .map((bucket) => {
-      const hasItems = bucket.items.length > 0;
+  const groupLabels = {
+    personal: ["人身保障", "壽險、醫療、意外、癌症、重大疾病、長照與年金"],
+    property: ["財產保障", "汽車、住宅火災、海上運輸與其他產險"],
+  };
+  const bucketHtml = (bucket) => {
+    const hasItems = bucket.items.length > 0;
+    return `
+      <details class="coverage-bucket ${hasItems ? "active" : ""}">
+        <summary class="coverage-bucket-top">
+          <strong>${escapeHtml(bucket.label)}</strong>
+          <span>${formatNumber.format(bucket.items.length)} 個險種</span>
+        </summary>
+        <p>${escapeHtml(bucket.summary)}</p>
+        <div class="coverage-meter" aria-hidden="true"><span style="width:${hasItems ? "100" : "0"}%"></span></div>
+        <div class="coverage-examples">
+          ${
+            hasItems
+              ? bucket.items
+                  .map((item) => {
+                    const coverageDetails = effectiveCoverageEntries(item)
+                      .map(
+                        (entry) =>
+                          `<small>${escapeHtml(coverageEntryText(entry, item))}${entry.note ? `；${escapeHtml(entry.note)}` : ""}</small>`,
+                      )
+                      .join("");
+                    const coverageFocus = focusByKeyForPortfolio(item, "coverage");
+                    const fallbackSummary = !coverageDetails && coverageFocus?.summary
+                      ? `<small>${escapeHtml(coverageFocus.summary)}</small>`
+                      : '<small class="amount-pending">保障金額尚待條款整理</small>';
+                    return `<span><strong>${escapeHtml(item.product_name)}</strong><small>${escapeHtml(portfolioSelectionText(item))}</small>${coverageDetails || fallbackSummary}</span>`;
+                  })
+                  .join("")
+              : "<span>尚未加入對應保單</span>"
+          }
+        </div>
+      </details>
+    `;
+  };
+  container.innerHTML = Object.entries(groupLabels)
+    .map(([group, [label, summary]]) => {
+      const buckets = bucketMatches.filter((bucket) => bucket.group === group);
+      const groupActiveCount = buckets.filter((bucket) => bucket.items.length).length;
       return `
-        <article class="coverage-bucket ${hasItems ? "active" : ""}">
-          <div class="coverage-bucket-top">
-            <strong>${escapeHtml(bucket.label)}</strong>
-            <span>${formatNumber.format(bucket.items.length)} 張</span>
+        <section class="coverage-bucket-group" aria-label="${escapeHtml(label)}">
+          <div class="coverage-group-heading">
+            <div><strong>${escapeHtml(label)}</strong><span>${escapeHtml(summary)}</span></div>
+            <span>${formatNumber.format(groupActiveCount)}/${formatNumber.format(buckets.length)} 類</span>
           </div>
-          <p>${escapeHtml(bucket.summary)}</p>
-          <div class="coverage-meter" aria-hidden="true"><span style="width:${hasItems ? "100" : "0"}%"></span></div>
-          <div class="coverage-examples">
-            ${
-              hasItems
-                ? bucket.items
-                    .slice(0, 4)
-                    .map((item) => `<span>${escapeHtml(item.product_name)}</span>`)
-                    .join("")
-                : "<span>尚未加入對應保單</span>"
-            }
-          </div>
-        </article>
+          <div class="coverage-group-list">${buckets.map(bucketHtml).join("")}</div>
+        </section>
       `;
     })
     .join("");
@@ -1132,23 +1683,31 @@ function renderPortfolio() {
 }
 
 async function runPortfolioSearch(query) {
+  const searchGeneration = ++portfolioSearchGeneration;
   const cleanedQuery = String(query || "").trim();
   if (!cleanedQuery) {
+    state.portfolioSuggestions = [];
+    state.portfolioDetailItem = null;
+    renderPortfolioSuggestions([], "");
+    renderPortfolioDetail(null);
     setText("portfolioHint", "請先輸入保單名稱或險種。");
     document.getElementById("portfolioInput").focus();
     return;
   }
+  state.portfolioSuggestionPage = 1;
+  state.portfolioDetailItem = null;
+  renderPortfolioDetail(null);
   setText("portfolioHint", "正在查找可加入的保單。");
   renderPortfolioSuggestions([], cleanedQuery);
   try {
     const matches = await findPortfolioMatches(cleanedQuery);
+    if (searchGeneration !== portfolioSearchGeneration) return;
     const productIdMatches = exactProductIdMatches(matches, cleanedQuery);
     if (productIdMatches.length === 1) {
       renderPortfolioSuggestions(productIdMatches, cleanedQuery);
-      await openPortfolioDetail(productIdMatches[0]);
       setText(
         "portfolioHint",
-        `已找到「${productIdMatches[0].product_name}」。請先看摘要，確認後再加入集合。`,
+        `已找到「${productIdMatches[0].product_name}」。請點「查看」核對保障摘要後再加入。`,
       );
       return;
     }
@@ -1158,13 +1717,12 @@ async function runPortfolioSearch(query) {
       return;
     }
 
-    const nameMatches = exactNameMatches(matches, cleanedQuery);
+    const nameMatches = exactNameVersionFamilyMatches(matches, cleanedQuery);
     if (nameMatches.length === 1) {
       renderPortfolioSuggestions(nameMatches, cleanedQuery);
-      await openPortfolioDetail(nameMatches[0]);
       setText(
         "portfolioHint",
-        `已找到「${nameMatches[0].product_name}」。請先看摘要，確認後再加入集合。`,
+        `已找到「${nameMatches[0].product_name}」。請點「查看」核對保障摘要後再加入。`,
       );
       return;
     }
@@ -1175,8 +1733,7 @@ async function runPortfolioSearch(query) {
     }
     if (matches.length === 1) {
       renderPortfolioSuggestions(matches, cleanedQuery);
-      await openPortfolioDetail(matches[0]);
-      setText("portfolioHint", `已找到「${matches[0].product_name}」。請先看摘要，確認後再加入集合。`);
+      setText("portfolioHint", `已找到「${matches[0].product_name}」。請點「查看」核對保障摘要後再加入。`);
       return;
     }
     if (matches.length) {
@@ -1189,6 +1746,7 @@ async function runPortfolioSearch(query) {
     renderPortfolioDetail(manualItem);
     setText("portfolioHint", `沒有直接對到資料庫，已建立手動項目摘要；確認名稱無誤後可加入集合。`);
   } catch (error) {
+    if (searchGeneration !== portfolioSearchGeneration) return;
     setText("portfolioHint", `查找時發生問題：${error.message}`);
   }
 }
@@ -1897,7 +2455,11 @@ function renderPolicyCard(record) {
 function renderPolicyCards() {
   const rows = filteredPolicyRecords();
   const container = document.getElementById("policyList");
-  setText("policyResultCount", `${formatNumber.format(rows.length)} 張`);
+  const totalPages = Math.max(Math.ceil(rows.length / state.policyPageSize), 1);
+  state.policyPage = clampPage(state.policyPage, totalPages);
+  const startIndex = (state.policyPage - 1) * state.policyPageSize;
+  const visibleRows = rows.slice(startIndex, startIndex + state.policyPageSize);
+  setText("policyResultCount", `${formatNumber.format(rows.length)} 張 / ${formatNumber.format(totalPages)} 頁`);
   renderPolicyResultSummary(rows.length);
   syncControls();
 
@@ -1907,13 +2469,8 @@ function renderPolicyCards() {
     return;
   }
 
-  container.innerHTML = rows.slice(0, 80).map(renderPolicyCard).join("");
-  if (rows.length > 80) {
-    container.insertAdjacentHTML(
-      "beforeend",
-      `<div class="empty"><strong>目前先顯示前 80 張。</strong><span>請用公司、保單類型或關鍵字縮小範圍；符合條件共 ${formatNumber.format(rows.length)} 張。</span></div>`,
-    );
-  }
+  const pager = paginationHtml("policy", rows.length, state.policyPage, state.policyPageSize, POLICY_PAGE_SIZES);
+  container.innerHTML = `${pager}${visibleRows.map(renderPolicyCard).join("")}${totalPages > 1 ? pager : ""}`;
 }
 
 function passesCrawlFilter(item) {
@@ -2113,6 +2670,7 @@ async function copyText(text, button) {
 function resetFilters() {
   Object.assign(state, DEFAULT_FILTERS);
   state.openSourceId = null;
+  state.policyPage = 1;
   syncControls();
   renderPolicyCards();
   renderSources();
@@ -2121,9 +2679,71 @@ function resetFilters() {
   document.getElementById("searchInput").focus();
 }
 
+function rerenderPortfolioSuggestions() {
+  const query = document.getElementById("portfolioInput").value.trim();
+  renderPortfolioSuggestions(state.portfolioSuggestions, query);
+}
+
+function setPortfolioSuggestionPage(page) {
+  const totalPages = Math.max(Math.ceil(state.portfolioSuggestions.length / state.portfolioSuggestionPageSize), 1);
+  state.portfolioSuggestionPage = clampPage(page, totalPages);
+  rerenderPortfolioSuggestions();
+}
+
+function setPortfolioSuggestionPageSize(pageSize) {
+  state.portfolioSuggestionPageSize = PORTFOLIO_PAGE_SIZES.includes(Number(pageSize))
+    ? Number(pageSize)
+    : state.portfolioSuggestionPageSize;
+  state.portfolioSuggestionPage = 1;
+  rerenderPortfolioSuggestions();
+}
+
+function setPolicyPage(page) {
+  const totalPages = Math.max(Math.ceil(filteredPolicyRecords().length / state.policyPageSize), 1);
+  state.policyPage = clampPage(page, totalPages);
+  renderPolicyCards();
+}
+
+function setPolicyPageSize(pageSize) {
+  state.policyPageSize = POLICY_PAGE_SIZES.includes(Number(pageSize)) ? Number(pageSize) : state.policyPageSize;
+  state.policyPage = 1;
+  renderPolicyCards();
+}
+
+function savePortfolioEdits(form) {
+  const itemId = form.dataset.portfolioEditForm;
+  const current = state.portfolioItems.find((item) => item.id === itemId);
+  if (!current) return false;
+  const selection = readPortfolioSelection(form, current);
+  if (!selection) return false;
+  const updated = {
+    ...current,
+    ...selection,
+    coverage_entries: normalizeCoverageEntries(current.coverage_entries),
+  };
+  state.portfolioItems = state.portfolioItems.map((item) => (item.id === itemId ? updated : item));
+  state.editingPortfolioId = null;
+  savePortfolioItems();
+  renderPortfolio();
+  setText("portfolioHint", `已更新「${updated.product_name}」的投保資料。`);
+  return true;
+}
+
+function updatePortfolioCompanyFilter(value) {
+  state.portfolioCompany = String(value || "").trim() || "all";
+  state.portfolioDetailItem = null;
+  state.portfolioSuggestionPage = 1;
+  renderPortfolioDetail(null);
+  const query = document.getElementById("portfolioInput").value.trim();
+  if (query) runPortfolioSearch(query);
+}
+
 function bindEvents() {
   document.getElementById("portfolioForm").addEventListener("submit", (event) => {
     event.preventDefault();
+    window.clearTimeout(portfolioCompanyFilterTimer);
+    state.portfolioCompany = document.getElementById("portfolioCompanyFilter").value.trim() || "all";
+    state.portfolioSuggestionPage = 1;
     runPortfolioSearch(document.getElementById("portfolioInput").value);
   });
 
@@ -2132,33 +2752,48 @@ function bindEvents() {
   document.getElementById("portfolioQuickAdds").addEventListener("click", (event) => {
     const button = event.target.closest("[data-portfolio-query]");
     if (!button) return;
+    state.portfolioSuggestionPage = 1;
     document.getElementById("portfolioInput").value = button.dataset.portfolioQuery;
     runPortfolioSearch(button.dataset.portfolioQuery);
   });
 
-  document.getElementById("portfolioCompanyFilter").addEventListener("change", (event) => {
-    state.portfolioCompany = event.target.value;
-    state.portfolioDetailItem = null;
-    renderPortfolioDetail(null);
-    const query = document.getElementById("portfolioInput").value.trim();
-    if (query) runPortfolioSearch(query);
+  document.getElementById("portfolioCompanyFilter").addEventListener("input", (event) => {
+    window.clearTimeout(portfolioCompanyFilterTimer);
+    portfolioCompanyFilterTimer = window.setTimeout(() => updatePortfolioCompanyFilter(event.target.value), 250);
   });
 
   document.getElementById("portfolioBucketFilter").addEventListener("change", (event) => {
     state.portfolioBucket = event.target.value;
     state.portfolioDetailItem = null;
+    state.portfolioSuggestionPage = 1;
     renderPortfolioDetail(null);
     const query = document.getElementById("portfolioInput").value.trim();
     if (query) runPortfolioSearch(query);
   });
 
   document.getElementById("portfolioSuggestions").addEventListener("click", async (event) => {
+    const pageButton = event.target.closest("[data-page-action='portfolio']");
+    if (pageButton) {
+      setPortfolioSuggestionPage(pageButton.dataset.pageTarget);
+      return;
+    }
     const button = event.target.closest("[data-view-suggestion]");
     if (!button) return;
     const item = state.portfolioSuggestions[Number(button.dataset.viewSuggestion)];
     if (!item) return;
     await openPortfolioDetail(item);
+    document.getElementById("portfolioDetail").scrollIntoView({ behavior: "smooth", block: "start" });
     setText("portfolioHint", `正在查看「${item.product_name}」摘要。確認後可加入集合。`);
+  });
+
+  document.getElementById("portfolioSuggestions").addEventListener("change", (event) => {
+    if (event.target.matches("[data-page-select='portfolio']")) {
+      setPortfolioSuggestionPage(event.target.value);
+      return;
+    }
+    if (event.target.matches("[data-page-size='portfolio']")) {
+      setPortfolioSuggestionPageSize(event.target.value);
+    }
   });
 
   document.getElementById("portfolioDetail").addEventListener("click", (event) => {
@@ -2169,20 +2804,131 @@ function bindEvents() {
     }
     const addButton = event.target.closest("[data-confirm-add-portfolio]");
     if (!addButton || !state.portfolioDetailItem) return;
-    const item = state.portfolioDetailItem;
-    const added = addPortfolioItem(item);
-    setText("portfolioHint", added ? `已加入「${item.product_name}」。` : `「${item.product_name}」已在集合中。`);
+    const detailContainer = document.getElementById("portfolioDetail");
+    const selection = readPortfolioSelection(detailContainer, state.portfolioDetailItem);
+    if (!selection) return;
+    const item = { ...state.portfolioDetailItem, ...selection };
+    const result = addPortfolioItem(item);
+    renderPortfolioDetail(item);
+    setText(
+      "portfolioHint",
+      result === "added"
+        ? `已加入「${item.product_name}」，${portfolioSelectionText(item)}。`
+        : `已更新「${item.product_name}」為 ${portfolioSelectionText(item)}。`,
+    );
+  });
+
+  document.getElementById("portfolioDetail").addEventListener("change", (event) => {
+    if (event.target.matches("[data-selection-mode]")) {
+      syncPortfolioSelectionFields(event.target.closest("[data-selection-fields]"));
+      return;
+    }
+    if (!state.portfolioDetailItem) return;
+    if (event.target.matches("[data-selection-plan]")) {
+      state.portfolioDetailItem = {
+        ...state.portfolioDetailItem,
+        plan_name: String(event.target.value || "").trim(),
+      };
+      renderPortfolioDetail(state.portfolioDetailItem);
+      return;
+    }
+    if (event.target.matches("[data-selection-unit]")) {
+      state.portfolioDetailItem = {
+        ...state.portfolioDetailItem,
+        unit_count: normalizeUnitCount(event.target.value),
+      };
+      renderPortfolioDetail(state.portfolioDetailItem);
+      return;
+    }
+    if (event.target.matches("[data-selection-unit-key]")) {
+      const key = event.target.dataset.selectionUnitKey;
+      state.portfolioDetailItem = {
+        ...state.portfolioDetailItem,
+        unit_counts: {
+          ...(state.portfolioDetailItem.unit_counts || {}),
+          [key]: normalizeUnitCount(event.target.value),
+        },
+      };
+      renderPortfolioDetail(state.portfolioDetailItem);
+      return;
+    }
+    if (event.target.matches("[data-selection-face-amount]")) {
+      state.portfolioDetailItem = {
+        ...state.portfolioDetailItem,
+        face_amount: normalizeCoverageAmount(event.target.value),
+      };
+      renderPortfolioDetail(state.portfolioDetailItem);
+    }
+  });
+
+  document.getElementById("portfolioDetail").addEventListener("input", (event) => {
+    if (!state.portfolioDetailItem) return;
+    if (event.target.matches("[data-selection-unit]")) {
+      state.portfolioDetailItem = {
+        ...state.portfolioDetailItem,
+        unit_count: normalizeUnitCount(event.target.value),
+      };
+      refreshPortfolioBenefitPreview();
+      return;
+    }
+    if (event.target.matches("[data-selection-unit-key]")) {
+      const key = event.target.dataset.selectionUnitKey;
+      state.portfolioDetailItem = {
+        ...state.portfolioDetailItem,
+        unit_counts: {
+          ...(state.portfolioDetailItem.unit_counts || {}),
+          [key]: normalizeUnitCount(event.target.value),
+        },
+      };
+      refreshPortfolioBenefitPreview();
+      return;
+    }
+    if (event.target.matches("[data-selection-face-amount]")) {
+      state.portfolioDetailItem = {
+        ...state.portfolioDetailItem,
+        face_amount: normalizeCoverageAmount(event.target.value),
+      };
+      refreshPortfolioBenefitPreview();
+    }
   });
 
   document.getElementById("portfolioList").addEventListener("click", (event) => {
-    const button = event.target.closest("[data-remove-portfolio]");
-    if (!button) return;
-    removePortfolioItem(button.dataset.removePortfolio);
+    const editButton = event.target.closest("[data-edit-portfolio]");
+    if (editButton) {
+      state.editingPortfolioId = editButton.dataset.editPortfolio;
+      renderPortfolioList();
+      document.querySelector(`[data-portfolio-edit-form="${CSS.escape(state.editingPortfolioId)}"]`)?.scrollIntoView({
+        behavior: "smooth",
+        block: "nearest",
+      });
+      return;
+    }
+    if (event.target.closest("[data-cancel-portfolio-edit]")) {
+      state.editingPortfolioId = null;
+      renderPortfolioList();
+      return;
+    }
+    const removeButton = event.target.closest("[data-remove-portfolio]");
+    if (!removeButton) return;
+    removePortfolioItem(removeButton.dataset.removePortfolio);
     setText("portfolioHint", "已從集合移除。");
+  });
+
+  document.getElementById("portfolioList").addEventListener("submit", (event) => {
+    const form = event.target.closest("[data-portfolio-edit-form]");
+    if (!form) return;
+    event.preventDefault();
+    savePortfolioEdits(form);
+  });
+
+  document.getElementById("portfolioList").addEventListener("change", (event) => {
+    if (!event.target.matches("[data-selection-mode]")) return;
+    syncPortfolioSelectionFields(event.target.closest("[data-selection-fields]"));
   });
 
   document.getElementById("searchForm").addEventListener("submit", (event) => {
     event.preventDefault();
+    state.policyPage = 1;
     runSearch();
   });
 
@@ -2191,6 +2937,7 @@ function bindEvents() {
   document.getElementById("companyFilter").addEventListener("change", (event) => {
     state.openSourceId = null;
     state.company = event.target.value;
+    state.policyPage = 1;
     renderPolicyCards();
     renderSources();
     refreshTiiDiscontinuedForFilters();
@@ -2200,6 +2947,7 @@ function bindEvents() {
   document.getElementById("kindFilter").addEventListener("change", (event) => {
     state.openSourceId = null;
     state.kind = event.target.value;
+    state.policyPage = 1;
     renderPolicyCards();
     renderSources();
     refreshTiiDiscontinuedForFilters();
@@ -2209,6 +2957,7 @@ function bindEvents() {
   document.getElementById("crawlFilter").addEventListener("change", (event) => {
     state.openSourceId = null;
     state.crawl = event.target.value;
+    state.policyPage = 1;
     renderPolicyCards();
     renderSources();
     renderDiscontinuedList();
@@ -2220,6 +2969,7 @@ function bindEvents() {
     if (!button) return;
     state.openSourceId = null;
     state.crawl = button.dataset.crawl;
+    state.policyPage = 1;
     renderPolicyCards();
     renderSources();
     renderDiscontinuedList();
@@ -2230,6 +2980,22 @@ function bindEvents() {
     const button = event.target.closest(".copy-link");
     if (!button) return;
     copyText(button.dataset.url, button);
+  });
+
+  document.getElementById("policyList").addEventListener("click", (event) => {
+    const pageButton = event.target.closest("[data-page-action='policy']");
+    if (!pageButton) return;
+    setPolicyPage(pageButton.dataset.pageTarget);
+  });
+
+  document.getElementById("policyList").addEventListener("change", (event) => {
+    if (event.target.matches("[data-page-select='policy']")) {
+      setPolicyPage(event.target.value);
+      return;
+    }
+    if (event.target.matches("[data-page-size='policy']")) {
+      setPolicyPageSize(event.target.value);
+    }
   });
 
   document.getElementById("discontinuedList").addEventListener("click", async (event) => {
@@ -2261,6 +3027,7 @@ async function main() {
     renderTaxonomy();
     renderDomainChart();
     loadPortfolioItems();
+    savePortfolioItems();
     populatePortfolioFilters();
     renderPortfolio();
     renderPolicyCards();

@@ -25,10 +25,33 @@
         <div class="portfolio-builder-head">
           <div>
             <p class="eyebrow">My Coverage Set</p>
-            <h2>建立我的保險集合</h2>
+            <h2>先看我的保障，再加入保單</h2>
           </div>
           <span class="privacy-note">僅儲存在此裝置</span>
         </div>
+        <div class="portfolio-layout">
+          <section class="portfolio-panel" aria-label="我的保單集合">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Selected Policies</p>
+                <h2>我的保單集合</h2>
+              </div>
+              <span id="portfolioCount" class="result-count">0 個險種</span>
+            </div>
+            <div id="portfolioList" class="portfolio-list"></div>
+          </section>
+          <section class="coverage-panel" aria-label="保障整理">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Coverage Map</p>
+                <h2>保障整理</h2>
+              </div>
+              <span id="coverageScore" class="result-count">0/11 類</span>
+            </div>
+            <div id="coverageBuckets" class="coverage-buckets"></div>
+          </section>
+        </div>
+        <p id="portfolioHint" class="result-summary" aria-live="polite">輸入保單名稱或險種，確認摘要後加入組合，系統會依保障分類整理目前保障。</p>
         <form id="portfolioForm" class="portfolio-form">
           <label class="portfolio-query" for="portfolioInput">
             <span>輸入保單名稱或險種</span>
@@ -40,7 +63,8 @@
         <div class="portfolio-filter-row" aria-label="保單搜尋篩選">
           <label>
             <span>保險公司</span>
-            <select id="portfolioCompanyFilter"></select>
+            <input id="portfolioCompanyFilter" type="search" list="portfolioCompanyOptions" autocomplete="off" placeholder="輸入公司名稱，例如：國泰人壽">
+            <datalist id="portfolioCompanyOptions"></datalist>
           </label>
           <label>
             <span>壽險 / 產險</span>
@@ -59,38 +83,15 @@
           <button type="button" data-portfolio-query="重大">重大疾病</button>
           <button type="button" data-portfolio-query="長期照顧">長照險</button>
         </div>
-        <p id="portfolioHint" class="result-summary" aria-live="polite">先輸入一張保單或一個險種，系統會從已解析條款與保發中心索引中找出可加入的項目。</p>
         <div class="identity-reminder">
           <strong>選保單前先核對身份</strong>
           <span>同名不代表同一版，請以公司、險種、銷售日/停售日與官方明細一起確認。</span>
         </div>
         <div id="portfolioSuggestions" class="portfolio-suggestions"></div>
         <div id="portfolioDetail" class="portfolio-detail-panel"></div>
-        <div class="portfolio-layout">
-          <section class="portfolio-panel" aria-label="我的保單集合">
-            <div class="panel-heading">
-              <div>
-                <p class="eyebrow">Selected Policies</p>
-                <h2>我的保單集合</h2>
-              </div>
-              <span id="portfolioCount" class="result-count">0 張</span>
-            </div>
-            <div id="portfolioList" class="portfolio-list"></div>
-          </section>
-          <section class="coverage-panel" aria-label="保障整理">
-            <div class="panel-heading">
-              <div>
-                <p class="eyebrow">Coverage Map</p>
-                <h2>保障整理</h2>
-              </div>
-              <span id="coverageScore" class="result-count">0/7 類</span>
-            </div>
-            <div id="coverageBuckets" class="coverage-buckets"></div>
-          </section>
-        </div>
       </section>
 
-      <details class="advanced-explorer">
+      <details class="advanced-explorer" hidden>
         <summary>進階資料庫查詢與來源狀態</summary>
         <div class="advanced-explorer-body">
       <section class="public-data-summary" aria-label="公開資料進度">
@@ -333,6 +334,7 @@
       </section>
     </main>
 
-    <script src="./app.js" defer></script>
+    <script src="./coverage-model.js?v=20260720-multi-unit" defer></script>
+    <script src="./app.js?v=20260720-multi-unit" defer></script>
   </body>
 </html>

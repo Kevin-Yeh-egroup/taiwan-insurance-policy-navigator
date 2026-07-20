@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-26T11:39:16+08:00",
+  "generated_at": "2026-07-19T21:29:26+08:00",
   "summary": {
     "generated_at": "2026-06-26T11:39:16+08:00",
     "source": "local TII files downloaded through captcha session",
@@ -16227,6 +16227,64 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "住院保險金日額",
+      "selection_guidance": "請填保單首頁記載的「住院保險金日額」；住院與加護病房給付會依此換算。",
+      "coverage_entries": [
+        {
+          "id": "hospital-daily",
+          "name": "住院保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數（含入院及出院當日）每日給付一倍住院保險金日額，每次住院最高 365 日。",
+          "source_ref": "保單條款第十條、第十一條，第 3 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "包含入院及出院當日",
+            "每次住院最高給付 365 日"
+          ]
+        },
+        {
+          "id": "intensive-care-daily",
+          "name": "加護病房費用保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "住進加護病房治療期間，每日另行給付一倍住院保險金日額，每次住院最高 365 日。",
+          "source_ref": "保單條款第十條、第十二條，第 3 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "加護病房期間另行給付",
+            "包含入院及出院當日",
+            "每次住院最高給付 365 日"
+          ]
+        },
+        {
+          "id": "cumulative-benefit-termination-threshold",
+          "name": "累積總給付終止門檻",
+          "basis": "benefit_base",
+          "calculation_basis": "table_multiplier",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "第十一條及第十二條累積領取總額達住院保險金日額的一千倍時，本附約終止。",
+          "source_ref": "保單條款第八條，第 2 頁",
+          "multiplier": 1000,
+          "conditions": [
+            "住院保險金日額減少時，按減少後日額重新計算門檻"
+          ]
+        }
       ]
     },
     {
@@ -16471,6 +16529,64 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "住院保險金日額",
+      "selection_guidance": "請填保單首頁記載的「住院保險金日額」；住院與加護病房給付會依此換算。",
+      "coverage_entries": [
+        {
+          "id": "hospital-daily",
+          "name": "住院保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數（含入院及出院當日）每日給付一倍住院保險金日額，每次住院最高 365 日。",
+          "source_ref": "保單條款第十條、第十一條，第 3 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "包含入院及出院當日",
+            "每次住院最高給付 365 日"
+          ]
+        },
+        {
+          "id": "intensive-care-daily",
+          "name": "加護病房費用保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "住進加護病房治療期間，每日另行給付一倍住院保險金日額，每次住院最高 365 日。",
+          "source_ref": "保單條款第十條、第十二條，第 3 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "加護病房期間另行給付",
+            "包含入院及出院當日",
+            "每次住院最高給付 365 日"
+          ]
+        },
+        {
+          "id": "cumulative-benefit-termination-threshold",
+          "name": "累積總給付終止門檻",
+          "basis": "benefit_base",
+          "calculation_basis": "table_multiplier",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "第十一條及第十二條累積領取總額達住院保險金日額的一千倍時，本附約終止。",
+          "source_ref": "保單條款第八條，第 2 頁",
+          "multiplier": 1000,
+          "conditions": [
+            "住院保險金日額減少時，按減少後日額重新計算門檻"
+          ]
+        }
       ]
     },
     {
@@ -16707,6 +16823,64 @@
           "text_char_count": 3460,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "住院保險金日額",
+      "selection_guidance": "請填保單首頁記載的「住院保險金日額」；住院與加護病房給付會依此換算。",
+      "coverage_entries": [
+        {
+          "id": "hospital-daily",
+          "name": "住院保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數（含入院及出院當日）每日給付一倍住院保險金日額，每次住院最高 365 日。",
+          "source_ref": "保單條款第十條、第十一條，第 3 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "包含入院及出院當日",
+            "每次住院最高給付 365 日"
+          ]
+        },
+        {
+          "id": "intensive-care-daily",
+          "name": "加護病房費用保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "住進加護病房治療期間，每日另行給付一倍住院保險金日額，每次住院最高 365 日。",
+          "source_ref": "保單條款第十條、第十二條，第 3 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "加護病房期間另行給付",
+            "包含入院及出院當日",
+            "每次住院最高給付 365 日"
+          ]
+        },
+        {
+          "id": "cumulative-benefit-termination-threshold",
+          "name": "累積總給付終止門檻",
+          "basis": "benefit_base",
+          "calculation_basis": "table_multiplier",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "第十一條及第十二條累積領取總額達住院保險金日額的一千倍時，本附約終止。",
+          "source_ref": "保單條款第八條，第 2 頁",
+          "multiplier": 1000,
+          "conditions": [
+            "住院保險金日額減少時，按減少後日額重新計算門檻"
+          ]
         }
       ]
     },
@@ -16955,6 +17129,64 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "住院保險金日額",
+      "selection_guidance": "請填保單首頁記載的「住院保險金日額」；住院與加護病房給付會依此換算。",
+      "coverage_entries": [
+        {
+          "id": "hospital-daily",
+          "name": "住院保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數（含入院及出院當日）每日給付一倍住院保險金日額，每次住院最高 365 日。",
+          "source_ref": "保單條款第十條、第十一條，第 3 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "包含入院及出院當日",
+            "每次住院最高給付 365 日"
+          ]
+        },
+        {
+          "id": "intensive-care-daily",
+          "name": "加護病房費用保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "住進加護病房治療期間，每日另行給付一倍住院保險金日額，每次住院最高 365 日。",
+          "source_ref": "保單條款第十條、第十二條，第 3 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "加護病房期間另行給付",
+            "包含入院及出院當日",
+            "每次住院最高給付 365 日"
+          ]
+        },
+        {
+          "id": "cumulative-benefit-termination-threshold",
+          "name": "累積總給付終止門檻",
+          "basis": "benefit_base",
+          "calculation_basis": "table_multiplier",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "第十一條及第十二條累積領取總額達住院保險金日額的一千倍時，本附約終止。",
+          "source_ref": "保單條款第八條，第 2 頁",
+          "multiplier": 1000,
+          "conditions": [
+            "住院保險金日額減少時，按減少後日額重新計算門檻"
+          ]
+        }
       ]
     },
     {
@@ -17202,6 +17434,64 @@
           "text_char_count": 1451,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "住院保險金日額",
+      "selection_guidance": "請填保單首頁記載的「住院保險金日額」；住院與加護病房給付會依此換算。",
+      "coverage_entries": [
+        {
+          "id": "hospital-daily",
+          "name": "住院保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數（含入院及出院當日）每日給付一倍住院保險金日額，每次住院最高 365 日。",
+          "source_ref": "保單條款第十條、第十一條，第 3 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "包含入院及出院當日",
+            "每次住院最高給付 365 日"
+          ]
+        },
+        {
+          "id": "intensive-care-daily",
+          "name": "加護病房費用保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "住進加護病房治療期間，每日另行給付一倍住院保險金日額，每次住院最高 365 日。",
+          "source_ref": "保單條款第十條、第十二條，第 3 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "加護病房期間另行給付",
+            "包含入院及出院當日",
+            "每次住院最高給付 365 日"
+          ]
+        },
+        {
+          "id": "cumulative-benefit-termination-threshold",
+          "name": "累積總給付終止門檻",
+          "basis": "benefit_base",
+          "calculation_basis": "table_multiplier",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "第十一條及第十二條累積領取總額達住院保險金日額的一千倍時，本附約終止。",
+          "source_ref": "保單條款第八條，第 2 頁",
+          "multiplier": 1000,
+          "conditions": [
+            "住院保險金日額減少時，按減少後日額重新計算門檻"
+          ]
         }
       ]
     },
@@ -21492,6 +21782,118 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "hospital-daily-tiered",
+          "name": "住院日額醫療保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。按同一次住院的日數級距給付。",
+          "source_ref": "保單條款第十三條及附表二，第 9 頁",
+          "amount": 1000,
+          "amount_tiers": [
+            {
+              "label": "住院第 1 至 30 日",
+              "amount": 1000
+            },
+            {
+              "label": "住院第 31 至 90 日",
+              "amount": 1500
+            },
+            {
+              "label": "住院第 91 日起",
+              "amount": 2000
+            }
+          ]
+        },
+        {
+          "id": "intensive-care-daily",
+          "name": "加護病房保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。按實際住進加護病房的日數另行給付。",
+          "source_ref": "保單條款第十四條及附表二，第 9 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。因條款定義的癌症住院時，按實際住院日數另行給付。",
+          "source_ref": "保單條款第十五條及附表二，第 9 頁",
+          "amount": 1000
+        },
+        {
+          "id": "home-care-daily",
+          "name": "居家療養看護保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。符合住院日額給付並出院後，按該次住院日數給付。",
+          "source_ref": "保單條款第十六條及附表二，第 9 頁",
+          "amount": 500
+        },
+        {
+          "id": "inpatient-surgery-base",
+          "name": "住院手術保險金基數",
+          "basis": "per_unit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。實際給付為基數乘以附表三手術比例（2% 至 300%）。",
+          "source_ref": "保單條款第十七條及附表二，第 9 頁及附表三",
+          "amount": 10000,
+          "rate_min_percent": 2,
+          "rate_max_percent": 300
+        },
+        {
+          "id": "pre-post-outpatient-daily",
+          "name": "住院前後門診保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。住院前一週及出院後二週內，按實際門診日數給付。",
+          "source_ref": "保單條款第十八條及附表二，第 9 頁",
+          "amount": 250
+        },
+        {
+          "id": "inpatient-medical-expense-daily",
+          "name": "住院醫療雜費保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。符合條款列舉的住院醫療費用時，按實際住院日數給付。",
+          "source_ref": "保單條款第十九條及附表二，第 9 頁",
+          "amount": 200
+        }
       ]
     },
     {
@@ -21748,6 +22150,118 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "hospital-daily-tiered",
+          "name": "住院日額醫療保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。按同一次住院的日數級距給付。",
+          "source_ref": "保單條款第十三條及附表二，第 9 頁",
+          "amount": 1000,
+          "amount_tiers": [
+            {
+              "label": "住院第 1 至 30 日",
+              "amount": 1000
+            },
+            {
+              "label": "住院第 31 至 90 日",
+              "amount": 1500
+            },
+            {
+              "label": "住院第 91 日起",
+              "amount": 2000
+            }
+          ]
+        },
+        {
+          "id": "intensive-care-daily",
+          "name": "加護病房保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。按實際住進加護病房的日數另行給付。",
+          "source_ref": "保單條款第十四條及附表二，第 9 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。因條款定義的癌症住院時，按實際住院日數另行給付。",
+          "source_ref": "保單條款第十五條及附表二，第 9 頁",
+          "amount": 1000
+        },
+        {
+          "id": "home-care-daily",
+          "name": "居家療養看護保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。符合住院日額給付並出院後，按該次住院日數給付。",
+          "source_ref": "保單條款第十六條及附表二，第 9 頁",
+          "amount": 500
+        },
+        {
+          "id": "inpatient-surgery-base",
+          "name": "住院手術保險金基數",
+          "basis": "per_unit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。實際給付為基數乘以附表三手術比例（2% 至 300%）。",
+          "source_ref": "保單條款第十七條及附表二，第 9 頁及附表三",
+          "amount": 10000,
+          "rate_min_percent": 2,
+          "rate_max_percent": 300
+        },
+        {
+          "id": "pre-post-outpatient-daily",
+          "name": "住院前後門診保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。住院前一週及出院後二週內，按實際門診日數給付。",
+          "source_ref": "保單條款第十八條及附表二，第 9 頁",
+          "amount": 250
+        },
+        {
+          "id": "inpatient-medical-expense-daily",
+          "name": "住院醫療雜費保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。符合條款列舉的住院醫療費用時，按實際住院日數給付。",
+          "source_ref": "保單條款第十九條及附表二，第 9 頁",
+          "amount": 200
+        }
       ]
     },
     {
@@ -21998,6 +22512,118 @@
           "text_char_count": 1616,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "hospital-daily-tiered",
+          "name": "住院日額醫療保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。按同一次住院的日數級距給付。",
+          "source_ref": "保單條款第十三條及附表二，第 9 頁",
+          "amount": 1000,
+          "amount_tiers": [
+            {
+              "label": "住院第 1 至 30 日",
+              "amount": 1000
+            },
+            {
+              "label": "住院第 31 至 90 日",
+              "amount": 1500
+            },
+            {
+              "label": "住院第 91 日起",
+              "amount": 2000
+            }
+          ]
+        },
+        {
+          "id": "intensive-care-daily",
+          "name": "加護病房保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。按實際住進加護病房的日數另行給付。",
+          "source_ref": "保單條款第十四條及附表二，第 9 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。因條款定義的癌症住院時，按實際住院日數另行給付。",
+          "source_ref": "保單條款第十五條及附表二，第 9 頁",
+          "amount": 1000
+        },
+        {
+          "id": "home-care-daily",
+          "name": "居家療養看護保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。符合住院日額給付並出院後，按該次住院日數給付。",
+          "source_ref": "保單條款第十六條及附表二，第 9 頁",
+          "amount": 500
+        },
+        {
+          "id": "inpatient-surgery-base",
+          "name": "住院手術保險金基數",
+          "basis": "per_unit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。實際給付為基數乘以附表三手術比例（2% 至 300%）。",
+          "source_ref": "保單條款第十七條及附表二，第 9 頁及附表三",
+          "amount": 10000,
+          "rate_min_percent": 2,
+          "rate_max_percent": 300
+        },
+        {
+          "id": "pre-post-outpatient-daily",
+          "name": "住院前後門診保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。住院前一週及出院後二週內，按實際門診日數給付。",
+          "source_ref": "保單條款第十八條及附表二，第 9 頁",
+          "amount": 250
+        },
+        {
+          "id": "inpatient-medical-expense-daily",
+          "name": "住院醫療雜費保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。符合條款列舉的住院醫療費用時，按實際住院日數給付。",
+          "source_ref": "保單條款第十九條及附表二，第 9 頁",
+          "amount": 200
         }
       ]
     },
@@ -22254,6 +22880,118 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "hospital-daily-tiered",
+          "name": "住院日額醫療保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。按同一次住院的日數級距給付。",
+          "source_ref": "保單條款第十三條及附表二，第 9 頁",
+          "amount": 1000,
+          "amount_tiers": [
+            {
+              "label": "住院第 1 至 30 日",
+              "amount": 1000
+            },
+            {
+              "label": "住院第 31 至 90 日",
+              "amount": 1500
+            },
+            {
+              "label": "住院第 91 日起",
+              "amount": 2000
+            }
+          ]
+        },
+        {
+          "id": "intensive-care-daily",
+          "name": "加護病房保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。按實際住進加護病房的日數另行給付。",
+          "source_ref": "保單條款第十四條及附表二，第 9 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。因條款定義的癌症住院時，按實際住院日數另行給付。",
+          "source_ref": "保單條款第十五條及附表二，第 9 頁",
+          "amount": 1000
+        },
+        {
+          "id": "home-care-daily",
+          "name": "居家療養看護保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。符合住院日額給付並出院後，按該次住院日數給付。",
+          "source_ref": "保單條款第十六條及附表二，第 9 頁",
+          "amount": 500
+        },
+        {
+          "id": "inpatient-surgery-base",
+          "name": "住院手術保險金基數",
+          "basis": "per_unit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。實際給付為基數乘以附表三手術比例（2% 至 300%）。",
+          "source_ref": "保單條款第十七條及附表二，第 9 頁及附表三",
+          "amount": 10000,
+          "rate_min_percent": 2,
+          "rate_max_percent": 300
+        },
+        {
+          "id": "pre-post-outpatient-daily",
+          "name": "住院前後門診保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。住院前一週及出院後二週內，按實際門診日數給付。",
+          "source_ref": "保單條款第十八條及附表二，第 9 頁",
+          "amount": 250
+        },
+        {
+          "id": "inpatient-medical-expense-daily",
+          "name": "住院醫療雜費保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。符合條款列舉的住院醫療費用時，按實際住院日數給付。",
+          "source_ref": "保單條款第十九條及附表二，第 9 頁",
+          "amount": 200
+        }
       ]
     },
     {
@@ -22504,6 +23242,118 @@
           "text_char_count": 1626,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "hospital-daily-tiered",
+          "name": "住院日額醫療保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。按同一次住院的日數級距給付。",
+          "source_ref": "保單條款第十三條及附表二，第 9 頁",
+          "amount": 1000,
+          "amount_tiers": [
+            {
+              "label": "住院第 1 至 30 日",
+              "amount": 1000
+            },
+            {
+              "label": "住院第 31 至 90 日",
+              "amount": 1500
+            },
+            {
+              "label": "住院第 91 日起",
+              "amount": 2000
+            }
+          ]
+        },
+        {
+          "id": "intensive-care-daily",
+          "name": "加護病房保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。按實際住進加護病房的日數另行給付。",
+          "source_ref": "保單條款第十四條及附表二，第 9 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。因條款定義的癌症住院時，按實際住院日數另行給付。",
+          "source_ref": "保單條款第十五條及附表二，第 9 頁",
+          "amount": 1000
+        },
+        {
+          "id": "home-care-daily",
+          "name": "居家療養看護保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。符合住院日額給付並出院後，按該次住院日數給付。",
+          "source_ref": "保單條款第十六條及附表二，第 9 頁",
+          "amount": 500
+        },
+        {
+          "id": "inpatient-surgery-base",
+          "name": "住院手術保險金基數",
+          "basis": "per_unit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。實際給付為基數乘以附表三手術比例（2% 至 300%）。",
+          "source_ref": "保單條款第十七條及附表二，第 9 頁及附表三",
+          "amount": 10000,
+          "rate_min_percent": 2,
+          "rate_max_percent": 300
+        },
+        {
+          "id": "pre-post-outpatient-daily",
+          "name": "住院前後門診保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。住院前一週及出院後二週內，按實際門診日數給付。",
+          "source_ref": "保單條款第十八條及附表二，第 9 頁",
+          "amount": 250
+        },
+        {
+          "id": "inpatient-medical-expense-daily",
+          "name": "住院醫療雜費保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。符合條款列舉的住院醫療費用時，按實際住院日數給付。",
+          "source_ref": "保單條款第十九條及附表二，第 9 頁",
+          "amount": 200
         }
       ]
     },
@@ -25102,6 +25952,118 @@
           "text_char_count": 1626,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "hospital-daily-tiered",
+          "name": "住院日額醫療保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。按同一次住院的日數級距給付。",
+          "source_ref": "保單條款第十三條及附表二，第 9 頁",
+          "amount": 1000,
+          "amount_tiers": [
+            {
+              "label": "住院第 1 至 30 日",
+              "amount": 1000
+            },
+            {
+              "label": "住院第 31 至 90 日",
+              "amount": 1500
+            },
+            {
+              "label": "住院第 91 日起",
+              "amount": 2000
+            }
+          ]
+        },
+        {
+          "id": "intensive-care-daily",
+          "name": "加護病房保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。按實際住進加護病房的日數另行給付。",
+          "source_ref": "保單條款第十四條及附表二，第 9 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。因條款定義的癌症住院時，按實際住院日數另行給付。",
+          "source_ref": "保單條款第十五條及附表二，第 9 頁",
+          "amount": 1000
+        },
+        {
+          "id": "home-care-daily",
+          "name": "居家療養看護保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。符合住院日額給付並出院後，按該次住院日數給付。",
+          "source_ref": "保單條款第十六條及附表二，第 9 頁",
+          "amount": 500
+        },
+        {
+          "id": "inpatient-surgery-base",
+          "name": "住院手術保險金基數",
+          "basis": "per_unit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。實際給付為基數乘以附表三手術比例（2% 至 300%）。",
+          "source_ref": "保單條款第十七條及附表二，第 9 頁及附表三",
+          "amount": 10000,
+          "rate_min_percent": 2,
+          "rate_max_percent": 300
+        },
+        {
+          "id": "pre-post-outpatient-daily",
+          "name": "住院前後門診保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。住院前一週及出院後二週內，按實際門診日數給付。",
+          "source_ref": "保單條款第十八條及附表二，第 9 頁",
+          "amount": 250
+        },
+        {
+          "id": "inpatient-medical-expense-daily",
+          "name": "住院醫療雜費保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每 1 單位代表條款所列每 1,000 元保險金額。符合條款列舉的住院醫療費用時，按實際住院日數給付。",
+          "source_ref": "保單條款第十九條及附表二，第 9 頁",
+          "amount": 200
         }
       ]
     },
@@ -56366,6 +57328,151 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按投保單位及實際住院日數給付，住院始日與終日均計入。",
+          "source_ref": "保單條款第十三條及附件三，第 7 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間依癌症類型擇一給付；骨髓移植、義肢及義齒裝設不另給付本項。",
+          "source_ref": "保單條款第十四條及附件三，第 7 頁",
+          "amount": 30000,
+          "amount_tiers": [
+            {
+              "label": "非原位癌之癌症",
+              "amount": 30000
+            },
+            {
+              "label": "原位癌",
+              "amount": 3000
+            }
+          ]
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按投保單位及該次住院日數給付出院後療養保險金。",
+          "source_ref": "保單條款第十五條及附件三，第 7 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際門診治療日數給付，同一日不論門診次數均以一日計。",
+          "source_ref": "保單條款第十六條及附件三，第 7 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際接受放射線醫療日數給付，同一日多次仍以一日計。",
+          "source_ref": "保單條款第十七條及附件三，第 7 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學治療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際接受化學治療日數給付，同一日多次仍以一日計。",
+          "source_ref": "保單條款第十八條及附件三，第 7 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次接受符合條款約定的骨髓移植治療時給付。",
+          "source_ref": "保單條款第十九條及附件三，第 7 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症接受截肢手術並裝設義肢時，依條款約定給付。",
+          "source_ref": "保單條款第廿條及附件三，第 7 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療裝設義齒時給付，同一保單年度以一次為限。",
+          "source_ref": "保單條款第廿一條及附件三，第 7 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "每投保單位累積給付保險金達 200 萬元時，本附約依條款約定終止。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
+        }
       ]
     },
     {
@@ -56612,6 +57719,151 @@
           "text_char_count": 1542,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按投保單位及實際住院日數給付，住院始日與終日均計入。",
+          "source_ref": "保單條款第十三條及附件三，第 8 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間依癌症類型擇一給付；骨髓移植、義肢及義齒裝設不另給付本項。",
+          "source_ref": "保單條款第十四條及附件三，第 8 頁",
+          "amount": 30000,
+          "amount_tiers": [
+            {
+              "label": "非原位癌之癌症",
+              "amount": 30000
+            },
+            {
+              "label": "原位癌",
+              "amount": 3000
+            }
+          ]
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按投保單位及該次住院日數給付出院後療養保險金。",
+          "source_ref": "保單條款第十五條及附件三，第 8 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際門診治療日數給付，同一日不論門診次數均以一日計。",
+          "source_ref": "保單條款第十六條及附件三，第 8 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際接受放射線醫療日數給付，同一日多次仍以一日計。",
+          "source_ref": "保單條款第十七條及附件三，第 8 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學治療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際接受化學治療日數給付，同一日多次仍以一日計。",
+          "source_ref": "保單條款第十八條及附件三，第 8 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次接受符合條款約定的骨髓移植治療時給付。",
+          "source_ref": "保單條款第十九條及附件三，第 8 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症接受截肢手術並裝設義肢時，依條款約定給付。",
+          "source_ref": "保單條款第廿條及附件三，第 8 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療裝設義齒時給付，同一保單年度以一次為限。",
+          "source_ref": "保單條款第廿一條及附件三，第 8 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "每投保單位累積給付保險金達 200 萬元時，本附約依條款約定終止。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
         }
       ]
     },
@@ -56861,6 +58113,151 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按投保單位及實際住院日數給付，住院始日與終日均計入。",
+          "source_ref": "保單條款第十三條及附件三，第 8 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間依癌症類型擇一給付；骨髓移植、義肢及義齒裝設不另給付本項。",
+          "source_ref": "保單條款第十四條及附件三，第 8 頁",
+          "amount": 30000,
+          "amount_tiers": [
+            {
+              "label": "非原位癌之癌症",
+              "amount": 30000
+            },
+            {
+              "label": "原位癌",
+              "amount": 3000
+            }
+          ]
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按投保單位及該次住院日數給付出院後療養保險金。",
+          "source_ref": "保單條款第十五條及附件三，第 8 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際門診治療日數給付，同一日不論門診次數均以一日計。",
+          "source_ref": "保單條款第十六條及附件三，第 8 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際接受放射線醫療日數給付，同一日多次仍以一日計。",
+          "source_ref": "保單條款第十七條及附件三，第 8 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學治療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際接受化學治療日數給付，同一日多次仍以一日計。",
+          "source_ref": "保單條款第十八條及附件三，第 8 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次接受符合條款約定的骨髓移植治療時給付。",
+          "source_ref": "保單條款第十九條及附件三，第 8 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症接受截肢手術並裝設義肢時，依條款約定給付。",
+          "source_ref": "保單條款第廿條及附件三，第 8 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療裝設義齒時給付，同一保單年度以一次為限。",
+          "source_ref": "保單條款第廿一條及附件三，第 8 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "每投保單位累積給付保險金達 200 萬元時，本附約依條款約定終止。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
+        }
       ]
     },
     {
@@ -57108,6 +58505,151 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按投保單位及實際住院日數給付，住院始日與終日均計入。",
+          "source_ref": "保單條款第十三條及附件三，第 8 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間依癌症類型擇一給付；骨髓移植、義肢及義齒裝設不另給付本項。",
+          "source_ref": "保單條款第十四條及附件三，第 8 頁",
+          "amount": 30000,
+          "amount_tiers": [
+            {
+              "label": "非原位癌之癌症",
+              "amount": 30000
+            },
+            {
+              "label": "原位癌",
+              "amount": 3000
+            }
+          ]
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按投保單位及該次住院日數給付出院後療養保險金。",
+          "source_ref": "保單條款第十五條及附件三，第 8 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際門診治療日數給付，同一日不論門診次數均以一日計。",
+          "source_ref": "保單條款第十六條及附件三，第 8 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際接受放射線醫療日數給付，同一日多次仍以一日計。",
+          "source_ref": "保單條款第十七條及附件三，第 8 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學治療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際接受化學治療日數給付，同一日多次仍以一日計。",
+          "source_ref": "保單條款第十八條及附件三，第 8 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次接受符合條款約定的骨髓移植治療時給付。",
+          "source_ref": "保單條款第十九條及附件三，第 8 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症接受截肢手術並裝設義肢時，依條款約定給付。",
+          "source_ref": "保單條款第廿條及附件三，第 8 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療裝設義齒時給付，同一保單年度以一次為限。",
+          "source_ref": "保單條款第廿一條及附件三，第 8 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "每投保單位累積給付保險金達 200 萬元時，本附約依條款約定終止。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
+        }
       ]
     },
     {
@@ -57322,6 +58864,141 @@
           "text_char_count": 6468,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表三，第 10 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表三，第 10 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表三，第 10 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表三，第 10 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表三，第 10 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表三，第 10 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表三，第 10 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表三，第 10 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表三，第 10 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
         }
       ]
     },
@@ -57576,6 +59253,141 @@
           "text_char_count": 2849,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表三，第 9 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表三，第 9 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表三，第 9 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表三，第 9 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表三，第 9 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表三，第 9 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表三，第 9 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表三，第 9 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表三，第 9 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
         }
       ]
     },
@@ -57833,6 +59645,141 @@
           "text_char_count": 2910,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表三，第 11 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表三，第 11 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表三，第 11 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
         }
       ]
     },
@@ -58092,6 +60039,141 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表三，第 11 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表三，第 11 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表三，第 11 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
+        }
       ]
     },
     {
@@ -58349,6 +60431,141 @@
           "text_char_count": 2966,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表三，第 11 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表三，第 11 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表三，第 11 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
         }
       ]
     },
@@ -58615,6 +60832,141 @@
           "text_char_count": 2162,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表三，第 11 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表三，第 11 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表三，第 11 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
         }
       ]
     },
@@ -58885,6 +61237,141 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表三，第 11 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表三，第 11 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表三，第 11 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
+        }
       ]
     },
     {
@@ -59151,6 +61638,141 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表三，第 11 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表三，第 11 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表三，第 11 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
+        }
       ]
     },
     {
@@ -59416,6 +62038,141 @@
           "text_char_count": 2200,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表三，第 11 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表三，第 11 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表三，第 11 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
         }
       ]
     },
@@ -59687,6 +62444,141 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表三，第 11 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表三，第 11 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表三，第 11 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
+        }
       ]
     },
     {
@@ -59955,6 +62847,141 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表三，第 11 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表三，第 11 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表三，第 11 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表三，第 11 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表三，第 11 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表三，第 11 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
+        }
       ]
     },
     {
@@ -60222,6 +63249,141 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表二，第 10 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表二，第 10 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表二，第 10 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表二，第 10 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表二，第 10 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表二，第 10 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表二，第 10 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表二，第 10 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表二，第 10 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
+        }
       ]
     },
     {
@@ -60487,6 +63649,141 @@
           "text_char_count": 2495,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表二，第 10 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表二，第 10 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表二，第 10 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表二，第 10 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表二，第 10 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表二，第 10 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表二，第 10 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表二，第 10 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表二，第 10 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
         }
       ]
     },
@@ -60754,6 +64051,141 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表二，第 10 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表二，第 10 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表二，第 10 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表二，第 10 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表二，第 10 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表二，第 10 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表二，第 10 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表二，第 10 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表二，第 10 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
+        }
       ]
     },
     {
@@ -61019,6 +64451,141 @@
           "text_char_count": 2495,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十三條及附表二，第 10 頁",
+          "amount": 2000
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "每次住院期間限給付一次；接受骨髓移植醫療時不另給付本項。",
+          "source_ref": "保單條款第十四條及附表二，第 10 頁",
+          "amount": 30000
+        },
+        {
+          "id": "cancer-discharge-recovery",
+          "name": "癌症出院後療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "出院後按該次實際住院日數給付，包含入院及出院當日。",
+          "source_ref": "保單條款第十五條及附表二，第 10 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未住院期間接受必要門診治療時給付；同日多次及同一療程依條款合併計次。",
+          "source_ref": "保單條款第十六條及附表二，第 10 頁",
+          "amount": 1000
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受放射線治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十七條及附表二，第 10 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院或門診接受化學治療均適用；同一日多次治療仍以一日計。",
+          "source_ref": "保單條款第十八條及附表二，第 10 頁",
+          "amount": 3000
+        },
+        {
+          "id": "cancer-marrow-transplant",
+          "name": "癌症骨髓移植保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合條款並接受骨髓移植治療時給付；不與同次住院手術費用保險金併計。",
+          "source_ref": "保單條款第十九條及附表二，第 10 頁",
+          "amount": 100000
+        },
+        {
+          "id": "cancer-prosthetic-limb",
+          "name": "癌症義肢裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或併發症截肢並裝設義肢時給付；附約有效期間內四肢各限一次。",
+          "source_ref": "保單條款第廿條及附表二，第 10 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-dentures",
+          "name": "癌症義齒裝設保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "因癌症或相關治療而需裝設義齒時給付；同一保單年度限一次。",
+          "source_ref": "保單條款第廿一條及附表二，第 10 頁",
+          "amount": 20000
+        },
+        {
+          "id": "cancer-total-benefit-threshold",
+          "name": "癌症保險金累積給付終止門檻",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "reference",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "含續保期間的各項保險金累積總額每單位超過 200 萬元時，附約依條款終止；條款未明示將最後一次給付截減至本門檻。",
+          "source_ref": "保單條款第十條",
+          "amount": 2000000
         }
       ]
     },
@@ -66012,6 +69579,71 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症每次住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及實際住院日數給付，含入院及出院日。",
+          "source_ref": "保單條款第五條、第十四條及附件二，第 6 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始"
+          ]
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症每次住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。每次住院期間以給付一次為限；金額依非原位癌或原位癌區分。",
+          "source_ref": "保單條款第五條、第十五條及附件二，第 6 頁",
+          "amount": 7500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院期間以給付一次為限"
+          ],
+          "amount_tiers": [
+            {
+              "label": "非原位癌之癌症",
+              "amount": 7500
+            },
+            {
+              "label": "原位癌",
+              "amount": 750
+            }
+          ]
+        },
+        {
+          "id": "cancer-recovery-daily",
+          "name": "癌症療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及住院日數給付，每次住院最高 30 日。",
+          "source_ref": "保單條款第五條、第十六條及附件二，第 6 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院最高給付 30 日"
+          ]
+        }
       ]
     },
     {
@@ -68678,6 +72310,71 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症每次住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及實際住院日數給付，含入院及出院日。",
+          "source_ref": "保單條款第五條、第十四條及附件二，第 6 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始"
+          ]
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症每次住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。每次住院期間以給付一次為限；金額依非原位癌或原位癌區分。",
+          "source_ref": "保單條款第五條、第十五條及附件二，第 6 頁",
+          "amount": 7500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院期間以給付一次為限"
+          ],
+          "amount_tiers": [
+            {
+              "label": "非原位癌之癌症",
+              "amount": 7500
+            },
+            {
+              "label": "原位癌",
+              "amount": 750
+            }
+          ]
+        },
+        {
+          "id": "cancer-recovery-daily",
+          "name": "癌症療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及住院日數給付，每次住院最高 30 日。",
+          "source_ref": "保單條款第五條、第十六條及附件二，第 6 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院最高給付 30 日"
+          ]
+        }
       ]
     },
     {
@@ -68911,6 +72608,71 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症每次住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及實際住院日數給付，含入院及出院日。",
+          "source_ref": "保單條款第五條、第十四條及附件一，第 5 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始"
+          ]
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症每次住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。每次住院期間以給付一次為限；金額依非原位癌或原位癌區分。",
+          "source_ref": "保單條款第五條、第十五條及附件一，第 5 頁",
+          "amount": 7500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院期間以給付一次為限"
+          ],
+          "amount_tiers": [
+            {
+              "label": "非原位癌之癌症",
+              "amount": 7500
+            },
+            {
+              "label": "原位癌",
+              "amount": 750
+            }
+          ]
+        },
+        {
+          "id": "cancer-recovery-daily",
+          "name": "癌症療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及住院日數給付，每次住院最高 30 日。",
+          "source_ref": "保單條款第五條、第十六條及附件一，第 5 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院最高給付 30 日"
+          ]
+        }
       ]
     },
     {
@@ -69139,6 +72901,71 @@
           "text_char_count": 669,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症每次住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及實際住院日數給付，含入院及出院日。",
+          "source_ref": "保單條款第五條、第十四條及附件一，第 5 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始"
+          ]
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症每次住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。每次住院期間以給付一次為限；金額依非原位癌或原位癌區分。",
+          "source_ref": "保單條款第五條、第十五條及附件一，第 5 頁",
+          "amount": 7500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院期間以給付一次為限"
+          ],
+          "amount_tiers": [
+            {
+              "label": "非原位癌之癌症",
+              "amount": 7500
+            },
+            {
+              "label": "原位癌",
+              "amount": 750
+            }
+          ]
+        },
+        {
+          "id": "cancer-recovery-daily",
+          "name": "癌症療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及住院日數給付，每次住院最高 30 日。",
+          "source_ref": "保單條款第五條、第十六條及附件一，第 5 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院最高給付 30 日"
+          ]
         }
       ]
     },
@@ -69372,6 +73199,71 @@
           "text_char_count": 669,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症每次住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及實際住院日數給付，含入院及出院日。",
+          "source_ref": "保單條款第五條、第十四條及附件一，第 6 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始"
+          ]
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症每次住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。每次住院期間以給付一次為限；金額依非原位癌或原位癌區分。",
+          "source_ref": "保單條款第五條、第十五條及附件一，第 6 頁",
+          "amount": 7500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院期間以給付一次為限"
+          ],
+          "amount_tiers": [
+            {
+              "label": "非原位癌之癌症",
+              "amount": 7500
+            },
+            {
+              "label": "原位癌",
+              "amount": 750
+            }
+          ]
+        },
+        {
+          "id": "cancer-recovery-daily",
+          "name": "癌症療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及住院日數給付，每次住院最高 30 日。",
+          "source_ref": "保單條款第五條、第十六條及附件一，第 6 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院最高給付 30 日"
+          ]
         }
       ]
     },
@@ -75395,6 +79287,71 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症每次住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及實際住院日數給付，含入院及出院日。",
+          "source_ref": "保單條款第五條、第十六條及附件二，第 6 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始"
+          ]
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症每次住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。每次住院期間以給付一次為限；金額依非原位癌或原位癌區分。",
+          "source_ref": "保單條款第五條、第十七條及附件二，第 6 頁",
+          "amount": 7500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院期間以給付一次為限"
+          ],
+          "amount_tiers": [
+            {
+              "label": "非原位癌之癌症",
+              "amount": 7500
+            },
+            {
+              "label": "原位癌",
+              "amount": 750
+            }
+          ]
+        },
+        {
+          "id": "cancer-recovery-daily",
+          "name": "癌症療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及住院日數給付，每次住院最高 30 日。",
+          "source_ref": "保單條款第五條、第十八條及附件二，第 6 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院最高給付 30 日"
+          ]
+        }
       ]
     },
     {
@@ -75632,6 +79589,71 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症每次住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及實際住院日數給付，含入院及出院日。",
+          "source_ref": "保單條款第五條、第十六條及附件二",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始"
+          ]
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症每次住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。每次住院期間以給付一次為限；金額依非原位癌或原位癌區分。",
+          "source_ref": "保單條款第五條、第十七條及附件二",
+          "amount": 7500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院期間以給付一次為限"
+          ],
+          "amount_tiers": [
+            {
+              "label": "非原位癌之癌症",
+              "amount": 7500
+            },
+            {
+              "label": "原位癌",
+              "amount": 750
+            }
+          ]
+        },
+        {
+          "id": "cancer-recovery-daily",
+          "name": "癌症療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及住院日數給付，每次住院最高 30 日。",
+          "source_ref": "保單條款第五條、第十八條及附件二",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院最高給付 30 日"
+          ]
+        }
       ]
     },
     {
@@ -75868,6 +79890,71 @@
           "text_char_count": 1075,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症每次住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及實際住院日數給付，含入院及出院日。",
+          "source_ref": "保單條款第五條、第十六條及附件二，第 6 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始"
+          ]
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症每次住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。每次住院期間以給付一次為限；金額依非原位癌或原位癌區分。",
+          "source_ref": "保單條款第五條、第十七條及附件二，第 6 頁",
+          "amount": 7500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院期間以給付一次為限"
+          ],
+          "amount_tiers": [
+            {
+              "label": "非原位癌之癌症",
+              "amount": 7500
+            },
+            {
+              "label": "原位癌",
+              "amount": 750
+            }
+          ]
+        },
+        {
+          "id": "cancer-recovery-daily",
+          "name": "癌症療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及住院日數給付，每次住院最高 30 日。",
+          "source_ref": "保單條款第五條、第十八條及附件二，第 6 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院最高給付 30 日"
+          ]
         }
       ]
     },
@@ -76117,6 +80204,71 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症每次住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及實際住院日數給付，含入院及出院日。",
+          "source_ref": "保單條款第五條、第十四條及附件二，第 6 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始"
+          ]
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症每次住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。每次住院期間以給付一次為限；金額依非原位癌或原位癌區分。",
+          "source_ref": "保單條款第五條、第十五條及附件二，第 6 頁",
+          "amount": 7500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院期間以給付一次為限"
+          ],
+          "amount_tiers": [
+            {
+              "label": "非原位癌之癌症",
+              "amount": 7500
+            },
+            {
+              "label": "原位癌",
+              "amount": 750
+            }
+          ]
+        },
+        {
+          "id": "cancer-recovery-daily",
+          "name": "癌症療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及住院日數給付，每次住院最高 30 日。",
+          "source_ref": "保單條款第五條、第十六條及附件二，第 6 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院最高給付 30 日"
+          ]
+        }
       ]
     },
     {
@@ -76358,6 +80510,71 @@
           "text_char_count": 966,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "coverage_entries": [
+        {
+          "id": "cancer-hospital-daily",
+          "name": "癌症每次住院醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及實際住院日數給付，含入院及出院日。",
+          "source_ref": "保單條款第五條、第十四條及附件二，第 6 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始"
+          ]
+        },
+        {
+          "id": "cancer-inpatient-surgery",
+          "name": "癌症每次住院手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。每次住院期間以給付一次為限；金額依非原位癌或原位癌區分。",
+          "source_ref": "保單條款第五條、第十五條及附件二，第 6 頁",
+          "amount": 7500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院期間以給付一次為限"
+          ],
+          "amount_tiers": [
+            {
+              "label": "非原位癌之癌症",
+              "amount": 7500
+            },
+            {
+              "label": "原位癌",
+              "amount": 750
+            }
+          ]
+        },
+        {
+          "id": "cancer-recovery-daily",
+          "name": "癌症療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "參加契約滿 60 日後，自第 61 日起開始癌症保障。按投保單位數及住院日數給付，每次住院最高 30 日。",
+          "source_ref": "保單條款第五條、第十六條及附件二，第 6 頁",
+          "amount": 500,
+          "conditions": [
+            "癌症保障自參加契約第 61 日起開始",
+            "每次住院最高給付 30 日"
+          ]
         }
       ]
     },
@@ -114001,6 +118218,239 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "plan_unit",
+      "input_mode": "plan_unit",
+      "selection_source": "terms",
+      "selection_label": "保障型別與投保單位數",
+      "selection_guidance": "請依保單面頁選擇甲型或乙型，並填投保單位數；每一單位住院日額為 100 元。",
+      "plan_options": [
+        {
+          "value": "plan-a",
+          "label": "甲型",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每一保險單位的住院日額為每日 100 元；按同一次住院的實際住院日數給付。",
+              "source_ref": "保單條款第十三條，第 3 頁；保單條款保險利益表，第 7 頁",
+              "amount": 100,
+              "conditions": [
+                "經醫師診斷須住院，或於醫院持續診療達 6 小時（含）以上",
+                "包含入院及出院當日",
+                "每次住院最高給付 365 日",
+                "疾病須在契約生效滿 30 日後發生；復效後發生者依條款定義",
+                "兩次以上住院且每次出院至下次住院未超過 14 日，視為同一次住院"
+              ]
+            },
+            {
+              "id": "intensive-care-burn-center-daily",
+              "name": "加護病房或燒燙傷中心日額保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "進住加護病房或燒燙傷中心期間，除住院日額外，每一保險單位每日另給付 100 元。",
+              "source_ref": "保單條款第十四條，第 3 頁；保單條款保險利益表，第 7 頁",
+              "amount": 100,
+              "conditions": [
+                "符合條件時另加住院日額給付",
+                "包含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "medical-lifetime-cap",
+              "name": "醫療保險金累計上限",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "limit",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十三條與第十四條合計給付上限為住院日額的 1,250 倍；每單位換算為 125,000 元。",
+              "source_ref": "保單條款第十八條，第 3 頁；保單條款保險利益表，第 7 頁",
+              "amount": 125000,
+              "conditions": [
+                "住院日額與加護病房或燒燙傷中心日額合併計入此上限",
+                "此為目前投保單位的名目累計上限；實際剩餘額須扣除已領醫療保險金，並確認是否曾減少單位"
+              ]
+            },
+            {
+              "id": "death-benefit",
+              "name": "身故保險金",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "highest",
+              "source": "terms",
+              "note": "取身故當時應已繳保險費（繳費期間內另加按日數比例計算的當期已繳未到期保費）與保單價值準備金二者較高者。",
+              "source_ref": "保單條款第十五條，第 3 頁",
+              "rate_percent": 100,
+              "conditions": [
+                "給付後契約終止",
+                "實際金額需依保單年度、保費與當時保單價值準備金確認"
+              ]
+            },
+            {
+              "id": "total-disability-benefit",
+              "name": "完全殘廢保險金",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "highest",
+              "source": "terms",
+              "note": "取完全殘廢診斷確定時應已繳保險費（繳費期間內另加按日數比例計算的當期已繳未到期保費）與保單價值準備金二者較高者。",
+              "source_ref": "保單條款第十六條，第 3 頁",
+              "rate_percent": 100,
+              "conditions": [
+                "須符合附件二完全殘廢程度之一",
+                "給付後契約終止",
+                "實際金額需依保單年度、保費與當時保單價值準備金確認"
+              ]
+            },
+            {
+              "id": "maturity-benefit",
+              "name": "滿期保險金（甲型）",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "payout",
+              "limit_scope": "per_policy",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "被保險人於滿期日仍生存且契約有效時，按應已繳保險費的 102% 給付。",
+              "source_ref": "保單條款第十七條，第 3 頁",
+              "rate_percent": 102,
+              "conditions": [
+                "給付後契約終止",
+                "實際金額需依保單面頁繳費年期、住院日額與標準體月繳保費確認"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-b",
+          "label": "乙型",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每一保險單位的住院日額為每日 100 元；按同一次住院的實際住院日數給付。",
+              "source_ref": "保單條款第十三條，第 3 頁；保單條款保險利益表，第 7 頁",
+              "amount": 100,
+              "conditions": [
+                "經醫師診斷須住院，或於醫院持續診療達 6 小時（含）以上",
+                "包含入院及出院當日",
+                "每次住院最高給付 365 日",
+                "疾病須在契約生效滿 30 日後發生；復效後發生者依條款定義",
+                "兩次以上住院且每次出院至下次住院未超過 14 日，視為同一次住院"
+              ]
+            },
+            {
+              "id": "intensive-care-burn-center-daily",
+              "name": "加護病房或燒燙傷中心日額保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "進住加護病房或燒燙傷中心期間，除住院日額外，每一保險單位每日另給付 100 元。",
+              "source_ref": "保單條款第十四條，第 3 頁；保單條款保險利益表，第 7 頁",
+              "amount": 100,
+              "conditions": [
+                "符合條件時另加住院日額給付",
+                "包含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "medical-lifetime-cap",
+              "name": "醫療保險金累計上限",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "limit",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十三條與第十四條合計給付上限為住院日額的 1,250 倍；每單位換算為 125,000 元。",
+              "source_ref": "保單條款第十八條，第 3 頁；保單條款保險利益表，第 7 頁",
+              "amount": 125000,
+              "conditions": [
+                "住院日額與加護病房或燒燙傷中心日額合併計入此上限",
+                "此為目前投保單位的名目累計上限；實際剩餘額須扣除已領醫療保險金，並確認是否曾減少單位"
+              ]
+            },
+            {
+              "id": "death-benefit",
+              "name": "身故保險金",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "highest",
+              "source": "terms",
+              "note": "取身故當時應已繳保險費（繳費期間內另加按日數比例計算的當期已繳未到期保費）與保單價值準備金二者較高者。",
+              "source_ref": "保單條款第十五條，第 3 頁",
+              "rate_percent": 100,
+              "conditions": [
+                "給付後契約終止",
+                "實際金額需依保單年度、保費與當時保單價值準備金確認"
+              ]
+            },
+            {
+              "id": "total-disability-benefit",
+              "name": "完全殘廢保險金",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "highest",
+              "source": "terms",
+              "note": "取完全殘廢診斷確定時應已繳保險費（繳費期間內另加按日數比例計算的當期已繳未到期保費）與保單價值準備金二者較高者。",
+              "source_ref": "保單條款第十六條，第 3 頁",
+              "rate_percent": 100,
+              "conditions": [
+                "須符合附件二完全殘廢程度之一",
+                "給付後契約終止",
+                "實際金額需依保單年度、保費與當時保單價值準備金確認"
+              ]
+            },
+            {
+              "id": "maturity-benefit",
+              "name": "滿期保險金（乙型）",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "payout",
+              "limit_scope": "per_policy",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "被保險人於滿期日仍生存且契約有效時，按應已繳保險費的 105% 給付。",
+              "source_ref": "保單條款第十七條，第 3 頁",
+              "rate_percent": 105,
+              "conditions": [
+                "給付後契約終止",
+                "實際金額需依保單面頁繳費年期、住院日額與標準體月繳保費確認"
+              ]
+            }
+          ]
+        }
       ]
     },
     {
@@ -114454,6 +118904,239 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "plan_unit",
+      "input_mode": "plan_unit",
+      "selection_source": "terms",
+      "selection_label": "保障型別與投保單位數",
+      "selection_guidance": "請依保單面頁選擇甲型或乙型，並填投保單位數；每一單位住院日額為 100 元。",
+      "plan_options": [
+        {
+          "value": "plan-a",
+          "label": "甲型",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每一保險單位的住院日額為每日 100 元；按同一次住院的實際住院日數給付。",
+              "source_ref": "保單條款第十三條，第 3 頁；保單條款保險利益表，第 7 頁",
+              "amount": 100,
+              "conditions": [
+                "經醫師診斷須住院，或於醫院持續診療達 6 小時（含）以上",
+                "包含入院及出院當日",
+                "每次住院最高給付 365 日",
+                "疾病須在契約生效滿 30 日後發生；復效後發生者依條款定義",
+                "出院後 14 日內於同一醫院再次住院，視為同一次住院"
+              ]
+            },
+            {
+              "id": "intensive-care-burn-center-daily",
+              "name": "加護病房或燒燙傷中心日額保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "進住加護病房或燒燙傷中心期間，除住院日額外，每一保險單位每日另給付 100 元。",
+              "source_ref": "保單條款第十四條，第 3 頁；保單條款保險利益表，第 7 頁",
+              "amount": 100,
+              "conditions": [
+                "符合條件時另加住院日額給付",
+                "包含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "medical-lifetime-cap",
+              "name": "醫療保險金累計上限",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "limit",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十三條與第十四條合計給付上限為住院日額的 1,250 倍；每單位換算為 125,000 元。",
+              "source_ref": "保單條款第十八條，第 3 頁；保單條款保險利益表，第 7 頁",
+              "amount": 125000,
+              "conditions": [
+                "住院日額與加護病房或燒燙傷中心日額合併計入此上限",
+                "此為目前投保單位的名目累計上限；實際剩餘額須扣除已領醫療保險金，並確認是否曾減少單位"
+              ]
+            },
+            {
+              "id": "death-benefit",
+              "name": "身故保險金",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "highest",
+              "source": "terms",
+              "note": "取身故當時應已繳保險費（繳費期間內另加按日數比例計算的當期已繳未到期保費）與保單價值準備金二者較高者。",
+              "source_ref": "保單條款第十五條，第 3 頁",
+              "rate_percent": 100,
+              "conditions": [
+                "給付後契約終止",
+                "實際金額需依保單年度、保費與當時保單價值準備金確認"
+              ]
+            },
+            {
+              "id": "total-disability-benefit",
+              "name": "完全殘廢保險金",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "highest",
+              "source": "terms",
+              "note": "取完全殘廢診斷確定時應已繳保險費（繳費期間內另加按日數比例計算的當期已繳未到期保費）與保單價值準備金二者較高者。",
+              "source_ref": "保單條款第十六條，第 3 頁",
+              "rate_percent": 100,
+              "conditions": [
+                "須符合附件二完全殘廢程度之一",
+                "給付後契約終止",
+                "實際金額需依保單年度、保費與當時保單價值準備金確認"
+              ]
+            },
+            {
+              "id": "maturity-benefit",
+              "name": "滿期保險金（甲型）",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "payout",
+              "limit_scope": "per_policy",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "被保險人於滿期日仍生存且契約有效時，按應已繳保險費的 102% 給付。",
+              "source_ref": "保單條款第十七條，第 3 頁",
+              "rate_percent": 102,
+              "conditions": [
+                "給付後契約終止",
+                "實際金額需依保單面頁繳費年期、住院日額與標準體月繳保費確認"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-b",
+          "label": "乙型",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每一保險單位的住院日額為每日 100 元；按同一次住院的實際住院日數給付。",
+              "source_ref": "保單條款第十三條，第 3 頁；保單條款保險利益表，第 7 頁",
+              "amount": 100,
+              "conditions": [
+                "經醫師診斷須住院，或於醫院持續診療達 6 小時（含）以上",
+                "包含入院及出院當日",
+                "每次住院最高給付 365 日",
+                "疾病須在契約生效滿 30 日後發生；復效後發生者依條款定義",
+                "出院後 14 日內於同一醫院再次住院，視為同一次住院"
+              ]
+            },
+            {
+              "id": "intensive-care-burn-center-daily",
+              "name": "加護病房或燒燙傷中心日額保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "進住加護病房或燒燙傷中心期間，除住院日額外，每一保險單位每日另給付 100 元。",
+              "source_ref": "保單條款第十四條，第 3 頁；保單條款保險利益表，第 7 頁",
+              "amount": 100,
+              "conditions": [
+                "符合條件時另加住院日額給付",
+                "包含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "medical-lifetime-cap",
+              "name": "醫療保險金累計上限",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "limit",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十三條與第十四條合計給付上限為住院日額的 1,250 倍；每單位換算為 125,000 元。",
+              "source_ref": "保單條款第十八條，第 3 頁；保單條款保險利益表，第 7 頁",
+              "amount": 125000,
+              "conditions": [
+                "住院日額與加護病房或燒燙傷中心日額合併計入此上限",
+                "此為目前投保單位的名目累計上限；實際剩餘額須扣除已領醫療保險金，並確認是否曾減少單位"
+              ]
+            },
+            {
+              "id": "death-benefit",
+              "name": "身故保險金",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "highest",
+              "source": "terms",
+              "note": "取身故當時應已繳保險費（繳費期間內另加按日數比例計算的當期已繳未到期保費）與保單價值準備金二者較高者。",
+              "source_ref": "保單條款第十五條，第 3 頁",
+              "rate_percent": 100,
+              "conditions": [
+                "給付後契約終止",
+                "實際金額需依保單年度、保費與當時保單價值準備金確認"
+              ]
+            },
+            {
+              "id": "total-disability-benefit",
+              "name": "完全殘廢保險金",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "highest",
+              "source": "terms",
+              "note": "取完全殘廢診斷確定時應已繳保險費（繳費期間內另加按日數比例計算的當期已繳未到期保費）與保單價值準備金二者較高者。",
+              "source_ref": "保單條款第十六條，第 3 頁",
+              "rate_percent": 100,
+              "conditions": [
+                "須符合附件二完全殘廢程度之一",
+                "給付後契約終止",
+                "實際金額需依保單年度、保費與當時保單價值準備金確認"
+              ]
+            },
+            {
+              "id": "maturity-benefit",
+              "name": "滿期保險金（乙型）",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "payout",
+              "limit_scope": "per_policy",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "被保險人於滿期日仍生存且契約有效時，按應已繳保險費的 105% 給付。",
+              "source_ref": "保單條款第十七條，第 3 頁",
+              "rate_percent": 105,
+              "conditions": [
+                "給付後契約終止",
+                "實際金額需依保單面頁繳費年期、住院日額與標準體月繳保費確認"
+              ]
+            }
+          ]
+        }
       ]
     },
     {
@@ -114723,6 +119406,120 @@
           "text_char_count": 3269,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "selection_label": "投保單位數",
+      "selection_guidance": "此版本名稱已標示甲型；請填保單面頁的投保單位數，每一單位住院日額為 100 元。",
+      "coverage_entries": [
+        {
+          "id": "hospital-daily",
+          "name": "住院日額保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保險單位的住院日額為每日 100 元；按同一次住院的實際住院日數給付。",
+          "source_ref": "保單條款第十三條，第 3 頁；保單條款保險利益表，第 7 頁",
+          "amount": 100,
+          "conditions": [
+            "經醫師診斷須住院，或於醫院持續診療達 6 小時（含）以上",
+            "包含入院及出院當日",
+            "每次住院最高給付 365 日",
+            "疾病須在契約生效滿 30 日後發生；復效後發生者依條款定義",
+            "出院後 14 日內於同一醫院再次住院，視為同一次住院"
+          ]
+        },
+        {
+          "id": "intensive-care-burn-center-daily",
+          "name": "加護病房或燒燙傷中心日額保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "進住加護病房或燒燙傷中心期間，除住院日額外，每一保險單位每日另給付 100 元。",
+          "source_ref": "保單條款第十四條，第 3 頁；保單條款保險利益表，第 7 頁",
+          "amount": 100,
+          "conditions": [
+            "符合條件時另加住院日額給付",
+            "包含始日及終日",
+            "每次住院最高給付 365 日"
+          ]
+        },
+        {
+          "id": "medical-lifetime-cap",
+          "name": "醫療保險金累計上限",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "limit",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "第十三條與第十四條合計給付上限為住院日額的 1,250 倍；每單位換算為 125,000 元。",
+          "source_ref": "保單條款第十八條，第 3 頁；保單條款保險利益表，第 7 頁",
+          "amount": 125000,
+          "conditions": [
+            "住院日額與加護病房或燒燙傷中心日額合併計入此上限",
+            "此為目前投保單位的名目累計上限；實際剩餘額須扣除已領醫療保險金，並確認是否曾減少單位"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "取身故當時應已繳保險費（繳費期間內另加按日數比例計算的當期已繳未到期保費）與保單價值準備金二者較高者。",
+          "source_ref": "保單條款第十五條，第 3 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "給付後契約終止",
+            "實際金額需依保單年度、保費與當時保單價值準備金確認"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全殘廢保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "取完全殘廢診斷確定時應已繳保險費（繳費期間內另加按日數比例計算的當期已繳未到期保費）與保單價值準備金二者較高者。",
+          "source_ref": "保單條款第十六條，第 3 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "須符合附件二完全殘廢程度之一",
+            "給付後契約終止",
+            "實際金額需依保單年度、保費與當時保單價值準備金確認"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "滿期保險金（甲型）",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於滿期日仍生存且契約有效時，按應已繳保險費的 102% 給付。",
+          "source_ref": "保單條款第十七條，第 3 頁",
+          "rate_percent": 102,
+          "conditions": [
+            "給付後契約終止",
+            "實際金額需依保單面頁繳費年期、住院日額與標準體月繳保費確認"
+          ]
         }
       ]
     },
@@ -115263,6 +120060,120 @@
           "text_char_count": 3269,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "selection_label": "投保單位數",
+      "selection_guidance": "此版本名稱已標示乙型；請填保單面頁的投保單位數，每一單位住院日額為 100 元。",
+      "coverage_entries": [
+        {
+          "id": "hospital-daily",
+          "name": "住院日額保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保險單位的住院日額為每日 100 元；按同一次住院的實際住院日數給付。",
+          "source_ref": "保單條款第十三條，第 3 頁；保單條款保險利益表，第 7 頁",
+          "amount": 100,
+          "conditions": [
+            "經醫師診斷須住院，或於醫院持續診療達 6 小時（含）以上",
+            "包含入院及出院當日",
+            "每次住院最高給付 365 日",
+            "疾病須在契約生效滿 30 日後發生；復效後發生者依條款定義",
+            "出院後 14 日內於同一醫院再次住院，視為同一次住院"
+          ]
+        },
+        {
+          "id": "intensive-care-burn-center-daily",
+          "name": "加護病房或燒燙傷中心日額保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "進住加護病房或燒燙傷中心期間，除住院日額外，每一保險單位每日另給付 100 元。",
+          "source_ref": "保單條款第十四條，第 3 頁；保單條款保險利益表，第 7 頁",
+          "amount": 100,
+          "conditions": [
+            "符合條件時另加住院日額給付",
+            "包含始日及終日",
+            "每次住院最高給付 365 日"
+          ]
+        },
+        {
+          "id": "medical-lifetime-cap",
+          "name": "醫療保險金累計上限",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "limit",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "第十三條與第十四條合計給付上限為住院日額的 1,250 倍；每單位換算為 125,000 元。",
+          "source_ref": "保單條款第十八條，第 3 頁；保單條款保險利益表，第 7 頁",
+          "amount": 125000,
+          "conditions": [
+            "住院日額與加護病房或燒燙傷中心日額合併計入此上限",
+            "此為目前投保單位的名目累計上限；實際剩餘額須扣除已領醫療保險金，並確認是否曾減少單位"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "取身故當時應已繳保險費（繳費期間內另加按日數比例計算的當期已繳未到期保費）與保單價值準備金二者較高者。",
+          "source_ref": "保單條款第十五條，第 3 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "給付後契約終止",
+            "實際金額需依保單年度、保費與當時保單價值準備金確認"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全殘廢保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "取完全殘廢診斷確定時應已繳保險費（繳費期間內另加按日數比例計算的當期已繳未到期保費）與保單價值準備金二者較高者。",
+          "source_ref": "保單條款第十六條，第 3 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "須符合附件二完全殘廢程度之一",
+            "給付後契約終止",
+            "實際金額需依保單年度、保費與當時保單價值準備金確認"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "滿期保險金（乙型）",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於滿期日仍生存且契約有效時，按應已繳保險費的 105% 給付。",
+          "source_ref": "保單條款第十七條，第 3 頁",
+          "rate_percent": 105,
+          "conditions": [
+            "給付後契約終止",
+            "實際金額需依保單面頁繳費年期、住院日額與標準體月繳保費確認"
+          ]
         }
       ]
     },

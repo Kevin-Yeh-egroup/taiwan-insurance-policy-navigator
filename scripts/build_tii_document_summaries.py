@@ -2,6 +2,8 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
+import time
 from pathlib import Path
 
 from extract_tii_document_content import compact_document_summary
@@ -9,7 +11,20 @@ from extract_tii_document_content import compact_document_summary
 
 def write_json(path: Path, payload: dict) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")), encoding="utf-8")
+    serialized = json.dumps(payload, ensure_ascii=False, separators=(",", ":"))
+    temporary_path = path.with_name(f".{path.name}.{os.getpid()}.tmp")
+    try:
+        for attempt in range(5):
+            try:
+                temporary_path.write_text(serialized, encoding="utf-8")
+                os.replace(temporary_path, path)
+                return
+            except OSError:
+                if attempt == 4:
+                    raise
+                time.sleep(0.1 * (2**attempt))
+    finally:
+        temporary_path.unlink(missing_ok=True)
 
 
 def main() -> None:
