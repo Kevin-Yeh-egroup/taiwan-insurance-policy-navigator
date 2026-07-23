@@ -9,37 +9,95 @@ from pypdf import PdfReader
 from extract_tii_plan_benefits import (
     EXTRACTOR_VERSION,
     approved_schedules,
+    compact_table_text,
+    compact_whitespace,
     complete_strict_source_document,
     build_proposal_payload,
+    china_life_jinhaoyi_disability_percentages,
     normalize_terms_text,
     parse_antai_cancer_lifetime_rider_unit_table,
+    parse_antai_cancer_medical_term_family_unit,
     parse_antai_fubon_new_cancer_lifetime_unit_table,
+    parse_antai_new_cancer_lifetime_r11_unit_table,
+    parse_antai_specific_major_disease_health_unit_table,
     parse_annual_inpatient_account_unit_table,
+    parse_chaoyang_xingnong_group_inpatient_unit_table,
+    parse_chaoyang_xingnong_student_group_fixed_schedule,
     parse_fubon_cancer_unit_table,
     parse_fubon_cardio_device_unit_table,
     parse_fubon_child_combined_plan_table,
+    parse_fubon_anxin_456_accident_health_fixed_schedule,
     parse_fubon_easy_combined_plan_table,
     parse_fubon_golden_lohas_combined_plan_table,
     parse_fubon_new_lohas_combined_plan_table,
     parse_fubon_golden_complete_combined_plan_table,
+    parse_fubon_golden_health_whole_life_table,
+    parse_fubon_golden_medical_device_unit_table,
+    parse_fubon_666_accident_health_plan_table,
+    parse_fubon_family_gift_accident_health_plan_table,
+    parse_fubon_hsl_inpatient_unit_table,
+    parse_fubon_xianganbao_accident_medical_rider_face_amount,
+    parse_fubon_new_pingan_accident_plan_table,
     parse_fubon_inpatient_medical_unit_table,
     parse_fubon_little_tycoon_plan_table,
     parse_fubon_lohas_combined_plan_table,
+    parse_china_legacy_cancer_whole_life_unit_table,
+    parse_china_life_jinhaoyi_face_amount,
     parse_fubon_new_complete_combined_plan_table,
+    parse_fubon_new_shouhu_jinnang_accident_health_plan_table,
+    parse_fubon_new_shouhu_jinnang_late_accident_health_plan_table,
+    parse_fubon_comprehensive_accident_plan_table,
+    parse_fubon_million_heart_accident_health_plan_table,
+    parse_fubon_million_new_life_accident_health_plan_table,
+    parse_fubon_new_million_heart_accident_health_plan_table,
+    parse_fubon_vision_life_accident_health_plan_table,
+    parse_fubon_anxin_financial_life_accident_health_plan_table,
     parse_fubon_protect_combined_plan_table,
+    parse_fubon_statutory_infectious_plan_table,
+    parse_fubon_tiantian_anxin_500_accident_health_plan_table,
+    parse_fubon_wanan_365_accident_plan_table,
+    parse_farglory_kangfu_medical_plan_table,
+    parse_global_e_road_peace_overseas_illness_face_amount,
+    parse_global_nccu_student_group_fixed_schedule,
     parse_group_inpatient_limit_unit_table,
     parse_group_plan_inpatient_limit_table,
     parse_group_cancer_fixed_unit_table,
     parse_global_winterthur_cancer_annuity_face_amount,
+    parse_kgi_china_life_ritai_cancer_annuity_face_amount,
     parse_kgi_china_life_cancer_account_unit_table,
     parse_kgi_china_life_cancer_five_year_unit_table,
     parse_prudential_cancer_account_unit_table,
     parse_prudential_cancer_five_year_unit_table,
+    parse_prudential_daily_hospital_96_plan_table,
     parse_prudential_china_daily_hospital_face_amount,
+    parse_prudential_china_life_accident_account_face_amount,
+    parse_prudential_china_life_one_three_five_accident_face_amount,
+    parse_prudential_group_specific_accident_rider_face_amount,
+    parse_prudential_fire_mass_transit_accident_face_amount,
+    parse_prudential_china_fixed_hospital_medical_plan_table,
     parse_prudential_china_medical_endowment_plan_unit,
     parse_ritai_dual_unit_inpatient_table,
     parse_plan_table_with_parser,
+    parse_taiwan_fishermen_group_medical_plan_table,
+    parse_taiwan_drug_anxin_cancer_precision_plan_table,
+    parse_taiwan_gold_group_inpatient_limit_plan_table,
+    parse_taiwan_group_inpatient_limit_plan_table,
+    parse_taiwan_shishizai_inpatient_plan_table,
+    parse_taiwan_qianwan_chuxing_a_accident_face_amount,
+    parse_taiwan_group_long_term_care_service_face_amount,
+    parse_taiwan_taipei_student_group_fixed_schedule,
+    parse_taiwan_yiqijianzhi_specific_disease_face_amount,
     parse_three_plan_medical_table,
+    parse_yuanta_new_accident_medical_rider_face_amount,
+    parse_yuanta_personal_accident_rider_face_amount,
+    parse_yuanta_funxinyou_accident_medical_addendum_limit,
+    parse_yuanta_health_life_early_face_amount,
+    parse_yuanta_anxin100_critical_illness_face_amount,
+    parse_yuanta_yuanqi_shizu_hospital_medical_plan_table,
+    parse_yuanta_group_hospital_medical_plan_table,
+    parse_yuanta_new_account_medical_type_daily,
+    parse_yuanta_xiangan_medical_plan_table,
+    parse_yuanta_xiangyouxin_medical_plan_table,
     repair_antai_cancer_lifetime_rider_text,
 )
 
@@ -541,6 +599,76 @@ assert parse_ritai_dual_unit_inpatient_table(
     }
 ) is None
 
+RITAI_FIXED_ENHANCED_PRODUCT_IDS = (
+    "262311R11A00201",
+    "262311R11A00202",
+)
+RITAI_FIXED_ENHANCED_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-158"
+)
+
+
+def ritai_fixed_enhanced_document(product_id: str, suffix: str = "A") -> dict:
+    file_name = f"{product_id}-{suffix}.pdf"
+    path = RITAI_FIXED_ENHANCED_ROOT / product_id / file_name
+    reader = PdfReader(path, strict=False)
+    text = normalize_terms_text("\n".join(page.extract_text() or "" for page in reader.pages))
+    return {
+        "product_id": product_id,
+        "file_name": file_name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(reader.pages),
+        "pages_parsed": len(reader.pages),
+        "text": text,
+    }
+
+
+ritai_fixed_enhanced_schedules = {
+    product_id: parse_ritai_dual_unit_inpatient_table(
+        ritai_fixed_enhanced_document(product_id)
+    )
+    for product_id in RITAI_FIXED_ENHANCED_PRODUCT_IDS
+}
+assert all(ritai_fixed_enhanced_schedules.values())
+assert all(
+    schedule["selection_type"] == schedule["input_mode"] == "multi_unit"
+    for schedule in ritai_fixed_enhanced_schedules.values()
+)
+assert all(
+    [field["key"] for field in schedule["unit_fields"]]
+    == ["hospital_medical", "surgery_misc"]
+    for schedule in ritai_fixed_enhanced_schedules.values()
+)
+for product_id, schedule in ritai_fixed_enhanced_schedules.items():
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert len(entries) == 6
+    assert entries["hospital-daily"]["amount"] == 500
+    assert entries["intensive-care-daily"]["amount"] == 500
+    assert entries["burn-center-daily"]["amount"] == 500
+    assert entries["pre-post-outpatient"]["amount"] == 150
+    assert entries["inpatient-surgery-base"]["amount"] == 5_000
+    assert entries["inpatient-surgery-base"]["rate_min_percent"] == 2
+    assert entries["inpatient-surgery-base"]["rate_max_percent"] == 400
+    assert entries["inpatient-misc-daily"]["amount_tiers"] == [
+        {"label": "住院第 1 至 7 日", "amount": 300},
+        {"label": "住院第 8 日起", "amount": 150},
+    ]
+    assert entries["hospital-daily"]["unit_key"] == "hospital_medical"
+    assert entries["inpatient-misc-daily"]["unit_key"] == "surgery_misc"
+    assert parse_plan_table_with_parser(ritai_fixed_enhanced_document(product_id))[0] == (
+        "ritai-dual-unit-inpatient-v1"
+    )
+assert parse_ritai_dual_unit_inpatient_table(
+    ritai_fixed_enhanced_document("262311R11A00201", "F")
+) is None
+bad_ritai_fixed_enhanced_amount = {
+    **ritai_fixed_enhanced_document("262311R11A00202"),
+    "text": ritai_fixed_enhanced_document("262311R11A00202")["text"].replace(
+        "住院之第 8 日以後 (每日) 150", "住院之第 8 日以後 (每日) 140", 1
+    ),
+}
+assert parse_ritai_dual_unit_inpatient_table(bad_ritai_fixed_enhanced_amount) is None
+
 ANNUAL_ACCOUNT_HEADINGS = " ".join(
     [
         "【住院日額醫療保險金及其申領】 第十三條 依附表二所列金額",
@@ -806,6 +934,103 @@ assert duplicated_group_cancer_schedule["coverage_entries"][1]["amount_tiers"][0
     "amount"
 ] == 7_500
 
+PRUDENTIAL_DAILY_HOSPITAL_96_ROOT = (
+    Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-documents"
+    / "tii-life-014"
+    / "203311R11A00101"
+)
+
+
+def prudential_daily_hospital_96_document(suffix: str = "A") -> dict:
+    file_name = "203311R11A00101-A.pdf" if suffix == "A" else "203311R11A00101-F.PDF"
+    pdf_path = PRUDENTIAL_DAILY_HOSPITAL_96_ROOT / file_name
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": "203311R11A00101",
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+prudential_daily_96_document = prudential_daily_hospital_96_document()
+prudential_daily_96_schedule = parse_prudential_daily_hospital_96_plan_table(
+    prudential_daily_96_document
+)
+assert prudential_daily_96_schedule is not None
+parser_id, parsed_schedule = parse_plan_table_with_parser(prudential_daily_96_document)
+assert parser_id == "prudential-daily-hospital-96-plan-v1"
+assert parsed_schedule == prudential_daily_96_schedule
+assert prudential_daily_96_schedule["selection_type"] == "plan"
+assert prudential_daily_96_schedule["selection_source"] == "terms"
+assert prudential_daily_96_schedule["version_characteristics"] == {
+    "terms_revision": "96-first-revision",
+    "filing_date": "96.08.31",
+    "filing_number": "保誠總字第960667號",
+    "plan_count": 6,
+    "daily_hospital_days_limit": 365,
+    "intensive_care_days_limit": 365,
+    "same_hospital_readmission_days": 14,
+    "cumulative_termination_daily_multiplier": 1_000,
+    "disability_terminology": "完全殘廢",
+    "no_surrender_value": True,
+}
+expected_daily_96 = {
+    "FHIR-5": 500,
+    "FHIR-10": 1_000,
+    "FHIR-15": 1_500,
+    "FHIR-20": 2_000,
+    "FHIR-25": 2_500,
+    "FHIR-30": 3_000,
+}
+assert [option["label"] for option in prudential_daily_96_schedule["plan_options"]] == list(
+    expected_daily_96
+)
+for option in prudential_daily_96_schedule["plan_options"]:
+    entries = {entry["id"]: entry for entry in option["coverage_entries"]}
+    daily_amount = expected_daily_96[option["label"]]
+    assert set(entries) == {
+        "hospital-daily",
+        "intensive-care-daily",
+        "cumulative-benefit-termination-threshold",
+    }
+    assert entries["hospital-daily"]["amount"] == daily_amount
+    assert entries["hospital-daily"]["source"] == "terms"
+    assert entries["hospital-daily"]["limit_scope"] == "per_day"
+    assert entries["intensive-care-daily"]["amount"] == daily_amount
+    assert entries["intensive-care-daily"]["aggregation_rule"] == "conditional_additive"
+    assert entries["cumulative-benefit-termination-threshold"]["amount"] == daily_amount * 1_000
+    assert entries["cumulative-benefit-termination-threshold"]["multiplier"] == 1_000
+assert parse_prudential_daily_hospital_96_plan_table(
+    prudential_daily_hospital_96_document("F")
+) is None
+assert parse_prudential_daily_hospital_96_plan_table(
+    {**prudential_daily_96_document, "product_id": "203311R11A00100"}
+) is None
+assert parse_prudential_daily_hospital_96_plan_table(
+    {
+        **prudential_daily_96_document,
+        "text": prudential_daily_96_document["text"].replace("3,000 元", "3,100 元", 1),
+    }
+) is None
+indexed_prudential_daily_96 = {
+    **prudential_daily_96_document,
+    "page_count": 1,
+    "pages_parsed": 1,
+    "text": prudential_daily_96_document["text"].split("FHIR 2/5")[0],
+}
+prudential_daily_96_completed = complete_strict_source_document(
+    indexed_prudential_daily_96,
+    PRUDENTIAL_DAILY_HOSPITAL_96_ROOT / "203311R11A00101-A.pdf",
+)
+assert prudential_daily_96_completed["page_count"] == 5
+assert parse_prudential_daily_hospital_96_plan_table(prudential_daily_96_completed) is not None
+
 DAILY_HOSPITAL_97_TERMS = " ".join(
     [
         "IHIR 1/8 保誠人壽新住院日額型定期健康保險附約(97)保險單條款",
@@ -861,6 +1086,295 @@ assert parse_prudential_china_daily_hospital_face_amount(
         "file_name": "unrelated-product-A.pdf",
         "document_type": "policy_terms",
         "text": DAILY_HOSPITAL_97_TERMS,
+    }
+) is None
+
+TII_LIFE_014_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-014"
+)
+TII_LIFE_026_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-026"
+)
+FIXED_HOSPITAL_MEDICAL_PRODUCT_BATCHES = {
+    "203311R11A00205": ("tii-life-014", TII_LIFE_014_ROOT),
+    "203311R11A00206": ("tii-life-014", TII_LIFE_014_ROOT),
+    "205311RZ1A00322A11Z10000013": ("tii-life-026", TII_LIFE_026_ROOT),
+}
+
+
+def fixed_hospital_medical_document(product_id: str, suffix: str = "A") -> dict:
+    _, root = FIXED_HOSPITAL_MEDICAL_PRODUCT_BATCHES[product_id]
+    pdf_path = root / product_id / f"{product_id}-{suffix}.pdf"
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+fixed_hospital_expected = {
+    "hospital-daily": (500, 1_000, 1_500, 2_000, 2_500, 3_000),
+    "intensive-care-daily": (500, 1_000, 1_500, 2_000, 2_500, 3_000),
+    "surgery-benefit-base": (10_000, 20_000, 30_000, 40_000, 50_000, 60_000),
+    "surgery-benefit-per-hospitalization-cap": (
+        30_000,
+        60_000,
+        90_000,
+        120_000,
+        150_000,
+        180_000,
+    ),
+    "cumulative-benefit-termination-threshold": (
+        500_000,
+        1_000_000,
+        1_500_000,
+        2_000_000,
+        2_500_000,
+        3_000_000,
+    ),
+}
+fixed_hospital_expected_revisions = {
+    "203311R11A00205": ("101-revised", "完全殘廢", False, False, False, False),
+    "203311R11A00206": ("102-revised", "完全殘廢", False, True, False, False),
+    "205311RZ1A00322A11Z10000013": (
+        "113-revised",
+        "完全失能",
+        True,
+        True,
+        True,
+        True,
+    ),
+}
+for product_id, (
+    expected_revision,
+    expected_disability_term,
+    expected_day_hospital_excluded,
+    expected_post_expiry_excluded,
+    expected_medical_opinion_revision,
+    expected_forced_execution_exception,
+) in fixed_hospital_expected_revisions.items():
+    document = fixed_hospital_medical_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == 10
+    schedule = parse_prudential_china_fixed_hospital_medical_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "prudential-china-fixed-hospital-medical-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "保險計劃"
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計劃5",
+        "計劃10",
+        "計劃15",
+        "計劃20",
+        "計劃25",
+        "計劃30",
+    ]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["disability_terminology"] == expected_disability_term
+    assert characteristics["disease_initial_waiting_days"] == 0
+    assert characteristics["daily_hospital_days_limit"] == 365
+    assert characteristics["intensive_care_days_limit"] == 365
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["surgery_base_daily_multiplier"] == 20
+    assert characteristics["surgery_total_cap_daily_multiplier"] == 60
+    assert characteristics["cumulative_termination_daily_multiplier"] == 1_000
+    assert characteristics["day_hospital_excluded"] is expected_day_hospital_excluded
+    assert (
+        characteristics["post_expiry_readmission_excluded"]
+        is expected_post_expiry_excluded
+    )
+    assert (
+        characteristics["claims_review_medical_opinion_revision"]
+        is expected_medical_opinion_revision
+    )
+    assert (
+        characteristics["main_contract_forced_execution_exception"]
+        is expected_forced_execution_exception
+    )
+
+    for plan_index, plan in enumerate(schedule["plan_options"]):
+        entries = {entry["id"]: entry for entry in plan["coverage_entries"]}
+        assert len(entries) == len(plan["coverage_entries"]) == 5
+        assert set(entries) == set(fixed_hospital_expected)
+        for entry_id, amounts in fixed_hospital_expected.items():
+            assert entries[entry_id]["amount"] == amounts[plan_index]
+            assert entries[entry_id]["source"] == "terms"
+            assert entries[entry_id].get("conditions")
+        assert entries["hospital-daily"]["calculation_basis"] == "per_day"
+        assert entries["intensive-care-daily"]["aggregation_rule"] == (
+            "conditional_additive"
+        )
+        assert entries["surgery-benefit-base"]["calculation_basis"] == (
+            "percentage_of_base"
+        )
+        assert entries["surgery-benefit-base"]["amount_role"] == "base"
+        assert entries["surgery-benefit-base"]["rate_min_percent"] == 2
+        assert entries["surgery-benefit-base"]["rate_max_percent"] == 300
+        assert entries["surgery-benefit-per-hospitalization-cap"]["amount_role"] == (
+            "limit"
+        )
+        assert (
+            entries["surgery-benefit-per-hospitalization-cap"]["limit_scope"]
+            == "per_hospitalization"
+        )
+        assert entries["cumulative-benefit-termination-threshold"]["multiplier"] == (
+            1_000
+        )
+
+    source_path = FIXED_HOSPITAL_MEDICAL_PRODUCT_BATCHES[product_id][1] / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:3])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 10
+    assert (
+        parse_prudential_china_fixed_hospital_medical_plan_table(completed_document)
+        == schedule
+    )
+    assert (
+        parse_prudential_china_fixed_hospital_medical_plan_table(
+            fixed_hospital_medical_document(product_id, "F")
+        )
+        is None
+    )
+
+fixed_hospital_base = fixed_hospital_medical_document("203311R11A00205")
+assert parse_prudential_china_fixed_hospital_medical_plan_table(
+    {**fixed_hospital_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_prudential_china_fixed_hospital_medical_plan_table(
+    {**fixed_hospital_base, "document_type": "product_summary"}
+) is None
+assert parse_prudential_china_fixed_hospital_medical_plan_table(
+    {
+        **fixed_hospital_base,
+        "text": fixed_hospital_base["text"].replace(
+            "500 元 1,000 元 1,500 元 2,000 元 2,500 元 3,000 元",
+            "600 元 1,000 元 1,500 元 2,000 元 2,500 元 3,000 元",
+            1,
+        ),
+    }
+) is None
+
+CHINA_LEGACY_CANCER_PRODUCT_IDS = (
+    "205321R11A02300",
+    "205321R11A02301",
+)
+CHINA_LEGACY_CANCER_FILES = {
+    "205321R11A02300": "205321R11A023-A.pdf",
+    "205321R11A02301": "205321R11A02301-A.pdf",
+}
+CHINA_LEGACY_CANCER_PAGES = {
+    "205321R11A02300": 8,
+    "205321R11A02301": 7,
+}
+CHINA_LEGACY_CANCER_REVISIONS = {
+    "205321R11A02300": "original",
+    "205321R11A02301": "94-revised",
+}
+
+
+def china_legacy_cancer_document(product_id: str, suffix: str = "A") -> dict:
+    file_name = (
+        CHINA_LEGACY_CANCER_FILES[product_id]
+        if suffix == "A"
+        else CHINA_LEGACY_CANCER_FILES[product_id].replace("-A.pdf", "-F.pdf")
+    )
+    pdf_path = TII_LIFE_026_ROOT / product_id / file_name
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+china_legacy_expected = {
+    "cancer-diagnosis": 30_000,
+    "cancer-hospital-daily": 2_000,
+    "cancer-surgery": 30_000,
+    "cancer-discharge-recovery": 1_000,
+    "cancer-outpatient": 1_000,
+    "cancer-death": 300_000,
+}
+for product_id in CHINA_LEGACY_CANCER_PRODUCT_IDS:
+    document = china_legacy_cancer_document(product_id)
+    assert document["file_name"] == CHINA_LEGACY_CANCER_FILES[product_id]
+    assert document["page_count"] == document["pages_parsed"] == CHINA_LEGACY_CANCER_PAGES[product_id]
+    schedule = parse_china_legacy_cancer_whole_life_unit_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "china-legacy-cancer-whole-life-unit-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "unit"
+    assert schedule["selection_label"] == "投保單位數"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == CHINA_LEGACY_CANCER_REVISIONS[product_id]
+    assert characteristics["cancer_responsibility_start_day"] == 31
+    assert characteristics["premium_waiver_disability_levels"] == "1-3"
+    assert characteristics["minor_funeral_benefit_rule"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert len(entries) == len(schedule["coverage_entries"]) == 6
+    assert {entry_id: entry["amount"] for entry_id, entry in entries.items()} == (
+        china_legacy_expected
+    )
+    assert entries["cancer-diagnosis"]["limit_scope"] == "lifetime"
+    assert entries["cancer-hospital-daily"]["calculation_basis"] == (
+        "per_unit_per_day"
+    )
+    assert entries["cancer-discharge-recovery"]["calculation_basis"] == (
+        "per_unit_per_day"
+    )
+    assert entries["cancer-outpatient"]["limit_scope"] == "per_event"
+    assert entries["cancer-death"]["limit_scope"] == "per_policy"
+    assert all("始期日起第 31 日" in " ".join(entry["conditions"]) for entry in entries.values())
+    assert "喪葬費用保險金" in " ".join(entries["cancer-death"]["conditions"])
+
+    source_path = TII_LIFE_026_ROOT / product_id / CHINA_LEGACY_CANCER_FILES[product_id]
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:2])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == CHINA_LEGACY_CANCER_PAGES[product_id]
+    assert parse_china_legacy_cancer_whole_life_unit_table(completed_document) == schedule
+    assert parse_china_legacy_cancer_whole_life_unit_table(
+        china_legacy_cancer_document(product_id, "F")
+    ) is None
+
+china_legacy_base = china_legacy_cancer_document("205321R11A02300")
+assert parse_china_legacy_cancer_whole_life_unit_table(
+    {**china_legacy_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_china_legacy_cancer_whole_life_unit_table(
+    {**china_legacy_base, "document_type": "product_summary"}
+) is None
+assert parse_china_legacy_cancer_whole_life_unit_table(
+    {
+        **china_legacy_base,
+        "text": china_legacy_base["text"].replace("投保金額 300,000 元", "投保金額 400,000 元", 1),
     }
 ) is None
 
@@ -1513,7 +2027,7 @@ def fubon_new_complete_document(product_id: str, suffix: str = "A") -> dict:
     )
 
 
-assert EXTRACTOR_VERSION == "tii-plan-benefits-v30"
+assert EXTRACTOR_VERSION == "tii-plan-benefits-v91"
 fubon_new_complete_schedules = {
     product_id: parse_fubon_new_complete_combined_plan_table(
         fubon_new_complete_document(product_id)
@@ -1966,6 +2480,181 @@ wrong_heart_care_version = {
 assert parse_fubon_cardio_device_unit_table(wrong_heart_care_version) is None
 
 
+FUBON_GOLDEN_MEDICAL_DEVICE_PRODUCT_IDS = (
+    "209391RZ1A01622A11Z10000000",
+    "209391RZ1A01622A11Z10000001",
+)
+FUBON_GOLDEN_MEDICAL_DEVICE_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-050"
+)
+
+
+def fubon_golden_medical_device_document(
+    product_id: str, suffix: str = "A", *, complete: bool = True
+) -> dict:
+    file_name = f"{product_id}-{suffix}.pdf"
+    document = next(
+        document
+        for document in TII_LIFE_050_TEXT_FIXTURE
+        if document.get("product_id") == product_id
+        and document.get("file_name") == file_name
+    )
+    if not complete:
+        return document
+    return complete_strict_source_document(
+        document,
+        FUBON_GOLDEN_MEDICAL_DEVICE_ROOT / product_id / file_name,
+    )
+
+
+golden_medical_device_schedules = {
+    product_id: parse_fubon_golden_medical_device_unit_table(
+        fubon_golden_medical_device_document(product_id)
+    )
+    for product_id in FUBON_GOLDEN_MEDICAL_DEVICE_PRODUCT_IDS
+}
+assert all(golden_medical_device_schedules.values())
+assert all(
+    parse_plan_table_with_parser(fubon_golden_medical_device_document(product_id))[0]
+    == "fubon-golden-medical-device-unit-v1"
+    for product_id in FUBON_GOLDEN_MEDICAL_DEVICE_PRODUCT_IDS
+)
+assert all(
+    schedule["selection_type"] == schedule["input_mode"] == "unit"
+    for schedule in golden_medical_device_schedules.values()
+)
+assert all(
+    schedule["selection_label"] == "投保單位數"
+    for schedule in golden_medical_device_schedules.values()
+)
+assert golden_medical_device_schedules[
+    "209391RZ1A01622A11Z10000000"
+]["version_characteristics"] == {
+    "terms_revision": "original",
+    "disease_initial_waiting_days": 30,
+    "maximum_coverage_age": 74,
+    "benefit_tiers_by_policy_year": True,
+    "unit_reduction_revision": False,
+    "all_items_paid_termination": True,
+}
+assert golden_medical_device_schedules[
+    "209391RZ1A01622A11Z10000001"
+]["version_characteristics"] == {
+    "terms_revision": "114-revised",
+    "disease_initial_waiting_days": 30,
+    "maximum_coverage_age": 74,
+    "benefit_tiers_by_policy_year": True,
+    "unit_reduction_revision": True,
+    "all_items_paid_termination": True,
+}
+
+golden_medical_device_entries = {
+    entry["id"]: entry
+    for entry in golden_medical_device_schedules[
+        "209391RZ1A01622A11Z10000000"
+    ]["coverage_entries"]
+}
+assert len(golden_medical_device_entries) == 9
+assert golden_medical_device_entries["intraocular-lens-implant"]["amount_tiers"] == [
+    {"label": "第一保單年度每單位", "amount": 10_000},
+    {"label": "第二保單年度每單位", "amount": 20_000},
+    {"label": "第三保單年度起每單位", "amount": 30_000},
+]
+assert golden_medical_device_entries["cardiac-catheter-stent"]["amount_tiers"] == [
+    {"label": "第一保單年度每單位", "amount": 30_000},
+    {"label": "第二保單年度每單位", "amount": 60_000},
+    {"label": "第三保單年度起每單位", "amount": 90_000},
+]
+assert golden_medical_device_entries["heart-valve-replacement"]["amount_tiers"] == [
+    {"label": "第一保單年度每單位", "amount": 50_000},
+    {"label": "第二保單年度每單位", "amount": 100_000},
+    {"label": "第三保單年度起每單位", "amount": 150_000},
+]
+assert golden_medical_device_entries["ecmo-setup"]["amount_tiers"] == [
+    {"label": "第一保單年度每單位", "amount": 100_000},
+    {"label": "第二保單年度每單位", "amount": 200_000},
+    {"label": "第三保單年度起每單位", "amount": 300_000},
+]
+assert golden_medical_device_entries["ecmo-setup"]["amount"] == 300_000
+assert all(
+    entry["basis"] == "per_unit"
+    and entry["calculation_basis"] == "tiered_or_stepped"
+    and entry["source_ref"] == "保單條款第八條及醫材補助給付表, 第 2 至 3 頁"
+    for entry in golden_medical_device_entries.values()
+)
+assert any(
+    "保單年度" in condition
+    for condition in golden_medical_device_entries["ecmo-setup"]["conditions"]
+)
+assert any(
+    "每眼每一保單年度一次" in condition
+    for condition in golden_medical_device_entries["intraocular-lens-implant"][
+        "conditions"
+    ]
+)
+assert any(
+    "每側關節每一保單年度一次" in condition
+    for condition in golden_medical_device_entries["artificial-knee-replacement"][
+        "conditions"
+    ]
+)
+assert any(
+    "屬同一給付項目" in condition
+    for condition in golden_medical_device_entries["heart-valve-replacement"][
+        "conditions"
+    ]
+)
+assert all(
+    parse_fubon_golden_medical_device_unit_table(
+        fubon_golden_medical_device_document(product_id, "F")
+    )
+    is None
+    for product_id in FUBON_GOLDEN_MEDICAL_DEVICE_PRODUCT_IDS
+)
+assert parse_fubon_golden_medical_device_unit_table(
+    {
+        **fubon_golden_medical_device_document(
+            "209391RZ1A01622A11Z10000000"
+        ),
+        "document_type": "product_summary",
+    }
+) is None
+
+golden_medical_device_indexed = fubon_golden_medical_device_document(
+    "209391RZ1A01622A11Z10000000",
+    complete=False,
+)
+golden_medical_device_completed = complete_strict_source_document(
+    golden_medical_device_indexed,
+    FUBON_GOLDEN_MEDICAL_DEVICE_ROOT
+    / "209391RZ1A01622A11Z10000000"
+    / "209391RZ1A01622A11Z10000000-A.pdf",
+)
+assert golden_medical_device_completed["page_count"] == 5
+assert parse_fubon_golden_medical_device_unit_table(
+    golden_medical_device_completed
+) == golden_medical_device_schedules["209391RZ1A01622A11Z10000000"]
+
+bad_golden_medical_device_amount = {
+    **fubon_golden_medical_device_document("209391RZ1A01622A11Z10000000"),
+    "text": fubon_golden_medical_device_document(
+        "209391RZ1A01622A11Z10000000"
+    )["text"].replace("10萬元 20萬元 30萬元", "10萬元 20萬元 29萬元", 1),
+}
+assert parse_fubon_golden_medical_device_unit_table(
+    bad_golden_medical_device_amount
+) is None
+
+wrong_golden_medical_device_version = {
+    **fubon_golden_medical_device_document("209391RZ1A01622A11Z10000000"),
+    "product_id": "209391RZ1A01622A11Z10000001",
+    "file_name": "209391RZ1A01622A11Z10000001-A.pdf",
+}
+assert parse_fubon_golden_medical_device_unit_table(
+    wrong_golden_medical_device_version
+) is None
+
+
 FUBON_EASY_TABLE_SIGNALS = " ".join(
     [
         "保險金項目 計畫一 計畫二 計畫三 計畫四",
@@ -2386,6 +3075,7 @@ easy_bad_waiting_period = {
 assert parse_fubon_easy_combined_plan_table(easy_bad_waiting_period) is None
 
 FUBON_GOLDEN_COMPLETE_PRODUCT_IDS = (
+    "209391MZ9D00421A11Z10000000",
     "209391MZ9D00421A11Z10000001",
     "209391MZ9D00421A11Z10000002",
     "209391MZ9D00421A11Z10000003",
@@ -2457,14 +3147,28 @@ assert all(
     fubon_golden_complete_schedules[product_id]["version_characteristics"][
         "disability_schedule_revision"
     ]
-    == ("104-revised-79-items" if index < 2 else "109-revised-80-items")
+    == ("104-revised-79-items" if index < 3 else "109-revised-80-items")
     for index, product_id in enumerate(FUBON_GOLDEN_COMPLETE_PRODUCT_IDS)
+)
+assert (
+    fubon_golden_complete_schedules[FUBON_GOLDEN_COMPLETE_PRODUCT_IDS[0]][
+        "version_characteristics"
+    ]["disability_terminology"]
+    == "殘廢"
+)
+assert all(
+    fubon_golden_complete_schedules[product_id]["version_characteristics"][
+        "disability_terminology"
+    ]
+    == "失能"
+    for product_id in FUBON_GOLDEN_COMPLETE_PRODUCT_IDS[1:]
 )
 
 golden_complete_base_document = fubon_golden_complete_document(
     FUBON_GOLDEN_COMPLETE_PRODUCT_IDS[0]
 )
 golden_complete_base_text = golden_complete_base_document["text"]
+golden_complete_normalized_base_text = normalize_terms_text(golden_complete_base_text)
 assert parse_fubon_golden_complete_combined_plan_table(
     {
         **golden_complete_base_document,
@@ -2480,17 +3184,17 @@ assert parse_fubon_golden_complete_combined_plan_table(
 assert parse_fubon_golden_complete_combined_plan_table(
     {
         **golden_complete_base_document,
-        "text": golden_complete_base_text.replace(
-            "MGC21070914", "MGC21080101"
+        "text": golden_complete_normalized_base_text.replace(
+            "MGC21070528", "MGC21080101"
         ),
     }
 ) is None
 assert parse_fubon_golden_complete_combined_plan_table(
     {
         **golden_complete_base_document,
-        "text": golden_complete_base_text.replace(
-            "【保險範圍：癌症保險金的給付】 第十二條",
-            "【保險範圍：癌症保險金的給付】 第十一條",
+        "text": golden_complete_normalized_base_text.replace(
+            "【保險範圍:癌症保險金的給付】 第十二條",
+            "【保險範圍:癌症保險金的給付】 第十一條",
             1,
         ),
     }
@@ -2498,17 +3202,19 @@ assert parse_fubon_golden_complete_combined_plan_table(
 assert parse_fubon_golden_complete_combined_plan_table(
     {
         **golden_complete_base_document,
-        "text": golden_complete_base_text.replace("20 萬", "30 萬", 1),
+        "text": golden_complete_normalized_base_text.replace("20 萬", "30 萬", 1),
     }
 ) is None
 assert parse_fubon_golden_complete_combined_plan_table(
     {
         **golden_complete_base_document,
-        "text": golden_complete_base_text.replace("附表一：", "附表甲：", 1),
+        "text": golden_complete_normalized_base_text.replace("附表一:", "附表甲:", 1),
     }
 ) is None
 
 FUBON_GOLDEN_LOHAS_PRODUCT_IDS = (
+    "209391MZ1G00421A11Z10000000",
+    "209391MZ1G00421A11Z10000001",
     "209391MZ1G00421A11Z10000002",
     "209391MZ1G00421A11Z10000003",
     "209391MZ1G00421A11Z10000004",
@@ -2544,16 +3250,35 @@ assert all(
     for schedule in fubon_golden_lohas_schedules.values()
 )
 assert fubon_golden_lohas_schedules[
+    "209391MZ1G00421A11Z10000000"
+]["version_characteristics"]["disability_schedule_revision"] == (
+    "104-revised-79-items"
+)
+assert fubon_golden_lohas_schedules[
+    "209391MZ1G00421A11Z10000001"
+]["version_characteristics"]["disability_schedule_revision"] == (
+    "104-revised-79-items"
+)
+assert fubon_golden_lohas_schedules[
+    "209391MZ1G00421A11Z10000000"
+]["version_characteristics"]["disability_term"] == "殘廢"
+assert fubon_golden_lohas_schedules[
+    "209391MZ1G00421A11Z10000001"
+]["version_characteristics"]["disability_term"] == "殘廢"
+assert fubon_golden_lohas_schedules[
     "209391MZ1G00421A11Z10000002"
 ]["version_characteristics"]["disability_schedule_revision"] == (
     "104-revised-79-items"
 )
+assert fubon_golden_lohas_schedules[
+    "209391MZ1G00421A11Z10000002"
+]["version_characteristics"]["disability_term"] == "失能"
 assert all(
     fubon_golden_lohas_schedules[product_id]["version_characteristics"][
         "disability_schedule_revision"
     ]
     == "109-revised-80-items"
-    for product_id in FUBON_GOLDEN_LOHAS_PRODUCT_IDS[1:]
+    for product_id in FUBON_GOLDEN_LOHAS_PRODUCT_IDS[3:]
 )
 golden_lohas_plan_one = {
     entry["id"]: entry
@@ -2581,6 +3306,15 @@ assert golden_lohas_plan_one["overseas-accident-death"]["amount"] == 1_000_000
 assert golden_lohas_plan_one["accident-disability"]["rate_min_percent"] == 5
 assert golden_lohas_plan_one["accident-disability"]["rate_max_percent"] == 100
 assert "accident-medical-reimbursement" not in golden_lohas_plan_one
+golden_lohas_original_plan_one = {
+    entry["id"]: entry
+    for entry in fubon_golden_lohas_schedules[
+        "209391MZ1G00421A11Z10000000"
+    ]["plan_options"][0]["coverage_entries"]
+}
+assert golden_lohas_original_plan_one["total-disability"]["name"] == "完全殘廢保險金"
+assert golden_lohas_original_plan_one["accident-disability"]["name"] == "意外殘廢保險金"
+assert golden_lohas_original_plan_one["accident-disability"]["amount"] == 1_000_000
 assert fubon_golden_lohas_schedules[
     "209391MZ1G00421A11Z10000005"
 ]["version_characteristics"]["day_hospital_excluded"] is True
@@ -2592,7 +3326,7 @@ assert all(
 )
 
 golden_lohas_base_document = fubon_golden_lohas_document(
-    "209391MZ1G00421A11Z10000002"
+    "209391MZ1G00421A11Z10000000"
 )
 golden_lohas_base_text = golden_lohas_base_document["text"]
 assert "富邦人壽金樂活傷害暨健康一年定期保險" in golden_lohas_base_text
@@ -2739,6 +3473,7 @@ assert fubon_lohas_schedule["version_characteristics"] == {
     "day_hospital_explicit": True,
     "post_expiry_readmission_excluded": True,
     "disability_schedule_revision": "104-revised-71-items",
+    "disability_term": "殘廢",
 }
 assert all(
     entry["amount"] > 0 and "附表一" in entry["source_ref"]
@@ -2753,6 +3488,47 @@ assert parse_fubon_lohas_combined_plan_table(
         "text": FUBON_LOHAS_TERMS,
     }
 ) is None
+
+FUBON_LOHAS_REVISED_PRODUCT_IDS = (
+    "209391MZ9G00221A11Z10000005",
+    "209391MZ9G00221A11Z10000006",
+    "209391MZ9G00221A11Z10000007",
+)
+fubon_lohas_fixture_documents = json.loads(
+    (
+        Path(__file__).resolve().parents[1]
+        / "work"
+        / "tii-document-text"
+        / "tii-life-050-text.json"
+    ).read_text(encoding="utf-8")
+)["documents"]
+for product_id in FUBON_LOHAS_REVISED_PRODUCT_IDS:
+    document = next(
+        item
+        for item in fubon_lohas_fixture_documents
+        if item["product_id"] == product_id
+        and item["document_type"] == "policy_terms"
+    )
+    schedule = parse_fubon_lohas_combined_plan_table(document)
+    assert schedule is not None
+    assert schedule["version_characteristics"]["disability_term"] == "失能"
+    assert len(schedule["plan_options"]) == 8
+    assert [len(plan["coverage_entries"]) for plan in schedule["plan_options"]] == [
+        11,
+        22,
+        22,
+        22,
+        10,
+        21,
+        21,
+        21,
+    ]
+    revised_plan_two = {
+        entry["id"]: entry
+        for entry in schedule["plan_options"][1]["coverage_entries"]
+    }
+    assert revised_plan_two["total-disability"]["name"] == "完全失能保險金"
+    assert revised_plan_two["accident-disability"]["name"] == "一般意外失能保險金"
 
 TII_LIFE_116_TEXT_FIXTURE = json.loads(
     (
@@ -3146,6 +3922,8 @@ assert new_cancer_original["version_characteristics"] == {
     "specific_cancer_rate_percent": 15,
     "per_unit_total_cap": 1_000_000,
     "funeral_benefit_rule": "pre-2010-fixed-funeral-cap",
+    "minor_death_or_disability_refund_rule": False,
+    "maturity_age": 110,
 }
 new_cancer_entries = {
     entry["id"]: entry for entry in new_cancer_original["coverage_entries"]
@@ -3183,12 +3961,75 @@ assert new_cancer_revision_three is not None
 assert new_cancer_revision_three["version_characteristics"]["funeral_benefit_rule"] == (
     "2010-estate-tax-half-deduction"
 )
+assert (
+    new_cancer_revision_three["version_characteristics"][
+        "minor_death_or_disability_refund_rule"
+    ]
+    is False
+)
+assert new_cancer_revision_three["version_characteristics"]["maturity_age"] == 110
 revision_three_death = next(
     entry
     for entry in new_cancer_revision_three["coverage_entries"]
     if entry["id"] == "death-funeral-remaining-pool"
 )
 assert "同公司多張契約" in revision_three_death["conditions"][-1]
+
+TII_LIFE_050_TEXT_FIXTURE = json.loads(
+    (
+        Path(__file__).resolve().parents[1]
+        / "work"
+        / "tii-document-text"
+        / "tii-life-050-text.json"
+    ).read_text(encoding="utf-8")
+)["documents"]
+for fubon_new_cancer_product_id in [
+    "209321M12B00304",
+    "209321M12B00305",
+    "209321M12B00306",
+    "209321M12B00307",
+]:
+    fubon_new_cancer_terms = next(
+        document
+        for document in TII_LIFE_050_TEXT_FIXTURE
+        if document.get("product_id") == fubon_new_cancer_product_id
+        and document.get("file_name") == f"{fubon_new_cancer_product_id}-A.pdf"
+    )
+    fubon_new_cancer_schedule = parse_antai_fubon_new_cancer_lifetime_unit_table(
+        fubon_new_cancer_terms
+    )
+    assert fubon_new_cancer_schedule is not None
+    assert len(fubon_new_cancer_schedule["coverage_entries"]) == 14
+    assert fubon_new_cancer_schedule["version_characteristics"] == {
+        "cancer_waiting_days": 90,
+        "specific_cancer_rate_percent": 15,
+        "per_unit_total_cap": 1_000_000,
+        "funeral_benefit_rule": "2010-estate-tax-half-deduction",
+        "minor_death_or_disability_refund_rule": True,
+        "maturity_age": 111,
+    }
+    fubon_new_cancer_entries = {
+        entry["id"]: entry for entry in fubon_new_cancer_schedule["coverage_entries"]
+    }
+    assert fubon_new_cancer_entries["cancer-diagnosis"]["amount_tiers"] == [
+        {"label": "繳費期間內／癌症疾病", "amount": 50_000},
+        {"label": "繳費期間內／特定癌症", "amount": 7_500},
+        {"label": "繳費期滿後／癌症疾病", "amount": 75_000},
+        {"label": "繳費期滿後／特定癌症", "amount": 11_250},
+    ]
+    assert fubon_new_cancer_entries["cancer-hospital-days-1-90"]["amount"] == 1_200
+    assert fubon_new_cancer_entries["cancer-hospital-days-91-plus"]["amount"] == 1_800
+    assert fubon_new_cancer_entries["cancer-discharge-recovery"]["amount"] == 600
+    assert fubon_new_cancer_entries["cancer-outpatient"]["amount"] == 500
+    assert fubon_new_cancer_entries["specific-cancer-surgery"]["amount"] == 3_000
+    assert fubon_new_cancer_entries["malignant-tumor-surgery"]["amount"] == 15_000
+    assert fubon_new_cancer_entries["cancer-radiation"]["amount"] == 500
+    assert fubon_new_cancer_entries["cancer-chemotherapy"]["amount"] == 1_200
+    assert fubon_new_cancer_entries["marrow-stem-cell-transplant"]["amount"] == 50_000
+    assert (
+        fubon_new_cancer_entries["maturity-remaining-pool"]["conditions"][-1]
+        == "保險年齡到達 111 歲時仍生存"
+    )
 
 assert parse_antai_fubon_new_cancer_lifetime_unit_table(
     new_cancer_lifetime_document("unrelated-product")
@@ -3214,6 +4055,1308 @@ assert parse_antai_fubon_new_cancer_lifetime_unit_table(
         "209321M12B00303",
         revised_funeral_rule=False,
     )
+) is None
+
+ANTAI_NEW_CANCER_R11_PATH = (
+    Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-documents"
+    / "tii-life-116"
+    / "252321R11A00200"
+    / "252321R11A002-A.pdf"
+)
+antai_new_cancer_r11_reader = PdfReader(ANTAI_NEW_CANCER_R11_PATH, strict=False)
+antai_new_cancer_r11_text = normalize_terms_text(
+    "\n".join(page.extract_text() or "" for page in antai_new_cancer_r11_reader.pages)
+)
+antai_new_cancer_r11_document = {
+    "product_id": "252321R11A00200",
+    "file_name": "252321R11A002-A.pdf",
+    "document_type": "policy_terms",
+    "page_count": len(antai_new_cancer_r11_reader.pages),
+    "pages_parsed": len(antai_new_cancer_r11_reader.pages),
+    "text": antai_new_cancer_r11_text,
+}
+antai_new_cancer_r11 = parse_antai_new_cancer_lifetime_r11_unit_table(
+    antai_new_cancer_r11_document
+)
+assert antai_new_cancer_r11 is not None
+assert antai_new_cancer_r11["selection_type"] == "unit"
+assert antai_new_cancer_r11["selection_label"] == "承保單位數"
+assert antai_new_cancer_r11["version_characteristics"] == {
+    "terms_revision": "90-approved-original",
+    "cancer_observation_days": 30,
+    "minor_cancer_rate_percent": 15,
+    "hospital_days_tier_one_limit": 90,
+    "same_cancer_readmission_days": 14,
+    "hospice_anniversary_payments": 5,
+    "hospice_excluded_for_minor_cancer": True,
+    "post_death_last_hospitalization_date_basis": True,
+    "post_death_diagnosis_only_if_no_cancer_hospitalization": True,
+    "premium_period_diagnosis_amount": 50_000,
+    "post_premium_period_diagnosis_amount": 75_000,
+}
+antai_new_cancer_r11_entries = {
+    entry["id"]: entry for entry in antai_new_cancer_r11["coverage_entries"]
+}
+assert len(antai_new_cancer_r11_entries) == 10
+assert antai_new_cancer_r11_entries["cancer-diagnosis"]["amount_tiers"] == [
+    {"label": "繳費期間內一般癌症", "amount": 50_000},
+    {"label": "繳費期間屆滿後一般癌症", "amount": 75_000},
+    {"label": "繳費期間內第一期前列腺癌或原位癌", "amount": 7_500},
+    {"label": "繳費期間屆滿後第一期前列腺癌或原位癌", "amount": 11_250},
+]
+assert antai_new_cancer_r11_entries["cancer-hospital-days-1-90"]["amount"] == 1_200
+assert antai_new_cancer_r11_entries["cancer-hospital-days-91-plus"]["amount"] == 1_800
+assert antai_new_cancer_r11_entries["cancer-discharge-recuperation"]["amount"] == 600
+assert antai_new_cancer_r11_entries["cancer-surgery"]["amount_tiers"] == [
+    {"label": "一般癌症手術", "amount": 15_000},
+    {"label": "第一期前列腺癌或原位癌手術", "amount": 2_250},
+]
+assert antai_new_cancer_r11_entries["cancer-outpatient"]["amount"] == 500
+assert antai_new_cancer_r11_entries["cancer-radiation"]["amount"] == 500
+assert antai_new_cancer_r11_entries["cancer-chemotherapy"]["amount"] == 800
+assert antai_new_cancer_r11_entries["cancer-hospice-anniversary"]["amount"] == 20_000
+assert (
+    "第一期前列腺癌或原位癌不給付"
+    in antai_new_cancer_r11_entries["cancer-hospice-anniversary"]["conditions"][-1]
+)
+assert (
+    parse_plan_table_with_parser(antai_new_cancer_r11_document)[0]
+    == "antai-new-cancer-lifetime-r11-unit-v1"
+)
+antai_new_cancer_r11_partial = {
+    **antai_new_cancer_r11_document,
+    "page_count": 3,
+    "pages_parsed": 3,
+    "text": normalize_terms_text(
+        "\n".join(
+            page.extract_text() or ""
+            for page in antai_new_cancer_r11_reader.pages[:3]
+        )
+    ),
+}
+antai_new_cancer_r11_completed = complete_strict_source_document(
+    antai_new_cancer_r11_partial, ANTAI_NEW_CANCER_R11_PATH
+)
+assert antai_new_cancer_r11_completed["page_count"] == 10
+assert parse_antai_new_cancer_lifetime_r11_unit_table(
+    antai_new_cancer_r11_completed
+) is not None
+assert parse_antai_new_cancer_lifetime_r11_unit_table(
+    {**antai_new_cancer_r11_document, "product_id": "unrelated-product"}
+) is None
+assert parse_antai_new_cancer_lifetime_r11_unit_table(
+    {**antai_new_cancer_r11_document, "file_name": "252321R11A002-F.pdf"}
+) is None
+assert parse_antai_new_cancer_lifetime_r11_unit_table(
+    {
+        **antai_new_cancer_r11_document,
+        "text": antai_new_cancer_r11_text.replace("800 元/日癌症安寧", "900 元/日癌症安寧"),
+    }
+) is None
+
+
+ANTAI_SPECIFIC_MAJOR_DISEASE_PRODUCT_FILES = {
+    "269211M12D02100": ("269211M12D021-A.pdf", "95-approved-original"),
+    "269211M12D02101": ("269211M12D02101-A.pdf", "95-first-partial-change"),
+    "269211M12D02102": ("269211M12D02102-A.pdf", "96-second-partial-change"),
+    "269211M12D02103": ("269211M12D02103-A.pdf", "97-third-partial-change"),
+}
+
+
+def antai_specific_major_disease_document(product_id: str) -> dict:
+    file_name, _terms_revision = ANTAI_SPECIFIC_MAJOR_DISEASE_PRODUCT_FILES[
+        product_id
+    ]
+    path = (
+        Path(__file__).resolve().parents[1]
+        / "work"
+        / "tii-documents"
+        / "tii-life-175"
+        / product_id
+        / file_name
+    )
+    reader = PdfReader(path, strict=False)
+    return {
+        "product_id": product_id,
+        "file_name": file_name,
+        "document_type": "policy_terms",
+        "page_count": len(reader.pages),
+        "pages_parsed": len(reader.pages),
+        "text": normalize_terms_text(
+            "\n".join(page.extract_text() or "" for page in reader.pages)
+        ),
+    }
+
+
+antai_specific_major_disease_schedules = {}
+for antai_product_id, (
+    antai_file_name,
+    antai_terms_revision,
+) in ANTAI_SPECIFIC_MAJOR_DISEASE_PRODUCT_FILES.items():
+    antai_document = antai_specific_major_disease_document(antai_product_id)
+    assert antai_document["file_name"] == antai_file_name
+    antai_schedule = parse_antai_specific_major_disease_health_unit_table(
+        antai_document
+    )
+    assert antai_schedule is not None
+    antai_specific_major_disease_schedules[antai_product_id] = antai_schedule
+    integrated_parse = parse_plan_table_with_parser(antai_document)
+    assert integrated_parse is not None
+    assert integrated_parse[0] == "antai-specific-major-disease-health-unit-v1"
+    assert integrated_parse[1] == antai_schedule
+    assert antai_schedule["selection_type"] == "unit"
+    assert antai_schedule["selection_label"] == "投保單位"
+    assert "投保單位數" in antai_schedule["selection_guidance"]
+    assert antai_schedule["version_characteristics"] == {
+        "terms_revision": antai_terms_revision,
+        "disease_waiting_days": 30,
+        "cancer_initial_waiting_days": 90,
+        "major_disease_waiting_days": 30,
+        "initial_cancer_lifetime_limit_times": 1,
+        "specific_cancer_lifetime_limit_times": 1,
+        "myocardial_infarction_or_coronary_bypass_lifetime_limit_times": 1,
+        "stroke_lifetime_limit_times": 1,
+        "systemic_lupus_lifetime_limit_times": 1,
+        "reconstruction_claim_days": 365,
+        "same_reconstruction_item_lifetime_limit_times": 1,
+        "claims_notification_days": 10,
+        "claim_payment_days_after_complete_documents": 15,
+    }
+    antai_entries = {
+        entry["id"]: entry for entry in antai_schedule["coverage_entries"]
+    }
+    assert set(antai_entries) == {
+        "initial-cancer",
+        "specific-cancer",
+        "myocardial-infarction-or-coronary-bypass",
+        "stroke",
+        "systemic-lupus-erythematosus",
+        "pregnancy-childbirth-death",
+        "reconstruction-prosthetic-eye",
+        "reconstruction-prosthetic-limb",
+        "reconstruction-breast",
+        "reconstruction-skin-graft",
+    }
+    assert antai_entries["initial-cancer"]["amount"] == 100_000
+    assert antai_entries["specific-cancer"]["amount"] == 200_000
+    assert (
+        antai_entries["myocardial-infarction-or-coronary-bypass"]["amount"]
+        == 200_000
+    )
+    assert antai_entries["stroke"]["amount"] == 200_000
+    assert antai_entries["systemic-lupus-erythematosus"]["amount"] == 200_000
+    assert antai_entries["pregnancy-childbirth-death"]["amount"] == 100_000
+    assert antai_entries["reconstruction-prosthetic-eye"]["amount"] == 10_000
+    assert antai_entries["reconstruction-prosthetic-limb"]["amount"] == 10_000
+    assert antai_entries["reconstruction-breast"]["amount"] == 10_000
+    assert antai_entries["reconstruction-skin-graft"]["amount"] == 10_000
+    assert all(
+        entry["basis"] == "per_unit"
+        and entry["calculation_basis"] == "per_unit"
+        and entry["source"] == "terms"
+        and entry.get("conditions")
+        for entry in antai_entries.values()
+    )
+    assert "第 91 日" in antai_entries["initial-cancer"]["conditions"][0]
+    assert "365 日" in antai_entries["reconstruction-skin-graft"]["conditions"][1]
+
+antai_specific_major_disease_signature = {
+    json.dumps(
+        [
+            (entry["id"], entry["amount"])
+            for entry in schedule["coverage_entries"]
+        ],
+        ensure_ascii=False,
+    )
+    for schedule in antai_specific_major_disease_schedules.values()
+}
+assert len(antai_specific_major_disease_signature) == 1
+antai_specific_major_disease_partial = {
+    **antai_specific_major_disease_document("269211M12D02103"),
+    "page_count": 3,
+    "pages_parsed": 3,
+    "text": normalize_terms_text(
+        "\n".join(
+            page.extract_text() or ""
+            for page in PdfReader(
+                Path(__file__).resolve().parents[1]
+                / "work"
+                / "tii-documents"
+                / "tii-life-175"
+                / "269211M12D02103"
+                / "269211M12D02103-A.pdf",
+                strict=False,
+            ).pages[:3]
+        )
+    ),
+}
+antai_specific_major_disease_completed = complete_strict_source_document(
+    antai_specific_major_disease_partial,
+    Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-documents"
+    / "tii-life-175"
+    / "269211M12D02103"
+    / "269211M12D02103-A.pdf",
+)
+assert antai_specific_major_disease_completed["page_count"] == 7
+assert parse_antai_specific_major_disease_health_unit_table(
+    antai_specific_major_disease_completed
+) == antai_specific_major_disease_schedules["269211M12D02103"]
+antai_specific_major_disease_document_03 = antai_specific_major_disease_document(
+    "269211M12D02103"
+)
+assert parse_antai_specific_major_disease_health_unit_table(
+    {**antai_specific_major_disease_document_03, "product_id": "wrong-product"}
+) is None
+assert parse_antai_specific_major_disease_health_unit_table(
+    {**antai_specific_major_disease_document_03, "file_name": "269211M12D02103-F.pdf"}
+) is None
+assert parse_antai_specific_major_disease_health_unit_table(
+    {
+        **antai_specific_major_disease_document_03,
+        "text": antai_specific_major_disease_document_03["text"].replace(
+            "初次罹患癌症保險金 100,000 元",
+            "初次罹患癌症保險金 101,000 元",
+            1,
+        ),
+    }
+) is None
+
+
+ANTAI_CANCER_MEDICAL_TERM_PATH = (
+    Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-documents"
+    / "tii-life-116"
+    / "252321R11A00100"
+    / "252321R11A001-A.pdf"
+)
+antai_cancer_medical_term_reader = PdfReader(
+    ANTAI_CANCER_MEDICAL_TERM_PATH, strict=False
+)
+antai_cancer_medical_term_text = normalize_terms_text(
+    "\n".join(
+        page.extract_text() or "" for page in antai_cancer_medical_term_reader.pages
+    )
+)
+antai_cancer_medical_term_document = {
+    "product_id": "252321R11A00100",
+    "file_name": "252321R11A001-A.pdf",
+    "document_type": "policy_terms",
+    "page_count": len(antai_cancer_medical_term_reader.pages),
+    "pages_parsed": len(antai_cancer_medical_term_reader.pages),
+    "text": antai_cancer_medical_term_text,
+}
+antai_cancer_medical_term_schedule = parse_antai_cancer_medical_term_family_unit(
+    antai_cancer_medical_term_document
+)
+assert antai_cancer_medical_term_schedule is not None
+assert (
+    parse_plan_table_with_parser(antai_cancer_medical_term_document)[0]
+    == "antai-cancer-medical-term-family-unit-v1"
+)
+assert antai_cancer_medical_term_schedule["selection_type"] == "plan_unit"
+assert antai_cancer_medical_term_schedule["selection_label"] == (
+    "家庭型別與被保險人角色 + 承保單位數"
+)
+assert antai_cancer_medical_term_schedule["version_characteristics"] == {
+    "terms_revision": "87-third-revision",
+    "cancer_waiting_days": 90,
+    "cancer_includes_carcinoma_in_situ": True,
+    "family_type_options": True,
+    "child_entry_age_limit": 23,
+    "newborn_child_covered_from_birth": True,
+    "same_cancer_readmission_days": 90,
+    "radiation_annual_days_limit": 60,
+    "chemotherapy_annual_days_limit": 60,
+    "post_death_presumed_cancer_start_days": 30,
+    "premium_waiver_main_contract_death_or_disability": True,
+}
+assert [option["value"] for option in antai_cancer_medical_term_schedule["plan_options"]] == [
+    "individual-main",
+    "single-parent-main",
+    "single-parent-child",
+    "two-parent-main",
+    "two-parent-spouse",
+    "two-parent-child",
+]
+adult_entries = {
+    entry["id"]: entry
+    for entry in antai_cancer_medical_term_schedule["plan_options"][0][
+        "coverage_entries"
+    ]
+}
+child_entries = {
+    entry["id"]: entry
+    for entry in antai_cancer_medical_term_schedule["plan_options"][2][
+        "coverage_entries"
+    ]
+}
+assert set(adult_entries) == {
+    "cancer-diagnosis",
+    "cancer-hospital-days-1-90",
+    "cancer-hospital-days-91-plus",
+    "cancer-discharge-recuperation",
+    "cancer-surgery",
+    "cancer-outpatient",
+    "cancer-radiation",
+    "cancer-chemotherapy",
+    "cancer-death",
+}
+assert adult_entries["cancer-diagnosis"]["amount"] == 15_000
+assert adult_entries["cancer-hospital-days-1-90"]["amount"] == 1_200
+assert adult_entries["cancer-hospital-days-91-plus"]["amount"] == 1_800
+assert adult_entries["cancer-discharge-recuperation"]["amount"] == 600
+assert adult_entries["cancer-surgery"]["amount"] == 15_000
+assert adult_entries["cancer-outpatient"]["amount"] == 500
+assert adult_entries["cancer-radiation"]["amount"] == 500
+assert adult_entries["cancer-chemotherapy"]["amount"] == 800
+assert adult_entries["cancer-death"]["amount"] == 100_000
+assert child_entries["cancer-diagnosis"]["amount"] == 7_500
+assert child_entries["cancer-hospital-days-1-90"]["amount"] == 600
+assert child_entries["cancer-hospital-days-91-plus"]["amount"] == 900
+assert child_entries["cancer-discharge-recuperation"]["amount"] == 300
+assert child_entries["cancer-surgery"]["amount"] == 7_500
+assert child_entries["cancer-outpatient"]["amount"] == 250
+assert child_entries["cancer-radiation"]["amount"] == 250
+assert child_entries["cancer-chemotherapy"]["amount"] == 400
+assert child_entries["cancer-death"]["amount"] == 50_000
+assert all(
+    entry["basis"] in {"per_unit", "daily_per_unit"}
+    and entry["source"] == "terms"
+    and entry.get("conditions")
+    for entry in adult_entries.values()
+)
+antai_cancer_medical_term_partial = {
+    **antai_cancer_medical_term_document,
+    "page_count": 3,
+    "pages_parsed": 3,
+    "text": normalize_terms_text(
+        "\n".join(
+            page.extract_text() or ""
+            for page in antai_cancer_medical_term_reader.pages[:3]
+        )
+    ),
+}
+antai_cancer_medical_term_completed = complete_strict_source_document(
+    antai_cancer_medical_term_partial, ANTAI_CANCER_MEDICAL_TERM_PATH
+)
+assert antai_cancer_medical_term_completed["page_count"] == 9
+assert parse_antai_cancer_medical_term_family_unit(
+    antai_cancer_medical_term_completed
+) == antai_cancer_medical_term_schedule
+assert parse_antai_cancer_medical_term_family_unit(
+    {**antai_cancer_medical_term_document, "product_id": "wrong-product"}
+) is None
+assert parse_antai_cancer_medical_term_family_unit(
+    {**antai_cancer_medical_term_document, "file_name": "252321R11A001-F.pdf"}
+) is None
+assert parse_antai_cancer_medical_term_family_unit(
+    {**antai_cancer_medical_term_document, "page_count": 8}
+) is None
+assert parse_antai_cancer_medical_term_family_unit(
+    {
+        **antai_cancer_medical_term_document,
+        "text": antai_cancer_medical_term_text.replace(
+            "100,000 元 100,000 元 100,000 元",
+            "101,000 元 101,000 元 101,000 元",
+            1,
+        ),
+    }
+) is None
+
+
+TAIWAN_DRUG_ANXIN_CANCER_PRECISION_PRODUCT_ID = "202321RZ1A13B21A11E10000000"
+TAIWAN_DRUG_ANXIN_CANCER_PRECISION_PATH = (
+    Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-documents"
+    / "tii-life-008"
+    / TAIWAN_DRUG_ANXIN_CANCER_PRECISION_PRODUCT_ID
+    / f"{TAIWAN_DRUG_ANXIN_CANCER_PRECISION_PRODUCT_ID}-A.pdf"
+)
+taiwan_drug_anxin_reader = PdfReader(
+    TAIWAN_DRUG_ANXIN_CANCER_PRECISION_PATH, strict=False
+)
+taiwan_drug_anxin_document = {
+    "product_id": TAIWAN_DRUG_ANXIN_CANCER_PRECISION_PRODUCT_ID,
+    "file_name": TAIWAN_DRUG_ANXIN_CANCER_PRECISION_PATH.name,
+    "document_type": "policy_terms",
+    "page_count": len(taiwan_drug_anxin_reader.pages),
+    "pages_parsed": len(taiwan_drug_anxin_reader.pages),
+    "text": normalize_terms_text(
+        "\n".join(page.extract_text() or "" for page in taiwan_drug_anxin_reader.pages)
+    ),
+}
+taiwan_drug_anxin_schedule = parse_taiwan_drug_anxin_cancer_precision_plan_table(
+    taiwan_drug_anxin_document
+)
+assert taiwan_drug_anxin_schedule is not None
+assert (
+    parse_plan_table_with_parser(taiwan_drug_anxin_document)[0]
+    == "taiwan-life-drug-anxin-cancer-precision-plan-v1"
+)
+assert taiwan_drug_anxin_schedule["selection_type"] == "plan"
+assert taiwan_drug_anxin_schedule["selection_label"] == "投保計劃別"
+assert taiwan_drug_anxin_schedule["version_characteristics"] == {
+    "terms_revision": "114-original",
+    "cancer_waiting_days": 90,
+    "non_guaranteed_renewal": True,
+    "maximum_renewal_age": 75,
+    "post_cancer_claim_window_years": 3,
+    "cancer_includes_carcinoma_in_situ": True,
+    "drug_table_item_count": 85,
+    "health_promotion_renewal_discount_available": True,
+}
+assert [plan["label"] for plan in taiwan_drug_anxin_schedule["plan_options"]] == [
+    "計劃一",
+    "計劃二",
+]
+plan_1_entries = {
+    entry["id"]: entry
+    for entry in taiwan_drug_anxin_schedule["plan_options"][0]["coverage_entries"]
+}
+plan_2_entries = {
+    entry["id"]: entry
+    for entry in taiwan_drug_anxin_schedule["plan_options"][1]["coverage_entries"]
+}
+assert plan_1_entries["post-cancer-gene-test"]["amount"] == 100_000
+assert plan_2_entries["post-cancer-gene-test"]["amount"] == 150_000
+assert plan_1_entries["post-cancer-targeted-drug-cumulative-limit"]["amount"] == 3_000_000
+assert plan_2_entries["post-cancer-targeted-drug-cumulative-limit"]["amount"] == 5_000_000
+assert plan_1_entries["post-cancer-targeted-drug-cumulative-limit"]["amount_tiers"] == [
+    {"label": "捷癌寧 Verzenio / 150mg", "amount": 1_030},
+    {"label": "沛斯博 Besponsa / 1mg", "amount": 370_250},
+    {"label": "寬利安 Qarziba / 20.25mg", "amount": 298_198},
+    {"label": "銳癌寧 Retsevmo / 80mg", "amount": 3_502},
+]
+taiwan_drug_anxin_partial = {
+    **taiwan_drug_anxin_document,
+    "page_count": 4,
+    "pages_parsed": 4,
+    "text": normalize_terms_text(
+        "\n".join(page.extract_text() or "" for page in taiwan_drug_anxin_reader.pages[:4])
+    ),
+}
+taiwan_drug_anxin_completed = complete_strict_source_document(
+    taiwan_drug_anxin_partial, TAIWAN_DRUG_ANXIN_CANCER_PRECISION_PATH
+)
+assert taiwan_drug_anxin_completed["page_count"] == 10
+assert parse_taiwan_drug_anxin_cancer_precision_plan_table(
+    taiwan_drug_anxin_completed
+) == taiwan_drug_anxin_schedule
+assert parse_taiwan_drug_anxin_cancer_precision_plan_table(
+    {**taiwan_drug_anxin_document, "product_id": "wrong-product"}
+) is None
+assert parse_taiwan_drug_anxin_cancer_precision_plan_table(
+    {**taiwan_drug_anxin_document, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_taiwan_drug_anxin_cancer_precision_plan_table(
+    {**taiwan_drug_anxin_document, "page_count": 9}
+) is None
+assert parse_taiwan_drug_anxin_cancer_precision_plan_table(
+    {
+        **taiwan_drug_anxin_document,
+        "text": taiwan_drug_anxin_document["text"].replace("300 萬元 500 萬元", "301 萬元 500 萬元", 1),
+    }
+) is None
+
+
+TAIWAN_TAIPEI_STUDENT_GROUP_PRODUCT_ID = "202316M12G78103"
+TAIWAN_TAIPEI_STUDENT_GROUP_PATH = (
+    Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-documents"
+    / "tii-life-008"
+    / TAIWAN_TAIPEI_STUDENT_GROUP_PRODUCT_ID
+    / f"{TAIWAN_TAIPEI_STUDENT_GROUP_PRODUCT_ID}-A.pdf"
+)
+taiwan_taipei_student_group_reader = PdfReader(
+    TAIWAN_TAIPEI_STUDENT_GROUP_PATH, strict=False
+)
+taiwan_taipei_student_group_document = {
+    "product_id": TAIWAN_TAIPEI_STUDENT_GROUP_PRODUCT_ID,
+    "file_name": TAIWAN_TAIPEI_STUDENT_GROUP_PATH.name,
+    "document_type": "policy_terms",
+    "page_count": len(taiwan_taipei_student_group_reader.pages),
+    "pages_parsed": len(taiwan_taipei_student_group_reader.pages),
+    "text": normalize_terms_text(
+        "\n".join(
+            page.extract_text() or ""
+            for page in taiwan_taipei_student_group_reader.pages
+        )
+    ),
+}
+taiwan_taipei_student_group_schedule = (
+    parse_taiwan_taipei_student_group_fixed_schedule(
+        taiwan_taipei_student_group_document
+    )
+)
+assert taiwan_taipei_student_group_schedule is not None
+assert (
+    parse_plan_table_with_parser(taiwan_taipei_student_group_document)[0]
+    == "taiwan-life-taipei-student-group-fixed-schedule-v1"
+)
+assert (
+    taiwan_taipei_student_group_schedule["selection_type"]
+    == taiwan_taipei_student_group_schedule["input_mode"]
+    == "fixed"
+)
+assert taiwan_taipei_student_group_schedule["selection_label"] == "固定學生團體保險給付"
+assert taiwan_taipei_student_group_schedule["version_characteristics"] == {
+    "terms_revision": "102-third-revision",
+    "disease_death_amount": 1_000_000,
+    "accidental_death_amount": 2_000_000,
+    "disease_disability_levels": 6,
+    "accident_disability_levels": 6,
+    "disability_living_assistance_levels": "1-2",
+    "disability_living_assistance_annual_payments": 4,
+    "hospital_daily_days_limit": 90,
+    "same_hospital_readmission_days": 14,
+    "post_accident_benefit_days_limit": 180,
+    "disease_death_disability_period_cap": 1_000_000,
+    "accidental_death_period_cap": 2_000_000,
+    "low_income_project_subsidy": True,
+    "collective_food_poisoning_min_people": 5,
+    "facial_reconstruction_labor_disability_item": 57,
+}
+taipei_entries = {
+    entry["id"]: entry
+    for entry in taiwan_taipei_student_group_schedule["coverage_entries"]
+}
+assert set(taipei_entries) == {
+    "disease-death",
+    "accidental-death",
+    "disease-disability",
+    "accident-disability",
+    "disability-living-assistance-annual",
+    "inpatient-medical-reimbursement-limit",
+    "hospital-daily-allowance",
+    "accident-outpatient-medical-limit",
+    "major-surgery",
+    "major-burn",
+    "low-income-project-subsidy-limit",
+    "collective-food-poisoning",
+    "major-accident-or-fracture-inpatient-limit",
+    "facial-reconstruction-limit",
+}
+assert taipei_entries["disease-death"]["amount"] == 1_000_000
+assert taipei_entries["accidental-death"]["amount"] == 2_000_000
+assert taipei_entries["disease-disability"]["amount_tiers"] == [
+    {"label": "第一級", "amount": 600_000},
+    {"label": "第二級", "amount": 500_000},
+    {"label": "第三級", "amount": 400_000},
+    {"label": "第四級", "amount": 300_000},
+    {"label": "第五級", "amount": 200_000},
+    {"label": "第六級", "amount": 100_000},
+]
+assert taipei_entries["accident-disability"]["amount_tiers"] == [
+    {"label": "第一級", "amount": 1_000_000},
+    {"label": "第二級", "amount": 800_000},
+    {"label": "第三級", "amount": 600_000},
+    {"label": "第四級", "amount": 400_000},
+    {"label": "第五級", "amount": 200_000},
+    {"label": "第六級", "amount": 100_000},
+]
+assert taipei_entries["disability-living-assistance-annual"]["amount_tiers"] == [
+    {"label": "第一級殘廢每週年", "amount": 300_000},
+    {"label": "第二級殘廢每週年", "amount": 250_000},
+]
+assert taipei_entries["inpatient-medical-reimbursement-limit"]["amount"] == 100_000
+assert taipei_entries["hospital-daily-allowance"]["amount"] == 600
+assert taipei_entries["accident-outpatient-medical-limit"]["amount"] == 30_000
+assert taipei_entries["major-surgery"]["amount"] == 50_000
+assert taipei_entries["major-burn"]["amount"] == 30_000
+assert taipei_entries["low-income-project-subsidy-limit"]["amount"] == 500_000
+assert taipei_entries["collective-food-poisoning"]["amount"] == 3_000
+assert taipei_entries["major-accident-or-fracture-inpatient-limit"]["amount"] == 30_000
+assert taipei_entries["facial-reconstruction-limit"]["amount"] == 30_000
+taipei_partial = {
+    **taiwan_taipei_student_group_document,
+    "page_count": 3,
+    "pages_parsed": 3,
+    "text": normalize_terms_text(
+        "\n".join(
+            page.extract_text() or ""
+            for page in taiwan_taipei_student_group_reader.pages[:3]
+        )
+    ),
+}
+taipei_completed = complete_strict_source_document(
+    taipei_partial, TAIWAN_TAIPEI_STUDENT_GROUP_PATH
+)
+assert taipei_completed["page_count"] == 11
+assert parse_taiwan_taipei_student_group_fixed_schedule(
+    taipei_completed
+) == taiwan_taipei_student_group_schedule
+assert parse_taiwan_taipei_student_group_fixed_schedule(
+    {**taiwan_taipei_student_group_document, "product_id": "wrong-product"}
+) is None
+assert parse_taiwan_taipei_student_group_fixed_schedule(
+    {**taiwan_taipei_student_group_document, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_taiwan_taipei_student_group_fixed_schedule(
+    {**taiwan_taipei_student_group_document, "page_count": 10}
+) is None
+assert parse_taiwan_taipei_student_group_fixed_schedule(
+    {
+        **taiwan_taipei_student_group_document,
+        "text": taiwan_taipei_student_group_document["text"].replace(
+            "意外身故保險金」新台幣二百萬元",
+            "意外身故保險金」新台幣二百一十萬元",
+            1,
+        ),
+    }
+) is None
+
+
+CHAOYANG_XINGNONG_STUDENT_GROUP_PRODUCT_IDS = [
+    "212217M11A01500",
+    "212217M11A01501",
+    "212217M11A01502",
+]
+CHAOYANG_XINGNONG_STUDENT_GROUP_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-067"
+)
+
+
+def chaoyang_xingnong_student_group_document(product_id: str) -> dict:
+    pdf_path = (
+        CHAOYANG_XINGNONG_STUDENT_GROUP_ROOT
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    reader = PdfReader(pdf_path, strict=False)
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(reader.pages),
+        "pages_parsed": len(reader.pages),
+        "text": normalize_terms_text(
+            "\n".join(page.extract_text() or "" for page in reader.pages)
+        ),
+    }
+
+
+chaoyang_xingnong_student_schedules = {}
+for product_id in CHAOYANG_XINGNONG_STUDENT_GROUP_PRODUCT_IDS:
+    document = chaoyang_xingnong_student_group_document(product_id)
+    schedule = parse_chaoyang_xingnong_student_group_fixed_schedule(document)
+    assert schedule is not None
+    chaoyang_xingnong_student_schedules[product_id] = schedule
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "chaoyang-xingnong-student-group-fixed-schedule-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "fixed"
+    assert schedule["selection_label"] == "固定學生團體保險給付"
+
+assert chaoyang_xingnong_student_schedules["212217M11A01500"][
+    "version_characteristics"
+] == {
+    "terms_revision": "88-original",
+    "filing_date": "88.06.09",
+    "filing_number": "台財保第882409589號",
+    "revision_dates": ["93.12.29", "94.01.03"],
+    "death_amount": 500_000,
+    "disability_term": "殘廢",
+    "disability_grade_count": 6,
+    "disability_table_item_count": 28,
+    "disability_living_assistance_grades": "1-2",
+    "disability_living_assistance_annual_payments": 4,
+    "inpatient_medical_limit": 50_000,
+    "major_surgery_project_subsidy_limit": 120_000,
+    "major_surgery_table_item_count": 25,
+    "accident_outpatient_medical_limit": 5_000,
+    "accident_outpatient_minimum_expense": 500,
+    "same_hospital_readmission_days": 14,
+    "major_surgery_claim_window_years": 1,
+    "post_policy_claim_days_limit": 180,
+    "death_disability_period_cap": 500_000,
+}
+assert chaoyang_xingnong_student_schedules["212217M11A01501"][
+    "version_characteristics"
+]["terms_revision"] == "93-first-revision"
+assert chaoyang_xingnong_student_schedules["212217M11A01502"][
+    "version_characteristics"
+]["terms_revision"] == "94-second-revision"
+
+chaoyang_xingnong_student_entries = {
+    entry["id"]: entry
+    for entry in chaoyang_xingnong_student_schedules["212217M11A01500"][
+        "coverage_entries"
+    ]
+}
+assert set(chaoyang_xingnong_student_entries) == {
+    "death",
+    "disability",
+    "disability-living-assistance-annual",
+    "inpatient-medical-reimbursement-limit",
+    "major-surgery-project-subsidy-limit",
+    "accident-outpatient-medical-limit",
+}
+assert chaoyang_xingnong_student_entries["death"]["amount"] == 500_000
+assert chaoyang_xingnong_student_entries["disability"]["amount_tiers"] == [
+    {"label": "第一級", "amount": 500_000},
+    {"label": "第二級", "amount": 375_000},
+    {"label": "第三級", "amount": 250_000},
+    {"label": "第四級", "amount": 175_000},
+    {"label": "第五級", "amount": 75_000},
+    {"label": "第六級", "amount": 25_000},
+]
+assert chaoyang_xingnong_student_entries[
+    "disability-living-assistance-annual"
+]["amount_tiers"] == [
+    {"label": "第一級第1年", "amount": 150_000},
+    {"label": "第一級第2年", "amount": 200_000},
+    {"label": "第一級第3年", "amount": 250_000},
+    {"label": "第一級第4年", "amount": 300_000},
+    {"label": "第二級第1年", "amount": 112_500},
+    {"label": "第二級第2年", "amount": 150_000},
+    {"label": "第二級第3年", "amount": 187_500},
+    {"label": "第二級第4年", "amount": 225_000},
+]
+assert (
+    chaoyang_xingnong_student_entries["inpatient-medical-reimbursement-limit"][
+        "amount"
+    ]
+    == 50_000
+)
+assert (
+    chaoyang_xingnong_student_entries["major-surgery-project-subsidy-limit"][
+        "amount"
+    ]
+    == 120_000
+)
+assert (
+    chaoyang_xingnong_student_entries["accident-outpatient-medical-limit"][
+        "amount"
+    ]
+    == 5_000
+)
+assert "五百元" in " ".join(
+    chaoyang_xingnong_student_entries["accident-outpatient-medical-limit"][
+        "conditions"
+    ]
+)
+
+chaoyang_xingnong_student_base = chaoyang_xingnong_student_group_document(
+    "212217M11A01500"
+)
+chaoyang_xingnong_student_path = (
+    CHAOYANG_XINGNONG_STUDENT_GROUP_ROOT
+    / "212217M11A01500"
+    / "212217M11A01500-A.pdf"
+)
+chaoyang_xingnong_student_reader = PdfReader(
+    chaoyang_xingnong_student_path, strict=False
+)
+chaoyang_xingnong_student_partial = {
+    **chaoyang_xingnong_student_base,
+    "page_count": 2,
+    "pages_parsed": 2,
+    "text": normalize_terms_text(
+        "\n".join(
+            page.extract_text() or ""
+            for page in chaoyang_xingnong_student_reader.pages[:2]
+        )
+    ),
+}
+chaoyang_xingnong_student_completed = complete_strict_source_document(
+    chaoyang_xingnong_student_partial,
+    chaoyang_xingnong_student_path,
+)
+assert chaoyang_xingnong_student_completed["page_count"] == 4
+assert parse_chaoyang_xingnong_student_group_fixed_schedule(
+    chaoyang_xingnong_student_completed
+) == chaoyang_xingnong_student_schedules["212217M11A01500"]
+assert parse_chaoyang_xingnong_student_group_fixed_schedule(
+    {**chaoyang_xingnong_student_base, "product_id": "wrong-product"}
+) is None
+assert parse_chaoyang_xingnong_student_group_fixed_schedule(
+    {**chaoyang_xingnong_student_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_chaoyang_xingnong_student_group_fixed_schedule(
+    {**chaoyang_xingnong_student_base, "document_type": "product_summary"}
+) is None
+assert parse_chaoyang_xingnong_student_group_fixed_schedule(
+    {**chaoyang_xingnong_student_base, "page_count": 3}
+) is None
+assert parse_chaoyang_xingnong_student_group_fixed_schedule(
+    {
+        **chaoyang_xingnong_student_base,
+        "text": chaoyang_xingnong_student_base["text"].replace(
+            "身故保險金新台幣伍拾萬元",
+            "身故保險金新台幣伍拾壹萬元",
+            1,
+        ),
+    }
+) is None
+
+
+FUBON_FAMILY_GIFT_PRODUCT_ID = "209391M12G00700"
+FUBON_FAMILY_GIFT_PATH = (
+    Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-documents"
+    / "tii-life-050"
+    / FUBON_FAMILY_GIFT_PRODUCT_ID
+    / f"{FUBON_FAMILY_GIFT_PRODUCT_ID}-A.pdf"
+)
+fubon_family_gift_reader = PdfReader(FUBON_FAMILY_GIFT_PATH, strict=False)
+fubon_family_gift_document = {
+    "product_id": FUBON_FAMILY_GIFT_PRODUCT_ID,
+    "file_name": FUBON_FAMILY_GIFT_PATH.name,
+    "document_type": "policy_terms",
+    "page_count": len(fubon_family_gift_reader.pages),
+    "pages_parsed": len(fubon_family_gift_reader.pages),
+    "text": normalize_terms_text(
+        "\n".join(page.extract_text() or "" for page in fubon_family_gift_reader.pages)
+    ),
+}
+fubon_family_gift_schedule = parse_fubon_family_gift_accident_health_plan_table(
+    fubon_family_gift_document
+)
+assert fubon_family_gift_schedule is not None
+assert (
+    parse_plan_table_with_parser(fubon_family_gift_document)[0]
+    == "fubon-family-gift-accident-health-plan-v1"
+)
+assert fubon_family_gift_schedule["selection_type"] == "plan"
+assert fubon_family_gift_schedule["selection_label"] == "投保計畫別"
+assert fubon_family_gift_schedule["version_characteristics"] == {
+    "terms_revision": "102-original",
+    "plan_count": 5,
+    "non_guaranteed_renewal": True,
+    "maximum_renewal_age": 70,
+    "cancer_waiting_days": 30,
+    "cancer_classification": "original-two-tier",
+    "general_hospital_days_limit": 60,
+    "icu_days_limit": 7,
+    "accident_treatment_window_days": 180,
+    "accident_hospital_days_limit": 365,
+    "major_burn_survival_days": 15,
+    "disability_term": "殘廢",
+    "disability_levels": 11,
+    "disability_rate_min_percent": 5,
+    "disability_rate_max_percent": 100,
+    "same_hospital_readmission_days": 14,
+    "short_term_rate_table": True,
+}
+assert [plan["label"] for plan in fubon_family_gift_schedule["plan_options"]] == [
+    "計畫一",
+    "計畫二",
+    "計畫三",
+    "計畫四",
+    "計畫五",
+]
+fubon_plan_entries = [
+    {entry["id"]: entry for entry in plan["coverage_entries"]}
+    for plan in fubon_family_gift_schedule["plan_options"]
+]
+assert fubon_plan_entries[0]["life-death-or-funeral"]["amount"] == 2_000_000
+assert fubon_plan_entries[1]["life-death-or-funeral"]["amount"] == 3_000_000
+assert fubon_plan_entries[0]["first-carcinoma-in-situ"]["amount"] == 5_000
+assert fubon_plan_entries[0]["first-malignant-cancer"]["amount"] == 50_000
+assert fubon_plan_entries[0]["major-burn"]["amount"] == 1_200_000
+assert fubon_plan_entries[1]["major-burn"]["amount"] == 1_600_000
+assert fubon_plan_entries[0]["general-accidental-death"]["amount"] == 3_000_000
+assert fubon_plan_entries[1]["general-accidental-death"]["amount"] == 4_000_000
+assert fubon_plan_entries[2]["general-accidental-death"]["amount"] == 3_000_000
+assert fubon_plan_entries[3]["general-accidental-death"]["amount"] == 5_000_000
+assert fubon_plan_entries[4]["general-accidental-death"]["amount"] == 8_000_000
+assert fubon_plan_entries[0]["air-transit-accidental-death-additional"]["amount"] == 6_000_000
+assert fubon_plan_entries[1]["air-transit-accidental-death-additional"]["amount"] == 8_000_000
+assert fubon_plan_entries[0]["general-accidental-disability"]["amount_tiers"][0] == {
+    "label": "第1級 100%",
+    "amount": 3_000_000,
+}
+assert fubon_plan_entries[0]["general-accidental-disability"]["amount_tiers"][-1] == {
+    "label": "第11級 5%",
+    "amount": 150_000,
+}
+assert fubon_plan_entries[1]["air-transit-accidental-disability-additional"]["amount_tiers"][0]["amount"] == 8_000_000
+assert fubon_plan_entries[0]["general-hospital-daily"]["amount"] == 1_000
+assert fubon_plan_entries[0]["icu-hospital-daily"]["amount"] == 1_000
+assert "general-hospital-daily" not in fubon_plan_entries[2]
+assert "life-death-or-funeral" not in fubon_plan_entries[2]
+assert fubon_plan_entries[2]["accident-hospital-daily"]["amount"] == 500
+assert fubon_plan_entries[3]["accident-icu-hospital-daily"]["amount"] == 500
+assert fubon_plan_entries[4]["accident-outpatient-surgery"]["amount"] == 1_000
+fubon_family_gift_partial = {
+    **fubon_family_gift_document,
+    "page_count": 2,
+    "pages_parsed": 2,
+    "text": normalize_terms_text(
+        "\n".join(page.extract_text() or "" for page in fubon_family_gift_reader.pages[:2])
+    ),
+}
+fubon_family_gift_completed = complete_strict_source_document(
+    fubon_family_gift_partial, FUBON_FAMILY_GIFT_PATH
+)
+assert fubon_family_gift_completed["page_count"] == 21
+assert parse_fubon_family_gift_accident_health_plan_table(
+    fubon_family_gift_completed
+) == fubon_family_gift_schedule
+assert parse_fubon_family_gift_accident_health_plan_table(
+    {**fubon_family_gift_document, "product_id": "wrong-product"}
+) is None
+assert parse_fubon_family_gift_accident_health_plan_table(
+    {**fubon_family_gift_document, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_fubon_family_gift_accident_health_plan_table(
+    {**fubon_family_gift_document, "page_count": 20}
+) is None
+assert parse_fubon_family_gift_accident_health_plan_table(
+    {
+        **fubon_family_gift_document,
+        "text": fubon_family_gift_document["text"].replace(
+            "一般意外身故保險金或喪葬費用保險金 300 萬 400 萬 300 萬 500 萬 800 萬",
+            "一般意外身故保險金或喪葬費用保險金 300 萬 400 萬 300 萬 500 萬 900 萬",
+            1,
+        ),
+    }
+) is None
+
+
+FUBON_FAMILY_GIFT_LATE_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-049"
+)
+FUBON_FAMILY_GIFT_LATE_PRODUCTS = {
+    "209291M19G00301": (
+        21,
+        "103-first-revision",
+        "MGH1030501",
+        "original-two-tier",
+        "原位癌",
+        "殘廢",
+    ),
+    "209291MZ9G00221A11Z10000002": (
+        23,
+        "104-second-revision",
+        "MGH1040804",
+        "original-two-tier",
+        "原位癌",
+        "殘廢",
+    ),
+    "209291MZ9G00221A11Z10000003": (
+        23,
+        "107-third-revision",
+        "MGH1070430",
+        "original-two-tier",
+        "原位癌",
+        "殘廢",
+    ),
+    "209291MZ9G00221A11Z10000004": (
+        23,
+        "107-fourth-revision",
+        "MGH1070914",
+        "original-two-tier",
+        "原位癌",
+        "失能",
+    ),
+    "209291MZ9G00221A11Z10000005": (
+        24,
+        "108-fifth-revision",
+        "MGH1080101",
+        "2018-three-tier",
+        "癌症初期",
+        "失能",
+    ),
+    "209291MZ9G00221A11Z10000006": (
+        24,
+        "109-sixth-revision",
+        "MGH1090101",
+        "2018-three-tier",
+        "癌症初期",
+        "失能",
+    ),
+    "209291MZ9G00221A11Z10000007": (
+        24,
+        "109-seventh-revision",
+        "MGH1090901",
+        "2018-three-tier",
+        "癌症初期",
+        "失能",
+    ),
+}
+
+
+def fubon_family_gift_late_document(product_id: str, suffix: str = "A") -> dict:
+    pdf_path = FUBON_FAMILY_GIFT_LATE_ROOT / product_id / f"{product_id}-{suffix}.pdf"
+    reader = PdfReader(pdf_path, strict=False)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for product_id, (
+    expected_pages,
+    expected_revision,
+    expected_code,
+    expected_cancer_classification,
+    expected_early_cancer_label,
+    expected_disability_term,
+) in FUBON_FAMILY_GIFT_LATE_PRODUCTS.items():
+    document = fubon_family_gift_late_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    assert expected_code in document["text"]
+    schedule = parse_fubon_family_gift_accident_health_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-family-gift-accident-health-plan-v1"
+    assert integrated[1] == schedule
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["cancer_classification"] == expected_cancer_classification
+    assert characteristics["disability_term"] == expected_disability_term
+    assert characteristics["plan_count"] == 5
+    assert characteristics["maximum_renewal_age"] == 70
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+        "計畫四",
+        "計畫五",
+    ]
+    late_entries = [
+        {entry["id"]: entry for entry in plan["coverage_entries"]}
+        for plan in schedule["plan_options"]
+    ]
+    assert late_entries[0]["total-disability"]["name"] == (
+        f"完全{expected_disability_term}保險金"
+    )
+    assert (
+        late_entries[0]["first-carcinoma-in-situ"]["name"]
+        == f"初次罹患癌症保險金（{expected_early_cancer_label}）"
+    )
+    assert late_entries[0]["general-accidental-disability"]["name"] == (
+        f"一般意外{expected_disability_term}保險金"
+    )
+    assert late_entries[0]["life-death-or-funeral"]["amount"] == 2_000_000
+    assert late_entries[1]["life-death-or-funeral"]["amount"] == 3_000_000
+    assert late_entries[0]["general-accidental-death"]["amount"] == 3_000_000
+    assert late_entries[4]["general-accidental-death"]["amount"] == 8_000_000
+    assert late_entries[0]["general-accidental-disability"]["amount_tiers"][0] == {
+        "label": "第1級 100%",
+        "amount": 3_000_000,
+    }
+    assert late_entries[0]["general-accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 150_000,
+    }
+    assert late_entries[2]["accident-hospital-daily"]["amount"] == 500
+    assert late_entries[4]["accident-outpatient-surgery"]["amount"] == 1_000
+
+    source_path = FUBON_FAMILY_GIFT_LATE_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert (
+        parse_fubon_family_gift_accident_health_plan_table(completed_document)
+        == schedule
+    )
+    assert (
+        parse_fubon_family_gift_accident_health_plan_table(
+            fubon_family_gift_late_document(product_id, "F")
+        )
+        is None
+    )
+    assert (
+        parse_fubon_family_gift_accident_health_plan_table(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_family_gift_accident_health_plan_table(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+
+
+FUBON_WANAN_365_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-049"
+)
+FUBON_WANAN_365_PRODUCTS = {
+    "209211MZ1A00921A11Z10000000": "108-original",
+    "209211MZ1A00921A11Z10000001": "109-first-revision",
+    "209211MZ1A00921A11Z10000002": "110-second-revision",
+    "209211MZ1A00921A11Z10000003": "112-third-revision",
+    "209211MZ1A00921A11Z10000004": "112-fourth-revision",
+    "209211MZ1A00921A11Z10000005": "112-fifth-revision",
+}
+
+
+def fubon_wanan_365_document(product_id: str) -> dict:
+    pdf_path = FUBON_WANAN_365_ROOT / product_id / f"{product_id}-A.pdf"
+    reader = PdfReader(pdf_path, strict=False)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for product_id, expected_revision in FUBON_WANAN_365_PRODUCTS.items():
+    document = fubon_wanan_365_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == 15
+    schedule = parse_fubon_wanan_365_accident_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-wanan-365-accident-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "投保計畫別"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["plan_count"] == 2
+    assert characteristics["plan_a_face_amount"] == 1_000_000
+    assert characteristics["plan_b_face_amount"] == 2_000_000
+    assert characteristics["maximum_renewal_age"] == 75
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["major_burn_survival_days"] == 15
+    assert characteristics["major_burn_rate_percent"] == 40
+    assert characteristics["food_poisoning_annual_limit_times"] == 3
+    assert characteristics["disability_term"] == "失能"
+    assert characteristics["disability_schedule_item_count"] == 80
+    assert characteristics["disability_rate_min_percent"] == 5
+    assert characteristics["disability_rate_max_percent"] == 100
+    assert characteristics["natural_disaster_disability_min_level"] == 2
+    assert characteristics["natural_disaster_disability_max_level"] == 11
+    assert [plan["label"] for plan in schedule["plan_options"]] == ["計畫A", "計畫B"]
+    plan_a_entries = {
+        entry["id"]: entry for entry in schedule["plan_options"][0]["coverage_entries"]
+    }
+    plan_b_entries = {
+        entry["id"]: entry for entry in schedule["plan_options"][1]["coverage_entries"]
+    }
+    expected_entry_ids = {
+        "general-accidental-death-or-funeral",
+        "mass-transit-accidental-death-or-funeral",
+        "public-building-fire-accidental-death-or-funeral",
+        "elevator-accidental-death-or-funeral",
+        "overseas-accidental-death-or-funeral",
+        "holiday-accidental-death-or-funeral",
+        "carbon-monoxide-poisoning-death",
+        "general-accidental-disability",
+        "mass-transit-accidental-disability",
+        "public-building-fire-accidental-disability",
+        "elevator-accidental-disability",
+        "overseas-accidental-disability",
+        "holiday-accidental-disability",
+        "carbon-monoxide-poisoning-disability",
+        "natural-disaster-accidental-disability-levels-2-to-11",
+        "disability-living-assistance-levels-1-to-3",
+        "major-burn",
+        "food-poisoning-hospitalization",
+    }
+    assert set(plan_a_entries) == expected_entry_ids
+    assert set(plan_b_entries) == expected_entry_ids
+    assert plan_a_entries["general-accidental-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_b_entries["general-accidental-death-or-funeral"]["amount"] == 2_000_000
+    assert plan_a_entries["overseas-accidental-death-or-funeral"]["amount"] == 2_000_000
+    assert plan_b_entries["overseas-accidental-death-or-funeral"]["amount"] == 2_000_000
+    assert plan_a_entries["holiday-accidental-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_b_entries["holiday-accidental-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_a_entries["general-accidental-disability"]["amount_tiers"][0] == {
+        "label": "第1級 100%",
+        "amount": 1_000_000,
+    }
+    assert plan_b_entries["general-accidental-disability"]["amount_tiers"][0] == {
+        "label": "第1級 100%",
+        "amount": 2_000_000,
+    }
+    assert plan_a_entries[
+        "natural-disaster-accidental-disability-levels-2-to-11"
+    ]["amount_tiers"][0] == {"label": "第2級 90%", "amount": 900_000}
+    assert plan_b_entries[
+        "natural-disaster-accidental-disability-levels-2-to-11"
+    ]["amount_tiers"][0] == {"label": "第2級 90%", "amount": 1_800_000}
+    assert (
+        plan_a_entries["disability-living-assistance-levels-1-to-3"]["amount"]
+        == 500_000
+    )
+    assert (
+        plan_b_entries["disability-living-assistance-levels-1-to-3"]["amount"]
+        == 500_000
+    )
+    assert plan_a_entries["major-burn"]["amount"] == 400_000
+    assert plan_b_entries["major-burn"]["amount"] == 800_000
+    assert plan_a_entries["food-poisoning-hospitalization"]["amount"] == 2_500
+    assert plan_b_entries["food-poisoning-hospitalization"]["amount"] == 2_500
+    assert plan_a_entries["food-poisoning-hospitalization"]["rate_percent"] == 0.25
+    assert plan_b_entries["food-poisoning-hospitalization"]["rate_percent"] == 0.125
+    for entries in (plan_a_entries, plan_b_entries):
+        for entry in entries.values():
+            assert entry["source"] == "terms"
+            assert entry.get("conditions")
+
+wanan_source_path = (
+    FUBON_WANAN_365_ROOT
+    / "209211MZ1A00921A11Z10000000"
+    / "209211MZ1A00921A11Z10000000-A.pdf"
+)
+wanan_reader = PdfReader(wanan_source_path, strict=False)
+wanan_base = fubon_wanan_365_document("209211MZ1A00921A11Z10000000")
+wanan_partial = {
+    **wanan_base,
+    "page_count": 2,
+    "pages_parsed": 2,
+    "text": normalize_terms_text(
+        "\n".join(page.extract_text() or "" for page in wanan_reader.pages[:2])
+    ),
+}
+wanan_completed = complete_strict_source_document(wanan_partial, wanan_source_path)
+assert wanan_completed["page_count"] == wanan_completed["pages_parsed"] == 15
+assert parse_fubon_wanan_365_accident_plan_table(
+    wanan_completed
+) == parse_fubon_wanan_365_accident_plan_table(wanan_base)
+assert parse_fubon_wanan_365_accident_plan_table(
+    {**wanan_base, "product_id": "wrong-product"}
+) is None
+assert parse_fubon_wanan_365_accident_plan_table(
+    {**wanan_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_fubon_wanan_365_accident_plan_table(
+    {**wanan_base, "document_type": "product_summary"}
+) is None
+assert parse_fubon_wanan_365_accident_plan_table({**wanan_base, "page_count": 14}) is None
+assert parse_fubon_wanan_365_accident_plan_table(
+    {
+        **wanan_base,
+        "text": wanan_base["text"].replace(
+            "計畫A 之保險金額為新臺幣(下同) 100 萬元",
+            "計畫A 之保險金額為新臺幣(下同) 110 萬元",
+            1,
+        ),
+    }
 ) is None
 
 
@@ -3464,6 +5607,246 @@ assert parse_global_winterthur_cancer_annuity_face_amount(
 ) is None
 
 
+KGI_RITAI_CANCER_PRODUCT_IDS = {
+    "205321R11A50600": "original",
+    "205321R11A50601": "first-revision",
+}
+
+
+def kgi_ritai_cancer_document(product_id: str, suffix: str = "A") -> dict:
+    pdf_path = TII_LIFE_026_ROOT / product_id / f"{product_id}-{suffix}.pdf"
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+kgi_ritai_schedules = {}
+for kgi_ritai_product_id, expected_revision in KGI_RITAI_CANCER_PRODUCT_IDS.items():
+    kgi_ritai_terms = kgi_ritai_cancer_document(kgi_ritai_product_id)
+    parsed_with_id = parse_plan_table_with_parser(kgi_ritai_terms)
+    assert parsed_with_id is not None
+    assert parsed_with_id[0] == "kgi-china-life-ritai-cancer-annuity-face-amount-v1"
+    kgi_ritai_schedule = parsed_with_id[1]
+    kgi_ritai_schedules[kgi_ritai_product_id] = kgi_ritai_schedule
+    assert kgi_ritai_schedule["selection_type"] == "face_amount"
+    assert kgi_ritai_schedule["selection_label"] == "保險金額"
+    assert kgi_ritai_schedule["version_characteristics"] == {
+        "product_variant": "investment-linked",
+        "revision": expected_revision,
+        "cancer_initial_waiting_days": 90,
+        "cancer_reinstatement_waiting_days": 90,
+        "cancer_renewal_waiting_days": 0,
+        "maximum_renewal_age": 75,
+        "terminates_next_policy_month_after_initial_cancer": True,
+        "post_death_actual_diagnosis_date_evidence_allowed": True,
+        "annuity_anniversary_basis": "initial-cancer-benefit-payment-date",
+    }
+    kgi_ritai_entries = {
+        entry["id"]: entry for entry in kgi_ritai_schedule["coverage_entries"]
+    }
+    assert len(kgi_ritai_entries) == 7
+    assert {
+        entry_id: entry["rate_percent"]
+        for entry_id, entry in kgi_ritai_entries.items()
+    } == {
+        "initial-carcinoma-in-situ": 10,
+        "initial-cancer": 100,
+        "cancer-recovery-annuity-year-1": 90,
+        "cancer-recovery-annuity-year-2": 80,
+        "cancer-recovery-annuity-year-3": 70,
+        "cancer-recovery-annuity-year-4": 60,
+        "cancer-recovery-annuity-years-5-9": 20,
+    }
+    assert all(
+        entry["calculation_basis"] == "percentage_of_base"
+        and "附表一（保險金給付表），第 6 頁" in entry["source_ref"]
+        for entry in kgi_ritai_entries.values()
+    )
+    assert parse_kgi_china_life_ritai_cancer_annuity_face_amount(
+        kgi_ritai_cancer_document(kgi_ritai_product_id, "F")
+    ) is None
+
+kgi_ritai_base = kgi_ritai_cancer_document("205321R11A50600")
+assert parse_kgi_china_life_ritai_cancer_annuity_face_amount(
+    {**kgi_ritai_base, "product_id": "205321R11A99900"}
+) is None
+assert parse_kgi_china_life_ritai_cancer_annuity_face_amount(
+    {
+        **kgi_ritai_base,
+        "text": kgi_ritai_base["text"].replace("新台幣10,000元", "新台幣11,000元", 1),
+    }
+) is None
+assert parse_kgi_china_life_ritai_cancer_annuity_face_amount(
+    {
+        **kgi_ritai_base,
+        "product_id": "205321R11A50601",
+        "file_name": "205321R11A50601-A.pdf",
+    }
+) is None
+
+
+FUBON_HSL_INPATIENT_PRODUCT_ID = "209311RZ1A02221A11Z10000001"
+FUBON_HSL_INPATIENT_PATH = (
+    Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-documents"
+    / "tii-life-050"
+    / FUBON_HSL_INPATIENT_PRODUCT_ID
+    / f"{FUBON_HSL_INPATIENT_PRODUCT_ID}-A.pdf"
+)
+fubon_hsl_reader = PdfReader(FUBON_HSL_INPATIENT_PATH, strict=False)
+fubon_hsl_document = {
+    "product_id": FUBON_HSL_INPATIENT_PRODUCT_ID,
+    "file_name": FUBON_HSL_INPATIENT_PATH.name,
+    "document_type": "policy_terms",
+    "page_count": len(fubon_hsl_reader.pages),
+    "pages_parsed": len(fubon_hsl_reader.pages),
+    "text": normalize_terms_text(
+        "\n".join(page.extract_text() or "" for page in fubon_hsl_reader.pages)
+    ),
+}
+fubon_hsl_schedule = parse_fubon_hsl_inpatient_unit_table(fubon_hsl_document)
+assert fubon_hsl_schedule is not None
+assert fubon_hsl_schedule["selection_type"] == "unit"
+assert fubon_hsl_schedule["version_characteristics"] == {
+    "terms_revision": "111-12-02-revision",
+    "disease_waiting_days": 30,
+    "day_hospital_excluded": True,
+    "same_hospital_readmission_days": 14,
+    "post_expiry_readmission_excluded": True,
+    "non_nhi_payment_rate_percent": 65,
+    "room_daily_days_limit": 365,
+    "renewal_age_self_or_spouse": 75,
+    "renewal_age_child": 23,
+    "linked_non_deductible_medical_required": True,
+    "newborn_metabolic_disease_exempt_waiting_period": True,
+    "prosthetic_eye_limb_room_net_limit_multiplier": 10,
+}
+fubon_hsl_entries = {
+    entry["id"]: entry for entry in fubon_hsl_schedule["coverage_entries"]
+}
+assert len(fubon_hsl_entries) == 3
+assert fubon_hsl_entries["daily-room-expense-reimbursement"]["amount"] == 150
+assert fubon_hsl_entries["daily-room-expense-reimbursement"]["amount_tiers"] == [
+    {"label": "每日病房費用自負額", "amount": 110},
+    {"label": "每日病房費用限額", "amount": 150},
+]
+assert fubon_hsl_entries["inpatient-medical-expense-reimbursement"]["amount"] == 12_800
+assert fubon_hsl_entries["inpatient-medical-expense-reimbursement"]["amount_tiers"] == [
+    {"label": "住院醫療費用自負額", "amount": 8_818},
+    {"label": "住院醫療費用限額", "amount": 12_800},
+]
+assert fubon_hsl_entries["prosthetic-eye-limb-sub-limit"]["amount"] == 400
+assert (
+    parse_plan_table_with_parser(fubon_hsl_document)[0]
+    == "fubon-hsl-inpatient-unit-v1"
+)
+fubon_hsl_partial = {
+    **fubon_hsl_document,
+    "page_count": 4,
+    "pages_parsed": 4,
+    "text": normalize_terms_text(
+        "\n".join(page.extract_text() or "" for page in fubon_hsl_reader.pages[:4])
+    ),
+}
+fubon_hsl_completed = complete_strict_source_document(
+    fubon_hsl_partial, FUBON_HSL_INPATIENT_PATH
+)
+assert fubon_hsl_completed["page_count"] == 7
+assert parse_fubon_hsl_inpatient_unit_table(fubon_hsl_completed) == fubon_hsl_schedule
+assert parse_fubon_hsl_inpatient_unit_table(
+    {**fubon_hsl_document, "product_id": "wrong-product-id"}
+) is None
+assert parse_fubon_hsl_inpatient_unit_table(
+    {**fubon_hsl_document, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_fubon_hsl_inpatient_unit_table(
+    {**fubon_hsl_document, "page_count": 6}
+) is None
+assert parse_fubon_hsl_inpatient_unit_table(
+    {
+        **fubon_hsl_document,
+        "text": fubon_hsl_document["text"].replace("每次12,800元", "每次12,900元", 1),
+    }
+) is None
+
+FUBON_HSL_INPATIENT_ORIGINAL_PRODUCT_ID = "209311RZ1A02221A11Z10000000"
+FUBON_HSL_INPATIENT_ORIGINAL_PATH = (
+    Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-documents"
+    / "tii-life-050"
+    / FUBON_HSL_INPATIENT_ORIGINAL_PRODUCT_ID
+    / f"{FUBON_HSL_INPATIENT_ORIGINAL_PRODUCT_ID}-A.pdf"
+)
+fubon_hsl_original_reader = PdfReader(
+    FUBON_HSL_INPATIENT_ORIGINAL_PATH, strict=False
+)
+fubon_hsl_original_document = {
+    "product_id": FUBON_HSL_INPATIENT_ORIGINAL_PRODUCT_ID,
+    "file_name": FUBON_HSL_INPATIENT_ORIGINAL_PATH.name,
+    "document_type": "policy_terms",
+    "page_count": len(fubon_hsl_original_reader.pages),
+    "pages_parsed": len(fubon_hsl_original_reader.pages),
+    "text": normalize_terms_text(
+        "\n".join(page.extract_text() or "" for page in fubon_hsl_original_reader.pages)
+    ),
+}
+fubon_hsl_original_schedule = parse_fubon_hsl_inpatient_unit_table(
+    fubon_hsl_original_document
+)
+assert fubon_hsl_original_schedule is not None
+assert (
+    parse_plan_table_with_parser(fubon_hsl_original_document)[0]
+    == "fubon-hsl-inpatient-unit-v1"
+)
+assert fubon_hsl_original_schedule["version_characteristics"] == {
+    **fubon_hsl_schedule["version_characteristics"],
+    "terms_revision": "109-12-04-original",
+}
+assert fubon_hsl_original_schedule["coverage_entries"] == fubon_hsl_schedule[
+    "coverage_entries"
+]
+fubon_hsl_original_summary_path = FUBON_HSL_INPATIENT_ORIGINAL_PATH.with_name(
+    f"{FUBON_HSL_INPATIENT_ORIGINAL_PRODUCT_ID}-F.pdf"
+)
+fubon_hsl_original_summary_reader = PdfReader(
+    fubon_hsl_original_summary_path, strict=False
+)
+assert parse_fubon_hsl_inpatient_unit_table(
+    {
+        "product_id": FUBON_HSL_INPATIENT_ORIGINAL_PRODUCT_ID,
+        "file_name": fubon_hsl_original_summary_path.name,
+        "document_type": "product_summary",
+        "page_count": len(fubon_hsl_original_summary_reader.pages),
+        "pages_parsed": len(fubon_hsl_original_summary_reader.pages),
+        "text": normalize_terms_text(
+            "\n".join(
+                page.extract_text() or ""
+                for page in fubon_hsl_original_summary_reader.pages
+            )
+        ),
+    }
+) is None
+assert parse_fubon_hsl_inpatient_unit_table(
+    {
+        **fubon_hsl_original_document,
+        "text": fubon_hsl_original_document["text"].replace(
+            "109.12.04 富壽商精字第1090005302 號函備查",
+            "109.12.05 富壽商精字第1090005302 號函備查",
+            1,
+        ),
+    }
+) is None
+
+
 FUBON_INPATIENT_TARGET_PRODUCT_IDS = (
     "209311R11A00310",
     "209311RZ1A00721A11Z10000011",
@@ -3646,6 +6029,8 @@ reject_fubon_inpatient_dense_replacement("實際支付之各項費用之六十�
 
 
 TII_LIFE_050_PRODUCT_IDS = (
+    "209391M11G00100",
+    "209391MZ1G00121A11Z10000001",
     "209391MZ1G00121A11Z10000002",
     "209391MZ1G00121A11Z10000003",
     "209391MZ1G00121A11Z10000004",
@@ -3681,10 +6066,20 @@ tii_life_050_documents = {
 }
 tii_life_050_schedules = {}
 expected_schedule_revisions = {
-    TII_LIFE_050_PRODUCT_IDS[0]: "104-revised-79-items",
-    TII_LIFE_050_PRODUCT_IDS[1]: "109-revised-80-items",
-    TII_LIFE_050_PRODUCT_IDS[2]: "109-revised-80-items",
-    TII_LIFE_050_PRODUCT_IDS[3]: "109-revised-80-items",
+    "209391M11G00100": "original-75-items",
+    "209391MZ1G00121A11Z10000001": "104-revised-79-items",
+    "209391MZ1G00121A11Z10000002": "104-revised-79-items",
+    "209391MZ1G00121A11Z10000003": "109-revised-80-items",
+    "209391MZ1G00121A11Z10000004": "109-revised-80-items",
+    "209391MZ1G00121A11Z10000005": "109-revised-80-items",
+}
+expected_disability_terms = {
+    "209391M11G00100": "殘廢",
+    "209391MZ1G00121A11Z10000001": "殘廢",
+    "209391MZ1G00121A11Z10000002": "失能",
+    "209391MZ1G00121A11Z10000003": "失能",
+    "209391MZ1G00121A11Z10000004": "失能",
+    "209391MZ1G00121A11Z10000005": "失能",
 }
 expected_amounts = {
     "policy-death": (500_000, 1_000_000, 2_000_000, 3_000_000),
@@ -3714,7 +6109,8 @@ expected_amounts = {
 }
 
 for product_id, document in tii_life_050_documents.items():
-    assert document["page_count"] == document["pages_parsed"] == 25
+    assert document["page_count"] == document["pages_parsed"]
+    assert document["page_count"] == (24 if product_id == "209391M11G00100" else 25)
     schedule = parse_fubon_new_lohas_combined_plan_table(document)
     assert schedule is not None
     integrated = parse_plan_table_with_parser(document)
@@ -3732,6 +6128,7 @@ for product_id, document in tii_life_050_documents.items():
     ]
     characteristics = schedule["version_characteristics"]
     assert characteristics["disability_schedule_revision"] == expected_schedule_revisions[product_id]
+    assert characteristics["disability_term"] == expected_disability_terms[product_id]
     assert characteristics["major_disease_initial_waiting_days"] == 90
     assert characteristics["major_disease_reinstatement_waiting_days"] == 90
     assert characteristics["mild_cancer_initial_waiting_days"] == 90
@@ -3769,7 +6166,8 @@ for product_id, document in tii_life_050_documents.items():
         "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:20])
     )
     completed_document = complete_strict_source_document(indexed_document, source_path)
-    assert completed_document["page_count"] == completed_document["pages_parsed"] == 25
+    assert completed_document["page_count"] == completed_document["pages_parsed"]
+    assert completed_document["page_count"] == document["page_count"]
     assert parse_fubon_new_lohas_combined_plan_table(completed_document) == schedule
 
     missing_source = complete_strict_source_document(
@@ -3779,7 +6177,7 @@ for product_id, document in tii_life_050_documents.items():
     assert missing_source is indexed_document
     assert parse_fubon_new_lohas_combined_plan_table(missing_source) is None
 
-base_document = tii_life_050_documents[TII_LIFE_050_PRODUCT_IDS[0]]
+base_document = tii_life_050_documents["209391MZ1G00121A11Z10000002"]
 base_text = base_document["text"]
 
 
@@ -3866,6 +6264,1960 @@ assert_tii_life_050_rejected(
     }
 )
 
+FUBON_STATUTORY_INFECTIOUS_PRODUCT_IDS = (
+    "209311MZ1B01021A11Z10000000",
+    "209311MZ1B01021A11Z10000001",
+)
+statutory_expected = {
+    "death": (500_000, 1_000_000, 1_500_000, 2_000_000, 2_500_000),
+    "statutory-infectious-death": (750_000, 1_500_000, 2_250_000, 3_000_000, 3_750_000),
+    "hospital-daily": (500, 1_000, 1_500, 2_000, 2_500),
+    "statutory-infectious-hospital-daily": (1_000, 2_000, 3_000, 4_000, 5_000),
+    "icu-daily": (500, 1_000, 1_500, 2_000, 2_500),
+    "home-recovery-daily": (250, 500, 750, 1_000, 1_250),
+    "statutory-infectious-diagnosis": (5_000, 10_000, 15_000, 20_000, 25_000),
+}
+for product_id in FUBON_STATUTORY_INFECTIOUS_PRODUCT_IDS:
+    document = tii_life_050_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == 9
+    schedule = parse_fubon_statutory_infectious_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-statutory-infectious-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "保障計畫"
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+        "計畫四",
+        "計畫五",
+    ]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["disease_initial_waiting_days"] == 30
+    assert characteristics["statutory_infectious_waiting_days"] == 14
+    assert characteristics["maximum_renewal_age"] == 75
+    assert characteristics["day_hospital_excluded"] is True
+    assert characteristics["statutory_death_rate_percent"] == 150
+    assert characteristics["statutory_hospital_daily_rate_percent"] == 200
+    assert characteristics["statutory_infectious_diagnosis_limit"] == "once_per_policy"
+    for plan_index, plan in enumerate(schedule["plan_options"]):
+        entries = {entry["id"]: entry for entry in plan["coverage_entries"]}
+        assert len(entries) == len(plan["coverage_entries"]) == 7
+        assert set(entries) == set(statutory_expected)
+        for entry_id, amounts in statutory_expected.items():
+            assert entries[entry_id]["amount"] == amounts[plan_index]
+            assert entries[entry_id]["source"] == "terms"
+            assert entries[entry_id].get("conditions")
+        assert entries["statutory-infectious-death"]["rate_percent"] == 150
+        assert entries["statutory-infectious-hospital-daily"]["rate_percent"] == 200
+
+    source_path = TII_LIFE_050_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:4])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 9
+    assert parse_fubon_statutory_infectious_plan_table(completed_document) == schedule
+    assert parse_fubon_statutory_infectious_plan_table(tii_life_050_document(product_id, "F")) is None
+
+statutory_base = tii_life_050_document(FUBON_STATUTORY_INFECTIOUS_PRODUCT_IDS[0])
+assert parse_fubon_statutory_infectious_plan_table(
+    {**statutory_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_fubon_statutory_infectious_plan_table(
+    {**statutory_base, "document_type": "product_summary"}
+) is None
+assert parse_fubon_statutory_infectious_plan_table(
+    {**statutory_base, "text": statutory_base["text"].replace("50 萬 100 萬 150 萬 200 萬 250 萬", "60 萬 100 萬 150 萬 200 萬 250 萬", 1)}
+) is None
+
+TII_LIFE_080_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-080"
+)
+FARGLORY_KANGFU_MEDICAL_PRODUCT_IDS = (
+    "216311RZ1A19421A11Z10000001",
+    "216311RZ1A19421A11Z10000002",
+    "216311RZ1A19421A11Z10000003",
+)
+
+
+def tii_life_080_document(product_id: str, suffix: str = "A") -> dict:
+    pdf_path = TII_LIFE_080_ROOT / product_id / f"{product_id}-{suffix}.pdf"
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+farglory_expected = {
+    "hospital-daily": (500, 1_000, 1_500, 2_000),
+    "hospital-auxiliary-daily": (500, 500, 500, 500),
+    "hospital-consolation": (3_500, 7_000, 10_500, 14_000),
+    "inpatient-medical-limit": (200_000, 300_000, 400_000, 500_000),
+    "surgery-limit": (150_000, 200_000, 250_000, 300_000),
+}
+expected_kangfu_revisions = {
+    "216311RZ1A19421A11Z10000001": ("107-revised", False, 6),
+    "216311RZ1A19421A11Z10000002": ("109-revised", False, 7),
+    "216311RZ1A19421A11Z10000003": ("111-revised", True, 7),
+}
+for product_id in FARGLORY_KANGFU_MEDICAL_PRODUCT_IDS:
+    document = tii_life_080_document(product_id)
+    expected_revision, expected_notice, expected_pages = expected_kangfu_revisions[product_id]
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    schedule = parse_farglory_kangfu_medical_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "farglory-kangfu-medical-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "投保計劃別"
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計劃一",
+        "計劃二",
+        "計劃三",
+        "計劃四",
+    ]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["disease_initial_waiting_days"] == 0
+    assert characteristics["day_hospital_excluded"] is True
+    assert characteristics["post_expiry_readmission_excluded"] is True
+    assert characteristics["nhi_uncovered_payment_rate_percent"] == 65
+    assert characteristics["hospital_auxiliary_daily_fixed_amount"] == 500
+    assert characteristics["hospital_consolation_daily_multiplier"] == 7
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["insured_notice_revision"] is expected_notice
+    for plan_index, plan in enumerate(schedule["plan_options"]):
+        entries = {entry["id"]: entry for entry in plan["coverage_entries"]}
+        assert len(entries) == len(plan["coverage_entries"]) == 5
+        assert set(entries) == set(farglory_expected)
+        for entry_id, amounts in farglory_expected.items():
+            assert entries[entry_id]["amount"] == amounts[plan_index]
+            assert entries[entry_id]["source"] == "terms"
+            assert entries[entry_id].get("conditions")
+        assert entries["hospital-consolation"]["multiplier"] == 7
+        assert entries["inpatient-medical-limit"]["amount_role"] == "limit"
+        assert entries["surgery-limit"]["amount_role"] == "limit"
+
+    source_path = TII_LIFE_080_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:3])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == expected_pages
+    assert parse_farglory_kangfu_medical_plan_table(completed_document) == schedule
+    assert parse_farglory_kangfu_medical_plan_table(tii_life_080_document(product_id, "F")) is None
+
+farglory_base = tii_life_080_document(FARGLORY_KANGFU_MEDICAL_PRODUCT_IDS[0])
+assert parse_farglory_kangfu_medical_plan_table(
+    {**farglory_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_farglory_kangfu_medical_plan_table(
+    {**farglory_base, "document_type": "product_summary"}
+) is None
+assert parse_farglory_kangfu_medical_plan_table(
+    {**farglory_base, "text": farglory_base["text"].replace("住院日額 500 1,000 1,500 2,000", "住院日額 600 1,000 1,500 2,000", 1)}
+) is None
+
+TII_LIFE_164_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-164"
+)
+GLOBAL_E_ROAD_PEACE_OVERSEAS_ILLNESS_PRODUCT_IDS = (
+    "264311AZ1AETS21A11Z10000000",
+    "264311AZ1AETS21A11Z10000001",
+    "264311AZ1AETS21A11Z10000002",
+    "264311AZ1AETS21A11Z10000003",
+)
+
+
+def tii_life_164_document(product_id: str, suffix: str = "A") -> dict:
+    pdf_path = TII_LIFE_164_ROOT / product_id / f"{product_id}-{suffix}.pdf"
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+expected_global_e_road_revisions = {
+    "264311AZ1AETS21A11Z10000000": ("original", False, False),
+    "264311AZ1AETS21A11Z10000001": ("107-first-revision", False, False),
+    "264311AZ1AETS21A11Z10000002": ("108-second-revision", False, False),
+    "264311AZ1AETS21A11Z10000003": ("109-third-revision", True, True),
+}
+for product_id in GLOBAL_E_ROAD_PEACE_OVERSEAS_ILLNESS_PRODUCT_IDS:
+    document = tii_life_164_document(product_id)
+    expected_revision, expected_regulatory_revision, expected_medical_opinion = (
+        expected_global_e_road_revisions[product_id]
+    )
+    assert document["page_count"] == document["pages_parsed"] == 4
+    schedule = parse_global_e_road_peace_overseas_illness_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "global-e-road-peace-overseas-illness-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "海外突發疾病醫療保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["overseas_illness_lookback_days"] == 180
+    assert characteristics["inpatient_claim_days_limit"] == 180
+    assert characteristics["outpatient_limit_rate_percent"] == 0.5
+    assert characteristics["emergency_limit_rate_percent"] == 1
+    assert characteristics["non_nhi_payment_rate_percent"] == 100
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["post_expiry_readmission_excluded"] is True
+    assert characteristics["day_hospital_excluded"] is True
+    assert (
+        characteristics["claims_exchange_rate_basis"]
+        == "taiwan-bank-reference-rate-on-claim-date"
+    )
+    assert characteristics["regulatory_revision"] is expected_regulatory_revision
+    assert characteristics["claims_medical_opinion_revision"] is expected_medical_opinion
+
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "overseas-illness-inpatient-medical-limit",
+        "overseas-illness-outpatient-medical-limit",
+        "overseas-illness-emergency-medical-limit",
+        "non-nhi-payment-rate",
+        "unearned-premium-refund",
+    }
+    assert entries["overseas-illness-inpatient-medical-limit"]["rate_percent"] == 100
+    assert entries["overseas-illness-outpatient-medical-limit"]["rate_percent"] == 0.5
+    assert entries["overseas-illness-emergency-medical-limit"]["rate_percent"] == 1
+    assert entries["non-nhi-payment-rate"]["rate_percent"] == 100
+    assert entries["unearned-premium-refund"]["multiplier"] == 1
+    for entry in entries.values():
+        assert entry["source"] == "terms"
+        assert entry.get("conditions")
+
+    source_path = TII_LIFE_164_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:2])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 4
+    assert parse_global_e_road_peace_overseas_illness_face_amount(completed_document) == schedule
+    assert parse_global_e_road_peace_overseas_illness_face_amount(
+        tii_life_164_document(product_id, "F")
+    ) is None
+
+global_e_road_base = tii_life_164_document(GLOBAL_E_ROAD_PEACE_OVERSEAS_ILLNESS_PRODUCT_IDS[0])
+assert parse_global_e_road_peace_overseas_illness_face_amount(
+    {**global_e_road_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_global_e_road_peace_overseas_illness_face_amount(
+    {**global_e_road_base, "product_id": "264311AZ1AETS21A11Z10999999"}
+) is None
+assert parse_global_e_road_peace_overseas_illness_face_amount(
+    {
+        **global_e_road_base,
+        "text": global_e_road_base["text"].replace(
+            "0.5%",
+            "0.6%",
+            1,
+        ),
+    }
+) is None
+
+GLOBAL_NCCU_STUDENT_GROUP_PRODUCT_IDS = (
+    "264396MZ9GY3221A11Z10000000",
+    "264396MZ9GY3221A11Z10000001",
+    "264396MZ9GY3221A11Z10000002",
+)
+expected_global_nccu_revisions = {
+    "264396MZ9GY3221A11Z10000000": ("original", 19, False),
+    "264396MZ9GY3221A11Z10000001": ("104-first-revision", 22, True),
+    "264396MZ9GY3221A11Z10000002": ("107-second-revision", 22, True),
+}
+for product_id in GLOBAL_NCCU_STUDENT_GROUP_PRODUCT_IDS:
+    document = tii_life_164_document(product_id)
+    expected_revision, expected_pages, expected_regulatory_revision = (
+        expected_global_nccu_revisions[product_id]
+    )
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    schedule = parse_global_nccu_student_group_fixed_schedule(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "global-nccu-student-group-fixed-schedule-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "fixed"
+    assert schedule["selection_label"] == "固定保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["fixed_face_amount"] == 1_000_000
+    assert characteristics["disability_levels"] == 11
+    assert characteristics["disability_living_assistance_levels"] == "1-3"
+    assert characteristics["disability_living_assistance_annual_payments"] == 4
+    assert characteristics["major_burn_rate_percent"] == 25
+    assert characteristics["hospital_daily_days_limit"] == 90
+    assert characteristics["fracture_daily_amount"] == 350
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["non_nhi_payment_rate_percent"] == 75
+    assert characteristics["post_expiry_accident_days_limit"] == 180
+    assert characteristics["death_disability_annual_cap"] == 1_000_000
+    assert characteristics["specific_accidental_death_excluded_from_cap"] is True
+    assert characteristics["regulatory_revision"] is expected_regulatory_revision
+
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "fixed-face-amount",
+        "death-benefit",
+        "specific-accidental-death-additional",
+        "disability-benefit",
+        "disability-living-assistance-annual",
+        "major-burn",
+        "hospital-daily-general",
+        "hospital-daily-icu",
+        "hospital-daily-burn-ward",
+        "hospital-daily-cancer",
+        "fracture-no-hospital-daily",
+        "inpatient-routine-expense-limit",
+        "surgery-expense-limit",
+        "inpatient-medical-expense-limit",
+        "accident-outpatient-limit",
+        "major-illness-benefit",
+        "campus-group-food-poisoning",
+        "first-cancer-benefit",
+        "death-disability-annual-cap",
+    }
+    assert entries["fixed-face-amount"]["amount"] == 1_000_000
+    assert entries["death-benefit"]["amount"] == 1_000_000
+    assert entries["specific-accidental-death-additional"]["amount"] == 1_000_000
+    assert entries["specific-accidental-death-additional"]["aggregation_rule"] == "conditional_additive"
+    assert entries["disability-benefit"]["rate_min_percent"] == 5
+    assert entries["disability-benefit"]["rate_max_percent"] == 100
+    assert entries["disability-benefit"]["amount_tiers"][0]["amount"] == 1_000_000
+    assert entries["disability-benefit"]["amount_tiers"][-1]["amount"] == 50_000
+    assert entries["disability-living-assistance-annual"]["amount_tiers"][0]["amount"] == 250_000
+    assert entries["disability-living-assistance-annual"]["amount_tiers"][2]["amount"] == 200_000
+    assert entries["major-burn"]["amount"] == 250_000
+    assert entries["major-burn"]["rate_percent"] == 25
+    assert entries["hospital-daily-general"]["amount"] == 750
+    assert entries["hospital-daily-icu"]["amount"] == 1_500
+    assert entries["hospital-daily-burn-ward"]["amount"] == 1_500
+    assert entries["hospital-daily-cancer"]["amount"] == 1_500
+    assert entries["fracture-no-hospital-daily"]["amount"] == 350
+    assert entries["inpatient-routine-expense-limit"]["amount_tiers"] == [
+        {"label": "一般住院每日", "amount": 500},
+        {"label": "加護/燒燙傷/癌症住院每日", "amount": 1_500},
+    ]
+    assert entries["surgery-expense-limit"]["amount_tiers"] == [
+        {"label": "一般手術", "amount": 10_000},
+        {"label": "重大手術", "amount": 50_000},
+    ]
+    assert entries["inpatient-medical-expense-limit"]["amount"] == 20_000
+    assert entries["accident-outpatient-limit"]["amount"] == 5_000
+    assert entries["major-illness-benefit"]["amount"] == 50_000
+    assert entries["campus-group-food-poisoning"]["amount"] == 1_000
+    assert entries["first-cancer-benefit"]["amount_tiers"] == [
+        {"label": "原位癌", "amount": 30_000},
+        {"label": "原位癌以外之癌症", "amount": 150_000},
+    ]
+    assert entries["death-disability-annual-cap"]["amount"] == 1_000_000
+    for entry in entries.values():
+        assert entry["source"] == "terms"
+        assert entry.get("conditions")
+
+    source_path = TII_LIFE_164_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:2])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == expected_pages
+    assert parse_global_nccu_student_group_fixed_schedule(completed_document) == schedule
+    assert parse_global_nccu_student_group_fixed_schedule(
+        tii_life_164_document(product_id, "F")
+    ) is None
+
+global_nccu_base = tii_life_164_document(GLOBAL_NCCU_STUDENT_GROUP_PRODUCT_IDS[0])
+assert parse_global_nccu_student_group_fixed_schedule(
+    {**global_nccu_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_global_nccu_student_group_fixed_schedule(
+    {**global_nccu_base, "product_id": "264396MZ9GY3221A11Z10999999"}
+) is None
+assert parse_global_nccu_student_group_fixed_schedule(
+    {
+        **global_nccu_base,
+        "text": global_nccu_base["text"].replace("新臺幣壹佰萬元", "新臺幣貳佰萬元", 1),
+    }
+) is None
+
+TII_LIFE_152_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-152"
+)
+YUANTA_XIANGYOUXIN_MEDICAL_PRODUCT_IDS = (
+    "261311RZ1AJR021A11Z10000000",
+    "261311RZ1AJR021A11Z10000001",
+    "261311RZ1AJR021A11Z10000002",
+)
+
+
+def tii_life_152_document(product_id: str, suffix: str = "A") -> dict:
+    pdf_path = TII_LIFE_152_ROOT / product_id / f"{product_id}-{suffix}.pdf"
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+YUANTA_ANXIN100_CRITICAL_PRODUCT_ID = "261391MZ9GRJ023A11Z10000000"
+yuanta_anxin100_document = tii_life_152_document(YUANTA_ANXIN100_CRITICAL_PRODUCT_ID)
+yuanta_anxin100_schedule = parse_yuanta_anxin100_critical_illness_face_amount(
+    yuanta_anxin100_document
+)
+assert yuanta_anxin100_schedule is not None
+assert parse_plan_table_with_parser(yuanta_anxin100_document) == (
+    "yuanta-anxin100-critical-illness-face-amount-v1",
+    yuanta_anxin100_schedule,
+)
+assert yuanta_anxin100_schedule["selection_type"] == "face_amount"
+assert yuanta_anxin100_schedule["selection_label"] == "保險金額"
+assert yuanta_anxin100_schedule["version_characteristics"] == {
+    "terms_revision": "108-original",
+    "filing_date": "108.10.01",
+    "filing_number": "元壽字第1080002530號",
+    "disease_waiting_days": 30,
+    "cancer_waiting_days": 90,
+    "premium_total_multiplier": 1.09,
+    "specified_critical_rate_percent": 50,
+    "public_transport_accident_death_rate_percent": 100,
+    "maturity_age": 100,
+    "disability_terminology": "完全失能",
+    "premium_waiver_disability_levels": "2-6",
+    "excluded_critical_illness_item_count": 8,
+}
+yuanta_anxin100_entries = {
+    entry["id"]: entry for entry in yuanta_anxin100_schedule["coverage_entries"]
+}
+assert set(yuanta_anxin100_entries) == {
+    "death-or-funeral",
+    "total-disability",
+    "public-transport-accident-death",
+    "critical-illness",
+    "specified-critical-illness-additional",
+    "disability-premium-waiver",
+    "maturity-age-100",
+}
+assert yuanta_anxin100_entries["death-or-funeral"]["calculation_basis"] == "greater_of"
+assert yuanta_anxin100_entries["total-disability"]["calculation_basis"] == "greater_of"
+assert yuanta_anxin100_entries["critical-illness"]["calculation_basis"] == "greater_of"
+assert yuanta_anxin100_entries["maturity-age-100"]["calculation_basis"] == "greater_of"
+assert yuanta_anxin100_entries["specified-critical-illness-additional"]["rate_percent"] == 50
+assert yuanta_anxin100_entries["public-transport-accident-death"]["rate_percent"] == 100
+assert yuanta_anxin100_entries["disability-premium-waiver"]["amount_role"] == "reference"
+assert any(
+    "重大傷病但證明文件" in condition
+    for condition in yuanta_anxin100_entries["critical-illness"]["conditions"]
+)
+assert parse_yuanta_anxin100_critical_illness_face_amount(
+    tii_life_152_document(YUANTA_ANXIN100_CRITICAL_PRODUCT_ID, "F")
+) is None
+assert parse_yuanta_anxin100_critical_illness_face_amount(
+    {**yuanta_anxin100_document, "product_id": "wrong-product"}
+) is None
+assert parse_yuanta_anxin100_critical_illness_face_amount(
+    {
+        **yuanta_anxin100_document,
+        "text": yuanta_anxin100_document["text"].replace("一點零九倍", "一點零八倍"),
+    }
+) is None
+yuanta_anxin100_indexed = {
+    **yuanta_anxin100_document,
+    "page_count": 1,
+    "pages_parsed": 1,
+    "text": yuanta_anxin100_document["text"].split("2 七、")[0],
+}
+yuanta_anxin100_completed = complete_strict_source_document(
+    yuanta_anxin100_indexed,
+    TII_LIFE_152_ROOT
+    / YUANTA_ANXIN100_CRITICAL_PRODUCT_ID
+    / f"{YUANTA_ANXIN100_CRITICAL_PRODUCT_ID}-A.pdf",
+)
+assert yuanta_anxin100_completed["page_count"] == 15
+assert parse_yuanta_anxin100_critical_illness_face_amount(
+    yuanta_anxin100_completed
+) is not None
+
+
+yuanta_xiangyouxin_expected = {
+    "hospital-daily": (500, 1_000, 1_500, 2_000, 2_500, 3_000),
+    "inpatient-medical-limit": (150_000, 200_000, 250_000, 300_000, 350_000, 400_000),
+    "surgery-limit": (150_000, 200_000, 250_000, 300_000, 350_000, 400_000),
+    "pre-admission-outpatient-limit": (1_000, 1_000, 1_000, 2_000, 2_000, 2_000),
+    "post-discharge-outpatient-limit": (3_000, 3_000, 3_000, 6_000, 6_000, 6_000),
+}
+expected_yuanta_xiangyouxin_revisions = {
+    "261311RZ1AJR021A11Z10000000": ("original", False),
+    "261311RZ1AJR021A11Z10000001": ("108-revised", False),
+    "261311RZ1AJR021A11Z10000002": ("109-revised", True),
+}
+for product_id in YUANTA_XIANGYOUXIN_MEDICAL_PRODUCT_IDS:
+    document = tii_life_152_document(product_id)
+    expected_revision, expected_medical_opinion_revision = expected_yuanta_xiangyouxin_revisions[
+        product_id
+    ]
+    assert document["page_count"] == document["pages_parsed"] == 13
+    schedule = parse_yuanta_xiangyouxin_medical_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "yuanta-xiangyouxin-medical-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "投保計劃別"
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計劃一",
+        "計劃二",
+        "計劃三",
+        "計劃四",
+        "計劃五",
+        "計劃六",
+    ]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["disease_initial_waiting_days"] == 30
+    assert characteristics["renewal_disease_waiting_days"] == 0
+    assert characteristics["day_hospital_excluded"] is True
+    assert characteristics["post_expiry_readmission_excluded"] is True
+    assert characteristics["nhi_uncovered_payment_rate_percent"] == 65
+    assert characteristics["inpatient_medical_limit_after_60_days_multiplier"] == 2
+    assert characteristics["outpatient_pre_admission_days"] == 7
+    assert characteristics["outpatient_post_discharge_days"] == 30
+    assert characteristics["maximum_renewal_age_primary_or_spouse"] == 84
+    assert characteristics["maximum_renewal_age_child"] == 23
+    assert characteristics["terms_revision"] == expected_revision
+    assert (
+        characteristics["claims_review_medical_opinion_revision"]
+        is expected_medical_opinion_revision
+    )
+    for plan_index, plan in enumerate(schedule["plan_options"]):
+        entries = {entry["id"]: entry for entry in plan["coverage_entries"]}
+        assert len(entries) == len(plan["coverage_entries"]) == 5
+        assert set(entries) == set(yuanta_xiangyouxin_expected)
+        for entry_id, amounts in yuanta_xiangyouxin_expected.items():
+            assert entries[entry_id]["amount"] == amounts[plan_index]
+            assert entries[entry_id]["source"] == "terms"
+            assert entries[entry_id].get("conditions")
+        assert entries["inpatient-medical-limit"]["amount_tiers"][1]["amount"] == (
+            entries["inpatient-medical-limit"]["amount"] * 2
+        )
+        assert entries["inpatient-medical-limit"]["amount_role"] == "limit"
+        assert entries["surgery-limit"]["limit_scope"] == "per_surgery"
+
+    source_path = TII_LIFE_152_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:3])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 13
+    assert parse_yuanta_xiangyouxin_medical_plan_table(completed_document) == schedule
+    assert parse_yuanta_xiangyouxin_medical_plan_table(tii_life_152_document(product_id, "F")) is None
+
+yuanta_xiangyouxin_base = tii_life_152_document(YUANTA_XIANGYOUXIN_MEDICAL_PRODUCT_IDS[0])
+assert parse_yuanta_xiangyouxin_medical_plan_table(
+    {**yuanta_xiangyouxin_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_yuanta_xiangyouxin_medical_plan_table(
+    {**yuanta_xiangyouxin_base, "document_type": "product_summary"}
+) is None
+assert parse_yuanta_xiangyouxin_medical_plan_table(
+    {
+        **yuanta_xiangyouxin_base,
+        "text": yuanta_xiangyouxin_base["text"].replace(
+            "500 1,000 1,500 2,000 2,500 3,000",
+            "600 1,000 1,500 2,000 2,500 3,000",
+            1,
+        ),
+    }
+) is None
+
+YUANTA_XIANGAN_MEDICAL_PRODUCT_ID = "261311RZ1ANR021A11Z10000003"
+yuanta_xiangan_expected = {
+    "room-daily-limit": (1_000, 1_500, 2_000, 2_500, 3_000, 4_000),
+    "inpatient-medical-limit": (125_000, 150_000, 175_000, 200_000, 225_000, 275_000),
+    "surgery-limit": (80_000, 100_000, 120_000, 140_000, 160_000, 200_000),
+    "pre-admission-outpatient-limit": (1_000, 1_000, 2_000, 2_000, 2_000, 2_000),
+    "post-discharge-outpatient-limit": (3_000, 3_000, 6_000, 6_000, 6_000, 6_000),
+    "supplement-limit": (2_000, 3_000, 4_000, 5_000, 6_000, 8_000),
+}
+yuanta_xiangan_document = tii_life_152_document(YUANTA_XIANGAN_MEDICAL_PRODUCT_ID)
+assert yuanta_xiangan_document["page_count"] == yuanta_xiangan_document["pages_parsed"] == 8
+yuanta_xiangan_schedule = parse_yuanta_xiangan_medical_plan_table(yuanta_xiangan_document)
+assert yuanta_xiangan_schedule is not None
+yuanta_xiangan_integrated = parse_plan_table_with_parser(yuanta_xiangan_document)
+assert yuanta_xiangan_integrated is not None
+assert yuanta_xiangan_integrated[0] == "yuanta-xiangan-medical-plan-v1"
+assert yuanta_xiangan_integrated[1] == yuanta_xiangan_schedule
+assert yuanta_xiangan_schedule["selection_type"] == yuanta_xiangan_schedule["input_mode"] == "plan"
+assert yuanta_xiangan_schedule["selection_label"] == "投保計劃別"
+assert [plan["label"] for plan in yuanta_xiangan_schedule["plan_options"]] == [
+    "計劃一",
+    "計劃二",
+    "計劃三",
+    "計劃四",
+    "計劃五",
+    "計劃六",
+]
+yuanta_xiangan_characteristics = yuanta_xiangan_schedule["version_characteristics"]
+assert yuanta_xiangan_characteristics["terms_revision"] == "109-third-revision"
+assert yuanta_xiangan_characteristics["plan_count"] == 6
+assert yuanta_xiangan_characteristics["disease_initial_waiting_days"] == 30
+assert yuanta_xiangan_characteristics["day_hospital_excluded"] is True
+assert yuanta_xiangan_characteristics["icu_room_limit_multiplier"] == 3
+assert yuanta_xiangan_characteristics["icu_room_limit_days"] == 15
+assert yuanta_xiangan_characteristics["inpatient_medical_limit_after_60_days_multiplier"] == 2
+assert yuanta_xiangan_characteristics["pre_admission_outpatient_days"] == 7
+assert yuanta_xiangan_characteristics["post_discharge_outpatient_days"] == 30
+assert yuanta_xiangan_characteristics["same_hospital_readmission_days"] == 14
+assert yuanta_xiangan_characteristics["post_expiry_readmission_excluded"] is True
+assert yuanta_xiangan_characteristics["non_nhi_payment_rate_percent"] == 65
+assert yuanta_xiangan_characteristics["surgery_table_min_percent"] == 10
+assert yuanta_xiangan_characteristics["surgery_table_max_percent"] == 300
+assert yuanta_xiangan_characteristics["newborn_metabolic_disease_revision"] is True
+assert yuanta_xiangan_characteristics["claims_review_medical_opinion_revision"] is True
+for plan_index, plan in enumerate(yuanta_xiangan_schedule["plan_options"]):
+    entries = {entry["id"]: entry for entry in plan["coverage_entries"]}
+    assert set(entries) == set(yuanta_xiangan_expected)
+    for entry_id, values in yuanta_xiangan_expected.items():
+        assert entries[entry_id]["amount"] == values[plan_index]
+        assert entries[entry_id]["source"] == "terms"
+        assert entries[entry_id].get("conditions")
+    assert entries["room-daily-limit"]["amount_tiers"][1]["amount"] == (
+        entries["room-daily-limit"]["amount"] * 3
+    )
+    assert entries["inpatient-medical-limit"]["amount_tiers"][1]["amount"] == (
+        entries["inpatient-medical-limit"]["amount"] * 2
+    )
+    assert entries["surgery-limit"]["rate_min_percent"] == 10
+    assert entries["surgery-limit"]["rate_max_percent"] == 300
+
+source_path = TII_LIFE_152_ROOT / YUANTA_XIANGAN_MEDICAL_PRODUCT_ID / f"{YUANTA_XIANGAN_MEDICAL_PRODUCT_ID}-A.pdf"
+indexed_document = {
+    key: value
+    for key, value in yuanta_xiangan_document.items()
+    if key not in {"page_count", "pages_parsed"}
+}
+indexed_document["text"] = normalize_terms_text(
+    "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:3])
+)
+completed_document = complete_strict_source_document(indexed_document, source_path)
+assert completed_document["page_count"] == completed_document["pages_parsed"] == 8
+assert parse_yuanta_xiangan_medical_plan_table(completed_document) == yuanta_xiangan_schedule
+assert parse_yuanta_xiangan_medical_plan_table(
+    tii_life_152_document(YUANTA_XIANGAN_MEDICAL_PRODUCT_ID, "F")
+) is None
+assert parse_yuanta_xiangan_medical_plan_table(
+    {**yuanta_xiangan_document, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_yuanta_xiangan_medical_plan_table(
+    {**yuanta_xiangan_document, "product_id": "261311RZ1ANR021A11Z10999999"}
+) is None
+assert parse_yuanta_xiangan_medical_plan_table(
+    {
+        **yuanta_xiangan_document,
+        "text": yuanta_xiangan_document["text"].replace(
+            "125,000 150,000 175,000 200,000 225,000 275,000",
+            "126,000 150,000 175,000 200,000 225,000 275,000",
+            1,
+        ),
+    }
+) is None
+
+YUANTA_YUANQI_SHIZU_PRODUCT_IDS = (
+    "261311RZ1AYR021A11Z10000000",
+    "261311RZ1AYR021A11Z10000001",
+)
+expected_yuanta_yuanqi_shizu_revisions = {
+    "261311RZ1AYR021A11Z10000000": ("original", False),
+    "261311RZ1AYR021A11Z10000001": ("111-revised", True),
+}
+yuanta_yuanqi_expected_amounts = {
+    "hospital-daily": (1_000, 1_500, 2_000, 2_500, 3_000),
+    "medical-device-subsidy": (10_000, 15_000, 20_000, 25_000, 30_000),
+    "special-procedure": (3_000, 3_000, 3_000, 3_000, 3_000),
+    "daily-room-limit": (1_000, 1_500, 2_000, 2_500, 3_000),
+    "inpatient-medical-limit": (75_000, 100_000, 125_000, 150_000, 175_000),
+    "pre-admission-outpatient-limit": (1_000, 1_000, 1_000, 1_000, 1_000),
+    "post-discharge-outpatient-limit": (3_000, 3_000, 3_000, 3_000, 3_000),
+    "inpatient-surgery-limit": (60_000, 60_000, 80_000, 80_000, 80_000),
+    "outpatient-surgery-limit": (30_000, 30_000, 40_000, 40_000, 40_000),
+}
+for product_id in YUANTA_YUANQI_SHIZU_PRODUCT_IDS:
+    document = tii_life_152_document(product_id)
+    expected_revision, expected_notice = expected_yuanta_yuanqi_shizu_revisions[
+        product_id
+    ]
+    assert document["page_count"] == document["pages_parsed"] == 14
+    schedule = parse_yuanta_yuanqi_shizu_hospital_medical_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "yuanta-yuanqi-shizu-hospital-medical-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "投保計劃別"
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計劃一",
+        "計劃二",
+        "計劃三",
+        "計劃四",
+        "計劃五",
+    ]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["plan_count"] == 5
+    assert characteristics["disease_initial_waiting_days"] == 30
+    assert characteristics["renewal_disease_waiting_days"] == 0
+    assert characteristics["cancer_screening_min_age"] == 30
+    assert characteristics["hospital_daily_days_limit"] == 365
+    assert characteristics["mental_hospital_days_limit"] == 90
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["post_expiry_readmission_excluded"] is True
+    assert characteristics["non_nhi_payment_rate_percent"] == 65
+    assert characteristics["medical_device_heart_stent_annual_limit"] == 2
+    assert characteristics["special_procedure_annual_limit"] == 2
+    assert characteristics["surgery_table_min_percent"] == 3
+    assert characteristics["surgery_table_max_percent"] == 300
+    assert characteristics["insured_notice_revision"] is expected_notice
+
+    for plan_index, plan in enumerate(schedule["plan_options"]):
+        entries = {entry["id"]: entry for entry in plan["coverage_entries"]}
+        assert set(entries) == {
+            "cancer-screening-reward",
+            *yuanta_yuanqi_expected_amounts.keys(),
+        }
+        assert entries["cancer-screening-reward"]["rate_percent"] == 2
+        assert entries["cancer-screening-reward"]["unit_key"] == "annual_premium"
+        for entry_id, values in yuanta_yuanqi_expected_amounts.items():
+            assert entries[entry_id]["amount"] == values[plan_index]
+            assert entries[entry_id]["source"] == "terms"
+            assert entries[entry_id].get("conditions")
+        assert entries["inpatient-surgery-limit"]["rate_min_percent"] == 3
+        assert entries["inpatient-surgery-limit"]["rate_max_percent"] == 300
+        assert entries["outpatient-surgery-limit"]["rate_min_percent"] == 3
+        assert entries["outpatient-surgery-limit"]["rate_max_percent"] == 300
+    assert parse_yuanta_yuanqi_shizu_hospital_medical_plan_table(
+        tii_life_152_document(product_id, "F")
+    ) is None
+
+yuanta_yuanqi_base = tii_life_152_document(YUANTA_YUANQI_SHIZU_PRODUCT_IDS[0])
+assert parse_yuanta_yuanqi_shizu_hospital_medical_plan_table(
+    {**yuanta_yuanqi_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_yuanta_yuanqi_shizu_hospital_medical_plan_table(
+    {**yuanta_yuanqi_base, "product_id": "261311RZ1AYR021A11Z10999999"}
+) is None
+assert parse_yuanta_yuanqi_shizu_hospital_medical_plan_table(
+    {
+        **yuanta_yuanqi_base,
+        "text": yuanta_yuanqi_base["text"].replace("75,000 100,000 125,000 150,000 175,000", "76,000 100,000 125,000 150,000 175,000", 1),
+    }
+) is None
+
+YUANTA_GROUP_HOSPITAL_MEDICAL_PRODUCT_IDS = (
+    "261313MZ1AGHE21A11Z10000000",
+    "261313MZ1AGHE21A11Z10000001",
+    "261313MZ1AGHE21A11Z10000002",
+)
+expected_yuanta_group_hospital_revisions = {
+    "261313MZ1AGHE21A11Z10000000": ("original", False, "original", 15),
+    "261313MZ1AGHE21A11Z10000001": ("111-revised", True, "original", 14),
+    "261313MZ1AGHE21A11Z10000002": ("113-revised", True, "113-day-care", 16),
+}
+yuanta_group_hospital_expected_entries = {
+    "daily-room-limit",
+    "inpatient-medical-limit",
+    "surgery-fee-limit",
+    "pre-post-outpatient-limit",
+    "hospital-daily",
+}
+for product_id in YUANTA_GROUP_HOSPITAL_MEDICAL_PRODUCT_IDS:
+    document = tii_life_152_document(product_id)
+    expected_revision, expected_notice, expected_day_hospital_revision, expected_pages = (
+        expected_yuanta_group_hospital_revisions[product_id]
+    )
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    schedule = parse_yuanta_group_hospital_medical_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "yuanta-group-hospital-medical-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "投保計劃別"
+    assert len(schedule["plan_options"]) == 21
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["plan_count"] == 21
+    assert characteristics["disease_initial_waiting_days"] == 0
+    assert characteristics["day_hospital_excluded"] is True
+    assert characteristics["day_hospital_definition_revision"] == expected_day_hospital_revision
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["post_expiry_readmission_excluded"] is True
+    assert characteristics["non_nhi_payment_rate_percent"] == 65
+    assert characteristics["inpatient_medical_limit_daily_multiplier"] == 40
+    assert characteristics["surgery_limit_daily_multiplier"] == 40
+    assert characteristics["insured_notice_revision"] is expected_notice
+    for plan_index, plan in enumerate(schedule["plan_options"]):
+        daily_amount = 500 + plan_index * 100
+        entries = {entry["id"]: entry for entry in plan["coverage_entries"]}
+        assert set(entries) == yuanta_group_hospital_expected_entries
+        assert entries["daily-room-limit"]["amount"] == daily_amount
+        assert entries["pre-post-outpatient-limit"]["amount"] == daily_amount
+        assert entries["hospital-daily"]["amount"] == daily_amount
+        assert entries["inpatient-medical-limit"]["amount"] == daily_amount * 40
+        assert entries["surgery-fee-limit"]["amount"] == daily_amount * 40
+        assert entries["surgery-fee-limit"]["rate_min_percent"] == 10
+        assert entries["surgery-fee-limit"]["rate_max_percent"] == 200
+        assert all(entry["source"] == "terms" for entry in entries.values())
+    assert parse_yuanta_group_hospital_medical_plan_table(
+        tii_life_152_document(product_id, "F")
+    ) is None
+
+yuanta_group_hospital_base = tii_life_152_document(YUANTA_GROUP_HOSPITAL_MEDICAL_PRODUCT_IDS[0])
+assert parse_yuanta_group_hospital_medical_plan_table(
+    {**yuanta_group_hospital_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_yuanta_group_hospital_medical_plan_table(
+    {**yuanta_group_hospital_base, "product_id": "261313MZ1AGHE21A11Z10999999"}
+) is None
+assert parse_yuanta_group_hospital_medical_plan_table(
+    {
+        **yuanta_group_hospital_base,
+        "text": yuanta_group_hospital_base["text"].replace(
+            "每次住院醫療費用保險金給付限額 20,000",
+            "每次住院醫療費用保險金給付限額 21,000",
+            1,
+        ),
+    }
+) is None
+
+YUANTA_HEALTH_LIFE_EARLY_PRODUCT_IDS = (
+    "261311MZ1GA2023A11Z10000000",
+    "261311MZ1GA2023A11Z10000001",
+)
+expected_yuanta_health_life_early_revisions = {
+    "261311MZ1GA2023A11Z10000000": ("original", False),
+    "261311MZ1GA2023A11Z10000001": ("105-revised", True),
+}
+yuanta_health_life_early_expected_entries = {
+    "daily-amount-base",
+    "hospital-daily-first-30-days",
+    "hospital-daily-after-30-days",
+    "intensive-care-daily",
+    "pre-post-outpatient-daily",
+    "discharge-recuperation-daily",
+    "surgery-medical",
+    "child-specific-disease",
+    "child-fracture",
+    "child-food-poisoning",
+    "severe-burn",
+    "moderate-burn",
+    "burn-unit-daily",
+    "burn-outpatient-daily",
+    "severe-burn-rehab-monthly",
+    "moderate-burn-rehab-monthly",
+    "death-funeral-reference-base",
+    "maturity-reference-base",
+    "premium-waiver",
+    "medical-benefits-lifetime-cap",
+}
+for product_id in YUANTA_HEALTH_LIFE_EARLY_PRODUCT_IDS:
+    document = tii_life_152_document(product_id)
+    expected_revision, expected_regulatory_revision = (
+        expected_yuanta_health_life_early_revisions[product_id]
+    )
+    assert document["page_count"] == document["pages_parsed"] == 11
+    schedule = parse_yuanta_health_life_early_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "yuanta-health-life-early-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["disease_initial_waiting_days"] == 30
+    assert characteristics["daily_amount_face_amount_rate_percent"] == 1
+    assert characteristics["hospital_daily_days_limit"] == 365
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["post_expiry_readmission_excluded"] is True
+    assert characteristics["cumulative_medical_cap_daily_multiplier"] == 3800
+    assert characteristics["surgery_min_daily_multiplier"] == 2
+    assert characteristics["surgery_max_daily_multiplier"] == 60
+    assert characteristics["child_benefit_max_age"] == 14
+    assert characteristics["severe_burn_daily_multiplier"] == 250
+    assert characteristics["moderate_burn_daily_multiplier"] == 100
+    assert characteristics["maturity_age"] == 111
+    assert characteristics["regulatory_revision"] is expected_regulatory_revision
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == yuanta_health_life_early_expected_entries
+    assert entries["daily-amount-base"]["rate_percent"] == 1
+    assert entries["hospital-daily-first-30-days"]["rate_percent"] == 1
+    assert entries["hospital-daily-after-30-days"]["rate_percent"] == 2
+    assert entries["intensive-care-daily"]["rate_percent"] == 2
+    assert entries["pre-post-outpatient-daily"]["rate_percent"] == 0.25
+    assert entries["discharge-recuperation-daily"]["rate_percent"] == 0.5
+    assert entries["surgery-medical"]["multiplier"] == 60
+    assert entries["surgery-medical"]["rate_min_percent"] == 2
+    assert entries["surgery-medical"]["rate_max_percent"] == 60
+    assert entries["child-specific-disease"]["rate_percent"] == 15
+    assert entries["child-fracture"]["multiplier"] == 60
+    assert entries["child-food-poisoning"]["rate_percent"] == 3
+    assert entries["severe-burn"]["rate_percent"] == 250
+    assert entries["moderate-burn"]["rate_percent"] == 100
+    assert entries["burn-unit-daily"]["rate_percent"] == 3
+    assert entries["burn-outpatient-daily"]["rate_percent"] == 0.5
+    assert entries["severe-burn-rehab-monthly"]["rate_percent"] == 10
+    assert entries["moderate-burn-rehab-monthly"]["rate_percent"] == 5
+    assert entries["death-funeral-reference-base"]["rate_percent"] == 106
+    assert entries["maturity-reference-base"]["rate_percent"] == 106
+    assert entries["premium-waiver"]["multiplier"] == 1
+    assert entries["medical-benefits-lifetime-cap"]["multiplier"] == 3800
+    for entry in entries.values():
+        assert entry["source"] == "terms"
+        assert entry.get("conditions")
+
+    source_path = TII_LIFE_152_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:2])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 11
+    assert parse_yuanta_health_life_early_face_amount(completed_document) == schedule
+    assert parse_yuanta_health_life_early_face_amount(
+        tii_life_152_document(product_id, "F")
+    ) is None
+
+yuanta_health_life_early_base = tii_life_152_document(YUANTA_HEALTH_LIFE_EARLY_PRODUCT_IDS[0])
+assert parse_yuanta_health_life_early_face_amount(
+    {**yuanta_health_life_early_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_yuanta_health_life_early_face_amount(
+    {**yuanta_health_life_early_base, "product_id": "261311MZ1GA2023A11Z10999999"}
+) is None
+assert parse_yuanta_health_life_early_face_amount(
+    {
+        **yuanta_health_life_early_base,
+        "text": yuanta_health_life_early_base["text"].replace(
+            "住院給付日額」係指本契約之保險金額乘以百分之一",
+            "住院給付日額」係指本契約之保險金額乘以百分之二",
+            1,
+        ),
+    }
+) is None
+
+YUANTA_NEW_ACCOUNT_MEDICAL_PRODUCT_IDS = (
+    "261311MZ1GA1023A11Z10000009",
+    "261311MZ1GA1023A11Z10000010",
+)
+expected_yuanta_new_account_revisions = {
+    "261311MZ1GA1023A11Z10000009": ("108-revised", False),
+    "261311MZ1GA1023A11Z10000010": ("108-10-revised", True),
+}
+yuanta_new_account_common_entries = {
+    "hospital-daily-first-30-days",
+    "hospital-daily-after-30-days",
+    "intensive-care-daily",
+    "burn-unit-daily",
+    "pre-post-outpatient-daily",
+    "discharge-recuperation-daily",
+    "surgery-medical",
+    "cancer-major-disease-care-daily",
+    "radiotherapy-chemotherapy-daily",
+    "child-specific-disease",
+    "child-fracture",
+    "child-food-poisoning",
+    "total-disability-care-annual",
+    "death-funeral-reference-base",
+    "total-disability-reference-base",
+    "medical-benefits-lifetime-cap",
+}
+yuanta_new_account_type_b_entries = {
+    "cancer-diagnosis",
+    "breast-reconstruction",
+    "major-disease-diagnosis",
+}
+for product_id in YUANTA_NEW_ACCOUNT_MEDICAL_PRODUCT_IDS:
+    document = tii_life_152_document(product_id)
+    expected_revision, expected_medical_opinion_revision = (
+        expected_yuanta_new_account_revisions[product_id]
+    )
+    assert document["page_count"] == document["pages_parsed"] == 11
+    schedule = parse_yuanta_new_account_medical_type_daily(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "yuanta-new-account-medical-type-daily-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "投保型別與住院給付日額"
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "甲型（輸入住院給付日額）",
+        "乙型（輸入住院給付日額）",
+    ]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["disease_initial_waiting_days"] == 30
+    assert characteristics["cancer_initial_waiting_days"] == 30
+    assert characteristics["major_disease_initial_waiting_days"] == 30
+    assert characteristics["day_hospital_excluded"] is True
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["post_expiry_readmission_excluded"] is True
+    assert characteristics["face_amount_daily_multiplier"] == 500
+    assert characteristics["medical_lifetime_cap_daily_multiplier"] == 1500
+    assert characteristics["medical_opinion_revision"] is expected_medical_opinion_revision
+
+    type_a_entries = {
+        entry["id"]: entry
+        for entry in schedule["plan_options"][0]["coverage_entries"]
+    }
+    type_b_entries = {
+        entry["id"]: entry
+        for entry in schedule["plan_options"][1]["coverage_entries"]
+    }
+    assert set(type_a_entries) == yuanta_new_account_common_entries
+    assert set(type_b_entries) == (
+        yuanta_new_account_common_entries | yuanta_new_account_type_b_entries
+    )
+    assert type_a_entries["hospital-daily-first-30-days"]["rate_percent"] == 100
+    assert type_a_entries["hospital-daily-after-30-days"]["rate_percent"] == 200
+    assert type_a_entries["intensive-care-daily"]["rate_percent"] == 200
+    assert type_a_entries["burn-unit-daily"]["rate_percent"] == 300
+    assert type_a_entries["pre-post-outpatient-daily"]["rate_percent"] == 25
+    assert type_a_entries["discharge-recuperation-daily"]["rate_percent"] == 50
+    assert type_a_entries["surgery-medical"]["multiplier"] == 8
+    assert type_a_entries["child-specific-disease"]["multiplier"] == 15
+    assert type_a_entries["child-fracture"]["multiplier"] == 60
+    assert type_a_entries["child-food-poisoning"]["multiplier"] == 3
+    assert type_a_entries["total-disability-care-annual"]["multiplier"] == 25
+    assert type_a_entries["death-funeral-reference-base"]["multiplier"] == 500
+    assert type_a_entries["medical-benefits-lifetime-cap"]["multiplier"] == 1500
+    assert type_b_entries["cancer-diagnosis"]["multiplier"] == 100
+    assert type_b_entries["breast-reconstruction"]["multiplier"] == 50
+    assert type_b_entries["major-disease-diagnosis"]["multiplier"] == 150
+    for entry in type_b_entries.values():
+        assert entry["source"] == "terms"
+        assert entry.get("conditions")
+
+    source_path = TII_LIFE_152_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:2])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 11
+    assert parse_yuanta_new_account_medical_type_daily(completed_document) == schedule
+    assert parse_yuanta_new_account_medical_type_daily(
+        tii_life_152_document(product_id, "F")
+    ) is None
+
+yuanta_new_account_base = tii_life_152_document(YUANTA_NEW_ACCOUNT_MEDICAL_PRODUCT_IDS[0])
+assert parse_yuanta_new_account_medical_type_daily(
+    {**yuanta_new_account_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_yuanta_new_account_medical_type_daily(
+    {**yuanta_new_account_base, "document_type": "product_summary"}
+) is None
+assert parse_yuanta_new_account_medical_type_daily(
+    {
+        **yuanta_new_account_base,
+        "text": yuanta_new_account_base["text"].replace(
+            "住院給付日額」的二倍乘以實際住加護病房的日數",
+            "住院給付日額」的一倍乘以實際住加護病房的日數",
+            1,
+        ),
+    }
+) is None
+
+FUBON_GOLDEN_HEALTH_PRODUCT_IDS = (
+    "209311MZ1B00823A11Z10000000",
+    "209311MZ1B00823A11Z10000001",
+)
+
+
+def fubon_golden_health_document(product_id: str, suffix: str = "A") -> dict:
+    pdf_path = TII_LIFE_050_ROOT / product_id / f"{product_id}-{suffix}.pdf"
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+expected_fubon_golden_health_revisions = {
+    "209311MZ1B00823A11Z10000000": ("original", False),
+    "209311MZ1B00823A11Z10000001": ("109-revised", True),
+}
+for product_id in FUBON_GOLDEN_HEALTH_PRODUCT_IDS:
+    document = fubon_golden_health_document(product_id)
+    expected_revision, expected_medical_opinion_revision = (
+        expected_fubon_golden_health_revisions[product_id]
+    )
+    assert document["page_count"] == document["pages_parsed"] == 31
+    schedule = parse_fubon_golden_health_whole_life_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-golden-health-whole-life-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "fixed"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["medical_opinion_revision"] is expected_medical_opinion_revision
+    assert characteristics["disease_initial_waiting_days"] == 30
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["day_hospital_excluded"] is True
+    assert characteristics["post_expiry_readmission_excluded"] is True
+    assert characteristics["non_nhi_payment_rate_percent"] == 75
+    assert characteristics["icu_daily_multiplier"] == 1.5
+    assert characteristics["icu_daily_multiplier_days_limit"] == 7
+    assert characteristics["hospital_daily_days_limit"] == 365
+    assert characteristics["chronic_or_mental_annual_days_limit"] == 32
+    assert characteristics["outpatient_medical_annual_days_limit"] == 20
+
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "hospital-daily",
+        "daily-room-board-limit",
+        "inpatient-medical-surgery-limit",
+        "outpatient-surgery-limit",
+        "outpatient-medical-limit",
+        "medical-lifetime-cap",
+        "death-benefit-reference-base",
+        "maturity-benefit-reference-base",
+    }
+    assert entries["hospital-daily"]["amount"] == 5_000
+    assert entries["hospital-daily"]["multiplier"] == 1.5
+    assert entries["daily-room-board-limit"]["amount"] == 5_000
+    assert entries["inpatient-medical-surgery-limit"]["amount"] == 500_000
+    assert entries["inpatient-medical-surgery-limit"]["amount_tiers"][0]["amount"] == 500_000
+    assert entries["inpatient-medical-surgery-limit"]["amount_tiers"][1]["amount"] == 750_000
+    assert entries["outpatient-surgery-limit"]["amount"] == 100_000
+    assert entries["outpatient-medical-limit"]["amount"] == 10_000
+    assert entries["medical-lifetime-cap"]["amount"] == 3_000_000
+    assert entries["death-benefit-reference-base"]["amount"] == 300_000
+    assert entries["maturity-benefit-reference-base"]["amount"] == 3_000_000
+    assert entries["death-benefit-reference-base"]["amount_role"] == "reference"
+    assert entries["maturity-benefit-reference-base"]["amount_role"] == "reference"
+    for entry in entries.values():
+        assert entry["source"] == "terms"
+        assert entry.get("conditions") or entry["id"] == "medical-lifetime-cap"
+
+    source_path = TII_LIFE_050_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:5])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 31
+    assert parse_fubon_golden_health_whole_life_table(completed_document) == schedule
+    assert parse_fubon_golden_health_whole_life_table(fubon_golden_health_document(product_id, "F")) is None
+
+fubon_golden_health_base = fubon_golden_health_document(FUBON_GOLDEN_HEALTH_PRODUCT_IDS[0])
+assert parse_fubon_golden_health_whole_life_table(
+    {**fubon_golden_health_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_fubon_golden_health_whole_life_table(
+    {**fubon_golden_health_base, "document_type": "product_summary"}
+) is None
+assert parse_fubon_golden_health_whole_life_table(
+    {
+        **fubon_golden_health_base,
+        "text": fubon_golden_health_base["text"].replace("5,000/日", "6,000/日", 1),
+    }
+) is None
+
+TII_LIFE_008_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-008"
+)
+TAIWAN_FISHERMEN_GROUP_MEDICAL_PRODUCT_IDS = (
+    "202313MZ1A96721A11Z10000000",
+    "202313MZ1A96721A11Z10000001",
+)
+
+
+def tii_life_008_document(product_id: str, suffix: str = "A") -> dict:
+    pdf_path = TII_LIFE_008_ROOT / product_id / f"{product_id}-{suffix}.pdf"
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+TAIWAN_GROUP_INPATIENT_LIMIT_PLAN_PRODUCT_IDS = (
+    "202313MZ1A32821A11Z10000013",
+    "202313MZ1A32821A11Z10000014",
+)
+expected_taiwan_group_inpatient_limit_plan_revisions = {
+    "202313MZ1A32821A11Z10000013": ("113-thirteenth-revision", 6, False),
+    "202313MZ1A32821A11Z10000014": ("113-fourteenth-revision", 7, True),
+}
+expected_taiwan_group_inpatient_limit_amounts = [
+    (60_000, 600),
+    (80_000, 1_200),
+    (100_000, 1_800),
+    (120_000, 2_400),
+    (140_000, 3_000),
+    (200_000, 4_800),
+    (30_000, 900),
+    (70_000, 1_000),
+    (50_000, 500),
+    (80_000, 800),
+    (100_000, 1_000),
+]
+for product_id in TAIWAN_GROUP_INPATIENT_LIMIT_PLAN_PRODUCT_IDS:
+    document = tii_life_008_document(product_id)
+    expected_revision, expected_pages, expected_day_hospital_revision = (
+        expected_taiwan_group_inpatient_limit_plan_revisions[product_id]
+    )
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    schedule = parse_taiwan_group_inpatient_limit_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-life-group-inpatient-limit-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "保險計畫"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["plan_count"] == 11
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["post_expiry_readmission_excluded"] is True
+    assert characteristics["day_hospital_excluded"] is True
+    assert characteristics["outpatient_surgery_included"] is True
+    assert characteristics["nhi_paid_excluded"] is True
+    assert characteristics["daily_option_policy_face_page_days_limit"] is True
+    assert characteristics["day_hospital_definition_revision"] is expected_day_hospital_revision
+    assert len(schedule["plan_options"]) == 11
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+        "計畫四",
+        "計畫五",
+        "計畫六",
+        "計畫七",
+        "計畫八",
+        "計畫九",
+        "計畫十",
+        "計畫十一",
+    ]
+    for plan, (expected_limit, expected_daily) in zip(
+        schedule["plan_options"], expected_taiwan_group_inpatient_limit_amounts
+    ):
+        entries = {entry["id"]: entry for entry in plan["coverage_entries"]}
+        assert set(entries) == {
+            "inpatient-medical-limit",
+            "hospital-daily-conversion",
+        }
+        assert entries["inpatient-medical-limit"]["amount"] == expected_limit
+        assert entries["inpatient-medical-limit"]["calculation_basis"] == "reimbursement_with_cap"
+        assert entries["inpatient-medical-limit"]["aggregation_rule"] == "choose_one"
+        assert entries["hospital-daily-conversion"]["amount"] == expected_daily
+        assert entries["hospital-daily-conversion"]["calculation_basis"] == "per_day"
+        assert entries["hospital-daily-conversion"]["aggregation_rule"] == "choose_one"
+        for entry in entries.values():
+            assert entry["source"] == "terms"
+            assert entry.get("conditions")
+
+    source_path = TII_LIFE_008_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:2])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == expected_pages
+    assert parse_taiwan_group_inpatient_limit_plan_table(completed_document) == schedule
+    assert parse_taiwan_group_inpatient_limit_plan_table(
+        tii_life_008_document(product_id, "F")
+    ) is None
+
+taiwan_group_inpatient_limit_base = tii_life_008_document(
+    TAIWAN_GROUP_INPATIENT_LIMIT_PLAN_PRODUCT_IDS[0]
+)
+assert parse_taiwan_group_inpatient_limit_plan_table(
+    {**taiwan_group_inpatient_limit_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_taiwan_group_inpatient_limit_plan_table(
+    {**taiwan_group_inpatient_limit_base, "product_id": "202313MZ1A32821A11Z10999999"}
+) is None
+assert parse_taiwan_group_inpatient_limit_plan_table(
+    {
+        **taiwan_group_inpatient_limit_base,
+        "text": taiwan_group_inpatient_limit_base["text"].replace("20 萬元", "21 萬元", 1),
+    }
+) is None
+
+taiwan_shishizai_inpatient_document = tii_life_008_document(
+    "202311RZ1A04A21A11Z10000000"
+)
+taiwan_shishizai_inpatient_schedule = parse_taiwan_shishizai_inpatient_plan_table(
+    taiwan_shishizai_inpatient_document
+)
+assert taiwan_shishizai_inpatient_schedule is not None
+assert (
+    parse_plan_table_with_parser(taiwan_shishizai_inpatient_document)[0]
+    == "taiwan-life-shishizai-inpatient-plan-v1"
+)
+assert taiwan_shishizai_inpatient_schedule["selection_type"] == "plan"
+assert taiwan_shishizai_inpatient_schedule["selection_label"] == "投保計劃別"
+assert taiwan_shishizai_inpatient_schedule["version_characteristics"] == {
+    "filing_date": "112.08.18",
+    "filing_number": "台壽字第1122320128號",
+    "disease_waiting_days": 30,
+    "guaranteed_renewal": True,
+    "non_guaranteed_renewal_rate": True,
+    "day_hospital_excluded": True,
+    "hospital_days_limit": 365,
+    "mental_disease_annual_days_limit": 30,
+    "icu_or_burn_room_multiplier": 2,
+    "outpatient_surgery_annual_count_limit": 6,
+    "specified_procedure_annual_count_limit": 6,
+    "pre_hospital_outpatient_days": 7,
+    "post_discharge_outpatient_days": 14,
+    "non_nhi_payment_percent": 65,
+    "special_procedure_item_count": 93,
+}
+assert [plan["label"] for plan in taiwan_shishizai_inpatient_schedule["plan_options"]] == [
+    "計劃一",
+    "計劃二",
+    "計劃三",
+    "計劃四",
+    "計劃五",
+]
+expected_shishizai_amounts = [
+    (1_000, 100_000, 30_000, 600, 500_000),
+    (1_500, 150_000, 40_000, 900, 750_000),
+    (2_000, 200_000, 50_000, 1_200, 1_000_000),
+    (2_500, 250_000, 60_000, 1_500, 1_250_000),
+    (3_000, 350_000, 70_000, 1_800, 1_500_000),
+]
+for plan, expected in zip(
+    taiwan_shishizai_inpatient_schedule["plan_options"], expected_shishizai_amounts
+):
+    entries = {entry["id"]: entry for entry in plan["coverage_entries"]}
+    assert set(entries) == {
+        "hospital-room-expense",
+        "inpatient-medical-expense",
+        "outpatient-surgery-expense",
+        "specified-procedure-expense",
+        "pre-post-outpatient-expense",
+        "hospital-cash-alternative-daily",
+        "major-hospital-comfort",
+        "annual-total-limit",
+    }
+    room_daily, inpatient_limit, outpatient_or_procedure, pre_post, annual_total = expected
+    assert entries["hospital-room-expense"]["amount"] == room_daily
+    assert entries["inpatient-medical-expense"]["amount"] == inpatient_limit
+    assert entries["outpatient-surgery-expense"]["amount"] == outpatient_or_procedure
+    assert entries["specified-procedure-expense"]["amount"] == outpatient_or_procedure
+    assert entries["pre-post-outpatient-expense"]["amount"] == pre_post
+    assert entries["hospital-cash-alternative-daily"]["amount"] == room_daily
+    assert entries["major-hospital-comfort"]["amount"] == 6_000
+    assert entries["annual-total-limit"]["amount"] == annual_total
+    assert entries["hospital-cash-alternative-daily"]["aggregation_rule"] == "choose_one"
+    for entry in entries.values():
+        assert entry["source"] == "terms"
+        assert entry.get("conditions")
+
+shishizai_source_path = (
+    TII_LIFE_008_ROOT
+    / "202311RZ1A04A21A11Z10000000"
+    / "202311RZ1A04A21A11Z10000000-A.pdf"
+)
+shishizai_indexed_document = {
+    key: value
+    for key, value in taiwan_shishizai_inpatient_document.items()
+    if key not in {"page_count", "pages_parsed"}
+}
+shishizai_indexed_document["text"] = normalize_terms_text(
+    "\n".join((page.extract_text() or "") for page in PdfReader(shishizai_source_path).pages[:2])
+)
+shishizai_completed_document = complete_strict_source_document(
+    shishizai_indexed_document, shishizai_source_path
+)
+assert shishizai_completed_document["page_count"] == 9
+assert parse_taiwan_shishizai_inpatient_plan_table(
+    shishizai_completed_document
+) == taiwan_shishizai_inpatient_schedule
+assert parse_taiwan_shishizai_inpatient_plan_table(
+    tii_life_008_document("202311RZ1A04A21A11Z10000000", "F")
+) is None
+assert parse_taiwan_shishizai_inpatient_plan_table(
+    {**taiwan_shishizai_inpatient_document, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_taiwan_shishizai_inpatient_plan_table(
+    {
+        **taiwan_shishizai_inpatient_document,
+        "text": taiwan_shishizai_inpatient_document["text"].replace(
+            "350,000", "360,000", 1
+        ),
+    }
+) is None
+
+taiwan_gold_group_inpatient_document = tii_life_008_document(
+    "202313MZ1A31B21A11Z10000000"
+)
+taiwan_gold_group_inpatient_schedule = parse_taiwan_gold_group_inpatient_limit_plan_table(
+    taiwan_gold_group_inpatient_document
+)
+assert taiwan_gold_group_inpatient_schedule is not None
+assert (
+    parse_plan_table_with_parser(taiwan_gold_group_inpatient_document)[0]
+    == "taiwan-life-gold-group-inpatient-limit-plan-v1"
+)
+assert taiwan_gold_group_inpatient_schedule["selection_type"] == "plan"
+assert taiwan_gold_group_inpatient_schedule["selection_label"] == "投保計劃別"
+assert taiwan_gold_group_inpatient_schedule["version_characteristics"] == {
+    "terms_revision": "114-original",
+    "plan_count": 11,
+    "same_hospital_readmission_days": 14,
+    "post_expiry_readmission_excluded": True,
+    "day_hospital_excluded": True,
+    "outpatient_surgery_included": True,
+    "nhi_paid_excluded": True,
+    "non_nhi_payment_rate_percent": 100,
+    "hospital_medical_icu_limit_multiplier": 2,
+    "hospital_daily_icu_multiplier": 2,
+    "hospital_daily_days_limit": 31,
+    "icu_daily_days_limit": 31,
+    "medical_expense_or_daily_choose_one": True,
+    "conversion_right_after_months": 6,
+    "experience_dividend_formula": True,
+}
+assert [plan["label"] for plan in taiwan_gold_group_inpatient_schedule["plan_options"]] == [
+    "計劃A",
+    "計劃B",
+    "計劃C",
+    "計劃D",
+    "計劃E",
+    "計劃F",
+    "計劃G",
+    "計劃H",
+    "計劃I",
+    "計劃J",
+    "計劃K",
+]
+taiwan_gold_plan_entries = [
+    {entry["id"]: entry for entry in plan["coverage_entries"]}
+    for plan in taiwan_gold_group_inpatient_schedule["plan_options"]
+]
+assert taiwan_gold_plan_entries[0]["inpatient-medical-expense-limit"]["amount"] == 60_000
+assert taiwan_gold_plan_entries[0]["inpatient-medical-expense-limit"]["amount_tiers"] == [
+    {"label": "一般住院限額", "amount": 60_000},
+    {"label": "曾住進加護病房限額", "amount": 120_000},
+]
+assert taiwan_gold_plan_entries[0]["hospital-daily-compensation"]["amount"] == 600
+assert taiwan_gold_plan_entries[0]["hospital-daily-compensation"]["amount_tiers"] == [
+    {"label": "一般住院日額", "amount": 600},
+    {"label": "加護病房日額", "amount": 1_200},
+]
+assert taiwan_gold_plan_entries[0]["outpatient-surgery-expense-limit"]["amount"] == 60_000
+assert taiwan_gold_plan_entries[5]["inpatient-medical-expense-limit"]["amount"] == 200_000
+assert taiwan_gold_plan_entries[5]["hospital-daily-compensation"]["amount"] == 4_800
+assert taiwan_gold_plan_entries[6]["inpatient-medical-expense-limit"]["amount"] == 30_000
+assert taiwan_gold_plan_entries[6]["hospital-daily-compensation"]["amount"] == 900
+assert taiwan_gold_plan_entries[10]["outpatient-surgery-expense-limit"]["amount"] == 100_000
+assert all(len(entries) == 3 for entries in taiwan_gold_plan_entries)
+taiwan_gold_group_partial = {
+    key: value
+    for key, value in taiwan_gold_group_inpatient_document.items()
+    if key not in {"page_count", "pages_parsed"}
+}
+taiwan_gold_group_source = (
+    TII_LIFE_008_ROOT
+    / "202313MZ1A31B21A11Z10000000"
+    / "202313MZ1A31B21A11Z10000000-A.pdf"
+)
+taiwan_gold_group_partial["text"] = normalize_terms_text(
+    "\n".join(
+        page.extract_text() or ""
+        for page in PdfReader(taiwan_gold_group_source).pages[:2]
+    )
+)
+taiwan_gold_group_completed = complete_strict_source_document(
+    taiwan_gold_group_partial, taiwan_gold_group_source
+)
+assert taiwan_gold_group_completed["page_count"] == 7
+assert (
+    parse_taiwan_gold_group_inpatient_limit_plan_table(taiwan_gold_group_completed)
+    == taiwan_gold_group_inpatient_schedule
+)
+assert parse_taiwan_gold_group_inpatient_limit_plan_table(
+    tii_life_008_document("202313MZ1A31B21A11Z10000000", "F")
+) is None
+assert parse_taiwan_gold_group_inpatient_limit_plan_table(
+    {**taiwan_gold_group_inpatient_document, "product_id": "wrong-product-id"}
+) is None
+assert parse_taiwan_gold_group_inpatient_limit_plan_table(
+    {**taiwan_gold_group_inpatient_document, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_taiwan_gold_group_inpatient_limit_plan_table(
+    {**taiwan_gold_group_inpatient_document, "page_count": 6}
+) is None
+assert parse_taiwan_gold_group_inpatient_limit_plan_table(
+    {
+        **taiwan_gold_group_inpatient_document,
+        "text": taiwan_gold_group_inpatient_document["text"].replace("6萬元", "9萬元", 1),
+    }
+) is None
+
+expected_taiwan_fishermen_group_revisions = {
+    "202313MZ1A96721A11Z10000000": ("original", False),
+    "202313MZ1A96721A11Z10000001": ("112-revised", True),
+}
+for product_id in TAIWAN_FISHERMEN_GROUP_MEDICAL_PRODUCT_IDS:
+    document = tii_life_008_document(product_id)
+    expected_revision, expected_notice = expected_taiwan_fishermen_group_revisions[
+        product_id
+    ]
+    assert document["page_count"] == document["pages_parsed"] == 6
+    schedule = parse_taiwan_fishermen_group_medical_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-life-fishermen-group-medical-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "計畫別"
+    assert [plan["label"] for plan in schedule["plan_options"]] == ["計畫A"]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["insured_notice_revision"] is expected_notice
+    assert characteristics["nhi_uncovered_payment_rate_percent"] == 100
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["post_expiry_readmission_excluded"] is True
+    assert characteristics["annual_hospital_daily_days_limit"] == 31
+    assert characteristics["same_accident_deductible"] == 3_000
+
+    entries = {
+        entry["id"]: entry
+        for entry in schedule["plan_options"][0]["coverage_entries"]
+    }
+    assert set(entries) == {
+        "annual-medical-reimbursement-limit",
+        "hospital-daily-compensation",
+        "same-accident-deductible",
+    }
+    assert entries["annual-medical-reimbursement-limit"]["amount"] == 320_000
+    assert entries["annual-medical-reimbursement-limit"]["amount_role"] == "limit"
+    assert entries["annual-medical-reimbursement-limit"]["limit_scope"] == "annual"
+    assert entries["hospital-daily-compensation"]["amount"] == 1_500
+    assert entries["hospital-daily-compensation"]["calculation_basis"] == "per_day"
+    assert entries["same-accident-deductible"]["amount"] == 3_000
+    assert entries["same-accident-deductible"]["amount_role"] == "reference"
+    for entry in entries.values():
+        assert entry["source"] == "terms"
+        assert entry.get("conditions")
+
+    source_path = TII_LIFE_008_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:3])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 6
+    assert parse_taiwan_fishermen_group_medical_plan_table(completed_document) == schedule
+    assert parse_taiwan_fishermen_group_medical_plan_table(tii_life_008_document(product_id, "F")) is None
+
+taiwan_fishermen_base = tii_life_008_document(
+    TAIWAN_FISHERMEN_GROUP_MEDICAL_PRODUCT_IDS[0]
+)
+assert parse_taiwan_fishermen_group_medical_plan_table(
+    {**taiwan_fishermen_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_taiwan_fishermen_group_medical_plan_table(
+    {**taiwan_fishermen_base, "document_type": "product_summary"}
+) is None
+assert parse_taiwan_fishermen_group_medical_plan_table(
+    {
+        **taiwan_fishermen_base,
+        "text": taiwan_fishermen_base["text"].replace("32萬元", "33萬元", 1),
+    }
+) is None
+
+TAIWAN_GROUP_LONG_TERM_CARE_SERVICE_PRODUCT_IDS = (
+    "202363MZ1A84321A12Z10000000",
+    "202363MZ1A84321A12Z10000001",
+)
+expected_taiwan_group_ltc_revisions = {
+    "202363MZ1A84321A12Z10000000": ("original", False),
+    "202363MZ1A84321A12Z10000001": ("112-revised", True),
+}
+for product_id in TAIWAN_GROUP_LONG_TERM_CARE_SERVICE_PRODUCT_IDS:
+    document = tii_life_008_document(product_id)
+    expected_revision, expected_privacy_revision = expected_taiwan_group_ltc_revisions[
+        product_id
+    ]
+    assert document["page_count"] == document["pages_parsed"] == 10
+    schedule = parse_taiwan_group_long_term_care_service_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-group-long-term-care-service-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["long_term_care_plan_months"] == 24
+    assert characteristics["lump_sum_face_amount_multiplier"] == 6
+    assert characteristics["monthly_service_face_amount_multiplier"] == 1
+    assert characteristics["unclaimed_balance_interest_rate_percent"] == 0.25
+    assert characteristics["service_area_limited"] is True
+    assert characteristics["adl_impairment_min_items"] == 3
+    assert characteristics["adl_assessment_months"] == 3
+    assert characteristics["cdr_min_score"] == 2
+    assert characteristics["service_fee_revision_notice_months"] == 3
+    assert characteristics["service_fee_revision_limit_per_year"] == 1
+    assert characteristics["privacy_revision"] is expected_privacy_revision
+
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "long-term-care-lump-sum",
+        "monthly-care-service-limit",
+        "unclaimed-care-balance",
+        "basic-care-service-hourly-fee",
+        "health-promotion-service-hourly-fee",
+        "dementia-care-service-hourly-fee",
+        "cancer-care-service-hourly-fee",
+        "complex-care-hourly-surcharge",
+        "holiday-service-fee-multiplier",
+        "service-failure-compensation-rate",
+    }
+    assert entries["long-term-care-lump-sum"]["multiplier"] == 6
+    assert entries["monthly-care-service-limit"]["rate_percent"] == 100
+    assert entries["unclaimed-care-balance"]["multiplier"] == 24
+    assert entries["basic-care-service-hourly-fee"]["amount"] == 400
+    assert entries["health-promotion-service-hourly-fee"]["amount"] == 500
+    assert entries["dementia-care-service-hourly-fee"]["amount"] == 550
+    assert entries["cancer-care-service-hourly-fee"]["amount"] == 500
+    assert entries["complex-care-hourly-surcharge"]["amount"] == 100
+    assert entries["holiday-service-fee-multiplier"]["multiplier"] == 2
+    assert entries["service-failure-compensation-rate"]["rate_percent"] == 110
+    for entry in entries.values():
+        assert entry["source"] == "terms"
+        assert entry.get("conditions")
+
+    source_path = TII_LIFE_008_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:2])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 10
+    assert parse_taiwan_group_long_term_care_service_face_amount(
+        completed_document
+    ) == schedule
+    assert parse_taiwan_group_long_term_care_service_face_amount(
+        tii_life_008_document(product_id, "F")
+    ) is None
+
+taiwan_group_ltc_base = tii_life_008_document(
+    TAIWAN_GROUP_LONG_TERM_CARE_SERVICE_PRODUCT_IDS[0]
+)
+assert parse_taiwan_group_long_term_care_service_face_amount(
+    {**taiwan_group_ltc_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_taiwan_group_long_term_care_service_face_amount(
+    {**taiwan_group_ltc_base, "document_type": "product_summary"}
+) is None
+assert parse_taiwan_group_long_term_care_service_face_amount(
+    {
+        **taiwan_group_ltc_base,
+        "text": taiwan_group_ltc_base["text"].replace("每小時 400元", "每小時 450元", 1),
+    }
+) is None
+
+TAIWAN_YIQIJIANZHI_SPECIFIC_DISEASE_PRODUCT_IDS = (
+    "202391MZ1A41B22A11E10000000",
+    "202391MZ1A41B22A11E10000001",
+)
+expected_taiwan_yiqijianzhi_revisions = {
+    "202391MZ1A41B22A11E10000000": "original",
+    "202391MZ1A41B22A11E10000001": "first-revision",
+}
+for product_id in TAIWAN_YIQIJIANZHI_SPECIFIC_DISEASE_PRODUCT_IDS:
+    document = tii_life_008_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == 7
+    schedule = parse_taiwan_yiqijianzhi_specific_disease_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-life-yiqijianzhi-specific-disease-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_taiwan_yiqijianzhi_revisions[product_id]
+    assert characteristics["specific_disease_waiting_days"] == 30
+    assert characteristics["accident_exempt_waiting_period"] is True
+    assert characteristics["maximum_coverage_age"] == 89
+    assert characteristics["no_claim_premium_refund_rate_percent"] == 102
+    assert characteristics["health_promotion_discount_rate_percent"] == 2
+    assert characteristics["installment_min_annual_amount"] == 36_000
+    assert (
+        characteristics["source_terms_sha256"]
+        == "8167e1d1d5a12114bf2cd7ea401b3c3b60eb311269bd0d0c8df7642af221d6cb"
+    )
+
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "specific-disease-face-amount",
+        "specific-disease-no-claim-premium-addition",
+        "no-claim-premium-refund",
+        "health-promotion-renewal-premium-discount",
+        "installment-minimum-annual-payment",
+    }
+    assert entries["specific-disease-face-amount"]["rate_percent"] == 100
+    assert entries["specific-disease-face-amount"]["aggregation_rule"] == "choose_one"
+    assert entries["specific-disease-no-claim-premium-addition"]["rate_percent"] == 102
+    assert entries["specific-disease-no-claim-premium-addition"]["unit_key"] == "annual_premium_total"
+    assert entries["no-claim-premium-refund"]["rate_percent"] == 102
+    assert entries["no-claim-premium-refund"]["unit_key"] == "annual_premium_total"
+    assert entries["health-promotion-renewal-premium-discount"]["rate_percent"] == 2
+    assert entries["health-promotion-renewal-premium-discount"]["amount_role"] == "reference"
+    assert entries["installment-minimum-annual-payment"]["amount"] == 36_000
+    for entry in entries.values():
+        assert entry["source"] == "terms"
+        assert entry.get("conditions")
+
+    source_path = TII_LIFE_008_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:2])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 7
+    assert parse_taiwan_yiqijianzhi_specific_disease_face_amount(completed_document) == schedule
+    assert parse_taiwan_yiqijianzhi_specific_disease_face_amount(
+        tii_life_008_document(product_id, "F")
+    ) is None
+
+taiwan_yiqijianzhi_base = tii_life_008_document(
+    TAIWAN_YIQIJIANZHI_SPECIFIC_DISEASE_PRODUCT_IDS[0]
+)
+assert parse_taiwan_yiqijianzhi_specific_disease_face_amount(
+    {**taiwan_yiqijianzhi_base, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_taiwan_yiqijianzhi_specific_disease_face_amount(
+    {**taiwan_yiqijianzhi_base, "document_type": "product_summary"}
+) is None
+assert parse_taiwan_yiqijianzhi_specific_disease_face_amount(
+    {
+        **taiwan_yiqijianzhi_base,
+        "text": taiwan_yiqijianzhi_base["text"].replace("台壽字第 1152320021 號函備查", "台壽字第 1152320022 號函備查", 1),
+    }
+) is None
+
+CHAOYANG_XINGNONG_GROUP_INPATIENT_PRODUCT_ID = "212317R11A00800"
+CHAOYANG_XINGNONG_GROUP_INPATIENT_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-068"
+)
+
+
+def chaoyang_xingnong_group_inpatient_document() -> dict:
+    product_id = CHAOYANG_XINGNONG_GROUP_INPATIENT_PRODUCT_ID
+    pdf_path = (
+        CHAOYANG_XINGNONG_GROUP_INPATIENT_ROOT
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+chaoyang_xingnong_document = chaoyang_xingnong_group_inpatient_document()
+chaoyang_xingnong_schedule = parse_chaoyang_xingnong_group_inpatient_unit_table(
+    chaoyang_xingnong_document
+)
+assert chaoyang_xingnong_schedule is not None
+integrated_chaoyang_xingnong = parse_plan_table_with_parser(chaoyang_xingnong_document)
+assert integrated_chaoyang_xingnong is not None
+assert integrated_chaoyang_xingnong[0] == "chaoyang-xingnong-group-inpatient-unit-v1"
+assert integrated_chaoyang_xingnong[1] == chaoyang_xingnong_schedule
+assert chaoyang_xingnong_schedule["selection_type"] == "unit"
+assert chaoyang_xingnong_schedule["selection_label"] == "投保單位數"
+assert chaoyang_xingnong_schedule["version_characteristics"] == {
+    "terms_revision": "87-08-15-revision",
+    "filing_date": "83.06.03",
+    "filing_number": "台財保第831481668號",
+    "revision_date": "87.08.15",
+    "revision_number": "台財保第872441034號",
+    "disease_waiting_days": 30,
+    "room_board_days_limit": 120,
+    "icu_days_limit": 10,
+    "same_accident_readmission_days": 90,
+    "social_insurance_unclaimed_payment_rate_percent": 70,
+    "surgery_table_min_percent": 2.5,
+    "surgery_table_max_percent": 100,
+    "experience_dividend": True,
+}
+chaoyang_xingnong_entries = {
+    entry["id"]: entry for entry in chaoyang_xingnong_schedule["coverage_entries"]
+}
+assert set(chaoyang_xingnong_entries) == {
+    "room-board-daily",
+    "icu-daily",
+    "inpatient-medical-expense",
+    "surgery-expense-base",
+    "home-recovery-daily",
+}
+assert chaoyang_xingnong_entries["room-board-daily"]["amount"] == 100
+assert chaoyang_xingnong_entries["room-board-daily"]["limit_scope"] == "per_day"
+assert chaoyang_xingnong_entries["icu-daily"]["amount"] == 300
+assert chaoyang_xingnong_entries["inpatient-medical-expense"]["amount"] == 1_000
+assert chaoyang_xingnong_entries["surgery-expense-base"]["amount"] == 1_000
+assert chaoyang_xingnong_entries["surgery-expense-base"]["rate_min_percent"] == 2.5
+assert chaoyang_xingnong_entries["surgery-expense-base"]["rate_max_percent"] == 100
+assert chaoyang_xingnong_entries["home-recovery-daily"]["amount"] == 50
+assert chaoyang_xingnong_entries["home-recovery-daily"]["multiplier"] == 0.5
+assert all(
+    "70%" in " ".join(entry.get("conditions", []))
+    for entry in chaoyang_xingnong_entries.values()
+)
+
+chaoyang_xingnong_source_path = (
+    CHAOYANG_XINGNONG_GROUP_INPATIENT_ROOT
+    / CHAOYANG_XINGNONG_GROUP_INPATIENT_PRODUCT_ID
+    / f"{CHAOYANG_XINGNONG_GROUP_INPATIENT_PRODUCT_ID}-A.pdf"
+)
+chaoyang_xingnong_indexed_document = {
+    key: value
+    for key, value in chaoyang_xingnong_document.items()
+    if key not in {"page_count", "pages_parsed"}
+}
+chaoyang_xingnong_indexed_document["text"] = normalize_terms_text(
+    "\n".join(
+        page.extract_text() or ""
+        for page in PdfReader(chaoyang_xingnong_source_path).pages[:2]
+    )
+)
+chaoyang_xingnong_completed_document = complete_strict_source_document(
+    chaoyang_xingnong_indexed_document,
+    chaoyang_xingnong_source_path,
+)
+assert chaoyang_xingnong_completed_document["page_count"] == 6
+assert (
+    parse_chaoyang_xingnong_group_inpatient_unit_table(
+        chaoyang_xingnong_completed_document
+    )
+    == chaoyang_xingnong_schedule
+)
+assert parse_chaoyang_xingnong_group_inpatient_unit_table(
+    {**chaoyang_xingnong_document, "file_name": "wrong-file-A.pdf"}
+) is None
+assert parse_chaoyang_xingnong_group_inpatient_unit_table(
+    {**chaoyang_xingnong_document, "document_type": "product_summary"}
+) is None
+assert parse_chaoyang_xingnong_group_inpatient_unit_table(
+    {
+        **chaoyang_xingnong_document,
+        "text": chaoyang_xingnong_document["text"].replace("每日病房及膳食費用保險金 100 元", "每日病房及膳食費用保險金 200 元", 1),
+    }
+) is None
+
 truncated_fixture = json.loads(
     (
         Path(__file__).resolve().parents[1]
@@ -3882,6 +8234,3887 @@ truncated_documents = (
 for document in truncated_documents:
     if document.get("product_id") in TII_LIFE_050_PRODUCT_IDS:
         assert_tii_life_050_rejected(document)
+
+
+PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-013"
+)
+CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-025"
+)
+PRUDENTIAL_CHINA_LIFE_ACCIDENT_ACCOUNT_PRODUCTS = {
+    "203211R31A00102": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 16, False),
+    "203211R31A00104": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 17, False),
+    "203211R31A00105": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 16, False),
+    "203211R31A00106": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 17, False),
+    "203211R31A00107": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 17, False),
+    "203211R31A00108": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 17, False),
+    "203211RZ1A00321A11Z10000009": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 18, False),
+    "203211RZ1A00321A11Z10000010": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 18, False),
+    "203211RZ1A00321A11Z10000011": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 18, False),
+    "203211RZ1A00321A11Z10000012": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 18, False),
+    "203211RZ1A00321A11Z10000013": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 22, False),
+    "203211RZ1A00321A11Z10000014": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 17, False),
+    "203211RZ1A00321A11Z10000015": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 17, False),
+    "203211RZ1A00321A11Z10000016": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 17, False),
+    "203211RZ1A00321A11Z10000017": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 17, False),
+    "205211R11A54600": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 22, True),
+    "205211R11A54601": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 22, True),
+    "205211R11A54602": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 22, True),
+    "205211R11A54603": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 23, True),
+    "205211RZ1A00121A11Z10000005": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 24, True),
+    "205211RZ1A00121A11Z10000006": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 23, True),
+    "205211RZ1A00121A11Z10000007": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 24, True),
+    "205211RZ1A00121A11Z10000008": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 24, True),
+    "205211RZ1A00121A11Z10000009": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 24, True),
+    "205211RZ1A00121A11Z10000010": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 24, True),
+    "205211RZ1A00121A11Z10000011": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 24, True),
+    "205211RZ1A00121A11Z10000012": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 20, False),
+}
+
+
+def accident_account_document(product_id: str) -> dict:
+    root, _, _ = PRUDENTIAL_CHINA_LIFE_ACCIDENT_ACCOUNT_PRODUCTS[product_id]
+    pdf_path = root / product_id / f"{product_id}-A.pdf"
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+ACCIDENT_ACCOUNT_BASE_IDS = {
+    "accidental-death-or-funeral",
+    "accidental-disability",
+    "injury-medical-reimbursement-limit",
+    "accident-pre-post-outpatient",
+    "accident-hospital-daily",
+    "fracture-without-hospitalization",
+    "accident-inpatient-surgery",
+    "accident-icu-daily",
+}
+for product_id, (root, expected_pages, expected_major_burn) in (
+    PRUDENTIAL_CHINA_LIFE_ACCIDENT_ACCOUNT_PRODUCTS.items()
+):
+    document = accident_account_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    schedule = parse_prudential_china_life_accident_account_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "prudential-china-life-accident-account-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["non_nhi_payment_rate_percent"] == 70
+    assert characteristics["hospital_daily_days_limit"] == 120
+    assert characteristics["surgery_base_daily_multiplier"] == 20
+    assert characteristics["surgery_per_hospitalization_daily_multiplier_limit"] == 60
+    assert characteristics["major_burn_rider_included"] is expected_major_burn
+    assert characteristics["surgery_table_max_percent"] == 300
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    expected_ids = set(ACCIDENT_ACCOUNT_BASE_IDS)
+    if expected_major_burn:
+        expected_ids.add("major-burn")
+    assert set(entries) == expected_ids
+    assert len(entries) == (9 if expected_major_burn else 8)
+    assert entries["accidental-death-or-funeral"]["rate_percent"] == 100
+    assert entries["accidental-disability"]["rate_min_percent"] >= 5
+    assert entries["accidental-disability"]["rate_max_percent"] == 100
+    assert entries["injury-medical-reimbursement-limit"].get("amount") is None
+    assert (
+        entries["injury-medical-reimbursement-limit"]["calculation_basis"]
+        == "reimbursement_with_cap"
+    )
+    assert entries["accident-inpatient-surgery"]["multiplier"] == 20
+    assert entries["fracture-without-hospitalization"]["multiplier"] == 0.5
+    if expected_major_burn:
+        assert entries["major-burn"]["rate_percent"] == 35
+
+    source_path = root / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:3])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert (
+        parse_prudential_china_life_accident_account_face_amount(completed_document)
+        == schedule
+    )
+    assert (
+        parse_prudential_china_life_accident_account_face_amount(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_prudential_china_life_accident_account_face_amount(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_prudential_china_life_accident_account_face_amount(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+
+
+ONE_THREE_FIVE_ACCIDENT_PRODUCTS = {
+    "203211M11A00201": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 22, 75, "殘廢"),
+    "203211M11A00202": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 17, 75, "殘廢"),
+    "203211M11A00203": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 11, 75, "殘廢"),
+    "203211M11A00204": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 16, 75, "殘廢"),
+    "203211M11A00205": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 16, 75, "殘廢"),
+    "203211M11A00206": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 15, 75, "殘廢"),
+    "203211MZ1A00221A11Z10000007": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 12, 79, "殘廢"),
+    "203211MZ1A00221A11Z10000008": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 17, 79, "殘廢"),
+    "203211MZ1A00221A11Z10000009": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 17, 79, "失能"),
+    "203211MZ1A00221A11Z10000010": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 17, 80, "失能"),
+    "203211MZ1A00221A11Z10000011": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 17, 80, "失能"),
+    "203211MZ1A00221A11Z10000012": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 17, 80, "失能"),
+    "205211M11A00200": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 14, 75, "殘廢"),
+    "205211M11A00201": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 14, 75, "殘廢"),
+    "205211M11A00202": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 18, 75, "殘廢"),
+    "205211MZ1A00421A11Z10000003": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 18, 79, "殘廢"),
+    "205211MZ1A00421A11Z10000004": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 18, 79, "殘廢"),
+    "205211MZ1A00421A11Z10000005": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 18, 79, "失能"),
+    "205211MZ1A00421A11Z10000006": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 18, 80, "失能"),
+    "205211MZ1A00421A11Z10000007": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 14, 80, "失能"),
+    "205211MZ1A00421A11Z10000008": (CHINA_LIFE_ACCIDENT_ACCOUNT_ROOT, 14, 80, "失能"),
+}
+
+
+def one_three_five_accident_document(product_id: str) -> dict:
+    root, _, _, _ = ONE_THREE_FIVE_ACCIDENT_PRODUCTS[product_id]
+    pdf_path = root / product_id / f"{product_id}-A.pdf"
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for product_id, (root, expected_pages, expected_disability_items, expected_term) in (
+    ONE_THREE_FIVE_ACCIDENT_PRODUCTS.items()
+):
+    document = one_three_five_accident_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    schedule = parse_prudential_china_life_one_three_five_accident_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "prudential-china-life-one-three-five-accident-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["disability_term"] == expected_term
+    assert characteristics["disability_schedule_item_count"] == expected_disability_items
+    assert characteristics["disability_rate_min_percent"] == 5
+    assert characteristics["disability_rate_max_percent"] == 100
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["domestic_general_multiplier"] == 1
+    assert characteristics["overseas_general_multiplier"] == 3
+    assert characteristics["flight_multiplier"] == 5
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "domestic-general-accidental-death-or-funeral",
+        "overseas-general-accidental-death-or-funeral",
+        "flight-accidental-death-or-funeral",
+        "domestic-general-accidental-disability",
+        "overseas-general-accidental-disability",
+        "flight-accidental-disability",
+    }
+    assert entries["domestic-general-accidental-death-or-funeral"]["rate_percent"] == 100
+    assert entries["overseas-general-accidental-death-or-funeral"]["rate_percent"] == 300
+    assert entries["flight-accidental-death-or-funeral"]["rate_percent"] == 500
+    assert entries["domestic-general-accidental-disability"]["multiplier"] == 1
+    assert entries["overseas-general-accidental-disability"]["multiplier"] == 3
+    assert entries["flight-accidental-disability"]["multiplier"] == 5
+    for entry in entries.values():
+        assert entry["basis"] == "face_amount"
+        assert entry["calculation_basis"] == "percentage_of_base"
+        assert entry["source"] == "terms"
+        assert entry.get("conditions")
+
+    source_path = root / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:3])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert (
+        parse_prudential_china_life_one_three_five_accident_face_amount(
+            completed_document
+        )
+        == schedule
+    )
+    assert (
+        parse_prudential_china_life_one_three_five_accident_face_amount(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_prudential_china_life_one_three_five_accident_face_amount(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_prudential_china_life_one_three_five_accident_face_amount(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+
+
+PRUDENTIAL_GROUP_SPECIFIC_ACCIDENT_PRODUCTS = {
+    "203213AZ1A00421A11Z10000000": "109-original",
+    "203213AZ1A00421A11Z10000001": "110-first-revision",
+    "203213AZ1A00421A11Z10000002": "110-second-revision",
+}
+
+
+def prudential_group_specific_accident_document(product_id: str) -> dict:
+    pdf_path = PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT / product_id / f"{product_id}-A.pdf"
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for product_id, expected_revision in PRUDENTIAL_GROUP_SPECIFIC_ACCIDENT_PRODUCTS.items():
+    document = prudential_group_specific_accident_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == 11
+    schedule = parse_prudential_group_specific_accident_rider_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "prudential-group-specific-accident-rider-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["disability_term"] == "失能"
+    assert characteristics["disability_schedule_item_count"] == 80
+    assert characteristics["disability_rate_min_percent"] == 5
+    assert characteristics["disability_rate_max_percent"] == 100
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["general_specific_multiplier"] == 1
+    assert characteristics["flight_multiplier"] == 2
+
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "general-specific-accidental-death-or-funeral",
+        "flight-accidental-death-or-funeral",
+        "general-specific-accidental-disability",
+        "flight-accidental-disability",
+    }
+    assert (
+        entries["general-specific-accidental-death-or-funeral"]["rate_percent"]
+        == 100
+    )
+    assert entries["flight-accidental-death-or-funeral"]["rate_percent"] == 200
+    assert entries["general-specific-accidental-disability"]["multiplier"] == 1
+    assert entries["flight-accidental-disability"]["multiplier"] == 2
+    assert (
+        entries["general-specific-accidental-disability"]["rate_min_percent"]
+        == 5
+    )
+    assert (
+        entries["flight-accidental-disability"]["rate_max_percent"]
+        == 100
+    )
+    for entry in entries.values():
+        assert entry["basis"] == "face_amount"
+        assert entry["calculation_basis"] == "percentage_of_base"
+        assert entry["source"] == "terms"
+        assert entry.get("conditions")
+
+    source_path = (
+        PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT / product_id / f"{product_id}-A.pdf"
+    )
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:3])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == 11
+    assert (
+        parse_prudential_group_specific_accident_rider_face_amount(
+            completed_document
+        )
+        == schedule
+    )
+    assert (
+        parse_prudential_group_specific_accident_rider_face_amount(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_prudential_group_specific_accident_rider_face_amount(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_prudential_group_specific_accident_rider_face_amount(
+            {**document, "page_count": 10}
+        )
+        is None
+    )
+
+
+FIRE_MASS_TRANSIT_ACCIDENT_PRODUCTS = {
+    "203211R11A00200": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 12, 75, "殘廢"),
+    "203211R11A00201": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 12, 75, "殘廢"),
+    "203211R11A00202": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 12, 75, "殘廢"),
+    "203211R11A00203": (PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT, 12, 75, "殘廢"),
+    "203211RZ1A00221A11Z10000004": (
+        PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT,
+        13,
+        79,
+        "殘廢",
+    ),
+    "203211RZ1A00221A11Z10000005": (
+        PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT,
+        13,
+        79,
+        "殘廢",
+    ),
+    "203211RZ1A00221A11Z10000006": (
+        PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT,
+        13,
+        79,
+        "失能",
+    ),
+    "203211RZ1A00221A11Z10000007": (
+        PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT,
+        13,
+        80,
+        "失能",
+    ),
+    "203211RZ1A00221A11Z10000008": (
+        PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT,
+        13,
+        80,
+        "失能",
+    ),
+    "203211RZ1A00221A11Z10000009": (
+        PRUDENTIAL_ACCIDENT_ACCOUNT_ROOT,
+        13,
+        80,
+        "失能",
+    ),
+}
+
+
+def fire_mass_transit_accident_document(product_id: str) -> dict:
+    root, _, _, _ = FIRE_MASS_TRANSIT_ACCIDENT_PRODUCTS[product_id]
+    pdf_path = root / product_id / f"{product_id}-A.pdf"
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for product_id, (
+    root,
+    expected_pages,
+    expected_disability_items,
+    expected_disability_term,
+) in (
+    FIRE_MASS_TRANSIT_ACCIDENT_PRODUCTS.items()
+):
+    document = fire_mass_transit_accident_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    schedule = parse_prudential_fire_mass_transit_accident_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "prudential-fire-mass-transit-accident-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["disability_term"] == expected_disability_term
+    assert characteristics["disability_schedule_item_count"] == expected_disability_items
+    assert characteristics["disability_rate_min_percent"] == 5
+    assert characteristics["disability_rate_max_percent"] == 100
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["fire_accident_multiplier"] == 1
+    assert characteristics["land_water_mass_transit_multiplier"] == 4
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "fire-accidental-death-or-funeral",
+        "land-water-mass-transit-accidental-death-or-funeral",
+        "fire-accidental-disability",
+        "land-water-mass-transit-accidental-disability",
+    }
+    assert entries["fire-accidental-death-or-funeral"]["rate_percent"] == 100
+    assert (
+        entries["land-water-mass-transit-accidental-death-or-funeral"][
+            "rate_percent"
+        ]
+        == 400
+    )
+    assert entries["fire-accidental-disability"]["multiplier"] == 1
+    assert entries["land-water-mass-transit-accidental-disability"]["multiplier"] == 4
+    assert expected_disability_term in entries["fire-accidental-disability"]["name"]
+    assert (
+        expected_disability_term
+        in entries["land-water-mass-transit-accidental-disability"]["name"]
+    )
+    for entry in entries.values():
+        assert entry["basis"] == "face_amount"
+        assert entry["calculation_basis"] == "percentage_of_base"
+        assert entry["source"] == "terms"
+        assert entry.get("conditions")
+
+    source_path = root / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join((page.extract_text() or "") for page in PdfReader(source_path).pages[:3])
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert (
+        parse_prudential_fire_mass_transit_accident_face_amount(completed_document)
+        == schedule
+    )
+    assert (
+        parse_prudential_fire_mass_transit_accident_face_amount(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_prudential_fire_mass_transit_accident_face_amount(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_prudential_fire_mass_transit_accident_face_amount(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+
+
+ANXIN_456_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-049"
+)
+ANXIN_456_PRODUCTS = {
+    "209291M12G00800": (19, "102-original", 30, "殘廢", 75),
+    "209291M12G00801": (19, "103-first-revision", 30, "殘廢", 75),
+    "209291MZ2G00221A11Z10000002": (20, "104-second-revision", 30, "殘廢", 75),
+    "209291MZ2G00221A11Z10000003": (20, "105-third-revision", 30, "殘廢", 75),
+    "209291MZ2G00221A11Z10000004": (20, "107-fourth-revision", 0, "殘廢", 75),
+    "209291MZ2G00221A11Z10000005": (20, "107-fifth-revision", 0, "失能", 79),
+    "209291MZ2G00221A11Z10000006": (20, "108-sixth-revision", 0, "失能", 79),
+    "209291MZ2G00221A11Z10000007": (21, "109-seventh-revision", 0, "失能", 80),
+    "209291MZ2G00221A11Z10000008": (20, "109-eighth-revision", 0, "失能", 80),
+    "209291MZ2G00221A11Z10000009": (20, "111-ninth-revision", 0, "失能", 80),
+}
+
+
+def anxin_456_document(product_id: str) -> dict:
+    pdf_path = ANXIN_456_ROOT / product_id / f"{product_id}-A.pdf"
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for product_id, (
+    expected_pages,
+    expected_revision,
+    expected_cancer_waiting_days,
+    expected_disability_term,
+    expected_disability_items,
+) in ANXIN_456_PRODUCTS.items():
+    document = anxin_456_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    schedule = parse_fubon_anxin_456_accident_health_fixed_schedule(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-anxin-456-accident-health-fixed-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "fixed"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["fixed_schedule"] is True
+    assert characteristics["maximum_renewal_age"] == 65
+    assert characteristics["cancer_waiting_days"] == expected_cancer_waiting_days
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["accident_hospital_days_limit"] == 90
+    assert characteristics["accident_icu_days_limit"] == 30
+    assert characteristics["burn_center_days_limit"] == 30
+    assert characteristics["fracture_daily_rate_percent"] == 50
+    assert characteristics["major_burn_survival_days"] == 15
+    assert characteristics["major_burn_lifetime_limit_times"] == 1
+    assert characteristics["disability_term"] == expected_disability_term
+    assert characteristics["disability_schedule_item_count"] == expected_disability_items
+    assert characteristics["disability_rate_min_percent"] == 5
+    assert characteristics["disability_rate_max_percent"] == 100
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert len(entries) == 13
+    assert entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert entries["total-disability"]["amount"] == 1_000_000
+    assert entries["total-disability"]["name"] == f"完全{expected_disability_term}保險金"
+    assert entries["cancer-death"]["amount"] == 300_000
+    assert entries["major-burn"]["amount"] == 500_000
+    assert entries["accidental-death-or-funeral"]["amount"] == 2_000_000
+    assert entries["accidental-disability"]["amount"] == 2_000_000
+    assert entries["accidental-disability"]["name"] == f"意外{expected_disability_term}保險金"
+    assert entries["accidental-disability"]["amount_tiers"][0] == {
+        "label": "第1級 100%",
+        "amount": 2_000_000,
+    }
+    assert entries["accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 100_000,
+    }
+    assert entries["cancer-surgery"]["amount"] == 30_000
+    assert entries["cancer-hospital-daily"]["amount"] == 1_000
+    assert entries["cancer-radiation-daily"]["amount"] == 1_000
+    assert entries["accident-hospital-daily"]["amount"] == 1_000
+    assert entries["fracture-unhospitalized-medical"]["amount"] == 500
+    assert entries["accident-icu-hospital-daily"]["amount"] == 1_000
+    assert entries["burn-center-medical-daily"]["amount"] == 2_000
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+
+    source_path = ANXIN_456_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert (
+        parse_fubon_anxin_456_accident_health_fixed_schedule(completed_document)
+        == schedule
+    )
+    assert (
+        parse_fubon_anxin_456_accident_health_fixed_schedule(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_anxin_456_accident_health_fixed_schedule(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_anxin_456_accident_health_fixed_schedule(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+
+
+NEW_SHOUHU_JINNANG_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-049"
+)
+NEW_SHOUHU_JINNANG_PRODUCTS = {
+    "209291M12G00200": (21, "102-original", 30, 75),
+    "209291M19G00101": (21, "103-first-revision", 30, 75),
+    "209291MZ2G00121A11Z10000002": (22, "104-second-revision", 30, 79),
+    "209291MZ2G00121A11Z10000003": (22, "105-third-revision", 30, 79),
+    "209291MZ2G00121A11Z10000004": (22, "107-fourth-revision", 0, 79),
+}
+
+
+def new_shouhu_jinnang_document(product_id: str) -> dict:
+    pdf_path = NEW_SHOUHU_JINNANG_ROOT / product_id / f"{product_id}-A.pdf"
+    reader = PdfReader(pdf_path, strict=False)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for (
+    product_id,
+    (
+        expected_pages,
+        expected_revision,
+        expected_cancer_waiting_days,
+        expected_disability_items,
+    ),
+) in NEW_SHOUHU_JINNANG_PRODUCTS.items():
+    document = new_shouhu_jinnang_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    schedule = parse_fubon_new_shouhu_jinnang_accident_health_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-new-shouhu-jinnang-accident-health-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["plan_count"] == 10
+    assert characteristics["plan_1_2_maximum_renewal_age"] == 70
+    assert characteristics["plan_3_4_maximum_renewal_age"] == 20
+    assert characteristics["plan_5_10_maximum_renewal_age"] == 65
+    assert characteristics["cancer_waiting_days"] == expected_cancer_waiting_days
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["accident_hospital_days_limit"] == 90
+    assert characteristics["accident_outpatient_surgery_limit_times"] == 1
+    assert characteristics["accident_reimbursement_non_nhi_rate_percent"] == 65
+    assert characteristics["fracture_daily_rate_percent"] == 50
+    assert characteristics["disability_term"] == "殘廢"
+    assert (
+        characteristics["disability_schedule_item_count"]
+        == expected_disability_items
+    )
+    assert characteristics["disability_rate_min_percent"] == 5
+    assert characteristics["disability_rate_max_percent"] == 100
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+        "計畫四",
+        "計畫五",
+        "計畫六",
+        "計畫七",
+        "計畫八",
+        "計畫九",
+        "計畫十",
+    ]
+    plans = {plan["value"]: plan for plan in schedule["plan_options"]}
+    plan_1_entries = {
+        entry["id"]: entry for entry in plans["plan-1"]["coverage_entries"]
+    }
+    assert len(plan_1_entries) == 3
+    assert plan_1_entries["general-accidental-death"]["amount"] == 1_000_000
+    assert plan_1_entries["general-accidental-disability"]["amount"] == 1_000_000
+    assert plan_1_entries["general-accidental-disability"]["amount_tiers"][0] == {
+        "label": "第1級 100%",
+        "amount": 1_000_000,
+    }
+    assert plan_1_entries["general-accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 50_000,
+    }
+    assert plan_1_entries["accident-medical-reimbursement"]["amount"] == 20_000
+    assert plan_1_entries["accident-medical-reimbursement"]["amount_role"] == "limit"
+    assert (
+        plan_1_entries["accident-medical-reimbursement"]["calculation_basis"]
+        == "reimbursement_with_cap"
+    )
+
+    plan_7_entries = {
+        entry["id"]: entry for entry in plans["plan-7"]["coverage_entries"]
+    }
+    assert len(plan_7_entries) == 25
+    assert plan_7_entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_7_entries["total-disability"]["amount"] == 1_000_000
+    assert plan_7_entries["general-accidental-death"]["amount"] == 3_000_000
+    assert (
+        plan_7_entries["mass-transit-accidental-death-additional"]["amount"]
+        == 5_000_000
+    )
+    assert (
+        plan_7_entries["land-transit-accidental-death-additional"]["amount"]
+        == 3_000_000
+    )
+    assert (
+        plan_7_entries[
+            "public-building-fire-first-level-disability-additional"
+        ]["amount"]
+        == 3_000_000
+    )
+    assert (
+        plan_7_entries["mass-transit-accidental-disability-additional"][
+            "amount_tiers"
+        ][0]["amount"]
+        == 5_000_000
+    )
+    assert plan_7_entries["accident-hospital-daily"]["amount"] == 2_000
+    assert plan_7_entries["fracture-unhospitalized-medical"]["amount"] == 1_000
+    assert plan_7_entries["accident-medical-reimbursement"]["amount"] == 30_000
+    assert plan_7_entries["accident-outpatient-surgery"]["amount"] == 1_000
+    assert plan_7_entries["general-hospital-daily"]["amount"] == 2_000
+    assert plan_7_entries["post-discharge-convalescence-daily"]["amount"] == 1_500
+    assert plan_7_entries["icu-hospital-daily"]["amount"] == 4_000
+    assert plan_7_entries["burn-center-hospital-daily"]["amount"] == 6_000
+    assert plan_7_entries["cancer-hospital-daily"]["amount"] == 2_000
+    assert (
+        plan_7_entries["cancer-post-discharge-convalescence-daily"]["amount"]
+        == 2_000
+    )
+    assert plan_7_entries["cancer-surgery"]["amount"] == 20_000
+    assert plan_7_entries["cancer-radiation-daily"]["amount"] == 1_000
+    assert plan_7_entries["cancer-chemotherapy-daily"]["amount"] == 1_000
+    assert all(entry["source"] == "terms" for entry in plan_7_entries.values())
+    assert all(entry.get("conditions") for entry in plan_7_entries.values())
+
+    plan_8_entries = {
+        entry["id"]: entry for entry in plans["plan-8"]["coverage_entries"]
+    }
+    assert plan_8_entries["burn-center-hospital-daily"]["amount"] == 4_500
+    assert plan_8_entries["post-discharge-convalescence-daily"]["amount"] == 1_000
+    assert plan_8_entries["cancer-hospital-daily"]["amount"] == 1_500
+
+    plan_10_entries = {
+        entry["id"]: entry for entry in plans["plan-10"]["coverage_entries"]
+    }
+    assert len(plan_10_entries) == 17
+    assert "mass-transit-accidental-death-additional" not in plan_10_entries
+    assert "land-transit-first-level-disability-additional" not in plan_10_entries
+    assert plan_10_entries["general-accidental-death"]["amount"] == 500_000
+    assert plan_10_entries["general-accidental-disability"]["amount"] == 500_000
+    assert plan_10_entries["fracture-unhospitalized-medical"]["amount"] == 1_000
+    assert plan_10_entries["cancer-post-discharge-convalescence-daily"]["amount"] == 500
+
+    source_path = NEW_SHOUHU_JINNANG_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert (
+        parse_fubon_new_shouhu_jinnang_accident_health_plan_table(
+            completed_document
+        )
+        == schedule
+    )
+    assert (
+        parse_fubon_new_shouhu_jinnang_accident_health_plan_table(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_new_shouhu_jinnang_accident_health_plan_table(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_new_shouhu_jinnang_accident_health_plan_table(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_new_shouhu_jinnang_accident_health_plan_table(
+            {
+                **document,
+                "text": document["text"].replace(
+                    "意外傷害醫療保險金 2 萬 4 萬 3 萬 6 萬 3 萬 3 萬",
+                    "意外傷害醫療保險金 2 萬 4 萬 3 萬 6 萬 3 萬 4 萬",
+                    1,
+                ),
+            }
+        )
+        is None
+    )
+
+
+NEW_SHOUHU_JINNANG_LATE_PRODUCTS = {
+    "209291MZ2G00121A11Z10000005": (
+        22,
+        "107-fifth-revision",
+        "FBH1070914",
+        79,
+    ),
+    "209291MZ2G00121A11Z10000007": (
+        22,
+        "109-seventh-revision",
+        "FBH1090101",
+        80,
+    ),
+    "209291MZ2G00121A11Z10000008": (
+        22,
+        "109-eighth-revision",
+        "FBH1090901",
+        80,
+    ),
+    "209291MZ2G00121A11Z10000009": (
+        22,
+        "110-ninth-revision",
+        "FBH1101201",
+        80,
+    ),
+    "209291MZ2G00121A11Z10000010": (
+        22,
+        "111-tenth-revision",
+        "FBH1111202",
+        80,
+    ),
+}
+
+
+for (
+    product_id,
+    (
+        expected_pages,
+        expected_revision,
+        expected_fubon_code,
+        expected_disability_items,
+    ),
+) in NEW_SHOUHU_JINNANG_LATE_PRODUCTS.items():
+    document = new_shouhu_jinnang_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    assert expected_fubon_code in document["text"]
+    assert "日間留院" in document["text"]
+    assert "完全失能保險金" in document["text"]
+    assert parse_fubon_new_shouhu_jinnang_accident_health_plan_table(document) is None
+    schedule = parse_fubon_new_shouhu_jinnang_late_accident_health_plan_table(
+        document
+    )
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-new-shouhu-jinnang-late-accident-health-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "投保計畫別"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["plan_count"] == 4
+    assert characteristics["maximum_renewal_age"] == 65
+    assert characteristics["cancer_waiting_days"] == 0
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["accident_hospital_days_limit"] == 90
+    assert characteristics["accident_outpatient_surgery_limit_times"] == 1
+    assert characteristics["accident_reimbursement_non_nhi_rate_percent"] == 65
+    assert characteristics["fracture_daily_rate_percent"] == 50
+    assert characteristics["disability_term"] == "失能"
+    assert characteristics["day_hospital_explicit"] is True
+    assert (
+        characteristics["disability_schedule_item_count"]
+        == expected_disability_items
+    )
+    assert characteristics["disability_rate_min_percent"] == 5
+    assert characteristics["disability_rate_max_percent"] == 100
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫七",
+        "計畫八",
+        "計畫九",
+        "計畫十",
+    ]
+    plans = {plan["value"]: plan for plan in schedule["plan_options"]}
+    assert set(plans) == {"plan-7", "plan-8", "plan-9", "plan-10"}
+
+    plan_7_entries = {
+        entry["id"]: entry for entry in plans["plan-7"]["coverage_entries"]
+    }
+    assert len(plan_7_entries) == 25
+    assert plan_7_entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_7_entries["total-disability"]["amount"] == 1_000_000
+    assert plan_7_entries["total-disability"]["name"] == "完全失能保險金"
+    assert plan_7_entries["general-accidental-death"]["amount"] == 3_000_000
+    assert (
+        plan_7_entries["mass-transit-accidental-death-additional"]["amount"]
+        == 5_000_000
+    )
+    assert (
+        plan_7_entries["land-transit-accidental-death-additional"]["amount"]
+        == 3_000_000
+    )
+    assert (
+        plan_7_entries["general-accidental-disability"]["amount_tiers"][0][
+            "amount"
+        ]
+        == 3_000_000
+    )
+    assert (
+        plan_7_entries["mass-transit-accidental-disability-additional"][
+            "amount_tiers"
+        ][0]["amount"]
+        == 5_000_000
+    )
+    assert (
+        plan_7_entries["public-building-fire-first-level-disability-additional"][
+            "amount"
+        ]
+        == 3_000_000
+    )
+    assert plan_7_entries["accident-hospital-daily"]["amount"] == 2_000
+    assert plan_7_entries["fracture-unhospitalized-medical"]["amount"] == 1_000
+    assert plan_7_entries["accident-medical-reimbursement"]["amount"] == 30_000
+    assert plan_7_entries["accident-outpatient-surgery"]["amount"] == 1_000
+    assert plan_7_entries["general-hospital-daily"]["amount"] == 2_000
+    assert plan_7_entries["post-discharge-convalescence-daily"]["amount"] == 1_500
+    assert plan_7_entries["icu-hospital-daily"]["amount"] == 4_000
+    assert plan_7_entries["burn-center-hospital-daily"]["amount"] == 6_000
+    assert plan_7_entries["cancer-hospital-daily"]["amount"] == 2_000
+    assert (
+        plan_7_entries["cancer-post-discharge-convalescence-daily"]["amount"]
+        == 2_000
+    )
+    assert plan_7_entries["cancer-surgery"]["amount"] == 20_000
+    assert plan_7_entries["cancer-radiation-daily"]["amount"] == 1_000
+    assert plan_7_entries["cancer-chemotherapy-daily"]["amount"] == 1_000
+    assert "失能" in json.dumps(plan_7_entries, ensure_ascii=False)
+    assert "殘廢" not in json.dumps(plan_7_entries, ensure_ascii=False)
+    assert all(entry["source"] == "terms" for entry in plan_7_entries.values())
+    assert all(entry.get("conditions") for entry in plan_7_entries.values())
+
+    plan_8_entries = {
+        entry["id"]: entry for entry in plans["plan-8"]["coverage_entries"]
+    }
+    assert plan_8_entries["burn-center-hospital-daily"]["amount"] == 4_500
+    assert plan_8_entries["general-hospital-daily"]["amount"] == 1_500
+    assert plan_8_entries["cancer-hospital-daily"]["amount"] == 1_500
+
+    plan_10_entries = {
+        entry["id"]: entry for entry in plans["plan-10"]["coverage_entries"]
+    }
+    assert len(plan_10_entries) == 17
+    assert "mass-transit-accidental-death-additional" not in plan_10_entries
+    assert "land-transit-first-level-disability-additional" not in plan_10_entries
+    assert plan_10_entries["general-accidental-death"]["amount"] == 500_000
+    assert plan_10_entries["general-accidental-disability"]["amount"] == 500_000
+    assert plan_10_entries["fracture-unhospitalized-medical"]["amount"] == 1_000
+    assert plan_10_entries["cancer-post-discharge-convalescence-daily"]["amount"] == 500
+
+    source_path = NEW_SHOUHU_JINNANG_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert (
+        parse_fubon_new_shouhu_jinnang_late_accident_health_plan_table(
+            completed_document
+        )
+        == schedule
+    )
+    assert (
+        parse_fubon_new_shouhu_jinnang_late_accident_health_plan_table(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_new_shouhu_jinnang_late_accident_health_plan_table(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_new_shouhu_jinnang_late_accident_health_plan_table(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_new_shouhu_jinnang_late_accident_health_plan_table(
+            {
+                **document,
+                "text": document["text"].replace(
+                    "癌症化學治療保險金 1,000 元/日",
+                    "癌症化學治療保險金 2,000 元/日",
+                    1,
+                ),
+            }
+        )
+        is None
+    )
+
+
+FUBON_COMPREHENSIVE_ACCIDENT_PRODUCTS = {
+    "209211MZ1A01421A11Z10000000": (
+        17,
+        "113-original",
+        "NAF1_51130329",
+        "shiquan-ruyi",
+        5,
+        25,
+        75,
+        2,
+        1,
+    ),
+    "209211MZ1A01421A11Z10000001": (
+        17,
+        "113-first-revision",
+        "NAF1_51130923",
+        "shiquan-ruyi",
+        5,
+        25,
+        75,
+        2,
+        1,
+    ),
+    "209211MZ1A01421A11Z10000002": (
+        17,
+        "114-second-revision",
+        "NAF1_51140101",
+        "shiquan-ruyi",
+        5,
+        25,
+        75,
+        2,
+        1,
+    ),
+    "209211MZ1A01522A11Z10000000": (
+        17,
+        "114-original",
+        "NAG1_31140331",
+        "yiwai-wuyou",
+        3,
+        21,
+        70,
+        0,
+        3,
+    ),
+}
+
+
+for (
+    product_id,
+    (
+        expected_pages,
+        expected_revision,
+        expected_source_code,
+        expected_family,
+        expected_plan_count,
+        expected_entry_count,
+        expected_max_age,
+        expected_guaranteed_years,
+        expected_policy_years,
+    ),
+) in FUBON_COMPREHENSIVE_ACCIDENT_PRODUCTS.items():
+    document = new_shouhu_jinnang_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    assert expected_source_code in document["text"]
+    assert "本契約分為" in document["text"]
+    assert "意外傷害住院生活補助保險金" in document["text"]
+    assert "失能程度與保險金給付表" in document["text"]
+    schedule = parse_fubon_comprehensive_accident_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-comprehensive-accident-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["fubon_product_family"] == expected_family
+    assert characteristics["plan_count"] == expected_plan_count
+    assert characteristics["maximum_renewal_age"] == expected_max_age
+    assert characteristics["guaranteed_renewal_years"] == expected_guaranteed_years
+    assert characteristics["policy_period_years"] == expected_policy_years
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["hospital_days_limit"] == 90
+    assert characteristics["icu_days_limit"] == 30
+    assert characteristics["nursing_days_limit"] == 90
+    assert characteristics["burn_center_days_limit"] == 30
+    assert characteristics["hospital_living_supplement_days_limit"] == 15
+    assert characteristics["food_poisoning_lifetime_limit_times"] == 3
+    assert characteristics["disability_living_supplement_lifetime_limit_times"] == 1
+    assert characteristics["burn_lifetime_limit_times"] == 1
+    assert characteristics["head_trauma_lifetime_limit_times"] == 1
+    assert characteristics["fracture_unhospitalized_rate_percent"] == 50
+    assert characteristics["disability_term"] == "失能"
+    assert characteristics["disability_schedule_item_count"] == 80
+    assert characteristics["disability_rate_min_percent"] == 5
+    assert characteristics["disability_rate_max_percent"] == 100
+    plans = {plan["value"]: plan for plan in schedule["plan_options"]}
+    assert len(plans) == expected_plan_count
+    assert all(
+        len(plan["coverage_entries"]) == expected_entry_count
+        for plan in plans.values()
+    )
+
+    if expected_family == "shiquan-ruyi":
+        assert [plan["label"] for plan in schedule["plan_options"]] == [
+            "計劃 1",
+            "計劃 2",
+            "計劃 3",
+            "計劃 4",
+            "計劃 5",
+        ]
+        plan_1_entries = {
+            entry["id"]: entry for entry in plans["plan-1"]["coverage_entries"]
+        }
+        assert plan_1_entries["general-accidental-death"]["amount"] == 1_000_000
+        assert (
+            plan_1_entries["mass-transit-accidental-death-additional"]["amount"]
+            == 3_000_000
+        )
+        assert (
+            plan_1_entries[
+                "public-building-fire-accidental-death-additional"
+            ]["amount"]
+            == 1_000_000
+        )
+        assert (
+            plan_1_entries["natural-disaster-accidental-disability-additional"][
+                "rate_max_percent"
+            ]
+            == 90
+        )
+        assert (
+            plan_1_entries["natural-disaster-accidental-disability-additional"][
+                "amount_tiers"
+            ][0]["amount"]
+            == 900_000
+        )
+        assert (
+            plan_1_entries["accidental-disability-living-supplement"]["amount"]
+            == 1_000_000
+        )
+        assert plan_1_entries["serious-third-degree-burn"]["amount"] == 1_000_000
+        assert plan_1_entries["food-poisoning"]["amount"] == 2_000
+        assert plan_1_entries["serious-head-trauma"]["amount"] == 500_000
+        assert plan_1_entries["accident-hospital-daily"]["amount"] == 500
+        assert plan_1_entries["fracture-unhospitalized-medical"]["amount"] == 250
+        assert plan_1_entries["fracture-unhospitalized-medical"]["rate_percent"] == 50
+        assert plan_1_entries["accident-icu-daily"]["amount"] == 1_000
+        assert plan_1_entries["accident-nursing-daily"]["amount"] == 500
+        assert plan_1_entries["accident-burn-center-daily"]["amount"] == 2_000
+        assert plan_1_entries["accident-inpatient-surgery"]["amount"] == 1_500
+        assert (
+            plan_1_entries["accident-hospital-living-supplement"]["amount"]
+            == 12_500
+        )
+        assert (
+            plan_1_entries["accident-hospital-living-supplement"][
+                "calculation_basis"
+            ]
+            == "tiered_or_stepped"
+        )
+
+        plan_5_entries = {
+            entry["id"]: entry for entry in plans["plan-5"]["coverage_entries"]
+        }
+        assert plan_5_entries["general-accidental-death"]["amount"] == 10_000_000
+        assert (
+            plan_5_entries["mass-transit-accidental-death-additional"]["amount"]
+            == 6_000_000
+        )
+        assert plan_5_entries["accident-hospital-daily"]["amount"] == 3_000
+        assert (
+            plan_5_entries["accident-hospital-living-supplement"]["amount"]
+            == 113_000
+        )
+    else:
+        assert characteristics["same_day_icu_or_burn_center_choose_one"] is True
+        assert characteristics["occupational_class_by_plan"] == {
+            "plan-1": "第一類至第四類",
+            "plan-2": "第一類至第四類",
+            "plan-3": "第一類至第三類",
+        }
+        assert [plan["label"] for plan in schedule["plan_options"]] == [
+            "計劃 1",
+            "計劃 2",
+            "計劃 3",
+        ]
+        plan_1_entries = {
+            entry["id"]: entry for entry in plans["plan-1"]["coverage_entries"]
+        }
+        assert plan_1_entries["general-accidental-death"]["amount"] == 2_000_000
+        assert (
+            plan_1_entries["motor-vehicle-accidental-death-additional"]["amount"]
+            == 2_000_000
+        )
+        assert (
+            plan_1_entries["holiday-accidental-death-additional"]["amount"]
+            == 1_000_000
+        )
+        assert plan_1_entries["accident-hospital-daily"]["amount"] == 1_000
+        assert plan_1_entries["fracture-unhospitalized-medical"]["amount"] == 500
+        assert (
+            plan_1_entries["accident-hospital-living-supplement"]["amount"]
+            == 10_000
+        )
+        assert "擇一給付" in " ".join(
+            plan_1_entries["accident-icu-daily"]["conditions"]
+        )
+
+        plan_3_entries = {
+            entry["id"]: entry for entry in plans["plan-3"]["coverage_entries"]
+        }
+        assert plan_3_entries["general-accidental-death"]["amount"] == 4_000_000
+        assert (
+            plan_3_entries["holiday-accidental-death-additional"]["amount"]
+            == 2_000_000
+        )
+        assert plan_3_entries["serious-head-trauma"]["amount"] == 1_000_000
+        assert plan_3_entries["accident-inpatient-surgery"]["amount"] == 5_000
+
+    first_plan_entries = {
+        entry["id"]: entry for entry in schedule["plan_options"][0]["coverage_entries"]
+    }
+    assert all(entry["source"] == "terms" for entry in first_plan_entries.values())
+    assert all(entry.get("conditions") for entry in first_plan_entries.values())
+
+    source_path = NEW_SHOUHU_JINNANG_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert parse_fubon_comprehensive_accident_plan_table(completed_document) == schedule
+    assert (
+        parse_fubon_comprehensive_accident_plan_table(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_comprehensive_accident_plan_table(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_comprehensive_accident_plan_table(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_comprehensive_accident_plan_table(
+            {
+                **document,
+                "text": document["text"].replace(
+                    expected_source_code,
+                    "BROKEN_SOURCE_CODE",
+                ),
+            }
+        )
+        is None
+    )
+
+
+FUBON_NEW_MILLION_HEART_PRODUCTS = {
+    "209291MZ1G00321A11Z10000004": (
+        22,
+        "107-fourth-revision",
+        "FBD1070914",
+        79,
+    ),
+    "209291MZ1G00321A11Z10000005": (
+        22,
+        "109-fifth-revision",
+        "FBD1090101",
+        80,
+    ),
+    "209291MZ1G00321A11Z10000006": (
+        22,
+        "109-sixth-revision",
+        "FBD1090901",
+        80,
+    ),
+    "209291MZ1G00321A11Z10000007": (
+        22,
+        "111-seventh-revision",
+        "FBD1111202",
+        80,
+    ),
+}
+
+
+for (
+    product_id,
+    (
+        expected_pages,
+        expected_revision,
+        expected_fubon_code,
+        expected_disability_items,
+    ),
+) in FUBON_NEW_MILLION_HEART_PRODUCTS.items():
+    document = new_shouhu_jinnang_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    assert expected_fubon_code in document["text"]
+    assert "富邦人壽新放百萬心傷害暨健康一年定期保險" in document["text"]
+    assert "本契約保障內容分八個計畫別" in document["text"]
+    assert "日間留院" in document["text"]
+    schedule = parse_fubon_new_million_heart_accident_health_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-new-million-heart-accident-health-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "投保計畫別"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["plan_count"] == 8
+    assert characteristics["non_guaranteed_renewal"] is True
+    assert characteristics["maximum_renewal_age"] == 60
+    assert characteristics["day_hospital_explicit"] is True
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["general_hospital_days_limit"] == 90
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["major_burn_rate_percent"] == 10
+    assert characteristics["major_burn_survival_days"] == 15
+    assert characteristics["major_burn_lifetime_limit_times"] == 1
+    assert characteristics["disability_term"] == "失能"
+    assert (
+        characteristics["disability_schedule_item_count"]
+        == expected_disability_items
+    )
+    assert characteristics["disability_rate_min_percent"] == 5
+    assert characteristics["disability_rate_max_percent"] == 100
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+        "計畫四",
+        "計畫五",
+        "計畫六",
+        "計畫七",
+        "計畫八",
+    ]
+    plans = {plan["value"]: plan for plan in schedule["plan_options"]}
+    assert set(plans) == {
+        "plan-1",
+        "plan-2",
+        "plan-3",
+        "plan-4",
+        "plan-5",
+        "plan-6",
+        "plan-7",
+        "plan-8",
+    }
+    assert all(len(plan["coverage_entries"]) == 15 for plan in plans.values())
+
+    plan_1_entries = {
+        entry["id"]: entry for entry in plans["plan-1"]["coverage_entries"]
+    }
+    assert plan_1_entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_1_entries["total-disability"]["amount"] == 1_000_000
+    assert plan_1_entries["general-accidental-death"]["amount"] == 1_000_000
+    assert plan_1_entries["land-transit-accidental-death"]["amount"] == 1_000_000
+    assert (
+        plan_1_entries["public-building-fire-accidental-death"]["amount"]
+        == 1_000_000
+    )
+    assert plan_1_entries["elevator-accidental-death"]["amount"] == 1_000_000
+    assert plan_1_entries["general-accidental-disability"]["amount"] == 1_000_000
+    assert (
+        plan_1_entries["general-accidental-disability"]["amount_tiers"][0][
+            "amount"
+        ]
+        == 1_000_000
+    )
+    assert (
+        plan_1_entries["general-accidental-disability"]["amount_tiers"][-1][
+            "amount"
+        ]
+        == 50_000
+    )
+    assert (
+        plan_1_entries["land-transit-first-level-disability"]["amount"]
+        == 1_000_000
+    )
+    assert (
+        plan_1_entries["public-building-fire-first-level-disability"]["amount"]
+        == 1_000_000
+    )
+    assert (
+        plan_1_entries["elevator-first-level-disability"]["amount"]
+        == 1_000_000
+    )
+    assert plan_1_entries["major-burn"]["amount"] == 100_000
+    assert plan_1_entries["major-burn"]["rate_percent"] == 10
+    assert plan_1_entries["hospital-daily"]["amount"] == 1_000
+    assert plan_1_entries["fracture-unhospitalized-medical"]["amount"] == 500
+    assert plan_1_entries["outpatient-surgery"]["amount"] == 1_000
+    assert plan_1_entries["specific-treatment"]["amount"] == 1_000
+    assert (
+        plan_1_entries["land-transit-accidental-death"]["aggregation_rule"]
+        == "conditional_additive"
+    )
+    assert (
+        plan_1_entries["general-accidental-disability"]["calculation_basis"]
+        == "table_multiplier"
+    )
+    assert plan_1_entries["hospital-daily"]["calculation_basis"] == "per_day"
+    assert all(entry["source"] == "terms" for entry in plan_1_entries.values())
+    assert all(entry.get("conditions") for entry in plan_1_entries.values())
+
+    plan_4_entries = {
+        entry["id"]: entry for entry in plans["plan-4"]["coverage_entries"]
+    }
+    assert plan_4_entries["general-accidental-death"]["amount"] == 5_000_000
+    assert plan_4_entries["major-burn"]["amount"] == 500_000
+    assert plan_4_entries["hospital-daily"]["amount"] == 1_000
+    assert plan_4_entries["fracture-unhospitalized-medical"]["amount"] == 500
+
+    plan_5_entries = {
+        entry["id"]: entry for entry in plans["plan-5"]["coverage_entries"]
+    }
+    assert plan_5_entries["general-accidental-death"]["amount"] == 1_000_000
+    assert plan_5_entries["hospital-daily"]["amount"] == 2_000
+    assert plan_5_entries["fracture-unhospitalized-medical"]["amount"] == 1_000
+
+    plan_8_entries = {
+        entry["id"]: entry for entry in plans["plan-8"]["coverage_entries"]
+    }
+    assert plan_8_entries["general-accidental-death"]["amount"] == 5_000_000
+    assert plan_8_entries["major-burn"]["amount"] == 500_000
+    assert plan_8_entries["hospital-daily"]["amount"] == 2_000
+    assert plan_8_entries["fracture-unhospitalized-medical"]["amount"] == 1_000
+    assert plan_8_entries["outpatient-surgery"]["amount"] == 2_000
+    assert plan_8_entries["specific-treatment"]["amount"] == 2_000
+
+    source_path = NEW_SHOUHU_JINNANG_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert (
+        parse_fubon_new_million_heart_accident_health_plan_table(completed_document)
+        == schedule
+    )
+    assert (
+        parse_fubon_new_million_heart_accident_health_plan_table(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_new_million_heart_accident_health_plan_table(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_new_million_heart_accident_health_plan_table(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_new_million_heart_accident_health_plan_table(
+            {
+                **document,
+                "text": document["text"].replace(
+                    "住院醫療日額保險金 1,000 元/日",
+                    "住院醫療日額保險金 9,000 元/日",
+                    1,
+                ),
+            }
+        )
+        is None
+    )
+
+
+FUBON_MILLION_HEART_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-049"
+)
+FUBON_MILLION_HEART_PRODUCTS = {
+    "209291M12G00100": (
+        16,
+        "102-original",
+        "FBE1020401",
+        75,
+        "殘廢",
+        False,
+    ),
+    "209291M11G00201": (
+        16,
+        "103-first-revision",
+        "FBE1030501",
+        75,
+        "殘廢",
+        True,
+    ),
+    "209291MZ1G00221A11Z10000002": (
+        18,
+        "104-second-revision",
+        "FBE1040804",
+        79,
+        "殘廢",
+        True,
+    ),
+    "209291MZ1G00221A11Z10000003": (
+        18,
+        "107-third-revision",
+        "FBE1070914",
+        79,
+        "失能",
+        True,
+    ),
+    "209291MZ1G00221A11Z10000004": (
+        18,
+        "109-fourth-revision",
+        "FBE1090101",
+        80,
+        "失能",
+        True,
+    ),
+    "209291MZ1G00221A11Z10000005": (
+        18,
+        "109-fifth-revision",
+        "FBE1090901",
+        80,
+        "失能",
+        True,
+    ),
+    "209291MZ1G00221A11Z10000006": (
+        18,
+        "111-sixth-revision",
+        "FBE1111202",
+        80,
+        "失能",
+        True,
+    ),
+}
+
+
+def fubon_million_heart_document(product_id: str) -> dict:
+    pdf_path = FUBON_MILLION_HEART_ROOT / product_id / f"{product_id}-A.pdf"
+    reader = PdfReader(pdf_path, strict=False)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for (
+    product_id,
+    (
+        expected_pages,
+        expected_revision,
+        expected_fubon_code,
+        expected_disability_items,
+        expected_disability_term,
+        expected_day_hospital_explicit,
+    ),
+) in FUBON_MILLION_HEART_PRODUCTS.items():
+    document = fubon_million_heart_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    assert expected_fubon_code in document["text"]
+    assert "富邦人壽放百萬心傷害暨健康一年定期保險" in document["text"]
+    assert "富邦人壽新放百萬心傷害暨健康一年定期保險" not in document["text"]
+    assert "本契約保障內容分十個計畫別" in document["text"]
+    assert ("日間留院" in document["text"]) is expected_day_hospital_explicit
+    assert "重大燒燙傷" not in document["text"]
+    assert "門診手術" not in document["text"]
+    assert "特定處置" not in document["text"]
+    assert parse_fubon_new_million_heart_accident_health_plan_table(document) is None
+    schedule = parse_fubon_million_heart_accident_health_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-million-heart-accident-health-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "投保計畫別"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics == {
+        "terms_revision": expected_revision,
+        "plan_count": 10,
+        "non_guaranteed_renewal": True,
+        "maximum_renewal_age": 50,
+        "day_hospital_explicit": expected_day_hospital_explicit,
+        "same_hospital_readmission_days": 14,
+        "hospital_daily_days_limit_per_policy_year_same_hospitalization": 30,
+        "accident_claim_days": 180,
+        "death_disability_same_accident_cap": True,
+        "disability_term": expected_disability_term,
+        "total_disability_schedule_item_count": 7,
+        "disability_schedule_item_count": expected_disability_items,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "short_term_rate_table": True,
+    }
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+        "計畫四",
+        "計畫五",
+        "計畫六",
+        "計畫七",
+        "計畫八",
+        "計畫九",
+        "計畫十",
+    ]
+
+    plans = {plan["value"]: plan for plan in schedule["plan_options"]}
+    assert set(plans) == {
+        "plan-1",
+        "plan-2",
+        "plan-3",
+        "plan-4",
+        "plan-5",
+        "plan-6",
+        "plan-7",
+        "plan-8",
+        "plan-9",
+        "plan-10",
+    }
+    assert all(len(plan["coverage_entries"]) == 5 for plan in plans.values())
+    all_entries_json = json.dumps(schedule["plan_options"], ensure_ascii=False)
+    assert "重大燒燙傷" not in all_entries_json
+    assert "門診手術" not in all_entries_json
+    assert "特定處置" not in all_entries_json
+
+    plan_1_entries = {
+        entry["id"]: entry for entry in plans["plan-1"]["coverage_entries"]
+    }
+    assert plan_1_entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_1_entries["total-disability"]["amount"] == 1_000_000
+    assert plan_1_entries["hospital-daily"]["amount"] == 1_000
+    assert plan_1_entries["hospital-daily"]["calculation_basis"] == "per_day"
+    assert plan_1_entries["accidental-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_1_entries["accidental-disability"]["amount"] == 1_000_000
+    assert (
+        plan_1_entries["accidental-disability"]["calculation_basis"]
+        == "table_multiplier"
+    )
+    assert plan_1_entries["accidental-disability"]["amount_tiers"][0] == {
+        "label": "第1級 100%",
+        "amount": 1_000_000,
+    }
+    assert plan_1_entries["accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 50_000,
+    }
+    assert plan_1_entries["accidental-disability"]["aggregation_rule"] == "cumulative_cap"
+
+    plan_5_entries = {
+        entry["id"]: entry for entry in plans["plan-5"]["coverage_entries"]
+    }
+    assert plan_5_entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_5_entries["total-disability"]["amount"] == 1_000_000
+    assert plan_5_entries["accidental-death-or-funeral"]["amount"] == 5_000_000
+    assert plan_5_entries["accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 250_000,
+    }
+
+    plan_6_entries = {
+        entry["id"]: entry for entry in plans["plan-6"]["coverage_entries"]
+    }
+    assert plan_6_entries["life-death-or-funeral"]["amount"] == 2_000_000
+    assert plan_6_entries["total-disability"]["amount"] == 2_000_000
+    assert plan_6_entries["accidental-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_6_entries["hospital-daily"]["amount"] == 1_000
+
+    plan_10_entries = {
+        entry["id"]: entry for entry in plans["plan-10"]["coverage_entries"]
+    }
+    assert plan_10_entries["life-death-or-funeral"]["amount"] == 2_000_000
+    assert plan_10_entries["total-disability"]["amount"] == 2_000_000
+    assert plan_10_entries["accidental-death-or-funeral"]["amount"] == 5_000_000
+    assert plan_10_entries["accidental-disability"]["amount"] == 5_000_000
+    assert plan_10_entries["accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 250_000,
+    }
+    assert all(entry["source"] == "terms" for entry in plan_1_entries.values())
+    assert all(entry.get("conditions") for entry in plan_1_entries.values())
+
+    source_path = FUBON_MILLION_HEART_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert (
+        parse_fubon_million_heart_accident_health_plan_table(completed_document)
+        == schedule
+    )
+    assert (
+        parse_fubon_million_heart_accident_health_plan_table(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_million_heart_accident_health_plan_table(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_million_heart_accident_health_plan_table(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_million_heart_accident_health_plan_table(
+            {
+                **document,
+                "text": document["text"].replace(
+                    "住院醫療日額保險金 1,000 元/日",
+                    "住院醫療日額保險金 9,000 元/日",
+                    1,
+                ),
+            }
+        )
+        is None
+    )
+
+
+FUBON_VISION_LIFE_PRODUCTS = {
+    "209291M12G00600": (
+        20,
+        "102-original",
+        "FBJ1020401",
+        75,
+        "殘廢",
+        30,
+        False,
+    ),
+    "209291M12G00601": (
+        20,
+        "103-first-revision",
+        "FBJ1030501",
+        75,
+        "殘廢",
+        30,
+        True,
+    ),
+    "209291MZ2G00421A11Z10000002": (
+        21,
+        "104-second-revision",
+        "FBJ1040804",
+        79,
+        "殘廢",
+        30,
+        True,
+    ),
+    "209291MZ2G00421A11Z10000003": (
+        21,
+        "107-third-revision",
+        "FBJ1070430",
+        79,
+        "殘廢",
+        0,
+        True,
+    ),
+    "209291MZ2G00421A11Z10000004": (
+        21,
+        "107-fourth-revision",
+        "FBJ1070914",
+        79,
+        "失能",
+        0,
+        True,
+    ),
+    "209291MZ2G00421A11Z10000005": (
+        21,
+        "108-fifth-revision",
+        "FBJ1080101",
+        79,
+        "失能",
+        0,
+        True,
+    ),
+    "209291MZ2G00421A11Z10000006": (
+        21,
+        "109-sixth-revision",
+        "FBJ1090101",
+        80,
+        "失能",
+        0,
+        True,
+    ),
+    "209291MZ2G00421A11Z10000007": (
+        21,
+        "109-seventh-revision",
+        "FBJ1090901",
+        80,
+        "失能",
+        0,
+        True,
+    ),
+    "209291MZ2G00421A11Z10000008": (
+        21,
+        "111-eighth-revision",
+        "FBJ1111202",
+        80,
+        "失能",
+        0,
+        True,
+    ),
+}
+
+
+for (
+    product_id,
+    (
+        expected_pages,
+        expected_revision,
+        expected_fubon_code,
+        expected_disability_items,
+        expected_disability_term,
+        expected_cancer_waiting_days,
+        expected_day_hospital_excluded,
+    ),
+) in FUBON_VISION_LIFE_PRODUCTS.items():
+    document = new_shouhu_jinnang_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    assert expected_fubon_code in document["text"]
+    assert "本契約保障內容分三個計畫別" in document["text"]
+    assert "本契約最高可續保至被保險人保險年齡五十五歲" in document["text"]
+    assert f"完全{expected_disability_term}保險金" in document["text"]
+    assert parse_fubon_new_shouhu_jinnang_accident_health_plan_table(document) is None
+    assert (
+        parse_fubon_new_shouhu_jinnang_late_accident_health_plan_table(document)
+        is None
+    )
+    schedule = parse_fubon_vision_life_accident_health_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-vision-life-accident-health-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "投保計畫別"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["plan_count"] == 3
+    assert characteristics["non_guaranteed_renewal"] is True
+    assert characteristics["maximum_renewal_age"] == 55
+    assert characteristics["cancer_waiting_days"] == expected_cancer_waiting_days
+    assert characteristics["day_hospital_excluded"] is expected_day_hospital_excluded
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["accident_hospital_days_limit"] == 90
+    assert characteristics["accident_icu_days_limit"] == 30
+    assert characteristics["burn_center_days_limit"] == 30
+    assert characteristics["accident_outpatient_surgery_limit_times"] == 1
+    assert characteristics["fracture_daily_rate_percent"] == 50
+    assert characteristics["major_burn_survival_days"] == 15
+    assert characteristics["major_burn_lifetime_limit_times"] == 1
+    assert characteristics["disability_term"] == expected_disability_term
+    assert characteristics["disability_schedule_item_count"] == expected_disability_items
+    assert characteristics["disability_rate_min_percent"] == 5
+    assert characteristics["disability_rate_max_percent"] == 100
+    assert characteristics["mass_transit_additional_benefit"] is True
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+    ]
+
+    plans = {plan["value"]: plan for plan in schedule["plan_options"]}
+    plan_1_entries = {
+        entry["id"]: entry for entry in plans["plan-1"]["coverage_entries"]
+    }
+    assert len(plan_1_entries) == 15
+    assert plan_1_entries["life-death-or-funeral"]["amount"] == 500_000
+    assert plan_1_entries["total-disability"]["amount"] == 500_000
+    assert plan_1_entries["general-accidental-death"]["amount"] == 1_000_000
+    assert (
+        plan_1_entries["mass-transit-accidental-death-additional"]["amount"]
+        == 1_000_000
+    )
+    assert (
+        plan_1_entries["mass-transit-accidental-death-additional"][
+            "aggregation_rule"
+        ]
+        == "conditional_additive"
+    )
+    assert plan_1_entries["general-accidental-disability"]["amount"] == 1_000_000
+    assert (
+        plan_1_entries["general-accidental-disability"]["calculation_basis"]
+        == "table_multiplier"
+    )
+    assert plan_1_entries["general-accidental-disability"]["amount_tiers"][0][
+        "amount"
+    ] == 1_000_000
+    assert plan_1_entries["general-accidental-disability"]["amount_tiers"][-1][
+        "amount"
+    ] == 50_000
+    assert (
+        plan_1_entries["mass-transit-accidental-disability-additional"][
+            "amount_tiers"
+        ][0]["amount"]
+        == 1_000_000
+    )
+    assert plan_1_entries["major-burn"]["amount"] == 250_000
+    assert plan_1_entries["major-burn"]["aggregation_rule"] == "separate"
+    assert plan_1_entries["accident-hospital-daily"]["amount"] == 1_000
+    assert plan_1_entries["fracture-unhospitalized-medical"]["amount"] == 500
+    assert plan_1_entries["fracture-unhospitalized-medical"]["rate_percent"] == 50
+    assert plan_1_entries["fracture-unhospitalized-medical"]["amount_role"] == "reference"
+    assert (
+        plan_1_entries["fracture-unhospitalized-medical"]["calculation_basis"]
+        == "percentage_of_base"
+    )
+    assert plan_1_entries["accident-icu-hospital-daily"]["amount"] == 1_000
+    assert plan_1_entries["accident-burn-center-hospital-daily"]["amount"] == 2_000
+    assert plan_1_entries["accident-outpatient-surgery"]["amount"] == 1_000
+    assert plan_1_entries["cancer-hospital-daily"]["amount"] == 1_000
+    assert plan_1_entries["cancer-surgery"]["amount"] == 20_000
+    assert plan_1_entries["cancer-radiation-daily"]["amount"] == 1_000
+
+    plan_2_entries = {
+        entry["id"]: entry for entry in plans["plan-2"]["coverage_entries"]
+    }
+    assert plan_2_entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_2_entries["fracture-unhospitalized-medical"]["amount"] == 750
+    assert plan_2_entries["cancer-surgery"]["amount"] == 30_000
+
+    plan_3_entries = {
+        entry["id"]: entry for entry in plans["plan-3"]["coverage_entries"]
+    }
+    assert len(plan_3_entries) == 15
+    assert plan_3_entries["life-death-or-funeral"]["amount"] == 2_000_000
+    assert plan_3_entries["total-disability"]["amount"] == 2_000_000
+    assert plan_3_entries["general-accidental-death"]["amount"] == 4_000_000
+    assert (
+        plan_3_entries["mass-transit-accidental-death-additional"]["amount"]
+        == 4_000_000
+    )
+    assert (
+        plan_3_entries["mass-transit-accidental-death-additional"][
+            "aggregation_rule"
+        ]
+        == "conditional_additive"
+    )
+    assert plan_3_entries["general-accidental-disability"]["amount"] == 4_000_000
+    assert (
+        plan_3_entries["mass-transit-accidental-disability-additional"][
+            "amount_tiers"
+        ][-1]["amount"]
+        == 200_000
+    )
+    assert plan_3_entries["major-burn"]["amount"] == 1_000_000
+    assert plan_3_entries["accident-hospital-daily"]["amount"] == 2_000
+    assert plan_3_entries["fracture-unhospitalized-medical"]["amount"] == 1_000
+    assert plan_3_entries["accident-icu-hospital-daily"]["amount"] == 2_000
+    assert plan_3_entries["accident-burn-center-hospital-daily"]["amount"] == 4_000
+    assert plan_3_entries["accident-outpatient-surgery"]["amount"] == 2_000
+    assert plan_3_entries["cancer-hospital-daily"]["amount"] == 2_000
+    assert plan_3_entries["cancer-surgery"]["amount"] == 50_000
+    assert plan_3_entries["cancer-radiation-daily"]["amount"] == 2_000
+    plan_3_json = json.dumps(plan_3_entries, ensure_ascii=False)
+    assert expected_disability_term in plan_3_json
+    if expected_disability_term == "失能":
+        assert "殘廢" not in plan_3_json
+    else:
+        assert "失能" not in plan_3_json
+    assert all(entry["source"] == "terms" for entry in plan_1_entries.values())
+    assert all(entry.get("conditions") for entry in plan_1_entries.values())
+
+    source_path = NEW_SHOUHU_JINNANG_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert parse_fubon_vision_life_accident_health_plan_table(
+        completed_document
+    ) == schedule
+    assert (
+        parse_fubon_vision_life_accident_health_plan_table(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_vision_life_accident_health_plan_table(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_vision_life_accident_health_plan_table(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_vision_life_accident_health_plan_table(
+            {
+                **document,
+                "text": document["text"].replace(
+                    "重大燒燙傷保險金 25 萬 50 萬 100 萬",
+                    "重大燒燙傷保險金 25 萬 50 萬 200 萬",
+                    1,
+                ),
+            }
+        )
+        is None
+    )
+
+
+FUBON_XIANGANBAO_ACCIDENT_MEDICAL_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-049"
+)
+FUBON_XIANGANBAO_ACCIDENT_MEDICAL_PRODUCTS = {
+    "209211AZ1A00421A11Z10000000": "113-original",
+    "209211AZ1A00421A11Z10000001": "113-first-revision",
+    "209211AZ1A00421A11Z10000002": "113-second-revision",
+}
+
+
+def fubon_xianganbao_accident_medical_document(
+    product_id: str, suffix: str = "A"
+) -> dict:
+    pdf_path = (
+        FUBON_XIANGANBAO_ACCIDENT_MEDICAL_ROOT
+        / product_id
+        / f"{product_id}-{suffix}.pdf"
+    )
+    reader = PdfReader(pdf_path, strict=False)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for (
+    product_id,
+    expected_revision,
+) in FUBON_XIANGANBAO_ACCIDENT_MEDICAL_PRODUCTS.items():
+    document = fubon_xianganbao_accident_medical_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == 3
+    assert "TMR1130715" in document["text"]
+    assert "富邦人壽享安寶意外傷害醫療保險給付附加條款" in document["text"]
+    assert "意外傷害脫臼開放性復位術保險金" in document["text"]
+    assert "意外傷害醫療保險金" in document["text"]
+
+    schedule = parse_fubon_xianganbao_accident_medical_rider_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert (
+        integrated[0]
+        == "fubon-xianganbao-accident-medical-rider-face-amount-v1"
+    )
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "本附加條款保險金額"
+    assert schedule["version_characteristics"] == {
+        "terms_revision": expected_revision,
+        "fubon_code": "TMR1130715",
+        "accident_claim_days": 180,
+        "overseas_medical_treatment_days_limit": 14,
+        "non_nhi_payment_rate_percent": 75,
+        "medical_icu_burn_center_limit_rate_percent": 150,
+        "medical_reimbursement_nhi_excess_only": True,
+        "duplicate_reimbursement_excluded": True,
+        "dislocation_base_amount": 150_000,
+        "dislocation_table_item_count": 8,
+        "dislocation_rate_min_percent": 10,
+        "dislocation_rate_max_percent": 30,
+    }
+
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "accident-dislocation-open-reduction",
+        "accident-medical-reimbursement-limit",
+        "accident-medical-icu-burn-center-limit",
+    }
+    dislocation = entries["accident-dislocation-open-reduction"]
+    assert dislocation["amount"] == 15_000
+    assert dislocation["calculation_basis"] == "tiered_or_stepped"
+    assert dislocation["aggregation_rule"] == "highest"
+    assert dislocation["amount_tiers"][0] == {
+        "label": "髖關節 30%",
+        "amount": 45_000,
+    }
+    assert dislocation["amount_tiers"][-1] == {
+        "label": "其他關節 10%",
+        "amount": 15_000,
+    }
+
+    medical = entries["accident-medical-reimbursement-limit"]
+    assert medical["basis"] == "face_amount"
+    assert medical["calculation_basis"] == "percentage_of_base"
+    assert medical["amount_role"] == "limit"
+    assert medical["limit_scope"] == "per_injury"
+    assert medical["rate_percent"] == 100
+    assert medical["aggregation_rule"] == "choose_one"
+    assert "百分之七十五" in " ".join(medical["conditions"])
+
+    icu_burn = entries["accident-medical-icu-burn-center-limit"]
+    assert icu_burn["basis"] == "face_amount"
+    assert icu_burn["calculation_basis"] == "percentage_of_base"
+    assert icu_burn["rate_percent"] == 150
+    assert icu_burn["aggregation_rule"] == "choose_one"
+    assert "燒燙傷中心" in " ".join(icu_burn["conditions"])
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+
+    source_path = (
+        FUBON_XIANGANBAO_ACCIDENT_MEDICAL_ROOT
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:2]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == 3
+    assert (
+        parse_fubon_xianganbao_accident_medical_rider_face_amount(
+            completed_document
+        )
+        == schedule
+    )
+    assert (
+        parse_fubon_xianganbao_accident_medical_rider_face_amount(
+            fubon_xianganbao_accident_medical_document(product_id, "F")
+        )
+        is None
+    )
+    assert (
+        parse_fubon_xianganbao_accident_medical_rider_face_amount(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_xianganbao_accident_medical_rider_face_amount(
+            {**document, "page_count": 2}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_xianganbao_accident_medical_rider_face_amount(
+            {
+                **document,
+                "text": document["text"].replace("百分之七十五", "百分之八十五", 1),
+            }
+        )
+        is None
+    )
+
+
+YUANTA_NEW_ACCIDENT_MEDICAL_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-151"
+)
+YUANTA_NEW_ACCIDENT_MEDICAL_PRODUCTS = {
+    "261211RZ1AQR021A11Z10000000": ("108-original", "QR-上市日期:108.05.31"),
+    "261211RZ1AQR021A11Z10000001": ("109-first-revision", "QR-2020.01"),
+    "261211RZ1AQR021A11Z10000002": ("110-second-revision", "QR-2021.12"),
+    "261211RZ1AQR021A11Z10000003": ("112-third-revision", "QR-2023.01"),
+}
+
+
+def yuanta_new_accident_medical_document(product_id: str, suffix: str = "A") -> dict:
+    pdf_path = (
+        YUANTA_NEW_ACCIDENT_MEDICAL_ROOT
+        / product_id
+        / f"{product_id}-{suffix}.pdf"
+    )
+    reader = PdfReader(pdf_path, strict=False)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for (
+    product_id,
+    (expected_revision, expected_yuanta_code),
+) in YUANTA_NEW_ACCIDENT_MEDICAL_PRODUCTS.items():
+    document = yuanta_new_accident_medical_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == 2
+    assert expected_yuanta_code in document["text"]
+    assert "元大人壽新意外傷害醫療保險附約" in document["text"]
+    assert "每次實支實付傷害醫療保險金限額" in document["text"]
+
+    schedule = parse_yuanta_new_accident_medical_rider_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "yuanta-new-accident-medical-rider-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "每次實支實付傷害醫療保險金限額"
+    assert schedule["version_characteristics"] == {
+        "terms_revision": expected_revision,
+        "yuanta_code": expected_yuanta_code,
+        "accident_claim_days": 180,
+        "non_nhi_payment_rate_percent": 65,
+        "medical_reimbursement_nhi_excess_only": True,
+        "policy_recorded_limit_label": "每次實支實付傷害醫療保險金限額",
+    }
+
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {"accident-medical-reimbursement-limit"}
+    medical = entries["accident-medical-reimbursement-limit"]
+    assert medical["basis"] == "face_amount"
+    assert medical["calculation_basis"] == "percentage_of_base"
+    assert medical["amount_role"] == "limit"
+    assert medical["limit_scope"] == "per_injury"
+    assert medical["rate_percent"] == 100
+    assert "百分之六十五" in " ".join(medical["conditions"])
+    assert medical["source"] == "terms"
+
+    source_path = (
+        YUANTA_NEW_ACCIDENT_MEDICAL_ROOT
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        (PdfReader(source_path, strict=False).pages[0].extract_text() or "")
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == 2
+    assert (
+        parse_yuanta_new_accident_medical_rider_face_amount(completed_document)
+        == schedule
+    )
+    assert (
+        parse_yuanta_new_accident_medical_rider_face_amount(
+            yuanta_new_accident_medical_document(product_id, "F")
+        )
+        is None
+    )
+    assert (
+        parse_yuanta_new_accident_medical_rider_face_amount(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_yuanta_new_accident_medical_rider_face_amount(
+            {**document, "page_count": 1}
+        )
+        is None
+    )
+    assert (
+        parse_yuanta_new_accident_medical_rider_face_amount(
+            {
+                **document,
+                "text": document["text"].replace("百分之六十五", "百分之七十五", 1),
+            }
+        )
+        is None
+    )
+
+
+YUANTA_PERSONAL_ACCIDENT_PRODUCTS = {
+    "261211RZ1APR021A11Z10000013": (
+        "105-thirteenth-revision",
+        "元壽字第 1050000730 號函備查",
+    ),
+    "261211RZ1APR021A11Z10000014": (
+        "106-fourteenth-revision",
+        "金管保財字第 10502502801 號令修正",
+    ),
+}
+
+
+def yuanta_life_151_document(product_id: str, suffix: str = "A") -> dict:
+    pdf_path = (
+        YUANTA_NEW_ACCIDENT_MEDICAL_ROOT
+        / product_id
+        / f"{product_id}-{suffix}.pdf"
+    )
+    reader = PdfReader(pdf_path, strict=False)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for product_id, (expected_revision, expected_filing_signal) in (
+    YUANTA_PERSONAL_ACCIDENT_PRODUCTS.items()
+):
+    document = yuanta_life_151_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == 5
+    assert "元大人壽人身傷害保險附約" in document["text"]
+    assert expected_filing_signal in document["text"]
+
+    schedule = parse_yuanta_personal_accident_rider_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "yuanta-personal-accident-rider-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    assert schedule["version_characteristics"] == {
+        "terms_revision": expected_revision,
+        "filing_signal": expected_filing_signal,
+        "accident_claim_days": 180,
+        "maximum_renewal_age": 75,
+        "child_maximum_renewal_age": 23,
+        "minor_death_premium_refund_before_age": 15,
+        "funeral_benefit_limit_rule": True,
+        "death_benefit_rate_percent": 100,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 115,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "major_burn_rate_percent": 25,
+        "major_burn_lifetime_limit_times": 1,
+        "death_disability_same_accident_cap": True,
+    }
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "accidental-death-or-funeral",
+        "accidental-disability",
+        "major-burn",
+    }
+    assert entries["accidental-death-or-funeral"]["rate_percent"] == 100
+    assert entries["accidental-death-or-funeral"]["basis"] == "face_amount"
+    assert entries["accidental-disability"]["rate_min_percent"] == 5
+    assert entries["accidental-disability"]["rate_max_percent"] == 100
+    assert entries["accidental-disability"]["aggregation_rule"] == "cumulative_cap"
+    assert entries["major-burn"]["rate_percent"] == 25
+    assert entries["major-burn"]["limit_scope"] == "lifetime"
+
+    source_path = (
+        YUANTA_NEW_ACCIDENT_MEDICAL_ROOT
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        (PdfReader(source_path, strict=False).pages[0].extract_text() or "")
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == 5
+    assert parse_yuanta_personal_accident_rider_face_amount(completed_document) == (
+        schedule
+    )
+    assert (
+        parse_yuanta_personal_accident_rider_face_amount(
+            yuanta_life_151_document(product_id, "F")
+        )
+        is None
+    )
+    assert (
+        parse_yuanta_personal_accident_rider_face_amount(
+            {**document, "page_count": 4}
+        )
+        is None
+    )
+    assert (
+        parse_yuanta_personal_accident_rider_face_amount(
+            {
+                **document,
+                "text": document["text"].replace(
+                    "保險金額百分之二十五給付重大燒燙傷保險金",
+                    "保險金額百分之三十五給付重大燒燙傷保險金",
+                    1,
+                ),
+            }
+        )
+        is None
+    )
+
+
+YUANTA_FUNXINYOU_ACCIDENT_MEDICAL_PRODUCTS = {
+    "261221AZ1ATAM21A11Z10000003": ("third-revision", "本契約"),
+    "261221AZ1ATAM21A11Z10000004": ("fourth-revision", "主契約"),
+}
+
+
+for product_id, (expected_revision, expected_contract_reference) in (
+    YUANTA_FUNXINYOU_ACCIDENT_MEDICAL_PRODUCTS.items()
+):
+    document = yuanta_life_151_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == 1
+    assert "元大人壽Fun 心遊傷害醫療保險給付附加條款" in document["text"]
+    assert f"遭受{expected_contract_reference}第二條約定的意外傷害事故" in document["text"]
+
+    schedule = parse_yuanta_funxinyou_accident_medical_addendum_limit(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "yuanta-funxinyou-accident-medical-addendum-limit-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "每次實支實付傷害醫療保險金限額"
+    assert schedule["version_characteristics"] == {
+        "terms_revision": expected_revision,
+        "contract_reference": expected_contract_reference,
+        "accident_claim_days": 180,
+        "non_nhi_payment_rate_percent": 65,
+        "medical_reimbursement_nhi_excess_only": True,
+        "policy_recorded_limit_label": "每次實支實付傷害醫療保險金限額",
+        "beneficiary_self_only": True,
+    }
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "accident-medical-reimbursement-limit",
+        "non-nhi-medical-reimbursement",
+    }
+    assert entries["accident-medical-reimbursement-limit"]["basis"] == (
+        "policy_recorded_limit"
+    )
+    assert entries["accident-medical-reimbursement-limit"]["rate_percent"] == 100
+    assert entries["accident-medical-reimbursement-limit"]["limit_scope"] == (
+        "per_injury"
+    )
+    assert entries["non-nhi-medical-reimbursement"]["rate_percent"] == 65
+    assert entries["non-nhi-medical-reimbursement"]["calculation_basis"] == (
+        "percentage_of_actual_expense_with_cap"
+    )
+
+    source_path = (
+        YUANTA_NEW_ACCIDENT_MEDICAL_ROOT
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == 1
+    assert (
+        parse_yuanta_funxinyou_accident_medical_addendum_limit(completed_document)
+        == schedule
+    )
+    assert (
+        parse_yuanta_funxinyou_accident_medical_addendum_limit(
+            yuanta_life_151_document(product_id, "F")
+        )
+        is None
+    )
+    assert (
+        parse_yuanta_funxinyou_accident_medical_addendum_limit(
+            {**document, "page_count": 2}
+        )
+        is None
+    )
+    assert (
+        parse_yuanta_funxinyou_accident_medical_addendum_limit(
+            {
+                **document,
+                "text": document["text"].replace(
+                    "本公司依被保險人實際支付之各項費用之65%給付",
+                    "本公司依被保險人實際支付之各項費用之75%給付",
+                    1,
+                ),
+            }
+        )
+        is None
+    )
+
+
+FUBON_NEW_PINGAN_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-049"
+)
+FUBON_NEW_PINGAN_PRODUCTS = {
+    "209291MZ1A00321A11Z10000002": (
+        14,
+        "107-second-revision",
+        "FBB1070914",
+        79,
+    ),
+    "209291MZ1A00321A11Z10000003": (
+        14,
+        "109-third-revision",
+        "FBB1090101",
+        80,
+    ),
+    "209291MZ1A00321A11Z10000004": (
+        14,
+        "109-fourth-revision",
+        "FBB1090901",
+        80,
+    ),
+    "209291MZ1A00321A11Z10000005": (
+        14,
+        "111-fifth-revision",
+        "FBB1111202",
+        80,
+    ),
+}
+
+
+def fubon_new_pingan_document(product_id: str, suffix: str = "A") -> dict:
+    pdf_path = FUBON_NEW_PINGAN_ROOT / product_id / f"{product_id}-{suffix}.pdf"
+    reader = PdfReader(pdf_path, strict=False)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for (
+    product_id,
+    (
+        expected_pages,
+        expected_revision,
+        expected_fubon_code,
+        expected_disability_items,
+    ),
+) in FUBON_NEW_PINGAN_PRODUCTS.items():
+    document = fubon_new_pingan_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    assert expected_fubon_code in document["text"]
+    assert "富邦人壽新平安傷害一年定期保險" in document["text"]
+    assert "本契約保障內容分八個計畫別" in document["text"]
+    compact_document_text = compact_table_text(compact_whitespace(document["text"]))
+    assert "意外傷害醫療保險金5萬-" in compact_document_text
+    assert "意外傷害住院醫療保險金-1500元/日" in compact_document_text
+    assert parse_fubon_666_accident_health_plan_table(document) is None
+    schedule = parse_fubon_new_pingan_accident_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-new-pingan-accident-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "投保計畫別"
+    assert schedule["version_characteristics"] == {
+        "terms_revision": expected_revision,
+        "plan_count": 8,
+        "non_guaranteed_renewal": True,
+        "maximum_renewal_age": 65,
+        "accident_claim_days": 180,
+        "accident_medical_limit": 50_000,
+        "accident_medical_daily_formula_per_10000_inpatient_only": 70,
+        "accident_medical_daily_formula_per_10000_inpatient_split": 40,
+        "accident_medical_daily_formula_per_10000_outpatient_split": 20,
+        "accident_medical_daily_formula_days_limit": 90,
+        "accident_hospital_daily_amount": 1_500,
+        "accident_hospital_days_limit": 90,
+        "fracture_daily_rate_percent": 50,
+        "death_disability_same_accident_cap": True,
+        "disability_term": "失能",
+        "disability_schedule_item_count": expected_disability_items,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "short_term_rate_table": True,
+    }
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+        "計畫四",
+        "計畫五",
+        "計畫六",
+        "計畫七",
+        "計畫八",
+    ]
+    plans = {plan["value"]: plan for plan in schedule["plan_options"]}
+    assert all(
+        len(plans[plan_key]["coverage_entries"]) == 5
+        for plan_key in ("plan-1", "plan-2", "plan-3", "plan-4")
+    )
+    assert all(
+        len(plans[plan_key]["coverage_entries"]) == 4
+        for plan_key in ("plan-5", "plan-6", "plan-7", "plan-8")
+    )
+    plan_1_entries = {
+        entry["id"]: entry for entry in plans["plan-1"]["coverage_entries"]
+    }
+    assert plan_1_entries["accidental-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_1_entries["accidental-disability"]["amount"] == 1_000_000
+    assert plan_1_entries["accidental-disability"]["amount_tiers"][0] == {
+        "label": "第1級 100%",
+        "amount": 1_000_000,
+    }
+    assert plan_1_entries["accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 50_000,
+    }
+    assert plan_1_entries["accident-medical-reimbursement"]["amount"] == 50_000
+    assert (
+        plan_1_entries["accident-medical-reimbursement"]["calculation_basis"]
+        == "reimbursement_with_cap"
+    )
+    assert plan_1_entries["accident-medical-daily-option-a"]["amount"] == 350
+    assert plan_1_entries["accident-medical-daily-option-b"]["amount"] == 200
+    assert plan_1_entries["accident-medical-daily-option-b"]["amount_tiers"] == [
+        {"label": "住院每日", "amount": 200},
+        {"label": "門診每日", "amount": 100},
+    ]
+    assert (
+        plan_1_entries["accident-medical-daily-option-a"]["aggregation_rule"]
+        == "choose_one"
+    )
+
+    plan_4_entries = {
+        entry["id"]: entry for entry in plans["plan-4"]["coverage_entries"]
+    }
+    assert plan_4_entries["accidental-death-or-funeral"]["amount"] == 5_000_000
+    assert plan_4_entries["accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 250_000,
+    }
+
+    plan_5_entries = {
+        entry["id"]: entry for entry in plans["plan-5"]["coverage_entries"]
+    }
+    assert "accident-medical-reimbursement" not in plan_5_entries
+    assert plan_5_entries["accidental-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_5_entries["accident-hospital-daily"]["amount"] == 1_500
+    assert plan_5_entries["accident-hospital-daily"]["calculation_basis"] == "per_day"
+    assert plan_5_entries["fracture-unhospitalized-daily"]["amount"] == 750
+    assert (
+        plan_5_entries["fracture-unhospitalized-daily"]["calculation_basis"]
+        == "percentage_of_base"
+    )
+    assert plan_5_entries["fracture-unhospitalized-daily"]["rate_percent"] == 50
+
+    plan_8_entries = {
+        entry["id"]: entry for entry in plans["plan-8"]["coverage_entries"]
+    }
+    assert plan_8_entries["accidental-death-or-funeral"]["amount"] == 5_000_000
+    assert plan_8_entries["accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 250_000,
+    }
+    assert plan_8_entries["accident-hospital-daily"]["amount"] == 1_500
+    assert all(entry["source"] == "terms" for entry in plan_1_entries.values())
+    assert all(entry.get("conditions") for entry in plan_1_entries.values())
+
+    source_path = FUBON_NEW_PINGAN_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert parse_fubon_new_pingan_accident_plan_table(completed_document) == schedule
+    assert parse_fubon_new_pingan_accident_plan_table(
+        fubon_new_pingan_document(product_id, "F")
+    ) is None
+    assert (
+        parse_fubon_new_pingan_accident_plan_table(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_new_pingan_accident_plan_table(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_new_pingan_accident_plan_table(
+            {
+                **document,
+                "text": document["text"].replace(
+                    "每壹萬元換算住院每日柒拾元",
+                    "每壹萬元換算住院每日捌拾元",
+                    1,
+                ),
+            }
+        )
+        is None
+    )
+
+
+FUBON_666_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-049"
+)
+FUBON_666_PRODUCTS = {
+    "209291M12A00100": (16, "102-original", "CTBC1020401", "殘廢", 75),
+    "209291MZ2A00121A11Z10000001": (17, "104-first-revision", "CTBC1040804", "殘廢", 79),
+    "209291MZ2A00121A11Z10000002": (17, "105-second-revision", "CTBC1050901", "殘廢", 79),
+    "209291MZ2A00121A11Z10000003": (17, "107-third-revision", "CTBC1070914", "失能", 79),
+    "209291MZ2A00121A11Z10000004": (18, "109-fourth-revision", "CTBC1090101", "失能", 80),
+    "209291MZ2A00121A11Z10000005": (18, "109-fifth-revision", "CTBC1090901", "失能", 80),
+    "209291MZ2A00121A11Z10000006": (18, "110-sixth-revision", "CTBC1100701", "失能", 80),
+    "209291MZ2A00121A11Z10000007": (18, "111-seventh-revision", "CTBC1111202", "失能", 80),
+}
+
+
+def fubon_666_document(product_id: str) -> dict:
+    pdf_path = FUBON_666_ROOT / product_id / f"{product_id}-A.pdf"
+    reader = PdfReader(pdf_path, strict=False)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for (
+    product_id,
+    (
+        expected_pages,
+        expected_revision,
+        expected_ctbc_code,
+        expected_disability_term,
+        expected_disability_items,
+    ),
+) in FUBON_666_PRODUCTS.items():
+    document = fubon_666_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    assert expected_ctbc_code in document["text"]
+    schedule = parse_fubon_666_accident_health_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-666-accident-health-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["plan_count"] == 2
+    assert characteristics["maximum_renewal_age"] == 65
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["accident_hospital_days_limit"] == 90
+    assert characteristics["fracture_daily_rate_percent"] == 50
+    assert characteristics["disability_term"] == expected_disability_term
+    assert characteristics["disability_schedule_item_count"] == expected_disability_items
+    assert characteristics["disability_rate_min_percent"] == 5
+    assert characteristics["disability_rate_max_percent"] == 100
+    assert characteristics["mass_transit_additional_benefit"] is True
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+    ]
+
+    plans = {plan["value"]: plan for plan in schedule["plan_options"]}
+    plan_1_entries = {
+        entry["id"]: entry for entry in plans["plan-1"]["coverage_entries"]
+    }
+    assert len(plan_1_entries) == 8
+    assert plan_1_entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_1_entries["total-disability"]["amount"] == 1_000_000
+    assert plan_1_entries["total-disability"]["name"] == (
+        f"完全{expected_disability_term}保險金"
+    )
+    assert (
+        plan_1_entries["general-accidental-death-or-funeral"]["amount"]
+        == 2_500_000
+    )
+    assert (
+        plan_1_entries["mass-transit-accidental-death-or-funeral"]["amount"]
+        == 2_500_000
+    )
+    assert (
+        plan_1_entries["mass-transit-accidental-death-or-funeral"][
+            "aggregation_rule"
+        ]
+        == "conditional_additive"
+    )
+    assert plan_1_entries["general-accidental-disability"]["amount"] == 2_500_000
+    assert plan_1_entries["general-accidental-disability"]["name"] == (
+        f"一般意外{expected_disability_term}保險金"
+    )
+    assert plan_1_entries["general-accidental-disability"]["amount_tiers"][0] == {
+        "label": "第1級 100%",
+        "amount": 2_500_000,
+    }
+    assert plan_1_entries["general-accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 125_000,
+    }
+    assert (
+        plan_1_entries["mass-transit-accidental-disability"]["amount_tiers"][-1][
+            "amount"
+        ]
+        == 125_000
+    )
+    assert plan_1_entries["mass-transit-accidental-disability"]["name"] == (
+        f"大眾運輸工具意外{expected_disability_term}保險金"
+    )
+    assert plan_1_entries["accident-hospital-daily"]["amount"] == 2_500
+    assert plan_1_entries["fracture-unhospitalized-daily"]["amount"] == 1_250
+    assert plan_1_entries["fracture-unhospitalized-daily"]["rate_percent"] == 50
+
+    plan_2_entries = {
+        entry["id"]: entry for entry in plans["plan-2"]["coverage_entries"]
+    }
+    assert len(plan_2_entries) == 6
+    assert "life-death-or-funeral" not in plan_2_entries
+    assert "total-disability" not in plan_2_entries
+    assert (
+        plan_2_entries["general-accidental-death-or-funeral"]["amount"]
+        == 2_500_000
+    )
+    assert (
+        plan_2_entries["mass-transit-accidental-death-or-funeral"]["amount"]
+        == 2_500_000
+    )
+    assert plan_2_entries["general-accidental-disability"]["amount"] == 2_500_000
+    assert plan_2_entries["accident-hospital-daily"]["amount"] == 2_000
+    assert plan_2_entries["fracture-unhospitalized-daily"]["amount"] == 1_000
+    assert all(entry["source"] == "terms" for entry in plan_1_entries.values())
+    assert all(entry["source"] == "terms" for entry in plan_2_entries.values())
+    assert all(entry.get("conditions") for entry in plan_1_entries.values())
+    assert all(entry.get("conditions") for entry in plan_2_entries.values())
+
+    source_path = FUBON_666_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert parse_fubon_666_accident_health_plan_table(completed_document) == schedule
+    assert (
+        parse_fubon_666_accident_health_plan_table(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_666_accident_health_plan_table(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_666_accident_health_plan_table(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_666_accident_health_plan_table(
+            {
+                **document,
+                "text": document["text"].replace(
+                    "意外傷害住院醫療保險金 2,500 元/日 2,000 元/日",
+                    "意外傷害住院醫療保險金 2,500 元/日 2,500 元/日",
+                    1,
+                ),
+            }
+        )
+        is None
+    )
+
+
+FUBON_MILLION_NEW_LIFE_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-049"
+)
+FUBON_MILLION_NEW_LIFE_PRODUCTS = {
+    "209291M12G00400": (17, "102-original", "FBA1020401", "殘廢", 75),
+    "209291M11G00101": (17, "103-first-revision", "FBA1030501", "殘廢", 75),
+    "209291MZ1G00121A11Z10000002": (
+        18,
+        "104-second-revision",
+        "FBA1040804",
+        "殘廢",
+        79,
+    ),
+    "209291MZ1G00121A11Z10000003": (
+        18,
+        "105-third-revision",
+        "FBA1050727",
+        "殘廢",
+        79,
+    ),
+    "209291MZ1G00121A11Z10000004": (
+        18,
+        "107-fourth-revision",
+        "FBA1070914",
+        "失能",
+        79,
+    ),
+    "209291MZ1G00121A11Z10000005": (
+        18,
+        "109-fifth-revision",
+        "FBA1090101",
+        "失能",
+        80,
+    ),
+    "209291MZ1G00121A11Z10000006": (
+        18,
+        "109-sixth-revision",
+        "FBA1090901",
+        "失能",
+        80,
+    ),
+    "209291MZ1G00121A11Z10000007": (
+        18,
+        "111-seventh-revision",
+        "FBA1111202",
+        "失能",
+        80,
+    ),
+}
+
+
+def fubon_million_new_life_document(product_id: str, suffix: str = "A") -> dict:
+    pdf_path = FUBON_MILLION_NEW_LIFE_ROOT / product_id / f"{product_id}-{suffix}.pdf"
+    reader = PdfReader(pdf_path, strict=False)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for product_id, (
+    expected_pages,
+    expected_revision,
+    expected_fubon_code,
+    expected_disability_term,
+    expected_disability_items,
+) in FUBON_MILLION_NEW_LIFE_PRODUCTS.items():
+    document = fubon_million_new_life_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    assert expected_fubon_code in document["text"]
+    schedule = parse_fubon_million_new_life_accident_health_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-million-new-life-accident-health-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+        "計畫四",
+        "計畫五",
+    ]
+
+    characteristics = schedule["version_characteristics"]
+    assert characteristics == {
+        "terms_revision": expected_revision,
+        "plan_count": 5,
+        "non_guaranteed_renewal": True,
+        "maximum_renewal_age": 50,
+        "day_hospital_explicit": True,
+        "same_hospital_readmission_days": 14,
+        "hospital_daily_days_limit_per_policy_year_same_hospitalization": 30,
+        "accident_claim_days": 180,
+        "accident_medical_limit": 30_000,
+        "accident_medical_daily_formula_per_10000_inpatient_only": 70,
+        "accident_medical_daily_formula_per_10000_inpatient_split": 40,
+        "accident_medical_daily_formula_per_10000_outpatient_split": 20,
+        "accident_medical_daily_formula_days_limit": 90,
+        "death_disability_same_accident_cap": True,
+        "disability_term": expected_disability_term,
+        "total_disability_schedule_item_count": 7,
+        "disability_schedule_item_count": expected_disability_items,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "short_term_rate_table": True,
+    }
+
+    plans = {plan["value"]: plan for plan in schedule["plan_options"]}
+    assert all(len(plan["coverage_entries"]) == 8 for plan in plans.values())
+    plan_1_entries = {
+        entry["id"]: entry for entry in plans["plan-1"]["coverage_entries"]
+    }
+    plan_5_entries = {
+        entry["id"]: entry for entry in plans["plan-5"]["coverage_entries"]
+    }
+    assert plan_1_entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_1_entries["total-disability"]["amount"] == 1_000_000
+    assert plan_1_entries["hospital-daily"]["amount"] == 1_000
+    assert plan_1_entries["hospital-daily"]["calculation_basis"] == "per_day"
+    assert plan_1_entries["accidental-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_1_entries["accidental-disability"]["amount"] == 1_000_000
+    assert plan_1_entries["accidental-disability"]["amount_tiers"][0] == {
+        "label": "第1級 100%",
+        "amount": 1_000_000,
+    }
+    assert plan_1_entries["accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 50_000,
+    }
+    assert plan_1_entries["accident-medical-reimbursement"]["amount"] == 30_000
+    assert (
+        plan_1_entries["accident-medical-reimbursement"]["calculation_basis"]
+        == "reimbursement_with_cap"
+    )
+    assert plan_1_entries["accident-medical-daily-option-a"]["amount"] == 210
+    assert plan_1_entries["accident-medical-daily-option-b"]["amount"] == 120
+    assert plan_1_entries["accident-medical-daily-option-b"]["amount_tiers"] == [
+        {"label": "住院每日", "amount": 120},
+        {"label": "門診每日", "amount": 60},
+    ]
+    assert (
+        plan_1_entries["accident-medical-daily-option-a"]["aggregation_rule"]
+        == "choose_one"
+    )
+    assert (
+        plan_1_entries["accident-medical-daily-option-b"]["aggregation_rule"]
+        == "choose_one"
+    )
+    assert plan_5_entries["accidental-death-or-funeral"]["amount"] == 5_000_000
+    assert plan_5_entries["accidental-disability"]["amount"] == 5_000_000
+    assert plan_5_entries["accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 250_000,
+    }
+    plan_1_json = json.dumps(plan_1_entries, ensure_ascii=False)
+    assert expected_disability_term in plan_1_json
+    if expected_disability_term == "失能":
+        assert "殘廢" not in plan_1_json
+    else:
+        assert "失能" not in plan_1_json
+    assert all(entry["source"] == "terms" for entry in plan_1_entries.values())
+    assert all(entry.get("conditions") for entry in plan_1_entries.values())
+
+    source_path = (
+        FUBON_MILLION_NEW_LIFE_ROOT / product_id / f"{product_id}-A.pdf"
+    )
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert (
+        parse_fubon_million_new_life_accident_health_plan_table(completed_document)
+        == schedule
+    )
+    assert (
+        parse_fubon_million_new_life_accident_health_plan_table(
+            fubon_million_new_life_document(product_id, "F")
+        )
+        is None
+    )
+    assert (
+        parse_fubon_million_new_life_accident_health_plan_table(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_million_new_life_accident_health_plan_table(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_million_new_life_accident_health_plan_table(
+            {
+                **document,
+                "text": document["text"].replace(
+                    "每壹萬元換算住院每日柒拾元",
+                    "每壹萬元換算住院每日捌拾元",
+                    1,
+                ),
+            }
+        )
+        is None
+    )
+
+
+TAIWAN_QIANWAN_CHUXING_A_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-007"
+)
+TAIWAN_QIANWAN_CHUXING_A_PRODUCTS = {
+    "202211MZ2A89622A11Z10000000": (
+        "台灣人壽千萬出行 A 型定期傷害保險",
+        "110-original",
+        "none",
+        "none",
+        "original-filing",
+        "",
+    ),
+    "202211MZ2A89622A11Z10000001": (
+        "台灣人壽千萬出行 A 型定期傷害保險",
+        "112-first-partial-revision",
+        "112-02-09",
+        "金管保壽字第1110152342號",
+        "111-12-08-regulatory-amendment",
+        "中華民國 112 年 2 月 9 日依 111 年 12 月 8 日金管保壽字第 1110152342 號函修正",
+    ),
+    "202211MZ2A89622A11Z10000002": (
+        "台灣人壽新千萬出行 A 型定期傷害保險",
+        "112-second-partial-revision",
+        "112-03-01",
+        "台壽字第1122320055號",
+        "company-filing-amendment",
+        "中華民國 112 年 3 月 1 日台壽字第 1122320055 號函備查修正",
+    ),
+}
+
+
+def taiwan_qianwan_chuxing_a_document(
+    product_id: str,
+    suffix: str = "A",
+    *,
+    document_type: str = "policy_terms",
+) -> dict:
+    pdf_path = (
+        TAIWAN_QIANWAN_CHUXING_A_ROOT
+        / product_id
+        / f"{product_id}-{suffix}.pdf"
+    )
+    reader = PdfReader(pdf_path, strict=False)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": document_type,
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for product_id, (
+    expected_title,
+    expected_revision,
+    expected_revision_date,
+    expected_revision_number,
+    expected_revision_basis,
+    expected_revision_signal,
+) in TAIWAN_QIANWAN_CHUXING_A_PRODUCTS.items():
+    document = taiwan_qianwan_chuxing_a_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == 16
+    assert expected_title in document["text"]
+    assert "台壽字第 1102320135 號函備查" in document["text"]
+    if expected_revision_signal:
+        assert expected_revision_signal in document["text"]
+    schedule = parse_taiwan_qianwan_chuxing_a_accident_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-qianwan-chuxing-a-accident-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    assert "保險單面頁" in schedule["selection_guidance"]
+    assert schedule["version_characteristics"] == {
+        "terms_revision": expected_revision,
+        "filing_date": "110-10-29",
+        "filing_number": "台壽字第1102320135號",
+        "revision_date": expected_revision_date,
+        "revision_number": expected_revision_number,
+        "revision_basis": expected_revision_basis,
+        "maximum_coverage_age": 85,
+        "death_benefit_premium_total_rate_percent": 106,
+        "accident_claim_days": 180,
+        "air_or_train_mass_transit_accidental_death_multiplier": 20,
+        "water_or_nontrain_land_mass_transit_accidental_death_multiplier": 10,
+        "automobile_passenger_accidental_death_multiplier": 5,
+        "other_accidental_death_multiplier": 1,
+        "major_burn_rate_percent": 20,
+        "major_burn_lifetime_limit_times": 1,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "installment_death_benefit_available": True,
+    }
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "death-or-funeral-greater-of",
+        "air-or-train-mass-transit-accidental-death",
+        "water-or-nontrain-land-mass-transit-accidental-death",
+        "automobile-passenger-accidental-death",
+        "other-accidental-death",
+        "accidental-disability",
+        "major-burn",
+    }
+    assert entries["death-or-funeral-greater-of"]["calculation_basis"] == "greater_of"
+    assert entries["death-or-funeral-greater-of"]["rate_percent"] == 106
+    assert entries["death-or-funeral-greater-of"]["basis"] == "policy_recorded_limit"
+    assert "amount" not in entries["death-or-funeral-greater-of"]
+    assert (
+        entries["air-or-train-mass-transit-accidental-death"]["multiplier"]
+        == 20
+    )
+    assert (
+        entries["water-or-nontrain-land-mass-transit-accidental-death"][
+            "multiplier"
+        ]
+        == 10
+    )
+    assert entries["automobile-passenger-accidental-death"]["multiplier"] == 5
+    assert entries["other-accidental-death"]["multiplier"] == 1
+    assert entries["other-accidental-death"]["basis"] == "face_amount"
+    assert entries["accidental-disability"]["rate_min_percent"] == 5
+    assert entries["accidental-disability"]["rate_max_percent"] == 100
+    assert entries["accidental-disability"]["aggregation_rule"] == "cumulative_cap"
+    assert entries["major-burn"]["rate_percent"] == 20
+    assert entries["major-burn"]["limit_scope"] == "lifetime"
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+
+    source_path = (
+        TAIWAN_QIANWAN_CHUXING_A_ROOT / product_id / f"{product_id}-A.pdf"
+    )
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:2]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == 16
+    assert (
+        parse_taiwan_qianwan_chuxing_a_accident_face_amount(completed_document)
+        == schedule
+    )
+    assert (
+        parse_taiwan_qianwan_chuxing_a_accident_face_amount(
+            taiwan_qianwan_chuxing_a_document(product_id, "F")
+        )
+        is None
+    )
+    assert (
+        parse_taiwan_qianwan_chuxing_a_accident_face_amount(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_taiwan_qianwan_chuxing_a_accident_face_amount(
+            {**document, "page_count": 15}
+        )
+        is None
+    )
+    assert (
+        parse_taiwan_qianwan_chuxing_a_accident_face_amount(
+            {
+                **document,
+                "text": document["text"].replace(
+                    "本公司另按保險金額的 20 倍給付",
+                    "本公司另按保險金額的 30 倍給付",
+                    1,
+                ),
+            }
+        )
+        is None
+    )
+
+
+FUBON_ANXIN_FINANCIAL_LIFE_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-049"
+)
+FUBON_ANXIN_FINANCIAL_LIFE_PRODUCTS = {
+    "209291M12G00300": (18, "102-original", "FBF1020401", "殘廢", 75, 30, 30, False, True),
+    "209291M19G00201": (18, "103-first-revision", "FBF1030501", "殘廢", 75, 30, 30, True, True),
+    "209291MZ9G00121A11Z10000002": (19, "104-second-revision", "FBF1040804", "殘廢", 79, 30, 30, True, True),
+    "209291MZ9G00121A11Z10000003": (
+        19,
+        "104-third-record-shared-second-source",
+        "FBF1040804",
+        "殘廢",
+        79,
+        30,
+        30,
+        True,
+        True,
+    ),
+    "209291MZ9G00121A11Z10000005": (
+        19,
+        "107-fifth-revision",
+        "FBF1070914",
+        "失能",
+        79,
+        0,
+        0,
+        True,
+        False,
+    ),
+    "209291MZ9G00121A11Z10000006": (
+        20,
+        "109-sixth-revision",
+        "FBF1090101",
+        "失能",
+        80,
+        0,
+        0,
+        True,
+        False,
+    ),
+    "209291MZ9G00121A11Z10000007": (
+        19,
+        "109-seventh-revision",
+        "FBF1090901",
+        "失能",
+        80,
+        0,
+        0,
+        True,
+        False,
+    ),
+    "209291MZ9G00121A11Z10000008": (
+        19,
+        "111-eighth-revision",
+        "FBF1111202",
+        "失能",
+        80,
+        0,
+        0,
+        True,
+        False,
+    ),
+}
+
+
+def fubon_anxin_financial_life_document(
+    product_id: str,
+    suffix: str = "A",
+) -> dict:
+    pdf_path = (
+        FUBON_ANXIN_FINANCIAL_LIFE_ROOT
+        / product_id
+        / f"{product_id}-{suffix}.pdf"
+    )
+    if not pdf_path.is_file() and suffix == "A":
+        pdf_path = next((FUBON_ANXIN_FINANCIAL_LIFE_ROOT / product_id).glob("*-A.pdf"))
+    reader = PdfReader(pdf_path, strict=False)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for product_id, (
+    expected_pages,
+    expected_revision,
+    expected_fubon_code,
+    expected_disability_term,
+    expected_disability_items,
+    expected_cancer_waiting_days,
+    expected_major_disease_waiting_days,
+    expected_day_hospital_explicit,
+    expected_legacy_cancer_split,
+) in FUBON_ANXIN_FINANCIAL_LIFE_PRODUCTS.items():
+    document = fubon_anxin_financial_life_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    assert expected_fubon_code in document["text"]
+    schedule = parse_fubon_anxin_financial_life_accident_health_plan_table(
+        document
+    )
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-anxin-financial-life-accident-health-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "投保計畫別"
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+        "計畫四",
+        "計畫五",
+    ]
+    assert schedule["version_characteristics"] == {
+        "terms_revision": expected_revision,
+        "plan_count": 5,
+        "non_guaranteed_renewal": True,
+        "plan_1_3_maximum_renewal_age": 65,
+        "plan_4_5_maximum_renewal_age": 70,
+        "cancer_waiting_days": expected_cancer_waiting_days,
+        "major_disease_waiting_days": expected_major_disease_waiting_days,
+        "day_hospital_explicit": expected_day_hospital_explicit,
+        "same_hospital_readmission_days": 14,
+        "hospital_daily_days_limit_per_policy_year_same_hospitalization": 30,
+        "icu_days_limit_per_policy_year_same_hospitalization": 30,
+        "burn_center_days_limit_per_policy_year_same_hospitalization": 30,
+        "accident_claim_days": 180,
+        "mild_cancer_lifetime_limit_times": 1,
+        "disability_term": expected_disability_term,
+        "total_disability_schedule_item_count": 7,
+        "disability_schedule_item_count": expected_disability_items,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "short_term_rate_table": True,
+    }
+    plans = {plan["value"]: plan for plan in schedule["plan_options"]}
+    expected_entry_counts = [2, 6, 8, 7, 7] if expected_legacy_cancer_split else [
+        2,
+        5,
+        7,
+        7,
+        7,
+    ]
+    assert [len(plans[key]["coverage_entries"]) for key in plans] == expected_entry_counts
+    plan_1_entries = {
+        entry["id"]: entry for entry in plans["plan-1"]["coverage_entries"]
+    }
+    plan_2_entries = {
+        entry["id"]: entry for entry in plans["plan-2"]["coverage_entries"]
+    }
+    plan_3_entries = {
+        entry["id"]: entry for entry in plans["plan-3"]["coverage_entries"]
+    }
+    plan_4_entries = {
+        entry["id"]: entry for entry in plans["plan-4"]["coverage_entries"]
+    }
+    plan_5_entries = {
+        entry["id"]: entry for entry in plans["plan-5"]["coverage_entries"]
+    }
+    assert plan_1_entries["accidental-death-or-funeral"]["amount"] == 5_000_000
+    assert plan_1_entries["accidental-disability"]["amount"] == 5_000_000
+    assert plan_1_entries["accidental-disability"]["name"] == (
+        f"意外{expected_disability_term}保險金"
+    )
+    assert plan_1_entries["accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 250_000,
+    }
+    assert plan_2_entries["life-death-or-funeral"]["amount"] == 2_000_000
+    assert plan_2_entries["major-disease"]["amount"] == 2_000_000
+    if expected_legacy_cancer_split:
+        assert plan_2_entries["major-disease"]["name"] == "特定重大疾病保險金"
+        assert plan_2_entries["carcinoma-in-situ"]["amount"] == 2_000
+        assert plan_2_entries["carcinoma-in-situ"]["limit_scope"] == "lifetime"
+        assert plan_2_entries["carcinoma-in-situ"]["aggregation_rule"] == "cumulative_cap"
+        assert plan_2_entries["malignant-cancer"]["amount"] == 2_000_000
+        assert "mild-cancer" not in plan_2_entries
+    else:
+        assert plan_2_entries["major-disease"]["name"] == "重大疾病保險金"
+        assert plan_2_entries["mild-cancer"]["amount"] == 2_000
+        assert plan_2_entries["mild-cancer"]["limit_scope"] == "lifetime"
+        assert plan_2_entries["mild-cancer"]["aggregation_rule"] == "cumulative_cap"
+    assert plan_2_entries["general-hospital-daily"]["amount"] == 1_500
+    assert plan_3_entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_3_entries["major-disease"]["amount"] == 1_000_000
+    if expected_legacy_cancer_split:
+        assert plan_3_entries["carcinoma-in-situ"]["amount"] == 1_000
+        assert plan_3_entries["malignant-cancer"]["amount"] == 1_000_000
+    else:
+        assert plan_3_entries["mild-cancer"]["amount"] == 1_000
+    assert plan_3_entries["accidental-death-or-funeral"]["amount"] == 2_000_000
+    assert plan_3_entries["general-hospital-daily"]["amount"] == 1_500
+    assert plan_4_entries["life-death-or-funeral"]["amount"] == 3_000_000
+    assert plan_4_entries["accidental-disability"]["amount"] == 3_000_000
+    assert plan_4_entries["general-hospital-daily"]["amount"] == 1_000
+    assert plan_4_entries["icu-hospital-daily"]["amount"] == 2_000
+    assert plan_4_entries["burn-center-hospital-daily"]["amount"] == 3_000
+    assert plan_5_entries["life-death-or-funeral"]["amount"] == 2_000_000
+    assert plan_5_entries["accidental-death-or-funeral"]["amount"] == 2_000_000
+    assert plan_5_entries["general-hospital-daily"]["amount"] == 500
+    assert plan_5_entries["icu-hospital-daily"]["amount"] == 1_000
+    assert plan_5_entries["burn-center-hospital-daily"]["amount"] == 1_500
+    assert all(entry["source"] == "terms" for entry in plan_3_entries.values())
+    assert all(entry.get("conditions") for entry in plan_3_entries.values())
+
+    source_path = (
+        FUBON_ANXIN_FINANCIAL_LIFE_ROOT / product_id / f"{product_id}-A.pdf"
+    )
+    if not source_path.is_file():
+        source_path = next((FUBON_ANXIN_FINANCIAL_LIFE_ROOT / product_id).glob("*-A.pdf"))
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert (
+        parse_fubon_anxin_financial_life_accident_health_plan_table(
+            completed_document
+        )
+        == schedule
+    )
+    assert (
+        parse_fubon_anxin_financial_life_accident_health_plan_table(
+            fubon_anxin_financial_life_document(product_id, "F")
+        )
+        is None
+    )
+    assert (
+        parse_fubon_anxin_financial_life_accident_health_plan_table(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_anxin_financial_life_accident_health_plan_table(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_anxin_financial_life_accident_health_plan_table(
+            {
+                **document,
+                "text": document["text"].replace(
+                    expected_fubon_code,
+                    "FBF9999999",
+                ),
+            }
+        )
+        is None
+    )
+
+
+TIANTIAN_ANXIN_500_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-049"
+)
+TIANTIAN_ANXIN_500_PRODUCTS = {
+    "209291MZ2G00321A11Z10000004": (21, "107-fourth-revision"),
+    "209291MZ2G00321A11Z10000005": (21, "108-fifth-revision"),
+    "209291MZ2G00321A11Z10000006": (22, "109-sixth-revision"),
+    "209291MZ2G00321A11Z10000007": (22, "109-seventh-revision"),
+    "209291MZ2G00321A11Z10000008": (22, "111-eighth-revision"),
+}
+
+
+def tiantian_anxin_500_document(product_id: str) -> dict:
+    pdf_path = TIANTIAN_ANXIN_500_ROOT / product_id / f"{product_id}-A.pdf"
+    reader = PdfReader(pdf_path)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for product_id, (expected_pages, expected_revision) in TIANTIAN_ANXIN_500_PRODUCTS.items():
+    document = tiantian_anxin_500_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == expected_pages
+    schedule = parse_fubon_tiantian_anxin_500_accident_health_plan_table(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-tiantian-anxin-500-accident-health-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["plan_count"] == 4
+    assert characteristics["maximum_renewal_age"] == 65
+    assert characteristics["cancer_waiting_days"] == 0
+    assert characteristics["general_hospital_days_limit"] == 90
+    assert characteristics["icu_days_limit"] == 30
+    assert characteristics["burn_center_hospital_days_limit"] == 30
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["fracture_claim_days"] == 180
+    assert characteristics["major_burn_survival_days"] == 15
+    assert characteristics["major_burn_lifetime_limit_times"] == 1
+    assert characteristics["disability_schedule_item_count"] == 79
+    assert characteristics["disability_rate_min_percent"] == 5
+    assert characteristics["disability_rate_max_percent"] == 100
+    plans = {plan["value"]: plan for plan in schedule["plan_options"]}
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+        "計畫四",
+    ]
+    assert len(plans["plan-1"]["coverage_entries"]) == 2
+    assert len(plans["plan-2"]["coverage_entries"]) == 2
+    assert len(plans["plan-3"]["coverage_entries"]) == 2
+    assert len(plans["plan-4"]["coverage_entries"]) == 13
+    plan_1_entries = {
+        entry["id"]: entry for entry in plans["plan-1"]["coverage_entries"]
+    }
+    assert plan_1_entries["accidental-death-or-funeral"]["amount"] == 3_000_000
+    assert plan_1_entries["accidental-disability"]["amount"] == 3_000_000
+    assert plan_1_entries["accidental-disability"]["amount_tiers"][0] == {
+        "label": "第1級 100%",
+        "amount": 3_000_000,
+    }
+    assert plan_1_entries["accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 150_000,
+    }
+    plan_4_entries = {
+        entry["id"]: entry for entry in plans["plan-4"]["coverage_entries"]
+    }
+    assert plan_4_entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_4_entries["total-disability"]["amount"] == 1_000_000
+    assert plan_4_entries["cancer-death"]["amount"] == 300_000
+    assert plan_4_entries["cancer-surgery"]["amount"] == 30_000
+    assert plan_4_entries["cancer-hospital-daily"]["amount"] == 1_000
+    assert plan_4_entries["cancer-radiation-daily"]["amount"] == 1_000
+    assert plan_4_entries["fracture-unhospitalized-daily"]["amount"] == 500
+    assert plan_4_entries["general-hospital-daily"]["amount"] == 1_000
+    assert plan_4_entries["icu-hospital-daily"]["amount"] == 2_000
+    assert plan_4_entries["burn-center-hospital-daily"]["amount"] == 3_000
+    assert plan_4_entries["major-burn"]["amount"] == 500_000
+    assert plan_4_entries["accidental-death-or-funeral"]["amount"] == 2_000_000
+    assert plan_4_entries["accidental-disability"]["amount"] == 2_000_000
+    assert all(entry["source"] == "terms" for entry in plan_4_entries.values())
+    assert all(entry.get("conditions") for entry in plan_4_entries.values())
+
+    source_path = TIANTIAN_ANXIN_500_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert (
+        parse_fubon_tiantian_anxin_500_accident_health_plan_table(completed_document)
+        == schedule
+    )
+    assert (
+        parse_fubon_tiantian_anxin_500_accident_health_plan_table(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_tiantian_anxin_500_accident_health_plan_table(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_tiantian_anxin_500_accident_health_plan_table(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+
+
+FUBON_LEGACY_INJURY_TEXT = (
+    Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-document-text"
+    / "tii-life-049-text.json"
+)
+fubon_legacy_injury_documents = json.loads(
+    FUBON_LEGACY_INJURY_TEXT.read_text(encoding="utf-8")
+)["documents"]
+fubon_legacy_expected_parsers = {
+    "209291M11A00300": "fubon-new-pingan-accident-legacy-plan-v1",
+    "209291MZ1A00321A11Z10000001": "fubon-new-pingan-accident-legacy-plan-v1",
+    "209291M12G00500": "fubon-tiantian-anxin-500-accident-health-legacy-plan-v1",
+    "209291M19G00401": "fubon-tiantian-anxin-500-accident-health-legacy-plan-v1",
+    "209291MZ2G00321A11Z10000002": "fubon-tiantian-anxin-500-accident-health-legacy-plan-v1",
+    "209291MZ2G00321A11Z10000003": "fubon-tiantian-anxin-500-accident-health-legacy-plan-v1",
+    "209291MZ1G00321A11Z10000002": "fubon-new-million-heart-accident-health-legacy-plan-v1",
+    "209291MZ1G00321A11Z10000003": "fubon-new-million-heart-accident-health-legacy-plan-v1",
+    "209291MZ2G00121A11Z10000006": "fubon-new-shouhu-jinnang-late-accident-health-legacy-plan-v1",
+    "209291MZ9G00121A11Z10000004": "fubon-anxin-financial-life-accident-health-plan-v1",
+}
+for product_id, expected_parser_id in fubon_legacy_expected_parsers.items():
+    document = next(
+        item
+        for item in fubon_legacy_injury_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    parsed = parse_plan_table_with_parser(document)
+    assert parsed is not None
+    parser_id, schedule = parsed
+    assert parser_id == expected_parser_id
+    assert schedule["selection_type"] == "plan"
+    assert schedule["plan_options"]
+
+
+CHINA_LIFE_JINHAOYI_TEXT = (
+    Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-document-text"
+    / "tii-life-025-text.json"
+)
+china_life_jinhaoyi_documents = json.loads(
+    CHINA_LIFE_JINHAOYI_TEXT.read_text(encoding="utf-8")
+)["documents"]
+for product_id in (
+    "205291M12A00104",
+    "205291M12A00105",
+    "205291M12A00106",
+):
+    document = next(
+        item
+        for item in china_life_jinhaoyi_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    schedule = parse_china_life_jinhaoyi_face_amount(document)
+    assert schedule is not None
+    assert schedule["selection_type"] == "face_amount"
+    assert schedule["input_mode"] == "face_amount"
+    assert schedule["version_characteristics"]["disability_schedule_item_count"] == 69
+    assert len(china_life_jinhaoyi_disability_percentages(document["text"])) == 69
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert len(entries) == 12
+    assert entries["major-burn"]["rate_percent"] == 30
+    assert entries["aviation-accidental-death-face-amount"]["rate_percent"] == 300
+    assert entries["accidental-disability-rate-table"]["rate_min_percent"] == 5
+    assert entries["accidental-disability-rate-table"]["rate_max_percent"] == 90
+    assert entries["maturity-premium-formula"]["calculation_basis"] == "unknown"
+    assert (
+        parse_china_life_jinhaoyi_face_amount(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
 
 
 with TemporaryDirectory() as temp_dir:

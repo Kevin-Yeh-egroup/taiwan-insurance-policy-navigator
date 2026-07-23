@@ -490,11 +490,13 @@ Every official TII category can use the same search, detail, collection, edit, a
 
 Any mode other than `unknown` must be backed by `selection_source: terms` or a reviewed plan option table. Existing user values never create a mode by themselves.
 
-Each `coverage_entry` is terms-owned and cannot be edited by the user. Supported `calculation_basis` values are `fixed_amount`, `percentage_of_base`, `plan_schedule_lookup`, `per_unit`, `per_unit_per_day`, `per_day`, `reimbursement_with_cap`, `table_multiplier`, `tiered_or_stepped`, `additional_benefit`, and `unknown`. `amount_role`, `limit_scope`, and `aggregation_rule` preserve whether a number is a payout, base, cap, or reference and whether benefits may be combined.
+Each `coverage_entry` is terms-owned and cannot be edited by the user. Supported `calculation_basis` values are `fixed_amount`, `percentage_of_base`, `plan_schedule_lookup`, `per_unit`, `per_unit_per_day`, `per_day`, `reimbursement_with_cap`, `percentage_of_actual_expense_with_cap`, `table_multiplier`, `tiered_or_stepped`, `additional_benefit`, and `unknown`. `amount_role`, `limit_scope`, and `aggregation_rule` preserve whether a number is a payout, base, cap, or reference and whether benefits may be combined.
 
 `limit_scope` includes `per_surgery` for surgery schedules. Percentage fields may exceed 100 when a reviewed terms table defines a multiplier, such as a surgery schedule ranging from 10% to 500%; the validator permits reviewed values up to 1000% and the UI keeps the full range instead of clipping it to 100%.
 
 For `reimbursement_with_cap`, a legacy `basis` of `per_unit` or `daily_per_unit` means the reviewed table amount is a per-unit limit. The displayed policy limit must multiply that amount by the user's positive-integer `unit_count`; without a unit count, the UI must request it instead of presenting the per-unit amount as the whole-policy cap.
+
+For `percentage_of_actual_expense_with_cap`, the terms define a reimbursement percentage, but the real payout still depends on the user's actual expense and the policy-recorded limit. When `basis` is `policy_recorded_limit`, the user's selected/input limit is treated as the displayed cap; the terms-owned `rate_percent` explains how non-standard reimbursement is calculated.
 
 For a verified benefit whose per-unit amount changes by policy year or another terms-defined tier, `amount_tiers` stores each reviewed label and amount as structured data. The UI may calculate every displayed tier from the user's unit count, but it must not collapse the tiers into one estimated payout or ask the user to edit the terms-owned tier labels.
 

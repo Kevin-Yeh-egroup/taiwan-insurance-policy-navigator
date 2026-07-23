@@ -1,0 +1,497 @@
+# TII Benefit Structure Update - 2026-07-21
+
+## Completed
+
+- Promoted `tii-life-050` Fubon New Child accident and health one-year term insurance version 2:
+  - `209391MZ9D00321A11Z10000002`
+- This version uses the policy terms `-A.pdf`, with 4 plan options.
+- The preserved plan benefits include cancer, hospitalization, caregiver, burn-center hospitalization, major burn, accident hospitalization, accident ICU, accident outpatient surgery, accident death, accident disability, and accident medical reimbursement. Plans 1 and 3 preserve 17 Verified Benefits each; plans 2 and 4 preserve 18 Verified Benefits each.
+
+- Promoted `tii-life-068` Chaoyang/Xingnong group inpatient medical insurance:
+  - `212317R11A00800`
+- This version uses the policy terms `-A.pdf`, with 5 per-unit Verified Benefits.
+- The preserved per-unit benefit amounts include:
+  - daily room and board limit: 100 per day per unit
+  - ICU limit: 300 per day per unit
+  - inpatient medical expense limit: 1,000 per hospitalization per unit
+  - surgery expense base: 1,000 per unit, using appendix surgery percentages from 2.5% to 100%
+  - home recovery benefit: 50 per day per unit
+
+- Promoted `tii-life-050` Fubon HSL deductible inpatient medical rider original:
+  - `209311RZ1A02221A11Z10000000`
+- This version uses the policy terms `-A.pdf`, with 3 per-unit Verified Benefits.
+- The preserved per-unit benefit amounts include:
+  - daily room expense reimbursement limit: 150 per day, with 110 daily deductible
+  - inpatient medical expense reimbursement limit: 12,800 per hospitalization, with 8,818 deductible
+  - prosthetic eye or limb sub-limit: 400 per event, derived from room net limit x 10
+
+- Promoted `tii-life-050` Fubon New Cancer whole life health insurance version 7:
+  - `209321M12B00307`
+- This version uses the policy terms `-A.pdf`, with 14 per-unit Verified Benefits.
+- The preserved per-unit benefit amounts include cancer diagnosis, cancer hospital daily days 1-90 and 91+, discharge recovery, outpatient care, specific cancer surgery, malignant tumor surgery, radiation, chemotherapy, marrow or stem-cell transplant, total disability, death/funeral, maturity, and lifetime cap.
+
+- Promoted `tii-life-050` Fubon cancer policy versions 4 to 6:
+  - `209321M12B00304`
+  - `209321M12B00305`
+  - `209321M12B00306`
+- Each promoted version has 14 Verified Benefits from the policy terms `-A.pdf`.
+- The preserved per-unit benefits include cancer diagnosis, specific cancer, hospital daily, discharge recovery, outpatient care, surgery, radiation, chemotherapy, marrow or stem-cell transplant, total disability, death/funeral, maturity, and lifetime cap.
+
+- Promoted `tii-life-050` Fubon Lohas policy versions 5 to 7:
+  - `209391MZ9G00221A11Z10000005`
+  - `209391MZ9G00221A11Z10000006`
+  - `209391MZ9G00221A11Z10000007`
+- Each promoted version has 8 plan options from the policy terms `-A.pdf`.
+- The preserved plan benefit counts are:
+  - plan 1: 11 coverage entries
+  - plans 2 to 4: 22 coverage entries each
+  - plan 5: 10 coverage entries
+  - plans 6 to 8: 21 coverage entries each
+
+- Promoted `tii-life-050` Fubon Golden Lohas original and version 1:
+  - `209391MZ1G00421A11Z10000000`
+  - `209391MZ1G00421A11Z10000001`
+- Each promoted version has 2 plan options from the policy terms `-A.pdf`, with 24 Verified Benefits per plan.
+- The preserved plan-one and plan-two benefit amounts include death/funeral, total disability, major disease, mild cancer, hospital daily, ICU daily, burn-center hospital daily, accident death, public transport accident death, overseas accident death, and accident disability base.
+
+- Promoted `tii-life-050` Fubon New Lohas original and version 1:
+  - `209391M11G00100`
+  - `209391MZ1G00121A11Z10000001`
+- Each promoted version has 4 plan options from the policy terms `-A.pdf`, with 24 Verified Benefits per plan.
+- The preserved plan amounts include:
+  - death/funeral: 500,000 / 1,000,000 / 2,000,000 / 3,000,000
+  - total disability: 500,000 / 1,000,000 / 2,000,000 / 3,000,000
+  - major illness: 100,000 / 200,000 / 400,000 / 600,000
+  - low-invasive cancer: 5,000 / 10,000 / 20,000 / 30,000
+  - hospital daily: 1,000 / 1,000 / 1,000 / 2,000 per day
+  - ICU daily: 2,500 / 2,500 / 2,500 / 5,000 per day
+  - major burn: 400,000 / 400,000 / 400,000 / 800,000
+  - accident death: 1,000,000 / 1,000,000 / 1,000,000 / 2,000,000
+  - accident disability base: 1,000,000 / 1,000,000 / 1,000,000 / 2,000,000
+
+- Promoted `tii-life-050` Fubon statutory infectious disease original and version 1:
+  - `209311MZ1B01021A11Z10000000`
+  - `209311MZ1B01021A11Z10000001`
+- Each promoted version has 5 plan options from the policy terms `-A.pdf`, with 7 Verified Benefits per plan.
+- The preserved plan amounts include:
+  - death/funeral: 500,000 / 1,000,000 / 1,500,000 / 2,000,000 / 2,500,000
+  - statutory infectious disease death: 750,000 / 1,500,000 / 2,250,000 / 3,000,000 / 3,750,000
+  - hospital daily: 500 / 1,000 / 1,500 / 2,000 / 2,500 per day
+  - statutory infectious disease hospital daily: 1,000 / 2,000 / 3,000 / 4,000 / 5,000 per day
+  - ICU daily: 500 / 1,000 / 1,500 / 2,000 / 2,500 per day
+  - home recovery daily: 250 / 500 / 750 / 1,000 / 1,250 per day
+  - statutory infectious disease diagnosis: 5,000 / 10,000 / 15,000 / 20,000 / 25,000
+
+- Promoted `tii-life-080` Farglory Kangfu Medical rider versions 1 to 3:
+  - `216311RZ1A19421A11Z10000001`
+  - `216311RZ1A19421A11Z10000002`
+  - `216311RZ1A19421A11Z10000003`
+- Each promoted version has 4 plan options from the policy terms `-A.pdf`, with 5 Verified Benefits per plan.
+- The preserved plan amounts include:
+  - hospital daily: 500 / 1,000 / 1,500 / 2,000 per day
+  - hospital auxiliary daily: fixed 500 per day
+  - hospital consolation: 3,500 / 7,000 / 10,500 / 14,000 per hospitalization
+  - inpatient medical reimbursement limit: 200,000 / 300,000 / 400,000 / 500,000
+  - surgery reimbursement limit: 150,000 / 200,000 / 250,000 / 300,000
+
+- Promoted `tii-life-152` Yuanta Xiangyouxin Hospital Medical rider original and versions 1 to 2:
+  - `261311RZ1AJR021A11Z10000000`
+  - `261311RZ1AJR021A11Z10000001`
+  - `261311RZ1AJR021A11Z10000002`
+- Each promoted version has 6 plan options from the policy terms `-A.pdf`, with 5 Verified Benefits per plan.
+- The preserved plan amounts include:
+  - hospital daily: 500 / 1,000 / 1,500 / 2,000 / 2,500 / 3,000 per day
+  - inpatient medical reimbursement limit: 150,000 / 200,000 / 250,000 / 300,000 / 350,000 / 400,000
+  - inpatient medical reimbursement limit after over 60 days: 300,000 / 400,000 / 500,000 / 600,000 / 700,000 / 800,000
+  - surgery reimbursement limit: 150,000 / 200,000 / 250,000 / 300,000 / 350,000 / 400,000
+  - pre-admission outpatient limit: 1,000 / 1,000 / 1,000 / 2,000 / 2,000 / 2,000
+  - post-discharge outpatient limit: 3,000 / 3,000 / 3,000 / 6,000 / 6,000 / 6,000
+
+- Promoted `tii-life-152` Yuanta New Account Medical whole life health insurance versions 9 to 10:
+  - `261311MZ1GA1023A11Z10000009`
+  - `261311MZ1GA1023A11Z10000010`
+- Each promoted version has 2 type options from the policy terms `-A.pdf`: type A and type B.
+- The preserved formulas are keyed to the policy-page hospital daily benefit amount:
+  - face amount reference: hospital daily x 500
+  - hospital daily first 30 days: hospital daily x 1 per day
+  - hospital daily after day 30: hospital daily x 2 per day
+  - ICU daily: hospital daily x 2 per day, additional to hospital daily
+  - burn-center daily: hospital daily x 3 per day, additional to hospital daily
+  - pre/post hospitalization outpatient: hospital daily x 25% per outpatient day
+  - discharge recovery: hospital daily x 50% per inpatient day
+  - surgery: hospital daily x appendix surgery grade, up to 8x
+  - cancer or specified major disease care: hospital daily x 1 per day, up to 30 days
+  - radiotherapy or chemotherapy: hospital daily x 1 per treatment day
+  - child specified disease: hospital daily x 15
+  - child fracture: hospital daily x appendix fracture days, up to 60 days
+  - child food poisoning: hospital daily x 3
+  - total disability care: annual hospital daily x 25, up to 20 years
+  - medical benefit lifetime cap: hospital daily x 1,500
+  - type B only adds cancer diagnosis, breast reconstruction, and specified major disease or major injury diagnosis benefits.
+
+- Promoted `tii-life-014` and `tii-life-026` Prudential/KGI fixed hospital medical rider versions:
+  - `203311R11A00205`
+  - `203311R11A00206`
+  - `205311RZ1A00322A11Z10000013`
+- Each promoted version has 6 plan options from the policy terms `-A.pdf`, with 5 Verified Benefits per plan.
+- The preserved plan amounts include:
+  - hospital daily: 500 / 1,000 / 1,500 / 2,000 / 2,500 / 3,000 per day
+  - intensive care daily: 500 / 1,000 / 1,500 / 2,000 / 2,500 / 3,000 per day
+  - surgery benefit base: 10,000 / 20,000 / 30,000 / 40,000 / 50,000 / 60,000
+  - surgery benefit total cap per hospitalization: 30,000 / 60,000 / 90,000 / 120,000 / 150,000 / 180,000
+  - cumulative termination threshold: 500,000 / 1,000,000 / 1,500,000 / 2,000,000 / 2,500,000 / 3,000,000
+
+- Promoted `tii-life-026` China Life legacy cancer whole life health rider original and version 1:
+  - `205321R11A02300`
+  - `205321R11A02301`
+- Each promoted version has one unit-based option from the policy terms `-A.pdf`, with 6 Verified Benefits per unit.
+- The preserved per-unit amounts include:
+  - insured amount: 300,000
+  - cancer diagnosis: 30,000
+  - cancer hospital daily: 2,000 per day
+  - cancer surgery: 30,000 per surgery
+  - cancer discharge recovery: 1,000 per day
+  - cancer outpatient care: 1,000 per visit
+  - cancer death/funeral: 300,000
+
+- Promoted `tii-life-008` Taiwan Life fishermen group one-year term limited medical health insurance original and version 1:
+  - `202313MZ1A96721A11Z10000000`
+  - `202313MZ1A96721A11Z10000001`
+- Each promoted version has one plan option from the policy terms `-A.pdf`, with 3 Verified Benefits for plan A.
+- The preserved plan A amounts include:
+  - annual medical reimbursement limit: 320,000
+  - hospital daily compensation: 1,500 per day
+  - same-accident deductible: 3,000
+  - annual hospital daily compensation day limit: 31 days
+
+- Promoted `tii-life-008` Taiwan Life group long-term care health insurance service-benefit versions:
+  - `202363MZ1A84321A12Z10000000`
+  - `202363MZ1A84321A12Z10000001`
+- Each promoted version uses the policy terms `-A.pdf`, with 10 Verified Benefits or reference entries keyed to the policy certificate insurance amount.
+- The preserved long-term care benefit formulas and service fees include:
+  - long-term care lump sum: insurance amount x 6, once per policy
+  - monthly long-term care service limit: insurance amount x 1 per month
+  - long-term care plan period: 24 months
+  - unclaimed long-term care balance: unused monthly limits and remaining months, with 0.25% annual interest/discount rule
+  - basic care service: 400 per hour
+  - health-promotion service: 500 per hour
+  - dementia care service: 550 per hour
+  - cancer care service: 500 per hour
+  - complex-care surcharge: 100 per hour
+  - national-holiday or suspension-day service multiplier: 2x hourly service fee
+  - service-failure compensation: 110% of the relevant service fee
+
+- Promoted `tii-life-050` Fubon Golden Health whole life health insurance original and version 1:
+  - `209311MZ1B00823A11Z10000000`
+  - `209311MZ1B00823A11Z10000001`
+- Each promoted version has fixed benefits from the policy terms `-A.pdf`, with 8 Verified Benefits.
+- The preserved fixed amounts and formula bases include:
+  - hospital daily: 5,000 per day
+  - daily room and board reimbursement limit: 5,000 per day
+  - inpatient medical and inpatient surgery reimbursement limit: 500,000 per hospitalization
+  - inpatient medical and inpatient surgery total limit: 750,000 per hospitalization
+  - outpatient surgery reimbursement limit: 100,000 per day
+  - outpatient medical reimbursement limit: 10,000 per day
+  - outpatient medical deductible: 1,000 per day
+  - medical lifetime cap: 3,000,000
+  - death benefit formula base: greater of annual premium total x 106% or 300,000 x actual paid years, less claimed medical benefits
+  - maturity benefit formula base: greater of annual premium total x 106% or 3,000,000, less claimed medical benefits
+
+- Promoted `tii-life-050` Fubon Golden Medical Device health rider original and version 1:
+  - `209391RZ1A01622A11Z10000000`
+  - `209391RZ1A01622A11Z10000001`
+- Each promoted version uses the policy terms `-A.pdf`, with 9 per-unit Verified Benefits and policy-year tiers.
+- The preserved per-unit medical-device benefit tiers include:
+  - intraocular lens implant: 10,000 / 20,000 / 30,000
+  - artificial knee replacement: 10,000 / 20,000 / 30,000
+  - artificial hip replacement: 10,000 / 20,000 / 30,000
+  - cardiac catheterization with stent placement: 30,000 / 60,000 / 90,000
+  - pacemaker implant: 30,000 / 60,000 / 90,000
+  - heart valve replacement group: 50,000 / 100,000 / 150,000
+  - ventriculoperitoneal shunt: 50,000 / 100,000 / 150,000
+  - ventricular assist device implant: 100,000 / 200,000 / 300,000
+  - ECMO establishment: 100,000 / 200,000 / 300,000
+
+- Promoted `tii-life-158` Global Winterthur/Ritai Health rider fixed-enhanced non-investment versions:
+  - `262311R11A00201`
+  - `262311R11A00202`
+- Each promoted version uses the policy terms `-A.pdf`, with 2 independent unit inputs and 6 Verified Benefits.
+- The preserved per-unit benefit formulas include:
+  - hospital daily: 500 per hospital-medical unit per day
+  - ICU daily: 500 per hospital-medical unit per day, additional to hospital daily
+  - burn-center daily: 500 per hospital-medical unit per day, additional to hospital daily
+  - pre/post 7-day outpatient: 150 per hospital-medical unit per visit
+  - surgery fixed benefit base: 5,000 per surgery-and-misc unit, multiplied by the surgery table percentage
+  - inpatient miscellaneous daily: 300 per surgery-and-misc unit for days 1 to 7, then 150 per surgery-and-misc unit from day 8
+
+- Promoted `tii-life-026` China Life / KGI Ritai cancer health rider investment-linked versions:
+  - `205321R11A50600`
+  - `205321R11A50601`
+- Each promoted version uses the policy terms `-A.pdf`, with 1 face-amount input and 7 Verified Benefits.
+- The preserved face-amount benefit formulas include:
+  - initial cancer: 100% of insured amount, once
+  - initial carcinoma in situ: 10% of insured amount, once
+  - cancer recovery annuity year 1: 90% of insured amount
+  - cancer recovery annuity year 2: 80% of insured amount
+  - cancer recovery annuity year 3: 70% of insured amount
+  - cancer recovery annuity year 4: 60% of insured amount
+  - cancer recovery annuity years 5 to 9: 20% of insured amount each anniversary
+
+- Promoted `tii-life-152` Yuanta group hospital medical insurance original and versions 1 to 2:
+  - `261313MZ1AGHE21A11Z10000000`
+  - `261313MZ1AGHE21A11Z10000001`
+  - `261313MZ1AGHE21A11Z10000002`
+- Each promoted version uses the policy terms `-A.pdf`, with 21 plan options and 5 Verified Benefits per plan.
+- The preserved plan table formulas include:
+  - daily room reimbursement limit: 500 to 2,500 by plan
+  - inpatient medical reimbursement limit: daily amount x 40, from 20,000 to 100,000
+  - surgery fee reimbursement limit: daily amount x 40, from 20,000 to 100,000
+  - pre/post hospitalization outpatient reimbursement limit: 500 to 2,500 by plan
+  - hospital daily benefit: 500 to 2,500 by plan
+
+- Promoted `tii-life-008` Taiwan Life Yiqijianzhi specific disease term health insurance original and first-revision productIds:
+  - `202391MZ1A41B22A11E10000000`
+  - `202391MZ1A41B22A11E10000001`
+- Each promoted version uses the policy terms `-A.pdf`, with 1 face-amount input and 5 Verified Benefits.
+- The preserved face-amount and reference formulas include:
+  - specific disease benefit: 100% of insurance amount
+  - no-claim-period specific disease addition: 102% of annual premium total, separate from insurance amount
+  - no-claim premium refund: 102% of annual premium total
+  - health-promotion renewal premium discount: 2% of renewal premium after completing the dementia-risk genetic test in the specified period
+  - installment annual-payment threshold: 36,000
+
+- Promoted `tii-life-152` Yuanta Yuanqi Shizu hospital medical health rider original and first-revision productIds:
+  - `261311RZ1AYR021A11Z10000000`
+  - `261311RZ1AYR021A11Z10000001`
+- Each promoted version uses the policy terms `-A.pdf`, with 5 plan options and 10 Verified Benefits per plan.
+- The preserved plan table formulas include:
+  - cancer screening reward: 2% of annual premium, reference formula
+  - hospital daily: 1,000 to 3,000 by plan
+  - medical device subsidy: 10,000 to 30,000 by plan
+  - special procedure: 3,000 by plan
+  - daily room reimbursement limit: 1,000 to 3,000 by plan
+  - inpatient medical reimbursement limit: 75,000 to 175,000 by plan
+  - pre-admission outpatient limit: 1,000 by plan
+  - post-discharge outpatient limit: 3,000 by plan
+  - inpatient surgery base limit: 60,000 or 80,000 by plan, multiplied by surgery table percentage
+  - outpatient surgery base limit: 30,000 or 40,000 by plan, multiplied by surgery table percentage
+
+- Promoted `tii-life-152` Yuanta Health Life whole life medical original and first-revision productIds:
+  - `261311MZ1GA2023A11Z10000000`
+  - `261311MZ1GA2023A11Z10000001`
+- Each promoted version uses the policy terms `-A.pdf`, with one face-amount input and 20 Verified Benefits.
+- The preserved face-amount formulas include:
+  - hospital daily base: insurance amount x 1%
+  - first 30 hospitalization days: insurance amount x 1% per day
+  - hospitalization after day 30: insurance amount x 2% per day
+  - ICU additional benefit: insurance amount x 2% per day
+  - pre/post hospitalization outpatient: insurance amount x 0.25% per outpatient day
+  - discharge recuperation: insurance amount x 0.5% per day
+  - surgery table: hospital daily x 2 to 60
+  - child specified disease: hospital daily x 15
+  - child fracture: hospital daily x 14 to 60 by fracture table
+  - child food poisoning: hospital daily x 3
+  - severe burn: hospital daily x 250
+  - moderate burn: hospital daily x 100
+  - burn ward: hospital daily x 3 per day
+  - burn outpatient: hospital daily x 50% per outpatient day
+  - severe burn rehabilitation: hospital daily x 10 monthly up to 24 months
+  - moderate burn rehabilitation: hospital daily x 5 monthly up to 12 months
+  - death or maturity reference base: annual premium total x 106%, less accumulated Article 6 to 11 medical benefits, compared with policy value reserve
+  - medical-benefit lifetime cap: hospital daily x 3,800 for Articles 6 to 11
+
+- Promoted `tii-life-164` Global Life e-road-peace overseas sudden illness medical rider productIds:
+  - `264311AZ1AETS21A11Z10000000`
+  - `264311AZ1AETS21A11Z10000001`
+  - `264311AZ1AETS21A11Z10000002`
+  - `264311AZ1AETS21A11Z10000003`
+- Each promoted version uses the policy terms `-A.pdf`, with one overseas-sudden-illness-medical-amount input and 5 Verified Benefits.
+- The preserved face-amount formulas include:
+  - overseas sudden illness inpatient medical limit: 100% of overseas sudden illness medical amount, within 180 days from the first day of the same hospitalization
+  - overseas sudden illness outpatient medical limit: 0.5% of overseas sudden illness medical amount per outpatient event
+  - overseas sudden illness emergency medical limit: 1% of overseas sudden illness medical amount per emergency event
+  - non-NHI payment handling: 100% of actual paid expenses, still capped by each Article 4 to 6 benefit limit
+  - unearned premium refund when insured death terminates the rider
+- Versions 4 and 5 (`264311AZ1AETS21A11Z10000004` and `264311AZ1AETS21A11Z10000005`) are deferred because the local PDF reader hit AES-encrypted PDF handling that requires the `cryptography` dependency before source-complete extraction.
+
+## Version Differences Preserved
+
+- Cancer policy versions 4 to 6 keep their own source document hashes and benefit-table hashes.
+- Lohas policy versions 5 to 7 preserve their updated renewal, waiting-period, and disability wording.
+- Golden Lohas original and version 1 both use `disability_term = 殘廢`; source review confirmed both use `disability_schedule_revision = 104-revised-79-items`.
+- New Lohas original uses `disability_term = 殘廢` and `disability_schedule_revision = original-75-items`.
+- New Lohas version 1 uses `disability_term = 殘廢` and `disability_schedule_revision = 104-revised-79-items`.
+- Later New Lohas versions 2 to 5 remain represented as `disability_term = 失能`, preserving the wording change by product version.
+- Statutory infectious disease original keeps the missing-person repayment rule as benefit-only.
+- Statutory infectious disease version 1 keeps the missing-person repayment rule as premium-or-benefit and preserves the 109.08.17 regulatory wording changes.
+- Farglory Kangfu Medical version 3 keeps the 111 insured-notice wording revision; versions 1 and 2 preserve their earlier wording.
+- Farglory Kangfu Medical records preserve the no-waiting disease definition, day-hospital exclusion, 365-day same-hospitalization cap, and 65% payment rule for expenses not paid through National Health Insurance.
+- Yuanta Xiangyouxin Medical records preserve the original, 108-revised, and 109-revised terms revisions by productId.
+- Yuanta Xiangyouxin Medical version 2 keeps the claims medical-opinion review wording revision, while original and version 1 preserve the earlier claims wording.
+- Yuanta Xiangyouxin Medical records preserve 30-day disease waiting, renewal disease no-waiting, day-hospital exclusion, 365-day same-hospitalization cap, 90-day same-policy-year mental-disease cap, 65% payment rule for expenses not paid through National Health Insurance, 14-day readmission grouping, post-expiry readmission exclusion, and renewal ages 84 or 23.
+- Yuanta New Account Medical records preserve the 108-revised and 108-10-revised terms separately by productId.
+- Yuanta New Account Medical version 10 preserves the medical-opinion claims wording revision, while version 9 preserves the earlier claims wording.
+- Yuanta New Account Medical records preserve the type A/type B split, 30-day waiting period for disease/cancer/specified major disease, day-hospital exclusion, 365-day hospitalization limits, 14-day same-hospitalization grouping, post-expiry readmission exclusion, hospital-daily x 500 face amount formula, and hospital-daily x 1,500 medical benefit lifetime cap.
+- Prudential fixed hospital medical version 5 preserves the older terms without post-expiry readmission exclusion and without medical-opinion claims wording.
+- Prudential fixed hospital medical version 6 preserves the post-expiry readmission exclusion while retaining the older claims wording.
+- KGI fixed hospital medical version 13 preserves the day-hospital/day-care exclusion, post-expiry readmission exclusion, medical-opinion claims wording, and main-contract forced-execution exception.
+- China Life legacy cancer whole life original and version 1 both preserve the 31-day cancer responsibility start, premium waiver for first to third degree disability, and minor or legally incapacitated insured funeral-benefit cap rule.
+- China Life legacy cancer whole life version 1 preserves the `94 中壽商發字第 1638 號` partial-change source wording separately from the original `九二中壽商發字第 1761 號` terms.
+- Taiwan Life fishermen group medical original and version 1 both preserve the plan A table, annual reimbursement cap, hospital daily fallback, same-accident deductible, 14-day same-hospitalization grouping, post-expiry readmission exclusion, and 100% payment rule for expenses not processed through National Health Insurance.
+- Taiwan Life fishermen group medical version 1 preserves the 112 revision requiring notice to insured persons when premium nonpayment催告 is sent to the proposer.
+- Taiwan Life group long-term care service original and version 1 both preserve the ADL 3-of-6 long-term-care-state rule, 3-month assessment condition, CDR >= 2 cognitive impairment rule, limited service areas, 24-month plan period, insurance-amount monthly service cap, unclaimed-balance interest/discount rule, and service-fee table.
+- Taiwan Life group long-term care service version 1 preserves the 112 privacy/regulatory wording revision separately from the original 109 filing.
+- Fubon Golden Health original and version 1 both preserve the fixed benefit table, 30-day disease waiting period, 14-day same-hospitalization grouping, day-hospital exclusion, post-expiry readmission exclusion, 75% non-NHI payment rule, ICU 1.5x daily multiplier up to 7 days, 365-day hospitalization limit, chronic or mental annual 32-day limit, and 20-day annual outpatient medical limit.
+- Fubon Golden Health version 1 preserves the 109 medical-opinion claims review wording, while the original preserves the earlier claims wording.
+- Fubon Golden Medical Device original and version 1 both preserve the 30-day disease waiting period, age-74 termination rule, policy-year benefit tiers, item 1 eye-specific annual and lifetime limits, item 2 and 3 joint-side annual and lifetime limits, valve-replacement grouping, item 4 to 9 once-per-rider limits, and termination after all 9 items have been paid to their caps.
+- Fubon Golden Medical Device version 1 preserves the added unit-reduction article, while the original does not include that article.
+- Global Winterthur/Ritai fixed-enhanced non-investment versions preserve the two-unit design separately from the investment-linked versions. Version 1 maps hospital and surgery sections to articles 7 and 8; version 2 maps them to articles 8 and 9 after the premium-loan article is inserted.
+- Global Winterthur/Ritai fixed-enhanced records preserve the 30-day disease waiting wording, 365-day hospitalization limits, 14-day same-hospitalization grouping, no-claim 10% renewal premium discount, and the surgery table range of 2% to 400%.
+- China Life / KGI Ritai cancer investment-linked original and version 1 preserve the 90-day cancer waiting period, age-75 renewal limit, next-policy-month termination after initial cancer, post-death actual diagnosis date evidence rule, and initial-cancer-benefit-payment-date annuity basis.
+- China Life / KGI Ritai cancer investment-linked version 1 preserves the 96.12.03 and 96.12.28 regulatory revision signals separately from the original 96.10.17 approval filing.
+- Yuanta group hospital medical versions preserve the 21-plan table, real-expense or daily-benefit choice-one rule, 14-day same-hospitalization grouping, post-expiry readmission exclusion, 65% non-NHI payment rule, and surgery-table percentage reference.
+- Yuanta group hospital medical version 1 preserves the insured-notice revision from the 111.08.30 regulatory wording, while version 2 additionally preserves the 113.06.28 day-hospital/day-care definition wording.
+- Taiwan Life Yiqijianzhi specific disease original and first-revision records preserve separate productId identities while sharing the same source terms hash, 30-day specific-disease waiting period, accident exemption from waiting period, age-89 termination rule, 102% annual-premium-total refund formulas, 2% health-promotion premium discount, and 36,000 installment threshold.
+- Taiwan Life group inpatient medical limit plan versions 13 and 14 preserve separate productId identities for the same product name, keep all 11 plan options, the per-accident medical reimbursement limits from NTD 30,000 to 200,000, daily conversion amounts from NTD 500 to 4,800, outpatient same-day surgery inclusion, reimbursement-or-daily choose-one rule, 14-day same-hospital readmission grouping, post-expiry readmission exclusion, NHI-paid exclusion, and the 113.06.28 day-hospital/day-care definition revision separately from the 113.07.01 filing.
+- Yuanta Xiangan inpatient medical rider version 3 preserves the six-plan table, daily room limits from NTD 1,000 to 4,000, ICU room 3x multiplier for up to 15 days, inpatient medical limits from NTD 125,000 to 275,000 with 2x limit after 60 days, surgery limits from NTD 80,000 to 200,000 with appendix surgery percentages from 10% to 300%, pre-admission and post-discharge outpatient limits, supplement benefit limits, 30-day disease waiting period, 65% non-NHI payment rule, 14-day same-hospital readmission grouping, post-expiry readmission exclusion, newborn metabolic disease wording, and the 109 medical-opinion claims review wording.
+- Yuanta Yuanqi Shizu hospital medical original and version 1 preserve the same five-plan benefit table separately by productId, 30-day disease waiting period, renewal no-waiting rule, cancer-screening minimum age 30, hospital daily 365-day limit, mental-disease 90-day limit, 14-day readmission grouping, post-expiry readmission exclusion, 65% non-NHI payment rule, medical-device and special-procedure annual limits, and surgery table 3% to 300% range.
+- Yuanta Yuanqi Shizu version 1 preserves the 111.08.30 insured-notice/regulatory revision signal separately from the original 111.09.21 filing.
+- Yuanta Health Life early original and first-revision records preserve separate productId identities for the same product name, keep the 30-day disease waiting period, insurance-amount-to-daily 1% formula, 14-day readmission grouping, post-expiry readmission exclusion, Article 6 to 11 cumulative medical cap, child age-14 benefit rules, burn severity rules, maturity age 111, premium-waiver first to sixth disability-degree rule, and the 105 regulatory revision signal separately from the original 104 filing.
+- Global Life e-road-peace overseas sudden illness versions 0 to 3 preserve separate productId identities, 180-day pre-illness treatment lookback, 180-day inpatient claim window, outpatient 0.5% cap, emergency 1% cap, 100% non-NHI actual-expense handling, 14-day same-hospital readmission grouping, day-hospital exclusion, post-expiry readmission exclusion, claim-date Taiwan Bank exchange-rate basis, and the version-3 medical-opinion/regulatory wording revision.
+- Global Life NCCU student group original and first-revision records preserve separate productId identities for the same product name, the fixed NTD 1,000,000 face amount, death and specific accidental death benefits, disability grades 1 to 11, disability living assistance grades 1 to 3 for up to four annual payments, 25% major burn benefit, daily hospital or reimbursement choose-one rule, 90-day daily hospital limit, 14-day same-hospital readmission grouping, 75% non-NHI actual-expense handling, major illness, first cancer, campus group food-poisoning benefits, post-expiry 180-day accident rule, and the 104.5.19 regulatory revision signal separately from the original filing.
+- Global Life NCCU student group second-revision record (`264396MZ9GY3221A11Z10000002`) is now promoted under the same fixed-schedule parser, preserving the 107.6.7 regulatory revision, 107.09.10 sales/revision date, fixed NTD 1,000,000 face amount, the same 19 verified benefit entries, and the same hospital/reimbursement choose-one and annual death-disability cap rules separately from the original and first-revision productIds.
+- Antai Life new cancer lifetime medical rider original R11 record (`252321R11A00200`) preserves the old 90.05.11 approved terms separately from later same-name revisions, including the 30-day cancer observation period, diagnosis benefit tiers of NTD 50,000 during premium payment and NTD 75,000 after premium payment, first-stage prostate cancer / carcinoma in situ 15% rule, hospital daily tiers of NTD 1,200 for days 1-90 and NTD 1,800 from day 91, discharge recuperation NTD 600 per day, surgery NTD 15,000 per operation, outpatient and radiation NTD 500 per day, chemotherapy NTD 800 per day, hospice anniversary benefit NTD 20,000 for anniversaries 1-5, 14-day same-cancer readmission grouping, and post-death cancer diagnosis handling.
+- Fubon Life HSL deductible inpatient medical rider first-revision record (`209311RZ1A02221A11Z10000001`) preserves the HSL 111.12.02 revision separately from the NHR1 inpatient medical products, including the 30-day disease waiting period, day-hospital exclusion, required linkage to a non-deductible real-expense medical rider, renewal ages 75 and 23, 65% non-NHI payment rule, daily room deductible NTD 110 and limit NTD 150 per unit, inpatient medical deductible NTD 8,818 and limit NTD 12,800 per unit, 365-day daily-room payable-day limit, 14-day same-hospital readmission grouping, post-expiry readmission exclusion, and the prosthetic eye/limb sub-limit based on daily-room net limit x 10.
+- Antai Life cancer medical term rider record (`252321R11A00100`) is now promoted with a family-role plus unit parser, preserving the 87.08.15 third-revision source separately from adjacent Antai cancer products. The structured plan-unit options distinguish individual main insured, single-parent main insured, single-parent child, two-parent main insured, two-parent spouse, and two-parent child. The preserved per-unit benefits include cancer diagnosis, hospital daily days 1-90, hospital daily from day 91, discharge recuperation, surgery, outpatient care, radiation therapy, chemotherapy, and cancer death, with child amounts kept separate from adult/spouse amounts.
+- Taiwan Life Drug Anxin one-year term cancer precision medical rider record (`202321RZ1A13B21A11E10000000`) is now promoted with a plan parser, preserving the 114.11.25 filing source, 90-day cancer waiting period, non-guaranteed renewal, age-75 renewal limit, and three-year post-cancer claim window. The structured plan options preserve plan 1 gene-test benefit NTD 100,000 and targeted-drug cumulative limit NTD 3,000,000, plus plan 2 gene-test benefit NTD 150,000 and targeted-drug cumulative limit NTD 5,000,000. The targeted-drug entry records the appendix-two dose/specification pricing formula and preserves representative source-reviewed unit prices from the 85-item drug table.
+- Taiwan Life Taipei student group insurance third-revision record (`202316M12G78103`) is now promoted with a fixed-schedule parser, preserving the 102.03.01 revision source separately from other student group products. The structured benefits preserve disease death NTD 1,000,000, accidental death NTD 2,000,000, disease disability grades 1 to 6 from NTD 600,000 to 100,000, accident disability grades 1 to 6 from NTD 1,000,000 to 100,000, disability living assistance grades 1 to 2 for up to four annual payments, inpatient medical reimbursement cap NTD 100,000, hospital daily NTD 600 for up to 90 days, accident outpatient cap NTD 30,000, major surgery NTD 50,000, major burn NTD 30,000, low-income project subsidy cap NTD 500,000, collective food-poisoning NTD 3,000 per person, major accident or fracture inpatient cap NTD 30,000, and facial reconstruction cap NTD 30,000.
+- Fubon Life Family Gift accident and health one-year term insurance record (`209391M12G00700`) is now promoted with a five-plan parser, preserving the 102.04.01 filing source and the plan table separately from other Fubon accident/health products. The structured plan options preserve plan 1 and 2 life death or funeral benefits, total-disability benefits, carcinoma-in-situ and malignant-cancer first diagnosis benefits, major-burn benefits, general accidental death, air / water-land transit / public-building-fire / elevator accidental-death additions, and the matching 1st to 11th disability-grade percentage tables. Plans 3 to 5 preserve accident-only structures with general accidental death and disability bases of NTD 3,000,000 / 5,000,000 / 8,000,000 plus accident hospital daily NTD 500, accident ICU daily NTD 500, and accident outpatient surgery NTD 1,000 per event.
+- Taiwan Life Gold Group New Inpatient Medical Limit health insurance record (`202313MZ1A31B21A11Z10000000`) is now promoted with an 11-plan parser, preserving the 114.12.27 filing source separately from the same-batch Taiwan Life group inpatient medical limit plan versions 13 and 14. The structured plan options preserve plans A to K, inpatient medical expense limits and outpatient surgery expense limits from NTD 30,000 to 200,000, hospital daily compensation from NTD 500 to 4,800, ICU 2x limit/daily handling, 31-day daily cap, original-receipt claim requirement, 14-day same-hospital readmission grouping, day-hospital/day-care exclusion, post-expiry readmission exclusion, NHI-paid exclusion, non-NHI 100% capped payment rule, and the inpatient-medical-expense or hospital-daily choose-one rule.
+- Fubon Life Golden Complete accident and health one-year term insurance original record (`209391MZ9D00421A11Z10000000`) is now promoted under the same parser family as later revisions, preserving the 107.05.28 filing source, original `殘廢` terminology, 104 revised 79-item disability schedule, and four plan options separately from later `失能` revisions. The structured plan options preserve cancer hospital/recovery/surgery/radiotherapy/chemotherapy/death benefits, general hospitalization, ICU, caregiver, burn-center hospitalization, major-burn, accident hospitalization, fracture without hospitalization, accident outpatient surgery, accident death, accident disability, natural-disaster disability, and plan-2/plan-4 accident medical reimbursement limits.
+- Taiwan Life Shishizai inpatient medical health rider record (`202311RZ1A04A21A11Z10000000`) is now promoted with a five-plan parser, preserving the 112.08.18 filing source. The structured plan options preserve plans one to five, daily room limits from NTD 1,000 to 3,000, inpatient medical limits from NTD 100,000 to 350,000, outpatient surgery or specified-procedure limits from NTD 30,000 to 70,000, pre/post outpatient limits from NTD 600 to 1,800, annual total limits from NTD 500,000 to 1,500,000, hospital-cash alternative choose-one handling, major-hospital comfort benefit NTD 6,000, 365-day hospitalization cap, 30-day mental-disease annual cap, day-hospital/day-care exclusion, NHI-paid exclusion, 65% non-NHI payment rule, and six-times annual limits for outpatient surgery and specified procedures.
+- Prudential Life New Daily Hospital Term Rider 96 first-revision record (`203311R11A00101`) is now promoted with a six-plan parser, preserving the 96.08.31 filing source. The structured plan options preserve FHIR-5 to FHIR-30, hospital daily benefits from NTD 500 to 3,000, intensive-care daily benefits from NTD 500 to 3,000 as conditional additional daily benefits, 365-day per-hospitalization limits for both daily benefits, 14-day same-hospital readmission grouping, no-surrender-value wording, and cumulative termination thresholds at daily amount x 1,000 from NTD 500,000 to 3,000,000.
+- Yuanta Life Anxin 100 critical illness whole life health insurance record (`261391MZ9GRJ023A11Z10000000`) is now promoted with a face-amount parser, preserving the 108.10.01 filing source. The structured benefits preserve death/funeral, total disability, public-transport accident death additional benefit, major critical illness, specified critical illness additional 50% benefit, second-to-sixth disability premium waiver, and age-100 maturity benefit. The parser keeps the greater-of formulas for insurance amount, annual premium total x 1.09, and policy value reserve as source-backed formulas, plus the 30-day disease waiting period, 90-day cancer waiting period, critical-illness certificate requirement, excluded critical-illness categories, and Article 20 priority rule for post-diagnosis evidence.
+- The benefit promotion helper now preserves existing reviewed records when approving a partial batch, preventing later small approvals from replacing the whole batch file.
+- Prudential Life one-year term accident account rider revisions and KGI/China Life matching fifth-revision accident account rider are now promoted:
+  - `203211R31A00102`
+  - `203211R31A00104`
+  - `203211R31A00105`
+  - `203211R31A00106`
+  - `203211R31A00107`
+  - `203211R31A00108`
+  - `203211RZ1A00321A11Z10000009`
+  - `203211RZ1A00321A11Z10000010`
+  - `203211RZ1A00321A11Z10000011`
+  - `203211RZ1A00321A11Z10000012`
+  - `203211RZ1A00321A11Z10000013`
+  - `203211RZ1A00321A11Z10000014`
+  - `203211RZ1A00321A11Z10000015`
+  - `203211RZ1A00321A11Z10000016`
+  - `205211RZ1A00121A11Z10000005`
+  - `205211RZ1A00121A11Z10000007`
+  - `205211RZ1A00121A11Z10000008`
+  - `205211RZ1A00121A11Z10000009`
+  - `205211RZ1A00121A11Z10000010`
+  - `205211RZ1A00121A11Z10000011`
+  - `205211RZ1A00121A11Z10000012`
+- These records use a face-amount parser. The structured benefits preserve accidental death/funeral 100% of face amount, accidental disability percentage ranges, injury medical reimbursement limit as a policy-recorded cap, accident hospital daily and related outpatient/fracture/surgery/ICU references keyed to the policy-recorded hospital daily amount, 180-day accident claim window, 70% non-NHI payment rule, 120-day hospital daily limit, surgery daily x 20 formula, and surgery-table ranges. The KGI/China Life fifth-revision record additionally preserves the major-burn rider at 35% of face amount.
+- Later revisions preserve the terminology change from `殘廢` to `失能` by productId. China Life/KGI versions 7 to 11 keep the major-burn rider at 35% of face amount; KGI version 12 does not include that rider in the matched terms.
+- Prudential Life one-year term inpatient medical account rider revisions in the same `tii-life-013` batch were also promoted by the existing annual-inpatient-account parser:
+  - `203211R31A00202`
+  - `203211R31A00203`
+  - `203211R31A00204`
+  - `203211R31A00205`
+- These four records use unit input and preserve 7 Verified Benefits each from the policy terms.
+
+- Prudential Life and China Life one-three-five accident insurance versions are now promoted:
+  - `203211M11A00202`
+  - `203211M11A00203`
+  - `203211M11A00204`
+  - `203211M11A00205`
+  - `203211M11A00206`
+  - `203211MZ1A00221A11Z10000007`
+  - `203211MZ1A00221A11Z10000008`
+  - `205211M11A00200`
+  - `205211M11A00201`
+- These records use a face-amount parser keyed to the policy-page basic insurance amount. The structured benefits preserve domestic general accidental death/funeral at 100%, overseas general accidental death/funeral at 300%, flight accidental death/funeral at 500%, and matching disability formulas based on 1x / 3x / 5x basic amount multiplied by the disability table percentage. Older revisions preserve 75 disability-table items; later Prudential revisions preserve the 79-item disability table. All records keep the 180-day accident claim window and same-accident death/disability caps by accident type.
+
+- Prudential Life fire and land/water mass-transit accident rider versions are now promoted:
+  - `203211R11A00200`
+  - `203211R11A00201`
+  - `203211R11A00202`
+  - `203211R11A00203`
+  - `203211RZ1A00221A11Z10000004`
+  - `203211RZ1A00221A11Z10000005`
+- These records use a face-amount parser keyed to the rider insurance amount. The structured benefits preserve fire accidental death/funeral at 100%, land/water mass-transit accidental death/funeral at 400%, and matching disability formulas based on 1x / 4x rider amount multiplied by the disability table percentage. Original through third-revision records preserve 75 disability-table items; fourth and fifth revisions preserve the 79-item disability table. All records keep the 180-day accident claim window, passenger/mass-transit conditions, and same-accident death/disability caps by accident type.
+
+- Later Prudential Life and China/KGI Life one-three-five accident insurance revisions are now promoted:
+  - `203211MZ1A00221A11Z10000009`
+  - `203211MZ1A00221A11Z10000010`
+  - `203211MZ1A00221A11Z10000011`
+  - `203211MZ1A00221A11Z10000012`
+  - `205211MZ1A00421A11Z10000007`
+  - `205211MZ1A00421A11Z10000008`
+- These records use the same face-amount parser keyed to the policy-page basic insurance amount. The structured benefits preserve domestic general accidental death/funeral at 100%, overseas general accidental death/funeral at 300%, flight accidental death/funeral at 500%, and matching disablement formulas based on 1x / 3x / 5x basic amount multiplied by the disablement table percentage. The parser now preserves the later `失能` terminology separately from older `殘廢` records. Prudential ninth revision preserves the 79-item disablement table; Prudential tenth through twelfth revisions and China/KGI seventh through eighth revisions preserve the 80-item disablement table. All records keep the 180-day accident claim window and same-accident death/disablement caps by accident type.
+
+- Fubon Life Wan'an 365 accident insurance versions are now promoted:
+  - `209211MZ1A00921A11Z10000000`
+  - `209211MZ1A00921A11Z10000001`
+  - `209211MZ1A00921A11Z10000002`
+  - `209211MZ1A00921A11Z10000003`
+  - `209211MZ1A00921A11Z10000004`
+  - `209211MZ1A00921A11Z10000005`
+- These records use an A/B plan parser. Plan A has a policy face amount of NTD 1,000,000 and plan B has NTD 2,000,000. Each plan preserves 18 Verified Benefits from the policy terms: general accidental death/funeral, mass-transit accidental death/funeral, public-building-fire accidental death/funeral, elevator accidental death/funeral, overseas accidental death/funeral, holiday accidental death/funeral, carbon-monoxide-poisoning death, the matching accidental disablement entries, natural-disaster accidental disablement levels 2 to 11, disablement living assistance levels 1 to 3, major burn, and food poisoning hospitalization. The structured plan amounts preserve the cross-plan formulas where both plans equal NTD 2,000,000 for overseas death/disablement base, both equal NTD 1,000,000 for holiday death/disablement base, both equal NTD 500,000 for disablement-living-assistance base, and both equal NTD 2,500 for food poisoning. All records preserve the 80-item disablement table, 180-day accident claim window, age-75 renewal limit, major-burn 15-day survival rule, and three-times annual food-poisoning cap.
+
+- Fubon Life Tiantian Anxin 500 accident and health one-year term insurance versions are now promoted:
+  - `209291MZ2G00321A11Z10000004`
+  - `209291MZ2G00321A11Z10000005`
+  - `209291MZ2G00321A11Z10000006`
+  - `209291MZ2G00321A11Z10000007`
+  - `209291MZ2G00321A11Z10000008`
+- These records use a four-plan parser. Plans 1 to 3 preserve accident-only structures with accidental death/funeral and accidental disability bases of NTD 3,000,000 / 5,000,000 / 10,000,000. Plan 4 preserves life death/funeral NTD 1,000,000, total disability NTD 1,000,000, cancer death NTD 300,000, cancer surgery NTD 30,000, cancer hospital/radiation NTD 1,000 per day, general hospital NTD 1,000 per day, ICU NTD 2,000 per day, burn-center hospital NTD 3,000 per day, major burn NTD 500,000, fracture without hospitalization NTD 500 per day, accidental death/funeral NTD 2,000,000, and accidental disability base NTD 2,000,000. All records preserve the 79-item disability table, 0-day cancer waiting wording, 90-day general hospital cap, 30-day ICU/burn-center cap, 180-day accident/fracture claim window, and 15-day major-burn survival rule.
+
+- Fubon Life Anxin 456 accident and health one-year term insurance versions are now promoted:
+  - `209291M12G00800`
+  - `209291M12G00801`
+  - `209291MZ2G00221A11Z10000002`
+  - `209291MZ2G00221A11Z10000003`
+  - `209291MZ2G00221A11Z10000004`
+  - `209291MZ2G00221A11Z10000005`
+  - `209291MZ2G00221A11Z10000006`
+  - `209291MZ2G00221A11Z10000007`
+  - `209291MZ2G00221A11Z10000008`
+  - `209291MZ2G00221A11Z10000009`
+- These records use a fixed-schedule parser. The structured benefits preserve life death/funeral NTD 1,000,000, total disability NTD 1,000,000, cancer death NTD 300,000, major burn NTD 500,000, accidental death/funeral NTD 2,000,000, accidental disability base NTD 2,000,000 with grade-percentage tiers, cancer surgery NTD 30,000, cancer hospital/radiation NTD 1,000 per day, accident hospital NTD 1,000 per day, fracture without hospitalization as half of accident hospital daily amount (NTD 500 per day), accident ICU NTD 1,000 per day, and burn-center medical NTD 2,000 per day. Original through third revision preserve 30-day cancer waiting and `殘廢` terminology with a 75-item disability table; fourth revision preserves no cancer waiting while still using `殘廢`; fifth through ninth revisions preserve `失能` terminology with 79 or 80 disability-table items by productId.
+
+- Fubon Life New Shouhu Jinnang accident and health one-year term insurance versions are now promoted:
+  - `209291M12G00200`
+  - `209291M19G00101`
+  - `209291MZ2G00121A11Z10000002`
+  - `209291MZ2G00121A11Z10000003`
+  - `209291MZ2G00121A11Z10000004`
+- These records use a ten-plan parser. Plans 1 to 6 preserve accident-only death/funeral, accidental disability percentage tiers, and accident medical reimbursement limits. Plans 7 to 10 also preserve life death/funeral, total disability, accident hospitalization, fracture without hospitalization, accident outpatient surgery, general hospitalization, discharge recovery, ICU, burn-center hospitalization, cancer hospitalization, cancer discharge recovery, cancer surgery, radiation, and chemotherapy benefits. Plans 7 to 9 additionally preserve mass-transit, land mass-transit, public-building-fire, and elevator accident add-on benefits; plan 10 intentionally has no such add-on rows. Original and first-revision records preserve 30-day cancer waiting and 75 disability-table items; second and third revisions preserve 30-day cancer waiting and 79 disability-table items; fourth revision preserves no cancer waiting and 79 disability-table items. The parser also preserves distinct renewal-age limits by plan group: plans 1-2 to age 70, plans 3-4 to age 20, and plans 5-10 to age 65.
+
+## Proof
+
+- Targeted parser/content checks for the 5 Fubon New Shouhu Jinnang accident and health insurance versions passed.
+- Targeted parser/content checks for the 10 Fubon Anxin 456 accident and health insurance versions passed.
+- Targeted parser/content checks for the 5 Fubon Tiantian Anxin 500 accident and health insurance versions passed.
+- Targeted parser/content checks for the 6 Fubon Wan'an 365 accident insurance versions passed.
+- Targeted parser/content checks for the 6 later Prudential/China/KGI one-three-five accident insurance revisions passed.
+- Targeted parser/content checks for the 6 Prudential fire and land/water mass-transit accident rider versions passed.
+- Targeted parser/content checks for the 9 Prudential/China Life one-three-five accident insurance versions passed.
+- Targeted parser/content checks for the 21 Prudential/KGI China Life accident account rider versions passed.
+- Targeted parser/content checks for `212317R11A00800`, `209391MZ9D00321A11Z10000002`, `209311RZ1A02221A11Z10000000`, and `209321M12B00307` passed.
+- `python -X utf8 scripts\test_tii_benefit_queue.py` passed.
+- `python -X utf8 scripts\test_tii_document_content.py` passed.
+- `node scripts\test_coverage_model.js` passed.
+- `python -X utf8 scripts\test_tii_plan_benefits.py` passed.
+- `python -X utf8 scripts\validate_data.py` passed with `tii_reviewed_benefit_records = 348`.
+- Benefit queue after promotion: candidate document count `1798`, queue group count `217`.
+
+## Next
+
+- Continue human-insurance benefit structuring first.
+- Health-insurance queue is currently cleared.
+- Next queue group: `傷害保險:8deac51dc8dbd7b9ba050719`, with 5 candidate documents in `tii-life-049` for Fubon Life 666 Bao Yi Shen accident one-year term insurance versions.
+- Property-insurance structuring remains paused until the human-insurance pipeline is stable.

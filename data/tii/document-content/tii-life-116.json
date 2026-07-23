@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-20T16:15:22+08:00",
+  "generated_at": "2026-07-21T15:12:33+08:00",
   "summary": {
     "generated_at": "2026-07-14T12:02:19+08:00",
     "source": "local TII files downloaded through captcha session",
@@ -13086,6 +13086,986 @@
           "extraction_status": "no_text",
           "error": null
         }
+      ],
+      "selection_type": "plan_unit",
+      "input_mode": "plan_unit",
+      "selection_source": "terms",
+      "selection_label": "家庭型別與被保險人角色 + 承保單位數",
+      "selection_guidance": "請依保單或批註所載家庭型別、被保險人角色與承保單位數建立；若家庭型有多名子女，請依每名子女分別加入。",
+      "version_characteristics": {
+        "terms_revision": "87-third-revision",
+        "cancer_waiting_days": 90,
+        "cancer_includes_carcinoma_in_situ": true,
+        "family_type_options": true,
+        "child_entry_age_limit": 23,
+        "newborn_child_covered_from_birth": true,
+        "same_cancer_readmission_days": 90,
+        "radiation_annual_days_limit": 60,
+        "chemotherapy_annual_days_limit": 60,
+        "post_death_presumed_cancer_start_days": 30,
+        "premium_waiver_main_contract_death_or_disability": true
+      },
+      "plan_options": [
+        {
+          "value": "individual-main",
+          "label": "個人型：主契約被保險人",
+          "coverage_entries": [
+            {
+              "id": "cancer-diagnosis",
+              "name": "罹患癌症保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。每一被保險人以給付一次為限。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 15000,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-hospital-days-1-90",
+              "name": "癌症住院醫療保險金（第 1-90 日）",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。因同一癌症及併發症再次住院，間隔未超過九十日視為同一次住院。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 1200,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-hospital-days-91-plus",
+              "name": "癌症住院醫療保險金（第 91 日起）",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同一次住院第九十一日起適用較高日額。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 1800,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-discharge-recuperation",
+              "name": "癌症出院療養保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。依實際住院日數給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 600,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-surgery",
+              "name": "癌症手術醫療保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。依實際接受外科手術次數給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 15000,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-outpatient",
+              "name": "癌症門診醫療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同日門診一次或多次均以一日計。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 500,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-radiation",
+              "name": "癌症放射線治療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同日治療一次或多次均以一日計，每一保單年度最高六十日。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 500,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-chemotherapy",
+              "name": "癌症化學治療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同日治療一次或多次均以一日計，每一保單年度最高六十日。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 800,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-death",
+              "name": "癌症身故保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。因癌症或癌症併發症致身故時給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 100000,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。",
+                "身故後始經病理切片確定癌症者，回溯身故日前第三十日推定為罹患癌症始日。"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "single-parent-main",
+          "label": "單親家庭型：主契約被保險人",
+          "coverage_entries": [
+            {
+              "id": "cancer-diagnosis",
+              "name": "罹患癌症保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。每一被保險人以給付一次為限。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 15000,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-hospital-days-1-90",
+              "name": "癌症住院醫療保險金（第 1-90 日）",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。因同一癌症及併發症再次住院，間隔未超過九十日視為同一次住院。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 1200,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-hospital-days-91-plus",
+              "name": "癌症住院醫療保險金（第 91 日起）",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同一次住院第九十一日起適用較高日額。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 1800,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-discharge-recuperation",
+              "name": "癌症出院療養保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。依實際住院日數給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 600,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-surgery",
+              "name": "癌症手術醫療保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。依實際接受外科手術次數給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 15000,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-outpatient",
+              "name": "癌症門診醫療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同日門診一次或多次均以一日計。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 500,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-radiation",
+              "name": "癌症放射線治療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同日治療一次或多次均以一日計，每一保單年度最高六十日。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 500,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-chemotherapy",
+              "name": "癌症化學治療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同日治療一次或多次均以一日計，每一保單年度最高六十日。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 800,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-death",
+              "name": "癌症身故保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。因癌症或癌症併發症致身故時給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 100000,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。",
+                "身故後始經病理切片確定癌症者，回溯身故日前第三十日推定為罹患癌症始日。"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "single-parent-child",
+          "label": "單親家庭型：每名子女",
+          "coverage_entries": [
+            {
+              "id": "cancer-diagnosis",
+              "name": "罹患癌症保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。每一被保險人以給付一次為限。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 7500,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-hospital-days-1-90",
+              "name": "癌症住院醫療保險金（第 1-90 日）",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。因同一癌症及併發症再次住院，間隔未超過九十日視為同一次住院。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 600,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-hospital-days-91-plus",
+              "name": "癌症住院醫療保險金（第 91 日起）",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。同一次住院第九十一日起適用較高日額。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 900,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-discharge-recuperation",
+              "name": "癌症出院療養保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。依實際住院日數給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 300,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-surgery",
+              "name": "癌症手術醫療保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。依實際接受外科手術次數給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 7500,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-outpatient",
+              "name": "癌症門診醫療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。同日門診一次或多次均以一日計。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 250,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-radiation",
+              "name": "癌症放射線治療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。同日治療一次或多次均以一日計，每一保單年度最高六十日。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 250,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-chemotherapy",
+              "name": "癌症化學治療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。同日治療一次或多次均以一日計，每一保單年度最高六十日。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 400,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-death",
+              "name": "癌症身故保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。因癌症或癌症併發症致身故時給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 50000,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。",
+                "身故後始經病理切片確定癌症者，回溯身故日前第三十日推定為罹患癌症始日。"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "two-parent-main",
+          "label": "雙親家庭型：主契約被保險人",
+          "coverage_entries": [
+            {
+              "id": "cancer-diagnosis",
+              "name": "罹患癌症保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。每一被保險人以給付一次為限。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 15000,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-hospital-days-1-90",
+              "name": "癌症住院醫療保險金（第 1-90 日）",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。因同一癌症及併發症再次住院，間隔未超過九十日視為同一次住院。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 1200,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-hospital-days-91-plus",
+              "name": "癌症住院醫療保險金（第 91 日起）",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同一次住院第九十一日起適用較高日額。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 1800,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-discharge-recuperation",
+              "name": "癌症出院療養保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。依實際住院日數給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 600,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-surgery",
+              "name": "癌症手術醫療保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。依實際接受外科手術次數給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 15000,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-outpatient",
+              "name": "癌症門診醫療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同日門診一次或多次均以一日計。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 500,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-radiation",
+              "name": "癌症放射線治療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同日治療一次或多次均以一日計，每一保單年度最高六十日。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 500,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-chemotherapy",
+              "name": "癌症化學治療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同日治療一次或多次均以一日計，每一保單年度最高六十日。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 800,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-death",
+              "name": "癌症身故保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。因癌症或癌症併發症致身故時給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 100000,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。",
+                "身故後始經病理切片確定癌症者，回溯身故日前第三十日推定為罹患癌症始日。"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "two-parent-spouse",
+          "label": "雙親家庭型：配偶",
+          "coverage_entries": [
+            {
+              "id": "cancer-diagnosis",
+              "name": "罹患癌症保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。每一被保險人以給付一次為限。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 15000,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-hospital-days-1-90",
+              "name": "癌症住院醫療保險金（第 1-90 日）",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。因同一癌症及併發症再次住院，間隔未超過九十日視為同一次住院。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 1200,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-hospital-days-91-plus",
+              "name": "癌症住院醫療保險金（第 91 日起）",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同一次住院第九十一日起適用較高日額。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 1800,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-discharge-recuperation",
+              "name": "癌症出院療養保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。依實際住院日數給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 600,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-surgery",
+              "name": "癌症手術醫療保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。依實際接受外科手術次數給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 15000,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-outpatient",
+              "name": "癌症門診醫療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同日門診一次或多次均以一日計。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 500,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-radiation",
+              "name": "癌症放射線治療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同日治療一次或多次均以一日計，每一保單年度最高六十日。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 500,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-chemotherapy",
+              "name": "癌症化學治療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。同日治療一次或多次均以一日計，每一保單年度最高六十日。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 800,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-death",
+              "name": "癌症身故保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "主契約被保險人或雙親家庭型配偶依承保單位數計算。因癌症或癌症併發症致身故時給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 100000,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。",
+                "身故後始經病理切片確定癌症者，回溯身故日前第三十日推定為罹患癌症始日。"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "two-parent-child",
+          "label": "雙親家庭型：每名子女",
+          "coverage_entries": [
+            {
+              "id": "cancer-diagnosis",
+              "name": "罹患癌症保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。每一被保險人以給付一次為限。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 7500,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-hospital-days-1-90",
+              "name": "癌症住院醫療保險金（第 1-90 日）",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。因同一癌症及併發症再次住院，間隔未超過九十日視為同一次住院。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 600,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-hospital-days-91-plus",
+              "name": "癌症住院醫療保險金（第 91 日起）",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。同一次住院第九十一日起適用較高日額。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 900,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-discharge-recuperation",
+              "name": "癌症出院療養保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。依實際住院日數給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 300,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-surgery",
+              "name": "癌症手術醫療保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。依實際接受外科手術次數給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 7500,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-outpatient",
+              "name": "癌症門診醫療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。同日門診一次或多次均以一日計。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 250,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-radiation",
+              "name": "癌症放射線治療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。同日治療一次或多次均以一日計，每一保單年度最高六十日。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 250,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-chemotherapy",
+              "name": "癌症化學治療保險金",
+              "basis": "daily_per_unit",
+              "calculation_basis": "per_unit_per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。同日治療一次或多次均以一日計，每一保單年度最高六十日。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 400,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+              ]
+            },
+            {
+              "id": "cancer-death",
+              "name": "癌症身故保險金",
+              "basis": "per_unit",
+              "calculation_basis": "per_unit",
+              "amount_role": "payout",
+              "limit_scope": "per_event",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "單親或雙親家庭型每名子女依承保單位數計算。因癌症或癌症併發症致身故時給付。",
+              "source_ref": "條款第十二條至第二十條與各保險金給付表，第 4-6 頁",
+              "amount": 50000,
+              "conditions": [
+                "等待期間為效力開始或復效日起至保險責任開始前九十日。",
+                "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。",
+                "身故後始經病理切片確定癌症者，回溯身故日前第三十日推定為罹患癌症始日。"
+              ]
+            }
+          ]
+        }
       ]
     },
     {
@@ -13308,6 +14288,238 @@
           "text_char_count": 0,
           "extraction_status": "no_text",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "selection_label": "承保單位數",
+      "selection_guidance": "請輸入保單或批註上記載的正整數承保單位數；各項金額會依條款每承保單位金額乘以單位數計算。",
+      "version_characteristics": {
+        "terms_revision": "90-approved-original",
+        "cancer_observation_days": 30,
+        "minor_cancer_rate_percent": 15,
+        "hospital_days_tier_one_limit": 90,
+        "same_cancer_readmission_days": 14,
+        "hospice_anniversary_payments": 5,
+        "hospice_excluded_for_minor_cancer": true,
+        "post_death_last_hospitalization_date_basis": true,
+        "post_death_diagnosis_only_if_no_cancer_hospitalization": true,
+        "premium_period_diagnosis_amount": 50000,
+        "post_premium_period_diagnosis_amount": 75000
+      },
+      "coverage_entries": [
+        {
+          "id": "cancer-diagnosis",
+          "name": "罹患癌症保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依每承保單位給付金額乘以承保單位數計算。繳費期間內每單位 50,000 元，繳費期間屆滿後每單位 75,000 元；第一期前列腺癌或原位癌按 15%。",
+          "source_ref": "保單條款第二、七至十七條及附表一、二，第 1-10 頁",
+          "amount": 50000,
+          "conditions": [
+            "觀察期間 30 日屆滿後，始經切片或血液學檢查診斷確定罹患癌症。",
+            "癌症依附表一 ICD 範圍，包含 140-208、230-234 原位癌及 185 第一期前列腺癌。",
+            "第一期前列腺癌或原位癌依該項每承保單位給付金額 15% 計算。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "繳費期間內一般癌症",
+              "amount": 50000
+            },
+            {
+              "label": "繳費期間屆滿後一般癌症",
+              "amount": 75000
+            },
+            {
+              "label": "繳費期間內第一期前列腺癌或原位癌",
+              "amount": 7500
+            },
+            {
+              "label": "繳費期間屆滿後第一期前列腺癌或原位癌",
+              "amount": 11250
+            }
+          ]
+        },
+        {
+          "id": "cancer-hospital-days-1-90",
+          "name": "癌症住院醫療保險金：同一次第 1-90 日",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依每承保單位給付金額乘以承保單位數計算。同一次住院第 1 至 90 日，每日每單位 1,200 元。",
+          "source_ref": "保單條款第二、七至十七條及附表一、二，第 1-10 頁",
+          "amount": 1200,
+          "conditions": [
+            "觀察期間 30 日屆滿後，始經切片或血液學檢查診斷確定罹患癌症。",
+            "同一癌症或其併發症出院後 14 日內再次住院，視為同一次住院。"
+          ]
+        },
+        {
+          "id": "cancer-hospital-days-91-plus",
+          "name": "癌症住院醫療保險金：住院第 91 日起",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依每承保單位給付金額乘以承保單位數計算。同一次住院第 91 日起，每日每單位 1,800 元。",
+          "source_ref": "保單條款第二、七至十七條及附表一、二，第 1-10 頁",
+          "amount": 1800,
+          "conditions": [
+            "觀察期間 30 日屆滿後，始經切片或血液學檢查診斷確定罹患癌症。",
+            "同一癌症或其併發症出院後 14 日內再次住院，視為同一次住院。"
+          ]
+        },
+        {
+          "id": "cancer-discharge-recuperation",
+          "name": "癌症出院療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依每承保單位給付金額乘以承保單位數計算。按實際住院日數，每日每單位 600 元。",
+          "source_ref": "保單條款第二、七至十七條及附表一、二，第 1-10 頁",
+          "amount": 600,
+          "conditions": [
+            "觀察期間 30 日屆滿後，始經切片或血液學檢查診斷確定罹患癌症。",
+            "同一癌症或其併發症出院後 14 日內再次住院，視為同一次住院。"
+          ]
+        },
+        {
+          "id": "cancer-surgery",
+          "name": "癌症手術醫療保險金",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依每承保單位給付金額乘以承保單位數計算。每次手術每單位 15,000 元；第一期前列腺癌或原位癌手術按 15%。",
+          "source_ref": "保單條款第二、七至十七條及附表一、二，第 1-10 頁",
+          "amount": 15000,
+          "conditions": [
+            "觀察期間 30 日屆滿後，始經切片或血液學檢查診斷確定罹患癌症。",
+            "癌症依附表一 ICD 範圍，包含 140-208、230-234 原位癌及 185 第一期前列腺癌。",
+            "第一期前列腺癌或原位癌依該項每承保單位給付金額 15% 計算。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "一般癌症手術",
+              "amount": 15000
+            },
+            {
+              "label": "第一期前列腺癌或原位癌手術",
+              "amount": 2250
+            }
+          ]
+        },
+        {
+          "id": "cancer-outpatient",
+          "name": "癌症門診醫療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依每承保單位給付金額乘以承保單位數計算。依實際接受門診治療日數，每日每單位 500 元。",
+          "source_ref": "保單條款第二、七至十七條及附表一、二，第 1-10 頁",
+          "amount": 500,
+          "conditions": [
+            "觀察期間 30 日屆滿後，始經切片或血液學檢查診斷確定罹患癌症。",
+            "同日多次治療仍以一日計。"
+          ]
+        },
+        {
+          "id": "cancer-radiation",
+          "name": "癌症放射線治療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依每承保單位給付金額乘以承保單位數計算。不論住院或門診，依實際接受放射線治療日數，每日每單位 500 元。",
+          "source_ref": "保單條款第二、七至十七條及附表一、二，第 1-10 頁",
+          "amount": 500,
+          "conditions": [
+            "觀察期間 30 日屆滿後，始經切片或血液學檢查診斷確定罹患癌症。",
+            "同日多次治療仍以一日計。"
+          ]
+        },
+        {
+          "id": "cancer-chemotherapy",
+          "name": "癌症化學治療保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依每承保單位給付金額乘以承保單位數計算。不論住院或門診，依實際接受化學治療日數，每日每單位 800 元。",
+          "source_ref": "保單條款第二、七至十七條及附表一、二，第 1-10 頁",
+          "amount": 800,
+          "conditions": [
+            "觀察期間 30 日屆滿後，始經切片或血液學檢查診斷確定罹患癌症。",
+            "同日多次治療仍以一日計。"
+          ]
+        },
+        {
+          "id": "cancer-hospice-anniversary",
+          "name": "癌症安寧照護保險金",
+          "basis": "annual_limit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依每承保單位給付金額乘以承保單位數計算。確定罹患癌症後第 1 至第 5 個周年日仍生存者，每年每單位 20,000 元。",
+          "source_ref": "保單條款第二、七至十七條及附表一、二，第 1-10 頁",
+          "amount": 20000,
+          "conditions": [
+            "觀察期間 30 日屆滿後，始經切片或血液學檢查診斷確定罹患癌症。",
+            "第 1、2、3、4、5 個罹患周年日仍生存時給付。",
+            "第一期前列腺癌或原位癌不給付癌症安寧照護保險金。"
+          ]
+        },
+        {
+          "id": "post-death-cancer-diagnosis-benefit-rule",
+          "name": "身故後發現罹患癌症給付方式",
+          "basis": "per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "reference",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依每承保單位給付金額乘以承保單位數計算。身故後始經病理切片確定癌症時，以最後一次住院始日為診斷日；未因癌症住院者僅依罹患癌症保險金給付。",
+          "source_ref": "保單條款第二、七至十七條及附表一、二，第 1-10 頁",
+          "amount": 50000,
+          "conditions": [
+            "身故後始經病理切片檢查確定罹患癌症且符合給付條件。",
+            "最後一次住院始日在生效日前或觀察期間內者，本附約對該被保險人自始失效。",
+            "身故前未因癌症住院治療者，僅給付罹患癌症保險金。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "繳費期間內診斷基準",
+              "amount": 50000
+            },
+            {
+              "label": "繳費期間屆滿後診斷基準",
+              "amount": 75000
+            }
+          ]
         }
       ]
     },

@@ -66,8 +66,28 @@ def is_verified_entry(entry: dict[str, Any]) -> bool:
         and not isinstance(entry.get("multiplier"), bool)
         and entry["multiplier"] > 0
     )
+    has_policy_recorded_cap = (
+        calculation_basis in {
+            "reimbursement_with_cap",
+            "percentage_of_actual_expense_with_cap",
+        }
+        and entry.get("basis") == "policy_recorded_limit"
+        and (
+            calculation_basis == "reimbursement_with_cap"
+            or (
+                isinstance(entry.get("rate_percent"), (int, float))
+                and not isinstance(entry.get("rate_percent"), bool)
+                and entry["rate_percent"] > 0
+            )
+        )
+    )
     return (
-        (has_amount or has_percentage_formula or has_multiplier_formula)
+        (
+            has_amount
+            or has_percentage_formula
+            or has_multiplier_formula
+            or has_policy_recorded_cap
+        )
         and entry.get("source") == "terms"
         and bool(entry.get("source_ref"))
     )

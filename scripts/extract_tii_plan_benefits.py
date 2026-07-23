@@ -11,7 +11,7 @@ from typing import Any
 
 
 TAIPEI_TZ = timezone(timedelta(hours=8))
-EXTRACTOR_VERSION = "tii-plan-benefits-v30"
+EXTRACTOR_VERSION = "tii-plan-benefits-v91"
 PLAN_HEADERS = [
     "意外傷害身故",
     "意外傷害失能",
@@ -173,6 +173,422 @@ DAILY_HOSPITAL_97_PRODUCT_IDS = {
     "205311R11A00100",
     "205311R11A00101",
 }
+PRUDENTIAL_DAILY_HOSPITAL_96_PRODUCT_ID = "203311R11A00101"
+PRUDENTIAL_DAILY_HOSPITAL_96_FILE_NAME = "203311R11A00101-A.pdf"
+PRUDENTIAL_DAILY_HOSPITAL_96_AMOUNTS = {
+    "FHIR-5": 500,
+    "FHIR-10": 1_000,
+    "FHIR-15": 1_500,
+    "FHIR-20": 2_000,
+    "FHIR-25": 2_500,
+    "FHIR-30": 3_000,
+}
+PRUDENTIAL_CHINA_LIFE_ACCIDENT_ACCOUNT_PRODUCT_VERSIONS = {
+    "203211R31A00102": {
+        "file_name": "203211R31A00102-A.pdf",
+        "page_count": 16,
+        "revision": "second-revision",
+    },
+    "203211R31A00104": {
+        "file_name": "203211R31A00104-A.pdf",
+        "page_count": 17,
+        "revision": "fourth-revision",
+    },
+    "203211R31A00105": {
+        "file_name": "203211R31A00105-A.pdf",
+        "page_count": 16,
+        "revision": "fifth-revision",
+    },
+    "203211R31A00106": {
+        "file_name": "203211R31A00106-A.pdf",
+        "page_count": 17,
+        "revision": "sixth-revision",
+    },
+    "203211R31A00107": {
+        "file_name": "203211R31A00107-A.pdf",
+        "page_count": 17,
+        "revision": "seventh-revision",
+    },
+    "203211R31A00108": {
+        "file_name": "203211R31A00108-A.pdf",
+        "page_count": 17,
+        "revision": "eighth-revision",
+    },
+    "203211RZ1A00321A11Z10000009": {
+        "file_name": "203211RZ1A00321A11Z10000009-A.pdf",
+        "page_count": 18,
+        "revision": "ninth-revision",
+    },
+    "203211RZ1A00321A11Z10000010": {
+        "file_name": "203211RZ1A00321A11Z10000010-A.pdf",
+        "page_count": 18,
+        "revision": "tenth-revision",
+    },
+    "203211RZ1A00321A11Z10000011": {
+        "file_name": "203211RZ1A00321A11Z10000011-A.pdf",
+        "page_count": 18,
+        "revision": "eleventh-revision",
+    },
+    "203211RZ1A00321A11Z10000012": {
+        "file_name": "203211RZ1A00321A11Z10000012-A.pdf",
+        "page_count": 18,
+        "revision": "twelfth-revision",
+    },
+    "203211RZ1A00321A11Z10000013": {
+        "file_name": "203211RZ1A00321A11Z10000013-A.pdf",
+        "page_count": 22,
+        "revision": "thirteenth-revision",
+    },
+    "203211RZ1A00321A11Z10000014": {
+        "file_name": "203211RZ1A00321A11Z10000014-A.pdf",
+        "page_count": 17,
+        "revision": "fourteenth-revision",
+    },
+    "203211RZ1A00321A11Z10000015": {
+        "file_name": "203211RZ1A00321A11Z10000015-A.pdf",
+        "page_count": 17,
+        "revision": "fifteenth-revision",
+    },
+    "203211RZ1A00321A11Z10000016": {
+        "file_name": "203211RZ1A00321A11Z10000016-A.pdf",
+        "page_count": 17,
+        "revision": "sixteenth-revision",
+    },
+    "203211RZ1A00321A11Z10000017": {
+        "file_name": "203211RZ1A00321A11Z10000017-A.pdf",
+        "page_count": 17,
+        "revision": "seventeenth-revision",
+    },
+    "205211R11A54600": {
+        "file_name": "205211R11A54600-A.pdf",
+        "page_count": 22,
+        "revision": "china-life-original",
+    },
+    "205211R11A54601": {
+        "file_name": "205211R11A54601-A.pdf",
+        "page_count": 22,
+        "revision": "china-life-first-revision",
+    },
+    "205211R11A54602": {
+        "file_name": "205211R11A54602-A.pdf",
+        "page_count": 22,
+        "revision": "china-life-second-revision",
+    },
+    "205211R11A54603": {
+        "file_name": "205211R11A54603-A.pdf",
+        "page_count": 23,
+        "revision": "china-life-third-revision",
+    },
+    "205211RZ1A00121A11Z10000005": {
+        "file_name": "205211RZ1A00121A11Z10000005-A.pdf",
+        "page_count": 24,
+        "revision": "china-life-fifth-revision",
+    },
+    "205211RZ1A00121A11Z10000006": {
+        "file_name": "205211RZ1A00121A11Z10000006-A.pdf",
+        "page_count": 23,
+        "revision": "china-life-sixth-revision",
+    },
+    "205211RZ1A00121A11Z10000007": {
+        "file_name": "205211RZ1A00121A11Z10000007-A.pdf",
+        "page_count": 24,
+        "revision": "china-life-seventh-revision",
+    },
+    "205211RZ1A00121A11Z10000008": {
+        "file_name": "205211RZ1A00121A11Z10000008-A.pdf",
+        "page_count": 24,
+        "revision": "china-life-eighth-revision",
+    },
+    "205211RZ1A00121A11Z10000009": {
+        "file_name": "205211RZ1A00121A11Z10000009-A.pdf",
+        "page_count": 24,
+        "revision": "china-life-ninth-revision",
+    },
+    "205211RZ1A00121A11Z10000010": {
+        "file_name": "205211RZ1A00121A11Z10000010-A.pdf",
+        "page_count": 24,
+        "revision": "china-life-tenth-revision",
+    },
+    "205211RZ1A00121A11Z10000011": {
+        "file_name": "205211RZ1A00121A11Z10000011-A.pdf",
+        "page_count": 24,
+        "revision": "china-life-eleventh-revision",
+    },
+    "205211RZ1A00121A11Z10000012": {
+        "file_name": "205211RZ1A00121A11Z10000012-A.pdf",
+        "page_count": 20,
+        "revision": "kgi-life-twelfth-revision",
+    },
+}
+PRUDENTIAL_CHINA_LIFE_ONE_THREE_FIVE_ACCIDENT_PRODUCT_VERSIONS = {
+    "203211M11A00201": {
+        "file_name": "203211M11A00201-A.pdf",
+        "page_count": 22,
+        "revision": "prudential-first-revision",
+    },
+    "203211M11A00202": {
+        "file_name": "203211M11A00202-A.pdf",
+        "page_count": 17,
+        "revision": "prudential-second-revision",
+    },
+    "203211M11A00203": {
+        "file_name": "203211M11A00203-A.pdf",
+        "page_count": 11,
+        "revision": "prudential-third-revision",
+    },
+    "203211M11A00204": {
+        "file_name": "203211M11A00204-A.pdf",
+        "page_count": 16,
+        "revision": "prudential-fourth-revision",
+    },
+    "203211M11A00205": {
+        "file_name": "203211M11A00205-A.pdf",
+        "page_count": 16,
+        "revision": "prudential-fifth-revision",
+    },
+    "203211M11A00206": {
+        "file_name": "203211M11A00206-A.pdf",
+        "page_count": 15,
+        "revision": "prudential-sixth-revision",
+    },
+    "203211MZ1A00221A11Z10000007": {
+        "file_name": "203211MZ1A00221A11Z10000007-A.pdf",
+        "page_count": 12,
+        "revision": "prudential-seventh-revision",
+    },
+    "203211MZ1A00221A11Z10000008": {
+        "file_name": "203211MZ1A00221A11Z10000008-A.pdf",
+        "page_count": 17,
+        "revision": "prudential-eighth-revision",
+    },
+    "203211MZ1A00221A11Z10000009": {
+        "file_name": "203211MZ1A00221A11Z10000009-A.pdf",
+        "page_count": 17,
+        "revision": "prudential-ninth-revision",
+        "source_refs": {
+            "domestic_death": "條款第六條",
+            "overseas_death": "條款第七條",
+            "flight_death": "條款第八條",
+            "disability": "條款第九條及附件三",
+        },
+    },
+    "203211MZ1A00221A11Z10000010": {
+        "file_name": "203211MZ1A00221A11Z10000010-A.pdf",
+        "page_count": 17,
+        "revision": "prudential-tenth-revision",
+        "source_refs": {
+            "domestic_death": "條款第六條",
+            "overseas_death": "條款第七條",
+            "flight_death": "條款第八條",
+            "disability": "條款第九條及附件三",
+        },
+    },
+    "203211MZ1A00221A11Z10000011": {
+        "file_name": "203211MZ1A00221A11Z10000011-A.pdf",
+        "page_count": 17,
+        "revision": "prudential-eleventh-revision",
+        "source_refs": {
+            "domestic_death": "條款第六條",
+            "overseas_death": "條款第七條",
+            "flight_death": "條款第八條",
+            "disability": "條款第九條及附件三",
+        },
+    },
+    "203211MZ1A00221A11Z10000012": {
+        "file_name": "203211MZ1A00221A11Z10000012-A.pdf",
+        "page_count": 17,
+        "revision": "prudential-twelfth-revision",
+        "source_refs": {
+            "domestic_death": "條款第六條",
+            "overseas_death": "條款第七條",
+            "flight_death": "條款第八條",
+            "disability": "條款第九條及附件三",
+        },
+    },
+    "205211M11A00200": {
+        "file_name": "205211M11A00200-A.pdf",
+        "page_count": 14,
+        "revision": "china-life-original",
+    },
+    "205211M11A00201": {
+        "file_name": "205211M11A00201-A.pdf",
+        "page_count": 14,
+        "revision": "china-life-first-revision",
+    },
+    "205211M11A00202": {
+        "file_name": "205211M11A00202-A.pdf",
+        "page_count": 18,
+        "revision": "china-life-second-revision",
+    },
+    "205211MZ1A00421A11Z10000003": {
+        "file_name": "205211MZ1A00421A11Z10000003-A.pdf",
+        "page_count": 18,
+        "revision": "china-life-third-revision",
+    },
+    "205211MZ1A00421A11Z10000004": {
+        "file_name": "205211MZ1A00421A11Z10000004-A.pdf",
+        "page_count": 18,
+        "revision": "china-life-fourth-revision",
+    },
+    "205211MZ1A00421A11Z10000005": {
+        "file_name": "205211MZ1A00421A11Z10000005-A.pdf",
+        "page_count": 18,
+        "revision": "china-life-fifth-revision",
+    },
+    "205211MZ1A00421A11Z10000006": {
+        "file_name": "205211MZ1A00421A11Z10000006-A.pdf",
+        "page_count": 18,
+        "revision": "china-life-sixth-revision",
+    },
+    "205211MZ1A00421A11Z10000007": {
+        "file_name": "205211MZ1A00421A11Z10000007-A.pdf",
+        "page_count": 14,
+        "revision": "china-life-seventh-revision",
+    },
+    "205211MZ1A00421A11Z10000008": {
+        "file_name": "205211MZ1A00421A11Z10000008-A.pdf",
+        "page_count": 14,
+        "revision": "kgi-life-eighth-revision",
+    },
+}
+PRUDENTIAL_GROUP_SPECIFIC_ACCIDENT_RIDER_PRODUCT_VERSIONS = {
+    "203213AZ1A00421A11Z10000000": {
+        "file_name": "203213AZ1A00421A11Z10000000-A.pdf",
+        "page_count": 11,
+        "revision": "109-original",
+    },
+    "203213AZ1A00421A11Z10000001": {
+        "file_name": "203213AZ1A00421A11Z10000001-A.pdf",
+        "page_count": 11,
+        "revision": "110-first-revision",
+    },
+    "203213AZ1A00421A11Z10000002": {
+        "file_name": "203213AZ1A00421A11Z10000002-A.pdf",
+        "page_count": 11,
+        "revision": "110-second-revision",
+    },
+}
+PRUDENTIAL_FIRE_MASS_TRANSIT_ACCIDENT_PRODUCT_VERSIONS = {
+    "203211R11A00200": {
+        "file_name": "203211R11A00200-A.pdf",
+        "page_count": 12,
+        "revision": "original",
+        "disability_term": "殘廢",
+    },
+    "203211R11A00201": {
+        "file_name": "203211R11A00201-A.pdf",
+        "page_count": 12,
+        "revision": "first-revision",
+        "disability_term": "殘廢",
+    },
+    "203211R11A00202": {
+        "file_name": "203211R11A00202-A.pdf",
+        "page_count": 12,
+        "revision": "second-revision",
+        "disability_term": "殘廢",
+    },
+    "203211R11A00203": {
+        "file_name": "203211R11A00203-A.pdf",
+        "page_count": 12,
+        "revision": "third-revision",
+        "disability_term": "殘廢",
+    },
+    "203211RZ1A00221A11Z10000004": {
+        "file_name": "203211RZ1A00221A11Z10000004-A.pdf",
+        "page_count": 13,
+        "revision": "fourth-revision",
+        "disability_term": "殘廢",
+    },
+    "203211RZ1A00221A11Z10000005": {
+        "file_name": "203211RZ1A00221A11Z10000005-A.pdf",
+        "page_count": 13,
+        "revision": "fifth-revision",
+        "disability_term": "殘廢",
+    },
+    "203211RZ1A00221A11Z10000006": {
+        "file_name": "203211RZ1A00221A11Z10000006-A.pdf",
+        "page_count": 13,
+        "revision": "sixth-revision",
+        "disability_term": "失能",
+    },
+    "203211RZ1A00221A11Z10000007": {
+        "file_name": "203211RZ1A00221A11Z10000007-A.pdf",
+        "page_count": 13,
+        "revision": "seventh-revision",
+        "disability_term": "失能",
+    },
+    "203211RZ1A00221A11Z10000008": {
+        "file_name": "203211RZ1A00221A11Z10000008-A.pdf",
+        "page_count": 13,
+        "revision": "eighth-revision",
+        "disability_term": "失能",
+    },
+    "203211RZ1A00221A11Z10000009": {
+        "file_name": "203211RZ1A00221A11Z10000009-A.pdf",
+        "page_count": 13,
+        "revision": "ninth-revision",
+        "disability_term": "失能",
+    },
+}
+FIXED_HOSPITAL_MEDICAL_97_PRODUCT_VERSIONS = {
+    "203311R11A00205": {
+        "revision": "101-revised",
+        "disability_terminology": "完全殘廢",
+        "day_hospital_excluded": False,
+        "post_expiry_readmission_excluded": False,
+        "claims_review_medical_opinion_revision": False,
+        "main_contract_forced_execution_exception": False,
+        "required_revision_signals": (),
+    },
+    "203311R11A00206": {
+        "revision": "102-revised",
+        "disability_terminology": "完全殘廢",
+        "day_hospital_excluded": False,
+        "post_expiry_readmission_excluded": True,
+        "claims_review_medical_opinion_revision": False,
+        "main_contract_forced_execution_exception": False,
+        "required_revision_signals": (),
+    },
+    "205311RZ1A00322A11Z10000013": {
+        "revision": "113-revised",
+        "disability_terminology": "完全失能",
+        "day_hospital_excluded": True,
+        "post_expiry_readmission_excluded": True,
+        "claims_review_medical_opinion_revision": True,
+        "main_contract_forced_execution_exception": True,
+        "required_revision_signals": (),
+    },
+}
+CHINA_LEGACY_CANCER_WHOLE_LIFE_PRODUCT_VERSIONS = {
+    "205321R11A02300": {
+        "file_name": "205321R11A023-A.pdf",
+        "revision": "original",
+        "required_revision_signals": ("九二中壽商發字第 1761 號",),
+        "forbidden_revision_signals": ("94 中壽商發字第 1638 號",),
+        "page_count": 8,
+        "table_page": 6,
+    },
+    "205321R11A02301": {
+        "file_name": "205321R11A02301-A.pdf",
+        "revision": "94-revised",
+        "required_revision_signals": ("94 中壽商發字第 1638 號",),
+        "forbidden_revision_signals": (),
+        "page_count": 7,
+        "table_page": 6,
+    },
+}
+CHINA_LEGACY_CANCER_WHOLE_LIFE_AMOUNTS = {
+    "face_amount_per_unit": 300_000,
+    "cancer_diagnosis_per_unit": 30_000,
+    "cancer_hospital_daily_per_unit": 2_000,
+    "cancer_surgery_per_unit": 30_000,
+    "cancer_discharge_daily_per_unit": 1_000,
+    "cancer_outpatient_per_unit": 1_000,
+    "cancer_death_per_unit": 300_000,
+}
+CHINA_LEGACY_CANCER_WHOLE_LIFE_TABLE_SHA256 = (
+    "0b675ce205d06874f3a11bdae8361a55d10587fc5f69903b64155bfceed5e9cb"
+)
 MEDICAL_ENDOWMENT_PRODUCT_IDS = {
     "203391M12B00100",
     "203391M12B00102",
@@ -195,6 +611,7 @@ FUBON_CHILD_COMBINED_PRODUCT_IDS = {
     "209391MZ9D00221A11Z10000003",
     "209391MZ9D00221A11Z10000004",
     "209391MZ9D00321A11Z10000001",
+    "209391MZ9D00321A11Z10000002",
     "209391MZ9D00321A11Z10000003",
     "209391MZ9D00221A11Z10000005",
     "209391MZ9D00221A11Z10000006",
@@ -207,6 +624,7 @@ FUBON_NEW_CHILD_COMBINED_PRODUCT_IDS = {
     "209391M12D00300",
     "209391M19D00300",
     "209391MZ9D00321A11Z10000001",
+    "209391MZ9D00321A11Z10000002",
     "209391MZ9D00321A11Z10000003",
     "209391MZ9D00321A11Z10000004",
     "209391MZ9D00321A11Z10000005",
@@ -214,6 +632,24 @@ FUBON_NEW_CHILD_COMBINED_PRODUCT_IDS = {
 }
 
 FUBON_GOLDEN_COMPLETE_COMBINED_PRODUCT_VERSIONS = {
+    "209391MZ9D00421A11Z10000000": {
+        "document_code": "MGC21070528",
+        "required_revision_signals": (
+            "107.05.28 富壽商精字第 1070000990 號函備查",
+        ),
+        "forbidden_revision_signals": ("107.09.14", "108.01.01", "109.01.01", "109.09.01"),
+        "required_feature_signals": (
+            "人體組織細胞異常增生及有轉移特性之惡性腫瘤",
+            "始經病理組織切片或血液細胞學檢查診斷確定罹患",
+        ),
+        "disability_term": "殘廢",
+        "cancer_definition_revision": "pre-108-pathology-or-cytology",
+        "newborn_screening_revision": "original-screening-list",
+        "reinstatement_notice_revision": "pre-109",
+        "disability_schedule_revision": "104-revised-79-items",
+        "missing_person_return_repayment_scope": "death-benefit-only",
+        "funeral_benefit_cap_reference": "contract-inception",
+    },
     "209391MZ9D00421A11Z10000001": {
         "document_code": "MGC21070914",
         "required_revision_signals": (
@@ -224,6 +660,7 @@ FUBON_GOLDEN_COMPLETE_COMBINED_PRODUCT_VERSIONS = {
             "人體組織細胞異常增生及有轉移特性之惡性腫瘤",
             "始經病理組織切片或血液細胞學檢查診斷確定罹患",
         ),
+        "disability_term": "失能",
         "cancer_definition_revision": "pre-108-pathology-or-cytology",
         "newborn_screening_revision": "original-screening-list",
         "reinstatement_notice_revision": "pre-109",
@@ -241,6 +678,7 @@ FUBON_GOLDEN_COMPLETE_COMBINED_PRODUCT_VERSIONS = {
             "組織細胞有惡性細胞不斷生長、擴張及對組織侵害的特性",
             "始經病理檢驗確定罹患",
         ),
+        "disability_term": "失能",
         "cancer_definition_revision": "108-standardized-pathology",
         "newborn_screening_revision": "original-screening-list",
         "reinstatement_notice_revision": "pre-109",
@@ -261,6 +699,7 @@ FUBON_GOLDEN_COMPLETE_COMBINED_PRODUCT_VERSIONS = {
             "申請復效之期限屆滿前三個月",
             "鼻未缺損",
         ),
+        "disability_term": "失能",
         "cancer_definition_revision": "108-standardized-pathology",
         "newborn_screening_revision": "109-genetic-disease-list",
         "reinstatement_notice_revision": "109-pre-expiry-reminder",
@@ -281,6 +720,7 @@ FUBON_GOLDEN_COMPLETE_COMBINED_PRODUCT_VERSIONS = {
             "退還已繳保險費或身故保險金或喪葬費用保險金",
             "不得超過遺產及贈與稅法第十七條",
         ),
+        "disability_term": "失能",
         "cancer_definition_revision": "108-standardized-pathology",
         "newborn_screening_revision": "109-genetic-disease-list",
         "reinstatement_notice_revision": "109-pre-expiry-reminder",
@@ -468,7 +908,737 @@ ANTAI_FUBON_NEW_CANCER_LIFETIME_PRODUCT_IDS = {
     "209321M12B00301",
     "209321M12B00302",
     "209321M12B00303",
+    "209321M12B00304",
+    "209321M12B00305",
+    "209321M12B00306",
+    "209321M12B00307",
 }
+
+ANTAI_FUBON_NEW_CANCER_REVISED_FUNERAL_PRODUCT_IDS = {
+    "209321M12B00303",
+    "209321M12B00304",
+    "209321M12B00305",
+    "209321M12B00306",
+    "209321M12B00307",
+}
+
+ANTAI_FUBON_NEW_CANCER_MINOR_REFUND_PRODUCT_IDS = {
+    "209321M12B00304",
+    "209321M12B00305",
+    "209321M12B00306",
+    "209321M12B00307",
+}
+
+ANTAI_NEW_CANCER_LIFETIME_R11_PRODUCT_VERSIONS = {
+    "252321R11A00200": {
+        "file_name": "252321R11A002-A.pdf",
+        "approval_signal": "90.05.11台財保第0900750389號函核准",
+        "terms_revision": "90-approved-original",
+    }
+}
+
+
+def is_antai_new_cancer_lifetime_r11_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = ANTAI_NEW_CANCER_LIFETIME_R11_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def parse_antai_new_cancer_lifetime_r11_unit_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_antai_new_cancer_lifetime_r11_strict_source(document):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    version = ANTAI_NEW_CANCER_LIFETIME_R11_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+
+    required_signals = [
+        "新癌症醫療終身保險附約",
+        version["approval_signal"],
+        "觀察期間」:係指自本附約對於被保險人之效力開始生效之日起三十日內之期間",
+        "第一期前列腺癌或原位癌",
+        "身故後發現罹患癌症的給付方式",
+        "附表二: 各項保險金「每承保單位給付金額」",
+    ]
+    required_compact_signals = [
+        "罹患癌症保險金繳費期間內經診斷確定罹患癌症50000元",
+        "繳費期間屆滿後經診斷確定罹患癌症75000元",
+        "癌症住院醫療保險金同一次第1-90日1200元/日住院第91日起1800元/日",
+        "癌症出院療養保險金600元/日",
+        "癌症手術醫療保險金15000元/次",
+        "癌症門診醫療保險金500元/日",
+        "癌症放射線治療保險金500元/日",
+        "癌症化學治療保險金800元/日",
+        "癌症安寧照護保險金經確定罹患癌症後的第1、2、3、4、5個周年日仍生存20000元/年",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+    if any(signal not in compact_text for signal in required_compact_signals):
+        return None
+    if document.get("page_count") not in {None, 10}:
+        return None
+
+    source_ref = "保單條款第二、七至十七條及附表一、二，第 1-10 頁"
+    waiting_condition = "觀察期間 30 日屆滿後，始經切片或血液學檢查診斷確定罹患癌症。"
+    cancer_condition = "癌症依附表一 ICD 範圍，包含 140-208、230-234 原位癌及 185 第一期前列腺癌。"
+    minor_cancer_condition = "第一期前列腺癌或原位癌依該項每承保單位給付金額 15% 計算。"
+    readmission_condition = "同一癌症或其併發症出院後 14 日內再次住院，視為同一次住院。"
+    one_day_condition = "同日多次治療仍以一日計。"
+    unit_note = "依每承保單位給付金額乘以承保單位數計算。"
+
+    return {
+        "selection_type": "unit",
+        "input_mode": "unit",
+        "selection_source": "terms",
+        "selection_label": "承保單位數",
+        "selection_guidance": "請輸入保單或批註上記載的正整數承保單位數；各項金額會依條款每承保單位金額乘以單位數計算。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "cancer_observation_days": 30,
+            "minor_cancer_rate_percent": 15,
+            "hospital_days_tier_one_limit": 90,
+            "same_cancer_readmission_days": 14,
+            "hospice_anniversary_payments": 5,
+            "hospice_excluded_for_minor_cancer": True,
+            "post_death_last_hospitalization_date_basis": True,
+            "post_death_diagnosis_only_if_no_cancer_hospitalization": True,
+            "premium_period_diagnosis_amount": 50_000,
+            "post_premium_period_diagnosis_amount": 75_000,
+        },
+        "coverage_entries": [
+            coverage_entry(
+                "cancer-diagnosis",
+                "罹患癌症保險金",
+                50_000,
+                "per_unit",
+                f"{unit_note}繳費期間內每單位 50,000 元，繳費期間屆滿後每單位 75,000 元；第一期前列腺癌或原位癌按 15%。",
+                source_ref,
+                calculation_basis="tiered_or_stepped",
+                amount_role="payout",
+                limit_scope="per_policy",
+                conditions=[waiting_condition, cancer_condition, minor_cancer_condition],
+                amount_tiers=[
+                    {"label": "繳費期間內一般癌症", "amount": 50_000},
+                    {"label": "繳費期間屆滿後一般癌症", "amount": 75_000},
+                    {"label": "繳費期間內第一期前列腺癌或原位癌", "amount": 7_500},
+                    {"label": "繳費期間屆滿後第一期前列腺癌或原位癌", "amount": 11_250},
+                ],
+            ),
+            coverage_entry(
+                "cancer-hospital-days-1-90",
+                "癌症住院醫療保險金：同一次第 1-90 日",
+                1_200,
+                "daily_per_unit",
+                f"{unit_note}同一次住院第 1 至 90 日，每日每單位 1,200 元。",
+                source_ref,
+                calculation_basis="per_unit_per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                conditions=[waiting_condition, readmission_condition],
+            ),
+            coverage_entry(
+                "cancer-hospital-days-91-plus",
+                "癌症住院醫療保險金：住院第 91 日起",
+                1_800,
+                "daily_per_unit",
+                f"{unit_note}同一次住院第 91 日起，每日每單位 1,800 元。",
+                source_ref,
+                calculation_basis="per_unit_per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                conditions=[waiting_condition, readmission_condition],
+            ),
+            coverage_entry(
+                "cancer-discharge-recuperation",
+                "癌症出院療養保險金",
+                600,
+                "daily_per_unit",
+                f"{unit_note}按實際住院日數，每日每單位 600 元。",
+                source_ref,
+                calculation_basis="per_unit_per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                conditions=[waiting_condition, readmission_condition],
+            ),
+            coverage_entry(
+                "cancer-surgery",
+                "癌症手術醫療保險金",
+                15_000,
+                "per_unit",
+                f"{unit_note}每次手術每單位 15,000 元；第一期前列腺癌或原位癌手術按 15%。",
+                source_ref,
+                calculation_basis="tiered_or_stepped",
+                amount_role="payout",
+                limit_scope="per_surgery",
+                conditions=[waiting_condition, cancer_condition, minor_cancer_condition],
+                amount_tiers=[
+                    {"label": "一般癌症手術", "amount": 15_000},
+                    {"label": "第一期前列腺癌或原位癌手術", "amount": 2_250},
+                ],
+            ),
+            coverage_entry(
+                "cancer-outpatient",
+                "癌症門診醫療保險金",
+                500,
+                "daily_per_unit",
+                f"{unit_note}依實際接受門診治療日數，每日每單位 500 元。",
+                source_ref,
+                calculation_basis="per_unit_per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                conditions=[waiting_condition, one_day_condition],
+            ),
+            coverage_entry(
+                "cancer-radiation",
+                "癌症放射線治療保險金",
+                500,
+                "daily_per_unit",
+                f"{unit_note}不論住院或門診，依實際接受放射線治療日數，每日每單位 500 元。",
+                source_ref,
+                calculation_basis="per_unit_per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                conditions=[waiting_condition, one_day_condition],
+            ),
+            coverage_entry(
+                "cancer-chemotherapy",
+                "癌症化學治療保險金",
+                800,
+                "daily_per_unit",
+                f"{unit_note}不論住院或門診，依實際接受化學治療日數，每日每單位 800 元。",
+                source_ref,
+                calculation_basis="per_unit_per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                conditions=[waiting_condition, one_day_condition],
+            ),
+            coverage_entry(
+                "cancer-hospice-anniversary",
+                "癌症安寧照護保險金",
+                20_000,
+                "annual_limit",
+                f"{unit_note}確定罹患癌症後第 1 至第 5 個周年日仍生存者，每年每單位 20,000 元。",
+                source_ref,
+                calculation_basis="per_unit",
+                amount_role="payout",
+                limit_scope="annual",
+                conditions=[
+                    waiting_condition,
+                    "第 1、2、3、4、5 個罹患周年日仍生存時給付。",
+                    "第一期前列腺癌或原位癌不給付癌症安寧照護保險金。",
+                ],
+            ),
+            coverage_entry(
+                "post-death-cancer-diagnosis-benefit-rule",
+                "身故後發現罹患癌症給付方式",
+                50_000,
+                "per_unit",
+                f"{unit_note}身故後始經病理切片確定癌症時，以最後一次住院始日為診斷日；未因癌症住院者僅依罹患癌症保險金給付。",
+                source_ref,
+                calculation_basis="tiered_or_stepped",
+                amount_role="reference",
+                limit_scope="per_policy",
+                conditions=[
+                    "身故後始經病理切片檢查確定罹患癌症且符合給付條件。",
+                    "最後一次住院始日在生效日前或觀察期間內者，本附約對該被保險人自始失效。",
+                    "身故前未因癌症住院治療者，僅給付罹患癌症保險金。",
+                ],
+                amount_tiers=[
+                    {"label": "繳費期間內診斷基準", "amount": 50_000},
+                    {"label": "繳費期間屆滿後診斷基準", "amount": 75_000},
+                ],
+            ),
+        ],
+    }
+
+
+ANTAI_SPECIFIC_MAJOR_DISEASE_HEALTH_PRODUCT_VERSIONS = {
+    "269211M12D02100": {
+        "file_name": "269211M12D021-A.pdf",
+        "terms_revision": "95-approved-original",
+    },
+    "269211M12D02101": {
+        "file_name": "269211M12D02101-A.pdf",
+        "terms_revision": "95-first-partial-change",
+    },
+    "269211M12D02102": {
+        "file_name": "269211M12D02102-A.pdf",
+        "terms_revision": "96-second-partial-change",
+    },
+    "269211M12D02103": {
+        "file_name": "269211M12D02103-A.pdf",
+        "terms_revision": "97-third-partial-change",
+    },
+}
+
+
+def is_antai_specific_major_disease_health_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = ANTAI_SPECIFIC_MAJOR_DISEASE_HEALTH_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def parse_antai_specific_major_disease_health_unit_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_antai_specific_major_disease_health_strict_source(document):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    version = ANTAI_SPECIFIC_MAJOR_DISEASE_HEALTH_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    if document.get("page_count") not in {None, 7}:
+        return None
+
+    required_signals = [
+        "安達保險特定重大疾病健康保險",
+        "本契約所稱「疾病」係指被保險人自本契約生效日起持續有效至第三十一日開始",
+        "第九十一日開始",
+        "【初次罹患癌症保險金之給付】",
+        "【心肌梗塞或冠狀動脈繞道手術保險金之給付】",
+        "【腦中風保險金之給付】",
+        "【全身性紅斑性狼瘡保險金的給付】",
+        "【懷孕、分娩及生產期間身故保險金的給付】",
+        "【重建手術保險金的給付】",
+        "附表一保險金給付表給付項目投保每一單位金額",
+        "1. 初次罹患癌症保險金 100,000 元",
+        "1.1 初次罹患特定癌症保險金 200,000 元",
+        "2. 心肌梗塞或冠狀動脈繞道手術保險金 200,000 元",
+        "3. 腦中風保險金 200,000 元",
+        "4. 全身性紅斑性狼瘡保險金 200,000 元",
+        "5. 懷孕、分娩及生產期間身故保險金 100,000 元",
+        "6.1 義眼 10,000 元",
+        "6.2 義肢 10,000 元",
+        "6.3 義乳 10,000 元",
+        "6.4 植皮手術 10,000 元",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+
+    source_ref = "保單條款第 1-6 頁、附表一保險金給付表"
+    unit_note = "每一投保單位按附表一金額計算；實際給付為每單位金額乘以保單所載投保單位數。"
+    disease_waiting = "疾病自契約生效日起持續有效至第 31 日開始，始為本公司應負保險責任。"
+    cancer_waiting = "癌症或初次罹患癌症自契約生效日起持續有效至第 91 日開始，始為本公司應負保險責任。"
+    lifetime_once = "本項保險金給付終身以一次為限。"
+    cancer_definition = (
+        "癌症須經醫院病理檢驗確定診斷，且屬附表二或附表三列示之 ICD-9 惡性腫瘤；"
+        "條款明定不包含已轉移之癌症。"
+    )
+    reconstruction_condition = (
+        "因條款約定之疾病或意外傷害事故，自事故發生日起 365 日內施行植皮手術或義眼、"
+        "義肢、義乳重建手術。"
+    )
+    reconstruction_limit = (
+        "同一事故致成附表一 6.1 至 6.4 一項以上者，各項分別給付；"
+        "同一給付項目因同一事故所致者，終身以給付一次為限。"
+    )
+
+    def fixed_entry(
+        entry_id: str,
+        name: str,
+        amount: int,
+        note: str,
+        conditions: list[str],
+        *,
+        limit_scope: str = "lifetime",
+        aggregation_rule: str = "separate",
+    ) -> dict[str, Any]:
+        return coverage_entry(
+            entry_id,
+            name,
+            amount,
+            "per_unit",
+            note,
+            source_ref,
+            calculation_basis="per_unit",
+            amount_role="payout",
+            limit_scope=limit_scope,
+            aggregation_rule=aggregation_rule,
+            conditions=conditions,
+        )
+
+    return {
+        "selection_type": "unit",
+        "input_mode": "unit",
+        "selection_source": "terms",
+        "selection_label": "投保單位",
+        "selection_guidance": "請輸入保單首頁或保險證明所載的投保單位數；本商品所有給付均按投保單位換算。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "disease_waiting_days": 30,
+            "cancer_initial_waiting_days": 90,
+            "major_disease_waiting_days": 30,
+            "initial_cancer_lifetime_limit_times": 1,
+            "specific_cancer_lifetime_limit_times": 1,
+            "myocardial_infarction_or_coronary_bypass_lifetime_limit_times": 1,
+            "stroke_lifetime_limit_times": 1,
+            "systemic_lupus_lifetime_limit_times": 1,
+            "reconstruction_claim_days": 365,
+            "same_reconstruction_item_lifetime_limit_times": 1,
+            "claims_notification_days": 10,
+            "claim_payment_days_after_complete_documents": 15,
+        },
+        "coverage_entries": [
+            fixed_entry(
+                "initial-cancer",
+                "初次罹患癌症保險金",
+                100_000,
+                f"{unit_note}初次罹患附表二所列癌症時，每單位給付 100,000 元。",
+                [cancer_waiting, cancer_definition, lifetime_once],
+            ),
+            fixed_entry(
+                "specific-cancer",
+                "初次罹患特定癌症保險金",
+                200_000,
+                f"{unit_note}初次罹患癌症且確診為附表三乳房及生殖器官等特定部位癌症時，另行每單位給付 200,000 元。",
+                [
+                    cancer_waiting,
+                    "須先符合初次罹患癌症，並經醫師確定診斷為附表三所列特定部位癌症。",
+                    lifetime_once,
+                ],
+                aggregation_rule="conditional_additive",
+            ),
+            fixed_entry(
+                "myocardial-infarction-or-coronary-bypass",
+                "心肌梗塞或冠狀動脈繞道手術保險金",
+                200_000,
+                f"{unit_note}初次罹患心肌梗塞或接受冠狀動脈繞道手術時，每單位給付 200,000 元。",
+                [
+                    disease_waiting,
+                    "心肌梗塞須同時具備典型胸痛、心電圖異常變化及心肌酶異常增高；冠狀動脈繞道手術須符合條款定義。",
+                    lifetime_once,
+                ],
+            ),
+            fixed_entry(
+                "stroke",
+                "腦中風保險金",
+                200_000,
+                f"{unit_note}初次罹患條款定義之腦中風時，每單位給付 200,000 元。",
+                [
+                    disease_waiting,
+                    "腦中風須因腦血管突發病變致永久性神經機能障礙，並於事故發生六個月後仍遺留條款列示殘障之一。",
+                    lifetime_once,
+                ],
+            ),
+            fixed_entry(
+                "systemic-lupus-erythematosus",
+                "全身性紅斑性狼瘡保險金",
+                200_000,
+                f"{unit_note}初次罹患條款定義之全身性紅斑性狼瘡時，每單位給付 200,000 元。",
+                [
+                    disease_waiting,
+                    "須經醫院確定診斷，並符合條款列示之臨床表現及實驗室檢查陽性條件。",
+                    lifetime_once,
+                ],
+            ),
+            fixed_entry(
+                "pregnancy-childbirth-death",
+                "懷孕、分娩及生產期間身故保險金",
+                100_000,
+                f"{unit_note}於懷孕、分娩及生產期間內身故，或因產後併發症身故，每單位給付 100,000 元。",
+                [
+                    "懷孕、分娩及生產期間指自受精卵於子宮內膜著床起至胎兒脫離母體為止，包含正常生產、剖腹生產及流產。",
+                    "被保險人身故時契約效力終止。",
+                ],
+                limit_scope="per_event",
+            ),
+            fixed_entry(
+                "reconstruction-prosthetic-eye",
+                "重建手術保險金 - 義眼",
+                10_000,
+                f"{unit_note}施行義眼重建手術時，每單位給付 10,000 元。",
+                [disease_waiting, reconstruction_condition, reconstruction_limit],
+            ),
+            fixed_entry(
+                "reconstruction-prosthetic-limb",
+                "重建手術保險金 - 義肢",
+                10_000,
+                f"{unit_note}施行義肢重建手術時，每單位給付 10,000 元。",
+                [disease_waiting, reconstruction_condition, reconstruction_limit],
+            ),
+            fixed_entry(
+                "reconstruction-breast",
+                "重建手術保險金 - 義乳",
+                10_000,
+                f"{unit_note}施行義乳重建手術時，每單位給付 10,000 元。",
+                [disease_waiting, reconstruction_condition, reconstruction_limit],
+            ),
+            fixed_entry(
+                "reconstruction-skin-graft",
+                "重建手術保險金 - 植皮手術",
+                10_000,
+                f"{unit_note}施行植皮手術時，每單位給付 10,000 元。",
+                [disease_waiting, reconstruction_condition, reconstruction_limit],
+            ),
+        ],
+    }
+
+
+ANTAI_CANCER_MEDICAL_TERM_PRODUCT_VERSIONS = {
+    "252321R11A00100": {
+        "file_name": "252321R11A001-A.pdf",
+        "terms_revision": "87-third-revision",
+        "approval_signal": "87.08.15 台財保第 872441034 號函准修正",
+    }
+}
+
+
+def is_antai_cancer_medical_term_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = ANTAI_CANCER_MEDICAL_TERM_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def antai_cancer_medical_term_role_entries(
+    *,
+    role_label: str,
+    diagnosis_amount: int,
+    adult_hospital_amount: int,
+    child_hospital_amount: int,
+) -> list[dict[str, Any]]:
+    is_child = diagnosis_amount == 7_500
+    hospital_first = child_hospital_amount if is_child else adult_hospital_amount
+    hospital_after = 900 if is_child else 1_800
+    daily_discharge = 300 if is_child else 600
+    surgery = 7_500 if is_child else 15_000
+    outpatient = 250 if is_child else 500
+    chemotherapy = 400 if is_child else 800
+    death = 50_000 if is_child else 100_000
+    unit_note = f"{role_label}依承保單位數計算。"
+    source_ref = "條款第十二條至第二十條與各保險金給付表，第 4-6 頁"
+    waiting_condition = "等待期間為效力開始或復效日起至保險責任開始前九十日。"
+    cancer_condition = "癌症須經醫院病理檢查診斷確定，惡性腫瘤含原位癌。"
+    return [
+        coverage_entry(
+            "cancer-diagnosis",
+            "罹患癌症保險金",
+            diagnosis_amount,
+            "per_unit",
+            f"{unit_note}每一被保險人以給付一次為限。",
+            source_ref,
+            calculation_basis="per_unit",
+            amount_role="payout",
+            limit_scope="per_event",
+            conditions=[waiting_condition, cancer_condition],
+        ),
+        coverage_entry(
+            "cancer-hospital-days-1-90",
+            "癌症住院醫療保險金（第 1-90 日）",
+            hospital_first,
+            "daily_per_unit",
+            f"{unit_note}因同一癌症及併發症再次住院，間隔未超過九十日視為同一次住院。",
+            source_ref,
+            calculation_basis="per_unit_per_day",
+            amount_role="payout",
+            limit_scope="per_day",
+            conditions=[waiting_condition, cancer_condition],
+        ),
+        coverage_entry(
+            "cancer-hospital-days-91-plus",
+            "癌症住院醫療保險金（第 91 日起）",
+            hospital_after,
+            "daily_per_unit",
+            f"{unit_note}同一次住院第九十一日起適用較高日額。",
+            source_ref,
+            calculation_basis="per_unit_per_day",
+            amount_role="payout",
+            limit_scope="per_day",
+            conditions=[waiting_condition, cancer_condition],
+        ),
+        coverage_entry(
+            "cancer-discharge-recuperation",
+            "癌症出院療養保險金",
+            daily_discharge,
+            "daily_per_unit",
+            f"{unit_note}依實際住院日數給付。",
+            source_ref,
+            calculation_basis="per_unit_per_day",
+            amount_role="payout",
+            limit_scope="per_day",
+            conditions=[waiting_condition, cancer_condition],
+        ),
+        coverage_entry(
+            "cancer-surgery",
+            "癌症手術醫療保險金",
+            surgery,
+            "per_unit",
+            f"{unit_note}依實際接受外科手術次數給付。",
+            source_ref,
+            calculation_basis="per_unit",
+            amount_role="payout",
+            limit_scope="per_surgery",
+            conditions=[waiting_condition, cancer_condition],
+        ),
+        coverage_entry(
+            "cancer-outpatient",
+            "癌症門診醫療保險金",
+            outpatient,
+            "daily_per_unit",
+            f"{unit_note}同日門診一次或多次均以一日計。",
+            source_ref,
+            calculation_basis="per_unit_per_day",
+            amount_role="payout",
+            limit_scope="per_day",
+            conditions=[waiting_condition, cancer_condition],
+        ),
+        coverage_entry(
+            "cancer-radiation",
+            "癌症放射線治療保險金",
+            outpatient,
+            "daily_per_unit",
+            f"{unit_note}同日治療一次或多次均以一日計，每一保單年度最高六十日。",
+            source_ref,
+            calculation_basis="per_unit_per_day",
+            amount_role="payout",
+            limit_scope="per_day",
+            conditions=[waiting_condition, cancer_condition],
+        ),
+        coverage_entry(
+            "cancer-chemotherapy",
+            "癌症化學治療保險金",
+            chemotherapy,
+            "daily_per_unit",
+            f"{unit_note}同日治療一次或多次均以一日計，每一保單年度最高六十日。",
+            source_ref,
+            calculation_basis="per_unit_per_day",
+            amount_role="payout",
+            limit_scope="per_day",
+            conditions=[waiting_condition, cancer_condition],
+        ),
+        coverage_entry(
+            "cancer-death",
+            "癌症身故保險金",
+            death,
+            "per_unit",
+            f"{unit_note}因癌症或癌症併發症致身故時給付。",
+            source_ref,
+            calculation_basis="per_unit",
+            amount_role="payout",
+            limit_scope="per_event",
+            conditions=[
+                waiting_condition,
+                cancer_condition,
+                "身故後始經病理切片確定癌症者，回溯身故日前第三十日推定為罹患癌症始日。",
+            ],
+        ),
+    ]
+
+
+def parse_antai_cancer_medical_term_family_unit(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_antai_cancer_medical_term_strict_source(document):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    version = ANTAI_CANCER_MEDICAL_TERM_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    required_signals = [
+        "安泰癌症醫療定期保險附約",
+        version["approval_signal"],
+        "自本附約對於被保險人之效力開始生效 (或恢復效力 )之日起至本公司對於被保險人依本附約應負保險責任之日開始前九十日之期間",
+        "惡性腫瘤 (含原位癌 )",
+        "自其出生時起 , 視為本附約之被保險人",
+        "主契約被保險人 15,000 元 15,000 元 15,000 元配偶 - - 15,000 元子女(每名) - 7,500 元 7,500 元",
+        "主契約被保險人第 1-90 日:1,200 元/日第 91 日起:1,800 元/日",
+        "子女(每名) - 第 1-90 日: 600 元/日第 91 日起: 900 元/日",
+        "主契約被保險人 600 元/日 600 元/日 600 元/日配偶 - - 600 元/日子女(每名) - 300 元/日 300 元/日",
+        "主契約被保險人 15,000 元/次 15,000 元/次 15,000 元/次配偶 - - 15,000 元/次",
+        "子女(每名) - 7,500 元/次 7,500 元/次",
+        "主契約被保險人 500 元/日 500 元/日 500 元/日配偶 - - 500 元/日子女(每名) - 250 元/日 250 元/日",
+        "主契約被保險人 800 元/日 800 元/日 800 元/日",
+        "配偶 - - 800 元/日子女(每名) - 400 元/日 400 元/日",
+        "主契約被保險人 100,000 元 100,000 元 100,000 元配偶 - - 100,000 元子女(每名) - 50,000 元 50,000 元",
+        "每一被保險人於每一保單年度的最高給付日數以六十日為限",
+        "自該被保險人身故之日回溯至第三十日",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+    if document.get("page_count") not in {None, 9}:
+        return None
+
+    adult_entries = antai_cancer_medical_term_role_entries(
+        role_label="主契約被保險人或雙親家庭型配偶",
+        diagnosis_amount=15_000,
+        adult_hospital_amount=1_200,
+        child_hospital_amount=600,
+    )
+    child_entries = antai_cancer_medical_term_role_entries(
+        role_label="單親或雙親家庭型每名子女",
+        diagnosis_amount=7_500,
+        adult_hospital_amount=1_200,
+        child_hospital_amount=600,
+    )
+    return {
+        "selection_type": "plan_unit",
+        "input_mode": "plan_unit",
+        "selection_source": "terms",
+        "selection_label": "家庭型別與被保險人角色 + 承保單位數",
+        "selection_guidance": "請依保單或批註所載家庭型別、被保險人角色與承保單位數建立；若家庭型有多名子女，請依每名子女分別加入。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "cancer_waiting_days": 90,
+            "cancer_includes_carcinoma_in_situ": True,
+            "family_type_options": True,
+            "child_entry_age_limit": 23,
+            "newborn_child_covered_from_birth": True,
+            "same_cancer_readmission_days": 90,
+            "radiation_annual_days_limit": 60,
+            "chemotherapy_annual_days_limit": 60,
+            "post_death_presumed_cancer_start_days": 30,
+            "premium_waiver_main_contract_death_or_disability": True,
+        },
+        "plan_options": [
+            {
+                "value": "individual-main",
+                "label": "個人型：主契約被保險人",
+                "coverage_entries": adult_entries,
+            },
+            {
+                "value": "single-parent-main",
+                "label": "單親家庭型：主契約被保險人",
+                "coverage_entries": adult_entries,
+            },
+            {
+                "value": "single-parent-child",
+                "label": "單親家庭型：每名子女",
+                "coverage_entries": child_entries,
+            },
+            {
+                "value": "two-parent-main",
+                "label": "雙親家庭型：主契約被保險人",
+                "coverage_entries": adult_entries,
+            },
+            {
+                "value": "two-parent-spouse",
+                "label": "雙親家庭型：配偶",
+                "coverage_entries": adult_entries,
+            },
+            {
+                "value": "two-parent-child",
+                "label": "雙親家庭型：每名子女",
+                "coverage_entries": child_entries,
+            },
+        ],
+    }
+
 
 ANTAI_CANCER_LIFETIME_RIDER_PRODUCT_VERSIONS = {
     "252321R11A00301": {
@@ -582,6 +1752,26 @@ GLOBAL_WINTERTHUR_CANCER_ANNUITY_PRODUCT_VERSIONS = {
         "maximum_renewal_age": 75,
         "terminates_after_cancer": True,
         "actual_diagnosis_date_evidence_allowed": True,
+    },
+}
+
+KGI_RITAI_CANCER_ANNUITY_PRODUCT_VERSIONS = {
+    "205321R11A50600": {
+        "revision": "original",
+        "file_name": "205321R11A50600-A.pdf",
+        "required_revision_signals": ("96UCAR0003", "09602545110", "0961031021"),
+        "forbidden_revision_signals": ("96UCAR0001", "09602505610", "09602505761"),
+    },
+    "205321R11A50601": {
+        "revision": "first-revision",
+        "file_name": "205321R11A50601-A.pdf",
+        "required_revision_signals": (
+            "96UCAR0001",
+            "0961031021",
+            "09602505610",
+            "09602505761",
+        ),
+        "forbidden_revision_signals": ("96UCAR0003", "09602545110"),
     },
 }
 
@@ -715,9 +1905,36 @@ FUBON_LOHAS_COMBINED_PRODUCT_IDS = {
     "209391M19G00201",
     "209391MZ9G00221A11Z10000003",
     "209391MZ9G00221A11Z10000004",
+    "209391MZ9G00221A11Z10000005",
+    "209391MZ9G00221A11Z10000006",
+    "209391MZ9G00221A11Z10000007",
+}
+FUBON_LOHAS_DISABILITY_TERM_REVISED_PRODUCT_IDS = {
+    "209391MZ9G00221A11Z10000005",
+    "209391MZ9G00221A11Z10000006",
+    "209391MZ9G00221A11Z10000007",
 }
 
 FUBON_GOLDEN_LOHAS_COMBINED_PRODUCT_VERSIONS = {
+    "209391MZ1G00421A11Z10000000": {
+        "document_code": "MGA21050101",
+        "required_revision_signals": (
+            "105.01.01 富壽商精字第 1040004392 號函備查",
+        ),
+        "forbidden_revision_signals": ("107.04.30", "107.09.14", "109.01.01", "109.09.01", "110.01.01"),
+        "disability_schedule_revision": "104-revised-79-items",
+        "disability_term": "殘廢",
+    },
+    "209391MZ1G00421A11Z10000001": {
+        "document_code": "MGA21070430",
+        "required_revision_signals": (
+            "105.01.01 富壽商精字第 1040004392 號函備查",
+            "107.04.30 依 107.04.09 金管保壽字第 10704540701 號令修正",
+        ),
+        "forbidden_revision_signals": ("107.09.14", "109.01.01", "109.09.01", "110.01.01"),
+        "disability_schedule_revision": "104-revised-79-items",
+        "disability_term": "殘廢",
+    },
     "209391MZ1G00421A11Z10000002": {
         "document_code": "MGA21070914",
         "required_revision_signals": (
@@ -725,6 +1942,7 @@ FUBON_GOLDEN_LOHAS_COMBINED_PRODUCT_VERSIONS = {
         ),
         "forbidden_revision_signals": ("109.01.01", "109.09.01", "110.01.01"),
         "disability_schedule_revision": "104-revised-79-items",
+        "disability_term": "失能",
     },
     "209391MZ1G00421A11Z10000003": {
         "document_code": "MGA21090101",
@@ -733,6 +1951,7 @@ FUBON_GOLDEN_LOHAS_COMBINED_PRODUCT_VERSIONS = {
         ),
         "forbidden_revision_signals": ("109.09.01", "110.01.01"),
         "disability_schedule_revision": "109-revised-80-items",
+        "disability_term": "失能",
     },
     "209391MZ1G00421A11Z10000004": {
         "document_code": "MGA21090901",
@@ -741,6 +1960,7 @@ FUBON_GOLDEN_LOHAS_COMBINED_PRODUCT_VERSIONS = {
         ),
         "forbidden_revision_signals": ("110.01.01",),
         "disability_schedule_revision": "109-revised-80-items",
+        "disability_term": "失能",
     },
     "209391MZ1G00421A11Z10000005": {
         "document_code": "MGA21100101",
@@ -749,6 +1969,7 @@ FUBON_GOLDEN_LOHAS_COMBINED_PRODUCT_VERSIONS = {
         ),
         "forbidden_revision_signals": (),
         "disability_schedule_revision": "109-revised-80-items",
+        "disability_term": "失能",
     },
 }
 
@@ -764,8 +1985,61 @@ FUBON_NEW_LOHAS_109_REVISION_SIGNALS = (
     "109.01.01 依 108.06.21 金管保壽字第 10804920500 號函修正",
 )
 FUBON_NEW_LOHAS_PRODUCT_VERSIONS = {
+    "209391M11G00100": {
+        "document_code": "MGA11030501",
+        "page_count": 24,
+        "required_revision_signals": (
+            "103.05.01 富壽商精字第 1030000884 號函備查",
+        ),
+        "forbidden_revision_signals": ("104.08.04", "107.09.14", "109.01.01", "109.09.01", "110.01.01"),
+        "required_feature_signals": (
+            "受益人應將該筆已領之保險金歸還本公司",
+            "不得超過訂立本契約時遺產及贈與稅法第十七條",
+        ),
+        "forbidden_feature_signals": (
+            "申請復效之期限屆滿前三個月",
+            "基於審核保險金之需要",
+            "鼻未缺損",
+            "要保人或受益人應將該筆已領之退還已繳保險費或保險金歸還本公司",
+        ),
+        "disability_schedule_revision": "original-75-items",
+        "disability_term": "殘廢",
+        "table_sha256": "bb27117e373153b1c34f9648d7103430b4a03ea9e2dfb81ea68e8f7ae415bdbf",
+        "reinstatement_notice_revision": "pre-109",
+        "claims_medical_review_revision": "pre-109",
+        "missing_person_return_repayment_scope": "death-benefit-only",
+        "funeral_benefit_cap_reference": "contract-inception",
+    },
+    "209391MZ1G00121A11Z10000001": {
+        "document_code": "MGA11040804",
+        "page_count": 25,
+        "required_revision_signals": (
+            "103.05.01 富壽商精字第 1030000884 號函備查",
+            "104.08.04 依 104.05.19 金管保壽字第 10402543750 號函修正",
+            "104.08.04 依 104.06.24 金管保壽字第 10402049830 號函修正",
+        ),
+        "forbidden_revision_signals": ("107.09.14", "109.01.01", "109.09.01", "110.01.01"),
+        "required_feature_signals": (
+            "受益人應將該筆已領之保險金歸還本公司",
+            "不得超過訂立本契約時遺產及贈與稅法第十七條",
+        ),
+        "forbidden_feature_signals": (
+            "申請復效之期限屆滿前三個月",
+            "基於審核保險金之需要",
+            "鼻未缺損",
+            "要保人或受益人應將該筆已領之退還已繳保險費或保險金歸還本公司",
+        ),
+        "disability_schedule_revision": "104-revised-79-items",
+        "disability_term": "殘廢",
+        "table_sha256": "23b65f396e703ce2c4aa8001e79e3e138f9124ee29cb50421bd8651c113d7b69",
+        "reinstatement_notice_revision": "pre-109",
+        "claims_medical_review_revision": "pre-109",
+        "missing_person_return_repayment_scope": "death-benefit-only",
+        "funeral_benefit_cap_reference": "contract-inception",
+    },
     "209391MZ1G00121A11Z10000002": {
         "document_code": "MGA11070914",
+        "page_count": 25,
         "required_revision_signals": FUBON_NEW_LOHAS_BASE_REVISION_SIGNALS,
         "forbidden_revision_signals": ("109.01.01", "109.09.01", "110.01.01"),
         "required_feature_signals": (
@@ -779,6 +2053,8 @@ FUBON_NEW_LOHAS_PRODUCT_VERSIONS = {
             "要保人或受益人應將該筆已領之退還已繳保險費或保險金歸還本公司",
         ),
         "disability_schedule_revision": "104-revised-79-items",
+        "disability_term": "失能",
+        "table_sha256": "76bb958e694c90f0e156d485ea43c38a668f3fbf7b72f1736279fa25c46c9411",
         "reinstatement_notice_revision": "pre-109",
         "claims_medical_review_revision": "pre-109",
         "missing_person_return_repayment_scope": "death-benefit-only",
@@ -786,6 +2062,7 @@ FUBON_NEW_LOHAS_PRODUCT_VERSIONS = {
     },
     "209391MZ1G00121A11Z10000003": {
         "document_code": "MGA11090101",
+        "page_count": 25,
         "required_revision_signals": (
             *FUBON_NEW_LOHAS_BASE_REVISION_SIGNALS,
             *FUBON_NEW_LOHAS_109_REVISION_SIGNALS,
@@ -802,6 +2079,8 @@ FUBON_NEW_LOHAS_PRODUCT_VERSIONS = {
             "要保人或受益人應將該筆已領之退還已繳保險費或保險金歸還本公司",
         ),
         "disability_schedule_revision": "109-revised-80-items",
+        "disability_term": "失能",
+        "table_sha256": "76bb958e694c90f0e156d485ea43c38a668f3fbf7b72f1736279fa25c46c9411",
         "reinstatement_notice_revision": "109-pre-expiry-reminder",
         "claims_medical_review_revision": "109-revised",
         "missing_person_return_repayment_scope": "death-benefit-only",
@@ -809,6 +2088,7 @@ FUBON_NEW_LOHAS_PRODUCT_VERSIONS = {
     },
     "209391MZ1G00121A11Z10000004": {
         "document_code": "MGA11090901",
+        "page_count": 25,
         "required_revision_signals": (
             *FUBON_NEW_LOHAS_BASE_REVISION_SIGNALS,
             *FUBON_NEW_LOHAS_109_REVISION_SIGNALS,
@@ -826,6 +2106,8 @@ FUBON_NEW_LOHAS_PRODUCT_VERSIONS = {
             "不得超過訂立本契約時遺產及贈與稅法第十七條",
         ),
         "disability_schedule_revision": "109-revised-80-items",
+        "disability_term": "失能",
+        "table_sha256": "76bb958e694c90f0e156d485ea43c38a668f3fbf7b72f1736279fa25c46c9411",
         "reinstatement_notice_revision": "109-pre-expiry-reminder",
         "claims_medical_review_revision": "109-revised",
         "missing_person_return_repayment_scope": "refund-or-death-benefit",
@@ -833,6 +2115,7 @@ FUBON_NEW_LOHAS_PRODUCT_VERSIONS = {
     },
     "209391MZ1G00121A11Z10000005": {
         "document_code": "MGA11100101",
+        "page_count": 25,
         "required_revision_signals": (
             *FUBON_NEW_LOHAS_BASE_REVISION_SIGNALS,
             *FUBON_NEW_LOHAS_109_REVISION_SIGNALS,
@@ -851,6 +2134,8 @@ FUBON_NEW_LOHAS_PRODUCT_VERSIONS = {
             "不得超過訂立本契約時遺產及贈與稅法第十七條",
         ),
         "disability_schedule_revision": "109-revised-80-items",
+        "disability_term": "失能",
+        "table_sha256": "76bb958e694c90f0e156d485ea43c38a668f3fbf7b72f1736279fa25c46c9411",
         "reinstatement_notice_revision": "109-pre-expiry-reminder",
         "claims_medical_review_revision": "109-revised",
         "missing_person_return_repayment_scope": "refund-or-death-benefit",
@@ -884,7 +2169,7 @@ def parse_four_plan_amounts(text: str, label: str) -> list[int] | None:
 
 def find_fubon_clause_start(text: str, heading: str, article: str) -> int:
     match = re.search(
-        rf"【{re.escape(heading)}】.{{0,120}}?{re.escape(article)}",
+        rf"【\s*{re.escape(heading)}\s*】.{{0,120}}?{re.escape(article)}",
         text,
     )
     return match.start() if match else -1
@@ -966,7 +2251,7 @@ def parse_fubon_easy_combined_plan_table(
         "同一保單年度同一次住院給付日數最高以三百六十五日為限",
         "同一保單年度同一次住院給付日數最高以七日為限",
         "自意外傷害事故發生之日起屆滿十五日仍生存",
-        "同一次意外傷害給付日數不得超過三百六十五日",
+        "給付日數不得超過三百六十五日",
         "每次意外傷害得申領之意外傷害門診手術醫療保險金以一次為限",
         "則附表一所載意外傷害醫療保險金之限額提高為1.35 倍",
         "同時符合二項以上大眾運輸工具意外傷害事故者",
@@ -1580,10 +2865,11 @@ def parse_fubon_golden_lohas_combined_plan_table(
         or any(signal in compact_text for signal in forbidden_revisions)
     ):
         return None
+    disability_term = version["disability_term"]
 
     article_specs = [
         ("policy_death", "保險範圍:身故保險金或喪葬費用保險金的給付", "第十二條"),
-        ("total_disability", "保險範圍:完全失能保險金的給付", "第十三條"),
+        ("total_disability", f"保險範圍:完全{disability_term}保險金的給付", "第十三條"),
         ("major_disease", "保險範圍:重大疾病保險金的給付", "第十八條"),
         ("mild_cancer", "保險範圍:癌症(輕度)保險金的給付", "第十九條"),
         ("hospital", "保險範圍:住院醫療保險金的給付", "第二十條"),
@@ -1598,12 +2884,12 @@ def parse_fubon_golden_lohas_combined_plan_table(
         ("fire_death", "保險範圍:公共建築物火災意外身故保險金或喪葬費用保險金的給付", "第三十一條"),
         ("elevator_death", "保險範圍:電梯意外身故保險金或喪葬費用保險金的給付", "第三十二條"),
         ("overseas_death", "保險範圍:海外意外身故保險金或喪葬費用保險金的給付", "第三十三條"),
-        ("accident_disability", "保險範圍:意外失能保險金的給付", "第三十四條"),
-        ("transport_disability", "保險範圍:大眾運輸工具意外失能保險金的給付", "第三十五條"),
-        ("fire_disability", "保險範圍:公共建築物火災意外失能保險金的給付", "第三十六條"),
-        ("elevator_disability", "保險範圍:電梯意外失能保險金的給付", "第三十七條"),
-        ("overseas_disability", "保險範圍:海外意外失能保險金的給付", "第三十八條"),
-        ("accident_limit", "保險範圍:意外身故保險金及意外失能保險金給付的限制", "第三十九條"),
+        ("accident_disability", f"保險範圍:意外{disability_term}保險金的給付", "第三十四條"),
+        ("transport_disability", f"保險範圍:大眾運輸工具意外{disability_term}保險金的給付", "第三十五條"),
+        ("fire_disability", f"保險範圍:公共建築物火災意外{disability_term}保險金的給付", "第三十六條"),
+        ("elevator_disability", f"保險範圍:電梯意外{disability_term}保險金的給付", "第三十七條"),
+        ("overseas_disability", f"保險範圍:海外意外{disability_term}保險金的給付", "第三十八條"),
+        ("accident_limit", f"保險範圍:意外身故保險金及意外{disability_term}保險金給付的限制", "第三十九條"),
     ]
 
     def clause_start(heading: str, article: str) -> int:
@@ -1627,7 +2913,8 @@ def parse_fubon_golden_lohas_combined_plan_table(
         "本契約保障內容分二個計畫別",
         "於本契約有效期間內,本公司不受理其變更",
         "本契約生效日起持續有效三十天之期間",
-        "如為癌症(輕度)或重大疾病,則係指自本契約生效日起持續有效九十天之期間",
+        "如為癌症(輕度)或重大疾病,則係指自本契約生效日",
+        "起持續有效九十天之期間",
         "本契約續保時,不受等待期間的限制",
         "每次「海外停留保障期間」最高天數以出境日起算一百八十天為限",
         "不包含全民健康保險法第五十一條所稱之日間住院及精神衛生法第三十五條所稱之日間留院",
@@ -1642,7 +2929,7 @@ def parse_fubon_golden_lohas_combined_plan_table(
         "每次意外傷害得申領之意外傷害門診手術醫療保險金以一次為限",
         "同時符合二項以上大眾運輸工具意外傷害事故者,本公司之保險責任以給付最高一項為限",
         "本公司依本條約定給付海外意外身故保險金或喪葬費用保險金時,不另行給付第三十條至第三十二條之各項保險金",
-        "本公司依本條約定給付海外意外失能保險金時,不另行給付第三十五條至第三十七條之各項保險金",
+        f"本公司依本條約定給付海外意外{disability_term}保險金時,不另行給付第三十五條至第三十七條之各項保險金",
     )
     if not all(
         compact_table_text(signal) in compact_text
@@ -1658,7 +2945,7 @@ def parse_fubon_golden_lohas_combined_plan_table(
     table_signals = (
         "計畫別保險金項目計畫一計畫二",
         "身故保險金或喪葬費用保險金50萬100萬",
-        "完全失能保險金50萬100萬",
+        f"完全{disability_term}保險金50萬100萬",
         "重大疾病保險金10萬20萬",
         "癌症(輕度)保險金0.5萬1萬",
         "重大燒燙傷保險金40萬40萬",
@@ -1668,12 +2955,12 @@ def parse_fubon_golden_lohas_combined_plan_table(
         "「水上大眾運輸工具」或「陸地大眾運輸工具」100萬100萬",
         "公共建築物火災意外身故保險金或喪葬費用保險金100萬100萬",
         "電梯意外身故保險金或喪葬費用保險金100萬100萬",
-        "意外失能保險金致成失能等級之一100萬乘以附表三所列給付比例100萬乘以附表三所列給付比例最高給付金額100萬100萬",
-        "海外意外失能保險金致成失能等級之一100萬乘以附表三所列給付比例100萬乘以附表三所列給付比例最高給付金額100萬100萬",
-        "大眾運輸工具意外失能保險金「空中大眾運輸工具」致成失能等級之一200萬乘以附表三所列給付比例200萬乘以附表三所列給付比例最高給付金額200萬200萬",
-        "「水上大眾運輸工具」或「陸地大眾運輸工具」致成失能等級之一100萬乘以附表三所列給付比例100萬乘以附表三所列給付比例最高給付金額100萬100萬",
-        "公共建築物火災意外失能保險金致成失能等級之一100萬乘以附表三所列給付比例100萬乘以附表三所列給付比例最高給付金額100萬100萬",
-        "電梯意外失能保險金致成失能等級之一100萬乘以附表三所列給付比例100萬乘以附表三所列給付比例最高給付金額100萬100萬",
+        f"意外{disability_term}保險金致成{disability_term}等級之一100萬乘以附表三所列給付比例100萬乘以附表三所列給付比例最高給付金額100萬100萬",
+        f"海外意外{disability_term}保險金致成{disability_term}等級之一100萬乘以附表三所列給付比例100萬乘以附表三所列給付比例最高給付金額100萬100萬",
+        f"大眾運輸工具意外{disability_term}保險金「空中大眾運輸工具」致成{disability_term}等級之一200萬乘以附表三所列給付比例200萬乘以附表三所列給付比例最高給付金額200萬200萬",
+        f"「水上大眾運輸工具」或「陸地大眾運輸工具」致成{disability_term}等級之一100萬乘以附表三所列給付比例100萬乘以附表三所列給付比例最高給付金額100萬100萬",
+        f"公共建築物火災意外{disability_term}保險金致成{disability_term}等級之一100萬乘以附表三所列給付比例100萬乘以附表三所列給付比例最高給付金額100萬100萬",
+        f"電梯意外{disability_term}保險金致成{disability_term}等級之一100萬乘以附表三所列給付比例100萬乘以附表三所列給付比例最高給付金額100萬100萬",
         "意外傷害住院醫療保險金1000元/日1000元/日",
         "意外傷害加護病房住院醫療保險金1000元/日1000元/日",
         "意外傷害門診手術醫療保險金1000元/次1000元/次",
@@ -1692,11 +2979,15 @@ def parse_fubon_golden_lohas_combined_plan_table(
     if schedule_revision == "104-revised-79-items":
         if not has_104_schedule or has_109_schedule:
             return None
-        schedule_condition = "本版本採 104 年修正版附表三，共 79 項失能程度"
+        schedule_condition = f"本版本採 104 年修正版附表三，共 79 項{disability_term}程度"
     elif schedule_revision == "109-revised-80-items":
         if not has_109_schedule:
             return None
-        schedule_condition = "本版本採 109 年修正版附表三，共 80 項失能程度"
+        schedule_condition = f"本版本採 109 年修正版附表三，共 80 項{disability_term}程度"
+    elif schedule_revision == "original-75-items":
+        if has_104_schedule or has_109_schedule:
+            return None
+        schedule_condition = "本版本附表三共 75 項殘廢程度"
     else:
         return None
 
@@ -1812,9 +3103,9 @@ def parse_fubon_golden_lohas_combined_plan_table(
         add_amount(
             "total_disability",
             "total-disability",
-            "完全失能保險金",
+            f"完全{disability_term}保險金",
             "policy_total",
-            "符合附表二完全失能程度之一，依{plan}給付 {amount:,} 元後，本契約終止。",
+            f"符合附表二完全{disability_term}程度之一，依{{plan}}給付 {{amount:,}} 元後，本契約終止。",
             f"保單條款第十三條及附表二，第 {article_pages['total_disability']} 頁起；{table_ref}",
             limit_scope="per_policy",
             conditions=["給付後本契約終止", "與身故保險金同時或先後符合時僅給付一項"],
@@ -2001,15 +3292,15 @@ def parse_fubon_golden_lohas_combined_plan_table(
             accident_180_condition,
             schedule_condition,
             "同一事故多項及不同事故累計受附表一最高給付金額限制",
-            "第 1 級失能給付後本契約終止",
-            "同一事故失能後身故，兩者合計最高為對應意外身故保險金",
+            f"第 1 級{disability_term}給付後本契約終止",
+            f"同一事故{disability_term}後身故，兩者合計最高為對應意外身故保險金",
         ]
         add_amount(
             "accident_disability",
             "accident-disability",
-            "意外失能保險金",
+            f"意外{disability_term}保險金",
             "benefit_base",
-            "以 {amount:,} 元為基準，依附表三失能等級 5% 至 100% 比例計算。",
+            f"以 {{amount:,}} 元為基準，依附表三{disability_term}等級 5% 至 100% 比例計算。",
             f"保單條款第三十四、三十九條及附表三，第 {article_pages['accident_disability']} 頁起；{table_ref}",
             calculation_basis="percentage_of_base",
             amount_role="base",
@@ -2020,13 +3311,13 @@ def parse_fubon_golden_lohas_combined_plan_table(
             rate_max_percent=100,
         )
         disability_specs = (
-            ("air_disability", "air-transport-accident-disability", "空中大眾運輸工具意外失能保險金", "以乘客身分搭乘空中大眾運輸工具", "transport_disability"),
-            ("surface_disability", "surface-transport-accident-disability", "水上或陸地大眾運輸工具意外失能保險金", "以乘客身分搭乘水上或陸地大眾運輸工具", "transport_disability"),
-            ("fire_disability", "public-building-fire-accident-disability", "公共建築物火災意外失能保險金", "火災發生前已進入戲院、旅館或其他公共建築物", "fire_disability"),
-            ("elevator_disability", "elevator-accident-disability", "電梯意外失能保險金", "因乘坐電梯發生意外傷害事故", "elevator_disability"),
+            ("air_disability", "air-transport-accident-disability", f"空中大眾運輸工具意外{disability_term}保險金", "以乘客身分搭乘空中大眾運輸工具", "transport_disability"),
+            ("surface_disability", "surface-transport-accident-disability", f"水上或陸地大眾運輸工具意外{disability_term}保險金", "以乘客身分搭乘水上或陸地大眾運輸工具", "transport_disability"),
+            ("fire_disability", "public-building-fire-accident-disability", f"公共建築物火災意外{disability_term}保險金", "火災發生前已進入戲院、旅館或其他公共建築物", "fire_disability"),
+            ("elevator_disability", "elevator-accident-disability", f"電梯意外{disability_term}保險金", "因乘坐電梯發生意外傷害事故", "elevator_disability"),
         )
         for amount_key, entry_id, name, condition, page_key in disability_specs:
-            conditions = [*disability_common, condition, "本項在一般意外失能保障之外另行給付"]
+            conditions = [*disability_common, condition, f"本項在一般意外{disability_term}保障之外另行給付"]
             if page_key == "transport_disability":
                 conditions.append(transport_highest_condition)
             add_amount(
@@ -2047,15 +3338,15 @@ def parse_fubon_golden_lohas_combined_plan_table(
         add_amount(
             "overseas_disability",
             "overseas-accident-disability",
-            "海外意外失能保險金",
+            f"海外意外{disability_term}保險金",
             "benefit_base",
-            "海外停留保障期間內意外失能，以 {amount:,} 元為額外計算基準，依附表三比例給付。",
+            f"海外停留保障期間內意外{disability_term}，以 {{amount:,}} 元為額外計算基準，依附表三比例給付。",
             f"保單條款第三十八、三十九條及附表三，第 {article_pages['overseas_disability']} 頁起；{table_ref}",
             calculation_basis="percentage_of_base",
             amount_role="base",
             limit_scope="per_policy",
             aggregation_rule="choose_one",
-            conditions=[*disability_common, overseas_condition, "本項在一般意外失能保障之外另行給付", "給付本項時不另給付大眾運輸、公共建築物火災或電梯意外失能保險金"],
+            conditions=[*disability_common, overseas_condition, f"本項在一般意外{disability_term}保障之外另行給付", f"給付本項時不另給付大眾運輸、公共建築物火災或電梯意外{disability_term}保險金"],
             rate_min_percent=5,
             rate_max_percent=100,
         )
@@ -2084,6 +3375,7 @@ def parse_fubon_golden_lohas_combined_plan_table(
             "day_hospital_excluded": True,
             "overseas_stay_limit_days": 180,
             "disability_schedule_revision": schedule_revision,
+            "disability_term": disability_term,
         },
         "plan_options": plan_options,
     }
@@ -2117,14 +3409,16 @@ def parse_fubon_new_lohas_combined_plan_table(
         version is None
         or document.get("document_type") != "policy_terms"
         or file_name != f"{product_id}-A.pdf"
-        or document.get("page_count") != 25
-        or document.get("pages_parsed") != 25
     ):
         return None
 
     text = normalize_terms_text(str(document.get("text") or ""))
     compact_text = compact_table_text(text)
     document_code = version["document_code"]
+    page_count = int(version.get("page_count", 25))
+    disability_term = version["disability_term"]
+    if document.get("page_count") != page_count or document.get("pages_parsed") != page_count:
+        return None
     required_revision_signals = tuple(
         compact_table_text(signal) for signal in version["required_revision_signals"]
     )
@@ -2139,7 +3433,7 @@ def parse_fubon_new_lohas_combined_plan_table(
     )
     if (
         text.count("富邦人壽新樂活人生傷害暨健康一年定期保險") != 2
-        or text.count(document_code) != 25
+        or text.count(document_code) != page_count
         or any(signal not in compact_text for signal in required_revision_signals)
         or any(signal in compact_text for signal in forbidden_revision_signals)
         or any(signal not in compact_text for signal in required_feature_signals)
@@ -2148,10 +3442,10 @@ def parse_fubon_new_lohas_combined_plan_table(
         return None
 
     page_markers: dict[int, re.Match[str]] = {}
-    for page_number in range(1, 26):
+    for page_number in range(1, page_count + 1):
         matches = list(
             re.finditer(
-                rf"{re.escape(document_code)}\s+{page_number}\s*/\s*25\s+"
+                rf"{re.escape(document_code)}\s+{page_number}\s*/\s*{page_count}\s+"
                 r"商品代號\s*:\s*MGA1",
                 text,
             )
@@ -2167,25 +3461,37 @@ def parse_fubon_new_lohas_combined_plan_table(
         page_number: text[
             page_markers[page_number].start() : (
                 page_markers[page_number + 1].start()
-                if page_number < 25
+                if page_number < page_count
                 else len(text)
             )
         ]
-        for page_number in range(1, 26)
+        for page_number in range(1, page_count + 1)
     }
     required_page_signals = {
         1: ("內容摘要",),
         2: ("本契約保障內容分四個計畫別",),
         14: ("附表一", "計畫一", "計畫四"),
         15: ("意外傷害住院醫療保險金", "燒燙傷中心住院醫療保險金"),
-        16: ("附表二:完全失能程度表",),
-        17: ("附表三:失能程度表", "失能程度與保險金給付表"),
-        21: ("註 15", "機能永久喪失及遺存各級障害"),
-        22: ("上、下肢關節生理運動範圍一覽表",),
-        23: ("附表四", "重大燒燙傷", "五官功能障礙表"),
-        24: ("聽力喪失的認定", "鼻缺損"),
-        25: ("附表五:短期費率表", "年繳短期費率表", "季繳之短期費率表"),
+        16: (f"附表二:完全{disability_term}程度表",),
+        17: (f"附表三:{disability_term}程度表", f"{disability_term}程度與保險金給付表"),
     }
+    if page_count == 24:
+        required_page_signals.update(
+            {
+                22: ("附表四", "重大燒燙傷", "五官功能障礙表"),
+                24: ("附表五:短期費率表", "年繳短期費率表", "季繳之短期費率表"),
+            }
+        )
+    else:
+        required_page_signals.update(
+            {
+                21: ("註 15", "機能永久喪失及遺存各級障害"),
+                22: ("上、下肢關節生理運動範圍一覽表",),
+                23: ("附表四", "重大燒燙傷", "五官功能障礙表"),
+                24: ("聽力喪失的認定", "鼻缺損"),
+                25: ("附表五:短期費率表", "年繳短期費率表", "季繳之短期費率表"),
+            }
+        )
     if any(
         compact_table_text(signal) not in compact_table_text(page_texts[page_number])
         for page_number, signals in required_page_signals.items()
@@ -2195,7 +3501,7 @@ def parse_fubon_new_lohas_combined_plan_table(
 
     article_specs = [
         ("policy_death", "保險範圍:身故保險金或喪葬費用保險金的給付", "第十二條"),
-        ("total_disability", "保險範圍:完全失能保險金的給付", "第十三條"),
+        ("total_disability", f"保險範圍:完全{disability_term}保險金的給付", "第十三條"),
         ("major_illness", "保險範圍:重大傷病保險金的給付", "第十七條"),
         ("low_invasive_cancer", "保險範圍:低侵襲性癌症保險金的給付", "第十八條"),
         ("hospital", "保險範圍:住院醫療保險金的給付", "第十九條"),
@@ -2203,8 +3509,8 @@ def parse_fubon_new_lohas_combined_plan_table(
         ("accident_hospital", "保險範圍:住院醫療保險金的給付", "第二十三條"),
         ("accident_outpatient", "保險範圍:意外傷害門診手術醫療保險金的給付", "第二十四條"),
         ("accident_death", "保險範圍:意外身故保險金或喪葬費用保險金的給付", "第二十五條"),
-        ("accident_disability", "保險範圍:意外失能保險金的給付", "第二十六條"),
-        ("accident_limit", "意外身故保險金及意外失能保險金給付的限制", "第二十七條"),
+        ("accident_disability", f"保險範圍:意外{disability_term}保險金的給付", "第二十六條"),
+        ("accident_limit", f"意外身故保險金及意外{disability_term}保險金給付的限制", "第二十七條"),
     ]
     article_starts = {
         key: find_fubon_clause_start(text, heading, article)
@@ -2231,7 +3537,8 @@ def parse_fubon_new_lohas_combined_plan_table(
         "同一次住院之加護病房住院醫療保險金實際給付住院日數,最高以三十日為限",
         "同一次住院之燒燙傷中心住院醫療保險金實際給付住院日數,最高以三十日為限",
         "於出院後十四日內再次住院時,其各種保險金給付,均視為一次住院",
-        "本契約有效期間屆滿後出院者,本公司就再次住院部分不予給付保險金",
+        "有效期間屆滿後出院者",
+        "再次住院部分不予給付保險金",
         "不包含全民健康保險法第五十一條所稱之日間住院及精神衛生法第三十五條所稱之日間留院",
         "自意外傷害事故發生之日起屆滿十五日仍生存者",
         "但超過一百八十日繼續治療者,受益人若能證明被保險人之治療與該意外傷害事故具有因果關係者",
@@ -2244,8 +3551,8 @@ def parse_fubon_new_lohas_combined_plan_table(
         "同時符合二項以上大眾運輸工具意外傷害事故者,本公司之保險責任以給付最高一項為限",
         "每次「海外停留保障期間」最高天數以出境日起算一百八十天為限",
         "被保險人申領本款保險金時,本公司不另行給付第二款至第四款之保險金",
-        "失能如係附表三所列失能等級第一級者,本公司依本條約定給付各項意外失能保險金後,本契約之效力即行終止",
-        "同一意外傷害事故致成失能後身故",
+        f"{disability_term}如係附表三所列{disability_term}等級第一級者,本公司依本條約定給付各項意外{disability_term}保險金後,本契約之效力即行終止",
+        f"同一意外傷害事故致成{disability_term}後身故",
         "本公司之給付總金額合計最高以依第二十五條約定計算所應給付之保險金額為限",
     )
     if not all(
@@ -2263,17 +3570,17 @@ def parse_fubon_new_lohas_combined_plan_table(
     ):
         return None
 
-    appendix_two_start = text.rfind("附表二:完全失能程度表")
+    appendix_two_start = text.rfind(f"附表二:完全{disability_term}程度表")
     table_start = text.rfind("附表一", 0, appendix_two_start)
     if table_start < 0 or appendix_two_start <= table_start:
         return None
     table_segment = re.sub(
-        r"MGA\d+\s+\d+\s*/\s*25\s+商品代號\s*:\s*MGA1",
+        r"MGA\d+\s+\d+\s*/\s*\d+\s+商品代號\s*:\s*MGA1",
         "",
         text[table_start:appendix_two_start],
     )
     table_text = compact_table_text(table_segment)
-    if hashlib.sha256(table_text.encode("utf-8")).hexdigest() != FUBON_NEW_LOHAS_TABLE_SHA256:
+    if hashlib.sha256(table_text.encode("utf-8")).hexdigest() != version["table_sha256"]:
         return None
 
     schedule_revision = version["disability_schedule_revision"]
@@ -2284,11 +3591,15 @@ def parse_fubon_new_lohas_combined_plan_table(
     if schedule_revision == "104-revised-79-items":
         if not has_104_schedule or has_109_schedule:
             return None
-        schedule_condition = "本版本採 104 年修正版附表三，共 79 項失能程度"
+        schedule_condition = f"本版本採 104 年修正版附表三，共 79 項{disability_term}程度"
     elif schedule_revision == "109-revised-80-items":
         if not has_109_schedule:
             return None
-        schedule_condition = "本版本採 109 年修正版附表三，共 80 項失能程度"
+        schedule_condition = f"本版本採 109 年修正版附表三，共 80 項{disability_term}程度"
+    elif schedule_revision == "original-75-items":
+        if has_104_schedule or has_109_schedule:
+            return None
+        schedule_condition = "本版本附表三共 75 項殘廢程度"
     else:
         return None
 
@@ -2305,7 +3616,7 @@ def parse_fubon_new_lohas_combined_plan_table(
         "accident_hospital": 8,
         "accident_outpatient": 9,
         "accident_death": 9,
-        "accident_disability": 9 if schedule_revision == "104-revised-79-items" else 10,
+        "accident_disability": 9 if schedule_revision != "109-revised-80-items" else 10,
         "accident_limit": 10,
     }
     if article_pages != expected_article_pages:
@@ -2387,7 +3698,7 @@ def parse_fubon_new_lohas_combined_plan_table(
             )
 
         add("policy_death", "policy-death", "身故保險金或喪葬費用保險金", "policy_total", f"保單條款第十二條，第 5 頁；{table_ref}", note="依{plan}給付 {amount:,} 元後契約終止。", limit_scope="per_policy", conditions=["給付後本契約終止", funeral_condition])
-        add("total_disability", "total-disability", "完全失能保險金", "policy_total", f"保單條款第十三條及附表二，第 5、16 頁；{table_ref}", note="符合附表二完全失能程度之一，依{plan}給付 {amount:,} 元後契約終止。", limit_scope="per_policy", conditions=["給付後本契約終止", "與身故保障同時或先後符合時僅給付一項"])
+        add("total_disability", "total-disability", f"完全{disability_term}保險金", "policy_total", f"保單條款第十三條及附表二，第 5、16 頁；{table_ref}", note=f"符合附表二完全{disability_term}程度之一，依{{plan}}給付 {{amount:,}} 元後契約終止。", limit_scope="per_policy", conditions=["給付後本契約終止", "與身故保障同時或先後符合時僅給付一項"])
         add("major_illness", "major-illness", "重大傷病保險金", "policy_total", f"保單條款第二條及第十七條，第 2-6 頁；{table_ref}", note="符合重大傷病定義時，依{plan}給付 {amount:,} 元。", limit_scope="per_policy", conditions=[major_condition, "本契約含續保期間合計限給付一次"])
         add("low_invasive_cancer", "low-invasive-cancer", "低侵襲性癌症保險金", "policy_total", f"保單條款第二條及第十八條，第 2-6 頁；{table_ref}", note="符合低侵襲性癌症定義時，依{plan}給付 {amount:,} 元。", limit_scope="per_policy", conditions=[major_condition, "本契約含續保期間合計限給付一次"])
 
@@ -2421,24 +3732,24 @@ def parse_fubon_new_lohas_combined_plan_table(
                 conditions.append("給付本項時不另給付大眾運輸、公共建築物火災或電梯意外身故保障")
             add(amount_key, entry_id, name, "policy_total", f"保單條款第二十五、二十七條，第 9-10 頁；{table_ref}", note="符合特定事故條件時，依{plan}額外給付 {amount:,} 元。", limit_scope="per_policy", aggregation_rule=aggregation_rule, conditions=conditions)
 
-        disability_common = [accident_180_condition, schedule_condition, "同一事故多項及不同事故累計受附表一最高給付金額限制", "第 1 級失能給付後本契約終止", "同一事故失能後身故，兩者合計最高為對應意外身故保險金"]
+        disability_common = [accident_180_condition, schedule_condition, "同一事故多項及不同事故累計受附表一最高給付金額限制", f"第 1 級{disability_term}給付後本契約終止", f"同一事故{disability_term}後身故，兩者合計最高為對應意外身故保險金"]
         disability_specs = (
-            ("accident_disability", "accident-disability", "一般意外失能保險金", "一般意外", "cumulative_cap"),
-            ("air_disability", "air-transport-accident-disability", "空中大眾運輸工具意外失能保險金", "以乘客身分搭乘空中大眾運輸工具", "conditional_additive"),
-            ("surface_disability", "surface-transport-accident-disability", "水上或陸地大眾運輸工具意外失能保險金", "以乘客身分搭乘水上或陸地大眾運輸工具", "conditional_additive"),
-            ("fire_disability", "public-building-fire-accident-disability", "公共建築物火災意外失能保險金", "火災發生前已進入公共建築物", "conditional_additive"),
-            ("elevator_disability", "elevator-accident-disability", "電梯意外失能保險金", "因乘坐電梯發生意外傷害事故", "conditional_additive"),
-            ("overseas_disability", "overseas-accident-disability", "海外意外失能保險金", overseas_condition, "choose_one"),
+            ("accident_disability", "accident-disability", f"一般意外{disability_term}保險金", "一般意外", "cumulative_cap"),
+            ("air_disability", "air-transport-accident-disability", f"空中大眾運輸工具意外{disability_term}保險金", "以乘客身分搭乘空中大眾運輸工具", "conditional_additive"),
+            ("surface_disability", "surface-transport-accident-disability", f"水上或陸地大眾運輸工具意外{disability_term}保險金", "以乘客身分搭乘水上或陸地大眾運輸工具", "conditional_additive"),
+            ("fire_disability", "public-building-fire-accident-disability", f"公共建築物火災意外{disability_term}保險金", "火災發生前已進入公共建築物", "conditional_additive"),
+            ("elevator_disability", "elevator-accident-disability", f"電梯意外{disability_term}保險金", "因乘坐電梯發生意外傷害事故", "conditional_additive"),
+            ("overseas_disability", "overseas-accident-disability", f"海外意外{disability_term}保險金", overseas_condition, "choose_one"),
         )
         for amount_key, entry_id, name, condition, aggregation_rule in disability_specs:
             conditions = [*disability_common, condition]
             if amount_key != "accident_disability":
-                conditions.append("本項在一般意外失能保障之外另行給付")
+                conditions.append(f"本項在一般意外{disability_term}保障之外另行給付")
             if amount_key in {"air_disability", "surface_disability"}:
                 conditions.append(transport_highest_condition)
             if amount_key == "overseas_disability":
-                conditions.append("給付本項時不另給付大眾運輸、公共建築物火災或電梯意外失能保障")
-            add(amount_key, entry_id, name, "benefit_base", f"保單條款第二十六、二十七條及附表三，第 {article_pages['accident_disability']}-22 頁；{table_ref}", note="以 {amount:,} 元為計算基準，依附表三失能等級 5% 至 100% 比例給付。", calculation_basis="percentage_of_base", amount_role="base", limit_scope="per_policy", aggregation_rule=aggregation_rule, conditions=conditions, rate_min_percent=5, rate_max_percent=100)
+                conditions.append(f"給付本項時不另給付大眾運輸、公共建築物火災或電梯意外{disability_term}保障")
+            add(amount_key, entry_id, name, "benefit_base", f"保單條款第二十六、二十七條及附表三，第 {article_pages['accident_disability']}-22 頁；{table_ref}", note=f"以 {{amount:,}} 元為計算基準，依附表三{disability_term}等級 5% 至 100% 比例給付。", calculation_basis="percentage_of_base", amount_role="base", limit_scope="per_policy", aggregation_rule=aggregation_rule, conditions=conditions, rate_min_percent=5, rate_max_percent=100)
 
         if len(entries) != 24 or len({entry["id"] for entry in entries}) != 24:
             return None
@@ -2468,6 +3779,7 @@ def parse_fubon_new_lohas_combined_plan_table(
             "day_hospital_excluded": True,
             "overseas_stay_limit_days": 180,
             "disability_schedule_revision": schedule_revision,
+            "disability_term": disability_term,
             "reinstatement_notice_revision": version["reinstatement_notice_revision"],
             "missing_person_return_repayment_scope": version["missing_person_return_repayment_scope"],
             "funeral_benefit_cap_reference": version["funeral_benefit_cap_reference"],
@@ -2489,9 +3801,14 @@ def parse_fubon_lohas_combined_plan_table(
         return None
 
     text = normalize_terms_text(str(document.get("text") or ""))
+    disability_term = (
+        "失能"
+        if product_id in FUBON_LOHAS_DISABILITY_TERM_REVISED_PRODUCT_IDS
+        else "殘廢"
+    )
     article_specs = [
         ("policy_death", "保險範圍:身故保險金或喪葬費用保險金的給付", "第十二條"),
-        ("total_disability", "保險範圍:完全殘廢保險金的給付", "第十三條"),
+        ("total_disability", f"保險範圍:完全{disability_term}保險金的給付", "第十三條"),
         ("major_disease", "保險範圍:重大疾病保險金的給付", "第十七條"),
         ("hospital", "保險範圍:住院醫療保險金的給付", "第十八條"),
         ("major_burn", "保險範圍:重大燒燙傷保險金的給付", "第二十一條"),
@@ -2499,8 +3816,8 @@ def parse_fubon_lohas_combined_plan_table(
         ("accident_outpatient", "保險範圍:意外傷害門診手術醫療保險金的給付", "第二十三條"),
         ("accident_reimbursement", "保險範圍:意外傷害醫療保險金的給付", "第二十四條"),
         ("accident_death", "保險範圍:意外身故保險金或喪葬費用保險金的給付", "第二十五條"),
-        ("accident_disability", "保險範圍:意外殘廢保險金的給付", "第二十六條"),
-        ("accident_limit", "意外身故保險金及意外殘廢保險金給付的限制", "第二十七條"),
+        ("accident_disability", f"保險範圍:意外{disability_term}保險金的給付", "第二十六條"),
+        ("accident_limit", f"意外身故保險金及意外{disability_term}保險金給付的限制", "第二十七條"),
     ]
     article_starts = {
         key: find_fubon_clause_start(text, heading, article)
@@ -2539,7 +3856,7 @@ def parse_fubon_lohas_combined_plan_table(
     table_signals = (
         "計畫一計畫二計畫三計畫四計畫五計畫六計畫七計畫八",
         "身故保險金或喪葬費用保險金無20萬20萬50萬無20萬20萬50萬",
-        "完全殘廢保險金無20萬20萬50萬無20萬20萬50萬",
+        f"完全{disability_term}保險金無20萬20萬50萬無20萬20萬50萬",
         "重大疾病保險金無20萬20萬50萬無20萬20萬50萬",
         "重大燒燙傷保險金40萬40萬80萬80萬40萬40萬80萬80萬",
         "一般意外身故保險金或喪葬費用保險金100萬100萬200萬200萬100萬100萬200萬200萬",
@@ -2686,9 +4003,9 @@ def parse_fubon_lohas_combined_plan_table(
         add_amount_entry(
             "total_disability",
             "total-disability",
-            "完全殘廢保險金",
+            f"完全{disability_term}保險金",
             "policy_total",
-            "符合附表二完全殘廢程度之一，依{plan}給付 {amount:,} 元後，本契約終止。",
+            f"符合附表二完全{disability_term}程度之一，依{{plan}}給付 {{amount:,}} 元後，本契約終止。",
             f"保單條款第十三條及附表二，第 {article_pages['total_disability']} 頁起；{table_ref}",
             limit_scope="per_policy",
             conditions=["給付後本契約終止"],
@@ -2702,7 +4019,7 @@ def parse_fubon_lohas_combined_plan_table(
             f"保單條款第二條及第十七條，第 2-{article_pages['major_disease']} 頁；{table_ref}",
             limit_scope="per_policy",
             aggregation_rule="highest",
-            conditions=[major_disease_condition, major_disease_definitions, "同時符合身故、完全殘廢或重大疾病二項以上時僅給付一項", "給付後本契約終止"],
+            conditions=[major_disease_condition, major_disease_definitions, f"同時符合身故、完全{disability_term}或重大疾病二項以上時僅給付一項", "給付後本契約終止"],
         )
         entries.extend(
             [
@@ -2861,20 +4178,20 @@ def parse_fubon_lohas_combined_plan_table(
 
         disability_conditions = [
             accident_180_condition,
-            "依附表三殘廢等級 5% 至 100% 比例計算",
+            f"依附表三{disability_term}等級 5% 至 100% 比例計算",
             "同一事故多項及不同事故累計受附表一最高給付金額限制",
-            "合併既有殘廢時須扣除視同已給付部分",
-            "同一事故殘廢後身故時，依第二十七條計算差額",
+            f"合併既有{disability_term}時須扣除視同已給付部分",
+            f"同一事故{disability_term}後身故時，依第二十七條計算差額",
             hijack_condition,
         ]
         if revised_disability_schedule:
-            disability_conditions.append("本版本採 104 年修正版附表三，共 79 項殘廢程度")
+            disability_conditions.append(f"本版本採 104 年修正版附表三，共 79 項{disability_term}程度")
         add_amount_entry(
             "accident_disability",
             "accident-disability",
-            "一般意外殘廢保險金",
+            f"一般意外{disability_term}保險金",
             "benefit_base",
-            "以 {amount:,} 元為計算基準，依附表三殘廢給付比例計算。",
+            f"以 {{amount:,}} 元為計算基準，依附表三{disability_term}給付比例計算。",
             f"保單條款第二十六、二十七條及附表三，第 {article_pages['accident_disability']} 頁起；{table_ref}",
             calculation_basis="percentage_of_base",
             amount_role="base",
@@ -2885,10 +4202,10 @@ def parse_fubon_lohas_combined_plan_table(
             rate_max_percent=100,
         )
         for amount_key, entry_id, name, condition in (
-            ("air_disability", "air-transport-accident-disability", "空中大眾運輸工具意外殘廢保險金", "以乘客身分搭乘空中大眾運輸工具"),
-            ("surface_disability", "surface-transport-accident-disability", "水上或陸地大眾運輸工具意外殘廢保險金", "以乘客身分搭乘水上或陸地大眾運輸工具"),
-            ("fire_disability", "public-building-fire-accident-disability", "公共建築物火災意外殘廢保險金", "火災發生前已進入戲院、旅館或其他公共建築物"),
-            ("elevator_disability", "elevator-accident-disability", "電梯意外殘廢保險金", "因乘坐電梯發生意外傷害事故"),
+            ("air_disability", "air-transport-accident-disability", f"空中大眾運輸工具意外{disability_term}保險金", "以乘客身分搭乘空中大眾運輸工具"),
+            ("surface_disability", "surface-transport-accident-disability", f"水上或陸地大眾運輸工具意外{disability_term}保險金", "以乘客身分搭乘水上或陸地大眾運輸工具"),
+            ("fire_disability", "public-building-fire-accident-disability", f"公共建築物火災意外{disability_term}保險金", "火災發生前已進入戲院、旅館或其他公共建築物"),
+            ("elevator_disability", "elevator-accident-disability", f"電梯意外{disability_term}保險金", "因乘坐電梯發生意外傷害事故"),
         ):
             add_amount_entry(
                 amount_key,
@@ -2931,6 +4248,7 @@ def parse_fubon_lohas_combined_plan_table(
                 if revised_disability_schedule
                 else "original-67-items"
             ),
+            "disability_term": disability_term,
         },
         "plan_options": plan_options,
     }
@@ -3427,6 +4745,7 @@ def parse_fubon_golden_complete_combined_plan_table(
     ):
         return None
 
+    disability_term = version["disability_term"]
     article_specs = (
         ("cancer", "保險範圍:癌症保險金的給付", "第十二條"),
         ("hospital", "保險範圍:住院醫療保險金的給付", "第十三條"),
@@ -3443,15 +4762,15 @@ def parse_fubon_golden_complete_combined_plan_table(
             "保險範圍:意外身故保險金或喪葬費用保險金的給付",
             "第二十條",
         ),
-        ("accident_disability", "保險範圍:意外失能保險金的給付", "第二十一條"),
+        ("accident_disability", f"保險範圍:意外{disability_term}保險金的給付", "第二十一條"),
         (
             "natural_disaster_disability",
-            "保險範圍:天然災害意外傷害二至十一級失能保險金的給付",
+            f"保險範圍:天然災害意外傷害二至十一級{disability_term}保險金的給付",
             "第二十二條",
         ),
         (
             "accident_combined_limit",
-            "意外身故保險金及意外失能保險金給付的限制",
+            f"意外身故保險金及意外{disability_term}保險金給付的限制",
             "第二十三條",
         ),
     )
@@ -3488,7 +4807,7 @@ def parse_fubon_golden_complete_combined_plan_table(
         "同一次住院之住院看護保險金實際給付住院日數最高以三百六十五日為限",
         "同一次住院給付日數最長以三十日為限",
         "自意外傷害事故發生之日起屆滿十五日仍生存者本公司給付四十萬元",
-        "同一次意外傷害給付日數不得超過三百六十五日",
+        "給付日數不得超過三百六十五日",
         "未住院部分本公司按下列骨折別所定日數乘以",
         "的二分之一給付",
         "不完全骨折按完全骨折日數二分之一給付",
@@ -3498,7 +4817,7 @@ def parse_fubon_golden_complete_combined_plan_table(
         "每次意外傷害醫療保險金限額提高為五萬四仟元",
         "要保人投保本契約計畫一及計畫三者無本條約定之適用",
         "給付一佰萬元意外身故保險金或喪葬費用保險金",
-        "按一佰萬元之金額對照該表所列之給付比例計算所得之金額給付意外失能保險金",
+        f"按一佰萬元之金額對照該表所列之給付比例計算所得之金額給付意外{disability_term}保險金",
         "另按一佰萬元之金額對照該表所列之給付比例計算所得金額",
         "累計給付金額最高以一佰萬元為限",
     )
@@ -3522,8 +4841,8 @@ def parse_fubon_golden_complete_combined_plan_table(
         "意外身故保險金或喪葬費用保險金100萬",
         "癌症身故保險金額20萬",
         "重大燒燙傷保險金40萬",
-        "意外失能保險金致成失能等級之一100萬乘以附表二所列給付比例最高給付金額100萬",
-        "天然災害意外傷害二至十一級失能保險金致成二至十一級失能等級之一100萬乘以附表二所列給付比例最高給付金額100萬",
+        f"意外{disability_term}保險金致成{disability_term}等級之一100萬乘以附表二所列給付比例最高給付金額100萬",
+        f"天然災害意外傷害二至十一級{disability_term}保險金致成二至十一級{disability_term}等級之一100萬乘以附表二所列給付比例最高給付金額100萬",
         "癌症住院醫療保險金1000元/日",
         "癌症出院療養保險金1000元/日",
         "癌症手術治療保險金10000元/次",
@@ -3559,7 +4878,7 @@ def parse_fubon_golden_complete_combined_plan_table(
         "accident_hospital": 5 if old_disability_schedule else 6,
         "accident_outpatient": 6,
         "accident_reimbursement": 6 if old_disability_schedule else 7,
-        "accident_death": 7,
+        "accident_death": 6 if product_id == "209391MZ9D00421A11Z10000000" else 7,
         "accident_disability": 7,
         "natural_disaster_disability": 7,
         "accident_combined_limit": 8,
@@ -3593,9 +4912,9 @@ def parse_fubon_golden_complete_combined_plan_table(
     ]
     accident_180_condition = "事故後 180 日內；超過 180 日須證明與該事故具有因果關係"
     disability_schedule_condition = (
-        "本版本採 104 年修正版附表二，共 79 項失能程度"
+        f"本版本採 104 年修正版附表二，共 79 項{disability_term}程度"
         if old_disability_schedule
-        else "本版本採 109 年修正版附表二，共 80 項失能程度"
+        else f"本版本採 109 年修正版附表二，共 80 項{disability_term}程度"
     )
     table_ref = "附表一，第 11 頁"
     disability_table_ref = "附表二，第 12 頁起"
@@ -3821,10 +5140,10 @@ def parse_fubon_golden_complete_combined_plan_table(
             ),
             coverage_entry(
                 "accident-disability",
-                "意外失能保險金",
+                f"意外{disability_term}保險金",
                 1_000_000,
                 "benefit_base",
-                "以 1,000,000 元為基準，依附表二失能等級 5% 至 100% 比例計算。",
+                f"以 1,000,000 元為基準，依附表二{disability_term}等級 5% 至 100% 比例計算。",
                 f"保單條款第二十一、二十三條，第 7 頁起；{disability_table_ref}",
                 calculation_basis="percentage_of_base",
                 amount_role="base",
@@ -3836,17 +5155,17 @@ def parse_fubon_golden_complete_combined_plan_table(
                     accident_180_condition,
                     disability_schedule_condition,
                     "同一事故多項及不同事故累計最高 1,000,000 元",
-                    "第 1 級失能給付後本契約終止",
-                    "同一事故失能後身故，兩者合計最高 1,000,000 元",
-                    "合併既有失能時須扣除視同已給付部分",
+                    f"第 1 級{disability_term}給付後本契約終止",
+                    f"同一事故{disability_term}後身故，兩者合計最高 1,000,000 元",
+                    f"合併既有{disability_term}時須扣除視同已給付部分",
                 ],
             ),
             coverage_entry(
                 "natural-disaster-accident-disability",
-                "天然災害意外傷害二至十一級失能保險金",
+                f"天然災害意外傷害二至十一級{disability_term}保險金",
                 1_000_000,
                 "benefit_base",
-                "天然災害意外造成第 2 至 11 級失能時，除意外失能保險金外，再以 1,000,000 元為基準按附表二 5% 至 90% 比例計算。",
+                f"天然災害意外造成第 2 至 11 級{disability_term}時，除意外{disability_term}保險金外，再以 1,000,000 元為基準按附表二 5% 至 90% 比例計算。",
                 f"保單條款第二十二條，第 7 頁起；{disability_table_ref}",
                 calculation_basis="percentage_of_base",
                 amount_role="base",
@@ -3856,10 +5175,10 @@ def parse_fubon_golden_complete_combined_plan_table(
                 rate_max_percent=90,
                 conditions=[
                     accident_180_condition,
-                    "失能診斷確定日仍生存",
+                    f"{disability_term}診斷確定日仍生存",
                     disability_schedule_condition,
                     "同一天然災害事故多項及不同事故累計最高 1,000,000 元",
-                    "合併既有失能時須扣除視同已給付部分",
+                    f"合併既有{disability_term}時須扣除視同已給付部分",
                 ],
             ),
         ]
@@ -3905,6 +5224,7 @@ def parse_fubon_golden_complete_combined_plan_table(
             "maximum_renewal_age": 75,
             "day_hospital_explicit": False,
             "day_hospital_excluded": True,
+            "disability_terminology": disability_term,
             "cancer_definition_revision": version["cancer_definition_revision"],
             "newborn_screening_revision": version["newborn_screening_revision"],
             "reinstatement_notice_revision": version["reinstatement_notice_revision"],
@@ -5627,6 +6947,128 @@ def parse_fubon_new_complete_combined_plan_table(
     }
 
 
+def is_prudential_daily_hospital_96_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id == PRUDENTIAL_DAILY_HOSPITAL_96_PRODUCT_ID
+        or file_name == PRUDENTIAL_DAILY_HOSPITAL_96_FILE_NAME
+        or "保誠人壽新住院日額型定期保險附約(96)" in dense_text
+    )
+
+
+def parse_prudential_daily_hospital_96_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    if (
+        product_id != PRUDENTIAL_DAILY_HOSPITAL_96_PRODUCT_ID
+        or document.get("document_type") != "policy_terms"
+        or file_name != PRUDENTIAL_DAILY_HOSPITAL_96_FILE_NAME
+        or document.get("page_count") != 5
+        or document.get("pages_parsed") != 5
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text).replace(",", "")
+    required_signals = (
+        "保誠人壽新住院日額型定期保險附約(96)",
+        "民國96年08月31日保誠總字第960667號",
+        "住院保險金的給付",
+        "加護病房費用保險金的給付",
+        "保險利益",
+        "FHIR-5FHIR-10FHIR-15FHIR-20FHIR-25FHIR-30",
+        "住院保險金日額(最高365天)500元1000元1500元2000元2500元3000元",
+        "每日加護病房費用(最高365天)500元1000元1500元2000元2500元3000元",
+    )
+    if not all(signal in dense_text for signal in required_signals):
+        return None
+
+    hospital_start = text.find("住院保險金的給付")
+    intensive_start = text.find("加護病房費用保險金的給付")
+    termination_start = text.find("一千倍")
+    table_start = text.find("保險利益")
+    hospital_page = source_page(text, hospital_start) or 3
+    termination_page = source_page(text, termination_start) or 2
+    table_page = source_page(text, table_start) or 4
+
+    plan_options = []
+    for label, daily_amount in PRUDENTIAL_DAILY_HOSPITAL_96_AMOUNTS.items():
+        termination_threshold = daily_amount * 1_000
+        entries = [
+            coverage_entry(
+                "hospital-daily",
+                "住院保險金",
+                daily_amount,
+                "daily_total",
+                f"{label} 住院保險金日額每日 {daily_amount:,} 元，按住院日數含始日及終日給付。",
+                f"保單條款第十一條與保險利益表，第 {hospital_page}、{table_page} 頁",
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                conditions=["因疾病或傷害住院診療", "含始日及終日", "每次住院最高給付 365 日"],
+            ),
+            coverage_entry(
+                "intensive-care-daily",
+                "每日加護病房費用保險金",
+                daily_amount,
+                "daily_total",
+                f"{label} 進住加護病房治療期間，每日另按住院保險金日額 {daily_amount:,} 元給付。",
+                f"保單條款第十二條與保險利益表，第 {hospital_page}、{table_page} 頁",
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                aggregation_rule="conditional_additive",
+                conditions=["須因疾病或傷害住院且進住加護病房", "含始日及終日", "每次住院最高給付 365 日"],
+            ),
+            coverage_entry(
+                "cumulative-benefit-termination-threshold",
+                "累計給付終止門檻",
+                termination_threshold,
+                "policy_total",
+                f"第十一條及第十二條累計各項保險金總額達住院保險金日額 1,000 倍，{label} 為 {termination_threshold:,} 元時，本附約終止。",
+                f"保單條款第八條，第 {termination_page} 頁",
+                calculation_basis="fixed_amount",
+                amount_role="reference",
+                limit_scope="lifetime",
+                aggregation_rule="cumulative_cap",
+                multiplier=1_000,
+                conditions=["累計住院與加護病房給付合計計入", "住院保險金日額減少時，改按減少後日額之一千倍計算"],
+            ),
+        ]
+        plan_options.append(
+            {
+                "value": label.lower(),
+                "label": label,
+                "coverage_entries": entries,
+            }
+        )
+
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "保險計劃",
+        "selection_guidance": "請依保單首頁選擇 FHIR-5、FHIR-10、FHIR-15、FHIR-20、FHIR-25 或 FHIR-30；系統會顯示住院日額、加護病房日額與累計給付終止門檻，不需輸入單位數。",
+        "version_characteristics": {
+            "terms_revision": "96-first-revision",
+            "filing_date": "96.08.31",
+            "filing_number": "保誠總字第960667號",
+            "plan_count": 6,
+            "daily_hospital_days_limit": 365,
+            "intensive_care_days_limit": 365,
+            "same_hospital_readmission_days": 14,
+            "cumulative_termination_daily_multiplier": 1_000,
+            "disability_terminology": "完全殘廢",
+            "no_surrender_value": True,
+        },
+        "plan_options": plan_options,
+    }
+
+
 def parse_prudential_china_daily_hospital_face_amount(
     document: dict[str, Any],
 ) -> dict[str, Any] | None:
@@ -5718,6 +7160,1281 @@ def parse_prudential_china_daily_hospital_face_amount(
                 aggregation_rule="cumulative_cap",
                 multiplier=1_000,
                 conditions=["住院保險金日額減少時，按減少後日額重新計算門檻"],
+            ),
+        ],
+    }
+
+
+FIXED_HOSPITAL_MEDICAL_97_AMOUNTS = {
+    "hospital_daily": [500, 1_000, 1_500, 2_000, 2_500, 3_000],
+    "intensive_care_daily": [500, 1_000, 1_500, 2_000, 2_500, 3_000],
+    "surgery_base": [10_000, 20_000, 30_000, 40_000, 50_000, 60_000],
+    "surgery_total_cap": [30_000, 60_000, 90_000, 120_000, 150_000, 180_000],
+    "lifetime_termination_threshold": [
+        500_000,
+        1_000_000,
+        1_500_000,
+        2_000_000,
+        2_500_000,
+        3_000_000,
+    ],
+}
+FIXED_HOSPITAL_MEDICAL_97_TABLE_SHA256 = (
+    "7791ff6d96c33d9d52e92208bc8890710ce8a41967bc21252e9e632863a44e34"
+)
+
+
+def is_fixed_hospital_medical_97_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id in FIXED_HOSPITAL_MEDICAL_97_PRODUCT_VERSIONS
+        or re.fullmatch(
+            r"(203311R11A0020[56]|205311RZ1A00322A11Z10000013)-[AF]\.pdf",
+            file_name,
+        )
+        is not None
+        or "新住院醫療定額型定期健康保險附約(97)" in dense_text
+    )
+
+
+def parse_prudential_china_fixed_hospital_medical_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = FIXED_HOSPITAL_MEDICAL_97_PRODUCT_VERSIONS.get(product_id)
+    file_name = str(document.get("file_name") or "")
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or file_name != f"{product_id}-A.pdf"
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text).replace(",", "")
+    required_signals = (
+        "新住院醫療定額型定期健康保險附約(97)",
+        "保險範圍",
+        "住院保險金的給付",
+        "手術費用保險金的給付",
+        "加護病房費用保險金的給付",
+        "住院保險金日額",
+        "之二十倍乘以",
+        "的六十倍為限",
+        "之一千倍",
+        "三百六十五日",
+        "十四日內於同一醫院再次住院",
+        "保險利益",
+    )
+    if not all(signal in text for signal in required_signals):
+        return None
+    if not all(signal in text for signal in version["required_revision_signals"]):
+        return None
+
+    table_signals = (
+        "住院保險金日額(最高365天)500元1000元1500元2000元2500元3000元",
+        "每日加護病房費用(最高365天)500元1000元1500元2000元2500元3000元",
+        "每次手術費用保險金(詳條款規定)10000元20000元30000元40000元50000元60000元",
+    )
+    if not all(signal in dense_text for signal in table_signals):
+        return None
+
+    if sha256_json(FIXED_HOSPITAL_MEDICAL_97_AMOUNTS) != FIXED_HOSPITAL_MEDICAL_97_TABLE_SHA256:
+        return None
+
+    day_hospital_excluded = "日間住院" in text and "日間留院" in text
+    medical_opinion_revision = "醫學專業意見" in text
+    forced_execution_exception = "強制執行" in text
+    post_expiry_excluded = "有效期間屆滿後出院" in text
+    if (
+        day_hospital_excluded != version["day_hospital_excluded"]
+        or medical_opinion_revision != version["claims_review_medical_opinion_revision"]
+        or forced_execution_exception != version["main_contract_forced_execution_exception"]
+        or post_expiry_excluded != version["post_expiry_readmission_excluded"]
+        or version["disability_terminology"] not in text
+    ):
+        return None
+
+    hospital_page = source_page(text, text.find("住院保險金的給付")) or 3
+    surgery_page = source_page(text, text.find("手術費用保險金的給付")) or hospital_page
+    cap_page = source_page(text, text.find("之一千倍")) or 3
+    table_page = source_page(text, text.rfind("保險利益")) or 5
+    plan_options = []
+    labels = ["計劃5", "計劃10", "計劃15", "計劃20", "計劃25", "計劃30"]
+
+    for index, label in enumerate(labels):
+        daily_amount = FIXED_HOSPITAL_MEDICAL_97_AMOUNTS["hospital_daily"][index]
+        intensive_amount = FIXED_HOSPITAL_MEDICAL_97_AMOUNTS["intensive_care_daily"][index]
+        surgery_base = FIXED_HOSPITAL_MEDICAL_97_AMOUNTS["surgery_base"][index]
+        surgery_cap = FIXED_HOSPITAL_MEDICAL_97_AMOUNTS["surgery_total_cap"][index]
+        termination_threshold = FIXED_HOSPITAL_MEDICAL_97_AMOUNTS[
+            "lifetime_termination_threshold"
+        ][index]
+        entries = [
+            coverage_entry(
+                "hospital-daily",
+                "住院保險金",
+                daily_amount,
+                "daily_total",
+                f"每次住院期間按實際住院日數每日給付 {daily_amount:,} 元，含入院及出院當日，最高 365 日。",
+                f"保單條款第十、十一條，第 {hospital_page} 頁；保險利益表第 {table_page} 頁",
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                conditions=["因疾病或傷害住院診療", "含入院及出院當日", "每次住院最高給付 365 日"],
+            ),
+            coverage_entry(
+                "intensive-care-daily",
+                "加護病房費用保險金",
+                intensive_amount,
+                "daily_total",
+                f"加護病房治療期間每日另行給付 {intensive_amount:,} 元，最高 365 日。",
+                f"保單條款第十、十三條，第 {hospital_page} 頁；保險利益表第 {table_page} 頁",
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                aggregation_rule="conditional_additive",
+                conditions=["住進加護病房接受治療", "含入院及出院當日", "每次住院最高給付 365 日"],
+            ),
+            coverage_entry(
+                "surgery-benefit-base",
+                "手術費用保險金基準額",
+                surgery_base,
+                "benefit_base",
+                f"住院接受手術時，以住院日額 20 倍 {surgery_base:,} 元為基準，乘以附件二手術名稱及費用表所列比例給付。",
+                f"保單條款第十、十二條及附件二，第 {surgery_page} 頁起；保險利益表第 {table_page} 頁",
+                calculation_basis="percentage_of_base",
+                amount_role="base",
+                limit_scope="per_surgery",
+                rate_min_percent=2,
+                rate_max_percent=300,
+                conditions=[
+                    "須依第十條約定住院並接受手術治療",
+                    "非因當次住院事故治療目的所進行的牙科手術不給付",
+                    "同一部位重複手術或同次手術涉及二項以上器官時僅給付較高一項",
+                ],
+            ),
+            coverage_entry(
+                "surgery-benefit-per-hospitalization-cap",
+                "每次住院手術費用保險金總上限",
+                surgery_cap,
+                "per_event",
+                f"每次住院期間各項手術費用保險金總和最高 {surgery_cap:,} 元。",
+                f"保單條款第十二條，第 {surgery_page} 頁",
+                calculation_basis="fixed_amount",
+                amount_role="limit",
+                limit_scope="per_hospitalization",
+                aggregation_rule="cumulative_cap",
+                multiplier=60,
+                conditions=["每次住院期間適用", "各項手術費用保險金合計受此上限限制"],
+            ),
+            coverage_entry(
+                "cumulative-benefit-termination-threshold",
+                "累積總給付終止門檻",
+                termination_threshold,
+                "policy_total",
+                f"第十一至十三條累計給付達住院日額 1000 倍 {termination_threshold:,} 元時，本附約終止。",
+                f"保單條款第八條，第 {cap_page} 頁",
+                calculation_basis="fixed_amount",
+                amount_role="reference",
+                limit_scope="lifetime",
+                aggregation_rule="cumulative_cap",
+                multiplier=1_000,
+                conditions=["住院保險金日額減少時，按減少後日額重新計算門檻"],
+            ),
+        ]
+        plan_options.append(
+            {
+                "value": f"plan-{label.removeprefix('計劃')}",
+                "label": label,
+                "coverage_entries": entries,
+            }
+        )
+
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "保險計劃",
+        "selection_guidance": "請依保單首頁的 IHLR/KHLR 計劃別選擇 5、10、15、20、25 或 30；系統會依條款表格帶出住院、加護病房與手術保障。",
+        "version_characteristics": {
+            "disease_initial_waiting_days": 0,
+            "daily_hospital_days_limit": 365,
+            "intensive_care_days_limit": 365,
+            "same_hospital_readmission_days": 14,
+            "surgery_base_daily_multiplier": 20,
+            "surgery_total_cap_daily_multiplier": 60,
+            "cumulative_termination_daily_multiplier": 1_000,
+            "disability_terminology": version["disability_terminology"],
+            "day_hospital_excluded": version["day_hospital_excluded"],
+            "post_expiry_readmission_excluded": version[
+                "post_expiry_readmission_excluded"
+            ],
+            "claims_review_medical_opinion_revision": version[
+                "claims_review_medical_opinion_revision"
+            ],
+            "main_contract_forced_execution_exception": version[
+                "main_contract_forced_execution_exception"
+            ],
+            "terms_revision": version["revision"],
+        },
+        "plan_options": plan_options,
+    }
+
+
+def is_china_legacy_cancer_whole_life_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id in CHINA_LEGACY_CANCER_WHOLE_LIFE_PRODUCT_VERSIONS
+        or re.fullmatch(r"205321R11A023(?:01)?-[AF]\.pdf", file_name) is not None
+        or "中國人壽防癌終身健康保險附約" in dense_text
+    )
+
+
+def parse_china_legacy_cancer_whole_life_unit_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LEGACY_CANCER_WHOLE_LIFE_PRODUCT_VERSIONS.get(product_id)
+    file_name = str(document.get("file_name") or "")
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or file_name != version["file_name"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    if text.count("中國人壽防癌終身健康保險附約") != 1:
+        return None
+    if document.get("page_count") != version["page_count"] or document.get("pages_parsed") != version["page_count"]:
+        return None
+    if any(signal not in text for signal in version["required_revision_signals"]):
+        return None
+    if any(signal in text for signal in version["forbidden_revision_signals"]):
+        return None
+
+    required_headings = (
+        ("癌症的責任開始日", "四"),
+        ("保險範圍與保險給付", "十二"),
+        ("保險金的申請手續", "十三"),
+        ("豁免保費", "十四"),
+        ("身故後診斷", "十六"),
+        ("受益人的指定及變更", "十九"),
+    )
+    for heading, article in required_headings:
+        if text.count(f"【{heading}】") != 1:
+            return None
+        match = re.search(rf"【{re.escape(heading)}】\s*第\s*([一二三四五六七八九十廿]+)\s*條", text)
+        if not match or match.group(1) != article:
+            return None
+
+    required_rule_signals = (
+        "自始期日起第三十一日開始",
+        "每名被保險人終身以給付一次為限",
+        "本公司按其實際住院日數依附表二約定給付",
+        "本公司按附表二約定給付「癌症手術醫療保險金」",
+        "每次最長以實際接受癌症住院治療日數為限",
+        "自每次癌症住院醫療出院後以門診醫療方式",
+        "於有效期間內因癌症身故",
+        "第一級至第三級殘廢",
+        "喪葬費用保險金額總和",
+    )
+    if any(compact_table_text(signal) not in dense_text for signal in required_rule_signals):
+        return None
+
+    table_start = dense_text.rfind("附表二")
+    if table_start < 0:
+        return None
+    table_text = dense_text[table_start : table_start + 360]
+    table_match = re.search(
+        r"附表二保險金給付表投保一單位"
+        r"投保金額(?P<face>\d+)元"
+        r"保障對象被保險人"
+        r"罹患癌症保險金(?P<diagnosis>\d+)元"
+        r"給癌症住院醫療保險金每日(?P<hospital>\d+)元"
+        r"付癌症手術醫療保險金每次(?P<surgery>\d+)元"
+        r"項癌症出院療養保險金每日(?P<discharge>\d+)元"
+        r"目癌症門診醫療保險金每次(?P<outpatient>\d+)元"
+        r"癌症身故保險金(?P<death>\d+)元",
+        table_text,
+    )
+    if not table_match:
+        return None
+
+    amounts = {
+        "face_amount_per_unit": int(table_match.group("face")),
+        "cancer_diagnosis_per_unit": int(table_match.group("diagnosis")),
+        "cancer_hospital_daily_per_unit": int(table_match.group("hospital")),
+        "cancer_surgery_per_unit": int(table_match.group("surgery")),
+        "cancer_discharge_daily_per_unit": int(table_match.group("discharge")),
+        "cancer_outpatient_per_unit": int(table_match.group("outpatient")),
+        "cancer_death_per_unit": int(table_match.group("death")),
+    }
+    if amounts != CHINA_LEGACY_CANCER_WHOLE_LIFE_AMOUNTS:
+        return None
+    if sha256_json(amounts) != CHINA_LEGACY_CANCER_WHOLE_LIFE_TABLE_SHA256:
+        return None
+
+    waiting_condition = "始期日起第 31 日開始癌症保障"
+    unit_condition = "每投保一單位換算；使用者輸入單位數後加總"
+    funeral_condition = "未滿十四足歲或心神喪失、精神耗弱者，身故保險金依條款變更為喪葬費用保險金並受主管機關額度限制"
+    table_ref = f"附表二（保險金給付表，每投保一單位），第 {version['table_page']} 頁"
+
+    return {
+        "selection_type": "unit",
+        "input_mode": "unit",
+        "selection_source": "terms",
+        "selection_label": "投保單位數",
+        "selection_guidance": "請輸入保單首頁所載投保單位數；每單位投保金額 300,000 元，系統會依附表二換算癌症給付。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "cancer_responsibility_start_day": 31,
+            "premium_waiver_disability_levels": "1-3",
+            "minor_funeral_benefit_rule": True,
+        },
+        "coverage_entries": [
+            coverage_entry(
+                "cancer-diagnosis",
+                "罹患癌症保險金",
+                amounts["cancer_diagnosis_per_unit"],
+                "per_unit",
+                "每單位給付 30,000 元，每名被保險人終身以給付一次為限。",
+                f"保單條款第十二條及{table_ref}",
+                calculation_basis="per_unit",
+                amount_role="payout",
+                limit_scope="lifetime",
+                conditions=[waiting_condition, unit_condition, "終身以給付一次為限"],
+            ),
+            coverage_entry(
+                "cancer-hospital-daily",
+                "癌症住院醫療保險金",
+                amounts["cancer_hospital_daily_per_unit"],
+                "daily_per_unit",
+                "每單位每日給付 2,000 元，按實際住院日數給付。",
+                f"保單條款第十二條及{table_ref}",
+                calculation_basis="per_unit_per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                conditions=[waiting_condition, unit_condition, "須在醫院接受癌症治療"],
+            ),
+            coverage_entry(
+                "cancer-surgery",
+                "癌症手術醫療保險金",
+                amounts["cancer_surgery_per_unit"],
+                "per_unit",
+                "每單位每次給付 30,000 元。",
+                f"保單條款第十二條及{table_ref}",
+                calculation_basis="per_unit",
+                amount_role="payout",
+                limit_scope="per_surgery",
+                conditions=[waiting_condition, unit_condition, "須在醫院接受癌症外科手術治療"],
+            ),
+            coverage_entry(
+                "cancer-discharge-recovery",
+                "癌症出院療養保險金",
+                amounts["cancer_discharge_daily_per_unit"],
+                "daily_per_unit",
+                "每單位每日給付 1,000 元；每次最長以實際接受癌症住院治療日數為限。",
+                f"保單條款第十二條及{table_ref}",
+                calculation_basis="per_unit_per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                conditions=[
+                    waiting_condition,
+                    unit_condition,
+                    "出院在家療養",
+                    "每次最長以實際接受癌症住院治療日數為限",
+                ],
+            ),
+            coverage_entry(
+                "cancer-outpatient",
+                "癌症門診醫療保險金",
+                amounts["cancer_outpatient_per_unit"],
+                "per_unit",
+                "每單位每次門診給付 1,000 元。",
+                f"保單條款第十二條及{table_ref}",
+                calculation_basis="per_unit",
+                amount_role="payout",
+                limit_scope="per_event",
+                conditions=[
+                    waiting_condition,
+                    unit_condition,
+                    "依醫師囑咐自每次癌症住院醫療出院後，以門診方式在醫院接受癌症治療",
+                ],
+            ),
+            coverage_entry(
+                "cancer-death",
+                "癌症身故保險金",
+                amounts["cancer_death_per_unit"],
+                "per_unit",
+                "每單位給付 300,000 元；特定未成年人或心神狀態者依條款改為喪葬費用保險金。",
+                f"保單條款第十二條及{table_ref}",
+                calculation_basis="per_unit",
+                amount_role="payout",
+                limit_scope="per_policy",
+                conditions=[waiting_condition, unit_condition, "有效期間內因癌症身故", funeral_condition],
+            ),
+        ],
+    }
+
+
+TAIWAN_FISHERMEN_GROUP_MEDICAL_PRODUCT_VERSIONS = {
+    "202313MZ1A96721A11Z10000000": {
+        "file_name": "202313MZ1A96721A11Z10000000-A.pdf",
+        "page_count": 6,
+        "revision": "original",
+        "required_revision_signals": ("台壽字第 1112320173 號函備查",),
+        "forbidden_revision_signals": ("金管保壽字第 1110152342 號函修正",),
+        "insured_notice_revision": False,
+    },
+    "202313MZ1A96721A11Z10000001": {
+        "file_name": "202313MZ1A96721A11Z10000001-A.pdf",
+        "page_count": 6,
+        "revision": "112-revised",
+        "required_revision_signals": (
+            "台壽字第 1112320173 號函備查",
+            "金管保壽字第 1110152342 號函修正",
+            "前二項對要保人之催告,本公司另應通知被保險人以確保其權益",
+        ),
+        "forbidden_revision_signals": (),
+        "insured_notice_revision": True,
+    },
+}
+TAIWAN_FISHERMEN_GROUP_MEDICAL_AMOUNTS = {
+    "annual_reimbursement_limit": 320_000,
+    "hospital_daily": 1_500,
+    "annual_hospital_daily_days_limit": 31,
+    "same_accident_deductible": 3_000,
+}
+TAIWAN_FISHERMEN_GROUP_MEDICAL_TABLE_SHA256 = (
+    "e42b8475b8278dfb18c7e939f2f0044172a19399a47c722b320bf74970a2edde"
+)
+TAIWAN_YIQIJIANZHI_SPECIFIC_DISEASE_PRODUCT_VERSIONS = {
+    "202391MZ1A41B22A11E10000000": {
+        "file_name": "202391MZ1A41B22A11E10000000-A.pdf",
+        "page_count": 7,
+        "terms_revision": "original",
+    },
+    "202391MZ1A41B22A11E10000001": {
+        "file_name": "202391MZ1A41B22A11E10000001-A.pdf",
+        "page_count": 7,
+        "terms_revision": "first-revision",
+    },
+}
+TAIWAN_YIQIJIANZHI_TERMS_SHA256 = (
+    "8167e1d1d5a12114bf2cd7ea401b3c3b60eb311269bd0d0c8df7642af221d6cb"
+)
+
+
+def is_taiwan_yiqijianzhi_specific_disease_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id in TAIWAN_YIQIJIANZHI_SPECIFIC_DISEASE_PRODUCT_VERSIONS
+        or re.fullmatch(r"202391MZ1A41B22A11E1000000[01]-[AF]\.pdf", file_name)
+        is not None
+        or "台灣人壽溢起健智特定傷病定期健康保險" in dense_text
+    )
+
+
+def parse_taiwan_yiqijianzhi_specific_disease_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_YIQIJIANZHI_SPECIFIC_DISEASE_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != version["file_name"]
+        or document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = (
+        "台灣人壽溢起健智特定傷病定期健康保險",
+        "主要給付項目:1.特定傷病保險金2.退還年繳應繳保險費總和",
+        "台壽字第1152320021號函備查",
+        "本保險「特定傷病」之等待期間為本契約生效日起持續有效30日之期間",
+        "【健康促進續年度保險費折減】第六條",
+        "提供本契約健康促進續年度保險費折減2%",
+        "【契約的終止】第十條",
+        "被保險人保險年齡89歲屆滿時",
+        "【特定傷病保險金的給付】第十二條",
+        "按診斷確定日當時之「保險金額」及「年繳應繳保險費總和」的1.02倍之加總給付",
+        "按診斷確定日當時之「保險金額」給付",
+        "本公司僅給付一項「特定傷病保險金」",
+        "【退還年繳應繳保險費總和】第十三條",
+        "「年繳應繳保險費總和」的1.02倍",
+        "每年給付之分期定期保險金低於新臺幣36,000元者",
+    )
+    if any(signal not in dense_text for signal in required_signals):
+        return None
+    if hashlib.sha256(dense_text.encode("utf-8")).hexdigest() != TAIWAN_YIQIJIANZHI_TERMS_SHA256:
+        return None
+
+    source_ref = "保單條款第二、六、十、十二、十三、十五條，第 1-6 頁"
+    specific_disease_condition = "等待期間為契約生效日起持續有效 30 日；意外傷害事故所致者不受等待期間限制"
+    no_claim_condition = "診斷確定日於無理賠紀錄期間內"
+    post_no_claim_condition = "診斷確定日於無理賠紀錄期間屆滿後"
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "輸入保單面頁所載保險金額。年繳應繳保險費總和須另依保單年度、繳費期間及表定標準體年繳保費計算，不能只由保險金額推得。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "specific_disease_waiting_days": 30,
+            "accident_exempt_waiting_period": True,
+            "maximum_coverage_age": 89,
+            "no_claim_premium_refund_rate_percent": 102,
+            "health_promotion_discount_rate_percent": 2,
+            "installment_min_annual_amount": 36_000,
+            "source_terms_sha256": TAIWAN_YIQIJIANZHI_TERMS_SHA256,
+        },
+        "coverage_entries": [
+            coverage_entry(
+                "specific-disease-face-amount",
+                "特定傷病保險金：保險金額",
+                None,
+                "benefit_base",
+                "初次診斷確定罹患條款第二條約定之特定傷病且仍生存者，至少按診斷確定日當時保險金額給付。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_policy",
+                aggregation_rule="choose_one",
+                rate_percent=100,
+                conditions=[
+                    specific_disease_condition,
+                    no_claim_condition,
+                    post_no_claim_condition,
+                    "同時或先後罹患二項以上特定傷病時僅給付一項",
+                    "給付特定傷病保險金後契約效力終止",
+                ],
+            ),
+            coverage_entry(
+                "specific-disease-no-claim-premium-addition",
+                "無理賠紀錄期間內特定傷病加計保費返還",
+                None,
+                "benefit_base",
+                "診斷確定日於無理賠紀錄期間內，除保險金額外，另按年繳應繳保險費總和的 1.02 倍加總給付。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_policy",
+                aggregation_rule="conditional_additive",
+                rate_percent=102,
+                unit_key="annual_premium_total",
+                conditions=[
+                    no_claim_condition,
+                    "此項以年繳應繳保險費總和為基礎，非以保險金額為基礎",
+                    "若先退還年繳應繳保險費總和後始申領特定傷病保險金，公司僅就差額負給付責任",
+                ],
+            ),
+            coverage_entry(
+                "no-claim-premium-refund",
+                "退還年繳應繳保險費總和",
+                None,
+                "benefit_base",
+                "無理賠紀錄期間內未申領特定傷病保險金，且期間內身故或期間屆滿仍生存者，按年繳應繳保險費總和的 1.02 倍退還。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_policy",
+                rate_percent=102,
+                unit_key="annual_premium_total",
+                conditions=[
+                    "無理賠紀錄期間內未曾申領第十二條特定傷病保險金",
+                    "於無理賠紀錄期間內身故或無理賠紀錄期間屆滿仍生存",
+                    "此項以年繳應繳保險費總和為基礎，需另由保單保費資料計算",
+                ],
+            ),
+            coverage_entry(
+                "health-promotion-renewal-premium-discount",
+                "健康促進續年度保險費折減",
+                None,
+                "benefit_base",
+                "指定期間內完成失智症風險基因檢測者，自完成檢測之該繳費期間內次一保單年度起，續年度應繳各期保險費折減 2%。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="reference",
+                limit_scope="annual",
+                rate_percent=2,
+                unit_key="renewal_premium",
+                conditions=[
+                    "須依公司檢測通知單指定方式於檢測有效期間內完成",
+                    "僅折減本契約續年度保險費，不含其他附約、附加條款、批註條款",
+                    "豁免或復效之保險費不適用",
+                ],
+            ),
+            coverage_entry(
+                "installment-minimum-annual-payment",
+                "分期定期保險金最低年給付門檻",
+                36_000,
+                "per_event",
+                "每年給付之分期定期保險金低於新臺幣 36,000 元者，公司將一次給付指定保險金，分期定期給付約定即行終止。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="reference",
+                limit_scope="annual",
+                conditions=[
+                    "要保人指定分期方式給付特定傷病保險金時適用",
+                    "低於門檻時改為一次給付指定保險金",
+                ],
+            ),
+        ],
+    }
+
+
+def is_taiwan_fishermen_group_medical_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    text = normalize_terms_text(str(document.get("text") or ""))
+    return (
+        product_id in TAIWAN_FISHERMEN_GROUP_MEDICAL_PRODUCT_VERSIONS
+        or re.fullmatch(r"202313MZ1A96721A11Z1000000[01]-[AF]\.pdf", file_name)
+        is not None
+        or "台灣人壽漁民團體一年定期醫療限額健康保險" in text
+    )
+
+
+def parse_taiwan_fishermen_group_medical_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_FISHERMEN_GROUP_MEDICAL_PRODUCT_VERSIONS.get(product_id)
+    file_name = str(document.get("file_name") or "")
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or file_name != version["file_name"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    if document.get("page_count") != version["page_count"] or document.get("pages_parsed") != version["page_count"]:
+        return None
+    if "台灣人壽漁民團體一年定期醫療限額健康保險" not in text:
+        return None
+    if text.count("附表一:各計畫別所對應之給付限制") != 1:
+        return None
+    if any(signal not in text for signal in version["required_revision_signals"]):
+        return None
+    if any(signal in text for signal in version["forbidden_revision_signals"]):
+        return None
+
+    required_headings = (
+        "保險範圍",
+        "醫療費用保險金的給付",
+        "住院日額補償保險金的給付",
+        "醫療費用未經全民健康保險給付者之處理方式",
+        "住院次數之計算及契約有效期間屆滿後住院之處理",
+        "保險金給付之限制",
+        "保險金的申領",
+    )
+    article_refs = heading_article_references(text)
+    if any(heading not in article_refs for heading in required_headings):
+        return None
+
+    table_start = text.rfind("附表一:各計畫別所對應之給付限制")
+    if table_start < 0:
+        return None
+    table_text = text[table_start : table_start + 420]
+    if "計畫A" not in table_text or "附表二:經驗分紅計算公式" not in table_text:
+        return None
+    table_match = re.search(
+        r"每年實支實付保險金限額\s*(?P<annual>\d+)\s*萬元"
+        r".*?住院日額\s*(?P<daily>[\d,]+)\s*元"
+        r".*?最高給付住院日數\s*(?P<days>\d+)\s*日"
+        r".*?同一事故保險金自負額\s*(?P<deductible>[\d,]+)\s*元",
+        table_text,
+    )
+    if not table_match:
+        return None
+
+    amounts = {
+        "annual_reimbursement_limit": int(table_match.group("annual")) * 10_000,
+        "hospital_daily": int(table_match.group("daily").replace(",", "")),
+        "annual_hospital_daily_days_limit": int(table_match.group("days")),
+        "same_accident_deductible": int(table_match.group("deductible").replace(",", "")),
+    }
+    if amounts != TAIWAN_FISHERMEN_GROUP_MEDICAL_AMOUNTS:
+        return None
+    if sha256_json(amounts) != TAIWAN_FISHERMEN_GROUP_MEDICAL_TABLE_SHA256:
+        return None
+
+    table_ref = "附表一:各計畫別所對應之給付限制, 第 6 頁"
+    reimbursement_condition = "同一事故醫療費用保險金或住院日額補償保險金二擇一申領"
+    deductible_condition = "同一事故先扣除保險金自負額 3,000 元"
+
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "計畫別",
+        "selection_guidance": "請選擇保單或保險證所載計畫別；本條款附表一列示計畫A。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "nhi_uncovered_payment_rate_percent": 100,
+            "same_hospital_readmission_days": 14,
+            "post_expiry_readmission_excluded": True,
+            "annual_hospital_daily_days_limit": 31,
+            "same_accident_deductible": 3_000,
+            "insured_notice_revision": version["insured_notice_revision"],
+        },
+        "plan_options": [
+            {
+                "value": "A",
+                "label": "計畫A",
+                "coverage_entries": [
+                    coverage_entry(
+                        "annual-medical-reimbursement-limit",
+                        "醫療費用保險金每年實支實付限額",
+                        amounts["annual_reimbursement_limit"],
+                        "annual_limit",
+                        "被保險人以全民健康保險身分住院或門診診療時,依條款列示醫療費用給付；同一保單年度最高給付以計畫A每年實支實付保險金限額為限。",
+                        f"保單條款{article_refs['醫療費用保險金的給付']}、{article_refs['保險金給付之限制']}及{table_ref}",
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="annual",
+                        aggregation_rule="choose_one",
+                        conditions=[
+                            reimbursement_condition,
+                            deductible_condition,
+                            "已獲全民健康保險給付的部分不另給付",
+                        ],
+                    ),
+                    coverage_entry(
+                        "hospital-daily-compensation",
+                        "住院日額補償保險金",
+                        amounts["hospital_daily"],
+                        "daily_total",
+                        "若投保時已投保其他商業實支實付型醫療保險而未通知本公司,可依住院日數及附表一住院日額給付；同一保單年度最高 31 日。",
+                        f"保單條款{article_refs['住院日額補償保險金的給付']}、{article_refs['保險金給付之限制']}及{table_ref}",
+                        calculation_basis="per_day",
+                        amount_role="payout",
+                        limit_scope="per_day",
+                        aggregation_rule="choose_one",
+                        conditions=[
+                            reimbursement_condition,
+                            deductible_condition,
+                            "同一保單年度最高給付住院日數 31 日",
+                        ],
+                    ),
+                    coverage_entry(
+                        "same-accident-deductible",
+                        "同一事故保險金自負額",
+                        amounts["same_accident_deductible"],
+                        "per_event",
+                        "醫療費用保險金或住院日額補償保險金均須先扣除同一事故保險金自負額。",
+                        table_ref,
+                        calculation_basis="fixed_amount",
+                        amount_role="reference",
+                        limit_scope="per_event",
+                        aggregation_rule="separate",
+                        conditions=["用於計算給付淨額,不是額外給付"],
+                    ),
+                ],
+            }
+        ],
+    }
+
+
+FUBON_GOLDEN_HEALTH_PRODUCT_VERSIONS = {
+    "209311MZ1B00823A11Z10000000": {
+        "file_name": "209311MZ1B00823A11Z10000000-A.pdf",
+        "page_count": 31,
+        "revision": "original",
+        "document_code": "HSH1071026",
+        "required_revision_signals": ("107.10.26 富壽商精字第1070003223 號函備查",),
+        "forbidden_revision_signals": ("108.04.09 金管保壽字第10804904941號令修正",),
+        "medical_opinion_revision": False,
+    },
+    "209311MZ1B00823A11Z10000001": {
+        "file_name": "209311MZ1B00823A11Z10000001-A.pdf",
+        "page_count": 31,
+        "revision": "109-revised",
+        "document_code": "HSH1090101",
+        "required_revision_signals": (
+            "107.10.26 富壽商精字第 1070003223 號函備查",
+            "108.04.09 金管保壽字第 10804904941 號函修正",
+            "得徵詢其他醫師之醫學專業意見,並得經受益人同意調閱被保險人之就醫相關資料",
+        ),
+        "forbidden_revision_signals": (),
+        "medical_opinion_revision": True,
+    },
+}
+FUBON_GOLDEN_HEALTH_AMOUNTS = {
+    "hospital_daily": 5_000,
+    "room_daily_limit": 5_000,
+    "inpatient_medical_surgery_limit": 500_000,
+    "inpatient_medical_surgery_total_limit": 750_000,
+    "outpatient_surgery_limit": 100_000,
+    "outpatient_medical_limit": 10_000,
+    "outpatient_medical_deductible": 1_000,
+    "medical_lifetime_cap": 3_000_000,
+    "death_paid_premium_rate_percent": 106,
+    "death_paid_year_base": 300_000,
+    "maturity_age": 99,
+    "maturity_paid_premium_rate_percent": 106,
+    "maturity_base": 3_000_000,
+}
+FUBON_GOLDEN_HEALTH_TABLE_SHA256 = (
+    "54b67cec87d558d7d94bfec678abd4a92c4b9124f5ac3c5c3b5ee1b3daf8d305"
+)
+
+
+FUBON_GOLDEN_MEDICAL_DEVICE_PRODUCT_VERSIONS = {
+    "209391RZ1A01622A11Z10000000": {
+        "file_name": "209391RZ1A01622A11Z10000000-A.pdf",
+        "page_count": 5,
+        "revision": "original",
+        "document_code": "HTA1130805",
+        "required_revision_signals": ("113.08.05富壽商精字第 1130001719號函備查",),
+        "forbidden_revision_signals": ("114.01.13",),
+        "unit_reduction_revision": False,
+    },
+    "209391RZ1A01622A11Z10000001": {
+        "file_name": "209391RZ1A01622A11Z10000001-A.pdf",
+        "page_count": 5,
+        "revision": "114-revised",
+        "document_code": "HTA1140113",
+        "required_revision_signals": (
+            "113.08.05 富壽商精字第 1130001719 號函備查",
+            "114.01.13 富壽商精字第 1130005942 號函備查",
+            "【投保單位數之減少】",
+        ),
+        "forbidden_revision_signals": (),
+        "unit_reduction_revision": True,
+    },
+}
+FUBON_GOLDEN_MEDICAL_DEVICE_BENEFITS = (
+    ("intraocular-lens-implant", "人工水晶體植入術", (10_000, 20_000, 30_000)),
+    ("artificial-knee-replacement", "人工膝關節置換術", (10_000, 20_000, 30_000)),
+    ("artificial-hip-replacement", "人工髖關節置換術", (10_000, 20_000, 30_000)),
+    (
+        "cardiac-catheter-stent",
+        "心導管檢查併心臟血管支架置放術",
+        (30_000, 60_000, 90_000),
+    ),
+    ("pacemaker-implant", "心律調節器植入術", (30_000, 60_000, 90_000)),
+    ("heart-valve-replacement", "瓣膜置換手術", (50_000, 100_000, 150_000)),
+    ("ventriculoperitoneal-shunt", "腦室腹腔分流手術", (50_000, 100_000, 150_000)),
+    ("ventricular-assist-device", "心室輔助裝置植入術", (100_000, 200_000, 300_000)),
+    ("ecmo-setup", "體外循環維生系統(ECMO)建立", (100_000, 200_000, 300_000)),
+)
+FUBON_GOLDEN_MEDICAL_DEVICE_TABLE_SHA256 = (
+    "afabdff3bd5c7a8c8bcc9f06471fb18130d166ddc9fdbafb8a0a98f4bb98f713"
+)
+
+
+def is_fubon_golden_medical_device_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    text = normalize_terms_text(str(document.get("text") or ""))
+    return (
+        product_id in FUBON_GOLDEN_MEDICAL_DEVICE_PRODUCT_VERSIONS
+        or re.fullmatch(r"209391RZ1A01622A11Z1000000[01]-[AF]\.pdf", file_name)
+        is not None
+        or "富邦人壽金醫靠健康保險附約" in text
+    )
+
+
+def _parse_fubon_golden_medical_device_amounts(
+    compact_text: str,
+) -> list[tuple[str, str, tuple[int, int, int]]] | None:
+    parsed: list[tuple[str, str, tuple[int, int, int]]] = []
+    for entry_id, name, _expected in FUBON_GOLDEN_MEDICAL_DEVICE_BENEFITS:
+        if entry_id == "heart-valve-replacement":
+            pattern = (
+                r"6\.「主動脈瓣或二尖瓣或三尖瓣置換手術.*?"
+                r"三個瓣膜換置手術」(?P<y1>\d+)萬元(?P<y2>\d+)萬元(?P<y3>\d+)萬元"
+            )
+        else:
+            pattern = (
+                re.escape(compact_table_text(name))
+                + r"(?P<y1>\d+)萬元(?P<y2>\d+)萬元(?P<y3>\d+)萬元"
+            )
+        match = re.search(pattern, compact_text)
+        if not match:
+            return None
+        amounts = tuple(int(match.group(key)) * 10_000 for key in ("y1", "y2", "y3"))
+        parsed.append((entry_id, name, amounts))
+    return parsed
+
+
+def parse_fubon_golden_medical_device_unit_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_GOLDEN_MEDICAL_DEVICE_PRODUCT_VERSIONS.get(product_id)
+    file_name = str(document.get("file_name") or "")
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or file_name != version["file_name"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    page_count = document.get("page_count")
+    pages_parsed = document.get("pages_parsed")
+    if page_count is not None and page_count != version["page_count"]:
+        return None
+    if pages_parsed is not None and pages_parsed != version["page_count"]:
+        return None
+    if "富邦人壽金醫靠健康保險附約" not in text:
+        return None
+
+    compact_text = compact_table_text(text)
+    required_revision_signals = tuple(
+        compact_table_text(signal) for signal in version["required_revision_signals"]
+    )
+    forbidden_revision_signals = tuple(
+        compact_table_text(signal) for signal in version["forbidden_revision_signals"]
+    )
+    if (
+        version["document_code"] not in text
+        or any(signal not in compact_text for signal in required_revision_signals)
+        or any(signal in compact_text for signal in forbidden_revision_signals)
+    ):
+        return None
+
+    article_refs = heading_article_references(text)
+    required_headings = (
+        "保險範圍:醫材補助保險金的給付",
+        "保險金的申領",
+        "附約的終止",
+    )
+    if any(heading not in article_refs for heading in required_headings):
+        return None
+    if version["unit_reduction_revision"] and "投保單位數之減少" not in article_refs:
+        return None
+
+    table_header = compact_table_text(
+        "手術項目 每投保單位給付金額 第一保單年度 第二保單年度 第三保單年度起"
+    )
+    required_clause_signals = (
+        compact_table_text("接受該項手術日期當時之保單年度對應下表所列之給付金額"),
+        compact_table_text("每眼於每一保單年度之給付以一次為限"),
+        compact_table_text("每側關節於每一保單年度之給付以一次為限"),
+        compact_table_text("屬同一給付項目"),
+        compact_table_text("手術項目4至9之各項手術"),
+        compact_table_text("本附約效力即行終止"),
+    )
+    if table_header not in compact_text or any(
+        signal not in compact_text for signal in required_clause_signals
+    ):
+        return None
+
+    parsed_amounts = _parse_fubon_golden_medical_device_amounts(compact_text)
+    if parsed_amounts != list(FUBON_GOLDEN_MEDICAL_DEVICE_BENEFITS):
+        return None
+    if sha256_json(parsed_amounts) != FUBON_GOLDEN_MEDICAL_DEVICE_TABLE_SHA256:
+        return None
+
+    table_ref = "保單條款第八條及醫材補助給付表, 第 2 至 3 頁"
+    tier_labels = ("第一保單年度每單位", "第二保單年度每單位", "第三保單年度起每單位")
+    shared_conditions = [
+        "每投保單位給付；使用者輸入投保單位數後加總",
+        "依接受手術日期當時之保單年度套用給付金額",
+        "疾病須為附約生效日起持續有效三十日以後或復效日起所發生之疾病",
+        "被保險人保險年齡到達七十四歲之保單週年日時本附約效力即行終止",
+        "手術項目1至9均已給付且達上限時,本附約效力即行終止",
+    ]
+    item_conditions = {
+        "intraocular-lens-implant": "每眼每一保單年度一次；本附約有效期間最多二次",
+        "artificial-knee-replacement": "每側關節每一保單年度一次；本附約有效期間最多二次",
+        "artificial-hip-replacement": "每側關節每一保單年度一次；本附約有效期間最多二次",
+        "heart-valve-replacement": "瓣膜置換手術屬同一給付項目；給付一次後其他瓣膜置換不再給付",
+    }
+
+    coverage_entries = []
+    for entry_id, name, tier_amounts in parsed_amounts:
+        conditions = list(shared_conditions)
+        conditions.append(
+            item_conditions.get(entry_id, "本附約有效期間內以一次為限")
+        )
+        coverage_entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                tier_amounts[-1],
+                "per_unit",
+                "醫材補助保險金按投保單位數及接受手術當時保單年度級距計算。",
+                table_ref,
+                calculation_basis="tiered_or_stepped",
+                amount_role="payout",
+                limit_scope="per_policy",
+                aggregation_rule="separate",
+                conditions=conditions,
+                amount_tiers=[
+                    {"label": label, "amount": amount}
+                    for label, amount in zip(tier_labels, tier_amounts)
+                ],
+            )
+        )
+
+    return {
+        "selection_type": "unit",
+        "input_mode": "unit",
+        "selection_source": "terms",
+        "selection_label": "投保單位數",
+        "selection_guidance": "請輸入保單首頁或批註所載投保單位數；系統會依手術日期所在保單年度套用第一、第二或第三保單年度起每單位金額。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "disease_initial_waiting_days": 30,
+            "maximum_coverage_age": 74,
+            "benefit_tiers_by_policy_year": True,
+            "unit_reduction_revision": version["unit_reduction_revision"],
+            "all_items_paid_termination": True,
+        },
+        "coverage_entries": coverage_entries,
+    }
+
+
+def is_fubon_golden_health_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    text = normalize_terms_text(str(document.get("text") or ""))
+    return (
+        product_id in FUBON_GOLDEN_HEALTH_PRODUCT_VERSIONS
+        or re.fullmatch(r"209311MZ1B00823A11Z1000000[01]-[AF]\.pdf", file_name)
+        is not None
+        or "富邦人壽金實在終身健康保險" in text
+    )
+
+
+def parse_fubon_golden_health_whole_life_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_GOLDEN_HEALTH_PRODUCT_VERSIONS.get(product_id)
+    file_name = str(document.get("file_name") or "")
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or file_name != version["file_name"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    if document.get("page_count") != version["page_count"] or document.get("pages_parsed") != version["page_count"]:
+        return None
+    if "富邦人壽金實在終身健康保險" not in text:
+        return None
+    if text.count("附表一: 單位:新臺幣(元) 富邦人壽金實在終身健康保險") != 1:
+        return None
+    if any(signal not in text for signal in version["required_revision_signals"]):
+        return None
+    if any(signal in text for signal in version["forbidden_revision_signals"]):
+        return None
+    if text.count(version["document_code"]) < 5:
+        return None
+
+    required_headings = (
+        "保險範圍:住院醫療日額保險金的給付",
+        "保險範圍:每日病房費用保險金的給付(實支實付)",
+        "保險範圍:住院醫療費用暨住院手術費用保險金的給付(實支實付)",
+        "保險範圍: 「住院醫療日額保險金」選擇權的行使",
+        "保險範圍:門診手術費用保險金的給付(實支實付)",
+        "保險範圍:門診醫療費用保險金的給付(實支實付)",
+        "保險範圍:醫療保險金給付的限制",
+        "保險範圍:所繳保險費加計利息的退還、身故保險金或喪葬費用保險金的給付",
+        "保險範圍:祝壽保險金的給付",
+    )
+    article_refs = heading_article_references(text)
+    if any(heading not in article_refs for heading in required_headings):
+        return None
+
+    table_start = text.rfind("附表一: 單位:新臺幣(元) 富邦人壽金實在終身健康保險")
+    if table_start < 0:
+        return None
+    table_text = text[table_start : table_start + 760]
+    table_match = re.search(
+        r"住院醫療日額保險金\s*(?P<hospital_daily>[\d,]+)\s*/日"
+        r".*?每日病房費用保險金限額\s*(?P<room_daily>[\d,]+)\s*/日"
+        r".*?住院醫療費用暨住院手術費用保險金限額\s*(?P<inpatient>[\d,]+)\s*/同一次住院"
+        r".*?住院醫療費用暨住院手術費用保險金總限額\s*(?P<inpatient_total>[\d,]+)\s*/同一次住院"
+        r".*?門診手術費用保險金限額\s*(?P<outpatient_surgery>[\d,]+)\s*/日"
+        r".*?門診醫療費用保險金限額\s*(?P<outpatient_medical>[\d,]+)\s*/日"
+        r".*?醫療保險金總限額\s*(?P<medical_cap>[\d,]+)"
+        r".*?扣除\s*(?P<deductible>[\d,]+)\s*元之自負額",
+        table_text,
+    )
+    if not table_match:
+        return None
+
+    amounts = {
+        "hospital_daily": int(table_match.group("hospital_daily").replace(",", "")),
+        "room_daily_limit": int(table_match.group("room_daily").replace(",", "")),
+        "inpatient_medical_surgery_limit": int(table_match.group("inpatient").replace(",", "")),
+        "inpatient_medical_surgery_total_limit": int(table_match.group("inpatient_total").replace(",", "")),
+        "outpatient_surgery_limit": int(table_match.group("outpatient_surgery").replace(",", "")),
+        "outpatient_medical_limit": int(table_match.group("outpatient_medical").replace(",", "")),
+        "outpatient_medical_deductible": int(table_match.group("deductible").replace(",", "")),
+        "medical_lifetime_cap": int(table_match.group("medical_cap").replace(",", "")),
+        "death_paid_premium_rate_percent": 106,
+        "death_paid_year_base": 300_000,
+        "maturity_age": 99,
+        "maturity_paid_premium_rate_percent": 106,
+        "maturity_base": 3_000_000,
+    }
+    if amounts != FUBON_GOLDEN_HEALTH_AMOUNTS:
+        return None
+    if sha256_json(amounts) != FUBON_GOLDEN_HEALTH_TABLE_SHA256:
+        return None
+
+    table_ref = "附表一:醫療給付項目給付限額, 第 11 頁"
+    choice_condition = "同一次住院僅得就實支實付保險金或住院醫療日額保險金擇一申請"
+    non_nhi_condition = "非以全民健康保險身分就醫時,相關實支實付項目按實際支出 75% 給付並仍受限額限制"
+    inpatient_days_condition = "同一次住院日額與病房費用給付日數最高 365 日"
+    outpatient_deductible_condition = "門診醫療費用保險金每日先扣除自負額 1,000 元"
+
+    return {
+        "selection_type": "fixed",
+        "input_mode": "fixed",
+        "selection_source": "terms",
+        "selection_label": "固定保障",
+        "selection_guidance": "本條款附表一未分計畫別；使用者加入此險種即可套用固定給付限額。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "disease_initial_waiting_days": 30,
+            "same_hospital_readmission_days": 14,
+            "day_hospital_excluded": True,
+            "post_expiry_readmission_excluded": True,
+            "non_nhi_payment_rate_percent": 75,
+            "icu_daily_multiplier": 1.5,
+            "icu_daily_multiplier_days_limit": 7,
+            "hospital_daily_days_limit": 365,
+            "chronic_or_mental_annual_days_limit": 32,
+            "outpatient_medical_annual_days_limit": 20,
+            "medical_opinion_revision": version["medical_opinion_revision"],
+        },
+        "coverage_entries": [
+            coverage_entry(
+                "hospital-daily",
+                "住院醫療日額保險金",
+                amounts["hospital_daily"],
+                "daily_total",
+                "依實際住院日數給付；加護病房期間提高為 1.5 倍,最多 7 日。",
+                f"保單條款{article_refs['保險範圍:住院醫療日額保險金的給付']}及{table_ref}",
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                aggregation_rule="choose_one",
+                multiplier=1.5,
+                conditions=[choice_condition, inpatient_days_condition, "慢性病房或精神疾病住院每一保單年度最高 32 日"],
+            ),
+            coverage_entry(
+                "daily-room-board-limit",
+                "每日病房費用保險金限額",
+                amounts["room_daily_limit"],
+                "daily_total",
+                "按病房費、膳食費、特別護士以外護理費及醫師診察費等實際支出按日給付；加護病房限額提高為 1.5 倍,最多 7 日。",
+                f"保單條款{article_refs['保險範圍:每日病房費用保險金的給付(實支實付)']}及{table_ref}",
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_day",
+                aggregation_rule="choose_one",
+                multiplier=1.5,
+                conditions=[choice_condition, non_nhi_condition, inpatient_days_condition],
+            ),
+            coverage_entry(
+                "inpatient-medical-surgery-limit",
+                "住院醫療費用暨住院手術費用保險金限額",
+                amounts["inpatient_medical_surgery_limit"],
+                "per_event",
+                "同一次住院期間住院醫療費用暨住院手術費用實支實付限額；超過 30 日時按日數調整,最高受總限額限制。",
+                f"保單條款{article_refs['保險範圍:住院醫療費用暨住院手術費用保險金的給付(實支實付)']}及{table_ref}",
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_hospitalization",
+                aggregation_rule="choose_one",
+                amount_tiers=[
+                    {
+                        "label": "同一次住院基本限額",
+                        "amount": amounts["inpatient_medical_surgery_limit"],
+                    },
+                    {
+                        "label": "同一次住院總限額",
+                        "amount": amounts["inpatient_medical_surgery_total_limit"],
+                    }
+                ],
+                conditions=[choice_condition, non_nhi_condition, "同一次住院超過 30 日時限額按日數調整"],
+            ),
+            coverage_entry(
+                "outpatient-surgery-limit",
+                "門診手術費用保險金限額",
+                amounts["outpatient_surgery_limit"],
+                "per_event",
+                "同一日門診手術醫療費用實支實付限額；手術項目依附表二。",
+                f"保單條款{article_refs['保險範圍:門診手術費用保險金的給付(實支實付)']}及{table_ref}",
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_day",
+                conditions=[non_nhi_condition, "同日已依住院前後門診費用給付者不重複給付"],
+            ),
+            coverage_entry(
+                "outpatient-medical-limit",
+                "門診醫療費用保險金限額",
+                amounts["outpatient_medical_limit"],
+                "per_event",
+                "同一日門診醫療費用扣除自負額後給付；同一保單年度合計以 20 日門診為限。",
+                f"保單條款{article_refs['保險範圍:門診醫療費用保險金的給付(實支實付)']}及{table_ref}",
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_day",
+                conditions=[non_nhi_condition, outpatient_deductible_condition, "同一保單年度給付門診醫療費用保險金合計以 20 日門診為限"],
+            ),
+            coverage_entry(
+                "medical-lifetime-cap",
+                "醫療保險金總限額",
+                amounts["medical_lifetime_cap"],
+                "policy_total",
+                "第十二條至第十四條及第十六條至第十七條各項醫療保險金累計最高總限額。",
+                f"保單條款{article_refs['保險範圍:醫療保險金給付的限制']}及{table_ref}",
+                calculation_basis="fixed_amount",
+                amount_role="limit",
+                limit_scope="lifetime",
+                aggregation_rule="cumulative_cap",
+            ),
+            coverage_entry(
+                "death-benefit-reference-base",
+                "身故保險金或喪葬費用保險金計算基準",
+                amounts["death_paid_year_base"],
+                "policy_total",
+                "身故保險金按年繳保險費總和 1.06 倍或 300,000 元乘以實際繳費年度數二者較大值,再扣除已申領醫療保險金累計總額。",
+                f"保單條款{article_refs['保險範圍:所繳保險費加計利息的退還、身故保險金或喪葬費用保險金的給付']}",
+                calculation_basis="fixed_amount",
+                amount_role="reference",
+                limit_scope="per_policy",
+                conditions=["須另有年繳保險費及實際繳費年度數才能精算", "受未成年人及受監護宣告喪葬費用規則限制"],
+            ),
+            coverage_entry(
+                "maturity-benefit-reference-base",
+                "祝壽保險金計算基準",
+                amounts["maturity_base"],
+                "policy_total",
+                "保險年齡屆滿 99 歲仍生存時,按年繳保險費總和 1.06 倍或 3,000,000 元二者較大值,再扣除已申領醫療保險金累計總額。",
+                f"保單條款{article_refs['保險範圍:祝壽保險金的給付']}",
+                calculation_basis="fixed_amount",
+                amount_role="reference",
+                limit_scope="per_policy",
+                conditions=["須另有年繳保險費才能精算", "給付後契約效力終止"],
             ),
         ],
     }
@@ -5939,6 +8656,883 @@ def parse_prudential_china_medical_endowment_plan_unit(
         "plan_options": [
             {"value": "plan-a", "label": "甲型", "coverage_entries": plan_entries("plan-a")},
             {"value": "plan-b", "label": "乙型", "coverage_entries": plan_entries("plan-b")},
+        ],
+    }
+
+
+def is_prudential_china_life_accident_account_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = PRUDENTIAL_CHINA_LIFE_ACCIDENT_ACCOUNT_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def parse_prudential_china_life_accident_account_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_prudential_china_life_accident_account_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = PRUDENTIAL_CHINA_LIFE_ACCIDENT_ACCOUNT_PRODUCT_VERSIONS[product_id]
+    if (
+        document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_whitespace(text)
+    required_signals = (
+        "一年定期意外傷害帳戶型保險附約",
+        "意外身故保險金",
+        "傷害醫療保險金的給付",
+        "意外傷害住院保險金的給付",
+        "意外傷害住院手術費用保險金的給付",
+        "意外傷害加護病房費用保險金的給付",
+        "保險成本表",
+    )
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+    if not re.search(
+        r"本附約所稱\s*「保險金額」\s*係指本附約所載明之保險金額",
+        compact_text,
+    ):
+        return None
+    disability_term = "失能" if "意外失能保險金" in compact_text else "殘廢"
+    if f"意外{disability_term}保險金" not in compact_text:
+        return None
+    disability_table_heading = f"{disability_term}程度與保險金給付表"
+    if disability_table_heading not in compact_text:
+        return None
+
+    has_major_burn = "重大燒燙傷保險金的給付" in compact_text
+    children_covered = "主契約之被保險人或其配偶、子女" in compact_text
+    day_hospital_excluded = "日間住院" in compact_text
+    post_expiry_readmission_excluded = (
+        "本附約有效期間屆滿後出院" in compact_text
+        or "有效期間屆滿後出院" in compact_text
+    )
+    disability_percentages = [
+        int(value)
+        for value in re.findall(
+            r"(?:殘廢|失能)(?:程度)?(?:與保險金)?給付表.*?(\d{1,3})%",
+            compact_text,
+        )
+    ]
+    if not disability_percentages:
+        disability_table_start = compact_text.find(disability_table_heading)
+        disability_table_text = (
+            compact_text[disability_table_start:]
+            if disability_table_start >= 0
+            else compact_text
+        )
+        disability_percentages = [
+            int(value) for value in re.findall(r"(\d{1,3})%", disability_table_text)
+        ]
+    if not disability_percentages:
+        return None
+    disability_min_percent = min(disability_percentages)
+    disability_max_percent = max(disability_percentages)
+
+    surgery_table_start = compact_text.find("手術名稱及費用表")
+    surgery_table_text = (
+        compact_text[surgery_table_start:] if surgery_table_start >= 0 else ""
+    )
+    surgery_percentages = [
+        float(value)
+        for value in re.findall(r"(\d+(?:\.\d+)?)%", surgery_table_text)
+    ]
+    if not surgery_percentages:
+        return None
+
+    source_ref = "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款"
+    accident_180_condition = (
+        "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+    )
+    medical_limit_note = (
+        "此限額不是條款固定金額，須依保單所記載的「每次實支實付傷害醫療保險金限額」輸入或確認。"
+    )
+    hospital_daily_note = (
+        "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。"
+    )
+    entries = [
+        coverage_entry(
+            "accidental-death-or-funeral",
+            "意外身故保險金或喪葬費用保險金",
+            None,
+            "face_amount",
+            "被保險人因意外事故身故時，依本附約保險金額給付；特定未成年或依法限制身故給付者依喪葬費用規定辦理。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            conditions=[accident_180_condition, "給付後本附約效力終止。"],
+        ),
+        coverage_entry(
+            "accidental-disability",
+            "意外殘廢保險金",
+            None,
+            "face_amount",
+            f"依殘廢程度與保險金給付表比例乘以本附約保險金額，比例範圍 {disability_min_percent}% 至 {disability_max_percent}%。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="base",
+            limit_scope="per_policy",
+            rate_min_percent=disability_min_percent,
+            rate_max_percent=disability_max_percent,
+            conditions=[
+                accident_180_condition,
+                "同一事故多項殘廢給付合計最高以保險金額為限。",
+                "不同事故累計申領殘廢保險金時，最高以保險金額為限。",
+            ],
+        ),
+        coverage_entry(
+            "injury-medical-reimbursement-limit",
+            "傷害醫療保險金",
+            None,
+            "policy_recorded_limit",
+            medical_limit_note,
+            "人身意外傷害醫療保險給付附加條款第一條",
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_injury",
+            conditions=[
+                accident_180_condition,
+                "超過全民健康保險給付部分實支實付。",
+                "未以全民健康保險身分就醫或於非全民健康保險醫院治療者，依實際支付費用 70% 給付，仍受限額限制。",
+            ],
+        ),
+        coverage_entry(
+            "accident-pre-post-outpatient",
+            "意外傷害門診醫療費用保險金",
+            None,
+            "hospital_daily_amount",
+            f"{hospital_daily_note} 住院前 7 日及出院後 14 日內，同一意外傷害原因之門診醫療按該日額二分之一乘以門診日數給付。",
+            "人身意外傷害住院醫療定額保險給付附加條款第一條",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_hospitalization",
+            multiplier=0.5,
+            conditions=[accident_180_condition],
+        ),
+        coverage_entry(
+            "accident-hospital-daily",
+            "意外傷害住院保險金",
+            None,
+            "hospital_daily_amount",
+            f"{hospital_daily_note} 因意外傷害住院時，按實際住院日數含入院及出院日給付。",
+            "人身意外傷害住院醫療定額保險給付附加條款第二條",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_day",
+            conditions=[accident_180_condition, "每次住院期間最高給付 120 日。"],
+        ),
+        coverage_entry(
+            "fracture-without-hospitalization",
+            "骨折未住院醫療保險金",
+            None,
+            "hospital_daily_amount",
+            f"{hospital_daily_note} 骨折未住院或住院未達骨折表日數時，依骨折日數乘以日額二分之一給付。",
+            "人身意外傷害住院醫療定額保險給付附加條款第二條骨折表",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_injury",
+            multiplier=0.5,
+            conditions=["依骨折表完全骨折日數計算；不完全骨折二分之一，骨骼龜裂四分之一。"],
+        ),
+        coverage_entry(
+            "accident-inpatient-surgery",
+            "意外傷害住院手術費用保險金",
+            None,
+            "hospital_daily_amount",
+            f"{hospital_daily_note} 以日額 20 倍乘以手術名稱及費用表比例給付；表列比例範圍 {min(surgery_percentages)}% 至 {max(surgery_percentages)}%。",
+            "人身意外傷害住院醫療定額保險給付附加條款第三條及附表三",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_surgery",
+            rate_min_percent=min(surgery_percentages),
+            rate_max_percent=max(surgery_percentages),
+            multiplier=20,
+            conditions=[
+                accident_180_condition,
+                "每次住院各項手術費用保險金總和最高以住院日額 60 倍為限。",
+                "同一部位多次手術或同一次手術涉及多器官時，僅給付較高一項。",
+            ],
+        ),
+        coverage_entry(
+            "accident-icu-daily",
+            "意外傷害加護病房費用保險金",
+            None,
+            "hospital_daily_amount",
+            f"{hospital_daily_note} 住進加護病房治療期間，每日另按該日額給付。",
+            "人身意外傷害住院醫療定額保險給付附加條款第四條",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_day",
+            aggregation_rule="conditional_additive",
+            conditions=[accident_180_condition, "每次住院期間最高給付 120 日。"],
+        ),
+    ]
+    if has_major_burn:
+        entries.append(
+            coverage_entry(
+                "major-burn",
+                "重大燒燙傷保險金",
+                None,
+                "face_amount",
+                "符合重大燒燙傷定義並經醫院診斷確定時，按本契約或本附約所載保險金額 35% 給付。",
+                "人身意外傷害重大燒燙傷保險給付附加條款第二條",
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_event",
+                rate_percent=35,
+                conditions=[accident_180_condition, "本項於有效期間內以給付一次為限。"],
+            )
+        )
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "本附約保險金額",
+        "selection_guidance": "請輸入保單或批註所載本附約保險金額；傷害醫療限額與意外住院日額需另依保單頁面確認。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "children_covered": children_covered,
+            "medical_rider_included": True,
+            "hospital_daily_rider_included": True,
+            "major_burn_rider_included": has_major_burn,
+            "disability_term": disability_term,
+            "accident_claim_days": 180,
+            "same_hospital_readmission_days": 14,
+            "post_expiry_readmission_excluded": post_expiry_readmission_excluded,
+            "day_hospital_excluded": day_hospital_excluded,
+            "non_nhi_payment_rate_percent": 70,
+            "hospital_daily_days_limit": 120,
+            "surgery_base_daily_multiplier": 20,
+            "surgery_per_hospitalization_daily_multiplier_limit": 60,
+            "surgery_table_min_percent": min(surgery_percentages),
+            "surgery_table_max_percent": max(surgery_percentages),
+        },
+        "coverage_entries": entries,
+    }
+
+
+def is_prudential_china_life_one_three_five_accident_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = PRUDENTIAL_CHINA_LIFE_ONE_THREE_FIVE_ACCIDENT_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def parse_prudential_china_life_one_three_five_accident_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_prudential_china_life_one_three_five_accident_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = PRUDENTIAL_CHINA_LIFE_ONE_THREE_FIVE_ACCIDENT_PRODUCT_VERSIONS[
+        product_id
+    ]
+    if (
+        document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_whitespace(text)
+    required_signals = (
+        "一三五人身傷害保險",
+        "基本保險金額",
+        "一般意外傷害事故",
+        "海外一般意外傷害事故",
+        "飛航意外傷害事故",
+        "國內一般意外傷害身故保險金或喪葬費用保險金的給付",
+        "海外一般意外傷害身故保險金或喪葬費用保險金的給付",
+        "飛航意外傷害身故保險金或喪葬費用保險金的給付",
+        "保險給付的限制",
+    )
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+    if "失能保險金的給付" in compact_text and "失能程度與保險金給付表" in compact_text:
+        disability_term = "失能"
+        disability_table_label = "失能程度與保險金給付表"
+    elif "殘廢保險金的給付" in compact_text and "殘廢程度與保險金給付表" in compact_text:
+        disability_term = "殘廢"
+        disability_table_label = "殘廢程度與保險金給付表"
+    else:
+        return None
+    if not re.search(
+        r"基本保險金額\s*」?\s*係指本保險單所載明之保險金額",
+        compact_text,
+    ):
+        return None
+    if (
+        "按基本保險金額給付一般意外傷害身故保險金" not in compact_text
+        or "按基本保險金額的三倍給付海外一般意外傷害身故保險金" not in compact_text
+        or "按基本保險金額的五倍給付飛航意外傷害身故保險金" not in compact_text
+    ):
+        return None
+
+    disability_table_start = compact_text.find(disability_table_label)
+    disability_table_text = ""
+    if disability_table_start >= 0:
+        disability_table_end_candidates = [
+            index
+            for marker in ("燒燙傷", "短期費率表", "【附表三】", "【附表四】")
+            for index in [
+                compact_text.find(
+                    marker,
+                    disability_table_start + len(disability_table_label),
+                )
+            ]
+            if index > disability_table_start
+        ]
+        disability_table_end = (
+            min(disability_table_end_candidates)
+            if disability_table_end_candidates
+            else len(compact_text)
+        )
+        disability_table_text = compact_text[
+            disability_table_start:disability_table_end
+        ]
+    disability_percentages = [
+        int(value) for value in re.findall(r"(\d{1,3})%", disability_table_text)
+    ]
+    if not disability_percentages:
+        return None
+    disability_min_percent = min(disability_percentages)
+    disability_max_percent = max(disability_percentages)
+
+    accident_180_condition = (
+        "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+    )
+    funeral_limit_condition = (
+        "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。"
+    )
+    disability_cap_condition = (
+        f"同一事故致{disability_term}後身故時，身故與{disability_term}給付合計以該事故類型的基本保險金額倍數為限。"
+    )
+    source_refs = version.get(
+        "source_refs",
+        {
+            "domestic_death": "條款第五條",
+            "overseas_death": "條款第六條",
+            "flight_death": "條款第七條",
+            "disability": "條款第八條及附件三",
+        },
+    )
+
+    def death_entry(
+        entry_id: str,
+        name: str,
+        multiplier: int,
+        source_ref: str,
+        extra_conditions: list[str] | None = None,
+    ) -> dict[str, Any]:
+        conditions = [accident_180_condition, funeral_limit_condition]
+        if extra_conditions:
+            conditions.extend(extra_conditions)
+        return coverage_entry(
+            entry_id,
+            name,
+            None,
+            "face_amount",
+            f"按基本保險金額的 {multiplier} 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            rate_percent=multiplier * 100,
+            conditions=conditions,
+        )
+
+    def disability_entry(
+        entry_id: str,
+        name: str,
+        multiplier: int,
+        source_ref: str,
+        extra_conditions: list[str] | None = None,
+    ) -> dict[str, Any]:
+        conditions = [
+            accident_180_condition,
+            disability_cap_condition,
+            f"依{disability_term}程度與保險金給付表比例計算；同一事故多項{disability_term}依條款限制合併或擇較重者。",
+        ]
+        if extra_conditions:
+            conditions.extend(extra_conditions)
+        return coverage_entry(
+            entry_id,
+            name,
+            None,
+            "face_amount",
+            (
+                f"以基本保險金額的 {multiplier} 倍為基礎，再依附件三{disability_term}給付比例"
+                f" {disability_min_percent}% 至 {disability_max_percent}% 計算。"
+            ),
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="base",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            rate_min_percent=disability_min_percent,
+            rate_max_percent=disability_max_percent,
+            multiplier=multiplier,
+            conditions=conditions,
+        )
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單頁面記載的基本保險金額；國內一般、海外一般與飛航事故會分別按 1 倍、3 倍、5 倍換算。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "disability_term": disability_term,
+            "disability_schedule_item_count": len(disability_percentages),
+            "disability_rate_min_percent": disability_min_percent,
+            "disability_rate_max_percent": disability_max_percent,
+            "accident_claim_days": 180,
+            "domestic_general_multiplier": 1,
+            "overseas_general_multiplier": 3,
+            "flight_multiplier": 5,
+            "same_accident_domestic_cap_multiplier": 1,
+            "same_accident_overseas_cap_multiplier": 3,
+            "same_accident_flight_cap_multiplier": 5,
+        },
+        "coverage_entries": [
+            death_entry(
+                "domestic-general-accidental-death-or-funeral",
+                "國內一般意外傷害身故保險金或喪葬費用保險金",
+                1,
+                source_refs["domestic_death"],
+            ),
+            death_entry(
+                "overseas-general-accidental-death-or-funeral",
+                "海外一般意外傷害身故保險金或喪葬費用保險金",
+                3,
+                source_refs["overseas_death"],
+                ["須符合海外停留期間內發生，且不包含飛航意外傷害事故。"],
+            ),
+            death_entry(
+                "flight-accidental-death-or-funeral",
+                "飛航意外傷害身故保險金或喪葬費用保險金",
+                5,
+                source_refs["flight_death"],
+                ["須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"],
+            ),
+            disability_entry(
+                "domestic-general-accidental-disability",
+                f"一般意外傷害{disability_term}保險金",
+                1,
+                source_refs["disability"],
+            ),
+            disability_entry(
+                "overseas-general-accidental-disability",
+                f"海外一般意外傷害{disability_term}保險金",
+                3,
+                source_refs["disability"],
+                ["須符合海外停留期間內發生，且不包含飛航意外傷害事故。"],
+            ),
+            disability_entry(
+                "flight-accidental-disability",
+                f"飛航意外傷害{disability_term}保險金",
+                5,
+                source_refs["disability"],
+                ["須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"],
+            ),
+        ],
+    }
+
+
+def is_prudential_group_specific_accident_rider_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = PRUDENTIAL_GROUP_SPECIFIC_ACCIDENT_RIDER_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def parse_prudential_group_specific_accident_rider_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_prudential_group_specific_accident_rider_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = PRUDENTIAL_GROUP_SPECIFIC_ACCIDENT_RIDER_PRODUCT_VERSIONS[product_id]
+    if (
+        document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_whitespace(text)
+    required_signals = (
+        "保誠人壽團體特定意外傷害保險附加條款",
+        "一般特定意外身故保險金或喪葬費用保險金的給付",
+        "空中意外身故保險金或喪葬費用保險金的給付",
+        "特定意外失能保險金的給付",
+        "保險金額乘以附件一所列給付比例",
+        "保險金額之二倍乘以附件一所列給付比例",
+        "失能程度與保險金給付表",
+    )
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+
+    schedule_start = compact_text.find("失能程度與保險金給付表")
+    if schedule_start < 0:
+        return None
+    schedule_text = compact_text[schedule_start:]
+    disability_items = set(
+        re.findall(r"(?<!\d)\d{1,2}-\d{1,2}-\d{1,2}(?!\d)", schedule_text)
+    )
+    disability_percentages = [
+        int(value) for value in re.findall(r"(\d{1,3})%", schedule_text)
+    ]
+    if not disability_items or not disability_percentages:
+        return None
+    disability_min_percent = min(disability_percentages)
+    disability_max_percent = max(disability_percentages)
+
+    accident_180_condition = (
+        "事故發生日起 180 日內死亡或失能；超過 180 日者，需證明與該事故有因果關係。"
+    )
+    funeral_limit_condition = (
+        "未滿 15 足歲或受監護宣告者，死亡給付依條款轉為喪葬費用保險金並受法定上限限制。"
+    )
+    general_specific_condition = (
+        "一般特定意外包含陸海大眾運輸交通工具、公共場所火災、電梯意外。"
+    )
+    flight_condition = (
+        "空中意外限以乘客身分搭乘固定航線之商用航空客機期間發生的意外。"
+    )
+    disability_schedule_condition = (
+        f"依附件一失能程度與保險金給付表，{len(disability_items)} 項失能程度，給付比例 "
+        f"{disability_min_percent}% 到 {disability_max_percent}%。"
+    )
+    disability_cap_condition = (
+        "同一事故致二項以上失能時給付各項之和；一般特定意外最高以保險金額為限，空中意外最高以保險金額二倍為限。"
+    )
+    prior_disability_condition = (
+        "如合併以前失能可領較嚴重項目，條款要求扣除以前失能視同已給付金額。"
+    )
+
+    def death_entry(
+        entry_id: str,
+        name: str,
+        rate_percent: int,
+        source_ref: str,
+        condition: str,
+    ) -> dict[str, Any]:
+        multiplier_label = "保險金額" if rate_percent == 100 else "保險金額二倍"
+        return coverage_entry(
+            entry_id,
+            name,
+            None,
+            "face_amount",
+            f"符合條款事故與死亡條件時，按{multiplier_label}給付。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            rate_percent=rate_percent,
+            conditions=[
+                condition,
+                accident_180_condition,
+                funeral_limit_condition,
+            ],
+        )
+
+    def disability_entry(
+        entry_id: str,
+        name: str,
+        multiplier: int,
+        source_ref: str,
+        condition: str,
+    ) -> dict[str, Any]:
+        multiplier_label = "保險金額" if multiplier == 1 else "保險金額二倍"
+        return coverage_entry(
+            entry_id,
+            name,
+            None,
+            "face_amount",
+            (
+                f"以{multiplier_label}為基準，依附件一失能程度表所列比例 "
+                f"{disability_min_percent}% 到 {disability_max_percent}% 給付。"
+            ),
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="base",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            rate_min_percent=disability_min_percent,
+            rate_max_percent=disability_max_percent,
+            multiplier=multiplier,
+            conditions=[
+                condition,
+                accident_180_condition,
+                disability_schedule_condition,
+                disability_cap_condition,
+                prior_disability_condition,
+            ],
+        )
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單面頁上的保險金額；本附加條款依一般特定意外或空中意外分別以 1 倍或 2 倍保額計算。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "disability_term": "失能",
+            "disability_schedule_item_count": len(disability_items),
+            "disability_rate_min_percent": disability_min_percent,
+            "disability_rate_max_percent": disability_max_percent,
+            "accident_claim_days": 180,
+            "general_specific_multiplier": 1,
+            "flight_multiplier": 2,
+            "same_accident_general_specific_cap_multiplier": 1,
+            "same_accident_flight_cap_multiplier": 2,
+        },
+        "coverage_entries": [
+            death_entry(
+                "general-specific-accidental-death-or-funeral",
+                "一般特定意外身故保險金或喪葬費用保險金",
+                100,
+                "第四條：一般特定意外身故保險金或喪葬費用保險金的給付",
+                general_specific_condition,
+            ),
+            death_entry(
+                "flight-accidental-death-or-funeral",
+                "空中意外身故保險金或喪葬費用保險金",
+                200,
+                "第五條：空中意外身故保險金或喪葬費用保險金的給付",
+                flight_condition,
+            ),
+            disability_entry(
+                "general-specific-accidental-disability",
+                "一般特定意外失能保險金",
+                1,
+                "第六條：特定意外失能保險金的給付",
+                general_specific_condition,
+            ),
+            disability_entry(
+                "flight-accidental-disability",
+                "空中意外失能保險金",
+                2,
+                "第六條：特定意外失能保險金的給付",
+                flight_condition,
+            ),
+        ],
+    }
+
+
+def is_prudential_fire_mass_transit_accident_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = PRUDENTIAL_FIRE_MASS_TRANSIT_ACCIDENT_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def parse_prudential_fire_mass_transit_accident_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_prudential_fire_mass_transit_accident_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = PRUDENTIAL_FIRE_MASS_TRANSIT_ACCIDENT_PRODUCT_VERSIONS[product_id]
+    if (
+        document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_whitespace(text)
+    disability_term = str(version.get("disability_term") or "殘廢")
+    required_signals = (
+        "火災暨陸海大眾運輸工具意外傷害保險附約",
+        "本附約所稱「保險金額」",
+        "火災意外傷害事故",
+        "陸海大眾運輸工具意外傷害事故",
+        "大眾運輸工具",
+        "身故保險金或喪葬費用保險金的給付",
+        f"{disability_term}保險金的給付",
+        "保險金額之四倍",
+        "保險金額乘以附件一所列給付比例",
+        "保險金額之四倍乘以附件一所列給付比例",
+        f"{disability_term}程度與保險金給付表",
+    )
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+
+    disability_table_start = compact_text.find(f"{disability_term}程度與保險金給付表")
+    disability_table_text = (
+        compact_text[disability_table_start:] if disability_table_start >= 0 else ""
+    )
+    disability_items = set(
+        re.findall(r"\b\d{1,2}-\d{1,2}-\d{1,2}\b", disability_table_text)
+    )
+    disability_percentages = [
+        int(value) for value in re.findall(r"(\d{1,3})%", disability_table_text)
+    ]
+    if not disability_items or not disability_percentages:
+        return None
+    disability_min_percent = min(disability_percentages)
+    disability_max_percent = max(disability_percentages)
+
+    accident_180_condition = (
+        "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+    )
+    funeral_limit_condition = (
+        "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。"
+    )
+    fire_condition = (
+        "須為非因搭乘大眾運輸工具而遭遇火災所致的火災意外傷害事故。"
+    )
+    mass_transit_condition = (
+        "須以乘客身分搭乘鐵路、水上或公路大眾運輸工具，且非執勤工作人員。"
+    )
+    disability_cap_condition = (
+        f"同一事故致{disability_term}後身故時，身故與{disability_term}給付合計以該事故類型的身故保險金額為限。"
+    )
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單頁面記載的本附約保險金額；火災意外以 1 倍換算，陸海大眾運輸工具意外以 4 倍換算。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "disability_term": disability_term,
+            "disability_schedule_item_count": len(disability_items),
+            "disability_rate_min_percent": disability_min_percent,
+            "disability_rate_max_percent": disability_max_percent,
+            "accident_claim_days": 180,
+            "fire_accident_multiplier": 1,
+            "land_water_mass_transit_multiplier": 4,
+            "same_accident_fire_cap_multiplier": 1,
+            "same_accident_land_water_mass_transit_cap_multiplier": 4,
+            "cumulative_fire_disability_cap_multiplier": 1,
+            "cumulative_land_water_mass_transit_disability_cap_multiplier": 4,
+        },
+        "coverage_entries": [
+            coverage_entry(
+                "fire-accidental-death-or-funeral",
+                "火災意外身故保險金或喪葬費用保險金",
+                None,
+                "face_amount",
+                "按保險金額的 1 倍給付；實際金額由使用者輸入的保險金額換算。",
+                "條款第六條",
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_event",
+                aggregation_rule="choose_one",
+                rate_percent=100,
+                conditions=[
+                    accident_180_condition,
+                    funeral_limit_condition,
+                    fire_condition,
+                ],
+            ),
+            coverage_entry(
+                "land-water-mass-transit-accidental-death-or-funeral",
+                "陸海大眾運輸工具意外身故保險金或喪葬費用保險金",
+                None,
+                "face_amount",
+                "按保險金額的 4 倍給付；實際金額由使用者輸入的保險金額換算。",
+                "條款第六條",
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_event",
+                aggregation_rule="choose_one",
+                rate_percent=400,
+                conditions=[
+                    accident_180_condition,
+                    funeral_limit_condition,
+                    mass_transit_condition,
+                ],
+            ),
+            coverage_entry(
+                "fire-accidental-disability",
+                f"火災意外{disability_term}保險金",
+                None,
+                "face_amount",
+                (
+                    f"以保險金額的 1 倍為基礎，再依附件一{disability_term}給付比例 "
+                    f"{disability_min_percent}% 至 {disability_max_percent}% 計算。"
+                ),
+                "條款第七條及附件一",
+                calculation_basis="percentage_of_base",
+                amount_role="base",
+                limit_scope="per_event",
+                aggregation_rule="cumulative_cap",
+                rate_min_percent=disability_min_percent,
+                rate_max_percent=disability_max_percent,
+                multiplier=1,
+                conditions=[
+                    accident_180_condition,
+                    disability_cap_condition,
+                    fire_condition,
+                    f"不同火災意外事故申領{disability_term}保險金時，累計最高以保險金額為限。",
+                    f"依{disability_term}程度與保險金給付表比例計算；同一事故多項{disability_term}依條款限制合併或擇較重者。",
+                ],
+            ),
+            coverage_entry(
+                "land-water-mass-transit-accidental-disability",
+                f"陸海大眾運輸工具意外{disability_term}保險金",
+                None,
+                "face_amount",
+                (
+                    f"以保險金額的 4 倍為基礎，再依附件一{disability_term}給付比例 "
+                    f"{disability_min_percent}% 至 {disability_max_percent}% 計算。"
+                ),
+                "條款第七條及附件一",
+                calculation_basis="percentage_of_base",
+                amount_role="base",
+                limit_scope="per_event",
+                aggregation_rule="cumulative_cap",
+                rate_min_percent=disability_min_percent,
+                rate_max_percent=disability_max_percent,
+                multiplier=4,
+                conditions=[
+                    accident_180_condition,
+                    disability_cap_condition,
+                    mass_transit_condition,
+                    f"不同陸海大眾運輸工具意外事故申領{disability_term}保險金時，累計最高以保險金額之四倍為限。",
+                    f"依{disability_term}程度與保險金給付表比例計算；同一事故多項{disability_term}依條款限制合併或擇較重者。",
+                ],
+            ),
         ],
     }
 
@@ -6289,7 +9883,7 @@ def heading_reference(text: str, heading: str) -> str | None:
 
 def parse_fubon_cancer_unit_table(document: dict[str, Any]) -> dict[str, Any] | None:
     text = normalize_terms_text(str(document.get("text") or ""))
-    table_start = text.rfind("附表一")
+    table_start = text.find("附表一")
     if table_start < 0:
         return None
     table_text = text[table_start : min(len(text), table_start + 2_400)]
@@ -7339,6 +10933,334 @@ FUBON_INPATIENT_ROWS = {
     "surgery_recovery": ("手術出院療養保險金", "每次"),
 }
 
+CHAOYANG_XINGNONG_GROUP_INPATIENT_PRODUCT_ID = "212317R11A00800"
+CHAOYANG_XINGNONG_GROUP_INPATIENT_FILE_NAME = "212317R11A00800-A.pdf"
+
+
+FUBON_HSL_INPATIENT_PRODUCT_VERSIONS = {
+    "209311RZ1A02221A11Z10000000": {
+        "file_name": "209311RZ1A02221A11Z10000000-A.pdf",
+        "document_code": "HSL1091204",
+        "terms_revision": "109-12-04-original",
+        "required_revision_signal": "109.12.04 富壽商精字第1090005302 號函備查",
+    },
+    "209311RZ1A02221A11Z10000001": {
+        "file_name": "209311RZ1A02221A11Z10000001-A.pdf",
+        "document_code": "HSL1111202",
+        "terms_revision": "111-12-02-revision",
+        "required_revision_signal": "111.12.02 依 111.08.30 金管保壽字第 1110445485 號函修正",
+    }
+}
+
+
+def is_fubon_hsl_inpatient_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_HSL_INPATIENT_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def parse_fubon_hsl_inpatient_unit_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_hsl_inpatient_strict_source(document):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_HSL_INPATIENT_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    compact_text = compact_table_text(text)
+    if document.get("page_count") != 7 or document.get("pages_parsed") != 7:
+        return None
+    if (
+        dense_text.count(version["document_code"]) != 7
+        or any(f"{version['document_code']}{page}/7" not in dense_text for page in range(1, 8))
+        or version["required_revision_signal"] not in text
+    ):
+        return None
+
+    required_signals = [
+        "商品代號:HSL",
+        "給付項目:每日病房費用保險金(實支實付)、住院醫療費用保險金(實支實付)",
+        "疾病」:係指被保險人自本附約生效日起持續有效三十日以後或復效日起所發生之疾病",
+        "不包含全民健康保險法第五十一條所稱之日間住院及精神衛生法第三十五條所稱之日間留院",
+        "本附約之投保應銜接於本公司非自負額型實支實付醫療保險商品",
+        "主契約被保險人本人或其配偶為本附約被保險人時,其續保保險期間最長至保險年齡屆滿七十五歲為止",
+        "主契約被保險人之子女為本附約被保險人時,其續保保險期間最長至保險年齡屆滿二十三歲為止",
+    ]
+    required_compact_signals = [
+        "附表富邦人壽實足安心一年期住院醫療健康保險附約給付項目每一單位每日病房費用保險金自負額每日110元限額每日150元住院醫療費用保險金自負額每次8818元限額每次12800元",
+        "同一次住院之「每日病房費用保險金」實際給付住院日數最高以三百六十五日為限",
+        "同一疾病或傷害或因此引起的併發症於出院後十四日內再次住院時其各種保險金給付合計額視為同一次住院辦理",
+        "前項保險金之給付倘被保險人係於本附約有效期間屆滿後出院者本公司就再次住院部分不予給付保險金",
+        "實際支出病房費用的百分之六十五之金額",
+        "實際支出住院醫療費用的百分之六十五之金額",
+    ]
+    if any(re.sub(r"\s+", "", signal) not in dense_text for signal in required_signals):
+        return None
+    if any(signal not in compact_text for signal in required_compact_signals):
+        return None
+
+    room_deductible = 110
+    room_limit = 150
+    inpatient_deductible = 8_818
+    inpatient_limit = 12_800
+    prosthetic_limit = (room_limit - room_deductible) * 10
+    source_ref = "保單條款第二、七至十條及附表，第 1-7 頁"
+    unit_note = "依每一投保單位計算；實際給付需先扣除條款附表自負額。"
+    nhi_condition = "非以全民健康保險保險對象身分住院時，按實際支出費用 65% 計算後再依自負額與限額辦理。"
+    readmission_condition = "同一疾病或傷害及其併發症出院後 14 日內再次住院，視為同一次住院。"
+    post_expiry_condition = "於本附約有效期間屆滿後出院者，再次住院部分不予給付。"
+
+    return {
+        "selection_type": "unit",
+        "input_mode": "unit",
+        "selection_source": "terms",
+        "selection_label": "投保單位數",
+        "selection_guidance": "請輸入保單上記載的正整數投保單位數；系統會依附表每一單位限額與自負額呈現保障。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "disease_waiting_days": 30,
+            "day_hospital_excluded": True,
+            "same_hospital_readmission_days": 14,
+            "post_expiry_readmission_excluded": True,
+            "non_nhi_payment_rate_percent": 65,
+            "room_daily_days_limit": 365,
+            "renewal_age_self_or_spouse": 75,
+            "renewal_age_child": 23,
+            "linked_non_deductible_medical_required": True,
+            "newborn_metabolic_disease_exempt_waiting_period": True,
+            "prosthetic_eye_limb_room_net_limit_multiplier": 10,
+        },
+        "coverage_entries": [
+            coverage_entry(
+                "daily-room-expense-reimbursement",
+                "每日病房費用保險金",
+                room_limit,
+                "daily_per_unit",
+                f"{unit_note}每日每單位自負額 {room_deductible:,} 元，限額 {room_limit:,} 元；同一次住院實際給付日數最高 365 日。",
+                source_ref,
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_day",
+                conditions=[
+                    "因疾病或傷害住院診療，且符合條款第二條疾病等待期間或傷害定義。",
+                    nhi_condition,
+                    readmission_condition,
+                    post_expiry_condition,
+                ],
+                amount_tiers=[
+                    {"label": "每日病房費用自負額", "amount": room_deductible},
+                    {"label": "每日病房費用限額", "amount": room_limit},
+                ],
+            ),
+            coverage_entry(
+                "inpatient-medical-expense-reimbursement",
+                "住院醫療費用保險金",
+                inpatient_limit,
+                "per_unit",
+                f"{unit_note}每次每單位自負額 {inpatient_deductible:,} 元，限額 {inpatient_limit:,} 元。",
+                source_ref,
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_hospitalization",
+                conditions=[
+                    "住院醫療費用包含條款第八條列示之醫師指示用藥、檢查、治療、救護車、超過健保給付之醫療費用等項目。",
+                    nhi_condition,
+                    readmission_condition,
+                    post_expiry_condition,
+                    "已獲全民健康保險給付部分，以及未超過約定自負額之費用支出部分不給付。",
+                ],
+                amount_tiers=[
+                    {"label": "住院醫療費用自負額", "amount": inpatient_deductible},
+                    {"label": "住院醫療費用限額", "amount": inpatient_limit},
+                ],
+            ),
+            coverage_entry(
+                "prosthetic-eye-limb-sub-limit",
+                "義眼、義肢住院醫療費用次限額",
+                prosthetic_limit,
+                "per_unit",
+                "同一隻眼、同一手或同一足以給付一次為限；最高為每日病房費用限額扣除自負額後乘以 10，再乘以投保單位數，且不得超過住院醫療費用保險金限額。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="limit",
+                limit_scope="per_event",
+                conditions=[
+                    "義眼對同一隻眼以給付一次為限。",
+                    "義肢對同一手或同一足以給付一次為限。",
+                    "仍受同一次住院醫療費用保險金最高給付限額拘束。",
+                ],
+            ),
+        ],
+    }
+
+
+def is_chaoyang_xingnong_group_inpatient_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    return (
+        str(document.get("product_id") or "")
+        == CHAOYANG_XINGNONG_GROUP_INPATIENT_PRODUCT_ID
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "")
+        == CHAOYANG_XINGNONG_GROUP_INPATIENT_FILE_NAME
+    )
+
+
+def parse_chaoyang_xingnong_group_inpatient_unit_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_chaoyang_xingnong_group_inpatient_strict_source(document):
+        return None
+    if document.get("page_count") != 6 or document.get("pages_parsed") != 6:
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = [
+        "興農團體住院醫療保險",
+        "奉准文號:(83.06.03)台財保第831481668號函",
+        "修正文號:(87.08.15)台財保第872441034號函",
+        "每一投保單位給付內容詳附表",
+        "未優先申請社會保險之理賠,則本公司按依約應行給付保險金額之七折給付",
+        "被保險人於本契約有效期間內,因同一事故或由此引起的併發症,必須住院治療二次以上時,如其每次住院間隔未超過九十日者",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+
+    table_start = text.rfind("【附表一】")
+    table_end = text.find("【附表二】", table_start)
+    if table_start < 0 or table_end <= table_start:
+        return None
+    table_text = compact_table_text(text[table_start:table_end])
+    expected_table = (
+        "【附表一】每次住院各項保險金每一單位給付內容給付項目每一單位"
+        "每日病房及膳食費用保險金100元"
+        "每日加護病房費用保險金300元"
+        "住院醫療費用保險金1000元"
+        "外科手術費用保險金1000元"
+        "出院在家療養保險金50元"
+        "各項保險金=各項投保單位×每一單位給付內容"
+    )
+    if expected_table not in table_text:
+        return None
+
+    surgery_table_text = text[table_end:]
+    surgery_rates = [
+        float(value)
+        for value in re.findall(
+            r"(?<!\d)(\d+(?:\.\d+)?)\s*(?:％|%)",
+            surgery_table_text,
+        )
+    ]
+    if not surgery_rates:
+        return None
+    surgery_min = min(surgery_rates)
+    surgery_max = max(surgery_rates)
+    if surgery_min != 2.5 or surgery_max != 100:
+        return None
+
+    page = source_page(text, table_start)
+    table_ref = "附表一" + (f"，第 {page} 頁" if page else "")
+    terms_ref = "保單條款第十四至十六條及" + table_ref
+    unit_note = "表列金額乘以投保單位數；保障項目由要保書所載被保險人給付項目決定。"
+    social_condition = "有社會保險者應優先申請；未優先申請時，依約應給付金額按 70% 給付。"
+    readmission_condition = "同一事故或併發症住院二次以上，且每次住院間隔未超過 90 日者，視為一次住院辦理。"
+
+    return {
+        "selection_type": "unit",
+        "input_mode": "unit",
+        "selection_source": "terms",
+        "selection_label": "投保單位數",
+        "selection_guidance": "請輸入要保書或被保險人名冊所載的正整數投保單位數；系統依附表一每一單位金額換算。",
+        "version_characteristics": {
+            "terms_revision": "87-08-15-revision",
+            "filing_date": "83.06.03",
+            "filing_number": "台財保第831481668號",
+            "revision_date": "87.08.15",
+            "revision_number": "台財保第872441034號",
+            "disease_waiting_days": 30,
+            "room_board_days_limit": 120,
+            "icu_days_limit": 10,
+            "same_accident_readmission_days": 90,
+            "social_insurance_unclaimed_payment_rate_percent": 70,
+            "surgery_table_min_percent": 2.5,
+            "surgery_table_max_percent": 100,
+            "experience_dividend": True,
+        },
+        "coverage_entries": [
+            coverage_entry(
+                "room-board-daily",
+                "病房及膳食費用保險金",
+                100,
+                "daily_per_unit",
+                f"{unit_note}實支實付型以每日最高補償限額為準；日額型最多給付 120 日。",
+                terms_ref,
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_day",
+                conditions=[social_condition, readmission_condition],
+            ),
+            coverage_entry(
+                "icu-daily",
+                "加護病房費用保險金",
+                300,
+                "daily_per_unit",
+                f"{unit_note}實支實付型以每日最高補償限額為準；日額型每次最多給付 10 日。",
+                terms_ref,
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_day",
+                conditions=[social_condition, readmission_condition],
+            ),
+            coverage_entry(
+                "inpatient-medical-expense",
+                "住院醫療費用保險金",
+                1_000,
+                "per_unit",
+                f"{unit_note}包含條款第十四條列示之診察護理、手術室治療室、藥品、敷料、檢驗、物理治療、麻醉氧氣、X 光、輸注、輸血及救護車等住院醫療費用。",
+                terms_ref,
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_hospitalization",
+                conditions=[social_condition, readmission_condition],
+            ),
+            coverage_entry(
+                "surgery-expense-base",
+                "外科手術費用保險金",
+                1_000,
+                "per_unit",
+                f"{unit_note}每次手術以附表二手術百分率計算，手術表範圍為 2.5% 至 100%。",
+                "保單條款第十四條、附表一及附表二",
+                calculation_basis="percentage_of_base",
+                amount_role="base",
+                limit_scope="per_surgery",
+                rate_min_percent=2.5,
+                rate_max_percent=100,
+                conditions=[social_condition, readmission_condition],
+            ),
+            coverage_entry(
+                "home-recovery-daily",
+                "出院在家療養保險金",
+                50,
+                "daily_per_unit",
+                f"{unit_note}依實際支付之病房及膳食費用保險金的 50% 給付；附表每單位為 50 元。",
+                terms_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_day",
+                multiplier=0.5,
+                conditions=[social_condition, readmission_condition],
+            ),
+        ],
+    }
+
 
 def is_fubon_inpatient_medical_strict_source(document: dict[str, Any]) -> bool:
     product_id = str(document.get("product_id") or "")
@@ -7675,6 +11597,8 @@ RITAI_DUAL_UNIT_INPATIENT_PRODUCT_IDS = {
     "205311R11A50800",
     "205311R11A50801",
     "205311R11A50802",
+    "262311R11A00201",
+    "262311R11A00202",
     "262311R11A00600",
     "262311R11A00601",
 }
@@ -7694,7 +11618,24 @@ def parse_ritai_dual_unit_inpatient_table(
 
     text = normalize_terms_text(str(document.get("text") or ""))
     table_start = text.rfind("住院醫療保險金表")
-    table_end = text.find("附表一", table_start)
+    appendix_start = text.find("附表一", table_start)
+    legacy_surgery_table_candidates = [
+        text.find(signal, table_start)
+        for signal in (
+            "手術費用表一、大腦",
+            "手術名稱及費用表一、大腦",
+            "一、大腦、神經系統",
+        )
+    ]
+    legacy_surgery_table_candidates = [
+        index for index in legacy_surgery_table_candidates if index >= 0
+    ]
+    legacy_surgery_table_start = (
+        min(legacy_surgery_table_candidates)
+        if legacy_surgery_table_candidates
+        else -1
+    )
+    table_end = appendix_start if appendix_start >= 0 else legacy_surgery_table_start
     if table_start < 0 or table_end < 0:
         return None
     table_text = re.sub(r"\s+", "", text[table_start:table_end])
@@ -7715,7 +11656,7 @@ def parse_ritai_dual_unit_inpatient_table(
         "intensive_care": r"加護病房日額保險金([\d,]+)",
         "burn_center": r"燒燙傷中心日額保險金([\d,]+)",
         "outpatient": r"住院前後七天門診保險金\(每次\)([\d,]+)",
-        "surgery_base": r"手術定額保險金.*?([\d,]+)(?=住院之第)",
+        "surgery_base": r"手術定額保險金(?:[（(][^）)]*400%[）)])?([\d,]+)",
         "misc_first": r"住院之第1-7日\(每日\)([\d,]+)",
         "misc_later": r"住院之第8日(?:以後)?\(每日\)([\d,]+)",
     }
@@ -7735,25 +11676,32 @@ def parse_ritai_dual_unit_inpatient_table(
     if amounts != expected_amounts:
         return None
 
+    hospital_article = heading_reference(text, "住院醫療保險金之給付") or heading_reference(
+        text, "住院醫療保險金的給付"
+    )
+    surgery_article = heading_reference(text, "手術及雜費保險金之給付") or heading_reference(
+        text, "手術及雜費保險金的給付"
+    )
     article_refs = {
-        "hospital": heading_reference(text, "住院醫療保險金之給付"),
-        "surgery": heading_reference(text, "手術及雜費保險金之給付"),
+        "hospital": hospital_article,
+        "surgery": surgery_article,
     }
     if any(reference is None for reference in article_refs.values()):
         return None
-    required_signals = [
-        "住院前後七天門診保險金",
-        "不含加護病房及燒燙傷中心之合計住院給付日數",
-        "最高以三百六十五日為限",
-        "同一次手術中於同一手術位置",
-        "每次住院期間最高給付天數以三百六十五天為限",
+    required_signal_groups = [
+        ("住院前後七天門診保險金",),
+        ("不含加護病房及燒燙傷中心之合計住院給付日數", "含加護病房及燒燙傷中心之合計住院給付日數"),
+        ("最高以三百六十五日為限",),
+        ("同一次手術中於同一手術位置", "同一次手術中於同一手述位置"),
+        ("每次住院期間最高給付天數以三百六十五天為限", "最高給付天數以三百六十五天為限"),
     ]
-    if not all(signal in text for signal in required_signals):
+    if not all(any(signal in text for signal in group) for group in required_signal_groups):
         return None
 
+    surgery_rate_start = appendix_start if appendix_start >= 0 else legacy_surgery_table_start
     surgery_rates = [
         int(value)
-        for value in re.findall(r"(?<!\d)(\d{1,3})\s*%", text[table_end:])
+        for value in re.findall(r"(?<!\d)(\d{1,3})\s*%", text[surgery_rate_start:])
     ]
     if not surgery_rates or min(surgery_rates) != 2 or max(surgery_rates) != 400:
         return None
@@ -8408,6 +12356,726 @@ def parse_group_plan_inpatient_limit_table(
     }
 
 
+TAIWAN_GROUP_INPATIENT_LIMIT_PLAN_PRODUCT_VERSIONS = {
+    "202313MZ1A32821A11Z10000013": {
+        "revision": "113-thirteenth-revision",
+        "file_name": "202313MZ1A32821A11Z10000013-A.pdf",
+        "page_count": 6,
+        "required_revision_signals": ("113年7月1日台壽字第1132320085號函備查修正",),
+        "forbidden_revision_signals": ("金管保壽字第11304207572號", "日間留院/日間照護"),
+        "day_hospital_definition_revision": False,
+    },
+    "202313MZ1A32821A11Z10000014": {
+        "revision": "113-fourteenth-revision",
+        "file_name": "202313MZ1A32821A11Z10000014-A.pdf",
+        "page_count": 7,
+        "required_revision_signals": (
+            "113年10月1日依113年6月28日金管保壽字第11304207572號函修正",
+            "日間住院及精神衛生法所稱之日間留院/日間照護",
+        ),
+        "forbidden_revision_signals": ("台壽字第1132320085號函備查修正",),
+        "day_hospital_definition_revision": True,
+    },
+}
+
+
+def is_taiwan_group_inpatient_limit_plan_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id in TAIWAN_GROUP_INPATIENT_LIMIT_PLAN_PRODUCT_VERSIONS
+        or re.fullmatch(r"202313MZ1A32821A11Z1000001[34]-[AF]\.pdf", file_name)
+        is not None
+        or "台灣人壽團體住院醫療限額保險" in dense_text
+    )
+
+
+TAIWAN_SHISHIZAI_INPATIENT_PRODUCT_ID = "202311RZ1A04A21A11Z10000000"
+TAIWAN_SHISHIZAI_INPATIENT_FILE_NAME = (
+    f"{TAIWAN_SHISHIZAI_INPATIENT_PRODUCT_ID}-A.pdf"
+)
+TAIWAN_SHISHIZAI_INPATIENT_AMOUNTS = [
+    {
+        "label": "計劃一",
+        "room_daily": 1_000,
+        "inpatient_medical": 100_000,
+        "outpatient_or_procedure": 30_000,
+        "pre_post_outpatient": 600,
+        "annual_total": 500_000,
+    },
+    {
+        "label": "計劃二",
+        "room_daily": 1_500,
+        "inpatient_medical": 150_000,
+        "outpatient_or_procedure": 40_000,
+        "pre_post_outpatient": 900,
+        "annual_total": 750_000,
+    },
+    {
+        "label": "計劃三",
+        "room_daily": 2_000,
+        "inpatient_medical": 200_000,
+        "outpatient_or_procedure": 50_000,
+        "pre_post_outpatient": 1_200,
+        "annual_total": 1_000_000,
+    },
+    {
+        "label": "計劃四",
+        "room_daily": 2_500,
+        "inpatient_medical": 250_000,
+        "outpatient_or_procedure": 60_000,
+        "pre_post_outpatient": 1_500,
+        "annual_total": 1_250_000,
+    },
+    {
+        "label": "計劃五",
+        "room_daily": 3_000,
+        "inpatient_medical": 350_000,
+        "outpatient_or_procedure": 70_000,
+        "pre_post_outpatient": 1_800,
+        "annual_total": 1_500_000,
+    },
+]
+
+
+def is_taiwan_shishizai_inpatient_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id == TAIWAN_SHISHIZAI_INPATIENT_PRODUCT_ID
+        or file_name == TAIWAN_SHISHIZAI_INPATIENT_FILE_NAME
+        or "台灣人壽實實在在住院醫療健康保險附約" in dense_text
+    )
+
+
+def parse_taiwan_shishizai_inpatient_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    if (
+        product_id != TAIWAN_SHISHIZAI_INPATIENT_PRODUCT_ID
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != TAIWAN_SHISHIZAI_INPATIENT_FILE_NAME
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = (
+        "台灣人壽實實在在住院醫療健康保險附約",
+        "中華民國112年8月18日台壽字第1122320128號函備查",
+        "疾病之等待期間為本附約生效日起持續有效三十日",
+        "住院病房費用保險金之給付",
+        "住院醫療費用保險金之給付",
+        "門診手術費用保險金之給付",
+        "特定處置費用保險金之給付",
+        "住院前後門診費用保險金之給付",
+        "日額型住院醫療保險金」選擇給付",
+        "重大住院慰問保險金的給付",
+        "醫療費用未經全民健康保險給付者之處理方式",
+        "第五條至第十一條各項保險金合計總額",
+        "附表一:投保計劃別暨各項保險金限額",
+        "附表二:特定處置項目",
+    )
+    if any(signal.replace(" ", "") not in dense_text for signal in required_signals):
+        return None
+
+    table_start = text.rfind("附表一")
+    appendix_two_start = text.rfind("附表二")
+    if table_start < 0 or appendix_two_start <= table_start:
+        return None
+    table_text = compact_table_text(text[table_start:appendix_two_start])
+    table_signals = (
+        "項目\\計劃別計劃一計劃二計劃三計劃四計劃五",
+        "每日住院病房費用保險金限額10001500200025003000",
+        "住院醫療費用保險金限額100000150000200000250000350000",
+        "門診手術或特定處置費用保險金限額3000040000500006000070000",
+        "住院前後門診費用保險金限額600900120015001800",
+        "每年保險金給付總限額500000750000100000012500001500000",
+    )
+    if any(compact_table_text(signal) not in table_text for signal in table_signals):
+        return None
+
+    article_refs = {
+        key: heading_reference(text, heading)
+        for key, heading in {
+            "room": "住院病房費用保險金之給付",
+            "medical": "住院醫療費用保險金之給付",
+            "outpatient_surgery": "門診手術費用保險金之給付",
+            "procedure": "特定處置費用保險金之給付",
+            "outpatient": "住院前後門診費用保險金之給付",
+            "cash": "「日額型住院醫療保險金」選擇給付",
+            "comfort": "重大住院慰問保險金的給付",
+            "non_nhi": "醫療費用未經全民健康保險給付者之處理方式",
+            "limit": "保險金給付之限制",
+        }.items()
+    }
+    if any(reference is None for reference in article_refs.values()):
+        return None
+
+    table_page = source_page(text, table_start)
+    appendix_two_page = source_page(text, appendix_two_start)
+    table_ref = "附表一" + (f"，第 {table_page} 頁" if table_page else "")
+    procedure_ref = "附表二" + (f"，第 {appendix_two_page} 頁起" if appendix_two_page else "")
+    annual_limit_condition = "每年保險金給付總額受附表一所列年度總限額限制"
+    nhi_conditions = [
+        "須以全民健康保險保險對象身分就醫；非健保身分時按實際費用 65% 給付並仍受限額限制",
+        "疾病等待期間 30 日；0 歲投保之指定新生兒先天性代謝異常疾病不受等待期限制",
+    ]
+    room_conditions = [
+        *nhi_conditions,
+        "病房費用包含病房差額、管灌飲食以外膳食費、特別護士以外護理費",
+        "入住加護病房或燒燙傷病房期間，每日住院病房費用限額提高為 2 倍",
+        "同一次住院最高給付 365 日；精神疾病每保單年度最高 30 日",
+        annual_limit_condition,
+    ]
+    medical_conditions = [
+        *nhi_conditions,
+        "住院醫療費用包含診查會診、藥品注射、非緊急必要輸血、掛號證明、救護車及超過健保給付之住院醫療費用",
+        "入住加護病房或燒燙傷病房時，住院醫療費用限額於該次住院提高為 2 倍",
+        annual_limit_condition,
+    ]
+    outpatient_conditions = [
+        *nhi_conditions,
+        "住院前 7 日內與出院後 14 日內，或門診手術前 7 日內與後 14 日內，同一事故門診治療適用",
+        "第六條及第七條已給付金額不列入住院前後門診費用限額",
+        annual_limit_condition,
+    ]
+    procedure_conditions = [
+        *nhi_conditions,
+        f"特定處置限{procedure_ref}所列項目",
+        "門診手術及特定處置各以同一保單年度最高 6 次為限",
+        annual_limit_condition,
+    ]
+
+    plan_options = []
+    for index, values in enumerate(TAIWAN_SHISHIZAI_INPATIENT_AMOUNTS, start=1):
+        label = values["label"]
+        room_daily = values["room_daily"]
+        inpatient_limit = values["inpatient_medical"]
+        outpatient_or_procedure = values["outpatient_or_procedure"]
+        pre_post = values["pre_post_outpatient"]
+        annual_total = values["annual_total"]
+        entries = [
+            coverage_entry(
+                "hospital-room-expense",
+                "住院病房費用保險金",
+                room_daily,
+                "daily_limit",
+                f"{label}每日病房費用限額 {room_daily:,} 元；ICU 或燒燙傷病房期間提高為 2 倍。",
+                f"保單條款{article_refs['room']}及{table_ref}",
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_day",
+                conditions=room_conditions,
+            ),
+            coverage_entry(
+                "inpatient-medical-expense",
+                "住院醫療費用保險金",
+                inpatient_limit,
+                "per_hospitalization_limit",
+                f"{label}每次住院醫療費用限額 {inpatient_limit:,} 元；ICU 或燒燙傷病房期間提高為 2 倍。",
+                f"保單條款{article_refs['medical']}及{table_ref}",
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_hospitalization",
+                conditions=medical_conditions,
+            ),
+            coverage_entry(
+                "outpatient-surgery-expense",
+                "門診手術費用保險金",
+                outpatient_or_procedure,
+                "per_event_limit",
+                f"{label}每次門診手術費用限額 {outpatient_or_procedure:,} 元。",
+                f"保單條款{article_refs['outpatient_surgery']}及{table_ref}",
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_surgery",
+                conditions=procedure_conditions,
+            ),
+            coverage_entry(
+                "specified-procedure-expense",
+                "特定處置費用保險金",
+                outpatient_or_procedure,
+                "per_event_limit",
+                f"{label}每次特定處置費用限額 {outpatient_or_procedure:,} 元。",
+                f"保單條款{article_refs['procedure']}、{procedure_ref}及{table_ref}",
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_procedure",
+                conditions=procedure_conditions,
+            ),
+            coverage_entry(
+                "pre-post-outpatient-expense",
+                "住院前後門診費用保險金",
+                pre_post,
+                "per_visit_limit",
+                f"{label}每次住院前後或門診手術前後門診費用限額 {pre_post:,} 元。",
+                f"保單條款{article_refs['outpatient']}及{table_ref}",
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_visit",
+                conditions=outpatient_conditions,
+            ),
+            coverage_entry(
+                "hospital-cash-alternative-daily",
+                "日額型住院醫療保險金",
+                room_daily,
+                "daily_total",
+                f"同一次住院可改選日額型，按{label}每日病房費用限額 {room_daily:,} 元乘以實際住院日數。",
+                f"保單條款{article_refs['cash']}及{table_ref}",
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                aggregation_rule="choose_one",
+                conditions=[
+                    "同一次住院選擇本項後，不得再申領第五條至第九條各項保險金",
+                    "精神疾病每保單年度最高 30 日",
+                    annual_limit_condition,
+                ],
+            ),
+            coverage_entry(
+                "major-hospital-comfort",
+                "重大住院慰問保險金",
+                6_000,
+                "per_hospitalization",
+                "同一次住院期間曾入住加護病房或燒燙傷病房，給付 6,000 元。",
+                f"保單條款{article_refs['comfort']}",
+                calculation_basis="fixed_amount",
+                amount_role="payout",
+                limit_scope="per_hospitalization",
+                conditions=["同一次住院以給付一次為限", annual_limit_condition],
+            ),
+            coverage_entry(
+                "annual-total-limit",
+                "每年保險金給付總限額",
+                annual_total,
+                "annual_limit",
+                f"{label}每年各項保險金給付總額最高 {annual_total:,} 元。",
+                f"{table_ref}；保單條款{article_refs['limit']}",
+                calculation_basis="aggregate_cap",
+                amount_role="limit",
+                limit_scope="annual",
+                conditions=["同一保單年度各項給付合計適用"],
+            ),
+        ]
+        plan_options.append(
+            {
+                "value": f"plan-{index}",
+                "label": label,
+                "coverage_entries": entries,
+            }
+        )
+
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計劃別",
+        "selection_guidance": "請依保單首頁或保險證所載計劃一至計劃五選擇；本附約不需輸入單位數。",
+        "version_characteristics": {
+            "filing_date": "112.08.18",
+            "filing_number": "台壽字第1122320128號",
+            "disease_waiting_days": 30,
+            "guaranteed_renewal": True,
+            "non_guaranteed_renewal_rate": True,
+            "day_hospital_excluded": True,
+            "hospital_days_limit": 365,
+            "mental_disease_annual_days_limit": 30,
+            "icu_or_burn_room_multiplier": 2,
+            "outpatient_surgery_annual_count_limit": 6,
+            "specified_procedure_annual_count_limit": 6,
+            "pre_hospital_outpatient_days": 7,
+            "post_discharge_outpatient_days": 14,
+            "non_nhi_payment_percent": 65,
+            "special_procedure_item_count": 93,
+        },
+        "plan_options": plan_options,
+    }
+
+
+def parse_taiwan_group_inpatient_limit_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_GROUP_INPATIENT_LIMIT_PLAN_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != version["file_name"]
+        or document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = (
+        "台灣人壽團體住院醫療限額保險",
+        "住院醫療保險金",
+        "住院醫療保險金事後選擇",
+        "每次事故之給付總額不得超過附表所列各計畫別之保險金額",
+        "被保險人因意外傷害或疾病於醫院接受外科手術,雖未住院",
+        "已獲得全民健康保險給付的部分,本公司不予給付保險金",
+        "限額給付或日額給付擇一申請給付",
+        "轉換日額乘以實際住院日數",
+        "出院後十四日內於同一醫院再次住院",
+        "有效期間屆滿後出院者,本公司就再次住院部分不予給付保險金",
+        "附表:保險計畫表單位:新臺幣",
+        "計畫一計畫二計畫三計畫四計畫五計畫六計畫七計畫八計畫九計畫十計畫十一",
+    )
+    if (
+        any(signal.replace(" ", "") not in dense_text for signal in required_signals)
+        or any(signal.replace(" ", "") not in dense_text for signal in version["required_revision_signals"])
+        or any(signal.replace(" ", "") in dense_text for signal in version["forbidden_revision_signals"])
+    ):
+        return None
+
+    table_pattern = re.compile(
+        r"附表:保險計畫表單位:新臺幣"
+        r"計畫一計畫二計畫三計畫四計畫五計畫六計畫七計畫八計畫九計畫十計畫十一"
+        r"保險金額(?P<limits>(?:[\d,]+萬元){11})"
+        r"轉換日額(?P<daily>(?:[\d,]+元){11})"
+    )
+    table_match = table_pattern.search(dense_text)
+    if not table_match:
+        return None
+
+    limits = [
+        int(amount.replace(",", "")) * 10_000
+        for amount in re.findall(r"([\d,]+)萬元", table_match.group("limits"))
+    ]
+    daily_amounts = [
+        int(amount.replace(",", ""))
+        for amount in re.findall(r"([\d,]+)元", table_match.group("daily"))
+    ]
+    if len(limits) != 11 or len(daily_amounts) != 11:
+        return None
+    expected_limits = [60_000, 80_000, 100_000, 120_000, 140_000, 200_000, 30_000, 70_000, 50_000, 80_000, 100_000]
+    expected_daily = [600, 1_200, 1_800, 2_400, 3_000, 4_800, 900, 1_000, 500, 800, 1_000]
+    if limits != expected_limits or daily_amounts != expected_daily:
+        return None
+
+    article_refs = {
+        heading: heading_reference(text, heading)
+        for heading in [
+            "名詞定義",
+            "保險範圍與保險給付",
+            "住院次數的計算及契約有效期間屆滿後住院之處理",
+            "保險金給付之限制",
+            "住院醫療保險金事後選擇",
+        ]
+    }
+    if any(reference is None for reference in article_refs.values()):
+        return None
+    table_page = source_page(text, text.find("附表:保險計畫表"))
+    table_ref = "附表保險計畫表" + (f"，第 {table_page} 頁" if table_page else "")
+    source_ref = (
+        f"保單條款{article_refs['保險範圍與保險給付']}、"
+        f"{article_refs['住院次數的計算及契約有效期間屆滿後住院之處理']}、"
+        f"{article_refs['保險金給付之限制']}、"
+        f"{article_refs['住院醫療保險金事後選擇']}及{table_ref}"
+    )
+    common_conditions = [
+        "限被保險人於契約有效期間內因疾病或意外傷害住院治療，或同日接受外科手術但未住院。",
+        "全民健康保險已給付部分不再給付。",
+        "同一疾病或傷害及其併發症於出院後 14 日內同一醫院再次住院，視為同一次住院。",
+        "契約有效期間屆滿後出院者，再次住院部分不給付。",
+    ]
+    plan_labels = [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+        "計畫四",
+        "計畫五",
+        "計畫六",
+        "計畫七",
+        "計畫八",
+        "計畫九",
+        "計畫十",
+        "計畫十一",
+    ]
+    plans = []
+    for index, label in enumerate(plan_labels):
+        limit_amount = limits[index]
+        daily_amount = daily_amounts[index]
+        plans.append(
+            {
+                "value": f"plan-{index + 1:02d}",
+                "label": label,
+                "coverage_entries": [
+                    coverage_entry(
+                        "inpatient-medical-limit",
+                        "住院醫療保險金限額",
+                        limit_amount,
+                        "per_event",
+                        f"{label} 每次事故給付總額最高 {limit_amount:,} 元；未住院但當日接受外科手術的實際自付醫療費用亦依本項給付。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_event",
+                        aggregation_rule="choose_one",
+                        conditions=common_conditions + ["同一次事故選擇限額給付後，不得再改選日額給付。"],
+                    ),
+                    coverage_entry(
+                        "hospital-daily-conversion",
+                        "住院日額轉換給付",
+                        daily_amount,
+                        "daily_total",
+                        f"{label} 選擇日額給付時，每日按轉換日額 {daily_amount:,} 元乘以實際住院日數給付。",
+                        source_ref,
+                        calculation_basis="per_day",
+                        amount_role="payout",
+                        limit_scope="per_day",
+                        aggregation_rule="choose_one",
+                        conditions=[
+                            "同一次事故選擇日額給付後，不得再申領住院醫療費用限額給付。",
+                            "實際住院日數含入院及出院當日。",
+                            "同一次事故最高住院日數以保單面頁記載為限。",
+                        ],
+                    ),
+                ],
+            }
+        )
+
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "保險計畫",
+        "selection_guidance": "請依保險單或保險證上的計畫別選擇；每個計畫已對應住院醫療限額與日額轉換金額。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "plan_count": 11,
+            "same_hospital_readmission_days": 14,
+            "post_expiry_readmission_excluded": True,
+            "day_hospital_excluded": True,
+            "outpatient_surgery_included": True,
+            "nhi_paid_excluded": True,
+            "daily_option_policy_face_page_days_limit": True,
+            "day_hospital_definition_revision": version["day_hospital_definition_revision"],
+        },
+        "plan_options": plans,
+    }
+
+
+TAIWAN_GOLD_GROUP_INPATIENT_LIMIT_PRODUCT_VERSIONS = {
+    "202313MZ1A31B21A11Z10000000": {
+        "terms_revision": "114-original",
+        "file_name": "202313MZ1A31B21A11Z10000000-A.pdf",
+        "page_count": 7,
+        "filing_signal": "中華民國 114 年 12 月 27 日台壽字第 1142320152 號函備查",
+    }
+}
+
+
+def is_taiwan_gold_group_inpatient_limit_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_GOLD_GROUP_INPATIENT_LIMIT_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+TAIWAN_GOLD_GROUP_INPATIENT_LIMIT_AMOUNTS = [
+    ("plan-a", "計劃A", 60_000, 600),
+    ("plan-b", "計劃B", 80_000, 1_200),
+    ("plan-c", "計劃C", 100_000, 1_800),
+    ("plan-d", "計劃D", 120_000, 2_400),
+    ("plan-e", "計劃E", 140_000, 3_000),
+    ("plan-f", "計劃F", 200_000, 4_800),
+    ("plan-g", "計劃G", 30_000, 900),
+    ("plan-h", "計劃H", 70_000, 1_000),
+    ("plan-i", "計劃I", 50_000, 500),
+    ("plan-j", "計劃J", 80_000, 800),
+    ("plan-k", "計劃K", 100_000, 1_000),
+]
+
+
+def taiwan_gold_group_inpatient_limit_entries(
+    plan_label: str, medical_limit: int, hospital_daily: int
+) -> list[dict[str, Any]]:
+    source_ref = "條款第十七條至第二十條及附表二保險計劃表，第 4-7 頁"
+    common_conditions = [
+        "限因疾病或傷害住院診療，或於醫院、診所接受門診手術治療。",
+        "全民健康保險已給付部分不再給付。",
+        "受益人申領住院醫療費用保險金或門診手術費用保險金時，應檢具醫療費用收據正本。",
+        "非全民健康保險身分或至非健保醫院、診所就醫時，按實際支付費用 100% 給付，仍以各項限額為限。",
+    ]
+    return [
+        coverage_entry(
+            "inpatient-medical-expense-limit",
+            "住院醫療費用保險金限額",
+            medical_limit,
+            "per_event",
+            f"{plan_label} 每次住院最高給付 {medical_limit:,} 元；同一次住院曾住進加護病房者，限額提高為 2 倍。",
+            source_ref,
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_hospitalization",
+            aggregation_rule="choose_one",
+            conditions=[
+                *common_conditions,
+                "住院醫療費用項目包含醫師指示用藥、非緊急傷病必要輸血、掛號及證明文件、救護車費、超過健保給付之住院醫療費用。",
+                "住院醫療費用保險金與住院日額補償保險金二擇一；同一次住院已選住院醫療費用者，再次住院仍依第十七條請求。",
+                "同一疾病或傷害及其併發症於出院後 14 日內同一醫院再次住院，視為同一次住院。",
+            ],
+            amount_tiers=[
+                {"label": "一般住院限額", "amount": medical_limit},
+                {"label": "曾住進加護病房限額", "amount": medical_limit * 2},
+            ],
+        ),
+        coverage_entry(
+            "hospital-daily-compensation",
+            "住院日額補償保險金",
+            hospital_daily,
+            "daily_total",
+            f"{plan_label} 未申請住院醫療費用保險金時，每日按住院日額 {hospital_daily:,} 元乘以實際住院日數給付。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_day",
+            aggregation_rule="choose_one",
+            conditions=[
+                "與住院醫療費用保險金二擇一；同一次住院期間申請本項後，不得再請求第十七條住院醫療費用保險金。",
+                "同一次住院最高給付實際住院日數以 31 日為限。",
+                "同一次住院曾住進加護病房者，加護病房期間每日給付金額提高為 2 倍，提高日數每次住院最多 31 日。",
+            ],
+            amount_tiers=[
+                {"label": "一般住院日額", "amount": hospital_daily},
+                {"label": "加護病房日額", "amount": hospital_daily * 2},
+            ],
+        ),
+        coverage_entry(
+            "outpatient-surgery-expense-limit",
+            "門診手術費用保險金限額",
+            medical_limit,
+            "per_event",
+            f"{plan_label} 門診手術每次最高給付 {medical_limit:,} 元；限施行手術當日發生且應自行負擔或非健保給付範圍之費用。",
+            source_ref,
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_surgery",
+            aggregation_rule="separate",
+            conditions=[
+                *common_conditions,
+                "手術依全民健康保險醫療服務給付項目及支付標準所列手術項目認定。",
+            ],
+        ),
+    ]
+
+
+def parse_taiwan_gold_group_inpatient_limit_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_gold_group_inpatient_limit_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_GOLD_GROUP_INPATIENT_LIMIT_PRODUCT_VERSIONS[product_id]
+    if (
+        document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = [
+        "台灣人壽金團體新住院醫療限額給付健康保險",
+        version["filing_signal"],
+        "可住院醫療費用保險金或住院日額補償保險金二擇一給付",
+        "應檢具醫療費用收據正本",
+        "日間住院及精神衛生法所稱之日間留院/日間照護",
+        "住院醫療費用保險金之給付",
+        "住院日額補償保險金之給付",
+        "門診手術費用保險金的給付",
+        "醫療費用未經全民健康保險給付者之處理方式",
+        "出院後十四日內於同一醫院再次住院",
+        "計劃A計劃B計劃C計劃D計劃E計劃F計劃G計劃H計劃I計劃J計劃K",
+        "住院醫療費用保險金限額6萬元8萬元10萬元12萬元14萬元20萬元3萬元7萬元5萬元8萬元10萬元",
+        "門診手術費用保險金限額住院日額補償保險金住院日額600元1,200元1,800元2,400元3,000元4,800元900元1,000元500元800元1,000元",
+        "最高給付住院日數31日31日31日31日31日31日31日31日31日31日31日",
+    ]
+    if any(signal.replace(" ", "") not in dense_text for signal in required_signals):
+        return None
+
+    table_pattern = re.compile(
+        r"計劃A計劃B計劃C計劃D計劃E計劃F計劃G計劃H計劃I計劃J計劃K"
+        r"住院醫療費用保險金限額(?P<limits>(?:[\d,]+萬元){11})"
+        r"門診手術費用保險金限額住院日額補償保險金住院日額(?P<daily>(?:[\d,]+元){11})"
+        r"最高給付住院日數(?P<days>(?:31日){11})"
+    )
+    table_match = table_pattern.search(dense_text)
+    if not table_match:
+        return None
+    limits = [
+        int(amount.replace(",", "")) * 10_000
+        for amount in re.findall(r"([\d,]+)萬元", table_match.group("limits"))
+    ]
+    daily_amounts = [
+        int(amount.replace(",", ""))
+        for amount in re.findall(r"([\d,]+)元", table_match.group("daily"))
+    ]
+    expected_limits = [values[2] for values in TAIWAN_GOLD_GROUP_INPATIENT_LIMIT_AMOUNTS]
+    expected_daily = [values[3] for values in TAIWAN_GOLD_GROUP_INPATIENT_LIMIT_AMOUNTS]
+    if limits != expected_limits or daily_amounts != expected_daily:
+        return None
+
+    article_refs = {
+        heading: heading_reference(text, heading)
+        for heading in [
+            "住院次數之計算及契約有效期間屆滿後住院之處理",
+            "住院醫療費用保險金之給付",
+            "住院日額補償保險金之給付",
+            "門診手術費用保險金的給付",
+            "醫療費用未經全民健康保險給付者之處理方式",
+        ]
+    }
+    if any(reference is None for reference in article_refs.values()):
+        return None
+
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計劃別",
+        "selection_guidance": "請依保險證、保險手冊或保單批註所載計劃別選擇；本商品不需輸入單位數。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": 11,
+            "same_hospital_readmission_days": 14,
+            "post_expiry_readmission_excluded": True,
+            "day_hospital_excluded": True,
+            "outpatient_surgery_included": True,
+            "nhi_paid_excluded": True,
+            "non_nhi_payment_rate_percent": 100,
+            "hospital_medical_icu_limit_multiplier": 2,
+            "hospital_daily_icu_multiplier": 2,
+            "hospital_daily_days_limit": 31,
+            "icu_daily_days_limit": 31,
+            "medical_expense_or_daily_choose_one": True,
+            "conversion_right_after_months": 6,
+            "experience_dividend_formula": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_value,
+                "label": plan_label,
+                "coverage_entries": taiwan_gold_group_inpatient_limit_entries(
+                    plan_label, medical_limit, hospital_daily
+                ),
+            }
+            for plan_value, plan_label, medical_limit, hospital_daily in TAIWAN_GOLD_GROUP_INPATIENT_LIMIT_AMOUNTS
+        ],
+    }
+
+
 GROUP_CANCER_FIXED_HEADINGS = {
     "coverage": "保險範圍",
     "hospital": "癌症每次住院醫療保險金及其申請",
@@ -8786,6 +13454,188 @@ def parse_global_winterthur_cancer_annuity_face_amount(
                 "benefit_base",
                 f"按保險金額的 {cancer_rate}% 給付一次，不含原位癌。",
                 f"保單條款{cancer_article}及{appendix_ref}",
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="lifetime",
+                rate_percent=cancer_rate,
+                conditions=[waiting_condition, renewal_condition, "給付以一次為限", "不含原位癌"],
+            ),
+            *annuity_entries,
+        ],
+    }
+
+
+def parse_kgi_china_life_ritai_cancer_annuity_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = KGI_RITAI_CANCER_ANNUITY_PRODUCT_VERSIONS.get(product_id)
+    file_name = str(document.get("file_name") or "")
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or file_name != version["file_name"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_title_signals = (
+        "中國人壽",
+        "瑞泰",
+        "防癌健康保險附約",
+        "投資型商品版",
+        "等待期間為九十天",
+    )
+    if any(signal not in dense_text for signal in required_title_signals):
+        return None
+    if "本附約僅附加於投資型保險主契約且本附約保險費自主契約保單帳戶價值中扣除之" not in dense_text:
+        return None
+    if any(signal not in text for signal in version["required_revision_signals"]):
+        return None
+    if any(signal in text for signal in version["forbidden_revision_signals"]):
+        return None
+
+    common_clause_signals = (
+        "本公司對本附約應負之保險責任自被保險人於本附約的生效日或復效日起持續有效之第九十一日開始",
+        "但本附約續保者則自本附約續保之日開始",
+        "初次罹患原位癌保險金",
+        "初次罹患癌症保險金",
+        "癌症療養年金",
+        "續保之保險年齡最高為七十五歲",
+        "被保險人身故二者先屆至者",
+        "被保險人罹患原位癌時本公司不負前述「癌症療養年金」之給付責任",
+        "自該被保險人身故之日回溯至第三十日",
+        "被保險人初次罹患癌症後本附約效力自次一保單週月日起即行終止要保人免繳本附約保險費",
+        "受益人如能舉證說明則依其實際罹患癌症之日期處理",
+    )
+    if any(signal not in dense_text for signal in common_clause_signals):
+        return None
+
+    article_specs = (
+        ("初次罹患原位癌保險金", "十二"),
+        ("初次罹患癌症保險金", "十三"),
+        ("癌症療養年金", "十四"),
+        ("身故後診斷為癌症", "十五"),
+    )
+    article_starts = []
+    article_refs = {}
+    for heading, expected_article in article_specs:
+        match = re.search(
+            rf"【\s*{re.escape(heading)}\s*】\s*第\s*([一二三四五六七八九十廿]+)\s*條",
+            text,
+        )
+        if not match or match.group(1) != expected_article:
+            return None
+        article_starts.append(match.start())
+        article_refs[heading] = f"第{expected_article}條"
+    if article_starts != sorted(article_starts) or len(set(article_starts)) != 4:
+        return None
+
+    table_start = dense_text.find("保險金給付表")
+    table_end = dense_text.find("附表二", table_start)
+    if table_start < 0 or table_end <= table_start:
+        return None
+    compact_table = dense_text[table_start:table_end]
+    table_match = re.search(
+        r"給付項目投保每萬元保險金額"
+        r"1\.初次罹患癌症保險金給付以一次為限新台幣(\d+)元"
+        r"2\.初次罹患原位癌保險金給付以一次為限新台幣(\d+)元"
+        r"療養年金週年日給付金額"
+        r"1新台幣(\d+)元2新台幣(\d+)元3新台幣(\d+)元4新台幣(\d+)元"
+        r"3\.癌症療養年金5~9新台幣(\d+)元",
+        compact_table,
+    )
+    if not table_match:
+        return None
+    table_amounts = tuple(int(value) for value in table_match.groups())
+    expected_amounts = (10_000, 1_000, 9_000, 8_000, 7_000, 6_000, 2_000)
+    if table_amounts != expected_amounts:
+        return None
+
+    cancer_amount, in_situ_amount, *annuity_amounts = table_amounts
+    cancer_rate = cancer_amount // 100
+    in_situ_rate = in_situ_amount // 100
+    annuity_rates = [amount // 100 for amount in annuity_amounts]
+    waiting_condition = "生效日或復效日起 90 日內不負癌症保障責任；自第 91 日開始保障"
+    renewal_condition = "續保自續保日起開始保障，不另計 90 日等待期"
+    annuity_conditions = [
+        waiting_condition,
+        renewal_condition,
+        "須先領取初次罹患癌症保險金",
+        "被保險人於該療養年金週年日仍生存",
+        "原位癌不給付癌症療養年金",
+        "最長給付至第 9 個療養年金週年日或身故，二者先到者",
+        "初次罹患癌症後附約自次一保單週月日起終止，療養年金仍依本條約定給付",
+    ]
+    appendix_ref = "附表一（保險金給付表），第 6 頁"
+    annuity_specs = (
+        ("year-1", "第 1 個療養年金週年日", annuity_rates[0], "每次罹患癌症限一次"),
+        ("year-2", "第 2 個療養年金週年日", annuity_rates[1], "每次罹患癌症限一次"),
+        ("year-3", "第 3 個療養年金週年日", annuity_rates[2], "每次罹患癌症限一次"),
+        ("year-4", "第 4 個療養年金週年日", annuity_rates[3], "每次罹患癌症限一次"),
+        ("years-5-9", "第 5 至第 9 個療養年金週年日", annuity_rates[4], "每個週年日各一次，最多五次"),
+    )
+    annuity_entries = [
+        coverage_entry(
+            f"cancer-recovery-annuity-{entry_id}",
+            f"癌症療養年金（{label}）",
+            None,
+            "benefit_base",
+            f"每次按保險金額的 {rate}% 給付；{frequency_note}。",
+            f"保單條款{article_refs['癌症療養年金']}及{appendix_ref}",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="annual",
+            rate_percent=rate,
+            conditions=annuity_conditions,
+        )
+        for entry_id, label, rate, frequency_note in annuity_specs
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單首頁所載保險金額；系統會依附表一換算原位癌、癌症與各年度療養年金。",
+        "version_characteristics": {
+            "product_variant": "investment-linked",
+            "revision": version["revision"],
+            "cancer_initial_waiting_days": 90,
+            "cancer_reinstatement_waiting_days": 90,
+            "cancer_renewal_waiting_days": 0,
+            "maximum_renewal_age": 75,
+            "terminates_next_policy_month_after_initial_cancer": True,
+            "post_death_actual_diagnosis_date_evidence_allowed": True,
+            "annuity_anniversary_basis": "initial-cancer-benefit-payment-date",
+        },
+        "coverage_entries": [
+            coverage_entry(
+                "initial-carcinoma-in-situ",
+                "初次罹患原位癌保險金",
+                None,
+                "benefit_base",
+                f"按保險金額的 {in_situ_rate}% 給付一次；給付後仍須繳費以維持附約。",
+                f"保單條款{article_refs['初次罹患原位癌保險金']}及{appendix_ref}",
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="lifetime",
+                rate_percent=in_situ_rate,
+                conditions=[
+                    waiting_condition,
+                    renewal_condition,
+                    "給付以一次為限",
+                    "原位癌不給付癌症療養年金",
+                ],
+            ),
+            coverage_entry(
+                "initial-cancer",
+                "初次罹患癌症保險金",
+                None,
+                "benefit_base",
+                f"按保險金額的 {cancer_rate}% 給付一次，不含原位癌。",
+                f"保單條款{article_refs['初次罹患癌症保險金']}及{appendix_ref}",
                 calculation_basis="percentage_of_base",
                 amount_role="payout",
                 limit_scope="lifetime",
@@ -9218,10 +14068,27 @@ def parse_antai_fubon_new_cancer_lifetime_unit_table(
     text = normalize_terms_text(str(document.get("text") or ""))
     if "新防癌終身健康保險" not in text:
         return None
-    if any(heading not in text for heading in NEW_CANCER_LIFETIME_HEADINGS):
-        return None
-
+    minor_refund_rule = (
+        product_id in ANTAI_FUBON_NEW_CANCER_MINOR_REFUND_PRODUCT_IDS
+    )
+    required_headings = [
+        heading
+        for heading in NEW_CANCER_LIFETIME_HEADINGS
+        if heading != "保險範圍(十)-「身故保險金或喪葬費用保險金」的給付"
+    ]
+    death_heading_ok = (
+        "保險範圍(十)-「所繳保險費加計利息的退還、身故保險金或喪葬費用保險金」的給付"
+        in text
+        if minor_refund_rule
+        else "保險範圍(十)-「身故保險金或喪葬費用保險金」的給付"
+        in text
+    )
     compact_text = compact_table_text(text)
+    if (
+        any(compact_table_text(heading) not in compact_text for heading in required_headings)
+        or not death_heading_ok
+    ):
+        return None
     required_term_signals = [
         "自本契約生效日或復效日起且持續有效九十日以後",
         "於出院後十四日內再次住院時",
@@ -9230,10 +14097,17 @@ def parse_antai_fubon_new_cancer_lifetime_unit_table(
         "不論其每日接受化學治療次數為一次或多次均以一日計",
         "以注射方式",
         "本契約有效期間內「骨髓或幹細胞移植保險金」的給付以一次為限",
-        "保險年齡達一百一十歲後之保單周年日",
         "第十條至第十七條",
     ]
     if any(signal not in compact_text for signal in required_term_signals):
+        return None
+    maturity_age = 111 if minor_refund_rule else 110
+    maturity_signal = (
+        "保險年齡到達一百一十一歲時仍生存"
+        if minor_refund_rule
+        else "保險年齡達一百一十歲後之保單周年日"
+    )
+    if maturity_signal not in compact_text:
         return None
 
     table_start = text.rfind("附表一")
@@ -9263,7 +14137,9 @@ def parse_antai_fubon_new_cancer_lifetime_unit_table(
         return None
 
     revised_funeral_rule = "遺產稅喪葬費扣除額之半數" in compact_text
-    if revised_funeral_rule != (product_id == "209321M12B00303"):
+    if revised_funeral_rule != (
+        product_id in ANTAI_FUBON_NEW_CANCER_REVISED_FUNERAL_PRODUCT_IDS
+    ):
         return None
     funeral_rule = (
         "2010-estate-tax-half-deduction"
@@ -9292,6 +14168,11 @@ def parse_antai_fubon_new_cancer_lifetime_unit_table(
         "實際餘額需依已領理賠總額計算",
         "給付後契約終止",
     ]
+    maturity_condition = (
+        "保險年齡到達 111 歲時仍生存"
+        if maturity_age == 111
+        else "保險年齡達 110 歲後之保單周年日仍生存"
+    )
 
     return {
         "selection_type": "unit",
@@ -9304,6 +14185,8 @@ def parse_antai_fubon_new_cancer_lifetime_unit_table(
             "specific_cancer_rate_percent": 15,
             "per_unit_total_cap": 1_000_000,
             "funeral_benefit_rule": funeral_rule,
+            "minor_death_or_disability_refund_rule": minor_refund_rule,
+            "maturity_age": maturity_age,
         },
         "coverage_entries": [
             coverage_entry(
@@ -9468,13 +14351,13 @@ def parse_antai_fubon_new_cancer_lifetime_unit_table(
                 "祝壽保險金（保障池餘額）",
                 1_000_000,
                 "per_unit",
-                f"{pool_note}於保險年齡達 110 歲後的保單周年日仍生存時給付。",
+                f"{pool_note}於{maturity_condition}時給付。",
                 f"保單條款第二十條及{table_ref}",
                 calculation_basis="per_unit",
                 amount_role="base",
                 limit_scope="lifetime",
                 aggregation_rule="cumulative_cap",
-                conditions=[*pool_conditions, "保險年齡達 110 歲後之保單周年日仍生存"],
+                conditions=[*pool_conditions, maturity_condition],
             ),
             coverage_entry(
                 "lifetime-total-benefit-cap",
@@ -9493,14 +14376,11993 @@ def parse_antai_fubon_new_cancer_lifetime_unit_table(
     }
 
 
+FUBON_STATUTORY_INFECTIOUS_PRODUCT_VERSIONS = {
+    "209311MZ1B01021A11Z10000000": {
+        "document_code": "MGV1090316",
+        "required_revision_signals": ("109.03.16 富壽商精字第1090001191 號函備查",),
+        "forbidden_revision_signals": ("109.08.17 依 109.06.24", "109.08.17 依 109.07.08"),
+        "missing_person_return_rule": "benefit-only",
+        "statutory_definition_wording": "公告傳染病名稱之法定傳染病",
+    },
+    "209311MZ1B01021A11Z10000001": {
+        "document_code": "MGV1090817",
+        "required_revision_signals": (
+            "109.03.16 富壽商精字第1090001191 號函備查",
+            "109.08.17 依 109.06.24 金管保壽字第1090422057 號函修正",
+            "109.08.17 依 109.07.08 金管保壽字第1090423012 號函修正",
+        ),
+        "forbidden_revision_signals": (),
+        "missing_person_return_rule": "premium-or-benefit",
+        "statutory_definition_wording": "傳染病防治法第三條規定所稱之傳染病",
+    },
+}
+FUBON_STATUTORY_INFECTIOUS_AMOUNTS = {
+    "death": (500_000, 1_000_000, 1_500_000, 2_000_000, 2_500_000),
+    "statutory_death": (750_000, 1_500_000, 2_250_000, 3_000_000, 3_750_000),
+    "hospital_daily": (500, 1_000, 1_500, 2_000, 2_500),
+    "statutory_hospital_daily": (1_000, 2_000, 3_000, 4_000, 5_000),
+    "icu_daily": (500, 1_000, 1_500, 2_000, 2_500),
+    "recovery_daily": (250, 500, 750, 1_000, 1_250),
+    "statutory_infectious": (5_000, 10_000, 15_000, 20_000, 25_000),
+}
+FUBON_STATUTORY_INFECTIOUS_TABLE_SHA256 = (
+    "facea07699afde2f40a922e5909955a4e623d586a18a0cf1ce055a8ea9eeaaf9"
+)
+
+
+def is_fubon_statutory_infectious_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id in FUBON_STATUTORY_INFECTIOUS_PRODUCT_VERSIONS
+        or re.fullmatch(r"209311MZ1B01021A11Z1000000[01]-[AF]\.pdf", file_name)
+        is not None
+        or any(
+            version["document_code"] in dense_text
+            for version in FUBON_STATUTORY_INFECTIOUS_PRODUCT_VERSIONS.values()
+        )
+    )
+
+
+def parse_fubon_statutory_infectious_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_STATUTORY_INFECTIOUS_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != f"{product_id}-A.pdf"
+        or document.get("page_count") != 9
+        or document.get("pages_parsed") != 9
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    if (
+        dense_text.count(version["document_code"]) != 9
+        or any(
+            f"{version['document_code']}{page}/9" not in dense_text
+            for page in range(1, 10)
+        )
+        or any(signal.replace(" ", "") not in dense_text for signal in version["required_revision_signals"])
+        or any(signal.replace(" ", "") in dense_text for signal in version["forbidden_revision_signals"])
+        or "富邦人壽金放心法定傳染病一年定期健康保險" not in text
+        or "本契約保障內容分五個計畫別" not in text
+        or "係指本契約生效日起持續有效十四天之期間" not in text
+        or version["statutory_definition_wording"].replace(" ", "") not in dense_text
+        or "日間住院" not in text
+        or "日間留院" not in text
+        or "最高可續保至被保險人保險年齡七十五歲" not in text
+        or "法定傳染病致成身故加計後應給付" not in text
+        or "法定傳染病接受住院診療加計後應" not in text
+    ):
+        return None
+
+    table_start = text.rfind("附表一")
+    if table_start < 0:
+        return None
+    table_text = text[table_start:]
+    compact_table = compact_table_text(table_text)
+    required_table_signals = (
+        "計畫一計畫二計畫三計畫四計畫五",
+        "50萬100萬150萬200萬250萬",
+        "75萬150萬225萬300萬375萬",
+        "500元/日1000元/日1500元/日2000元/日2500元/日",
+        "1000元/日2000元/日3000元/日4000元/日5000元/日",
+        "250元/日500元/日750元/日1000元/日1250元/日",
+        "5000元10000元15000元20000元25000元",
+    )
+    if any(signal not in compact_table for signal in required_table_signals):
+        return None
+    table_payload = {
+        key: list(values)
+        for key, values in FUBON_STATUTORY_INFECTIOUS_AMOUNTS.items()
+    }
+    if sha256_json(table_payload) != FUBON_STATUTORY_INFECTIOUS_TABLE_SHA256:
+        return None
+
+    plan_labels = ["計畫一", "計畫二", "計畫三", "計畫四", "計畫五"]
+    plan_options = []
+    for index, label in enumerate(plan_labels):
+        death = FUBON_STATUTORY_INFECTIOUS_AMOUNTS["death"][index]
+        statutory_death = FUBON_STATUTORY_INFECTIOUS_AMOUNTS["statutory_death"][index]
+        hospital_daily = FUBON_STATUTORY_INFECTIOUS_AMOUNTS["hospital_daily"][index]
+        statutory_hospital_daily = FUBON_STATUTORY_INFECTIOUS_AMOUNTS["statutory_hospital_daily"][index]
+        icu_daily = FUBON_STATUTORY_INFECTIOUS_AMOUNTS["icu_daily"][index]
+        recovery_daily = FUBON_STATUTORY_INFECTIOUS_AMOUNTS["recovery_daily"][index]
+        statutory_infectious = FUBON_STATUTORY_INFECTIOUS_AMOUNTS["statutory_infectious"][index]
+        source_ref = "保單條款第十、十三、十四條及附表一，第 4-5、8 頁"
+        coverage_entries = [
+            coverage_entry(
+                "death",
+                "身故保險金或喪葬費用保險金",
+                death,
+                "policy_total",
+                f"依{label}給付 {death:,} 元後契約終止。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="payout",
+                limit_scope="per_policy",
+                conditions=[
+                    "被保險人保險年齡到達十六歲後身故",
+                    "法定傳染病所致身故改依法定傳染病身故加計金額給付",
+                    "特定身分依法改為喪葬費用保險金並受法定總額限制",
+                ],
+            ),
+            coverage_entry(
+                "statutory-infectious-death",
+                "法定傳染病身故加計後給付金額",
+                statutory_death,
+                "policy_total",
+                f"因法定傳染病致成身故時，依{label}給付 {statutory_death:,} 元，不適用等待期間。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_policy",
+                rate_percent=150,
+                conditions=[
+                    "法定傳染病所致身故，或身故後始經確診為法定傳染病所致",
+                    "不適用等待期間",
+                    "給付後本契約終止",
+                ],
+            ),
+            coverage_entry(
+                "hospital-daily",
+                "住院醫療保險金日額",
+                hospital_daily,
+                "daily_total",
+                f"因疾病或傷害住院，每日給付 {hospital_daily:,} 元。",
+                source_ref,
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                conditions=[
+                    "含入院及出院當日",
+                    "同一次住院最高 365 日",
+                    "精神疾病住院於本契約有效期間內最高 90 日",
+                    "日間住院及日間留院不在住院定義內",
+                ],
+            ),
+            coverage_entry(
+                "statutory-infectious-hospital-daily",
+                "法定傳染病住院醫療保險金日額",
+                statutory_hospital_daily,
+                "daily_total",
+                f"因法定傳染病住院診療時，每日給付 {statutory_hospital_daily:,} 元。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_day",
+                rate_percent=200,
+                conditions=[
+                    "法定傳染病等待期間為契約生效日起持續有效 14 天",
+                    "同一次住院最高 365 日",
+                    "身故後始經確診罹患法定傳染病者亦適用",
+                ],
+            ),
+            coverage_entry(
+                "icu-daily",
+                "加護病房住院醫療保險金日額",
+                icu_daily,
+                "daily_total",
+                f"入住加護病房時，每日另給付 {icu_daily:,} 元。",
+                source_ref,
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                aggregation_rule="conditional_additive",
+                conditions=[
+                    "同一次住院最高 365 日",
+                    "同日轉出後再入住加護病房不重複計算",
+                ],
+            ),
+            coverage_entry(
+                "home-recovery-daily",
+                "出院療養保險金日額",
+                recovery_daily,
+                "daily_total",
+                f"符合住院給付時，每日另給付 {recovery_daily:,} 元。",
+                source_ref,
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                aggregation_rule="conditional_additive",
+                conditions=[
+                    "按實際住院日數含入院及出院當日給付",
+                    "同一次住院最高 365 日",
+                    "精神疾病住院於本契約有效期間內最高 90 日",
+                ],
+            ),
+            coverage_entry(
+                "statutory-infectious-diagnosis",
+                "法定傳染病保險金",
+                statutory_infectious,
+                "per_event",
+                f"經診斷確定罹患法定傳染病時，依{label}給付 {statutory_infectious:,} 元。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="payout",
+                limit_scope="per_policy",
+                conditions=[
+                    "法定傳染病等待期間為契約生效日起持續有效 14 天",
+                    "本契約有效期間內以一次為限",
+                    "身故前已罹患且嗣後確診者仍給付",
+                ],
+            ),
+        ]
+        plan_options.append(
+            {
+                "value": f"plan-{index + 1}",
+                "label": label,
+                "coverage_entries": coverage_entries,
+            }
+        )
+
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "保障計畫",
+        "selection_guidance": "請依保單首頁選擇計畫一至計畫五；系統會顯示身故、住院、加護病房、出院療養與法定傳染病給付金額，不需輸入單位數。",
+        "version_characteristics": {
+            "disease_initial_waiting_days": 30,
+            "statutory_infectious_waiting_days": 14,
+            "maximum_renewal_age": 75,
+            "day_hospital_excluded": True,
+            "statutory_death_rate_percent": 150,
+            "statutory_hospital_daily_rate_percent": 200,
+            "statutory_infectious_diagnosis_limit": "once_per_policy",
+            "missing_person_return_rule": version["missing_person_return_rule"],
+        },
+        "plan_options": plan_options,
+    }
+
+
+FARGLORY_KANGFU_MEDICAL_PRODUCT_VERSIONS = {
+    "216311RZ1A19421A11Z10000001": {
+        "page_count": 6,
+        "required_revision_signals": (
+            "民國 104 年 10 月 05 日 遠壽字第 1040265 號函",
+            "民國 107 年 09 月 14 日 依 107.06.07 金管保壽字",
+            "第 10704158370 號函修正",
+        ),
+        "forbidden_revision_signals": ("109 年 01 月 01 日", "111 年 12 月 02 日"),
+        "revision": "107-revised",
+        "insured_notice_revision": False,
+    },
+    "216311RZ1A19421A11Z10000002": {
+        "page_count": 7,
+        "required_revision_signals": (
+            "民國 104 年 10 月 05 日 遠壽字第 1040265 號函",
+            "民國 109 年 01 月 01 日 依 108.04.09 金管保壽字",
+            "第 10804904941 號函",
+            "108.06.13 金管保壽字",
+            "第 10804933330 號函修正",
+        ),
+        "forbidden_revision_signals": ("111 年 12 月 02 日",),
+        "revision": "109-revised",
+        "insured_notice_revision": False,
+    },
+    "216311RZ1A19421A11Z10000003": {
+        "page_count": 7,
+        "required_revision_signals": (
+            "民國 104 年 10 月 05 日 遠壽字第 1040265 號函",
+            "民國 111 年 12 月 02 日 依 111.08.30金管保壽字",
+            "第 1110445485 號函修正",
+        ),
+        "forbidden_revision_signals": ("109 年 01 月 01 日",),
+        "revision": "111-revised",
+        "insured_notice_revision": True,
+    },
+}
+FARGLORY_KANGFU_MEDICAL_AMOUNTS = {
+    "hospital_daily": (500, 1_000, 1_500, 2_000),
+    "hospital_auxiliary_daily": (500, 500, 500, 500),
+    "hospital_consolation": (3_500, 7_000, 10_500, 14_000),
+    "inpatient_medical_limit": (200_000, 300_000, 400_000, 500_000),
+    "surgery_limit": (150_000, 200_000, 250_000, 300_000),
+}
+FARGLORY_KANGFU_MEDICAL_TABLE_SHA256 = (
+    "0f46f3f9e95edb7f70944eba468a4e7fa2d75ff73a29b63d203ffdfab5ccacac"
+)
+
+YUANTA_XIANGYOUXIN_MEDICAL_PRODUCT_VERSIONS = {
+    "261311RZ1AJR021A11Z10000000": {
+        "page_count": 13,
+        "required_revision_signals": ("107 年 9 月 28 日 元壽字第 1070002602 號函備查",),
+        "forbidden_revision_signals": ("108年10月1日", "109年1月1日"),
+        "revision": "original",
+        "claims_review_medical_opinion_revision": False,
+    },
+    "261311RZ1AJR021A11Z10000001": {
+        "page_count": 13,
+        "required_revision_signals": (
+            "108年10月1日依108年8月22日金管保壽字第1080431743號函修正",
+        ),
+        "forbidden_revision_signals": ("109年1月1日",),
+        "revision": "108-revised",
+        "claims_review_medical_opinion_revision": False,
+    },
+    "261311RZ1AJR021A11Z10000002": {
+        "page_count": 13,
+        "required_revision_signals": (
+            "107 年 9 月 28 日 元壽字第 1070002602 號函備查",
+            "108年10月1日依108年8月22日金管保壽字第1080431743號函修正",
+            "109年1月1日依108年4月9日金管保壽字第10804904941號函及",
+            "108 年 6 月 13 日金管保壽字第 10804933330 號函修正",
+        ),
+        "forbidden_revision_signals": (),
+        "revision": "109-revised",
+        "claims_review_medical_opinion_revision": True,
+    },
+}
+YUANTA_XIANGYOUXIN_MEDICAL_AMOUNTS = {
+    "hospital_daily": (500, 1_000, 1_500, 2_000, 2_500, 3_000),
+    "inpatient_medical_limit": (150_000, 200_000, 250_000, 300_000, 350_000, 400_000),
+    "surgery_limit": (150_000, 200_000, 250_000, 300_000, 350_000, 400_000),
+    "pre_admission_outpatient_limit": (1_000, 1_000, 1_000, 2_000, 2_000, 2_000),
+    "post_discharge_outpatient_limit": (3_000, 3_000, 3_000, 6_000, 6_000, 6_000),
+}
+YUANTA_XIANGYOUXIN_MEDICAL_TABLE_SHA256 = (
+    "9d7269bc97f64355553a91e7dc8b4417d743774fdcb74fabfe880f62de2c87fe"
+)
+YUANTA_XIANGAN_MEDICAL_PRODUCT_VERSIONS = {
+    "261311RZ1ANR021A11Z10000003": {
+        "revision": "109-third-revision",
+        "file_name": "261311RZ1ANR021A11Z10000003-A.pdf",
+        "page_count": 8,
+        "required_revision_signals": (
+            "104年3月2日元壽字第10400146號函備查",
+            "104年8月4日依104年6月24日金管保壽字第10402049830號函修正",
+            "108年10月1日依108年8月22日金管保壽字第1080431743號函修正",
+            "109年1月1日依108年4月9日金管保壽字第10804904941號函及108年6月13日金管保壽字第10804933330號函修正",
+            "條款樣張NR-2020.01",
+        ),
+        "forbidden_revision_signals": (),
+        "claims_review_medical_opinion_revision": True,
+        "newborn_metabolic_disease_revision": True,
+    },
+}
+YUANTA_XIANGAN_MEDICAL_AMOUNTS = {
+    "room_daily_limit": (1_000, 1_500, 2_000, 2_500, 3_000, 4_000),
+    "inpatient_medical_limit": (125_000, 150_000, 175_000, 200_000, 225_000, 275_000),
+    "surgery_limit": (80_000, 100_000, 120_000, 140_000, 160_000, 200_000),
+    "pre_admission_outpatient_limit": (1_000, 1_000, 2_000, 2_000, 2_000, 2_000),
+    "post_discharge_outpatient_limit": (3_000, 3_000, 6_000, 6_000, 6_000, 6_000),
+    "supplement_limit": (2_000, 3_000, 4_000, 5_000, 6_000, 8_000),
+}
+YUANTA_XIANGAN_MEDICAL_TABLE_SHA256 = (
+    "c7c0ad6e8788a188a641a4d804b843cf99f91076db6c264c6c16e26cd831c705"
+)
+YUANTA_GROUP_HOSPITAL_MEDICAL_PRODUCT_VERSIONS = {
+    "261313MZ1AGHE21A11Z10000000": {
+        "revision": "original",
+        "file_name": "261313MZ1AGHE21A11Z10000000-A.pdf",
+        "page_count": 15,
+        "required_revision_signals": ("1080004022",),
+        "forbidden_revision_signals": ("1110445485", "11304207572"),
+        "insured_notice_revision": False,
+        "day_hospital_definition_revision": "original",
+    },
+    "261313MZ1AGHE21A11Z10000001": {
+        "revision": "111-revised",
+        "file_name": "261313MZ1AGHE21A11Z10000001-A.pdf",
+        "page_count": 14,
+        "required_revision_signals": ("1080004022", "1110445485", "GHE-2023.01"),
+        "forbidden_revision_signals": ("11304207572",),
+        "insured_notice_revision": True,
+        "day_hospital_definition_revision": "original",
+    },
+    "261313MZ1AGHE21A11Z10000002": {
+        "revision": "113-revised",
+        "file_name": "261313MZ1AGHE21A11Z10000002-A.pdf",
+        "page_count": 16,
+        "required_revision_signals": ("1080004022", "1110445485", "11304207572"),
+        "forbidden_revision_signals": (),
+        "insured_notice_revision": True,
+        "day_hospital_definition_revision": "113-day-care",
+    },
+}
+YUANTA_GROUP_HOSPITAL_MEDICAL_TABLE_SHA256 = (
+    "59af38df2d4f0fd32da72aa96aa837bddda4f973e126fb97d711755eb438c17e"
+)
+YUANTA_GROUP_HOSPITAL_MEDICAL_AMOUNTS = {
+    "daily": tuple(range(500, 2_501, 100)),
+    "reimbursement": tuple(amount * 40 for amount in range(500, 2_501, 100)),
+}
+YUANTA_YUANQI_SHIZU_PRODUCT_VERSIONS = {
+    "261311RZ1AYR021A11Z10000000": {
+        "revision": "original",
+        "file_name": "261311RZ1AYR021A11Z10000000-A.pdf",
+        "page_count": 14,
+        "required_revision_signals": ("元壽字第1110003243號函備查", "YR-上市日期:111.9.21"),
+        "forbidden_revision_signals": ("金管保壽字第1110445485號函修正",),
+        "insured_notice_revision": False,
+    },
+    "261311RZ1AYR021A11Z10000001": {
+        "revision": "111-revised",
+        "file_name": "261311RZ1AYR021A11Z10000001-A.pdf",
+        "page_count": 14,
+        "required_revision_signals": (
+            "元壽字第1110003243號函備查",
+            "112年1月1日依111年8月30日金管保壽字第1110445485號函修正",
+            "YR-:2023.01",
+        ),
+        "forbidden_revision_signals": (),
+        "insured_notice_revision": True,
+    },
+}
+YUANTA_YUANQI_SHIZU_AMOUNTS = {
+    "hospital_daily": (1_000, 1_500, 2_000, 2_500, 3_000),
+    "medical_device": (10_000, 15_000, 20_000, 25_000, 30_000),
+    "special_procedure": (3_000, 3_000, 3_000, 3_000, 3_000),
+    "daily_room": (1_000, 1_500, 2_000, 2_500, 3_000),
+    "inpatient_medical": (75_000, 100_000, 125_000, 150_000, 175_000),
+    "pre_admission_outpatient": (1_000, 1_000, 1_000, 1_000, 1_000),
+    "post_discharge_outpatient": (3_000, 3_000, 3_000, 3_000, 3_000),
+    "inpatient_surgery": (60_000, 60_000, 80_000, 80_000, 80_000),
+    "outpatient_surgery": (30_000, 30_000, 40_000, 40_000, 40_000),
+}
+YUANTA_YUANQI_SHIZU_TABLE_SHA256 = (
+    "f849f4aada44e4bad493bf644b8098f328a1d57fb531a444161c832a391557fd"
+)
+YUANTA_HEALTH_LIFE_EARLY_PRODUCT_VERSIONS = {
+    "261311MZ1GA2023A11Z10000000": {
+        "revision": "original",
+        "file_name": "261311MZ1GA2023A11Z10000000-A.pdf",
+        "page_count": 11,
+        "required_revision_signals": ("104年10月1日元壽字第1040001025號函備查",),
+        "forbidden_revision_signals": ("金管保財字第10502502801號令修正",),
+        "regulatory_revision": False,
+    },
+    "261311MZ1GA2023A11Z10000001": {
+        "revision": "105-revised",
+        "file_name": "261311MZ1GA2023A11Z10000001-A.pdf",
+        "page_count": 11,
+        "required_revision_signals": (
+            "104年10月1日元壽字第1040001025號函備查",
+            "106年1月1日依105年7月19日金管保財字第10502502801號令修正",
+        ),
+        "forbidden_revision_signals": (),
+        "regulatory_revision": True,
+    },
+}
+YUANTA_NEW_ACCOUNT_MEDICAL_PRODUCT_VERSIONS = {
+    "261311MZ1GA1023A11Z10000009": {
+        "page_count": 11,
+        "required_revision_signals": ("108 年 1 月 1 日依107 年 9 月 17 日金管保壽字第10704937510 號函修正",),
+        "forbidden_revision_signals": ("108年10月1日",),
+        "revision": "108-revised",
+        "medical_opinion_revision": False,
+        "spec_code": "A1-2019.01",
+    },
+    "261311MZ1GA1023A11Z10000010": {
+        "page_count": 11,
+        "required_revision_signals": ("108年10月1日依108年8月22日金管保壽字第1080431743號函修正",),
+        "forbidden_revision_signals": (),
+        "revision": "108-10-revised",
+        "medical_opinion_revision": True,
+        "spec_code": "A1-2019.10",
+    },
+}
+
+
+GLOBAL_E_ROAD_PEACE_OVERSEAS_ILLNESS_PRODUCT_VERSIONS = {
+    "264311AZ1AETS21A11Z10000000": {
+        "revision": "original",
+        "file_name": "264311AZ1AETS21A11Z10000000-A.pdf",
+        "page_count": 4,
+        "required_revision_signals": ("全球壽(商研)字第1060222002號",),
+        "forbidden_revision_signals": ("1070131003", "1080603018", "10804904941"),
+        "regulatory_revision": False,
+        "claims_medical_opinion_revision": False,
+    },
+    "264311AZ1AETS21A11Z10000001": {
+        "revision": "107-first-revision",
+        "file_name": "264311AZ1AETS21A11Z10000001-A.pdf",
+        "page_count": 4,
+        "required_revision_signals": ("全球壽(商研)字第1060222002號", "全球壽(商研)字第1070131003號"),
+        "forbidden_revision_signals": ("1080603018", "10804904941"),
+        "regulatory_revision": False,
+        "claims_medical_opinion_revision": False,
+    },
+    "264311AZ1AETS21A11Z10000002": {
+        "revision": "108-second-revision",
+        "file_name": "264311AZ1AETS21A11Z10000002-A.pdf",
+        "page_count": 4,
+        "required_revision_signals": ("全球壽(商研)字第1060222002號", "全球壽(商研)字第1080603018號"),
+        "forbidden_revision_signals": ("10804904941",),
+        "regulatory_revision": False,
+        "claims_medical_opinion_revision": False,
+    },
+    "264311AZ1AETS21A11Z10000003": {
+        "revision": "109-third-revision",
+        "file_name": "264311AZ1AETS21A11Z10000003-A.pdf",
+        "page_count": 4,
+        "required_revision_signals": ("全球壽(商研)字第1060222002號", "108.4.9金管保壽字第10804904941號函修正"),
+        "forbidden_revision_signals": (),
+        "regulatory_revision": True,
+        "claims_medical_opinion_revision": True,
+    },
+}
+
+
+GLOBAL_NCCU_STUDENT_GROUP_PRODUCT_VERSIONS = {
+    "264396MZ9GY3221A11Z10000000": {
+        "revision": "original",
+        "file_name": "264396MZ9GY3221A11Z10000000-A.pdf",
+        "page_count": 19,
+        "required_revision_signals": ("全球壽(商研)字第1040821006號", "備查日期:104年8月21日"),
+        "forbidden_revision_signals": ("金管保壽字第10402543750號", "修正日期:104年8月4日"),
+        "regulatory_revision": False,
+    },
+    "264396MZ9GY3221A11Z10000001": {
+        "revision": "104-first-revision",
+        "file_name": "264396MZ9GY3221A11Z10000001-A.pdf",
+        "page_count": 22,
+        "required_revision_signals": (
+            "全球壽(商研)字第1040821006號",
+            "依104.5.19金管保壽字第10402543750號函修正",
+            "修正日期:104年8月4日",
+        ),
+        "forbidden_revision_signals": (),
+        "regulatory_revision": True,
+    },
+    "264396MZ9GY3221A11Z10000002": {
+        "revision": "107-second-revision",
+        "file_name": "264396MZ9GY3221A11Z10000002-A.pdf",
+        "page_count": 22,
+        "required_revision_signals": (
+            "備查文號:全球壽(商研)字第1040821006號",
+            "修正文號:依107.6.7金管保壽字第10704158370號函修正",
+            "修正日期:107年9月10日",
+        ),
+        "forbidden_revision_signals": (
+            "10402543750",
+        ),
+        "regulatory_revision": True,
+    },
+}
+
+
+def is_global_nccu_student_group_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id in GLOBAL_NCCU_STUDENT_GROUP_PRODUCT_VERSIONS
+        or re.fullmatch(r"264396MZ9GY3221A11Z1000000[01]-[AF]\.pdf", file_name)
+        is not None
+        or "全球人壽國立政治大學學生團體保險" in dense_text
+    )
+
+
+def parse_global_nccu_student_group_fixed_schedule(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = GLOBAL_NCCU_STUDENT_GROUP_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != version["file_name"]
+        or document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = (
+        "全球人壽國立政治大學學生團體保險",
+        "「保險金額」係指新臺幣壹佰萬元",
+        "身故保險金及特定意外身故保險金的給付",
+        "殘廢保險金及殘廢生活補助金的給付",
+        "重大燒燙傷保險金的給付",
+        "住院醫療保險金的給付",
+        "其他醫療保險金的給付",
+        "保險給付的限額",
+        "保險金額的百分之二十五",
+        "新臺幣柒佰伍拾元",
+        "新臺幣參佰伍拾元",
+        "新臺幣伍佰元",
+        "新臺幣壹仟伍佰元",
+        "新臺幣壹萬元",
+        "新臺幣伍萬元",
+        "新臺幣貳萬元",
+        "實際支付之各項費用之75%",
+        "新臺幣伍仟元",
+        "新臺幣壹仟元",
+        "新臺幣參萬元",
+        "新臺幣拾伍萬元",
+        "出院後十四日內",
+        "一百八十日以內",
+    )
+    readable_107_required_signals = (
+        "全球人壽國立政治大學學生團體保險",
+        "保險金額」係指新臺幣壹佰萬元",
+        "身故保險金100萬",
+        "特定意外身故保險金(含身故保險金)200萬",
+        "本公司按診斷確定時保險金額的百分之二十五給付重大燒燙傷保險金",
+        "實際住院日數乘以新臺幣柒佰伍拾元所得之金額給付一般病房住院醫療保險金",
+        "實際住進加護病房日數乘以新臺幣柒佰伍拾元所得之金額給付加護病房住院醫療保險金",
+        "本公司依被保險人實際支付之各項費用之75%給付",
+        "意外傷害門診給付按實支金額給付,每一事故最高給付5,000元為限",
+        "初次罹癌給付癌症150,000元",
+        "出院後十四日內於同一醫院再次住院時",
+        "在發生傷害之日起一百八十日以內者",
+    )
+    general_signals_ok = all(
+        signal.replace(" ", "") in dense_text for signal in required_signals
+    ) or (
+        product_id == "264396MZ9GY3221A11Z10000002"
+        and all(signal.replace(" ", "") in dense_text for signal in readable_107_required_signals)
+    )
+    if (
+        not general_signals_ok
+        or any(signal.replace(" ", "") not in dense_text for signal in version["required_revision_signals"])
+        or any(signal.replace(" ", "") in dense_text for signal in version["forbidden_revision_signals"])
+    ):
+        return None
+
+    source_ref = f"保單條款第二、四、十至十八條及附表一至四，第 1-{version['page_count']} 頁"
+    fixed_policy_condition = "本團體保險條款固定保險金額為新臺幣 1,000,000 元，無計劃別或單位數選擇。"
+    hospital_choose_one = "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。"
+    return {
+        "selection_type": "fixed",
+        "input_mode": "fixed",
+        "selection_source": "terms",
+        "selection_label": "固定保險金額",
+        "selection_guidance": "條款固定保險金額為新臺幣 1,000,000 元；系統依附表一直接呈現固定給付與限額。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "fixed_face_amount": 1_000_000,
+            "disability_levels": 11,
+            "disability_living_assistance_levels": "1-3",
+            "disability_living_assistance_annual_payments": 4,
+            "major_burn_rate_percent": 25,
+            "hospital_daily_days_limit": 90,
+            "fracture_daily_amount": 350,
+            "same_hospital_readmission_days": 14,
+            "non_nhi_payment_rate_percent": 75,
+            "post_expiry_accident_days_limit": 180,
+            "death_disability_annual_cap": 1_000_000,
+            "specific_accidental_death_excluded_from_cap": True,
+            "regulatory_revision": version["regulatory_revision"],
+        },
+        "coverage_entries": [
+            coverage_entry(
+                "fixed-face-amount",
+                "固定保險金額",
+                1_000_000,
+                "benefit_base",
+                "第二條約定本契約保險金額為新臺幣 1,000,000 元，作為身故、殘廢、重大燒燙傷等給付基礎。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="base",
+                limit_scope="per_policy",
+                conditions=[fixed_policy_condition],
+            ),
+            coverage_entry(
+                "death-benefit",
+                "身故保險金",
+                1_000_000,
+                "per_event",
+                "被保險人身故時按保險金額給付身故保險金。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="payout",
+                limit_scope="per_event",
+                conditions=["給付後該被保險人保險效力即行終止。", fixed_policy_condition],
+            ),
+            coverage_entry(
+                "specific-accidental-death-additional",
+                "特定意外身故保險金",
+                1_000_000,
+                "additional_benefit",
+                "校外教學、全校正式運動比賽或經學校核准登記社團活動期間發生特定意外身故時，另按保險金額給付。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="payout",
+                limit_scope="per_event",
+                aggregation_rule="conditional_additive",
+                conditions=["限條款列明之特定學校活動期間所致意外傷害身故。", "此給付不列入身故與殘廢保險金年度合計上限。"],
+            ),
+            coverage_entry(
+                "disability-benefit",
+                "殘廢保險金",
+                1_000_000,
+                "per_event",
+                "按附表二殘廢程度給付比例計算；附表一列第 1 級至第 11 級為 100%、90%、80%、70%、60%、50%、40%、30%、20%、10%、5%。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_event",
+                rate_min_percent=5,
+                rate_max_percent=100,
+                unit_key="fixed_face_amount",
+                amount_tiers=[
+                    {"label": "第 1 級", "amount": 1_000_000},
+                    {"label": "第 2 級", "amount": 900_000},
+                    {"label": "第 3 級", "amount": 800_000},
+                    {"label": "第 4 級", "amount": 700_000},
+                    {"label": "第 5 級", "amount": 600_000},
+                    {"label": "第 6 級", "amount": 500_000},
+                    {"label": "第 7 級", "amount": 400_000},
+                    {"label": "第 8 級", "amount": 300_000},
+                    {"label": "第 9 級", "amount": 200_000},
+                    {"label": "第 10 級", "amount": 100_000},
+                    {"label": "第 11 級", "amount": 50_000},
+                ],
+                conditions=["同一保險期間身故與殘廢保險金合計最高以保險金額為限。"],
+            ),
+            coverage_entry(
+                "disability-living-assistance-annual",
+                "殘廢生活補助金",
+                250_000,
+                "annual_limit",
+                "第一至第三級殘廢於診斷確定後第 1 至第 4 保單週年日仍生存時，按附表一每年給付。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="payout",
+                limit_scope="annual",
+                amount_tiers=[
+                    {"label": "第 1 級每年", "amount": 250_000},
+                    {"label": "第 2 級每年", "amount": 225_000},
+                    {"label": "第 3 級每年", "amount": 200_000},
+                ],
+                conditions=["限第一至第三級殘廢。", "各級補助金累計最高不得超過其殘廢保險金。", "最多給付 4 次年度補助。"],
+            ),
+            coverage_entry(
+                "major-burn",
+                "重大燒燙傷保險金",
+                250_000,
+                "per_event",
+                "符合條款重大燒燙傷定義時，按保險金額 25% 給付。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_event",
+                rate_percent=25,
+                unit_key="fixed_face_amount",
+                conditions=["同一意外傷害事故以給付一次為限。"],
+            ),
+            coverage_entry(
+                "hospital-daily-general",
+                "住院日額保險金",
+                750,
+                "daily_total",
+                "選擇日額型住院醫療保險金時，一般病房按實際住院日數每日給付 750 元。",
+                source_ref,
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                aggregation_rule="choose_one",
+                conditions=[hospital_choose_one, "每次住院日額給付日數最高 90 日。"],
+            ),
+            coverage_entry(
+                "hospital-daily-icu",
+                "加護病房住院日額保險金",
+                1_500,
+                "daily_total",
+                "選擇日額型且入住加護病房時，附表一以每日 1,500 元列示。",
+                source_ref,
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                aggregation_rule="choose_one",
+                conditions=[hospital_choose_one, "同日若同時符合加護、燒燙傷或癌症住院日額，僅得擇一給付。", "每次住院日額給付日數最高 90 日。"],
+            ),
+            coverage_entry(
+                "hospital-daily-burn-ward",
+                "燒燙傷病房住院日額保險金",
+                1_500,
+                "daily_total",
+                "選擇日額型且入住燒燙傷病房時，附表一以每日 1,500 元列示。",
+                source_ref,
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                aggregation_rule="choose_one",
+                conditions=[hospital_choose_one, "同日若同時符合加護、燒燙傷或癌症住院日額，僅得擇一給付。", "每次住院日額給付日數最高 90 日。"],
+            ),
+            coverage_entry(
+                "hospital-daily-cancer",
+                "癌症住院日額保險金",
+                1_500,
+                "daily_total",
+                "選擇日額型且因癌症住院診療時，附表一以每日 1,500 元列示。",
+                source_ref,
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                aggregation_rule="choose_one",
+                conditions=[hospital_choose_one, "同日若同時符合加護、燒燙傷或癌症住院日額，僅得擇一給付。", "每次住院日額給付日數最高 90 日。"],
+            ),
+            coverage_entry(
+                "fracture-no-hospital-daily",
+                "骨折未住院日額保險金",
+                350,
+                "daily_total",
+                "骨折未住院或住院日數低於附表三日數時，按附表三日數每日 350 元計算；不完全骨折按二分之一，骨骼龜裂按四分之一。",
+                source_ref,
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_injury",
+                conditions=[hospital_choose_one, "同一事故多處骨折時僅按最高等級給付。"],
+            ),
+            coverage_entry(
+                "inpatient-routine-expense-limit",
+                "住院一般醫療費用限額",
+                500,
+                "daily_total",
+                "選擇實支實付型時，住院期間一般醫療費用每日限額 500 元；加護、燒燙傷或癌症住院期間每日限額 1,500 元。",
+                source_ref,
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_day",
+                aggregation_rule="choose_one",
+                amount_tiers=[
+                    {"label": "一般住院每日", "amount": 500},
+                    {"label": "加護/燒燙傷/癌症住院每日", "amount": 1_500},
+                ],
+                conditions=[hospital_choose_one, "已由全民健康保險給付部分不再給付。"],
+            ),
+            coverage_entry(
+                "surgery-expense-limit",
+                "手術醫療費用限額",
+                10_000,
+                "per_event",
+                "選擇實支實付型時，每次住院手術費用限額 10,000 元；重大手術限額 50,000 元。",
+                source_ref,
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_hospitalization",
+                amount_tiers=[
+                    {"label": "一般手術", "amount": 10_000},
+                    {"label": "重大手術", "amount": 50_000},
+                ],
+                conditions=[hospital_choose_one, "重大手術依附表四認定。", "已由全民健康保險給付部分不再給付。"],
+            ),
+            coverage_entry(
+                "inpatient-medical-expense-limit",
+                "每次住院醫療費用限額",
+                20_000,
+                "per_event",
+                "選擇實支實付型時，每次住院醫療費用限額為 20,000 元。",
+                source_ref,
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_hospitalization",
+                conditions=[hospital_choose_one, "未以全民健康保險身分或至非全民健康保險醫院就診者，按實際支付費用 75% 給付並受本限額限制。"],
+            ),
+            coverage_entry(
+                "accident-outpatient-limit",
+                "意外門診醫療費用限額",
+                5_000,
+                "per_event",
+                "因意外傷害門診診療時，每一事故實支實付限額 5,000 元。",
+                source_ref,
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_event",
+                conditions=["未以全民健康保險身分或至非全民健康保險醫院就診者，按實際支付費用 75% 給付並受本限額限制。"],
+            ),
+            coverage_entry(
+                "major-illness-benefit",
+                "重大傷病保險金",
+                50_000,
+                "per_event",
+                "被保險人經醫院醫師診斷確定初次罹患條款所列重大傷病時給付 50,000 元。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="payout",
+                limit_scope="per_event",
+                conditions=["同一重大傷病事故依條款約定申領。"],
+            ),
+            coverage_entry(
+                "campus-group-food-poisoning",
+                "校園團體食物中毒慰問保險金",
+                1_000,
+                "per_event",
+                "因學生餐廳食物或條款列明活動造成五人以上食物中毒並經診斷時，每人給付 1,000 元。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="payout",
+                limit_scope="per_event",
+                conditions=["須同一事故五人以上食物中毒，並經醫院或診所診斷。"],
+            ),
+            coverage_entry(
+                "first-cancer-benefit",
+                "初次罹患癌症保險金",
+                150_000,
+                "per_event",
+                "初次罹患癌症給付 150,000 元；原位癌給付 30,000 元，且初次罹患癌症給付總額最高 150,000 元。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="payout",
+                limit_scope="per_event",
+                amount_tiers=[
+                    {"label": "原位癌", "amount": 30_000},
+                    {"label": "原位癌以外之癌症", "amount": 150_000},
+                ],
+                conditions=["若癌症已依重大傷病保險金給付，應自初次罹患癌症保險金中扣除。", "初次罹患癌症保險金總額最高 150,000 元。"],
+            ),
+            coverage_entry(
+                "death-disability-annual-cap",
+                "身故與殘廢保險金年度合計上限",
+                1_000_000,
+                "annual_limit",
+                "每一保險期間內，身故及殘廢保險金合計最高以保險金額為限。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="limit",
+                limit_scope="annual",
+                aggregation_rule="cumulative_cap",
+                conditions=["不包含殘廢生活補助金。", "特定意外身故保險金不列入此上限。"],
+            ),
+        ],
+    }
+
+
+def is_global_e_road_peace_overseas_illness_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id in GLOBAL_E_ROAD_PEACE_OVERSEAS_ILLNESS_PRODUCT_VERSIONS
+        or re.fullmatch(r"264311AZ1AETS21A11Z1000000[0-3]-[AF]\.pdf", file_name)
+        is not None
+        or "全球人壽e路平安海外突發疾病醫療健康保險附加條款" in dense_text
+    )
+
+
+def parse_global_e_road_peace_overseas_illness_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = GLOBAL_E_ROAD_PEACE_OVERSEAS_ILLNESS_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != version["file_name"]
+        or document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = (
+        "全球人壽e路平安海外突發疾病醫療健康保險附加條款",
+        "給付項目:海外突發疾病住院醫療保險金、海外突發疾病門診醫療保險金、海外突發疾病急診醫療保險金",
+        "發病前一百八十天以內未曾接受治療",
+        "不包含全民健康保險法第五十一條所稱之日間住院及精神衛生法第三十五條所稱之日間留院",
+        "第三條【保險範圍】",
+        "第四條【海外突發疾病住院醫療保險金的給付】",
+        "同一次住院首日起之一百八十日內",
+        "不得超過保險單所記載的海外突發疾病醫療保險金額",
+        "第五條【海外突發疾病門診醫療保險金的給付】",
+        "海外突發疾病醫療保險金額的0.5%",
+        "第六條【海外突發疾病急診醫療保險金的給付】",
+        "海外突發疾病醫療保險金額的1%",
+        "第七條【醫療費用未經全民健康保險給付者之處理方式】",
+        "實際支付之各項費用之100%給付",
+        "第八條【住院次數之計算及契約有效期間屆滿後住院之處理】",
+        "出院後十四日內於同一醫療機構再次住院時",
+        "再次住院部分不予給付保險金",
+        "未到期保險費的返還】",
+        "保險金的申領】",
+        "臺灣銀行牌告之參考匯率價格計算",
+    )
+    if (
+        any(signal.replace(" ", "") not in dense_text for signal in required_signals)
+        or any(signal.replace(" ", "") not in dense_text for signal in version["required_revision_signals"])
+        or any(signal.replace(" ", "") in dense_text for signal in version["forbidden_revision_signals"])
+    ):
+        return None
+
+    source_ref = "保單條款第二至十二條，第 1-4 頁"
+    base_condition = "使用者輸入保險單所載海外突發疾病醫療保險金額後，系統依條款百分比呈現各項給付上限"
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "海外突發疾病醫療保險金額",
+        "selection_guidance": "請填保險單所記載的海外突發疾病醫療保險金額；系統會換算海外突發疾病住院、門診、急診醫療費用的給付上限。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "overseas_illness_lookback_days": 180,
+            "inpatient_claim_days_limit": 180,
+            "outpatient_limit_rate_percent": 0.5,
+            "emergency_limit_rate_percent": 1,
+            "non_nhi_payment_rate_percent": 100,
+            "same_hospital_readmission_days": 14,
+            "post_expiry_readmission_excluded": True,
+            "day_hospital_excluded": True,
+            "claims_exchange_rate_basis": "taiwan-bank-reference-rate-on-claim-date",
+            "regulatory_revision": version["regulatory_revision"],
+            "claims_medical_opinion_revision": version["claims_medical_opinion_revision"],
+        },
+        "coverage_entries": [
+            coverage_entry(
+                "overseas-illness-inpatient-medical-limit",
+                "海外突發疾病住院醫療保險金",
+                None,
+                "benefit_base",
+                "同一次住院首日起 180 日內，按實際住院醫療費用給付；總額不得超過保險單記載之海外突發疾病醫療保險金額。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="limit",
+                limit_scope="per_hospitalization",
+                rate_percent=100,
+                unit_key="overseas_illness_medical_amount",
+                conditions=[base_condition, "限第二條約定之海外突發疾病", "同一次住院首日起 180 日內"],
+            ),
+            coverage_entry(
+                "overseas-illness-outpatient-medical-limit",
+                "海外突發疾病門診醫療保險金",
+                None,
+                "benefit_base",
+                "因海外突發疾病接受門診診療時，按實際門診醫療費用給付；每次給付總額不得超過海外突發疾病醫療保險金額的 0.5%。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="limit",
+                limit_scope="per_event",
+                rate_percent=0.5,
+                unit_key="overseas_illness_medical_amount",
+                conditions=[base_condition, "限第二條約定之海外突發疾病", "每次門診給付上限為保險金額 0.5%"],
+            ),
+            coverage_entry(
+                "overseas-illness-emergency-medical-limit",
+                "海外突發疾病急診醫療保險金",
+                None,
+                "benefit_base",
+                "因海外突發疾病接受急診診療時，按實際急診醫療費用給付；每次給付總額不得超過海外突發疾病醫療保險金額的 1%。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="limit",
+                limit_scope="per_event",
+                rate_percent=1,
+                unit_key="overseas_illness_medical_amount",
+                conditions=[base_condition, "限第二條約定之海外突發疾病", "每次急診給付上限為保險金額 1%"],
+            ),
+            coverage_entry(
+                "non-nhi-payment-rate",
+                "未經全民健康保險給付之處理方式",
+                None,
+                "per_event",
+                "第四至六條給付若未經全民健康保險給付，依實際支付費用 100% 給付，仍以前述各項保險金條款約定金額為限。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="reference",
+                limit_scope="per_event",
+                rate_percent=100,
+                unit_key="actual_paid_expense",
+                conditions=["不以全民健康保險身分接受診療，或前往不具有全民健康保險之醫療機構診療", "仍受第四至六條各項上限限制"],
+            ),
+            coverage_entry(
+                "unearned-premium-refund",
+                "未到期保險費返還",
+                None,
+                "additional_benefit",
+                "被保險人於契約有效期間內身故致附加條款效力終止時，返還已繳保險費扣除已經過期間保險費後之未到期保險費。",
+                source_ref,
+                calculation_basis="table_multiplier",
+                amount_role="reference",
+                limit_scope="per_policy",
+                multiplier=1,
+                conditions=["因被保險人身故致本附加條款效力終止時適用"],
+            ),
+        ],
+    }
+
+
+def is_yuanta_health_life_early_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id in YUANTA_HEALTH_LIFE_EARLY_PRODUCT_VERSIONS
+        or re.fullmatch(r"261311MZ1GA2023A11Z1000000[01]-[AF]\.pdf", file_name)
+        is not None
+        or "元大人壽健康人生終身醫療健康保險" in dense_text
+    )
+
+
+def is_yuanta_yuanqi_shizu_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id in YUANTA_YUANQI_SHIZU_PRODUCT_VERSIONS
+        or re.fullmatch(r"261311RZ1AYR021A11Z1000000[01]-[AF]\.pdf", file_name)
+        is not None
+        or "元大人壽元氣實足住院醫療健康保險附約" in dense_text
+    )
+
+
+def parse_yuanta_yuanqi_shizu_hospital_medical_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = YUANTA_YUANQI_SHIZU_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != version["file_name"]
+        or document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = (
+        "元大人壽元氣實足住院醫療健康保險附約",
+        "癌症篩檢回饋金、住院日額保險金、醫材購置補助保險金、特別處置保險金、每日病房費用保險金",
+        "本險之疾病等待期間為三十日",
+        "第六條【住院日額保險金的給付】",
+        "第七條【醫材購置補助保險金的給付】",
+        "第八條【特別處置保險金的給付】",
+        "第九條【每日病房費用保險金的給付】",
+        "第十條【住院醫療費用保險金的給付】",
+        "第十一條【住院前後門診費用保險金的給付】",
+        "第十二條【住院外科手術費用保險金的給付】",
+        "第十三條【門診外科手術費用保險金的給付】",
+        "第十四條【醫療費用未經全民健康保險給付者之處理方式】",
+        "第十五條【住院次數之計算及附約有效期間屆滿後住院之處理】",
+        "第十六條【保險金給付之限制】",
+        "附表一:各項保險金給付限額表",
+        "計劃別給付限額計劃一計劃二計劃三計劃四計劃五",
+    )
+    if (
+        any(signal not in dense_text for signal in required_signals)
+        or any(signal not in dense_text for signal in version["required_revision_signals"])
+        or any(signal in dense_text for signal in version["forbidden_revision_signals"])
+    ):
+        return None
+
+    compact_table = compact_table_text(text[text.rfind("附表一"):])
+    required_table_signals = (
+        "每日住院日額保險金給付日額10001500200025003000",
+        "醫材購置補助保險金給付定額1000015000200002500030000",
+        "特別處置保險金給付定額30003000300030003000",
+        "每日病房費用保險金給付限額10001500200025003000",
+        "每次住院醫療費用保險金給付限額75000100000125000150000175000",
+        "每次住院入院前門診費用保險金給付限額10001000100010001000",
+        "每次住院出院後門診費用保險金給付限額30003000300030003000",
+        "每次住院外科手術費用保險金給付限額6000060000800008000080000",
+        "每次門診外科手術費用保險金給付限額3000030000400004000040000",
+    )
+    if any(signal not in compact_table for signal in required_table_signals):
+        return None
+    table_payload = {key: list(values) for key, values in YUANTA_YUANQI_SHIZU_AMOUNTS.items()}
+    if sha256_json(table_payload) != YUANTA_YUANQI_SHIZU_TABLE_SHA256:
+        return None
+
+    source_ref = "保單條款第五至十六條及附表一至三，第 1-14 頁"
+    plan_labels = ("計劃一", "計劃二", "計劃三", "計劃四", "計劃五")
+    plan_options = []
+    for index, label in enumerate(plan_labels):
+        amounts = {key: values[index] for key, values in YUANTA_YUANQI_SHIZU_AMOUNTS.items()}
+        plan_options.append(
+            {
+                "value": f"plan-{index + 1}",
+                "label": label,
+                "coverage_entries": [
+                    coverage_entry(
+                        "cancer-screening-reward",
+                        "癌症篩檢回饋金",
+                        None,
+                        "benefit_base",
+                        "保險年齡達三十歲以上且每一保單年度末附約仍有效並仍生存，提供該年度指定癌症篩檢文件者，按年繳應繳保險費 2% 給付。",
+                        source_ref,
+                        calculation_basis="percentage_of_base",
+                        amount_role="reference",
+                        limit_scope="annual",
+                        rate_percent=2,
+                        unit_key="annual_premium",
+                        conditions=["僅適用被保險人保險年齡達三十歲含以上", "每一保單年度多次篩檢僅以一次計算"],
+                    ),
+                    coverage_entry(
+                        "hospital-daily",
+                        "住院日額保險金",
+                        amounts["hospital_daily"],
+                        "daily_total",
+                        f"{label} 每日住院日額 {amounts['hospital_daily']:,} 元，乘以實際住院日數。",
+                        source_ref,
+                        calculation_basis="per_day",
+                        amount_role="payout",
+                        limit_scope="per_day",
+                        conditions=["同一次住院最高 365 日", "精神疾病同一保單年度同一次住院最高 90 日"],
+                    ),
+                    coverage_entry(
+                        "medical-device-subsidy",
+                        "醫材購置補助保險金",
+                        amounts["medical_device"],
+                        "per_event",
+                        f"{label} 醫材購置補助定額 {amounts['medical_device']:,} 元。",
+                        source_ref,
+                        calculation_basis="fixed_amount",
+                        amount_role="payout",
+                        limit_scope="per_surgery",
+                        conditions=["人工水晶體、髖/膝關節置換或心臟支架手術適用", "每眼、每側髖或膝同一保單年度一次；心臟支架同一保單年度二次"],
+                    ),
+                    coverage_entry(
+                        "special-procedure",
+                        "特別處置保險金",
+                        amounts["special_procedure"],
+                        "per_event",
+                        f"{label} 特別處置定額 {amounts['special_procedure']:,} 元。",
+                        source_ref,
+                        calculation_basis="fixed_amount",
+                        amount_role="payout",
+                        limit_scope="per_event",
+                        conditions=["限附表二特別處置項目", "同一保單年度以二次為限", "同一次處置接受兩項以上僅給付一次"],
+                    ),
+                    coverage_entry(
+                        "daily-room-limit",
+                        "每日病房費用保險金",
+                        amounts["daily_room"],
+                        "daily_total",
+                        f"{label} 每日病房費用限額 {amounts['daily_room']:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_day",
+                        conditions=["以全民健康保險身分住院時，核付自負及非健保給付範圍費用", "包含病房費差額、膳食費及護理費等條款列示項目"],
+                    ),
+                    coverage_entry(
+                        "inpatient-medical-limit",
+                        "住院醫療費用保險金",
+                        amounts["inpatient_medical"],
+                        "per_event",
+                        f"{label} 每次住院醫療費用限額 {amounts['inpatient_medical']:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_hospitalization",
+                        conditions=["以全民健康保險身分住院時，核付自負及非健保給付範圍費用", "已獲全民健康保險給付部分不予給付"],
+                    ),
+                    coverage_entry(
+                        "pre-admission-outpatient-limit",
+                        "住院入院前門診費用保險金",
+                        amounts["pre_admission_outpatient"],
+                        "per_event",
+                        f"{label} 每次住院入院前門診費用限額 {amounts['pre_admission_outpatient']:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_hospitalization",
+                        conditions=["住院前後門診費用依第十一條與附表一限額核付"],
+                    ),
+                    coverage_entry(
+                        "post-discharge-outpatient-limit",
+                        "住院出院後門診費用保險金",
+                        amounts["post_discharge_outpatient"],
+                        "per_event",
+                        f"{label} 每次住院出院後門診費用限額 {amounts['post_discharge_outpatient']:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_hospitalization",
+                        conditions=["住院前後門診費用依第十一條與附表一限額核付"],
+                    ),
+                    coverage_entry(
+                        "inpatient-surgery-limit",
+                        "住院外科手術費用保險金",
+                        amounts["inpatient_surgery"],
+                        "per_event",
+                        f"{label} 每次住院外科手術費用基準限額 {amounts['inpatient_surgery']:,} 元，依附表三手術比例核算。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_surgery",
+                        rate_min_percent=3,
+                        rate_max_percent=300,
+                        conditions=["限附表三手術項目", "同一住院期間兩項以上手術分別計算", "同一手術位置兩項器官以上按給付比例最高一項計算"],
+                    ),
+                    coverage_entry(
+                        "outpatient-surgery-limit",
+                        "門診外科手術費用保險金",
+                        amounts["outpatient_surgery"],
+                        "per_event",
+                        f"{label} 每次門診外科手術費用基準限額 {amounts['outpatient_surgery']:,} 元，依附表三手術比例核算。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_surgery",
+                        rate_min_percent=3,
+                        rate_max_percent=300,
+                        conditions=["限附表三手術項目", "同一手術位置兩項器官以上按給付比例最高一項計算"],
+                    ),
+                ],
+            }
+        )
+
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計劃別",
+        "selection_guidance": "選擇保單所載投保計劃別；附表一會帶出各項住院、醫療與手術給付限額。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "plan_count": 5,
+            "disease_initial_waiting_days": 30,
+            "renewal_disease_waiting_days": 0,
+            "cancer_screening_min_age": 30,
+            "hospital_daily_days_limit": 365,
+            "mental_hospital_days_limit": 90,
+            "same_hospital_readmission_days": 14,
+            "post_expiry_readmission_excluded": True,
+            "non_nhi_payment_rate_percent": 65,
+            "medical_device_heart_stent_annual_limit": 2,
+            "special_procedure_annual_limit": 2,
+            "surgery_table_min_percent": 3,
+            "surgery_table_max_percent": 300,
+            "insured_notice_revision": version["insured_notice_revision"],
+        },
+        "plan_options": plan_options,
+    }
+
+
+def is_farglory_kangfu_medical_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id in FARGLORY_KANGFU_MEDICAL_PRODUCT_VERSIONS
+        or re.fullmatch(r"216311RZ1A19421A11Z1000000[123]-[AF]\.pdf", file_name)
+        is not None
+        or "遠雄人壽康富醫療健康保險附約" in dense_text
+    )
+
+
+def parse_farglory_kangfu_medical_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = FARGLORY_KANGFU_MEDICAL_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != f"{product_id}-A.pdf"
+        or document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = (
+        "遠雄人壽康富醫療健康保險附約",
+        "住院日額保險金、住院醫療輔助保險金、住院慰問保險金",
+        "住院醫療費用保險金、手術費用保險金",
+        "被保險人於本附約有效期間內因第二條約定之疾病或傷害住院診療或接受手術治療時",
+        "住院日額」7倍",
+        "新臺幣500元",
+        "醫療費用未經全民健康保險給付",
+        "65",
+        "日間住院",
+        "日間留院",
+        "本公司就再次住院部分不予給付保險金",
+    )
+    if (
+        any(signal.replace(" ", "") not in dense_text for signal in required_signals)
+        or any(signal.replace(" ", "") not in dense_text for signal in version["required_revision_signals"])
+        or any(signal.replace(" ", "") in dense_text for signal in version["forbidden_revision_signals"])
+    ):
+        return None
+
+    table_start = text.rfind("【附表】")
+    if table_start < 0:
+        return None
+    compact_table = compact_table_text(text[table_start:])
+    required_table_signals = (
+        "單位新臺幣元",
+        "計劃別項目一二三四",
+        "住院日額500100015002000",
+        "住院醫療費用限額200000300000400000500000",
+        "手術費用限額150000200000250000300000",
+    )
+    if any(signal not in compact_table for signal in required_table_signals):
+        return None
+    table_payload = {
+        key: list(values)
+        for key, values in FARGLORY_KANGFU_MEDICAL_AMOUNTS.items()
+    }
+    if sha256_json(table_payload) != FARGLORY_KANGFU_MEDICAL_TABLE_SHA256:
+        return None
+
+    plan_options = []
+    for index, label in enumerate(["計劃一", "計劃二", "計劃三", "計劃四"]):
+        hospital_daily = FARGLORY_KANGFU_MEDICAL_AMOUNTS["hospital_daily"][index]
+        auxiliary_daily = FARGLORY_KANGFU_MEDICAL_AMOUNTS["hospital_auxiliary_daily"][index]
+        consolation = FARGLORY_KANGFU_MEDICAL_AMOUNTS["hospital_consolation"][index]
+        inpatient_limit = FARGLORY_KANGFU_MEDICAL_AMOUNTS["inpatient_medical_limit"][index]
+        surgery_limit = FARGLORY_KANGFU_MEDICAL_AMOUNTS["surgery_limit"][index]
+        source_ref = "保單條款第八至十三條及附表，第 2-3、6 頁"
+        plan_options.append(
+            {
+                "value": f"plan-{index + 1}",
+                "label": label,
+                "coverage_entries": [
+                    coverage_entry(
+                        "hospital-daily",
+                        "住院日額保險金",
+                        hospital_daily,
+                        "daily_total",
+                        f"依{label}住院日額每日給付 {hospital_daily:,} 元。",
+                        source_ref,
+                        calculation_basis="per_day",
+                        amount_role="payout",
+                        limit_scope="per_day",
+                        conditions=[
+                            "含入院及出院當日",
+                            "同一次住院最高 365 日",
+                            "日間住院及日間留院不在住院定義內",
+                        ],
+                    ),
+                    coverage_entry(
+                        "hospital-auxiliary-daily",
+                        "住院醫療輔助保險金",
+                        auxiliary_daily,
+                        "daily_total",
+                        "住院診療時每日固定給付 500 元。",
+                        source_ref,
+                        calculation_basis="per_day",
+                        amount_role="payout",
+                        limit_scope="per_day",
+                        aggregation_rule="conditional_additive",
+                        conditions=[
+                            "含入院及出院當日",
+                            "同一次住院最高 365 日",
+                        ],
+                    ),
+                    coverage_entry(
+                        "hospital-consolation",
+                        "住院慰問保險金",
+                        consolation,
+                        "per_event",
+                        f"同一次住院另給付住院日額 7 倍，{label}為 {consolation:,} 元。",
+                        source_ref,
+                        calculation_basis="fixed_amount",
+                        amount_role="payout",
+                        limit_scope="per_hospitalization",
+                        aggregation_rule="conditional_additive",
+                        multiplier=7,
+                        conditions=[
+                            "同一次住院期間僅給付一次",
+                            "以投保計劃別住院日額乘以 7 倍",
+                        ],
+                    ),
+                    coverage_entry(
+                        "inpatient-medical-limit",
+                        "住院醫療費用保險金限額",
+                        inpatient_limit,
+                        "per_event",
+                        f"同一次住院實支實付限額 {inpatient_limit:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_hospitalization",
+                        conditions=[
+                            "須以全民健康保險保險對象身分住院診療，或急診暫留且醫院已收取暫留床費",
+                            "限全民健康保險自行負擔及不屬健保給付範圍之列舉費用",
+                            "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限",
+                            "已獲全民健康保險給付部分不予給付",
+                        ],
+                    ),
+                    coverage_entry(
+                        "surgery-limit",
+                        "手術費用保險金限額",
+                        surgery_limit,
+                        "per_event",
+                        f"住院或門診手術費用實支實付限額 {surgery_limit:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_surgery",
+                        conditions=[
+                            "手術須符合全民健康保險醫療費用支付標準第二部第二章第七節所列舉之手術",
+                            "同一次住院或門診兩項以上手術分別計算，各項均受手術費用限額限制",
+                            "同一手術位置接受兩項器官以上手術時合併計算，仍以限額為限",
+                            "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限",
+                        ],
+                    ),
+                ],
+            }
+        )
+
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計劃別",
+        "selection_guidance": "請依保單首頁選擇計劃一至計劃四；系統會顯示住院日額、住院醫療輔助、住院慰問、住院醫療費用限額與手術費用限額，不需輸入單位數。",
+        "version_characteristics": {
+            "disease_initial_waiting_days": 0,
+            "day_hospital_excluded": True,
+            "post_expiry_readmission_excluded": True,
+            "nhi_uncovered_payment_rate_percent": 65,
+            "hospital_auxiliary_daily_fixed_amount": 500,
+            "hospital_consolation_daily_multiplier": 7,
+            "terms_revision": version["revision"],
+            "insured_notice_revision": version["insured_notice_revision"],
+        },
+        "plan_options": plan_options,
+    }
+
+
+def is_yuanta_xiangyouxin_medical_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id in YUANTA_XIANGYOUXIN_MEDICAL_PRODUCT_VERSIONS
+        or re.fullmatch(r"261311RZ1AJR021A11Z1000000[012]-[AF]\.pdf", file_name)
+        is not None
+        or "元大人壽享有心住院醫療健康保險附約" in dense_text
+    )
+
+
+def is_yuanta_xiangan_medical_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id in YUANTA_XIANGAN_MEDICAL_PRODUCT_VERSIONS
+        or re.fullmatch(r"261311RZ1ANR021A11Z10000003-[AF]\.pdf", file_name)
+        is not None
+        or "元大人壽享安住院醫療健康保險附約" in dense_text
+    )
+
+
+def is_yuanta_group_hospital_medical_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = compact_table_text(str(document.get("text") or ""))
+    return (
+        product_id in YUANTA_GROUP_HOSPITAL_MEDICAL_PRODUCT_VERSIONS
+        or re.fullmatch(r"261313MZ1AGHE21A11Z1000000[012]-[AF]\.pdf", file_name)
+        is not None
+        or "元大人壽團體住院醫療健康保險" in dense_text
+    )
+
+
+def parse_yuanta_group_hospital_medical_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = YUANTA_GROUP_HOSPITAL_MEDICAL_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != version["file_name"]
+        or document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = (
+        "元大人壽團體住院醫療健康保險",
+        "實支實付型",
+        "日額給付型",
+        "每日病房費用保險金",
+        "住院醫療費用保險金",
+        "外科手術費用保險金",
+        "住院前後門診費用保險金",
+        "可實支實付型或日額給付型二者擇一給付",
+        "每日病房費用保險金之給付",
+        "住院醫療費用保險金之給付",
+        "外科手術費用保險金之給付",
+        "住院前後門診費用保險金之給付",
+        "住院日額保險金之給付",
+        "醫療費用未經全民健康保險給付者之處理方式",
+        "住院次數之計算及契約有效期間屆滿後住院之處理",
+        "保險金給付之限制",
+        "附表一各項保險金給付限額表",
+        "附表二手術名稱及費用表",
+    )
+    if any(signal not in dense_text for signal in required_signals):
+        return None
+    if any(signal not in text for signal in version["required_revision_signals"]):
+        return None
+    if any(signal in text for signal in version["forbidden_revision_signals"]):
+        return None
+
+    insured_notice_signal = "前二項對要保人之催告本公司另應通知被保險人"
+    if (insured_notice_signal in dense_text) != version["insured_notice_revision"]:
+        return None
+    original_day_hospital_signal = "全民健康保險法第五十一條所稱之日間住院及精神衛生法第三十五條所稱之日間留院"
+    revised_day_hospital_signal = "全民健康保險法所稱之日間住院及精神衛生法所稱之日間留院/日間照護"
+    if version["day_hospital_definition_revision"] == "113-day-care":
+        if revised_day_hospital_signal not in dense_text or original_day_hospital_signal in dense_text:
+            return None
+    elif original_day_hospital_signal not in dense_text or revised_day_hospital_signal in dense_text:
+        return None
+
+    plan_labels = [
+        "計劃一",
+        "計劃二",
+        "計劃三",
+        "計劃四",
+        "計劃五",
+        "計劃六",
+        "計劃七",
+        "計劃八",
+        "計劃九",
+        "計劃十",
+        "計劃十一",
+        "計劃十二",
+        "計劃十三",
+        "計劃十四",
+        "計劃十五",
+        "計劃十六",
+        "計劃十七",
+        "計劃十八",
+        "計劃十九",
+        "計劃二十",
+        "計劃二十一",
+    ]
+    daily_amounts = YUANTA_GROUP_HOSPITAL_MEDICAL_AMOUNTS["daily"]
+    reimbursement_amounts = YUANTA_GROUP_HOSPITAL_MEDICAL_AMOUNTS["reimbursement"]
+    table_payload = {
+        "plan_labels": tuple(plan_labels),
+        "daily": daily_amounts,
+        "reimbursement": reimbursement_amounts,
+        "surgery": reimbursement_amounts,
+        "pre_post_outpatient": daily_amounts,
+        "hospital_daily": daily_amounts,
+    }
+    if sha256_json(table_payload) != YUANTA_GROUP_HOSPITAL_MEDICAL_TABLE_SHA256:
+        return None
+
+    appendix_start = dense_text.rfind("附表一各項保險金給付限額表")
+    appendix_end = dense_text.find("附表二手術名稱及費用表", appendix_start)
+    if appendix_start < 0 or appendix_end <= appendix_start:
+        return None
+    appendix_text = dense_text[appendix_start:appendix_end]
+    for start in (0, 7, 14):
+        end = start + 7
+        label_row = "計劃別給付限額" + "".join(plan_labels[start:end])
+        daily_row = "每日病房費用保險金給付限額" + "".join(
+            str(amount) for amount in daily_amounts[start:end]
+        )
+        inpatient_row = "每次住院醫療費用保險金給付限額" + "".join(
+            str(amount) for amount in reimbursement_amounts[start:end]
+        )
+        surgery_row = "每次手術費用保險金給付限額" + "".join(
+            str(amount) for amount in reimbursement_amounts[start:end]
+        )
+        outpatient_row = "每次住院前後門診費用保險金給付限額" + "".join(
+            str(amount) for amount in daily_amounts[start:end]
+        )
+        hospital_daily_row = "每日住院日額保險金給付日額" + "".join(
+            str(amount) for amount in daily_amounts[start:end]
+        )
+        if any(
+            row not in appendix_text
+            for row in [
+                label_row,
+                daily_row,
+                inpatient_row,
+                surgery_row,
+                outpatient_row,
+                hospital_daily_row,
+            ]
+        ):
+            return None
+
+    article_refs = {
+        "daily_room": "第十五條",
+        "inpatient_medical": "第十六條",
+        "surgery": "第十七條",
+        "pre_post_outpatient": "第十八條",
+        "hospital_daily": "第十九條",
+        "non_nhi": "第二十條",
+        "readmission": "第二十一條",
+        "limit": "第二十二條",
+    }
+    common_conditions = [
+        "因疾病或傷害至醫院住院診療或接受外科手術治療",
+        "實支實付型與日額給付型二者擇一給付",
+        "不包含日間住院及日間留院/日間照護",
+    ]
+    non_nhi_condition = "未經全民健康保險給付者，依實際支付費用的 65% 給付，仍受各項限額限制"
+    readmission_condition = "同一疾病或傷害及其併發症，出院後 14 日內再次住院視為同一次住院"
+    table_ref = "附表一各項保險金給付限額表；附表二手術名稱及費用表"
+    plan_options = []
+    for index, label in enumerate(plan_labels):
+        daily_amount = daily_amounts[index]
+        reimbursement_amount = reimbursement_amounts[index]
+        entries = [
+            coverage_entry(
+                "daily-room-limit",
+                "每日病房費用保險金給付限額",
+                daily_amount,
+                "daily_total",
+                f"實支實付型每日病房費用保險金最高 {daily_amount:,} 元。",
+                f"保單條款{article_refs['daily_room']}及{table_ref}",
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_day",
+                aggregation_rule="choose_one",
+                conditions=[*common_conditions, non_nhi_condition, readmission_condition],
+            ),
+            coverage_entry(
+                "inpatient-medical-limit",
+                "每次住院醫療費用保險金給付限額",
+                reimbursement_amount,
+                "per_event",
+                f"每次住院醫療費用保險金最高 {reimbursement_amount:,} 元。",
+                f"保單條款{article_refs['inpatient_medical']}、{article_refs['non_nhi']}、{article_refs['limit']}及{table_ref}",
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_hospitalization",
+                aggregation_rule="choose_one",
+                multiplier=40,
+                conditions=[*common_conditions, non_nhi_condition, readmission_condition],
+            ),
+            coverage_entry(
+                "surgery-fee-limit",
+                "每次手術費用保險金給付限額",
+                reimbursement_amount,
+                "per_event",
+                f"外科手術費用按實際支出並依附表二手術比例認定，每次手術最高 {reimbursement_amount:,} 元。",
+                f"保單條款{article_refs['surgery']}及{table_ref}",
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_surgery",
+                aggregation_rule="choose_one",
+                multiplier=40,
+                rate_min_percent=10,
+                rate_max_percent=200,
+                conditions=[
+                    *common_conditions,
+                    "手術項目及比例依附表二手術名稱及費用表認定",
+                    non_nhi_condition,
+                ],
+            ),
+            coverage_entry(
+                "pre-post-outpatient-limit",
+                "每次住院前後門診費用保險金給付限額",
+                daily_amount,
+                "per_event",
+                f"住院前後門診費用每次住院最高 {daily_amount:,} 元。",
+                f"保單條款{article_refs['pre_post_outpatient']}及{table_ref}",
+                calculation_basis="reimbursement_with_cap",
+                amount_role="limit",
+                limit_scope="per_hospitalization",
+                aggregation_rule="choose_one",
+                conditions=[*common_conditions, non_nhi_condition, readmission_condition],
+            ),
+            coverage_entry(
+                "hospital-daily",
+                "每日住院日額保險金給付日額",
+                daily_amount,
+                "daily_total",
+                f"日額給付型按住院日數每日給付 {daily_amount:,} 元。",
+                f"保單條款{article_refs['hospital_daily']}及{table_ref}",
+                calculation_basis="per_day",
+                amount_role="payout",
+                limit_scope="per_day",
+                aggregation_rule="choose_one",
+                conditions=[*common_conditions, readmission_condition],
+            ),
+        ]
+        plan_options.append(
+            {
+                "value": f"plan-{index + 1}",
+                "label": label,
+                "coverage_entries": entries,
+            }
+        )
+
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計劃別",
+        "selection_guidance": "請依保單或保險證所載計劃一至計劃二十一選擇；本保險住院診療時實支實付型與日額給付型二擇一給付。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "plan_count": 21,
+            "disease_initial_waiting_days": 0,
+            "day_hospital_excluded": True,
+            "day_hospital_definition_revision": version["day_hospital_definition_revision"],
+            "same_hospital_readmission_days": 14,
+            "post_expiry_readmission_excluded": True,
+            "non_nhi_payment_rate_percent": 65,
+            "inpatient_medical_limit_daily_multiplier": 40,
+            "surgery_limit_daily_multiplier": 40,
+            "insured_notice_revision": version["insured_notice_revision"],
+        },
+        "plan_options": plan_options,
+    }
+
+
+def parse_yuanta_xiangyouxin_medical_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = YUANTA_XIANGYOUXIN_MEDICAL_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != f"{product_id}-A.pdf"
+        or document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = (
+        "元大人壽享有心住院醫療健康保險附約",
+        "住院日額保險金、住院醫療費用保險金、外科手術費用保險金及住院前後門診費用保險金",
+        "本險之疾病等待期為三十日",
+        "日間住院",
+        "日間留院",
+        "同一次住院「住院日額保險金」給付日數最高以三百六十五日為限",
+        "精神疾病住院診療者",
+        "最高給付日數以九十日為限",
+        "每次住院醫療費用保險金給付限額",
+        "每次手術費用保險金給付限額",
+        "住院前後門診費用保險金",
+        "入院治療前七日內或出院後三十日內",
+        "實際支付之各項費用之65",
+        "十四日內於同一醫院再次住院",
+        "本公司就再次住院部分不予給付保險金",
+        "續保之最高保險年齡為八十四歲",
+        "續保之最高保險年齡為二十三歲",
+    )
+    if (
+        any(signal.replace(" ", "") not in dense_text for signal in required_signals)
+        or any(signal.replace(" ", "") not in dense_text for signal in version["required_revision_signals"])
+        or any(signal.replace(" ", "") in dense_text for signal in version["forbidden_revision_signals"])
+    ):
+        return None
+
+    table_start = text.find("計劃別給付限額")
+    if table_start < 0:
+        return None
+    compact_table = compact_table_text(text[table_start:])
+    required_table_signals = (
+        "各項保險金給付限額表",
+        "計劃別給付限額計劃一計劃二計劃三計劃四計劃五計劃六",
+        "每日住院日額保險金給付日額50010001500200025003000",
+        "每次住院醫療費用保險金給付限額150000200000250000300000350000400000",
+        "每次手術費用保險金給付限額150000200000250000300000350000400000",
+        "每次住院入院前門診費用保險金給付限額100010001000200020002000",
+        "每次住院出院後門診費用保險金給付限額300030003000600060006000",
+    )
+    if any(signal not in compact_table for signal in required_table_signals):
+        return None
+    table_payload = {
+        key: list(values)
+        for key, values in YUANTA_XIANGYOUXIN_MEDICAL_AMOUNTS.items()
+    }
+    if sha256_json(table_payload) != YUANTA_XIANGYOUXIN_MEDICAL_TABLE_SHA256:
+        return None
+
+    plan_options = []
+    for index, label in enumerate(["計劃一", "計劃二", "計劃三", "計劃四", "計劃五", "計劃六"]):
+        hospital_daily = YUANTA_XIANGYOUXIN_MEDICAL_AMOUNTS["hospital_daily"][index]
+        inpatient_limit = YUANTA_XIANGYOUXIN_MEDICAL_AMOUNTS["inpatient_medical_limit"][index]
+        surgery_limit = YUANTA_XIANGYOUXIN_MEDICAL_AMOUNTS["surgery_limit"][index]
+        pre_outpatient_limit = YUANTA_XIANGYOUXIN_MEDICAL_AMOUNTS["pre_admission_outpatient_limit"][index]
+        post_outpatient_limit = YUANTA_XIANGYOUXIN_MEDICAL_AMOUNTS["post_discharge_outpatient_limit"][index]
+        source_ref = "保單條款第二、五至十、十八條及附表一，第 1-3 頁"
+        plan_options.append(
+            {
+                "value": f"plan-{index + 1}",
+                "label": label,
+                "coverage_entries": [
+                    coverage_entry(
+                        "hospital-daily",
+                        "住院日額保險金",
+                        hospital_daily,
+                        "daily_total",
+                        f"依{label}每日住院日額給付 {hospital_daily:,} 元。",
+                        source_ref,
+                        calculation_basis="per_day",
+                        amount_role="payout",
+                        limit_scope="per_day",
+                        conditions=[
+                            "含入院日及出院當日",
+                            "同一次住院最高 365 日",
+                            "精神疾病同一保單年度同一次住院最高 90 日",
+                            "日間住院及日間留院不在住院定義內",
+                        ],
+                    ),
+                    coverage_entry(
+                        "inpatient-medical-limit",
+                        "住院醫療費用保險金限額",
+                        inpatient_limit,
+                        "per_event",
+                        f"同一次住院實支實付限額 {inpatient_limit:,} 元；同一次住院超過 60 日時提高為 {inpatient_limit * 2:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_hospitalization",
+                        amount_tiers=[
+                            {
+                                "label": "同一次住院 60 日內",
+                                "amount": inpatient_limit,
+                            },
+                            {
+                                "label": "同一次住院超過 60 日",
+                                "amount": inpatient_limit * 2,
+                            },
+                        ],
+                        conditions=[
+                            "限全民健康保險自行負擔及不屬健保給付範圍之列舉費用",
+                            "未以全民健康保險身分或至不具健保之醫院診療時，按實際支付費用 65% 給付，仍受限額限制",
+                            "已獲全民健康保險給付部分不予給付",
+                        ],
+                    ),
+                    coverage_entry(
+                        "surgery-limit",
+                        "外科手術費用保險金限額",
+                        surgery_limit,
+                        "per_event",
+                        f"住院或門診外科手術費用實支實付限額 {surgery_limit:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_surgery",
+                        conditions=[
+                            "手術須為附表二手術項目表中之項目；不在表內時由公司與被保險人協議比照程度相當項目給付",
+                            "同一住院期間或門診接受兩項以上手術時分別計算，各項均受手術費用限額限制",
+                            "同一次手術中於同一手術位置接受兩項器官以上手術時合併計算",
+                            "未以全民健康保險身分或至不具健保之醫院診療時，按實際支付費用 65% 給付，仍受限額限制",
+                        ],
+                    ),
+                    coverage_entry(
+                        "pre-admission-outpatient-limit",
+                        "住院入院前門診費用保險金限額",
+                        pre_outpatient_limit,
+                        "per_event",
+                        f"每次住院入院前 7 日門診費用總限額 {pre_outpatient_limit:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_hospitalization",
+                        conditions=[
+                            "限入院治療前 7 日內，因住院同一事故之門診治療",
+                            "未以全民健康保險身分或至不具健保之醫院診療時，按實際支付費用 65% 給付，仍受限額限制",
+                            "已獲全民健康保險給付部分不予給付",
+                        ],
+                    ),
+                    coverage_entry(
+                        "post-discharge-outpatient-limit",
+                        "住院出院後門診費用保險金限額",
+                        post_outpatient_limit,
+                        "per_event",
+                        f"每次住院出院後 30 日門診費用總限額 {post_outpatient_limit:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_hospitalization",
+                        conditions=[
+                            "限出院後 30 日內，因住院同一事故之門診治療",
+                            "未以全民健康保險身分或至不具健保之醫院診療時，按實際支付費用 65% 給付，仍受限額限制",
+                            "已獲全民健康保險給付部分不予給付",
+                        ],
+                    ),
+                ],
+            }
+        )
+
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計劃別",
+        "selection_guidance": "請依保單首頁選擇計劃一至計劃六；系統會顯示住院日額、住院醫療費用限額、外科手術費用限額與住院前後門診限額，不需輸入單位數。",
+        "version_characteristics": {
+            "disease_initial_waiting_days": 30,
+            "renewal_disease_waiting_days": 0,
+            "day_hospital_excluded": True,
+            "post_expiry_readmission_excluded": True,
+            "nhi_uncovered_payment_rate_percent": 65,
+            "inpatient_medical_limit_after_60_days_multiplier": 2,
+            "outpatient_pre_admission_days": 7,
+            "outpatient_post_discharge_days": 30,
+            "maximum_renewal_age_primary_or_spouse": 84,
+            "maximum_renewal_age_child": 23,
+            "terms_revision": version["revision"],
+            "claims_review_medical_opinion_revision": version[
+                "claims_review_medical_opinion_revision"
+            ],
+        },
+        "plan_options": plan_options,
+    }
+
+
+def parse_yuanta_health_life_early_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = YUANTA_HEALTH_LIFE_EARLY_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != version["file_name"]
+        or document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = (
+        "元大人壽健康人生終身醫療健康保險",
+        "本險之疾病等待期為三十日",
+        "住院給付日額」係指本契約之保險金額乘以百分之一",
+        "第六條【住院醫療保險金的給付】",
+        "第七條【加護病房保險金的給付】",
+        "第八條【住院前後門診保險金的給付】",
+        "第九條【出院療養保險金的給付】",
+        "第十條【手術醫療保險金的給付】",
+        "第十一條【幼童特定傷病保險金的給付】",
+        "第十二條【幼童骨折傷害保險金的給付】",
+        "第十三條【幼童食物中毒保險金的給付】",
+        "第十四條【嚴重燒燙傷保險金的給付】",
+        "第十五條【中度燒燙傷保險金的給付】",
+        "第十六條【燒燙傷病房保險金的給付】",
+        "第十七條【燒燙傷門診保險金的給付】",
+        "第十八條【燒燙傷復健保險金的給付】",
+        "第十九條【無息退還所繳保險費、身故保險金或喪葬費用保險金的給付】",
+        "第二十條【祝壽保險金的給付】",
+        "第二十一條【豁免保險費的給付】",
+        "第二十二條【保險給付之限制】",
+        "第二十三條【住院次數之計算及契約有效期間屆滿後住院之處理】",
+        "手術等級12345678給付倍數6040302010642",
+        "附表二:骨折給付日數標準表",
+        "附表五所列殘廢程度之一者",
+    )
+    if (
+        any(signal.replace(" ", "") not in dense_text for signal in required_signals)
+        or any(signal.replace(" ", "") not in dense_text for signal in version["required_revision_signals"])
+        or any(signal.replace(" ", "") in dense_text for signal in version["forbidden_revision_signals"])
+    ):
+        return None
+
+    source_ref = "保單條款第二、六至二十三條及附表一至五，第 1-11 頁"
+    base_condition = "使用者輸入保險單所載保險金額後，系統以保險金額 1% 換算住院給付日額"
+    daily_note = "住院給付日額為保險金額 1%。"
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請填保險單首頁記載的保險金額；系統會先換算住院給付日額為保險金額 1%，再計算住院、加護病房、門診、手術、幼童傷病與燒燙傷等條款給付。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "disease_initial_waiting_days": 30,
+            "daily_amount_face_amount_rate_percent": 1,
+            "hospital_daily_days_limit": 365,
+            "same_hospital_readmission_days": 14,
+            "post_expiry_readmission_excluded": True,
+            "cumulative_medical_cap_daily_multiplier": 3800,
+            "surgery_min_daily_multiplier": 2,
+            "surgery_max_daily_multiplier": 60,
+            "child_benefit_max_age": 14,
+            "child_specific_disease_daily_multiplier": 15,
+            "child_food_poisoning_daily_multiplier": 3,
+            "child_fracture_min_days": 14,
+            "child_fracture_max_days": 60,
+            "severe_burn_daily_multiplier": 250,
+            "moderate_burn_daily_multiplier": 100,
+            "burn_unit_daily_multiplier": 3,
+            "burn_outpatient_daily_rate_percent": 50,
+            "severe_burn_rehab_monthly_multiplier": 10,
+            "severe_burn_rehab_months_limit": 24,
+            "moderate_burn_rehab_monthly_multiplier": 5,
+            "moderate_burn_rehab_months_limit": 12,
+            "death_or_maturity_premium_rate_percent": 106,
+            "maturity_age": 111,
+            "premium_waiver_disability_levels": "1-6",
+            "regulatory_revision": version["regulatory_revision"],
+        },
+        "coverage_entries": [
+            coverage_entry(
+                "daily-amount-base",
+                "住院給付日額",
+                None,
+                "benefit_base",
+                daily_note,
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="base",
+                limit_scope="per_day",
+                rate_percent=1,
+                unit_key="face_amount",
+                conditions=[base_condition],
+            ),
+            coverage_entry(
+                "hospital-daily-first-30-days",
+                "住院醫療保險金（前 30 日）",
+                None,
+                "benefit_base",
+                "同一次住院前 30 日，按住院給付日額乘以實際住院日數給付。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_day",
+                rate_percent=1,
+                unit_key="face_amount",
+                conditions=[base_condition, "同一次住院給付日數最高 365 日"],
+            ),
+            coverage_entry(
+                "hospital-daily-after-30-days",
+                "住院醫療保險金（逾 30 日）",
+                None,
+                "benefit_base",
+                "同一次住院超過 30 日部分，按住院給付日額 2 倍乘以實際超過 30 日的住院日數給付。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_day",
+                rate_percent=2,
+                unit_key="face_amount",
+                conditions=[base_condition, "同一次住院給付日數最高 365 日"],
+            ),
+            coverage_entry(
+                "intensive-care-daily",
+                "加護病房保險金",
+                None,
+                "benefit_base",
+                "住進加護病房另按住院給付日額 2 倍乘以實際住加護病房日數給付。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_day",
+                aggregation_rule="conditional_additive",
+                rate_percent=2,
+                unit_key="face_amount",
+                conditions=[base_condition, "同一次住院最高 365 日"],
+            ),
+            coverage_entry(
+                "pre-post-outpatient-daily",
+                "住院前後門診保險金",
+                None,
+                "benefit_base",
+                "住院前二週及出院後二週內，因同一疾病或傷害門診治療者，每日按住院給付日額 25% 給付；住院期間接受手術者，出院後門診期間延長為三週。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_day",
+                rate_percent=0.25,
+                unit_key="face_amount",
+                conditions=[base_condition, "同一日多次門診仍以一日計算", "住院期間手術者出院後門診期間為三週"],
+            ),
+            coverage_entry(
+                "discharge-recuperation-daily",
+                "出院療養保險金",
+                None,
+                "benefit_base",
+                "依住院醫療保險金給付日數，按住院給付日額 50% 乘以實際住院日數給付。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_day",
+                rate_percent=0.5,
+                unit_key="face_amount",
+                conditions=[base_condition, "同一次住院最高 365 日"],
+            ),
+            coverage_entry(
+                "surgery-medical",
+                "手術醫療保險金",
+                None,
+                "benefit_base",
+                "依附表一手術等級與給付倍數，按住院給付日額乘以 2 至 60 倍給付。",
+                source_ref,
+                calculation_basis="table_multiplier",
+                amount_role="payout",
+                limit_scope="per_surgery",
+                multiplier=60,
+                rate_min_percent=2,
+                rate_max_percent=60,
+                conditions=[base_condition, "附表一等級 1 至 8 對應倍數為 60、40、30、20、10、6、4、2"],
+            ),
+            coverage_entry(
+                "child-specific-disease",
+                "幼童特定傷病保險金",
+                None,
+                "benefit_base",
+                "保險年齡未滿 14 歲，罹患條款約定幼童特定傷病且住院連續達 4 日以上者，按住院給付日額 15 倍給付。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_event",
+                rate_percent=15,
+                unit_key="face_amount",
+                conditions=[base_condition, "限保險年齡未滿 14 歲", "須連續住院達 4 日以上"],
+            ),
+            coverage_entry(
+                "child-fracture",
+                "幼童骨折傷害保險金",
+                None,
+                "benefit_base",
+                "保險年齡未滿 14 歲遭受意外骨折，依附表二完全骨折日數 14 至 60 日換算住院給付日額；不完全骨折給付二分之一，骨骼龜裂給付四分之一。",
+                source_ref,
+                calculation_basis="table_multiplier",
+                amount_role="payout",
+                limit_scope="per_injury",
+                multiplier=60,
+                rate_min_percent=14,
+                rate_max_percent=60,
+                conditions=[base_condition, "限保險年齡未滿 14 歲", "同一意外事故多處骨折以最高一項給付"],
+            ),
+            coverage_entry(
+                "child-food-poisoning",
+                "幼童食物中毒保險金",
+                None,
+                "benefit_base",
+                "保險年齡未滿 14 歲發生幼童食物中毒且住院治療者，按住院給付日額 3 倍給付。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_event",
+                rate_percent=3,
+                unit_key="face_amount",
+                conditions=[base_condition, "限保險年齡未滿 14 歲", "須因條款定義食物中毒住院治療"],
+            ),
+            coverage_entry(
+                "severe-burn",
+                "嚴重燒燙傷保險金",
+                None,
+                "benefit_base",
+                "發生嚴重燒燙傷時，按住院給付日額 250 倍給付。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_event",
+                rate_percent=250,
+                unit_key="face_amount",
+                conditions=[base_condition, "第三度燒燙傷面積大於全身 20%，或顏面燒燙傷合併五官功能障礙等條款定義"],
+            ),
+            coverage_entry(
+                "moderate-burn",
+                "中度燒燙傷保險金",
+                None,
+                "benefit_base",
+                "發生中度燒燙傷時，按住院給付日額 100 倍給付。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_event",
+                rate_percent=100,
+                unit_key="face_amount",
+                conditions=[base_condition, "第二度燒燙傷面積大於全身 20%，或第三度燒燙傷面積占全身 10% 至 19%"],
+            ),
+            coverage_entry(
+                "burn-unit-daily",
+                "燒燙傷病房保險金",
+                None,
+                "benefit_base",
+                "因嚴重或中度燒燙傷入住燒燙傷病房者，另按住院給付日額 3 倍乘以實際住燒燙傷病房日數給付。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_day",
+                aggregation_rule="conditional_additive",
+                rate_percent=3,
+                unit_key="face_amount",
+                conditions=[base_condition, "同一次燒燙傷病房給付最高 365 日"],
+            ),
+            coverage_entry(
+                "burn-outpatient-daily",
+                "燒燙傷門診保險金",
+                None,
+                "benefit_base",
+                "因同一嚴重或中度燒燙傷出院後一年內門診治療者，每日按住院給付日額 50% 給付。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_day",
+                rate_percent=0.5,
+                unit_key="face_amount",
+                conditions=[base_condition, "同一日多次門診仍以一日計算", "逾一年仍具因果關係者依條款得繼續給付"],
+            ),
+            coverage_entry(
+                "severe-burn-rehab-monthly",
+                "嚴重燒燙傷復健保險金",
+                None,
+                "benefit_base",
+                "嚴重燒燙傷接受復健治療者，每月按住院給付日額 10 倍給付，最高 24 個月。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_event",
+                rate_percent=10,
+                unit_key="face_amount",
+                conditions=[base_condition, "每月以一次為限", "最高給付 24 個月"],
+            ),
+            coverage_entry(
+                "moderate-burn-rehab-monthly",
+                "中度燒燙傷復健保險金",
+                None,
+                "benefit_base",
+                "中度燒燙傷接受復健治療者，每月按住院給付日額 5 倍給付，最高 12 個月。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_event",
+                rate_percent=5,
+                unit_key="face_amount",
+                conditions=[base_condition, "每月以一次為限", "最高給付 12 個月"],
+            ),
+            coverage_entry(
+                "death-funeral-reference-base",
+                "身故或喪葬費用保險金參考基礎",
+                None,
+                "benefit_base",
+                "身故時以年繳保險費總和 106% 扣除第六至十一條已領醫療保險金後之金額，與保單價值準備金較大者為給付參考；未滿 15 足歲依條款退還所繳保險費。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="reference",
+                limit_scope="per_policy",
+                rate_percent=106,
+                unit_key="annual_premium_total",
+                conditions=["需扣除第六至十一條已領醫療保險金", "實際給付仍須與保單價值準備金比較並依未成年人身故規則處理"],
+            ),
+            coverage_entry(
+                "maturity-reference-base",
+                "祝壽保險金參考基礎",
+                None,
+                "benefit_base",
+                "保險年齡達 111 歲仍生存時，以年繳保險費總和 106% 扣除第六至十一條已領醫療保險金後之金額，與保單價值準備金較大者給付，契約效力終止。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="reference",
+                limit_scope="per_policy",
+                rate_percent=106,
+                unit_key="annual_premium_total",
+                conditions=["保險年齡達 111 歲仍生存", "需扣除第六至十一條已領醫療保險金"],
+            ),
+            coverage_entry(
+                "premium-waiver",
+                "豁免保險費",
+                None,
+                "additional_benefit",
+                "繳費期間因疾病或傷害致附表五第一至六級殘廢程度之一者，豁免本契約未到期保險費。",
+                source_ref,
+                calculation_basis="table_multiplier",
+                amount_role="reference",
+                limit_scope="per_policy",
+                multiplier=1,
+                conditions=["限繳費期間", "須符合附表五第一至六級殘廢程度之一"],
+            ),
+            coverage_entry(
+                "medical-benefits-lifetime-cap",
+                "醫療保險金給付總額限制",
+                None,
+                "benefit_base",
+                "第六至十一條醫療保險金累計給付總額最高以住院給付日額 3,800 倍為限；達上限時契約效力終止。",
+                source_ref,
+                calculation_basis="table_multiplier",
+                amount_role="limit",
+                limit_scope="lifetime",
+                aggregation_rule="cumulative_cap",
+                multiplier=3800,
+                conditions=[base_condition, "限制範圍為第六至十一條醫療保險金"],
+            ),
+        ],
+    }
+
+
+def parse_yuanta_xiangan_medical_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = YUANTA_XIANGAN_MEDICAL_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != version["file_name"]
+        or document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = (
+        "元大人壽享安住院醫療健康保險附約",
+        "本險之疾病等待期為三十日",
+        "每日病房費用保險金、住院醫療費用保險金、外科手術費用保險金、住院前後門診費用保險金及補充保險金",
+        "每日病房費用保險金之給付",
+        "住院醫療費用保險金之給付",
+        "外科手術費用保險金之給付",
+        "住院前後門診費用保險金之給付",
+        "補充保險金之給付",
+        "醫療費用未經全民健康保險給付者之處理方式",
+        "日間住院及精神衛生法第三十五條所稱之日間留院",
+        "提高為原限額的三倍",
+        "同一次住院,其加護病房的給付日數以十五日為限",
+        "同一次住院期間超過六十日時",
+        "提高為原限額之二倍",
+        "入院治療前七日內或出院後三十日內",
+        "一次住院合計給付補充保險金不得超過",
+        "實際支付之各項費用之65%給付",
+        "出院或接受門診外科手術後十四日內於同一醫院再次住院",
+        "本公司就再次住院部分不予給付保險金",
+        "受益人同意調閱被保險人之就醫相關資料",
+        "附表一:各項保險金給付限額表",
+        "附表二:手術名稱及費用表",
+    )
+    if (
+        any(signal.replace(" ", "") not in dense_text for signal in required_signals)
+        or any(signal.replace(" ", "") not in dense_text for signal in version["required_revision_signals"])
+        or any(signal.replace(" ", "") in dense_text for signal in version["forbidden_revision_signals"])
+    ):
+        return None
+
+    table_start = dense_text.find("附表一:各項保險金給付限額表")
+    if table_start < 0:
+        return None
+    surgery_table_start = dense_text.find("附表二:手術名稱及費用表", table_start)
+    if surgery_table_start < 0:
+        return None
+    compact_table = dense_text[table_start:surgery_table_start]
+    required_table_signals = (
+        "計劃別給付限額計劃一計劃二計劃三計劃四計劃五計劃六",
+        "每日病房費用保險金給付限額1,0001,5002,0002,5003,0004,000",
+        "每次住院醫療費用保險金給付限額125,000150,000175,000200,000225,000275,000",
+        "每次手術費用保險金給付限額80,000100,000120,000140,000160,000200,000",
+        "每次住院入院前門診費用保險金給付限額1,0001,0002,0002,0002,0002,000",
+        "每次住院出院後門診費用保險金給付限額3,0003,0006,0006,0006,0006,000",
+        "補充保險金給付限額2,0003,0004,0005,0006,0008,000",
+    )
+    if any(signal not in compact_table for signal in required_table_signals):
+        return None
+    table_payload = {
+        key: list(values)
+        for key, values in YUANTA_XIANGAN_MEDICAL_AMOUNTS.items()
+    }
+    if sha256_json(table_payload) != YUANTA_XIANGAN_MEDICAL_TABLE_SHA256:
+        return None
+
+    surgery_table_end = min(len(dense_text), surgery_table_start + 18_000)
+    surgery_rates = [
+        float(value)
+        for value in re.findall(r"(?<!\d)(\d+(?:\.\d+)?)%", dense_text[surgery_table_start:surgery_table_end])
+    ]
+    if not surgery_rates:
+        return None
+    surgery_min = min(surgery_rates)
+    surgery_max = max(surgery_rates)
+    if surgery_min <= 0 or surgery_max < surgery_min or surgery_max > 1000:
+        return None
+    surgery_min_value: int | float = int(surgery_min) if surgery_min.is_integer() else surgery_min
+    surgery_max_value: int | float = int(surgery_max) if surgery_max.is_integer() else surgery_max
+
+    table_ref = "附表一各項保險金給付限額表，第 3 頁"
+    surgery_ref = "附表二手術名稱及費用表"
+    source_ref = "保單條款第二、四至十二條及" + table_ref
+    common_conditions = [
+        "疾病等待期 30 日；續保日起發生之疾病不受 30 日限制。",
+        "日間住院及精神衛生法第三十五條所稱日間留院不屬住院。",
+        "未以全民健康保險身分或至不具健保之醫院診療時，按實際支付費用 65% 給付，仍受各項限額限制。",
+        "已獲全民健康保險給付部分不予給付。",
+        "出院或接受門診外科手術後 14 日內同一醫院再次住院或再次接受門診外科手術，視為一次住院或門診外科手術辦理。",
+        "附約有效期間屆滿後出院者，再次住院部分不給付。",
+    ]
+    plan_options = []
+    for index, label in enumerate(["計劃一", "計劃二", "計劃三", "計劃四", "計劃五", "計劃六"]):
+        room_daily_limit = YUANTA_XIANGAN_MEDICAL_AMOUNTS["room_daily_limit"][index]
+        inpatient_limit = YUANTA_XIANGAN_MEDICAL_AMOUNTS["inpatient_medical_limit"][index]
+        surgery_limit = YUANTA_XIANGAN_MEDICAL_AMOUNTS["surgery_limit"][index]
+        pre_outpatient_limit = YUANTA_XIANGAN_MEDICAL_AMOUNTS["pre_admission_outpatient_limit"][index]
+        post_outpatient_limit = YUANTA_XIANGAN_MEDICAL_AMOUNTS["post_discharge_outpatient_limit"][index]
+        supplement_limit = YUANTA_XIANGAN_MEDICAL_AMOUNTS["supplement_limit"][index]
+        plan_options.append(
+            {
+                "value": f"plan-{index + 1}",
+                "label": label,
+                "coverage_entries": [
+                    coverage_entry(
+                        "room-daily-limit",
+                        "每日病房費用保險金限額",
+                        room_daily_limit,
+                        "daily_total",
+                        f"{label} 每日病房費用限額 {room_daily_limit:,} 元；加護病房提高為 {room_daily_limit * 3:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_day",
+                        amount_tiers=[
+                            {"label": "一般病房每日", "amount": room_daily_limit},
+                            {"label": "加護病房每日", "amount": room_daily_limit * 3},
+                        ],
+                        conditions=[
+                            *common_conditions,
+                            "限超等住院病房費差額、管灌飲食以外膳食費、特別護士以外護理費。",
+                            "加護病房同一次住院給付日數最高 15 日。",
+                        ],
+                    ),
+                    coverage_entry(
+                        "inpatient-medical-limit",
+                        "住院醫療費用保險金限額",
+                        inpatient_limit,
+                        "per_event",
+                        f"{label} 每次住院醫療費用限額 {inpatient_limit:,} 元；同一次住院超過 60 日時提高為 {inpatient_limit * 2:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_hospitalization",
+                        amount_tiers=[
+                            {"label": "同一次住院 60 日內", "amount": inpatient_limit},
+                            {"label": "同一次住院超過 60 日", "amount": inpatient_limit * 2},
+                        ],
+                        conditions=[
+                            *common_conditions,
+                            "限醫師指示用藥、血液、掛號費及證明文件、救護車費、超過全民健康保險給付之住院醫療費用。",
+                        ],
+                    ),
+                    coverage_entry(
+                        "surgery-limit",
+                        "外科手術費用保險金限額",
+                        surgery_limit,
+                        "per_event",
+                        f"{label} 每次手術費用限額 {surgery_limit:,} 元，再乘以附表二手術比例。",
+                        source_ref + f"及{surgery_ref}",
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_surgery",
+                        rate_min_percent=surgery_min_value,
+                        rate_max_percent=surgery_max_value,
+                        conditions=[
+                            *common_conditions,
+                            "住院期間或門診外科手術均適用。",
+                            "同一住院期間或門診接受兩項以上手術時分別計算；同一次手術同一手術位置兩項以上器官手術時按最高比例計算。",
+                            "手術不在附表二時，由公司與被保險人協議比照程度相當項目給付。",
+                        ],
+                    ),
+                    coverage_entry(
+                        "pre-admission-outpatient-limit",
+                        "住院入院前門診費用保險金限額",
+                        pre_outpatient_limit,
+                        "per_event",
+                        f"{label} 入院前 7 日內門診費用限額 {pre_outpatient_limit:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_hospitalization",
+                        conditions=[*common_conditions, "限入院治療前 7 日內，因住院同一事故之門診治療。"],
+                    ),
+                    coverage_entry(
+                        "post-discharge-outpatient-limit",
+                        "住院出院後門診費用保險金限額",
+                        post_outpatient_limit,
+                        "per_event",
+                        f"{label} 出院後 30 日內門診費用限額 {post_outpatient_limit:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_hospitalization",
+                        conditions=[*common_conditions, "限出院後 30 日內，因住院同一事故之門診治療。"],
+                    ),
+                    coverage_entry(
+                        "supplement-limit",
+                        "補充保險金限額",
+                        supplement_limit,
+                        "per_event",
+                        f"{label} 一次住院補充保險金合計限額 {supplement_limit:,} 元。",
+                        source_ref,
+                        calculation_basis="reimbursement_with_cap",
+                        amount_role="limit",
+                        limit_scope="per_hospitalization",
+                        conditions=[
+                            *common_conditions,
+                            "第五至第八條申請給付後，若任一實際自行支付費用超過該項限額，按超過金額給付。",
+                        ],
+                    ),
+                ],
+            }
+        )
+
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計劃別",
+        "selection_guidance": "請依保單或保險證所載計劃一至計劃六選擇；各計劃已對應病房、住院醫療、手術、門診及補充保險金限額。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "plan_count": 6,
+            "disease_initial_waiting_days": 30,
+            "day_hospital_excluded": True,
+            "icu_room_limit_multiplier": 3,
+            "icu_room_limit_days": 15,
+            "inpatient_medical_limit_after_60_days_multiplier": 2,
+            "pre_admission_outpatient_days": 7,
+            "post_discharge_outpatient_days": 30,
+            "same_hospital_readmission_days": 14,
+            "post_expiry_readmission_excluded": True,
+            "non_nhi_payment_rate_percent": 65,
+            "surgery_table_min_percent": surgery_min_value,
+            "surgery_table_max_percent": surgery_max_value,
+            "newborn_metabolic_disease_revision": version["newborn_metabolic_disease_revision"],
+            "claims_review_medical_opinion_revision": version["claims_review_medical_opinion_revision"],
+        },
+        "plan_options": plan_options,
+    }
+
+
+YUANTA_ANXIN100_CRITICAL_PRODUCT_ID = "261391MZ9GRJ023A11Z10000000"
+YUANTA_ANXIN100_CRITICAL_FILE_NAME = "261391MZ9GRJ023A11Z10000000-A.pdf"
+
+
+def is_yuanta_anxin100_critical_illness_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id == YUANTA_ANXIN100_CRITICAL_PRODUCT_ID
+        or file_name == YUANTA_ANXIN100_CRITICAL_FILE_NAME
+        or "元大人壽安鑫100重大傷病終身健康保險" in dense_text
+    )
+
+
+def parse_yuanta_anxin100_critical_illness_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    if (
+        product_id != YUANTA_ANXIN100_CRITICAL_PRODUCT_ID
+        or document.get("document_type") != "policy_terms"
+        or file_name != YUANTA_ANXIN100_CRITICAL_FILE_NAME
+        or document.get("page_count") != 15
+        or document.get("pages_parsed") != 15
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = (
+        "元大人壽安鑫100重大傷病終身健康保險",
+        "108年10月1日元壽字第1080002530號函備查",
+        "本險之疾病等待期間為三十日",
+        "等待期間為九十日",
+        "一點零九倍",
+        "第十三條【無息退還所繳保險費、身故保險金或喪葬費用保險金的給付】",
+        "第十四條【完全失能保險金的給付】",
+        "第十五條【搭乘大眾運輸工具意外身故保險金或喪葬費用保險金的給付】",
+        "第十六條【重大傷病保險金的給付】",
+        "第十七條【特定重大傷病保險金的給付】",
+        "第十八條【第二級至第六級失能豁免保險費】",
+        "第十九條【祝壽保險金的給付】",
+        "第二十條【保險給付的限制】",
+        "重大傷病範圍",
+        "特定重大傷病",
+        "本契約效力即行終止",
+        "保險年齡達一百歲",
+    )
+    if not all(signal in dense_text for signal in required_signals):
+        return None
+
+    excluded_signals = (
+        "遺傳性凝血因子缺乏",
+        "先天性新陳代謝異常疾病",
+        "先天性免疫不全症",
+        "職業病",
+        "先天性肌肉萎縮症",
+        "外皮之先天畸形",
+        "早產兒所引起之神經、肌肉、骨骼、心臟、肺臟等之併發症",
+    )
+    if not all(signal in dense_text for signal in excluded_signals):
+        return None
+
+    article_starts = {
+        "death": text.find("第十三條【無息退還所繳保險費、身故保險金或喪葬費用保險金的給付】"),
+        "disability": text.find("第十四條【完全失能保險金的給付】"),
+        "transport_death": text.find("第十五條【搭乘大眾運輸工具意外身故保險金或喪葬費用保險金的給付】"),
+        "critical": text.find("第十六條【重大傷病保險金的給付】"),
+        "specified_critical": text.find("第十七條【特定重大傷病保險金的給付】"),
+        "waiver": text.find("第十八條【第二級至第六級失能豁免保險費】"),
+        "maturity": text.find("第十九條【祝壽保險金的給付】"),
+        "limit": text.find("第二十條【保險給付的限制】"),
+    }
+    if any(start < 0 for start in article_starts.values()):
+        return None
+    if list(article_starts.values()) != sorted(article_starts.values()):
+        return None
+
+    page_refs = {
+        key: source_page(text, start) or fallback
+        for (key, start), fallback in zip(
+            article_starts.items(),
+            (2, 3, 3, 3, 3, 3, 3, 3),
+        )
+    }
+    base_formula = "保險金額、年繳保險費總額 1.09 倍、保單價值準備金三者取大"
+    critical_condition = "須取得全民健康保險保險人核定之重大傷病證明；投保前已取得、申請中或符合免申請資格者不給付"
+    post_diagnosis_priority = "若已初次罹患重大傷病但證明文件於身故或失能/祝壽後才取得，依重大傷病或特定重大傷病給付，並追回已領身故、交通意外身故、完全失能或祝壽給付"
+    entries = [
+        coverage_entry(
+            "death-or-funeral",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "benefit_base",
+            f"保險年齡達十六歲後身故，依{base_formula}給付；未滿十六歲依所繳保險費/無息退還所繳保險費處理。",
+            f"保單條款第十三條，第 {page_refs['death']} 頁",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=["給付後契約終止", "受監護宣告者改為喪葬費用保險金並受法定上限限制"],
+        ),
+        coverage_entry(
+            "total-disability",
+            "完全失能保險金",
+            None,
+            "benefit_base",
+            f"致成附表一完全失能時，依{base_formula}給付；未滿十六歲改按所繳保險費給付。",
+            f"保單條款第十四條，第 {page_refs['disability']} 頁",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=["給付後契約終止", "完全失能項目以附表一為準"],
+        ),
+        coverage_entry(
+            "public-transport-accident-death",
+            "搭乘大眾運輸工具意外身故保險金",
+            None,
+            "benefit_base",
+            "保險年齡達十六歲後，以乘客身分搭乘大眾運輸工具且因事故 180 日內身故，除第十三條給付外另給付保險金額。",
+            f"保單條款第十五條，第 {page_refs['transport_death']} 頁",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="conditional_additive",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=["事故日起 180 日內身故；超過 180 日須證明因果關係", "給付後契約終止", "受監護宣告者改為喪葬費用保險金並受法定上限限制"],
+        ),
+        coverage_entry(
+            "critical-illness",
+            "重大傷病保險金",
+            None,
+            "benefit_base",
+            f"第一保單年度診斷確定給付年繳保險費總額 1.09 倍；第二保單年度起依{base_formula}給付。",
+            f"保單條款第十六條，第 {page_refs['critical']} 頁",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[critical_condition, "疾病等待期 30 日；需積極或長期治療之癌症等待期 90 日；意外所致不受等待期間限制", "同時或先後罹患二項以上重大傷病僅給付其中一項", "給付後契約終止", post_diagnosis_priority],
+        ),
+        coverage_entry(
+            "specified-critical-illness-additional",
+            "特定重大傷病保險金",
+            None,
+            "benefit_base",
+            "自第二保單年度起，依第十六條給付重大傷病保險金時，若屬條款約定特定重大傷病，另給付診斷確定當時保險金額 50%。",
+            f"保單條款第十七條，第 {page_refs['specified_critical']} 頁",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="conditional_additive",
+            rate_percent=50,
+            unit_key="face_amount",
+            conditions=[critical_condition, "限第二保單年度含以後", "需已依第十六條給付重大傷病保險金", "給付後契約終止", post_diagnosis_priority],
+        ),
+        coverage_entry(
+            "disability-premium-waiver",
+            "第二級至第六級失能豁免保險費",
+            None,
+            "additional_benefit",
+            "因疾病或傷害致成附表三第二級至第六級失能之一，自醫院醫師診斷確定失能翌日起豁免以後各到期日應繳保險費。",
+            f"保單條款第十八條，第 {page_refs['waiver']} 頁",
+            calculation_basis="percentage_of_base",
+            amount_role="reference",
+            limit_scope="per_policy",
+            rate_percent=100,
+            conditions=["僅適用本契約，不包含其他附約或併同出單附約", "豁免後不得再辦理減額繳清；非經被保險人同意不得終止或減少保險金額"],
+        ),
+        coverage_entry(
+            "maturity-age-100",
+            "祝壽保險金",
+            None,
+            "benefit_base",
+            f"保險年齡達 100 歲仍生存時，依{base_formula}給付。",
+            f"保單條款第十九條，第 {page_refs['maturity']} 頁",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=["給付後契約終止"],
+        ),
+    ]
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單首頁所載保險金額；涉及年繳保險費總額 1.09 倍或保單價值準備金三者取大者，系統會標示為公式，實際金額仍需依保單年度、繳費年期與保價金確認。",
+        "version_characteristics": {
+            "terms_revision": "108-original",
+            "filing_date": "108.10.01",
+            "filing_number": "元壽字第1080002530號",
+            "disease_waiting_days": 30,
+            "cancer_waiting_days": 90,
+            "premium_total_multiplier": 1.09,
+            "specified_critical_rate_percent": 50,
+            "public_transport_accident_death_rate_percent": 100,
+            "maturity_age": 100,
+            "disability_terminology": "完全失能",
+            "premium_waiver_disability_levels": "2-6",
+            "excluded_critical_illness_item_count": 8,
+        },
+        "coverage_entries": entries,
+    }
+
+
+def is_yuanta_new_account_medical_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id in YUANTA_NEW_ACCOUNT_MEDICAL_PRODUCT_VERSIONS
+        or re.fullmatch(r"261311MZ1GA1023A11Z100000(?:09|10)-[AF]\.pdf", file_name)
+        is not None
+        or "元大人壽新帳戶醫療終身健康保險" in dense_text
+    )
+
+
+def yuanta_new_account_medical_entries(
+    type_label: str,
+    *,
+    include_type_benefits: bool,
+) -> list[dict[str, Any]]:
+    source_ref = "保單條款第二、六至廿四條及附表一至三，第 1-11 頁"
+    base_condition = "使用者輸入保單首頁所載住院給付日額後換算"
+    entries = [
+        coverage_entry(
+            "hospital-daily-first-30-days",
+            "住院醫療保險金",
+            None,
+            "benefit_base",
+            "同一次住院前 30 日內，每日給付一倍住院給付日額；同一次住院最高 365 日。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_day",
+            rate_percent=100,
+            conditions=[base_condition, "含疾病或傷害住院", "同一次住院最高 365 日", "日間住院及日間留院不在住院定義內"],
+        ),
+        coverage_entry(
+            "hospital-daily-after-30-days",
+            "住院醫療保險金（第 31 日起）",
+            None,
+            "benefit_base",
+            "同一次住院超過 30 日部分，每日給付二倍住院給付日額。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_day",
+            aggregation_rule="conditional_additive",
+            rate_percent=200,
+            conditions=[base_condition, "限同一次住院超過 30 日之日數", "同一次住院最高 365 日"],
+        ),
+        coverage_entry(
+            "intensive-care-daily",
+            "加護病房保險金",
+            None,
+            "benefit_base",
+            "住進加護病房期間，除住院醫療保險金外，另每日給付二倍住院給付日額。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_day",
+            aggregation_rule="conditional_additive",
+            rate_percent=200,
+            conditions=[base_condition, "須經醫師診斷必須住進加護病房", "同一次住院最高 365 日"],
+        ),
+        coverage_entry(
+            "burn-unit-daily",
+            "燒燙傷病房保險金",
+            None,
+            "benefit_base",
+            "住進燒燙傷病房期間，除住院醫療保險金外，另每日給付三倍住院給付日額。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_day",
+            aggregation_rule="conditional_additive",
+            rate_percent=300,
+            conditions=[base_condition, "須經醫師診斷必須住進燒燙傷病房", "同一次住院最高 365 日"],
+        ),
+        coverage_entry(
+            "pre-post-outpatient-daily",
+            "住院前後門診保險金",
+            None,
+            "benefit_base",
+            "住院前二週內及出院後二週內，因同一疾病或傷害門診，每日給付 25% 住院給付日額；住院期間曾接受手術者，出院後延長為三週內。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_day",
+            aggregation_rule="conditional_additive",
+            rate_percent=25,
+            conditions=[base_condition, "每日門診不論一次或多次均以一日計", "須與住院同一疾病或傷害相關"],
+        ),
+        coverage_entry(
+            "discharge-recuperation-daily",
+            "出院療養保險金",
+            None,
+            "benefit_base",
+            "出院療養每日給付 50% 住院給付日額。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_day",
+            aggregation_rule="conditional_additive",
+            rate_percent=50,
+            conditions=[base_condition, "依實際住院日數給付", "同一次住院最高 365 日"],
+        ),
+        coverage_entry(
+            "surgery-medical",
+            "手術醫療保險金",
+            None,
+            "benefit_base",
+            "依住院給付日額乘以附表一手術項目等級給付倍數；附表等級為 1 至 8 倍。",
+            source_ref,
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="per_surgery",
+            rate_min_percent=100,
+            rate_max_percent=800,
+            multiplier=8,
+            conditions=[base_condition, "住院或門診手術均可依條款辦理", "同一次住院兩項以上手術分別計算", "同一手術部位兩項器官以上手術以最高級項目給付"],
+        ),
+        coverage_entry(
+            "cancer-major-disease-care-daily",
+            "癌症或特定重大疾病暨特定重大傷病看護醫療保險金",
+            None,
+            "benefit_base",
+            "因癌症或特定重大疾病暨特定重大傷病住院治療時，每日給付一倍住院給付日額。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_day",
+            aggregation_rule="conditional_additive",
+            rate_percent=100,
+            conditions=[base_condition, "同一次住院最高 30 日", "疾病及癌症須符合等待期及條款定義"],
+        ),
+        coverage_entry(
+            "radiotherapy-chemotherapy-daily",
+            "放射線治療保險金",
+            None,
+            "benefit_base",
+            "罹患癌症且接受放射線或化學治療時，每治療日給付一倍住院給付日額。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_day",
+            aggregation_rule="conditional_additive",
+            rate_percent=100,
+            conditions=[base_condition, "同日治療一次或多次均以一日計", "癌症須符合等待期及條款定義"],
+        ),
+        coverage_entry(
+            "child-specific-disease",
+            "幼童特定傷病保險金",
+            None,
+            "benefit_base",
+            "事故當日保險年齡未滿 14 歲，罹患約定幼童特定傷病且住院治療 4 日以上時，給付 15 倍住院給付日額。",
+            source_ref,
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="per_event",
+            multiplier=15,
+            conditions=[base_condition, "限事故當日保險年齡未滿 14 歲", "須住院治療 4 日含以上"],
+        ),
+        coverage_entry(
+            "child-fracture",
+            "幼童骨折傷害保險金",
+            None,
+            "benefit_base",
+            "事故當日保險年齡未滿 14 歲，依住院給付日額乘以附表二骨折給付日數；完全骨折日數為 14 至 60 日。",
+            source_ref,
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="per_event",
+            multiplier=60,
+            conditions=[base_condition, "不完全骨折按二分之一給付", "骨骼龜裂按四分之一給付", "同時兩項以上骨折僅給付較高等級"],
+        ),
+        coverage_entry(
+            "child-food-poisoning",
+            "幼童食物中毒保險金",
+            None,
+            "benefit_base",
+            "事故當日保險年齡未滿 14 歲，發生條款定義之幼童食物中毒且住院診療時，給付 3 倍住院給付日額。",
+            source_ref,
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="per_event",
+            multiplier=3,
+            conditions=[base_condition, "限事故當日保險年齡未滿 14 歲", "須於醫院住院診療"],
+        ),
+        coverage_entry(
+            "total-disability-care-annual",
+            "完全失能扶助保險金",
+            None,
+            "benefit_base",
+            "給付完全失能保險金後，生存期間每年給付保險金額 5%；保險金額為住院給付日額 500 倍，因此相當於每年 25 倍住院給付日額，最多 20 年。",
+            source_ref,
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="annual",
+            multiplier=25,
+            conditions=[base_condition, "須致成附表三完全失能之一且已給付完全失能保險金", "自完全失能確定日後下一保單週年日起給付", "最多 20 年，終身一次"],
+        ),
+        coverage_entry(
+            "death-funeral-reference-base",
+            "身故或喪葬費用保險金參考基準",
+            None,
+            "benefit_base",
+            "保險金額為住院給付日額的 500 倍；給付時須依條款扣除累計已申領之相關保險金。",
+            source_ref,
+            calculation_basis="table_multiplier",
+            amount_role="reference",
+            limit_scope="per_policy",
+            multiplier=500,
+            conditions=[base_condition, "未滿 15 足歲身故改依條款無息退還所繳保險費或按所繳保險費處理", "受監護宣告者適用喪葬費用保險金限制"],
+        ),
+        coverage_entry(
+            "total-disability-reference-base",
+            "完全失能保險金參考基準",
+            None,
+            "benefit_base",
+            "完全失能保險金以保險金額為基準；保險金額為住院給付日額的 500 倍，並依條款扣除累計已申領之相關保險金。",
+            source_ref,
+            calculation_basis="table_multiplier",
+            amount_role="reference",
+            limit_scope="per_policy",
+            multiplier=500,
+            conditions=[base_condition, "須致成附表三完全失能之一", "給付次數終身一次"],
+        ),
+        coverage_entry(
+            "medical-benefits-lifetime-cap",
+            "醫療類給付累計終止門檻",
+            None,
+            "benefit_base",
+            "第六條至第十四條各項保險金，保單有效期間累計最高為住院給付日額 1,500 倍；達限額時契約終止。",
+            source_ref,
+            calculation_basis="table_multiplier",
+            amount_role="limit",
+            limit_scope="lifetime",
+            aggregation_rule="cumulative_cap",
+            multiplier=1500,
+            conditions=[base_condition, "限第六條至第十四條各項保險金累計"],
+        ),
+    ]
+    if not include_type_benefits:
+        return entries
+
+    entries.extend(
+        [
+            coverage_entry(
+                "cancer-diagnosis",
+                "癌症保險金",
+                None,
+                "benefit_base",
+                "乙型罹患癌症（重度）給付 100 倍住院給付日額；癌症（初期）或癌症（輕度）給付 30 倍，日後惡化為重度時補給差額。",
+                source_ref,
+                calculation_basis="table_multiplier",
+                amount_role="payout",
+                limit_scope="lifetime",
+                multiplier=100,
+                conditions=[base_condition, "僅乙型給付", "終身以給付一次為限", "癌症須符合等待期及條款定義"],
+            ),
+            coverage_entry(
+                "breast-reconstruction",
+                "義乳重建保險金",
+                None,
+                "benefit_base",
+                "乙型罹患乳癌且接受義乳重建手術者，每側給付 50 倍住院給付日額。",
+                source_ref,
+                calculation_basis="table_multiplier",
+                amount_role="payout",
+                limit_scope="per_event",
+                multiplier=50,
+                conditions=[base_condition, "僅乙型給付", "每側終身以給付一次為限"],
+            ),
+            coverage_entry(
+                "major-disease-diagnosis",
+                "特定重大疾病暨特定重大傷病保險金",
+                None,
+                "benefit_base",
+                "乙型經專科醫師診斷確定罹患約定特定重大疾病暨特定重大傷病時，給付 150 倍住院給付日額。",
+                source_ref,
+                calculation_basis="table_multiplier",
+                amount_role="payout",
+                limit_scope="lifetime",
+                multiplier=150,
+                conditions=[base_condition, "僅乙型給付", "終身以給付一次為限", "須符合條款定義"],
+            ),
+        ]
+    )
+    return entries
+
+
+def parse_yuanta_new_account_medical_type_daily(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = YUANTA_NEW_ACCOUNT_MEDICAL_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != f"{product_id}-A.pdf"
+        or document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = (
+        "元大人壽新帳戶醫療終身健康保險",
+        "本契約分甲、乙二型",
+        "甲型",
+        "不含癌症、義乳重建及特定重大疾病暨特定重大傷病保險金給付",
+        "乙型",
+        "含癌症、義乳重建及特定重大疾病暨特定重大傷病保險金給付",
+        "住院給付日額」係指保險單首頁所載本契約之日額金額",
+        "保險金額」係指「住院給付日額」的五百倍",
+        "同一次住院「住院醫療保險金」給付日數最高以三百六十五日為限",
+        "住院給付日額」的二倍乘以實際住加護病房的日數",
+        "住院給付日額」的三倍乘以實際住燒燙傷病房的日數",
+        "住院給付日額」的百分之二十五",
+        "住院給付日額」的百分之五十乘以實際住院日數",
+        "附表一手術項目等級表中所載給付倍數",
+        "癌症或特定重大疾病暨特定重大傷病看護醫療保險金",
+        "幼童骨折傷害保險金",
+        "附表二:骨折給付日數標準表",
+        "附表三:完全失能項別",
+        version["spec_code"],
+    )
+    if (
+        any(signal.replace(" ", "") not in dense_text for signal in required_signals)
+        or any(signal.replace(" ", "") not in dense_text for signal in version["required_revision_signals"])
+        or any(signal.replace(" ", "") in dense_text for signal in version["forbidden_revision_signals"])
+    ):
+        return None
+
+    surgery_table = text[text.rfind("附表一"): text.rfind("附表二")]
+    fracture_table = text[text.rfind("附表二"): text.rfind("附表三")]
+    if not (
+        "手術等級" in surgery_table
+        and re.search(r"直徑2\s*公分以下.*8", surgery_table)
+        and re.search(r"顱腦.*1|腦瘤切除.*1|腦瘤切除.*2", surgery_table)
+        and "完全骨折日數" in fracture_table
+        and "14 天" in fracture_table
+        and "60 天" in fracture_table
+    ):
+        return None
+
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保型別與住院給付日額",
+        "selection_guidance": "請依保單首頁選擇甲型或乙型，並填寫住院給付日額；乙型才包含癌症、義乳重建及特定重大疾病暨特定重大傷病保險金。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "disease_initial_waiting_days": 30,
+            "cancer_initial_waiting_days": 30,
+            "major_disease_initial_waiting_days": 30,
+            "day_hospital_excluded": True,
+            "same_hospital_readmission_days": 14,
+            "post_expiry_readmission_excluded": True,
+            "face_amount_daily_multiplier": 500,
+            "medical_lifetime_cap_daily_multiplier": 1500,
+            "medical_opinion_revision": version["medical_opinion_revision"],
+        },
+        "plan_options": [
+            {
+                "value": "type-a",
+                "label": f"甲型（輸入住院給付日額）",
+                "coverage_entries": yuanta_new_account_medical_entries(
+                    "甲型",
+                    include_type_benefits=False,
+                ),
+            },
+            {
+                "value": "type-b",
+                "label": f"乙型（輸入住院給付日額）",
+                "coverage_entries": yuanta_new_account_medical_entries(
+                    "乙型",
+                    include_type_benefits=True,
+                ),
+            },
+        ],
+    }
+
+
+TAIWAN_GROUP_LONG_TERM_CARE_SERVICE_PRODUCT_VERSIONS = {
+    "202363MZ1A84321A12Z10000000": {
+        "page_count": 10,
+        "required_revision_signals": ("中華民國 109 年 10 月 20 日 台壽字第 1092320172 號函備查",),
+        "forbidden_revision_signals": ("111 年 12 月 8 日金管保壽字第 1110152342 號函修正",),
+        "revision": "original",
+        "privacy_revision": False,
+    },
+    "202363MZ1A84321A12Z10000001": {
+        "page_count": 10,
+        "required_revision_signals": (
+            "中華民國 109 年 10 月 20 日 台壽字第 1092320172 號函備查",
+            "中華民國 112 年 2 月 9 日 依 111 年 12 月 8 日金管保壽字第 1110152342 號函修正",
+        ),
+        "forbidden_revision_signals": (),
+        "revision": "112-revised",
+        "privacy_revision": True,
+    },
+}
+
+
+def is_taiwan_group_long_term_care_service_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    dense_text = re.sub(r"\s+", "", normalize_terms_text(str(document.get("text") or "")))
+    return (
+        product_id in TAIWAN_GROUP_LONG_TERM_CARE_SERVICE_PRODUCT_VERSIONS
+        or re.fullmatch(r"202363MZ1A84321A12Z1000000[01]-[AF]\.pdf", file_name)
+        is not None
+        or "台灣人壽團體長期照顧健康保險(實物給付型)" in dense_text
+    )
+
+
+def parse_taiwan_group_long_term_care_service_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_GROUP_LONG_TERM_CARE_SERVICE_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != f"{product_id}-A.pdf"
+        or document.get("page_count") != version["page_count"]
+        or document.get("pages_parsed") != version["page_count"]
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = (
+        "台灣人壽團體長期照顧健康保險(實物給付型)",
+        "長期照顧一次保險金",
+        "長期照顧分期服務",
+        "未支領長照餘額",
+        "本契約之長期照顧計畫期間為二十四個月",
+        "按診斷確定日當時該被保險人之保險金額的六倍",
+        "每一個月於診斷確定日當時該被保險人之保險金額額度內",
+        "長期照顧分期服務期間為二十四個月",
+        "附表二",
+        "長期照顧分期服務之項目及服務費用表",
+        "基本服務方案",
+        "每小時400元",
+        "健康促進服務方案",
+        "每小時500元",
+        "失智照顧服務方案",
+        "每小時550元",
+        "癌症照顧服務方案",
+        "複雜性照顧加收",
+        "額外加收服務費用每小時100元",
+        "服務費用以每小時支付2倍之服務費用計算之",
+        "補償金之金額為附表二所列該項服務費用之110%",
+    )
+    if (
+        any(signal.replace(" ", "") not in dense_text for signal in required_signals)
+        or any(signal.replace(" ", "") not in dense_text for signal in version["required_revision_signals"])
+        or any(signal.replace(" ", "") in dense_text for signal in version["forbidden_revision_signals"])
+    ):
+        return None
+
+    source_ref = "保單條款第二、五、十四至廿三條及附表二，第 1-10 頁"
+    base_condition = "使用者輸入保險證或保險手冊所載保險金額後換算"
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請填保險證或保險手冊記載的保險金額；系統會換算長期照顧一次金、每月長照服務額度及未支領長照餘額規則。",
+        "version_characteristics": {
+            "terms_revision": version["revision"],
+            "long_term_care_plan_months": 24,
+            "lump_sum_face_amount_multiplier": 6,
+            "monthly_service_face_amount_multiplier": 1,
+            "unclaimed_balance_interest_rate_percent": 0.25,
+            "service_area_limited": True,
+            "adl_impairment_min_items": 3,
+            "adl_assessment_months": 3,
+            "cdr_min_score": 2,
+            "service_fee_revision_notice_months": 3,
+            "service_fee_revision_limit_per_year": 1,
+            "privacy_revision": version["privacy_revision"],
+        },
+        "coverage_entries": [
+            coverage_entry(
+                "long-term-care-lump-sum",
+                "長期照顧一次保險金",
+                None,
+                "benefit_base",
+                "診斷確定符合長期照顧狀態且仍生存時，給付保險金額 6 倍；本契約有效期間內以一次為限。",
+                source_ref,
+                calculation_basis="table_multiplier",
+                amount_role="payout",
+                limit_scope="per_policy",
+                multiplier=6,
+                conditions=[base_condition, "須經醫院專科醫師診斷確定符合長期照顧狀態", "本契約有效期間內以給付一次為限"],
+            ),
+            coverage_entry(
+                "monthly-care-service-limit",
+                "長期照顧分期服務月額度",
+                None,
+                "benefit_base",
+                "自長期照顧計畫起始日，每一個月於診斷確定當時保險金額額度內，由指定長期照顧服務機構依計畫提供服務，期間 24 個月。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="limit",
+                limit_scope="per_event",
+                rate_percent=100,
+                conditions=[base_condition, "每月服務額度以保險金額為限", "長期照顧計畫期間為 24 個月", "服務區域限台北市、新北市、台中市、高雄市內公告可服務區域"],
+            ),
+            coverage_entry(
+                "unclaimed-care-balance",
+                "未支領長照餘額",
+                None,
+                "benefit_base",
+                "服務無法提供、被保險人身故、計畫屆滿或主動請領時，將未使用月額度依條款餘額與 0.25% 年利率規則一次給付。",
+                source_ref,
+                calculation_basis="table_multiplier",
+                amount_role="payout",
+                limit_scope="per_policy",
+                aggregation_rule="cumulative_cap",
+                multiplier=24,
+                conditions=[base_condition, "以保險金額扣除已提供服務依附表二換算等值金額後之餘額計算", "尚未提供服務月份按年利率 0.25% 貼現至申請日", "給付後不再提供長期照顧分期服務"],
+            ),
+            coverage_entry(
+                "basic-care-service-hourly-fee",
+                "基本服務方案服務費用",
+                400,
+                "per_event",
+                "附表二基本服務方案服務費用為每小時 400 元。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="reference",
+                limit_scope="per_event",
+                conditions=["含備餐、協助餵食、環境清潔、陪同就醫、用藥提醒、生命徵象測量、移位、沐浴、口腔清潔、翻身拍背等服務項目"],
+            ),
+            coverage_entry(
+                "health-promotion-service-hourly-fee",
+                "健康促進服務方案服務費用",
+                500,
+                "per_event",
+                "附表二健康促進服務方案服務費用為每小時 500 元。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="reference",
+                limit_scope="per_event",
+                conditions=["含主被動關節運動、平衡行走、上下樓梯訓練指導、翻身擺位、移位協助、生活重建及認知功能指導等服務項目"],
+            ),
+            coverage_entry(
+                "dementia-care-service-hourly-fee",
+                "失智照顧服務方案服務費用",
+                550,
+                "per_event",
+                "附表二失智照顧服務方案服務費用為每小時 550 元。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="reference",
+                limit_scope="per_event",
+                conditions=["含精神行為照顧、個別化活動設計、營養飲食照顧、口腔清潔、照顧環境評估等服務項目"],
+            ),
+            coverage_entry(
+                "cancer-care-service-hourly-fee",
+                "癌症照顧服務方案服務費用",
+                500,
+                "per_event",
+                "附表二癌症照顧服務方案服務費用為每小時 500 元。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="reference",
+                limit_scope="per_event",
+                conditions=["含管路進食與清潔、口腔照顧、如廁或更換尿布、營養和輸液需求、末期身體症狀問題、心理精神照顧等服務項目"],
+            ),
+            coverage_entry(
+                "complex-care-hourly-surcharge",
+                "複雜性照顧加收費用",
+                100,
+                "per_event",
+                "使用基本服務方案且符合複雜性照顧定義時，另額外加收每小時 100 元。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="reference",
+                limit_scope="per_event",
+                aggregation_rule="conditional_additive",
+                conditions=["限基本服務方案", "包含移位困難且體重超過 70 公斤、有管路、傷口或燒燙傷等複雜性照顧情形"],
+            ),
+            coverage_entry(
+                "holiday-service-fee-multiplier",
+                "國定假日等休假日服務費用倍率",
+                None,
+                "per_event",
+                "原約定服務日遇國定假日或停班區域等休假情形，仍要求且協調同意提供服務時，服務費用以每小時 2 倍計算。",
+                source_ref,
+                calculation_basis="table_multiplier",
+                amount_role="reference",
+                limit_scope="per_event",
+                multiplier=2,
+                conditions=["每週日為照顧服務員例假日不派員服務", "國定假日或停班情形須經長期照顧服務機構照護管理師協調照顧服務員同意"],
+            ),
+            coverage_entry(
+                "service-failure-compensation-rate",
+                "服務未依計畫提供補償金",
+                None,
+                "per_event",
+                "因可歸責於本公司或長期照顧服務機構致未依計畫提供服務，或服務不符合約定規格時，補償金為附表二該項服務費用的 110%。",
+                source_ref,
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_event",
+                rate_percent=110,
+                conditions=["服務不符合規格者，該項服務不計入給付額度", "補償金以附表二該項服務費用為計算基礎"],
+            ),
+        ],
+    }
+
+
+TAIWAN_DRUG_ANXIN_CANCER_PRECISION_PRODUCT_VERSIONS = {
+    "202321RZ1A13B21A11E10000000": {
+        "file_name": "202321RZ1A13B21A11E10000000-A.pdf",
+        "terms_revision": "114-original",
+        "filing_signal": "中華民國 114 年 11 月 25 日台壽字第 1142320114 號函備查",
+    }
+}
+
+
+def is_taiwan_drug_anxin_cancer_precision_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_DRUG_ANXIN_CANCER_PRECISION_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def taiwan_drug_anxin_cancer_precision_plan_entries(
+    plan_label: str,
+    gene_testing_amount: int,
+    targeted_drug_cap: int,
+) -> list[dict[str, Any]]:
+    source_ref = "條款第十五條、第十六條與附表一、附表二，第 4-10 頁"
+    shared_conditions = [
+        "須於本附約有效期間內初次罹患條款第二條約定之癌症。",
+        "自診斷確定日起三年內，依醫院專科醫師指示於中華民國境內接受檢測或標靶治療。",
+        "費用須未經全民健康保險給付，或非全部由全民健康保險給付。",
+    ]
+    drug_examples = [
+        {"label": "捷癌寧 Verzenio / 150mg", "amount": 1_030},
+        {"label": "沛斯博 Besponsa / 1mg", "amount": 370_250},
+        {"label": "寬利安 Qarziba / 20.25mg", "amount": 298_198},
+        {"label": "銳癌寧 Retsevmo / 80mg", "amount": 3_502},
+    ]
+    return [
+        coverage_entry(
+            "post-cancer-gene-test",
+            "罹癌後癌症基因檢測保險金",
+            gene_testing_amount,
+            "policy_total",
+            f"{plan_label}依附表一給付；本項給付以一次為限。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            conditions=shared_conditions,
+        ),
+        coverage_entry(
+            "post-cancer-targeted-drug-cumulative-limit",
+            "罹癌後癌症標靶治療藥物保險金",
+            targeted_drug_cap,
+            "policy_total",
+            f"{plan_label}累計最高給付以附表一所列標靶治療藥物保險金額為上限；單次給付依附表二劑量規格與定額給付單價核算。",
+            source_ref,
+            calculation_basis="table_multiplier",
+            amount_role="limit",
+            limit_scope="lifetime",
+            aggregation_rule="cumulative_cap",
+            conditions=[
+                *shared_conditions,
+                "按癌症標靶治療藥物劑量規格及日數核算該次總劑量數，除以附表二對應劑量規格，再乘以對應定額給付單價。",
+                "同一癌症標靶治療接受二項或以上標靶治療藥物時，各項保險金分別計算。",
+                "附表二列示 85 項標靶治療藥物；未列示但符合條款者，以同適應癌症、同用法項目中的最高每劑量給付單價核算。",
+            ],
+            amount_tiers=drug_examples,
+        ),
+    ]
+
+
+def parse_taiwan_drug_anxin_cancer_precision_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_drug_anxin_cancer_precision_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_DRUG_ANXIN_CANCER_PRECISION_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    required_signals = [
+        "台灣人壽藥安心一年定期癌症精準醫療健康保險附約",
+        version["filing_signal"],
+        "本附約「癌症」之等待期間為本附約生效日起,持續有效90日之期間",
+        "附表一:投保計劃別內容單位:新臺幣元項目/計劃別計劃一計劃二罹癌後癌症基因檢測保險金額 10 萬元 15 萬元罹癌後癌症標靶治療藥物保險金額 300 萬元 500 萬元",
+        "按癌症標靶治療藥物劑量規格及日數核算該次總劑量數,除以附表二對應之劑量規格,再乘以附表二對應之定額給付單價",
+        "1 捷癌寧 Verzenio Abemaciclib 乳癌口服 150mg 1,030",
+        "25 沛斯博 Besponsa Inotuzumab Ozogamicin 急性淋巴芽細胞白血病注射 1mg 370,250",
+        "82 寬利安 Qarziba Dinutuximab Beta 神經母細胞瘤(癌) 注射 20.25mg 298,198",
+        "85 銳癌寧 Retsevmo Selpercatinib",
+        "口服 80mg 3,502",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+    if document.get("page_count") not in {None, 10}:
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計劃別",
+        "selection_guidance": "請依保單面頁所載計劃別選擇；本附約不需輸入單位數。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "cancer_waiting_days": 90,
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 75,
+            "post_cancer_claim_window_years": 3,
+            "cancer_includes_carcinoma_in_situ": True,
+            "drug_table_item_count": 85,
+            "health_promotion_renewal_discount_available": True,
+        },
+        "plan_options": [
+            {
+                "value": "plan-1",
+                "label": "計劃一",
+                "coverage_entries": taiwan_drug_anxin_cancer_precision_plan_entries(
+                    "計劃一", 100_000, 3_000_000
+                ),
+            },
+            {
+                "value": "plan-2",
+                "label": "計劃二",
+                "coverage_entries": taiwan_drug_anxin_cancer_precision_plan_entries(
+                    "計劃二", 150_000, 5_000_000
+                ),
+            },
+        ],
+    }
+
+
+TAIWAN_TAIPEI_STUDENT_GROUP_PRODUCT_VERSIONS = {
+    "202316M12G78103": {
+        "file_name": "202316M12G78103-A.pdf",
+        "terms_revision": "102-third-revision",
+        "required_revision_signal": "修訂文號:102 年 03 月 01 日依 102 年 01 月 10 日金管保壽字第10102103040號函修正",
+    }
+}
+
+
+def is_taiwan_taipei_student_group_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_TAIPEI_STUDENT_GROUP_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def taiwan_taipei_student_group_fixed_entries() -> list[dict[str, Any]]:
+    common_conditions = [
+        "須於本契約有效期間內發生條款第三條約定之疾病或意外傷害事故。",
+        "疾病或意外傷害事故發生日起一百八十天內身故、確定殘廢或繼續治療者，依條款給付。",
+        "受益人不得就同一事故重複申請台北市學生團體保險理賠。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "限遭遇條款約定之意外傷害事故所致。",
+    ]
+    medical_conditions = [
+        *common_conditions,
+        "按自行支出且超過社會保險給付部分之實際醫療費用給付。",
+    ]
+    disease_disability_tiers = [
+        {"label": "第一級", "amount": 600_000},
+        {"label": "第二級", "amount": 500_000},
+        {"label": "第三級", "amount": 400_000},
+        {"label": "第四級", "amount": 300_000},
+        {"label": "第五級", "amount": 200_000},
+        {"label": "第六級", "amount": 100_000},
+    ]
+    accident_disability_tiers = [
+        {"label": "第一級", "amount": 1_000_000},
+        {"label": "第二級", "amount": 800_000},
+        {"label": "第三級", "amount": 600_000},
+        {"label": "第四級", "amount": 400_000},
+        {"label": "第五級", "amount": 200_000},
+        {"label": "第六級", "amount": 100_000},
+    ]
+    living_assistance_tiers = [
+        {"label": "第一級殘廢每週年", "amount": 300_000},
+        {"label": "第二級殘廢每週年", "amount": 250_000},
+    ]
+    return [
+        coverage_entry(
+            "disease-death",
+            "一般身故保險金",
+            1_000_000,
+            "per_event",
+            "因疾病身故給付新台幣一百萬元。",
+            "條款第十條，第 3 頁",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            conditions=common_conditions,
+        ),
+        coverage_entry(
+            "accidental-death",
+            "意外身故保險金",
+            2_000_000,
+            "per_event",
+            "因意外傷害事故身故給付新台幣二百萬元。",
+            "條款第十條，第 3 頁",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            conditions=accident_conditions,
+        ),
+        coverage_entry(
+            "disease-disability",
+            "疾病殘廢保險金",
+            600_000,
+            "benefit_base",
+            "疾病致成附表二十八項殘廢程度之一者，依第一至第六級給付。",
+            "條款第十一條與附表，第 3、9-11 頁",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            conditions=[
+                *common_conditions,
+                "同一疾病致成二項以上殘廢程度時，各項合計最高以一般身故保險金額為限。",
+                "不同殘廢項目屬於同一手或同一足時，僅給付一項；等級不同時給付較嚴重項目。",
+                "合併既往殘廢可領較嚴重項目時，應扣除視同已給付之殘廢保險金。",
+            ],
+            amount_tiers=disease_disability_tiers,
+        ),
+        coverage_entry(
+            "accident-disability",
+            "意外殘廢保險金",
+            1_000_000,
+            "benefit_base",
+            "意外傷害事故致成附表二十八項殘廢程度之一者，依第一至第六級給付。",
+            "條款第十一條與附表，第 3、9-11 頁",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            conditions=[
+                *accident_conditions,
+                "同一意外傷害事故致成二項以上殘廢程度時，各項合計最高以一般身故保險金額為限。",
+                "不同殘廢項目屬於同一手或同一足時，僅給付一項；等級不同時給付較嚴重項目。",
+                "合併既往殘廢可領較嚴重項目時，應扣除視同已給付之殘廢保險金。",
+            ],
+            amount_tiers=accident_disability_tiers,
+        ),
+        coverage_entry(
+            "disability-living-assistance-annual",
+            "殘廢生活補助保險金",
+            300_000,
+            "annual_limit",
+            "第一、二級殘廢於確定殘廢日起算滿週年仍生存者，每週年給付至第四週年。",
+            "條款第十一條，第 3 頁",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="annual",
+            aggregation_rule="cumulative_cap",
+            conditions=[
+                *common_conditions,
+                "第二級殘廢加重為第一級殘廢時，第一級生活補助保險金應扣除已領取之第二級生活補助保險金。",
+            ],
+            amount_tiers=living_assistance_tiers,
+        ),
+        coverage_entry(
+            "inpatient-medical-reimbursement-limit",
+            "住院醫療保險金",
+            100_000,
+            "per_event",
+            "住院期間自行支出且超過社會保險給付部分，按實際醫療費用給付；同一事故最高十萬元。",
+            "條款第十二條，第 3-4 頁",
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_event",
+            conditions=medical_conditions,
+        ),
+        coverage_entry(
+            "hospital-daily-allowance",
+            "住院津貼日額保險金",
+            600,
+            "daily_total",
+            "按實際住院日數每日給付新台幣六百元；同一事故最高九十日。",
+            "條款第十二條，第 4 頁",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_day",
+            aggregation_rule="cumulative_cap",
+            conditions=common_conditions,
+        ),
+        coverage_entry(
+            "accident-outpatient-medical-limit",
+            "意外傷害事故門診醫療保險金",
+            30_000,
+            "per_event",
+            "意外傷害事故門診治療，不分治療項目，超過社會保險給付部分按實際費用給付；同一事故最高三萬元。",
+            "條款第十三條，第 4 頁",
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_event",
+            conditions=medical_conditions,
+        ),
+        coverage_entry(
+            "major-surgery",
+            "重大手術醫療保險金",
+            50_000,
+            "per_event",
+            "因保險事故必須接受附件所列重大手術項目之一者給付；同一事故一次為限。",
+            "條款第十四條與附件，第 4、8 頁",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            conditions=common_conditions,
+        ),
+        coverage_entry(
+            "major-burn",
+            "重大燒燙傷保險金",
+            30_000,
+            "per_event",
+            "二度燒燙傷面積大於 20%、三度燒燙傷面積大於 10%，或顏面燒燙傷合併五官功能障礙者給付。",
+            "條款第十五條，第 4 頁",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            conditions=accident_conditions,
+        ),
+        coverage_entry(
+            "low-income-project-subsidy-limit",
+            "專案補助保險金",
+            500_000,
+            "per_event",
+            "低收入戶被保險人因疾病或傷害住院，事故發生日起一年內施行附件所列重大手術者，可檢具正式收據申請；最高五十萬元。",
+            "條款第十六條，第 4 頁",
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_event",
+            conditions=[
+                *medical_conditions,
+                "限符合條款第二條所列低收入戶之被保險人。",
+                "須自事故發生日起一年內住院施行附件所列重大手術項目之一。",
+            ],
+        ),
+        coverage_entry(
+            "collective-food-poisoning",
+            "集體食物中毒保險金",
+            3_000,
+            "per_event",
+            "因五人以上集體食物中毒事故，經醫院或診所治療者，每人給付新台幣三千元。",
+            "條款第十七條，第 4 頁",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            conditions=[
+                *common_conditions,
+                "集體指五人以上。",
+            ],
+        ),
+        coverage_entry(
+            "major-accident-or-fracture-inpatient-limit",
+            "重大意外傷害事故或骨折住院醫療保險金",
+            30_000,
+            "per_event",
+            "因重大意外傷害事故或骨折住院治療，除第十二條給付外，超過社會保險給付部分按實際醫療費用給付；同一事故最高三萬元。",
+            "條款第十八條，第 4-5 頁",
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_event",
+            conditions=medical_conditions,
+        ),
+        coverage_entry(
+            "facial-reconstruction-limit",
+            "顏面傷殘重建醫療保險金",
+            30_000,
+            "per_event",
+            "因意外傷害事故在顏面部遺存雞卵大以上瘢痕、五公分以上不規則線狀痕，或直徑三公分以上組織凹陷者，按顏面重建實際醫療費用給付；同一事故最高三萬元。",
+            "條款第十九條，第 5 頁",
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_event",
+            conditions=[
+                *accident_conditions,
+                "須符合勞工保險殘廢給付標準表第五十七項。",
+            ],
+        ),
+    ]
+
+
+def parse_taiwan_taipei_student_group_fixed_schedule(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_taipei_student_group_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_TAIPEI_STUDENT_GROUP_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    required_signals = [
+        "台灣人壽台北市各級學校學生暨幼稚園托兒所幼兒團體保險保險單條款",
+        version["required_revision_signal"],
+        "一般身故保險金」新台幣一百萬元",
+        "意外身故保險金」新台幣二百萬元",
+        "疾病以致殘廢者: 第一級:新台幣六十萬元。 第二級:新台幣五十萬元。 第三級:新台幣四十萬元。",
+        "意外傷害事故以致殘廢者: 第一級:新台幣一百萬元。 第二級:新台幣八十萬元。 第三級:新台幣六十萬元。",
+        "第一級殘廢:新台幣三十萬元。 二、第二級殘廢:新台幣二十五萬元。",
+        "住院醫療保險金」的給付,每一事故最高給付新台幣十萬元為限",
+        "住院津貼日額保險金」新台幣六百元",
+        "住院津貼日額保險金」最高以九十日為限",
+        "意外傷害事故門診醫療保險金」的給付,最高以新台幣三萬元為限",
+        "重大手術醫療保險金」新台幣五萬元",
+        "重大燒燙傷保險金」新台幣三萬元",
+        "專案補助保險金」 ,最高以新台幣五十萬元為限",
+        "集體食物中毒保險金」新台幣三千元",
+        "重大意外傷害事故或骨折住院醫療保險金」的給付,最高以新台幣三萬元為限",
+        "顏面傷殘重建醫療保險金」 ,同一事故最高以新台幣三萬元為限",
+        "自發生之日起一百八十天以內",
+        "最高以一百萬元為限",
+        "最高以二百萬元為限",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+    if document.get("page_count") not in {None, 11}:
+        return None
+    return {
+        "selection_type": "fixed",
+        "input_mode": "fixed",
+        "selection_source": "terms",
+        "selection_label": "固定學生團體保險給付",
+        "selection_guidance": "本保單條款列示固定給付金額；不需輸入單位數或計劃別。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "disease_death_amount": 1_000_000,
+            "accidental_death_amount": 2_000_000,
+            "disease_disability_levels": 6,
+            "accident_disability_levels": 6,
+            "disability_living_assistance_levels": "1-2",
+            "disability_living_assistance_annual_payments": 4,
+            "hospital_daily_days_limit": 90,
+            "same_hospital_readmission_days": 14,
+            "post_accident_benefit_days_limit": 180,
+            "disease_death_disability_period_cap": 1_000_000,
+            "accidental_death_period_cap": 2_000_000,
+            "low_income_project_subsidy": True,
+            "collective_food_poisoning_min_people": 5,
+            "facial_reconstruction_labor_disability_item": 57,
+        },
+        "coverage_entries": taiwan_taipei_student_group_fixed_entries(),
+    }
+
+
+CHAOYANG_XINGNONG_STUDENT_GROUP_PRODUCT_VERSIONS = {
+    "212217M11A01500": {
+        "file_name": "212217M11A01500-A.pdf",
+        "terms_revision": "88-original",
+    },
+    "212217M11A01501": {
+        "file_name": "212217M11A01501-A.pdf",
+        "terms_revision": "93-first-revision",
+    },
+    "212217M11A01502": {
+        "file_name": "212217M11A01502-A.pdf",
+        "terms_revision": "94-second-revision",
+    },
+}
+
+
+def is_chaoyang_xingnong_student_group_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = CHAOYANG_XINGNONG_STUDENT_GROUP_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def chaoyang_xingnong_student_group_fixed_entries() -> list[dict[str, Any]]:
+    common_conditions = [
+        "限被保險人在本契約有效期間內，因疾病或遭遇外來突發意外傷害所致之身故、殘廢或需要治療。",
+        "保險期間屆滿後，僅對疾病或傷害事故發生日起 180 日內身故、確定殘廢或繼續治療者負給付責任。",
+    ]
+    medical_conditions = [
+        *common_conditions,
+        "已領受社會保險或其他醫療保險給付部分，本公司不予給付。",
+    ]
+    disability_tiers = [
+        {"label": "第一級", "amount": 500_000},
+        {"label": "第二級", "amount": 375_000},
+        {"label": "第三級", "amount": 250_000},
+        {"label": "第四級", "amount": 175_000},
+        {"label": "第五級", "amount": 75_000},
+        {"label": "第六級", "amount": 25_000},
+    ]
+    living_assistance_tiers = [
+        {"label": "第一級第1年", "amount": 150_000},
+        {"label": "第一級第2年", "amount": 200_000},
+        {"label": "第一級第3年", "amount": 250_000},
+        {"label": "第一級第4年", "amount": 300_000},
+        {"label": "第二級第1年", "amount": 112_500},
+        {"label": "第二級第2年", "amount": 150_000},
+        {"label": "第二級第3年", "amount": 187_500},
+        {"label": "第二級第4年", "amount": 225_000},
+    ]
+    return [
+        coverage_entry(
+            "death",
+            "身故保險金",
+            500_000,
+            "per_event",
+            "被保險人在保險期間內身故者，給付新台幣五十萬元；給付後該被保險人契約效力終止。",
+            "條款第十一條，第 2 頁",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            conditions=common_conditions,
+        ),
+        coverage_entry(
+            "disability",
+            "殘廢保險金",
+            500_000,
+            "benefit_base",
+            "因疾病或外來突發意外傷害致成附表一所列殘廢程度之一者，依第一至第六級固定金額給付。",
+            "條款第十二條與附表一，第 2、4 頁",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            conditions=[
+                *common_conditions,
+                "同一意外傷害事故致成二項以上殘廢程度時，給付各項殘廢保險金之和，最高以保險金額為限。",
+                "不同殘廢項目屬於同一手或同一足時僅給付一項；等級不同時給付較嚴重項目。",
+                "本次殘廢合併既往殘廢可領較嚴重項目時，應扣除視同已給付之殘廢保險金。",
+                "身故保險金與殘廢保險金每一被保險人於每一保險期間內分別以新台幣五十萬元為限。",
+            ],
+            amount_tiers=disability_tiers,
+        ),
+        coverage_entry(
+            "disability-living-assistance-annual",
+            "第一、二級殘廢生活補助津貼",
+            300_000,
+            "annual_limit",
+            "第一、二級殘廢除殘廢保險金外，依確定殘廢後第 1 至第 4 週年仍生存情形分期給付生活補助津貼。",
+            "條款第十三條，第 2 頁",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="annual",
+            aggregation_rule="cumulative_cap",
+            conditions=common_conditions,
+            amount_tiers=living_assistance_tiers,
+        ),
+        coverage_entry(
+            "inpatient-medical-reimbursement-limit",
+            "住院保險金",
+            50_000,
+            "per_event",
+            "因疾病或外來突發意外傷害住院診療時，按實際支付之醫療費用給付；同一疾病或意外傷害事故累計最高五萬元。",
+            "條款第十四條第一款，第 2 頁",
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            conditions=[
+                *medical_conditions,
+                "同一疾病、傷害或其併發症兩次以上住院，出院與再入院間隔未超過 14 日者，視為同一次住院。",
+            ],
+        ),
+        coverage_entry(
+            "major-surgery-project-subsidy-limit",
+            "專案補助手術費",
+            120_000,
+            "per_event",
+            "符合免繳保險費資格者，因疾病或傷害住院並於事故發生日起一年內施行附表二重大手術，可憑正式收據申請補助手術費。",
+            "條款第五條、第十四條第二款與附表二，第 1、2、4 頁",
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            conditions=[
+                *medical_conditions,
+                "限條款第五條所列免繳保險費之被保險人。",
+                "須自事故發生日起一年內施行附表二所列 25 項重大手術之一。",
+                "同一疾病或意外傷害事故，每一事故累計最高以新台幣十二萬元為限。",
+            ],
+        ),
+        coverage_entry(
+            "accident-outpatient-medical-limit",
+            "傷害門診保險金",
+            5_000,
+            "per_event",
+            "因外來突發意外傷害門診治療時，實際醫療費用未達五百元不給付；超過五百元者給付其超過部分，最高五千元。",
+            "條款第十四條第三款，第 2 頁",
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_event",
+            conditions=[
+                *medical_conditions,
+                "限外來突發意外傷害門診治療。",
+                "每一事故實際醫療費用未達新台幣五百元者不予給付，超過五百元者給付超過部分。",
+            ],
+        ),
+    ]
+
+
+def parse_chaoyang_xingnong_student_group_fixed_schedule(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_chaoyang_xingnong_student_group_strict_source(document):
+        return None
+    if document.get("page_count") != 4 or document.get("pages_parsed") != 4:
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    version = CHAOYANG_XINGNONG_STUDENT_GROUP_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = [
+        "興農人壽臺灣省學生團體保險",
+        "奉准文號:(88.06.09)台財保第882409589號函",
+        "(94.01.03)金管保二字第09302071150號函",
+        "身故保險金新台幣伍拾萬元",
+        "本公司按附表一所列給付金額,給付殘廢保險金",
+        "第一級殘廢生活補助津貼:(一)確定殘廢之日起算滿一年仍生存者給付新台幣壹拾伍萬元",
+        "第二級殘廢生活補助津貼:(一)確定殘廢之日起算滿一年仍生存者給付新台幣壹拾壹萬貳仟伍佰元",
+        "同一事故累計最高以新台幣伍萬元為限",
+        "每一事故累計最高以新台幣壹拾貳萬元為限",
+        "每一事故實際醫療費用未達新台幣伍佰元者,不予給付",
+        "但最高以新台幣伍仟元為限",
+        "身故保險金及殘廢保險金之給付,每一被保險人於每一保險期間內,合計分別以新台幣伍拾萬元為限",
+        "【附表一】身體殘廢等級及賠付標準表",
+        "第一級一二三四五六七",
+        "50萬元第二級",
+        "37.5萬元第三級",
+        "25萬元第四級",
+        "17.5萬元第五級",
+        "7.5萬元第六級",
+        "2.5萬元",
+        "【附表二】重大手術名稱及部位表",
+        "二十五、膝關節十字韌帶整型髖骨間雙側韌帶移植手術者",
+    ]
+    if any(signal not in dense_text for signal in required_signals):
+        return None
+
+    return {
+        "selection_type": "fixed",
+        "input_mode": "fixed",
+        "selection_source": "terms",
+        "selection_label": "固定學生團體保險給付",
+        "selection_guidance": "本保單條款列示固定給付金額；不需輸入單位數或計劃別。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "filing_date": "88.06.09",
+            "filing_number": "台財保第882409589號",
+            "revision_dates": ["93.12.29", "94.01.03"],
+            "death_amount": 500_000,
+            "disability_term": "殘廢",
+            "disability_grade_count": 6,
+            "disability_table_item_count": 28,
+            "disability_living_assistance_grades": "1-2",
+            "disability_living_assistance_annual_payments": 4,
+            "inpatient_medical_limit": 50_000,
+            "major_surgery_project_subsidy_limit": 120_000,
+            "major_surgery_table_item_count": 25,
+            "accident_outpatient_medical_limit": 5_000,
+            "accident_outpatient_minimum_expense": 500,
+            "same_hospital_readmission_days": 14,
+            "major_surgery_claim_window_years": 1,
+            "post_policy_claim_days_limit": 180,
+            "death_disability_period_cap": 500_000,
+        },
+        "coverage_entries": chaoyang_xingnong_student_group_fixed_entries(),
+    }
+
+
+FUBON_FAMILY_GIFT_ACCIDENT_HEALTH_PRODUCT_VERSIONS = {
+    "209391M12G00700": {
+        "file_name": "209391M12G00700-A.pdf",
+        "terms_revision": "102-original",
+        "filing_signal": "102.04.01 富壽商精字第 1020000380 號函備查",
+        "page_count": 21,
+        "disability_term": "殘廢",
+        "cancer_classification": "original-two-tier",
+        "early_cancer_label": "原位癌",
+        "major_cancer_label": "惡性腫瘤",
+    },
+    "209291M19G00301": {
+        "file_name": "209291M19G00301-A.pdf",
+        "terms_revision": "103-first-revision",
+        "filing_signal": "MGH1030501",
+        "page_count": 21,
+        "disability_term": "殘廢",
+        "cancer_classification": "original-two-tier",
+        "early_cancer_label": "原位癌",
+        "major_cancer_label": "惡性腫瘤",
+    },
+    "209291MZ9G00221A11Z10000002": {
+        "file_name": "209291MZ9G00221A11Z10000002-A.pdf",
+        "terms_revision": "104-second-revision",
+        "filing_signal": "MGH1040804",
+        "page_count": 23,
+        "disability_term": "殘廢",
+        "cancer_classification": "original-two-tier",
+        "early_cancer_label": "原位癌",
+        "major_cancer_label": "惡性腫瘤",
+    },
+    "209291MZ9G00221A11Z10000003": {
+        "file_name": "209291MZ9G00221A11Z10000003-A.pdf",
+        "terms_revision": "107-third-revision",
+        "filing_signal": "MGH1070430",
+        "page_count": 23,
+        "disability_term": "殘廢",
+        "cancer_classification": "original-two-tier",
+        "early_cancer_label": "原位癌",
+        "major_cancer_label": "惡性腫瘤",
+    },
+    "209291MZ9G00221A11Z10000004": {
+        "file_name": "209291MZ9G00221A11Z10000004-A.pdf",
+        "terms_revision": "107-fourth-revision",
+        "filing_signal": "MGH1070914",
+        "page_count": 23,
+        "disability_term": "失能",
+        "cancer_classification": "original-two-tier",
+        "early_cancer_label": "原位癌",
+        "major_cancer_label": "惡性腫瘤",
+    },
+    "209291MZ9G00221A11Z10000005": {
+        "file_name": "209291MZ9G00221A11Z10000005-A.pdf",
+        "terms_revision": "108-fifth-revision",
+        "filing_signal": "MGH1080101",
+        "page_count": 24,
+        "disability_term": "失能",
+        "cancer_classification": "2018-three-tier",
+        "early_cancer_label": "癌症初期",
+        "major_cancer_label": "癌症輕度或癌症重度",
+    },
+    "209291MZ9G00221A11Z10000006": {
+        "file_name": "209291MZ9G00221A11Z10000006-A.pdf",
+        "terms_revision": "109-sixth-revision",
+        "filing_signal": "MGH1090101",
+        "page_count": 24,
+        "disability_term": "失能",
+        "cancer_classification": "2018-three-tier",
+        "early_cancer_label": "癌症初期",
+        "major_cancer_label": "癌症輕度或癌症重度",
+    },
+    "209291MZ9G00221A11Z10000007": {
+        "file_name": "209291MZ9G00221A11Z10000007-A.pdf",
+        "terms_revision": "109-seventh-revision",
+        "filing_signal": "MGH1090901",
+        "page_count": 24,
+        "disability_term": "失能",
+        "cancer_classification": "2018-three-tier",
+        "early_cancer_label": "癌症初期",
+        "major_cancer_label": "癌症輕度或癌症重度",
+    }
+}
+
+
+def is_fubon_family_gift_accident_health_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_FAMILY_GIFT_ACCIDENT_HEALTH_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def disability_percentage_tiers(base_amount: int) -> list[dict[str, Any]]:
+    percentages = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 5]
+    return [
+        {"label": f"第{index}級 {percent}%", "amount": base_amount * percent // 100}
+        for index, percent in enumerate(percentages, start=1)
+    ]
+
+
+def readable_terms_text(text: str) -> str:
+    return re.sub(r"\s+", "", unicodedata.normalize("NFKC", text))
+
+
+def readable_terms_signal(text: str) -> str:
+    return readable_terms_text(text)
+
+
+def readable_terms_has_all(compact_text: str, signals: list[str]) -> bool:
+    return all(readable_terms_signal(signal) in compact_text for signal in signals)
+
+
+def readable_disability_percentages(
+    text: str,
+    *,
+    marker: str = "殘廢程度與保險金給付表",
+) -> list[int]:
+    normalized = unicodedata.normalize("NFKC", text)
+    table_start = normalized.find(marker)
+    if table_start < 0:
+        table_start = normalized.find("失能程度與保險金給付表")
+    if table_start < 0:
+        return []
+    table_end_candidates = [
+        index
+        for marker_text in ("附表四", "附表五", "短期費率表", "短期費率表")
+        for index in [normalized.find(marker_text, table_start + 1)]
+        if index > table_start
+    ]
+    table_end = min(table_end_candidates) if table_end_candidates else len(normalized)
+    table_text = normalized[table_start:table_end]
+    percent_pattern = (
+        r"(?<!\d)(100|1\s*00|90|9\s*0|80|8\s*0|70|7\s*0|60|6\s*0|50|5\s*0|"
+        r"40|4\s*0|30|3\s*0|20|2\s*0|10|1\s*0|5)\s*%"
+    )
+    return [
+        int(re.sub(r"\s+", "", value))
+        for value in re.findall(percent_pattern, table_text)
+        if 0 < int(re.sub(r"\s+", "", value)) <= 100
+    ]
+
+
+def has_readable_disability_table(
+    text: str,
+    expected_count: int,
+    *,
+    tolerance: int = 0,
+) -> bool:
+    percentages = readable_disability_percentages(text)
+    return (
+        bool(percentages)
+        and len(percentages) >= expected_count - tolerance
+        and min(percentages) == 5
+        and max(percentages) == 100
+    )
+
+
+def fubon_legacy_strict_source(
+    document: dict[str, Any],
+    versions: dict[str, dict[str, Any]],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = versions.get(product_id)
+    if not version or not version.get("legacy_relaxed_validation"):
+        return None
+    if (
+        document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != version["file_name"]
+    ):
+        return None
+    if (
+        document.get("page_count") not in {None, version["page_count"]}
+        or document.get("pages_parsed") not in {None, version["page_count"]}
+    ):
+        return None
+    return version
+
+
+def is_fubon_legacy_plan_strict_source(document: dict[str, Any]) -> bool:
+    return any(
+        fubon_legacy_strict_source(document, versions)
+        for versions in (
+            FUBON_NEW_PINGAN_ACCIDENT_PRODUCT_VERSIONS,
+            FUBON_NEW_MILLION_HEART_ACCIDENT_HEALTH_PRODUCT_VERSIONS,
+            FUBON_TIANTIAN_ANXIN_500_PRODUCT_VERSIONS,
+            FUBON_NEW_SHOUHU_JINNANG_LATE_ACCIDENT_HEALTH_PRODUCT_VERSIONS,
+            FUBON_ANXIN_FINANCIAL_LIFE_PRODUCT_VERSIONS,
+        )
+    )
+
+
+def fubon_family_gift_accident_health_entries(
+    plan_label: str,
+    values: dict[str, int | None],
+    *,
+    disability_term: str = "殘廢",
+    early_cancer_label: str = "原位癌",
+    major_cancer_label: str = "惡性腫瘤",
+) -> list[dict[str, Any]]:
+    source_ref = "條款第十二條、第十三條、第十七條、第十八條、第二十一條至第二十六條及附表一至三，第 4-16 頁"
+    common_conditions = [
+        "須依保單首頁所載計畫別給付；本契約有效期間內不受理計畫別變更。",
+        "本商品為非保證續保，最高可續保至被保險人保險年齡七十歲時之該保險期間屆滿。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "限第二條約定之意外傷害事故所致。",
+        f"身故或{disability_term}原則上須自意外傷害事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+    ]
+    entries: list[dict[str, Any]] = []
+
+    def add_amount(
+        entry_id: str,
+        name: str,
+        amount: int | None,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> None:
+        if not amount:
+            return
+        entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                amount,
+                basis,
+                f"{plan_label}：{note}",
+                source_ref,
+                calculation_basis=calculation_basis,
+                amount_role=amount_role,
+                limit_scope=limit_scope,
+                aggregation_rule=aggregation_rule,
+                conditions=conditions or common_conditions,
+                amount_tiers=amount_tiers,
+                rate_min_percent=rate_min_percent,
+                rate_max_percent=rate_max_percent,
+            )
+        )
+
+    add_amount(
+        "life-death-or-funeral",
+        "身故保險金或喪葬費用保險金",
+        values.get("life_death"),
+        "依附表一所載金額給付；給付後本契約效力終止。",
+        conditions=[
+            *common_conditions,
+            "精神障礙或其他心智缺陷且不能辨識其行為能力者，身故保險金變更為喪葬費用保險金並適用法定限額。",
+        ],
+    )
+    add_amount(
+        "total-disability",
+        f"完全{disability_term}保險金",
+        values.get("total_disability"),
+        f"致成附表二七項完全{disability_term}程度之一者給付；給付後本契約效力終止。",
+        conditions=common_conditions,
+    )
+    add_amount(
+        "first-carcinoma-in-situ",
+        f"初次罹患癌症保險金（{early_cancer_label}）",
+        values.get("carcinoma_in_situ"),
+        f"生效日或復效日持續有效三十日後，初次診斷確定罹患{early_cancer_label}者給付；給付一次為限。",
+        conditions=[
+            *common_conditions,
+            "被保險人於本契約生效前未曾罹患癌症。",
+            f"{early_cancer_label}與{major_cancer_label}各以一次為限。",
+        ],
+    )
+    add_amount(
+        "first-malignant-cancer",
+        f"初次罹患癌症保險金（{major_cancer_label}）",
+        values.get("malignant_cancer"),
+        f"生效日或復效日持續有效三十日後，初次診斷確定罹患{major_cancer_label}者給付；給付一次為限。",
+        conditions=[
+            *common_conditions,
+            "被保險人於本契約生效前未曾罹患癌症。",
+            f"{early_cancer_label}與{major_cancer_label}各以一次為限。",
+        ],
+    )
+    add_amount(
+        "major-burn",
+        "重大燒燙傷保險金",
+        values.get("major_burn"),
+        "符合附表四重大燒燙傷範圍並經醫師診斷治療，且事故日起屆滿十五日仍生存者給付。",
+        conditions=[
+            *accident_conditions,
+            "重大燒燙傷包含二度燒燙傷面積大於全身 20%、三度燒燙傷面積大於全身 10%，或顏面燒燙傷合併五官功能障礙。",
+        ],
+    )
+    add_amount(
+        "general-accidental-death",
+        "一般意外身故保險金或喪葬費用保險金",
+        values.get("accident_death"),
+        "一般意外身故依附表一所載金額給付；給付後本契約效力終止。",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "air-transit-accidental-death-additional",
+        "空中大眾運輸工具意外身故保險金或喪葬費用保險金",
+        values.get("air_transit_death"),
+        "以乘客身分搭乘空中大眾運輸工具發生意外身故，除一般意外身故外另給付。",
+        aggregation_rule="conditional_additive",
+        conditions=[
+            *accident_conditions,
+            "同時符合二項以上大眾運輸工具意外傷害事故者，以給付最高一項為限。",
+        ],
+    )
+    add_amount(
+        "water-land-transit-accidental-death-additional",
+        "水上或陸地大眾運輸工具意外身故保險金或喪葬費用保險金",
+        values.get("water_land_transit_death"),
+        "以乘客身分搭乘水上或陸地大眾運輸工具發生意外身故，除一般意外身故外另給付。",
+        aggregation_rule="conditional_additive",
+        conditions=[
+            *accident_conditions,
+            "同時符合二項以上大眾運輸工具意外傷害事故者，以給付最高一項為限。",
+        ],
+    )
+    add_amount(
+        "public-building-fire-accidental-death-additional",
+        "公共建築物火災意外身故保險金或喪葬費用保險金",
+        values.get("public_fire_death"),
+        "於戲院、旅館或其他公共建築物中遭受火災意外身故，除一般意外身故外另給付。",
+        aggregation_rule="conditional_additive",
+        conditions=[
+            *accident_conditions,
+            "須火災發生前已進入該公共建築物中。",
+        ],
+    )
+    add_amount(
+        "elevator-accidental-death-additional",
+        "電梯意外身故保險金或喪葬費用保險金",
+        values.get("elevator_death"),
+        "因乘坐電梯遭受意外身故，除一般意外身故外另給付。",
+        aggregation_rule="conditional_additive",
+        conditions=accident_conditions,
+    )
+
+    disability_specs = [
+        ("general-accidental-disability", f"一般意外{disability_term}保險金", values.get("accident_disability_base")),
+        ("air-transit-accidental-disability-additional", f"空中大眾運輸工具意外{disability_term}保險金", values.get("air_transit_disability_base")),
+        ("water-land-transit-accidental-disability-additional", f"水上或陸地大眾運輸工具意外{disability_term}保險金", values.get("water_land_transit_disability_base")),
+        ("public-building-fire-accidental-disability-additional", f"公共建築物火災意外{disability_term}保險金", values.get("public_fire_disability_base")),
+        ("elevator-accidental-disability-additional", f"電梯意外{disability_term}保險金", values.get("elevator_disability_base")),
+    ]
+    for entry_id, name, base in disability_specs:
+        add_amount(
+            entry_id,
+            name,
+            base,
+            f"致成附表三{disability_term}等級之一者，以附表一基準金額乘以附表三給付比例；第一級至第十一級為 100% 至 5%。",
+            basis="benefit_base",
+            calculation_basis="table_multiplier",
+            aggregation_rule="conditional_additive" if "additional" in entry_id else "cumulative_cap",
+            conditions=[
+                *accident_conditions,
+                f"同一意外傷害事故致成二項以上{disability_term}程度時，合計最高以該計畫別與事故類型之最高給付金額為限。",
+                f"同一手或同一足不同{disability_term}項目僅給付一項；等級不同時給付較嚴重項目。",
+            ],
+            amount_tiers=disability_percentage_tiers(base) if base else None,
+            rate_min_percent=5,
+            rate_max_percent=100,
+        )
+
+    add_amount(
+        "general-hospital-daily",
+        "一般住院醫療保險金",
+        values.get("hospital_daily"),
+        "因疾病或傷害住院診療，按一般住院醫療保險金日額乘以實際住院日數；同一保單年度同一次住院最高六十日。",
+        basis="daily_total",
+        calculation_basis="fixed_amount",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=[
+            *common_conditions,
+            "出院或轉出加護病房後，又因同一疾病或傷害於同一日入院或轉入加護病房時，該日不得重複計入住院醫療日數。",
+        ],
+    )
+    add_amount(
+        "icu-hospital-daily",
+        "加護病房住院醫療保險金",
+        values.get("icu_daily"),
+        "因疾病或傷害入住加護病房，另按加護病房費用保險金日額乘以實際入住日數；同一保單年度同一次住院最高七日。",
+        basis="daily_total",
+        calculation_basis="fixed_amount",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=common_conditions,
+    )
+    add_amount(
+        "accident-hospital-daily",
+        "意外傷害住院醫療保險金",
+        values.get("accident_hospital_daily"),
+        "意外傷害事故日起一百八十日內住院治療，按日額乘以實際住院日數；同一次意外傷害最高三百六十五日。",
+        basis="daily_total",
+        calculation_basis="fixed_amount",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "accident-icu-hospital-daily",
+        "意外傷害加護病房住院醫療保險金",
+        values.get("accident_icu_daily"),
+        "意外傷害事故入住加護病房，除意外傷害住院醫療外另按日額給付；超過意外傷害住院醫療給付日數上限者不給付。",
+        basis="daily_total",
+        calculation_basis="fixed_amount",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "accident-outpatient-surgery",
+        "意外傷害門診手術醫療保險金",
+        values.get("accident_outpatient_surgery"),
+        "因意外傷害事故經醫師診斷須進行門診手術者，按次給付。",
+        basis="per_event",
+        calculation_basis="fixed_amount",
+        limit_scope="per_surgery",
+        conditions=accident_conditions,
+    )
+    return entries
+
+
+FUBON_FAMILY_GIFT_PLAN_VALUES = {
+    "plan-1": {
+        "label": "計畫一",
+        "life_death": 2_000_000,
+        "total_disability": 2_000_000,
+        "carcinoma_in_situ": 5_000,
+        "malignant_cancer": 50_000,
+        "major_burn": 1_200_000,
+        "accident_death": 3_000_000,
+        "air_transit_death": 6_000_000,
+        "water_land_transit_death": 3_000_000,
+        "public_fire_death": 3_000_000,
+        "elevator_death": 3_000_000,
+        "accident_disability_base": 3_000_000,
+        "air_transit_disability_base": 6_000_000,
+        "water_land_transit_disability_base": 3_000_000,
+        "public_fire_disability_base": 3_000_000,
+        "elevator_disability_base": 3_000_000,
+        "hospital_daily": 1_000,
+        "icu_daily": 1_000,
+    },
+    "plan-2": {
+        "label": "計畫二",
+        "life_death": 3_000_000,
+        "total_disability": 3_000_000,
+        "carcinoma_in_situ": 5_000,
+        "malignant_cancer": 50_000,
+        "major_burn": 1_600_000,
+        "accident_death": 4_000_000,
+        "air_transit_death": 8_000_000,
+        "water_land_transit_death": 4_000_000,
+        "public_fire_death": 4_000_000,
+        "elevator_death": 4_000_000,
+        "accident_disability_base": 4_000_000,
+        "air_transit_disability_base": 8_000_000,
+        "water_land_transit_disability_base": 4_000_000,
+        "public_fire_disability_base": 4_000_000,
+        "elevator_disability_base": 4_000_000,
+        "hospital_daily": 1_000,
+        "icu_daily": 1_000,
+    },
+    "plan-3": {
+        "label": "計畫三",
+        "accident_death": 3_000_000,
+        "accident_disability_base": 3_000_000,
+        "accident_hospital_daily": 500,
+        "accident_icu_daily": 500,
+        "accident_outpatient_surgery": 1_000,
+    },
+    "plan-4": {
+        "label": "計畫四",
+        "accident_death": 5_000_000,
+        "accident_disability_base": 5_000_000,
+        "accident_hospital_daily": 500,
+        "accident_icu_daily": 500,
+        "accident_outpatient_surgery": 1_000,
+    },
+    "plan-5": {
+        "label": "計畫五",
+        "accident_death": 8_000_000,
+        "accident_disability_base": 8_000_000,
+        "accident_hospital_daily": 500,
+        "accident_icu_daily": 500,
+        "accident_outpatient_surgery": 1_000,
+    },
+}
+
+
+def parse_fubon_family_gift_accident_health_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_family_gift_accident_health_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_FAMILY_GIFT_ACCIDENT_HEALTH_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_whitespace(text)
+    disability_term = str(version["disability_term"])
+    early_cancer_label = str(version["early_cancer_label"])
+    major_cancer_label = str(version["major_cancer_label"])
+    required_signals = [
+        "富邦人壽閤家有禮傷害暨健康一年定期保險",
+        version["filing_signal"],
+        "本契約保障內容分五個計畫別",
+        "各計畫別之給付內容詳附表一",
+        f"{disability_term}等級給付比例",
+        "11 5%",
+    ]
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+    table_start = compact_text.rfind("附表一:")
+    if table_start < 0:
+        table_start = compact_text.rfind("附表一")
+    table_end = compact_text.find("附表二", table_start + 1)
+    if table_start < 0 or table_end <= table_start:
+        return None
+    table_text = compact_table_text(compact_text[table_start:table_end])
+    table_signals = [
+        "計畫別保險金項目計畫一計畫二計畫三計畫四計畫五",
+        "身故保險金或喪葬費用保險金200萬300萬無無無",
+        f"完全{disability_term}保險金200萬300萬無無無",
+        f"{early_cancer_label}5000元5000元無無無",
+        f"{major_cancer_label}50000元50000元無無無",
+        "重大燒燙傷保險金120萬160萬無無無",
+        "一般意外身故保險金或喪葬費用保險金300萬400萬300萬500萬800萬",
+        "「空中大眾運輸工具」600萬800萬無無無",
+        f"致成{disability_term}等級之一300萬乘以附表三所列給付比例400萬乘以附表三所列給付比例300萬乘以附表三所列給付比例500萬乘以附表三所列給付比例800萬乘以附表三所列給付比例",
+        "一般住院醫療保險金1000元/日無",
+        "意外傷害住院醫療保險金無500元/日",
+        "意外傷害門診手術醫療保險金無1000元/次",
+    ]
+    if any(compact_table_text(signal) not in table_text for signal in table_signals):
+        return None
+    if document.get("page_count") not in {None, version["page_count"]}:
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫別",
+        "selection_guidance": "請依保單首頁所載計畫別選擇；本商品不需輸入單位數。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": 5,
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 70,
+            "cancer_waiting_days": 30,
+            "cancer_classification": version["cancer_classification"],
+            "general_hospital_days_limit": 60,
+            "icu_days_limit": 7,
+            "accident_treatment_window_days": 180,
+            "accident_hospital_days_limit": 365,
+            "major_burn_survival_days": 15,
+            "disability_term": disability_term,
+            "disability_levels": 11,
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "same_hospital_readmission_days": 14,
+            "short_term_rate_table": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": values["label"],
+                "coverage_entries": fubon_family_gift_accident_health_entries(
+                    values["label"],
+                    values,
+                    disability_term=disability_term,
+                    early_cancer_label=early_cancer_label,
+                    major_cancer_label=major_cancer_label,
+                ),
+            }
+            for plan_key, values in FUBON_FAMILY_GIFT_PLAN_VALUES.items()
+        ],
+    }
+
+
+FUBON_WANAN_365_ACCIDENT_PRODUCT_VERSIONS = {
+    "209211MZ1A00921A11Z10000000": {
+        "file_name": "209211MZ1A00921A11Z10000000-A.pdf",
+        "terms_revision": "108-original",
+        "filing_signal": "NAEA-B1081226",
+    },
+    "209211MZ1A00921A11Z10000001": {
+        "file_name": "209211MZ1A00921A11Z10000001-A.pdf",
+        "terms_revision": "109-first-revision",
+        "filing_signal": "NAEA-B1090901",
+    },
+    "209211MZ1A00921A11Z10000002": {
+        "file_name": "209211MZ1A00921A11Z10000002-A.pdf",
+        "terms_revision": "110-second-revision",
+        "filing_signal": "NAEA-B1100101",
+    },
+    "209211MZ1A00921A11Z10000003": {
+        "file_name": "209211MZ1A00921A11Z10000003-A.pdf",
+        "terms_revision": "112-third-revision",
+        "filing_signal": "NAEA-B1120701",
+    },
+    "209211MZ1A00921A11Z10000004": {
+        "file_name": "209211MZ1A00921A11Z10000004-A.pdf",
+        "terms_revision": "112-fourth-revision",
+        "filing_signal": "NAEA-B1121117",
+    },
+    "209211MZ1A00921A11Z10000005": {
+        "file_name": "209211MZ1A00921A11Z10000005-A.pdf",
+        "terms_revision": "112-fifth-revision",
+        "filing_signal": "NAEA-B1121117",
+    },
+}
+
+
+def is_fubon_wanan_365_accident_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_WANAN_365_ACCIDENT_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def disability_percentage_tiers_for_levels(
+    base_amount: int, percentages: list[int], *, start_level: int = 1
+) -> list[dict[str, Any]]:
+    return [
+        {
+            "label": f"第{index}級 {percent}%",
+            "amount": base_amount * percent // 100,
+        }
+        for index, percent in enumerate(percentages, start=start_level)
+    ]
+
+
+FUBON_WANAN_365_PLAN_VALUES = {
+    "plan-a": {
+        "label": "計畫A",
+        "face_amount": 1_000_000,
+        "overseas_amount": 2_000_000,
+        "holiday_amount": 1_000_000,
+        "disability_living_base": 500_000,
+        "major_burn": 400_000,
+        "food_poisoning": 2_500,
+    },
+    "plan-b": {
+        "label": "計畫B",
+        "face_amount": 2_000_000,
+        "overseas_amount": 2_000_000,
+        "holiday_amount": 1_000_000,
+        "disability_living_base": 500_000,
+        "major_burn": 800_000,
+        "food_poisoning": 2_500,
+    },
+}
+
+
+def fubon_wanan_365_accident_entries(
+    plan_label: str,
+    values: dict[str, int | str],
+) -> list[dict[str, Any]]:
+    face_amount = int(values["face_amount"])
+    overseas_amount = int(values["overseas_amount"])
+    holiday_amount = int(values["holiday_amount"])
+    disability_living_base = int(values["disability_living_base"])
+    source_ref = "條款第六條至第十一條及附表一至二，第 3-15 頁"
+    common_conditions = [
+        "須依保單首頁所載 A/B 計畫給付；本契約有效期間內不受理計畫別變更。",
+        "本契約保險期間為一年，最高可續保至被保險人保險年齡七十五歲時之該保險期間屆滿。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "限第二條約定之意外傷害事故或條款特定事故類型所致。",
+        "身故或失能原則上須自意外傷害事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+    ]
+    entries: list[dict[str, Any]] = []
+
+    def add_amount(
+        entry_id: str,
+        name: str,
+        amount: int,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+        rate_percent: int | float | None = None,
+    ) -> None:
+        entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                amount,
+                basis,
+                f"{plan_label}：{note}",
+                source_ref,
+                calculation_basis=calculation_basis,
+                amount_role=amount_role,
+                limit_scope=limit_scope,
+                aggregation_rule=aggregation_rule,
+                conditions=conditions or common_conditions,
+                amount_tiers=amount_tiers,
+                rate_min_percent=rate_min_percent,
+                rate_max_percent=rate_max_percent,
+                rate_percent=rate_percent,
+            )
+        )
+
+    death_specs = [
+        (
+            "general-accidental-death-or-funeral",
+            "一般意外身故保險金或喪葬費用保險金",
+            face_amount,
+            "按保險金額給付；給付各項意外身故保險金後，本契約效力終止。",
+            "separate",
+            accident_conditions,
+        ),
+        (
+            "mass-transit-accidental-death-or-funeral",
+            "大眾運輸工具意外身故保險金或喪葬費用保險金",
+            face_amount,
+            "以乘客身分遭受大眾運輸工具意外身故者，另按保險金額給付。",
+            "conditional_additive",
+            accident_conditions,
+        ),
+        (
+            "public-building-fire-accidental-death-or-funeral",
+            "公共建築物火災意外身故保險金或喪葬費用保險金",
+            face_amount,
+            "於公共建築物中遭受火災意外身故者，另按保險金額給付。",
+            "conditional_additive",
+            [
+                *accident_conditions,
+                "須火災發生前已進入該公共建築物中。",
+            ],
+        ),
+        (
+            "elevator-accidental-death-or-funeral",
+            "電梯意外身故保險金或喪葬費用保險金",
+            face_amount,
+            "遭受電梯意外身故者，另按保險金額給付。",
+            "conditional_additive",
+            accident_conditions,
+        ),
+        (
+            "overseas-accidental-death-or-funeral",
+            "海外意外身故保險金或喪葬費用保險金",
+            overseas_amount,
+            "海外停留保障期間內遭受意外身故者，計畫A按保險金額 200%、計畫B按保險金額給付。",
+            "conditional_additive",
+            accident_conditions,
+        ),
+        (
+            "holiday-accidental-death-or-funeral",
+            "例假日保障意外身故保險金或喪葬費用保險金",
+            holiday_amount,
+            "例假日內遭受意外身故者，計畫A按保險金額、計畫B按保險金額 50% 給付；執行職務所致不給付。",
+            "conditional_additive",
+            [
+                *accident_conditions,
+                "例假日因執行職務遭受意外傷害而致身故者不給付本款。",
+            ],
+        ),
+        (
+            "carbon-monoxide-poisoning-death",
+            "一氧化碳中毒身故保險金",
+            face_amount,
+            "因一氧化碳中毒發生意外傷害事故並身故者，另按保險金額給付。",
+            "conditional_additive",
+            accident_conditions,
+        ),
+    ]
+    for entry_id, name, amount, note, aggregation_rule, conditions in death_specs:
+        add_amount(
+            entry_id,
+            name,
+            amount,
+            note,
+            aggregation_rule=aggregation_rule,
+            conditions=conditions,
+            rate_percent=amount / face_amount * 100,
+        )
+
+    full_disability_tiers = disability_percentage_tiers(face_amount)
+    natural_disaster_tiers = disability_percentage_tiers_for_levels(
+        face_amount, [90, 80, 70, 60, 50, 40, 30, 20, 10, 5], start_level=2
+    )
+    disability_specs = [
+        (
+            "general-accidental-disability",
+            "一般意外失能保險金",
+            face_amount,
+            "按保險金額乘以附表一失能給付比例計算。",
+            "cumulative_cap",
+            accident_conditions,
+            full_disability_tiers,
+            5,
+            100,
+        ),
+        (
+            "mass-transit-accidental-disability",
+            "大眾運輸工具意外失能保險金",
+            face_amount,
+            "大眾運輸工具意外失能另按保險金額乘以附表一失能給付比例計算。",
+            "conditional_additive",
+            accident_conditions,
+            full_disability_tiers,
+            5,
+            100,
+        ),
+        (
+            "public-building-fire-accidental-disability",
+            "公共建築物火災意外失能保險金",
+            face_amount,
+            "公共建築物火災意外失能另按保險金額乘以附表一失能給付比例計算。",
+            "conditional_additive",
+            [
+                *accident_conditions,
+                "須火災發生前已進入該公共建築物中。",
+            ],
+            full_disability_tiers,
+            5,
+            100,
+        ),
+        (
+            "elevator-accidental-disability",
+            "電梯意外失能保險金",
+            face_amount,
+            "電梯意外失能另按保險金額乘以附表一失能給付比例計算。",
+            "conditional_additive",
+            accident_conditions,
+            full_disability_tiers,
+            5,
+            100,
+        ),
+        (
+            "overseas-accidental-disability",
+            "海外意外失能保險金",
+            overseas_amount,
+            "海外停留保障期間內遭受意外失能者，計畫A按保險金額 200%、計畫B按保險金額，再乘以附表一比例。",
+            "conditional_additive",
+            accident_conditions,
+            disability_percentage_tiers(overseas_amount),
+            5,
+            100,
+        ),
+        (
+            "holiday-accidental-disability",
+            "例假日保障意外失能保險金",
+            holiday_amount,
+            "例假日內遭受意外失能者，計畫A按保險金額、計畫B按保險金額 50%，再乘以附表一比例；執行職務所致不給付。",
+            "conditional_additive",
+            [
+                *accident_conditions,
+                "例假日因執行職務遭受意外傷害而致失能者不給付本款。",
+            ],
+            disability_percentage_tiers(holiday_amount),
+            5,
+            100,
+        ),
+        (
+            "carbon-monoxide-poisoning-disability",
+            "一氧化碳中毒失能保險金",
+            face_amount,
+            "一氧化碳中毒意外失能另按保險金額乘以附表一失能給付比例計算。",
+            "conditional_additive",
+            accident_conditions,
+            full_disability_tiers,
+            5,
+            100,
+        ),
+        (
+            "natural-disaster-accidental-disability-levels-2-to-11",
+            "天然災害意外傷害二至十一級失能保險金",
+            face_amount,
+            "天然災害意外傷害致成附表一第二級至第十一級失能者，另按保險金額乘以附表一比例計算。",
+            "conditional_additive",
+            accident_conditions,
+            natural_disaster_tiers,
+            5,
+            90,
+        ),
+    ]
+    for (
+        entry_id,
+        name,
+        amount,
+        note,
+        aggregation_rule,
+        conditions,
+        amount_tiers,
+        rate_min,
+        rate_max,
+    ) in disability_specs:
+        add_amount(
+            entry_id,
+            name,
+            amount,
+            note,
+            basis="benefit_base",
+            calculation_basis="table_multiplier",
+            amount_role="base",
+            limit_scope="per_event",
+            aggregation_rule=aggregation_rule,
+            conditions=[
+                *conditions,
+                "同一意外傷害事故致成二項以上失能程度時，合計最高以該事故致成失能等級第一級所得計算金額為限。",
+                "同一手或同一足不同失能項目僅給付一項；等級不同時給付較嚴重項目。",
+            ],
+            amount_tiers=amount_tiers,
+            rate_min_percent=rate_min,
+            rate_max_percent=rate_max,
+        )
+
+    add_amount(
+        "disability-living-assistance-levels-1-to-3",
+        "失能生活補助金",
+        disability_living_base,
+        "第一級至第三級失能按計畫別約定金額乘以附表一比例；計畫A為保險金額 50%，計畫B為保險金額 25%。",
+        basis="benefit_base",
+        calculation_basis="table_multiplier",
+        amount_role="base",
+        limit_scope="per_policy",
+        aggregation_rule="cumulative_cap",
+        conditions=[
+            *accident_conditions,
+            "限附表一第一級至第三級失能等級之一。",
+            "不同意外事故申領失能生活補助金時，累計最高以計畫別約定金額為限。",
+        ],
+        amount_tiers=disability_percentage_tiers_for_levels(
+            disability_living_base, [100, 90, 80]
+        ),
+        rate_min_percent=80,
+        rate_max_percent=100,
+    )
+    add_amount(
+        "major-burn",
+        "重大燒燙傷保險金",
+        int(values["major_burn"]),
+        "事故致重大燒燙傷且屆滿十五日仍生存者，按保險金額 40% 給付；本契約有效期間內以一次為限。",
+        limit_scope="per_policy",
+        aggregation_rule="cumulative_cap",
+        conditions=[
+            *accident_conditions,
+            "重大燒燙傷為身體燒燙傷面積達全身百分之二十以上，或顏面燒燙傷合併五官功能障礙。",
+        ],
+        rate_percent=40,
+    )
+    add_amount(
+        "food-poisoning-hospitalization",
+        "食物中毒保險金",
+        int(values["food_poisoning"]),
+        "經醫師診斷必須住院且實際住院治療者，計畫A按保險金額 0.25%、計畫B按保險金額 0.125% 給付。",
+        limit_scope="annual",
+        aggregation_rule="cumulative_cap",
+        conditions=[
+            *common_conditions,
+            "同一保單年度最高給付三次；同一事故重覆住院者以一次為限。",
+        ],
+        rate_percent=int(values["food_poisoning"]) / face_amount * 100,
+    )
+    return entries
+
+
+def parse_fubon_wanan_365_accident_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_wanan_365_accident_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_WANAN_365_ACCIDENT_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = re.sub(r"\s+", "", text)
+    required_signals = [
+        "富邦人壽萬安365傷害保險",
+        version["filing_signal"],
+        "本契約分為A、B二計畫",
+        "計畫A之保險金額為新臺幣(下同)100萬元,計畫B之保險金額為200萬元",
+        "海外意外身故保險金",
+        "計畫A:保險金額的200%;計畫B:保險金額",
+        "計畫A:保險金額;計畫B:保險金額的50%",
+        "天然災害意外傷害二至十一級失能保險金",
+        "計畫A:保險金額的50%;計畫B:保險金額的25%",
+        "保險金額的40%給付「重大燒燙傷保險金」",
+        "計畫A:保險金額的0.25%;計畫B:保險金額的0.125%",
+        "失能程度與保險金給付表",
+    ]
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+    if document.get("page_count") not in {None, 15}:
+        return None
+    disability_table_start = text.find("失能程度與保險金給付表")
+    disability_table_end = text.find("附表二", disability_table_start + 1)
+    if disability_table_start < 0 or disability_table_end < 0:
+        return None
+    disability_table = text[disability_table_start:disability_table_end]
+    disability_item_count = len(
+        set(
+            item.replace(" ", "")
+            for item in re.findall(r"(?<!\d)(\d+\s*-\s*\d+\s*-\s*\d+)(?!\d)", disability_table)
+        )
+    )
+    if disability_item_count != 80:
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫別",
+        "selection_guidance": "請依保單首頁所載計畫A或計畫B選擇；本商品不需輸入單位數。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": 2,
+            "plan_a_face_amount": 1_000_000,
+            "plan_b_face_amount": 2_000_000,
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 75,
+            "accident_claim_days": 180,
+            "major_burn_survival_days": 15,
+            "major_burn_rate_percent": 40,
+            "food_poisoning_annual_limit_times": 3,
+            "disability_term": "失能",
+            "disability_schedule_item_count": disability_item_count,
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "natural_disaster_disability_min_level": 2,
+            "natural_disaster_disability_max_level": 11,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": values["label"],
+                "coverage_entries": fubon_wanan_365_accident_entries(
+                    str(values["label"]), values
+                ),
+            }
+            for plan_key, values in FUBON_WANAN_365_PLAN_VALUES.items()
+        ],
+    }
+
+
+FUBON_ANXIN_FINANCIAL_LIFE_PRODUCT_VERSIONS = {
+    "209291M12G00300": {
+        "file_name": "209291M12G00300-A.pdf",
+        "terms_revision": "102-original",
+        "fubon_code": "FBF1020401",
+        "page_count": 18,
+        "disability_term": "殘廢",
+        "disease_label": "特定重大疾病",
+        "legacy_cancer_split": True,
+        "cancer_waiting_days": 30,
+        "major_disease_waiting_days": 30,
+        "day_hospital_explicit": False,
+        "disability_schedule_item_count": 75,
+    },
+    "209291M19G00201": {
+        "file_name": "209291M19G00201-A.pdf",
+        "terms_revision": "103-first-revision",
+        "fubon_code": "FBF1030501",
+        "page_count": 18,
+        "disability_term": "殘廢",
+        "disease_label": "特定重大疾病",
+        "legacy_cancer_split": True,
+        "cancer_waiting_days": 30,
+        "major_disease_waiting_days": 30,
+        "day_hospital_explicit": True,
+        "disability_schedule_item_count": 75,
+    },
+    "209291MZ9G00121A11Z10000002": {
+        "file_name": "209291MZ9G00121A11Z10000002-A.pdf",
+        "terms_revision": "104-second-revision",
+        "fubon_code": "FBF1040804",
+        "page_count": 19,
+        "disability_term": "殘廢",
+        "disease_label": "特定重大疾病",
+        "legacy_cancer_split": True,
+        "cancer_waiting_days": 30,
+        "major_disease_waiting_days": 30,
+        "day_hospital_explicit": True,
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ9G00121A11Z10000003": {
+        "file_name": "209291MZ9G00121A11Z10000002-A.pdf",
+        "terms_revision": "104-third-record-shared-second-source",
+        "fubon_code": "FBF1040804",
+        "page_count": 19,
+        "disability_term": "殘廢",
+        "disease_label": "特定重大疾病",
+        "legacy_cancer_split": True,
+        "cancer_waiting_days": 30,
+        "major_disease_waiting_days": 30,
+        "day_hospital_explicit": True,
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ9G00121A11Z10000004": {
+        "file_name": "209291MZ9G00121A11Z10000004-A.pdf",
+        "terms_revision": "107-fourth-revision",
+        "fubon_code": "FBF1070430",
+        "page_count": 19,
+        "disability_term": "殘廢",
+        "disease_label": "重大疾病",
+        "legacy_cancer_split": False,
+        "cancer_waiting_days": 0,
+        "major_disease_waiting_days": 0,
+        "day_hospital_explicit": True,
+        "disability_schedule_item_count": 79,
+        "legacy_relaxed_validation": True,
+    },
+    "209291MZ9G00121A11Z10000005": {
+        "file_name": "209291MZ9G00121A11Z10000005-A.pdf",
+        "terms_revision": "107-fifth-revision",
+        "fubon_code": "FBF1070914",
+        "page_count": 19,
+        "disability_term": "失能",
+        "disease_label": "重大疾病",
+        "legacy_cancer_split": False,
+        "cancer_waiting_days": 0,
+        "major_disease_waiting_days": 0,
+        "day_hospital_explicit": True,
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ9G00121A11Z10000006": {
+        "file_name": "209291MZ9G00121A11Z10000006-A.pdf",
+        "terms_revision": "109-sixth-revision",
+        "fubon_code": "FBF1090101",
+        "page_count": 20,
+        "disability_term": "失能",
+        "disease_label": "重大疾病",
+        "legacy_cancer_split": False,
+        "cancer_waiting_days": 0,
+        "major_disease_waiting_days": 0,
+        "day_hospital_explicit": True,
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ9G00121A11Z10000007": {
+        "file_name": "209291MZ9G00121A11Z10000007-A.pdf",
+        "terms_revision": "109-seventh-revision",
+        "fubon_code": "FBF1090901",
+        "page_count": 19,
+        "disability_term": "失能",
+        "disease_label": "重大疾病",
+        "legacy_cancer_split": False,
+        "cancer_waiting_days": 0,
+        "major_disease_waiting_days": 0,
+        "day_hospital_explicit": True,
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ9G00121A11Z10000008": {
+        "file_name": "209291MZ9G00121A11Z10000008-A.pdf",
+        "terms_revision": "111-eighth-revision",
+        "fubon_code": "FBF1111202",
+        "page_count": 19,
+        "disability_term": "失能",
+        "disease_label": "重大疾病",
+        "legacy_cancer_split": False,
+        "cancer_waiting_days": 0,
+        "major_disease_waiting_days": 0,
+        "day_hospital_explicit": True,
+        "disability_schedule_item_count": 80,
+    },
+}
+
+
+def is_fubon_anxin_financial_life_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_ANXIN_FINANCIAL_LIFE_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+FUBON_ANXIN_FINANCIAL_LIFE_PLAN_VALUES = {
+    "plan-1": {
+        "label": "計畫一",
+        "accidental_death": 5_000_000,
+        "accidental_disability_base": 5_000_000,
+    },
+    "plan-2": {
+        "label": "計畫二",
+        "life_death": 2_000_000,
+        "total_disability": 2_000_000,
+        "major_disease": 2_000_000,
+        "mild_cancer": 2_000,
+        "general_hospital_daily": 1_500,
+    },
+    "plan-3": {
+        "label": "計畫三",
+        "life_death": 1_000_000,
+        "total_disability": 1_000_000,
+        "major_disease": 1_000_000,
+        "mild_cancer": 1_000,
+        "accidental_death": 2_000_000,
+        "accidental_disability_base": 2_000_000,
+        "general_hospital_daily": 1_500,
+    },
+    "plan-4": {
+        "label": "計畫四",
+        "life_death": 3_000_000,
+        "total_disability": 3_000_000,
+        "accidental_death": 3_000_000,
+        "accidental_disability_base": 3_000_000,
+        "general_hospital_daily": 1_000,
+        "icu_hospital_daily": 2_000,
+        "burn_center_hospital_daily": 3_000,
+    },
+    "plan-5": {
+        "label": "計畫五",
+        "life_death": 2_000_000,
+        "total_disability": 2_000_000,
+        "accidental_death": 2_000_000,
+        "accidental_disability_base": 2_000_000,
+        "general_hospital_daily": 500,
+        "icu_hospital_daily": 1_000,
+        "burn_center_hospital_daily": 1_500,
+    },
+}
+
+
+def fubon_anxin_financial_life_entries(
+    plan_label: str,
+    values: dict[str, int | str],
+    *,
+    disability_term: str,
+    disease_label: str,
+    legacy_cancer_split: bool,
+    cancer_waiting_days: int,
+    major_disease_waiting_days: int,
+) -> list[dict[str, Any]]:
+    source_ref = "條款第十六至十九、二十二、二十三條及附表一至三"
+    common_conditions = [
+        "本契約為一年期且不保證續保；計畫一至三最高可續保至保險年齡六十五歲，計畫四及五最高可續保至保險年齡七十歲。",
+        "保障內容分五個計畫別，由要保人於要保書上擇一投保並記載於保單首頁；有效期間內不受理計畫別變更。",
+    ]
+    life_conditions = [
+        *common_conditions,
+        f"身故保險金或完全{disability_term}保險金依附表一所載金額給付；給付後本契約效力終止。",
+    ]
+    disease_conditions = [
+        *common_conditions,
+        f"{disease_label}須於本契約有效期間內經醫師診斷確定符合條款第二條約定；給付{disease_label}保險金後本契約效力終止。",
+    ]
+    if major_disease_waiting_days:
+        disease_conditions.append(
+            f"{disease_label}原則上須於本契約生效日或復效日持續有效 {major_disease_waiting_days} 日後診斷確定；意外傷害所致或續保時不受等待期限制。"
+        )
+    mild_cancer_conditions = [
+        *common_conditions,
+        "癌症須於本契約有效期間內經醫院診斷確定，並以給付一次為限。",
+    ]
+    if cancer_waiting_days:
+        mild_cancer_conditions.append(
+            f"癌症須於本契約生效日或復效日持續有效 {cancer_waiting_days} 日後發生；續保時不受等待期限制。"
+        )
+    else:
+        mild_cancer_conditions.append("癌症須於本契約生效日或復效日起之有效期間內經醫院診斷確定。")
+    hospital_conditions = [
+        *common_conditions,
+        "因疾病或傷害住院診療，依附表一日額乘以實際住院日數給付；同一保單年度同一次住院最高三十日。",
+        "同一疾病、傷害或併發症於出院後十四日內於同一醫院再次住院，視為同一次住院。",
+    ]
+    if values.get("day_hospital_explicit"):
+        hospital_conditions.append("住院包含精神衛生法第三十五條所稱日間留院。")
+    icu_conditions = [
+        *hospital_conditions,
+        "入住加護病房時，除一般住院醫療保險金外，另按附表一日額乘以實際入住加護病房日數給付；同一保單年度同一次住院最高三十日。",
+    ]
+    burn_center_conditions = [
+        *hospital_conditions,
+        "因燒燙傷必須入住燒燙傷中心治療時，除一般住院醫療保險金外，另按附表一日額乘以實際入住燒燙傷中心日數給付；同一保單年度同一次住院最高三十日。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "被保險人於有效期間內遭受非由疾病引起之外來突發意外傷害事故，並於事故日起一百八十日內符合給付條件者給付；超過一百八十日須證明因果關係。",
+    ]
+    entries: list[dict[str, Any]] = []
+
+    def int_or_none(key: str) -> int | None:
+        value = values.get(key)
+        return value if isinstance(value, int) else None
+
+    def add_amount(
+        entry_id: str,
+        name: str,
+        amount: int | None,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> None:
+        if amount is None:
+            return
+        entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                amount,
+                basis,
+                f"{plan_label}：{note}",
+                source_ref,
+                calculation_basis=calculation_basis,
+                amount_role=amount_role,
+                limit_scope=limit_scope,
+                aggregation_rule=aggregation_rule,
+                conditions=conditions or common_conditions,
+                amount_tiers=amount_tiers,
+                rate_min_percent=rate_min_percent,
+                rate_max_percent=rate_max_percent,
+            )
+        )
+
+    add_amount(
+        "life-death-or-funeral",
+        "身故保險金或喪葬費用保險金",
+        int_or_none("life_death"),
+        "依附表一所載金額給付。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "total-disability",
+        f"完全{disability_term}保險金",
+        int_or_none("total_disability"),
+        f"致成附表二所列完全{disability_term}程度之一時，依附表一所載金額給付。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "major-disease",
+        f"{disease_label}保險金",
+        int_or_none("major_disease"),
+        f"經診斷確定罹患條款第二條約定之{disease_label}時，依附表一金額給付。",
+        conditions=disease_conditions,
+    )
+    if legacy_cancer_split:
+        add_amount(
+            "carcinoma-in-situ",
+            "原位癌保險金",
+            int_or_none("mild_cancer"),
+            "經診斷確定罹患條款約定之原位癌時給付，各以一次為限。",
+            conditions=mild_cancer_conditions,
+            limit_scope="lifetime",
+            aggregation_rule="cumulative_cap",
+        )
+        add_amount(
+            "malignant-cancer",
+            "惡性腫瘤保險金",
+            int_or_none("major_disease"),
+            "經診斷確定罹患條款約定之惡性腫瘤時給付，各以一次為限。",
+            conditions=mild_cancer_conditions,
+            limit_scope="lifetime",
+            aggregation_rule="cumulative_cap",
+        )
+    else:
+        add_amount(
+            "mild-cancer",
+            "罹患癌症(輕度)保險金",
+            int_or_none("mild_cancer"),
+            "經診斷確定罹患癌症(輕度)時給付，有效期間內含續保以一次為限。",
+            conditions=mild_cancer_conditions,
+            limit_scope="lifetime",
+            aggregation_rule="cumulative_cap",
+        )
+    add_amount(
+        "accidental-death-or-funeral",
+        "意外身故保險金或喪葬費用保險金",
+        int_or_none("accidental_death"),
+        "遭受意外傷害事故並於事故日起一百八十日內身故時給付。",
+        conditions=accident_conditions,
+    )
+    accidental_disability_base = int_or_none("accidental_disability_base")
+    add_amount(
+        "accidental-disability",
+        f"意外{disability_term}保險金",
+        accidental_disability_base,
+        f"致成附表三{disability_term}程度之一時，以附表一最高給付金額乘以附表三給付比例計算。",
+        basis="benefit_base",
+        calculation_basis="table_multiplier",
+        amount_role="base",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_conditions,
+        amount_tiers=disability_percentage_tiers(accidental_disability_base)
+        if accidental_disability_base is not None
+        else None,
+        rate_min_percent=5,
+        rate_max_percent=100,
+    )
+    add_amount(
+        "general-hospital-daily",
+        "一般住院醫療保險金",
+        int_or_none("general_hospital_daily"),
+        "按實際住院日數乘以附表一日額給付。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=hospital_conditions,
+    )
+    add_amount(
+        "icu-hospital-daily",
+        "加護病房住院醫療保險金",
+        int_or_none("icu_hospital_daily"),
+        "入住加護病房時，除一般住院醫療保險金外另按日額給付。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=icu_conditions,
+    )
+    add_amount(
+        "burn-center-hospital-daily",
+        "燒燙傷中心住院醫療保險金",
+        int_or_none("burn_center_hospital_daily"),
+        "因燒燙傷入住燒燙傷中心時，除一般住院醫療保險金外另按日額給付。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=burn_center_conditions,
+    )
+    return entries
+
+
+def parse_fubon_anxin_financial_life_accident_health_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_anxin_financial_life_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_ANXIN_FINANCIAL_LIFE_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    disability_term = str(version["disability_term"])
+    disease_label = str(version["disease_label"])
+    legacy_cancer_split = bool(version["legacy_cancer_split"])
+    cancer_signals = (
+        [
+            "罹患癌症保險金給付次數各以一次為限",
+            "原位癌無2000元1000元無無",
+            "惡性腫瘤無200萬100萬無無",
+        ]
+        if legacy_cancer_split
+        else ["罹患癌症輕度保險金給付次數以一次為限無2000元1000元無無"]
+    )
+    required_signals = [
+        "富邦人壽安心理財人生傷害暨健康一年定期保險",
+        str(version["fubon_code"]),
+        "本契約保障內容分五個計畫別",
+        "各計畫別之給付內容詳附表一",
+        "本契約有效期間內，本公司不受理其變更",
+        "計畫別保險金項目計畫一計畫二計畫三計畫四計畫五",
+        "身故保險金或喪葬費用保險金無200萬100萬300萬200萬",
+        f"完全{disability_term}保險金無200萬100萬300萬200萬",
+        f"{disease_label}保險金無200萬100萬無無",
+        *cancer_signals,
+        "意外身故保險金或喪葬費用保險金500萬無200萬300萬200萬",
+        f"意外{disability_term}保險金",
+        f"致成{disability_term}等級之一500萬乘以附表三所列給付比例無200萬乘以附表三所列給付比例300萬乘以附表三所列給付比例200萬乘以附表三所列給付比例",
+        "最高給付金額500萬無200萬300萬200萬",
+        "一般住院醫療保險金無1500元/日1500元/日1000元/日500元/日",
+        "加護病房住院醫療保險金無無無2000元/日1000元/日",
+        "燒燙傷中心住院醫療保險金無無無3000元/日1500元/日",
+        f"{disability_term}程度與保險金給付表",
+        "115%",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    if document.get("page_count") not in {None, version["page_count"]}:
+        return None
+    disability_table_start = text.find("附表三")
+    disability_table_end = text.find("附表四", disability_table_start + 1)
+    if disability_table_start < 0 or disability_table_end < 0:
+        return None
+    disability_item_count = len(
+        set(
+            item.replace(" ", "")
+            for item in re.findall(
+                r"(?<!\d)(\d+\s*-\s*\d+\s*-\s*\d+)(?!\d)",
+                text[disability_table_start:disability_table_end],
+            )
+        )
+    )
+    if disability_item_count != version["disability_schedule_item_count"]:
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫別",
+        "selection_guidance": "請依保單首頁所載計畫一至計畫五選擇；本商品不需輸入單位數。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": 5,
+            "non_guaranteed_renewal": True,
+            "plan_1_3_maximum_renewal_age": 65,
+            "plan_4_5_maximum_renewal_age": 70,
+            "cancer_waiting_days": int(version["cancer_waiting_days"]),
+            "major_disease_waiting_days": int(
+                version["major_disease_waiting_days"]
+            ),
+            "day_hospital_explicit": bool(version["day_hospital_explicit"]),
+            "same_hospital_readmission_days": 14,
+            "hospital_daily_days_limit_per_policy_year_same_hospitalization": 30,
+            "icu_days_limit_per_policy_year_same_hospitalization": 30,
+            "burn_center_days_limit_per_policy_year_same_hospitalization": 30,
+            "accident_claim_days": 180,
+            "mild_cancer_lifetime_limit_times": 1,
+            "disability_term": disability_term,
+            "total_disability_schedule_item_count": 7,
+            "disability_schedule_item_count": disability_item_count,
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_anxin_financial_life_entries(
+                    str(values["label"]),
+                    {
+                        **values,
+                        "day_hospital_explicit": version[
+                            "day_hospital_explicit"
+                        ],
+                    },
+                    disability_term=disability_term,
+                    disease_label=disease_label,
+                    legacy_cancer_split=legacy_cancer_split,
+                    cancer_waiting_days=int(version["cancer_waiting_days"]),
+                    major_disease_waiting_days=int(
+                        version["major_disease_waiting_days"]
+                    ),
+                ),
+            }
+            for plan_key, values in FUBON_ANXIN_FINANCIAL_LIFE_PLAN_VALUES.items()
+        ],
+    }
+
+
+FUBON_ANXIN_456_ACCIDENT_HEALTH_PRODUCT_VERSIONS = {
+    "209291M12G00800": {
+        "file_name": "209291M12G00800-A.pdf",
+        "terms_revision": "102-original",
+        "fbk_code": "FBK1020902",
+        "page_count": 19,
+        "cancer_waiting_days": 30,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+    },
+    "209291M12G00801": {
+        "file_name": "209291M12G00801-A.pdf",
+        "terms_revision": "103-first-revision",
+        "fbk_code": "FBK1030501",
+        "page_count": 19,
+        "cancer_waiting_days": 30,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+    },
+    "209291MZ2G00221A11Z10000002": {
+        "file_name": "209291MZ2G00221A11Z10000002-A.pdf",
+        "terms_revision": "104-second-revision",
+        "fbk_code": "FBK1040804",
+        "page_count": 20,
+        "cancer_waiting_days": 30,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+    },
+    "209291MZ2G00221A11Z10000003": {
+        "file_name": "209291MZ2G00221A11Z10000003-A.pdf",
+        "terms_revision": "105-third-revision",
+        "fbk_code": "FBK1050727",
+        "page_count": 20,
+        "cancer_waiting_days": 30,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+    },
+    "209291MZ2G00221A11Z10000004": {
+        "file_name": "209291MZ2G00221A11Z10000004-A.pdf",
+        "terms_revision": "107-fourth-revision",
+        "fbk_code": "FBK1070430",
+        "page_count": 20,
+        "cancer_waiting_days": 0,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+    },
+    "209291MZ2G00221A11Z10000005": {
+        "file_name": "209291MZ2G00221A11Z10000005-A.pdf",
+        "terms_revision": "107-fifth-revision",
+        "fbk_code": "FBK1070914",
+        "page_count": 20,
+        "cancer_waiting_days": 0,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ2G00221A11Z10000006": {
+        "file_name": "209291MZ2G00221A11Z10000006-A.pdf",
+        "terms_revision": "108-sixth-revision",
+        "fbk_code": "FBK1080101",
+        "page_count": 20,
+        "cancer_waiting_days": 0,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ2G00221A11Z10000007": {
+        "file_name": "209291MZ2G00221A11Z10000007-A.pdf",
+        "terms_revision": "109-seventh-revision",
+        "fbk_code": "FBK1090101",
+        "page_count": 21,
+        "cancer_waiting_days": 0,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ2G00221A11Z10000008": {
+        "file_name": "209291MZ2G00221A11Z10000008-A.pdf",
+        "terms_revision": "109-eighth-revision",
+        "fbk_code": "FBK1090901",
+        "page_count": 20,
+        "cancer_waiting_days": 0,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ2G00221A11Z10000009": {
+        "file_name": "209291MZ2G00221A11Z10000009-A.pdf",
+        "terms_revision": "111-ninth-revision",
+        "fbk_code": "FBK1111202",
+        "page_count": 20,
+        "cancer_waiting_days": 0,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+    },
+}
+
+
+def is_fubon_anxin_456_accident_health_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_ANXIN_456_ACCIDENT_HEALTH_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+FUBON_ANXIN_456_VALUES = {
+    "life_death": 1_000_000,
+    "total_disability": 1_000_000,
+    "cancer_death": 300_000,
+    "major_burn": 500_000,
+    "accidental_death": 2_000_000,
+    "accidental_disability_base": 2_000_000,
+    "cancer_surgery": 30_000,
+    "cancer_hospital_daily": 1_000,
+    "cancer_radiation_daily": 1_000,
+    "accident_hospital_daily": 1_000,
+    "fracture_unhospitalized_daily": 500,
+    "accident_icu_daily": 1_000,
+    "burn_center_daily": 2_000,
+}
+
+
+def fubon_anxin_456_disability_tiers(base_amount: int) -> list[dict[str, Any]]:
+    percentages = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 5]
+    return [
+        {"label": f"第{level}級 {percent}%", "amount": base_amount * percent // 100}
+        for level, percent in enumerate(percentages, start=1)
+    ]
+
+
+def fubon_anxin_456_accident_health_entries(
+    cancer_waiting_days: int,
+    disability_term: str,
+) -> list[dict[str, Any]]:
+    source_ref = f"附表一、第二至四章保險範圍、附表三{disability_term}程度與保險金給付表"
+    common_conditions = [
+        "一年定期，續保須經公司同意，最高續保至保險年齡65歲。",
+    ]
+    life_conditions = [
+        *common_conditions,
+        "身故保險金及完全殘廢保險金依附表一所載金額給付。",
+        "身故保險金或完全殘廢保險金給付後，本契約效力終止。",
+    ]
+    cancer_waiting_condition = (
+        "癌症須於契約生效日後，或復效日持續有效30日後之有效期間內，經病理組織切片或血液細胞學檢查診斷確定。"
+        if cancer_waiting_days
+        else "癌症須於契約生效日或復效日起之有效期間內，經病理組織切片或血液細胞學檢查診斷確定。"
+    )
+    cancer_conditions = [
+        *common_conditions,
+        cancer_waiting_condition,
+        "癌症住院日額按實際住院日數給付；同日再次入院不得重複計入住院日數。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "以非由疾病引起之外來突發意外傷害事故為限。",
+        "意外身故或意外殘廢須於事故日起180日內發生；超過180日須證明因果關係。",
+    ]
+    accident_hospital_conditions = [
+        *accident_conditions,
+        "意外傷害住院醫療保險金同一次意外傷害最高90日。",
+        "意外傷害加護病房及燒燙傷中心醫療保險金每次意外事故最高30日，且住院已超過意外住院日數上限者，超過日數不給付。",
+    ]
+    entries: list[dict[str, Any]] = []
+
+    def add_amount(
+        entry_id: str,
+        name: str,
+        amount: int,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> None:
+        entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                amount,
+                basis,
+                note,
+                source_ref,
+                calculation_basis=calculation_basis,
+                amount_role=amount_role,
+                limit_scope=limit_scope,
+                aggregation_rule=aggregation_rule,
+                conditions=conditions or common_conditions,
+                amount_tiers=amount_tiers,
+                rate_min_percent=rate_min_percent,
+                rate_max_percent=rate_max_percent,
+            )
+        )
+
+    values = FUBON_ANXIN_456_VALUES
+    add_amount(
+        "life-death-or-funeral",
+        "身故保險金或喪葬費用保險金",
+        values["life_death"],
+        "按附表一所載金額給付。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "total-disability",
+        f"完全{disability_term}保險金",
+        values["total_disability"],
+        f"致成附表二所列完全{disability_term}程度之一時，按附表一所載金額給付。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "cancer-death",
+        "癌症身故保險金",
+        values["cancer_death"],
+        "因癌症或癌症併發症身故時給付，給付後契約效力終止。",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "major-burn",
+        "重大燒燙傷保險金",
+        values["major_burn"],
+        "符合二度燒燙傷面積大於全身20%、三度燒燙傷面積大於全身10%或顏面燒燙傷合併五官功能障礙，且事故日起屆滿15日仍生存時給付；有效期間含續保以一次為限。",
+        conditions=[
+            *accident_conditions,
+            "有效期間內含續保契約，重大燒燙傷保險金申領以一次為限。",
+        ],
+    )
+    add_amount(
+        "accidental-death-or-funeral",
+        "意外身故保險金或喪葬費用保險金",
+        values["accidental_death"],
+        "遭受意外傷害事故，於事故日起180日內身故時給付。",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "accidental-disability",
+        f"意外{disability_term}保險金",
+        values["accidental_disability_base"],
+        f"致成附表三{disability_term}程度之一時，按附表一基準金額乘以附表三給付比例計算；累計最高以附表一最高給付金額為限。",
+        basis="benefit_base",
+        calculation_basis="table_multiplier",
+        amount_role="base",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_conditions,
+        amount_tiers=fubon_anxin_456_disability_tiers(
+            values["accidental_disability_base"]
+        ),
+        rate_min_percent=5,
+        rate_max_percent=100,
+    )
+    add_amount(
+        "cancer-surgery",
+        "癌症手術治療保險金",
+        values["cancer_surgery"],
+        "以治療癌症或癌症併發症為直接目的接受外科手術治療，每次手術給付。",
+        limit_scope="per_surgery",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-hospital-daily",
+        "癌症住院醫療保險金",
+        values["cancer_hospital_daily"],
+        "以治療癌症或癌症併發症為直接目的住院，按日額乘以實際住院日數給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-radiation-daily",
+        "癌症放射線治療保險金",
+        values["cancer_radiation_daily"],
+        "以治療癌症為直接目的接受放射線治療，按實際治療日數給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "accident-hospital-daily",
+        "意外傷害住院醫療保險金",
+        values["accident_hospital_daily"],
+        "遭受意外傷害事故，經醫師診斷確定必須住院治療時，按實際住院日數給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_hospital_conditions,
+    )
+    add_amount(
+        "fracture-unhospitalized-medical",
+        "骨折未住院醫療保險金",
+        values["fracture_unhospitalized_daily"],
+        "因意外傷害蒙受骨折未住院或住院未達骨折表所定日數時，按意外傷害住院醫療日額二分之一乘以未住院部分日數給付；不完全骨折按二分之一、骨骼龜裂按四分之一，同時多項骨折給付較高等級一項。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="highest",
+        conditions=accident_hospital_conditions,
+    )
+    add_amount(
+        "accident-icu-hospital-daily",
+        "意外傷害加護病房住院醫療保險金",
+        values["accident_icu_daily"],
+        "因意外傷害事故入住加護病房時，除意外傷害住院醫療保險金外另按實際入住日數給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_hospital_conditions,
+    )
+    add_amount(
+        "burn-center-medical-daily",
+        "燒燙傷中心醫療保險金",
+        values["burn_center_daily"],
+        "因意外傷害事故入住燒傷或燙傷中心時，除意外傷害住院醫療保險金外另按實際入住日數給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_hospital_conditions,
+    )
+    return entries
+
+
+def parse_fubon_anxin_456_accident_health_fixed_schedule(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_anxin_456_accident_health_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_ANXIN_456_ACCIDENT_HEALTH_PRODUCT_VERSIONS[product_id]
+    disability_term = str(version["disability_term"])
+    text = normalize_terms_text(str(document.get("text") or ""))
+    required_signals = [
+        "富邦人壽安心 456 傷害暨健康一年定期保險",
+        version["fbk_code"],
+        "附表一: 保險金項目保險金額",
+        "身故保險金或喪葬費用保險金 100 萬",
+        "癌症身故保險金 30 萬",
+        "意外身故保險金或喪葬費用保險金 200 萬",
+        "癌症手術治療保險金 3 萬/次",
+        "意外傷害住院醫療保險金 1,000 元/日",
+        "燒燙傷中心醫療保險金 2,000 元/日",
+        "癌症保險金的給付",
+        f"附表三:{disability_term}程度表{disability_term}程度與保險金給付表",
+        "11 5%",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+    if document.get("page_count") not in {None, version["page_count"]}:
+        return None
+    return {
+        "selection_type": "fixed",
+        "input_mode": "fixed",
+        "selection_source": "terms",
+        "selection_label": "固定保障",
+        "selection_guidance": "本商品附表一為固定保險金額，加入保單集合時不需輸入單位或計畫。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "fixed_schedule": True,
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 65,
+            "cancer_waiting_days": version["cancer_waiting_days"],
+            "accident_claim_days": 180,
+            "accident_hospital_days_limit": 90,
+            "accident_icu_days_limit": 30,
+            "burn_center_days_limit": 30,
+            "fracture_daily_rate_percent": 50,
+            "major_burn_survival_days": 15,
+            "major_burn_lifetime_limit_times": 1,
+            "disability_term": disability_term,
+            "disability_schedule_item_count": version["disability_schedule_item_count"],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+        },
+        "coverage_entries": fubon_anxin_456_accident_health_entries(
+            int(version["cancer_waiting_days"]),
+            disability_term,
+        ),
+    }
+
+
+FUBON_NEW_SHOUHU_JINNANG_ACCIDENT_HEALTH_PRODUCT_VERSIONS = {
+    "209291M12G00200": {
+        "file_name": "209291M12G00200-A.pdf",
+        "terms_revision": "102-original",
+        "filing_signal": "102.04.01 富壽商精字第 1020000443 號函備查",
+        "page_count": 21,
+        "cancer_waiting_days": 30,
+        "disability_schedule_item_count": 75,
+    },
+    "209291M19G00101": {
+        "file_name": "209291M19G00101-A.pdf",
+        "terms_revision": "103-first-revision",
+        "filing_signal": "103.05.01 富壽商精字第 1030001018 號函備查",
+        "page_count": 21,
+        "cancer_waiting_days": 30,
+        "disability_schedule_item_count": 75,
+    },
+    "209291MZ2G00121A11Z10000002": {
+        "file_name": "209291MZ2G00121A11Z10000002-A.pdf",
+        "terms_revision": "104-second-revision",
+        "filing_signal": "104.08.04 依 104.06.24 金管保壽字第 10402049830 號函修正",
+        "page_count": 22,
+        "cancer_waiting_days": 30,
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ2G00121A11Z10000003": {
+        "file_name": "209291MZ2G00121A11Z10000003-A.pdf",
+        "terms_revision": "105-third-revision",
+        "filing_signal": "105.07.27 富壽商精字第 1050002413 號函備查",
+        "page_count": 22,
+        "cancer_waiting_days": 30,
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ2G00121A11Z10000004": {
+        "file_name": "209291MZ2G00121A11Z10000004-A.pdf",
+        "terms_revision": "107-fourth-revision",
+        "filing_signal": "107.04.30 依 107.04.09 金管保壽字第 10704540701 號令修正",
+        "page_count": 22,
+        "cancer_waiting_days": 0,
+        "disability_schedule_item_count": 79,
+    },
+}
+
+
+def is_fubon_new_shouhu_jinnang_accident_health_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_NEW_SHOUHU_JINNANG_ACCIDENT_HEALTH_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+FUBON_NEW_SHOUHU_JINNANG_PLAN_VALUES = {
+    "plan-1": {
+        "label": "計畫一",
+        "accident_death": 1_000_000,
+        "accident_disability_base": 1_000_000,
+        "accident_medical_reimbursement": 20_000,
+    },
+    "plan-2": {
+        "label": "計畫二",
+        "accident_death": 2_000_000,
+        "accident_disability_base": 2_000_000,
+        "accident_medical_reimbursement": 40_000,
+    },
+    "plan-3": {
+        "label": "計畫三",
+        "accident_death": 500_000,
+        "accident_disability_base": 500_000,
+        "accident_medical_reimbursement": 30_000,
+    },
+    "plan-4": {
+        "label": "計畫四",
+        "accident_death": 1_000_000,
+        "accident_disability_base": 1_000_000,
+        "accident_medical_reimbursement": 60_000,
+    },
+    "plan-5": {
+        "label": "計畫五",
+        "accident_death": 1_500_000,
+        "accident_disability_base": 1_500_000,
+        "accident_medical_reimbursement": 30_000,
+    },
+    "plan-6": {
+        "label": "計畫六",
+        "accident_death": 1_000_000,
+        "accident_disability_base": 1_000_000,
+        "accident_medical_reimbursement": 30_000,
+    },
+    "plan-7": {
+        "label": "計畫七",
+        "life_death": 1_000_000,
+        "total_disability": 1_000_000,
+        "accident_death": 3_000_000,
+        "mass_transit_death": 5_000_000,
+        "land_transit_death": 3_000_000,
+        "public_fire_death": 3_000_000,
+        "elevator_death": 3_000_000,
+        "accident_disability_base": 3_000_000,
+        "mass_transit_disability_base": 5_000_000,
+        "land_transit_first_level_disability": 3_000_000,
+        "public_fire_first_level_disability": 3_000_000,
+        "elevator_first_level_disability": 3_000_000,
+        "accident_hospital_daily": 2_000,
+        "accident_medical_reimbursement": 30_000,
+        "accident_outpatient_surgery": 1_000,
+        "general_hospital_daily": 2_000,
+        "post_discharge_convalescence_daily": 1_500,
+        "icu_daily": 4_000,
+        "burn_center_daily": 6_000,
+        "cancer_hospital_daily": 2_000,
+        "cancer_post_discharge_convalescence_daily": 2_000,
+        "cancer_surgery": 20_000,
+        "cancer_radiation_daily": 1_000,
+        "cancer_chemotherapy_daily": 1_000,
+    },
+    "plan-8": {
+        "label": "計畫八",
+        "life_death": 1_000_000,
+        "total_disability": 1_000_000,
+        "accident_death": 2_000_000,
+        "mass_transit_death": 5_000_000,
+        "land_transit_death": 2_000_000,
+        "public_fire_death": 2_000_000,
+        "elevator_death": 2_000_000,
+        "accident_disability_base": 2_000_000,
+        "mass_transit_disability_base": 5_000_000,
+        "land_transit_first_level_disability": 2_000_000,
+        "public_fire_first_level_disability": 2_000_000,
+        "elevator_first_level_disability": 2_000_000,
+        "accident_hospital_daily": 2_000,
+        "accident_medical_reimbursement": 30_000,
+        "accident_outpatient_surgery": 1_000,
+        "general_hospital_daily": 1_500,
+        "post_discharge_convalescence_daily": 1_000,
+        "icu_daily": 3_000,
+        "burn_center_daily": 4_500,
+        "cancer_hospital_daily": 1_500,
+        "cancer_post_discharge_convalescence_daily": 1_500,
+        "cancer_surgery": 20_000,
+        "cancer_radiation_daily": 1_000,
+        "cancer_chemotherapy_daily": 1_000,
+    },
+    "plan-9": {
+        "label": "計畫九",
+        "life_death": 1_000_000,
+        "total_disability": 1_000_000,
+        "accident_death": 1_000_000,
+        "mass_transit_death": 5_000_000,
+        "land_transit_death": 1_000_000,
+        "public_fire_death": 1_000_000,
+        "elevator_death": 1_000_000,
+        "accident_disability_base": 1_000_000,
+        "mass_transit_disability_base": 5_000_000,
+        "land_transit_first_level_disability": 1_000_000,
+        "public_fire_first_level_disability": 1_000_000,
+        "elevator_first_level_disability": 1_000_000,
+        "accident_hospital_daily": 2_000,
+        "accident_medical_reimbursement": 30_000,
+        "accident_outpatient_surgery": 1_000,
+        "general_hospital_daily": 1_000,
+        "post_discharge_convalescence_daily": 500,
+        "icu_daily": 2_000,
+        "burn_center_daily": 3_000,
+        "cancer_hospital_daily": 1_000,
+        "cancer_post_discharge_convalescence_daily": 1_000,
+        "cancer_surgery": 20_000,
+        "cancer_radiation_daily": 1_000,
+        "cancer_chemotherapy_daily": 1_000,
+    },
+    "plan-10": {
+        "label": "計畫十",
+        "life_death": 500_000,
+        "total_disability": 500_000,
+        "accident_death": 500_000,
+        "accident_disability_base": 500_000,
+        "accident_hospital_daily": 2_000,
+        "accident_medical_reimbursement": 30_000,
+        "accident_outpatient_surgery": 1_000,
+        "general_hospital_daily": 1_000,
+        "post_discharge_convalescence_daily": 500,
+        "icu_daily": 2_000,
+        "burn_center_daily": 3_000,
+        "cancer_hospital_daily": 1_000,
+        "cancer_post_discharge_convalescence_daily": 500,
+        "cancer_surgery": 20_000,
+        "cancer_radiation_daily": 1_000,
+        "cancer_chemotherapy_daily": 1_000,
+    },
+}
+
+
+def fubon_new_shouhu_jinnang_accident_health_entries(
+    plan_label: str,
+    values: dict[str, int | str],
+    cancer_waiting_days: int,
+) -> list[dict[str, Any]]:
+    source_ref = "條款第十二條、第十三條、第十七條、第十八條、第二十一條至第二十五條及附表一至三"
+    common_conditions = [
+        "須依保單首頁所載計畫別給付；本契約有效期間內不受理計畫別變更。",
+        "本商品為非保證續保；計畫一、二最高續保至七十歲，計畫三、四最高續保至二十歲，計畫五至十最高續保至六十五歲。",
+    ]
+    life_conditions = [
+        *common_conditions,
+        "身故保險金或完全殘廢保險金給付後，本契約效力即行終止。",
+    ]
+    cancer_waiting_condition = (
+        "癌症須自本契約生效日或復效日持續有效三十日後發生。"
+        if cancer_waiting_days
+        else "癌症自本契約生效日或復效日起發生者適用，條款未列三十日等待期。"
+    )
+    cancer_conditions = [
+        *common_conditions,
+        cancer_waiting_condition,
+        "癌症須經醫院對固定組織所作的病理檢查診斷確定。",
+    ]
+    hospital_conditions = [
+        *common_conditions,
+        "一般住院、加護病房、出院後療養與燒燙傷中心住院醫療依附表一所列日額計算。",
+        "同一次住院出院後十四日內因同一疾病或傷害再次住院時，各種保險金給付視為一次住院。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "限第二條約定之意外傷害事故所致。",
+        "身故、殘廢或醫療原則上須自意外傷害事故發生日起一百八十日以內發生或接受治療；超過者須證明與該意外事故具因果關係。",
+    ]
+    entries: list[dict[str, Any]] = []
+
+    def int_amount(key: str) -> int | None:
+        value = values.get(key)
+        return value if isinstance(value, int) else None
+
+    def add_amount(
+        entry_id: str,
+        name: str,
+        amount: int | None,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> None:
+        if not amount:
+            return
+        entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                amount,
+                basis,
+                f"{plan_label}：{note}",
+                source_ref,
+                calculation_basis=calculation_basis,
+                amount_role=amount_role,
+                limit_scope=limit_scope,
+                aggregation_rule=aggregation_rule,
+                conditions=conditions or common_conditions,
+                amount_tiers=amount_tiers,
+                rate_min_percent=rate_min_percent,
+                rate_max_percent=rate_max_percent,
+            )
+        )
+
+    add_amount(
+        "life-death-or-funeral",
+        "身故保險金或喪葬費用保險金",
+        int_amount("life_death"),
+        "依附表一所載金額給付；精神障礙或其他心智缺陷者適用喪葬費用保險金法定限額。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "total-disability",
+        "完全殘廢保險金",
+        int_amount("total_disability"),
+        "致成附表二完全殘廢程度之一者給付。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "general-accidental-death",
+        "一般意外身故保險金或喪葬費用保險金",
+        int_amount("accident_death"),
+        "一般意外身故依附表一所載金額給付；給付後本契約效力終止。",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "mass-transit-accidental-death-additional",
+        "大眾交通運輸工具意外身故保險金或喪葬費用保險金",
+        int_amount("mass_transit_death"),
+        "以乘客身分搭乘大眾交通運輸工具期間，除一般意外身故外另給付。",
+        aggregation_rule="conditional_additive",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "land-transit-accidental-death-additional",
+        "陸地大眾交通運輸工具意外身故保險金或喪葬費用保險金",
+        int_amount("land_transit_death"),
+        "以乘客身分搭乘陸地大眾交通運輸工具發生意外身故，除一般及大眾交通意外身故外另給付。",
+        aggregation_rule="conditional_additive",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "public-building-fire-accidental-death-additional",
+        "公共建築物火災意外身故保險金或喪葬費用保險金",
+        int_amount("public_fire_death"),
+        "於公共建築物中遭受火災意外身故，除一般意外身故外另給付。",
+        aggregation_rule="conditional_additive",
+        conditions=[
+            *accident_conditions,
+            "須火災發生前已進入該公共建築物中。",
+        ],
+    )
+    add_amount(
+        "elevator-accidental-death-additional",
+        "電梯意外身故保險金或喪葬費用保險金",
+        int_amount("elevator_death"),
+        "因乘坐電梯遭受意外身故，除一般意外身故外另給付。",
+        aggregation_rule="conditional_additive",
+        conditions=accident_conditions,
+    )
+
+    for entry_id, name, base_key in [
+        ("general-accidental-disability", "一般意外殘廢保險金", "accident_disability_base"),
+        (
+            "mass-transit-accidental-disability-additional",
+            "大眾交通運輸工具意外殘廢保險金",
+            "mass_transit_disability_base",
+        ),
+    ]:
+        base = int_amount(base_key)
+        add_amount(
+            entry_id,
+            name,
+            base,
+            "致成附表三殘廢等級之一者，以附表一基準金額乘以附表三給付比例；第一級至第十一級為 100% 至 5%。",
+            basis="benefit_base",
+            calculation_basis="table_multiplier",
+            amount_role="base",
+            aggregation_rule=(
+                "conditional_additive" if "additional" in entry_id else "cumulative_cap"
+            ),
+            conditions=accident_conditions,
+            amount_tiers=disability_percentage_tiers(base) if base else None,
+            rate_min_percent=5,
+            rate_max_percent=100,
+        )
+
+    for entry_id, name, amount_key, note in [
+        (
+            "land-transit-first-level-disability-additional",
+            "陸地大眾交通運輸工具意外一級殘廢保險金",
+            "land_transit_first_level_disability",
+            "以乘客身分搭乘陸地大眾交通運輸工具並致成殘廢第一級時，另給付附表一金額。",
+        ),
+        (
+            "public-building-fire-first-level-disability-additional",
+            "公共建築物火災意外一級殘廢保險金",
+            "public_fire_first_level_disability",
+            "於公共建築物火災意外致成殘廢第一級時，另給付附表一金額。",
+        ),
+        (
+            "elevator-first-level-disability-additional",
+            "電梯意外一級殘廢保險金",
+            "elevator_first_level_disability",
+            "因乘坐電梯意外致成殘廢第一級時，另給付附表一金額。",
+        ),
+    ]:
+        add_amount(
+            entry_id,
+            name,
+            int_amount(amount_key),
+            note,
+            aggregation_rule="conditional_additive",
+            conditions=accident_conditions,
+        )
+
+    add_amount(
+        "accident-hospital-daily",
+        "意外傷害住院醫療保險金",
+        int_amount("accident_hospital_daily"),
+        "意外傷害事故日起一百八十日內住院治療，按日額乘以實際住院日數；每次意外傷害事故最高九十日。",
+        basis="daily_total",
+        calculation_basis="fixed_amount",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "fracture-unhospitalized-medical",
+        "骨折未住院醫療保險金",
+        (
+            int_amount("accident_hospital_daily") // 2
+            if int_amount("accident_hospital_daily")
+            else None
+        ),
+        "骨折未住院或住院未達骨折日數表時，按骨折日數乘以意外傷害住院醫療日額二分之一給付。",
+        basis="daily_total",
+        calculation_basis="fixed_amount",
+        limit_scope="per_day",
+        aggregation_rule="highest",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "accident-medical-reimbursement",
+        "意外傷害醫療保險金限額",
+        int_amount("accident_medical_reimbursement"),
+        "超過全民健康保險給付部分實支實付；未以全民健康保險身分診療者按實際支付費用 65% 給付，仍以附表一限額為限。",
+        calculation_basis="reimbursement_with_cap",
+        amount_role="limit",
+        limit_scope="per_injury",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "accident-outpatient-surgery",
+        "意外傷害門診手術醫療保險金",
+        int_amount("accident_outpatient_surgery"),
+        "因意外傷害事故經醫師診斷須進行門診手術者給付；每次意外傷害以一次為限。",
+        limit_scope="per_surgery",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "general-hospital-daily",
+        "一般住院醫療日額保險金",
+        int_amount("general_hospital_daily"),
+        "因疾病或傷害住院診療，按日額乘以實際住院日數。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=hospital_conditions,
+    )
+    add_amount(
+        "post-discharge-convalescence-daily",
+        "出院後療養保險金",
+        int_amount("post_discharge_convalescence_daily"),
+        "符合一般住院醫療日額保險金給付後，依附表一日額給付出院後療養保險金。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=hospital_conditions,
+    )
+    add_amount(
+        "icu-hospital-daily",
+        "加護病房住院醫療保險金",
+        int_amount("icu_daily"),
+        "入住加護病房期間，依附表一日額另給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=hospital_conditions,
+    )
+    add_amount(
+        "burn-center-hospital-daily",
+        "燒燙傷中心住院醫療保險金",
+        int_amount("burn_center_daily"),
+        "因燒燙傷入住燒燙傷中心治療期間，依附表一日額給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=hospital_conditions,
+    )
+    add_amount(
+        "cancer-hospital-daily",
+        "癌症住院醫療保險金",
+        int_amount("cancer_hospital_daily"),
+        "因癌症住院治療期間，依附表一日額給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-post-discharge-convalescence-daily",
+        "癌症出院後療養保險金",
+        int_amount("cancer_post_discharge_convalescence_daily"),
+        "因癌症住院並出院後，依附表一日額給付出院後療養保險金。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-surgery",
+        "癌症手術治療保險金",
+        int_amount("cancer_surgery"),
+        "因治療癌症接受外科手術治療者，依附表一每次金額給付。",
+        limit_scope="per_surgery",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-radiation-daily",
+        "癌症放射線治療保險金",
+        int_amount("cancer_radiation_daily"),
+        "因治療癌症接受放射線治療者，依附表一日額給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-chemotherapy-daily",
+        "癌症化學治療保險金",
+        int_amount("cancer_chemotherapy_daily"),
+        "因治療癌症接受化學治療者，依附表一日額給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=cancer_conditions,
+    )
+    return entries
+
+
+def parse_fubon_new_shouhu_jinnang_accident_health_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_new_shouhu_jinnang_accident_health_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_NEW_SHOUHU_JINNANG_ACCIDENT_HEALTH_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    required_signals = [
+        "富邦人壽新守護錦囊傷害暨健康一年定期保險",
+        version["filing_signal"],
+        "本契約保障內容分十個計畫別,各計畫別之給付內容詳附表一",
+        "計畫別保險金項目計畫一計畫二計畫三計畫四計畫五計畫六",
+        "一般意外身故保險金或喪葬費用保險金 100 萬 200 萬 50 萬 100 萬 150 萬 100 萬",
+        "意外傷害醫療保險金 2 萬 4 萬 3 萬 6 萬 3 萬 3 萬",
+        "計畫別保險金項目計畫七計畫八計畫九計畫十",
+        "身故保險金或喪葬費用保險金 100 萬 100 萬 100 萬 50 萬",
+        "大眾交通運輸工具意外身故保險金或喪葬費用保險金 500 萬 500 萬 500 萬無",
+        "一般住院醫療日額保險金 2,000 元/日 1,500 元/日 1,000元/日 1,000 元/日",
+        "癌症化學治療保險金 1,000 元/日",
+        "殘廢程度與保險金給付表",
+        "11 5%",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+    if document.get("page_count") not in {None, version["page_count"]}:
+        return None
+    cancer_waiting_days = int(version["cancer_waiting_days"])
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫別",
+        "selection_guidance": "請依保單首頁選擇計畫一至計畫十；本商品不需輸入單位數，系統會依計畫顯示壽險、醫療、癌症、意外與交通/火災/電梯加給保障。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": 10,
+            "non_guaranteed_renewal": True,
+            "plan_1_2_maximum_renewal_age": 70,
+            "plan_3_4_maximum_renewal_age": 20,
+            "plan_5_10_maximum_renewal_age": 65,
+            "cancer_waiting_days": cancer_waiting_days,
+            "general_hospital_days_limit": 90,
+            "icu_days_limit": 30,
+            "burn_center_hospital_days_limit": 30,
+            "same_hospital_readmission_days": 14,
+            "accident_claim_days": 180,
+            "accident_hospital_days_limit": 90,
+            "accident_outpatient_surgery_limit_times": 1,
+            "accident_reimbursement_non_nhi_rate_percent": 65,
+            "fracture_daily_rate_percent": 50,
+            "disability_term": "殘廢",
+            "disability_schedule_item_count": version["disability_schedule_item_count"],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_new_shouhu_jinnang_accident_health_entries(
+                    str(values["label"]),
+                    values,
+                    cancer_waiting_days,
+                ),
+            }
+            for plan_key, values in FUBON_NEW_SHOUHU_JINNANG_PLAN_VALUES.items()
+        ],
+    }
+
+
+FUBON_NEW_SHOUHU_JINNANG_LATE_ACCIDENT_HEALTH_PRODUCT_VERSIONS = {
+    "209291MZ2G00121A11Z10000005": {
+        "file_name": "209291MZ2G00121A11Z10000005-A.pdf",
+        "terms_revision": "107-fifth-revision",
+        "fubon_code": "FBH1070914",
+        "page_count": 22,
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ2G00121A11Z10000006": {
+        "file_name": "209291MZ2G00121A11Z10000006-A.pdf",
+        "terms_revision": "108-sixth-revision",
+        "fubon_code": "FBH1080101",
+        "page_count": 22,
+        "disability_schedule_item_count": 80,
+        "legacy_relaxed_validation": True,
+    },
+    "209291MZ2G00121A11Z10000007": {
+        "file_name": "209291MZ2G00121A11Z10000007-A.pdf",
+        "terms_revision": "109-seventh-revision",
+        "fubon_code": "FBH1090101",
+        "page_count": 22,
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ2G00121A11Z10000008": {
+        "file_name": "209291MZ2G00121A11Z10000008-A.pdf",
+        "terms_revision": "109-eighth-revision",
+        "fubon_code": "FBH1090901",
+        "page_count": 22,
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ2G00121A11Z10000009": {
+        "file_name": "209291MZ2G00121A11Z10000009-A.pdf",
+        "terms_revision": "110-ninth-revision",
+        "fubon_code": "FBH1101201",
+        "page_count": 22,
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ2G00121A11Z10000010": {
+        "file_name": "209291MZ2G00121A11Z10000010-A.pdf",
+        "terms_revision": "111-tenth-revision",
+        "fubon_code": "FBH1111202",
+        "page_count": 22,
+        "disability_schedule_item_count": 80,
+    },
+}
+
+
+def is_fubon_new_shouhu_jinnang_late_accident_health_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_NEW_SHOUHU_JINNANG_LATE_ACCIDENT_HEALTH_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def replace_nested_text_values(
+    value: Any,
+    replacements: dict[str, str],
+) -> Any:
+    if isinstance(value, str):
+        for old, new in replacements.items():
+            value = value.replace(old, new)
+        return value
+    if isinstance(value, list):
+        return [replace_nested_text_values(item, replacements) for item in value]
+    if isinstance(value, dict):
+        return {
+            key: replace_nested_text_values(item, replacements)
+            for key, item in value.items()
+        }
+    return value
+
+
+FUBON_NEW_SHOUHU_JINNANG_LATE_PLAN_KEYS = (
+    "plan-7",
+    "plan-8",
+    "plan-9",
+    "plan-10",
+)
+
+
+def fubon_new_shouhu_jinnang_late_accident_health_entries(
+    plan_label: str,
+    values: dict[str, int | str],
+) -> list[dict[str, Any]]:
+    entries = fubon_new_shouhu_jinnang_accident_health_entries(
+        plan_label,
+        values,
+        0,
+    )
+    return replace_nested_text_values(entries, {"殘廢": "失能"})
+
+
+def parse_fubon_new_shouhu_jinnang_late_accident_health_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_new_shouhu_jinnang_late_accident_health_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_NEW_SHOUHU_JINNANG_LATE_ACCIDENT_HEALTH_PRODUCT_VERSIONS[
+        product_id
+    ]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    required_signals = [
+        str(version["fubon_code"]),
+        "富邦人壽新守護錦囊傷害暨健康一年定期保險",
+        "各計畫別之給付內容詳附表一",
+        "計畫七計畫八計畫九計畫十身故保險金或喪葬費用保險金",
+        "完全失能保險金 100 萬 100 萬 100 萬 50 萬",
+        "大眾交通運輸工具意外身故保險金或喪葬費用保險金 500 萬 500 萬 500 萬無",
+        "日間留院",
+        "附表三:失能程度表",
+        "失能程度與保險金給付表",
+        "11 5%",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+    required_patterns = [
+        r"一般意外身故保險金或喪葬費用保險金\s*3\s*0\s*0\s*萬\s*2\s*0\s*0\s*萬\s*1\s*0\s*0\s*萬\s*5\s*0\s*萬",
+        r"一般住院醫療日額保險金\s*2,000\s*元/日\s*1,500\s*元/日\s*1,000\s*元/日\s*1,000\s*元/日",
+        r"癌症化學治療保險金\s*1,000\s*元/日",
+    ]
+    if any(re.search(pattern, text) is None for pattern in required_patterns):
+        return None
+    if document.get("page_count") not in {None, version["page_count"]}:
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫別",
+        "selection_guidance": "請依保單首頁所載計畫七至計畫十選擇；本商品不需輸入單位數。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": len(FUBON_NEW_SHOUHU_JINNANG_LATE_PLAN_KEYS),
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 65,
+            "cancer_waiting_days": 0,
+            "general_hospital_days_limit": 90,
+            "icu_days_limit": 30,
+            "burn_center_hospital_days_limit": 30,
+            "same_hospital_readmission_days": 14,
+            "accident_claim_days": 180,
+            "accident_hospital_days_limit": 90,
+            "accident_outpatient_surgery_limit_times": 1,
+            "accident_reimbursement_non_nhi_rate_percent": 65,
+            "fracture_daily_rate_percent": 50,
+            "disability_term": "失能",
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+            "day_hospital_explicit": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(FUBON_NEW_SHOUHU_JINNANG_PLAN_VALUES[plan_key]["label"]),
+                "coverage_entries": fubon_new_shouhu_jinnang_late_accident_health_entries(
+                    str(FUBON_NEW_SHOUHU_JINNANG_PLAN_VALUES[plan_key]["label"]),
+                    FUBON_NEW_SHOUHU_JINNANG_PLAN_VALUES[plan_key],
+                ),
+            }
+            for plan_key in FUBON_NEW_SHOUHU_JINNANG_LATE_PLAN_KEYS
+        ],
+    }
+
+
+FUBON_COMPREHENSIVE_ACCIDENT_PRODUCT_VERSIONS = {
+    "209211MZ1A01421A11Z10000000": {
+        "file_name": "209211MZ1A01421A11Z10000000-A.pdf",
+        "terms_revision": "113-original",
+        "source_code": "NAF1_51130329",
+        "product_family": "shiquan-ruyi",
+        "product_name": "富邦人壽十全如意傷害保險",
+        "page_count": 17,
+        "plan_count": 5,
+        "policy_period_years": 1,
+        "guaranteed_renewal_years": 2,
+        "maximum_renewal_age": 75,
+        "disability_schedule_item_count": 80,
+    },
+    "209211MZ1A01421A11Z10000001": {
+        "file_name": "209211MZ1A01421A11Z10000001-A.pdf",
+        "terms_revision": "113-first-revision",
+        "source_code": "NAF1_51130923",
+        "product_family": "shiquan-ruyi",
+        "product_name": "富邦人壽十全如意傷害保險",
+        "page_count": 17,
+        "plan_count": 5,
+        "policy_period_years": 1,
+        "guaranteed_renewal_years": 2,
+        "maximum_renewal_age": 75,
+        "disability_schedule_item_count": 80,
+    },
+    "209211MZ1A01421A11Z10000002": {
+        "file_name": "209211MZ1A01421A11Z10000002-A.pdf",
+        "terms_revision": "114-second-revision",
+        "source_code": "NAF1_51140101",
+        "product_family": "shiquan-ruyi",
+        "product_name": "富邦人壽十全如意傷害保險",
+        "page_count": 17,
+        "plan_count": 5,
+        "policy_period_years": 1,
+        "guaranteed_renewal_years": 2,
+        "maximum_renewal_age": 75,
+        "disability_schedule_item_count": 80,
+    },
+    "209211MZ1A01522A11Z10000000": {
+        "file_name": "209211MZ1A01522A11Z10000000-A.pdf",
+        "terms_revision": "114-original",
+        "source_code": "NAG1_31140331",
+        "product_family": "yiwai-wuyou",
+        "product_name": "富邦人壽意外無憂傷害保險",
+        "page_count": 17,
+        "plan_count": 3,
+        "policy_period_years": 3,
+        "guaranteed_renewal_years": 0,
+        "maximum_renewal_age": 70,
+        "disability_schedule_item_count": 80,
+    },
+}
+
+
+def is_fubon_comprehensive_accident_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_COMPREHENSIVE_ACCIDENT_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+FUBON_SHIQUAN_RUYI_PLAN_VALUES = {
+    "plan-1": {
+        "label": "計劃 1",
+        "general": 1_000_000,
+        "mass_transit": 3_000_000,
+        "public_fire": 1_000_000,
+        "elevator": 1_000_000,
+        "overseas": 2_000_000,
+        "carbon_monoxide": 1_000_000,
+        "natural_disaster": 1_000_000,
+        "disability_living": 1_000_000,
+        "major_burn": 1_000_000,
+        "food_poisoning": 2_000,
+        "head_trauma": 500_000,
+        "hospital_daily": 500,
+        "icu_daily": 1_000,
+        "nursing_daily": 500,
+        "burn_center_daily": 2_000,
+        "inpatient_surgery": 1_500,
+        "living_tiers": [5_000, 2_500, 5_000],
+    },
+    "plan-2": {
+        "label": "計劃 2",
+        "general": 2_000_000,
+        "mass_transit": 6_000_000,
+        "public_fire": 1_000_000,
+        "elevator": 2_000_000,
+        "overseas": 2_000_000,
+        "carbon_monoxide": 2_000_000,
+        "natural_disaster": 1_000_000,
+        "disability_living": 1_000_000,
+        "major_burn": 2_000_000,
+        "food_poisoning": 2_000,
+        "head_trauma": 500_000,
+        "hospital_daily": 500,
+        "icu_daily": 1_000,
+        "nursing_daily": 500,
+        "burn_center_daily": 2_000,
+        "inpatient_surgery": 1_500,
+        "living_tiers": [5_000, 4_000, 6_000],
+    },
+    "plan-3": {
+        "label": "計劃 3",
+        "general": 3_000_000,
+        "mass_transit": 6_000_000,
+        "public_fire": 2_000_000,
+        "elevator": 3_000_000,
+        "overseas": 2_000_000,
+        "carbon_monoxide": 3_000_000,
+        "natural_disaster": 2_000_000,
+        "disability_living": 2_000_000,
+        "major_burn": 3_000_000,
+        "food_poisoning": 3_000,
+        "head_trauma": 1_000_000,
+        "hospital_daily": 1_500,
+        "icu_daily": 2_000,
+        "nursing_daily": 600,
+        "burn_center_daily": 4_000,
+        "inpatient_surgery": 4_500,
+        "living_tiers": [5_000, 5_000, 11_000],
+    },
+    "plan-4": {
+        "label": "計劃 4",
+        "general": 5_000_000,
+        "mass_transit": 6_000_000,
+        "public_fire": 2_000_000,
+        "elevator": 3_000_000,
+        "overseas": 2_000_000,
+        "carbon_monoxide": 3_000_000,
+        "natural_disaster": 2_000_000,
+        "disability_living": 2_000_000,
+        "major_burn": 3_000_000,
+        "food_poisoning": 3_000,
+        "head_trauma": 1_000_000,
+        "hospital_daily": 2_000,
+        "icu_daily": 2_000,
+        "nursing_daily": 1_000,
+        "burn_center_daily": 4_000,
+        "inpatient_surgery": 6_000,
+        "living_tiers": [5_000, 14_000, 26_000],
+    },
+    "plan-5": {
+        "label": "計劃 5",
+        "general": 10_000_000,
+        "mass_transit": 6_000_000,
+        "public_fire": 2_000_000,
+        "elevator": 3_000_000,
+        "overseas": 2_000_000,
+        "carbon_monoxide": 3_000_000,
+        "natural_disaster": 2_000_000,
+        "disability_living": 2_000_000,
+        "major_burn": 3_000_000,
+        "food_poisoning": 3_000,
+        "head_trauma": 1_000_000,
+        "hospital_daily": 3_000,
+        "icu_daily": 3_000,
+        "nursing_daily": 2_000,
+        "burn_center_daily": 6_000,
+        "inpatient_surgery": 9_000,
+        "living_tiers": [5_000, 36_000, 72_000],
+    },
+}
+
+
+FUBON_YIWAI_WUYOU_PLAN_VALUES = {
+    "plan-1": {
+        "label": "計劃 1",
+        "occupational_class": "第一類至第四類",
+        "general": 2_000_000,
+        "mass_transit": 2_000_000,
+        "motor_vehicle": 2_000_000,
+        "overseas": 2_000_000,
+        "holiday": 1_000_000,
+        "disability_living": 1_000_000,
+        "major_burn": 2_000_000,
+        "food_poisoning": 2_000,
+        "head_trauma": 750_000,
+        "hospital_daily": 1_000,
+        "icu_daily": 1_000,
+        "nursing_daily": 500,
+        "burn_center_daily": 1_000,
+        "inpatient_surgery": 2_500,
+        "living_tiers": [5_000, 3_000, 2_000],
+    },
+    "plan-2": {
+        "label": "計劃 2",
+        "occupational_class": "第一類至第四類",
+        "general": 3_000_000,
+        "mass_transit": 3_000_000,
+        "motor_vehicle": 3_000_000,
+        "overseas": 3_000_000,
+        "holiday": 1_500_000,
+        "disability_living": 2_000_000,
+        "major_burn": 2_000_000,
+        "food_poisoning": 3_000,
+        "head_trauma": 1_000_000,
+        "hospital_daily": 2_000,
+        "icu_daily": 2_000,
+        "nursing_daily": 1_000,
+        "burn_center_daily": 2_000,
+        "inpatient_surgery": 5_000,
+        "living_tiers": [5_000, 3_000, 2_000],
+    },
+    "plan-3": {
+        "label": "計劃 3",
+        "occupational_class": "第一類至第三類",
+        "general": 4_000_000,
+        "mass_transit": 4_000_000,
+        "motor_vehicle": 4_000_000,
+        "overseas": 4_000_000,
+        "holiday": 2_000_000,
+        "disability_living": 2_000_000,
+        "major_burn": 2_000_000,
+        "food_poisoning": 3_000,
+        "head_trauma": 1_000_000,
+        "hospital_daily": 2_000,
+        "icu_daily": 2_000,
+        "nursing_daily": 1_000,
+        "burn_center_daily": 2_000,
+        "inpatient_surgery": 5_000,
+        "living_tiers": [5_000, 3_000, 2_000],
+    },
+}
+
+
+def fubon_comprehensive_accident_entries(
+    plan_label: str,
+    values: dict[str, Any],
+    product_family: str,
+) -> list[dict[str, Any]]:
+    source_ref = "條款第七至十四條（意外無憂為第十至十七條）及附表一、二"
+    common_conditions = [
+        "依保單首頁所載投保計劃別與附表一金額給付；有效期間內不受理計劃別變更。",
+        "意外傷害事故原則上須於事故發生日起一百八十日內符合給付條件，超過者須證明因果關係。",
+    ]
+    death_disability_cap = (
+        "同一意外傷害事故致成失能後身故時，身故與失能合計最高以身故保險金應給付金額為限。"
+    )
+    accident_conditions = [*common_conditions, death_disability_cap]
+    living_supplement_conditions = [
+        *common_conditions,
+        "限附表二第一級至第三級失能，且本契約有效期間內以給付一次為限。",
+    ]
+    burn_conditions = [
+        *common_conditions,
+        "限條款定義之嚴重第三度燒燙傷；本契約有效期間內以給付一次為限。",
+    ]
+    food_conditions = [
+        *common_conditions,
+        "須因食物中毒住院治療；本契約有效期間最高給付三次，同一事故重複住院以一次為限。",
+    ]
+    head_conditions = [
+        *common_conditions,
+        "限條款定義之嚴重頭部創傷；本契約有效期間內以給付一次為限。",
+    ]
+    hospital_conditions = [
+        *common_conditions,
+        "同一意外傷害事故住院醫療給付日數最高九十日，同日再次入院不重複計日。",
+    ]
+    icu_conditions = [
+        *common_conditions,
+        "同一意外傷害事故加護病房給付日數最高三十日，同日再次入住不重複計日。",
+    ]
+    burn_center_conditions = [
+        *common_conditions,
+        "同一意外傷害事故燒燙傷中心給付日數最高三十日，同日再次入住不重複計日。",
+    ]
+    if product_family == "yiwai-wuyou":
+        choose_one = "同一日內僅就加護病房住院醫療保險金或燒燙傷中心住院醫療保險金擇一給付。"
+        icu_conditions.append(choose_one)
+        burn_center_conditions.append(choose_one)
+    nursing_conditions = [
+        *common_conditions,
+        "同一意外傷害事故住院看護給付日數最高九十日，同日再次入院不重複計日。",
+    ]
+    fracture_conditions = [
+        *common_conditions,
+        "骨折未住院或住院未達骨折別表日數時，按住院日額二分之一乘以骨折別表日數給付。",
+        "不完全骨折按完全骨折日數二分之一，骨骼龜裂按四分之一；同時多項骨折給付較高者。",
+    ]
+    surgery_conditions = [
+        *common_conditions,
+        "於醫院接受住院手術治療時給付，依附表一每次金額辦理。",
+    ]
+    living_tier_conditions = [
+        *common_conditions,
+        "依實際住院日數達 3 日、8 日、15 日門檻累加給付；同一意外傷害事故累計給付日數最高十五日。",
+    ]
+    entries: list[dict[str, Any]] = []
+
+    def add(
+        entry_id: str,
+        name: str,
+        amount: int,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_percent: int | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> None:
+        entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                amount,
+                basis,
+                f"{plan_label}：{note}",
+                source_ref,
+                calculation_basis=calculation_basis,
+                amount_role=amount_role,
+                limit_scope=limit_scope,
+                aggregation_rule=aggregation_rule,
+                conditions=conditions or common_conditions,
+                amount_tiers=amount_tiers,
+                rate_percent=rate_percent,
+                rate_min_percent=rate_min_percent,
+                rate_max_percent=rate_max_percent,
+            )
+        )
+
+    def disability_tiers(base_amount: int, *, include_first_level: bool) -> list[dict[str, Any]]:
+        percentages = (
+            [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 5]
+            if include_first_level
+            else [90, 80, 70, 60, 50, 40, 30, 20, 10, 5]
+        )
+        start_level = 1 if include_first_level else 2
+        return [
+            {
+                "label": f"第{level}級 {percent}%",
+                "amount": base_amount * percent // 100,
+            }
+            for level, percent in enumerate(percentages, start=start_level)
+        ]
+
+    add(
+        "general-accidental-death",
+        "一般意外傷害身故保險金或喪葬費用保險金",
+        int(values["general"]),
+        "一般意外身故或喪葬費用保險金。",
+        conditions=accident_conditions,
+    )
+
+    special_events = [
+        ("mass_transit", "mass-transit", "大眾運輸交通工具意外傷害"),
+        ("overseas", "overseas", "海外意外傷害"),
+    ]
+    if product_family == "shiquan-ruyi":
+        special_events.extend(
+            [
+                ("public_fire", "public-building-fire", "公共建築物火災意外傷害"),
+                ("elevator", "elevator", "電梯意外傷害"),
+                ("carbon_monoxide", "carbon-monoxide", "一氧化碳中毒"),
+                ("natural_disaster", "natural-disaster", "天然災害意外傷害"),
+            ]
+        )
+    else:
+        special_events.extend(
+            [
+                ("motor_vehicle", "motor-vehicle", "搭乘機車或汽車意外傷害"),
+                ("holiday", "holiday", "假日意外傷害"),
+            ]
+        )
+    for key, slug, label in special_events:
+        add(
+            f"{slug}-accidental-death-additional",
+            f"{label}身故保險金或喪葬費用保險金",
+            int(values[key]),
+            "符合特定事故條件時，除一般意外身故保險金外另行給付。",
+            aggregation_rule="conditional_additive",
+            conditions=[*accident_conditions, f"須符合條款所定「{label}」事故或期間。"],
+        )
+
+    add(
+        "general-accidental-disability",
+        "一般意外傷害失能保險金",
+        int(values["general"]),
+        "依失能等級給付比例計算，第一級至第十一級為 100% 至 5%。",
+        basis="benefit_base",
+        calculation_basis="table_multiplier",
+        amount_role="base",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_conditions,
+        amount_tiers=disability_tiers(int(values["general"]), include_first_level=True),
+        rate_min_percent=5,
+        rate_max_percent=100,
+    )
+    for key, slug, label in special_events:
+        include_first_level = not (
+            product_family == "shiquan-ruyi" and key == "natural_disaster"
+        )
+        rate_max = 100 if include_first_level else 90
+        add(
+            f"{slug}-accidental-disability-additional",
+            f"{label}失能保險金",
+            int(values[key]),
+            (
+                "符合特定事故條件時，依失能等級給付比例另行給付；天然災害項目限第二級至第十一級失能。"
+                if not include_first_level
+                else "符合特定事故條件時，依失能等級給付比例另行給付。"
+            ),
+            basis="benefit_base",
+            calculation_basis="table_multiplier",
+            amount_role="base",
+            aggregation_rule="conditional_additive",
+            conditions=[*accident_conditions, f"須符合條款所定「{label}」事故或期間。"],
+            amount_tiers=disability_tiers(
+                int(values[key]), include_first_level=include_first_level
+            ),
+            rate_min_percent=5,
+            rate_max_percent=rate_max,
+        )
+
+    add(
+        "accidental-disability-living-supplement",
+        "意外傷害失能生活補助保險金",
+        int(values["disability_living"]),
+        "限第一級至第三級失能，一次為限。",
+        limit_scope="lifetime",
+        aggregation_rule="separate",
+        conditions=living_supplement_conditions,
+    )
+    add(
+        "serious-third-degree-burn",
+        "嚴重第三度燒燙傷保險金",
+        int(values["major_burn"]),
+        "診斷確定嚴重第三度燒燙傷時給付，一次為限。",
+        limit_scope="lifetime",
+        conditions=burn_conditions,
+    )
+    add(
+        "food-poisoning",
+        "食物中毒保險金",
+        int(values["food_poisoning"]),
+        "住院治療食物中毒時每次給付；有效期間最高三次。",
+        limit_scope="per_event",
+        aggregation_rule="cumulative_cap",
+        conditions=food_conditions,
+    )
+    add(
+        "serious-head-trauma",
+        "嚴重頭部創傷保險金",
+        int(values["head_trauma"]),
+        "診斷確定嚴重頭部創傷時給付，一次為限。",
+        limit_scope="lifetime",
+        conditions=head_conditions,
+    )
+    add(
+        "accident-hospital-daily",
+        "意外傷害住院醫療保險金",
+        int(values["hospital_daily"]),
+        "按實際住院日數給付，最高九十日。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=hospital_conditions,
+    )
+    add(
+        "fracture-unhospitalized-medical",
+        "骨折未住院醫療保險金",
+        int(values["hospital_daily"]) // 2,
+        "依住院日額二分之一乘以骨折別表日數計算。",
+        basis="daily_total",
+        calculation_basis="percentage_of_base",
+        amount_role="reference",
+        limit_scope="per_injury",
+        aggregation_rule="highest",
+        conditions=fracture_conditions,
+        rate_percent=50,
+    )
+    add(
+        "accident-icu-daily",
+        "意外傷害加護病房住院醫療保險金",
+        int(values["icu_daily"]),
+        "除住院醫療保險金外另按加護病房日數給付，最高三十日。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="conditional_additive",
+        conditions=icu_conditions,
+    )
+    add(
+        "accident-nursing-daily",
+        "意外傷害住院看護保險金",
+        int(values["nursing_daily"]),
+        "除住院醫療保險金外另按住院日數給付，最高九十日。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="conditional_additive",
+        conditions=nursing_conditions,
+    )
+    add(
+        "accident-burn-center-daily",
+        "意外傷害燒燙傷中心住院醫療保險金",
+        int(values["burn_center_daily"]),
+        "除住院醫療保險金外另按燒燙傷中心日數給付，最高三十日。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="conditional_additive",
+        conditions=burn_center_conditions,
+    )
+    add(
+        "accident-inpatient-surgery",
+        "意外傷害住院手術醫療保險金",
+        int(values["inpatient_surgery"]),
+        "住院期間接受手術治療時每次給付。",
+        limit_scope="per_surgery",
+        conditions=surgery_conditions,
+    )
+    living_tiers = [int(value) for value in values["living_tiers"]]
+    add(
+        "accident-hospital-living-supplement",
+        "意外傷害住院生活補助保險金",
+        sum(living_tiers),
+        "依住院日數達 3、8、15 日門檻累加給付；amount 為達 15 日時的累計給付額。",
+        basis="per_hospitalization",
+        calculation_basis="tiered_or_stepped",
+        limit_scope="per_hospitalization",
+        aggregation_rule="cumulative_cap",
+        conditions=living_tier_conditions,
+        amount_tiers=[
+            {"label": "住院 3 日(含)以上", "amount": living_tiers[0]},
+            {"label": "住院 8 日(含)以上加給", "amount": living_tiers[1]},
+            {"label": "住院 15 日(含)以上加給", "amount": living_tiers[2]},
+            {"label": "住院達 15 日累計", "amount": sum(living_tiers)},
+        ],
+    )
+    return entries
+
+
+def parse_fubon_comprehensive_accident_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_comprehensive_accident_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_COMPREHENSIVE_ACCIDENT_PRODUCT_VERSIONS[product_id]
+    if (
+        document.get("page_count") not in {None, version["page_count"]}
+        or document.get("pages_parsed") not in {None, version["page_count"]}
+    ):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_whitespace(text)
+    product_family = str(version["product_family"])
+    required_signals = [
+        str(version["source_code"]),
+        str(version["product_name"]),
+        "本契約分為",
+        "計劃別",
+        "附表一: 單位:新臺幣(元)",
+        "意外傷害住院生活補助保險金",
+        "失能程度與保險金給付表",
+        "最高以給付三次",
+        "自意外傷害事故發生之日起一百八十日",
+        "給付日數不得超過九十日",
+    ]
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+    table_start = compact_text.rfind("附表一:")
+    table_end = compact_text.find("附表二:", table_start + 1)
+    if table_start < 0 or table_end <= table_start:
+        return None
+    table_text = compact_table_text(compact_text[table_start:table_end])
+    if product_family == "shiquan-ruyi":
+        plan_values = FUBON_SHIQUAN_RUYI_PLAN_VALUES
+        table_signals = [
+            "富邦人壽十全如意傷害保險計劃別計劃1計劃2計劃3計劃4計劃5",
+            "一般意外身故保險金100萬200萬300萬500萬1000萬",
+            "大眾運輸交通工具意外身故保險金300萬600萬600萬600萬600萬",
+            "公共建築物火災意外身故保險金100萬100萬200萬200萬200萬",
+            "天然災害意外傷害二至十一級失能保險金100萬100萬200萬200萬200萬",
+            "意外傷害失能生活補助保險金100萬100萬200萬200萬200萬",
+            "意外傷害住院生活補助保險金3日含以上5000/次5000/次5000/次5000/次5000/次8日含以上2500/次4000/次5000/次14000/次36000/次15日含以上5000/次6000/次11000/次26000/次72000/次",
+        ]
+    else:
+        plan_values = FUBON_YIWAI_WUYOU_PLAN_VALUES
+        table_signals = [
+            "富邦人壽意外無憂傷害保險計劃別計劃1計劃2計劃3",
+            "承保職業分類第一類至第四類第一類至第四類第一類至第三類",
+            "一般意外傷害身故保險金200萬300萬400萬",
+            "搭乘機車或汽車意外傷害身故保險金200萬300萬400萬",
+            "假日意外傷害失能保險金100萬150萬200萬",
+            "意外傷害失能生活補助保險金100萬200萬200萬",
+            "意外傷害住院生活補助保險金3日含以上5000/次5000/次5000/次8日含以上3000/次3000/次3000/次15日含以上2000/次2000/次2000/次",
+        ]
+    if any(compact_table_text(signal) not in table_text for signal in table_signals):
+        return None
+    disability_table_start = compact_text.find("失能程度與保險金給付表", table_end)
+    if disability_table_start < 0:
+        return None
+    disability_percentages = [
+        int(value)
+        for value in re.findall(r"(\d{1,3})%", compact_text[disability_table_start:])
+    ]
+    if (
+        len(disability_percentages) != version["disability_schedule_item_count"]
+        or min(disability_percentages) != 5
+        or max(disability_percentages) != 100
+    ):
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計劃別",
+        "selection_guidance": "請依保單首頁所載計劃別選擇；本商品不需輸入單位數。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "fubon_product_family": product_family,
+            "plan_count": version["plan_count"],
+            "policy_period_years": version["policy_period_years"],
+            "guaranteed_renewal_years": version["guaranteed_renewal_years"],
+            "maximum_renewal_age": version["maximum_renewal_age"],
+            "accident_claim_days": 180,
+            "hospital_days_limit": 90,
+            "icu_days_limit": 30,
+            "nursing_days_limit": 90,
+            "burn_center_days_limit": 30,
+            "hospital_living_supplement_days_limit": 15,
+            "food_poisoning_lifetime_limit_times": 3,
+            "disability_living_supplement_lifetime_limit_times": 1,
+            "burn_lifetime_limit_times": 1,
+            "head_trauma_lifetime_limit_times": 1,
+            "fracture_unhospitalized_rate_percent": 50,
+            "occupational_class_by_plan": {
+                plan_key: str(values["occupational_class"])
+                for plan_key, values in plan_values.items()
+                if "occupational_class" in values
+            },
+            "disability_term": "失能",
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "same_day_icu_or_burn_center_choose_one": product_family
+            == "yiwai-wuyou",
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_comprehensive_accident_entries(
+                    str(values["label"]), values, product_family
+                ),
+            }
+            for plan_key, values in plan_values.items()
+        ],
+    }
+
+
+FUBON_NEW_MILLION_HEART_ACCIDENT_HEALTH_PRODUCT_VERSIONS = {
+    "209291MZ1G00321A11Z10000002": {
+        "file_name": "209291MZ1G00321A11Z10000002-A.pdf",
+        "terms_revision": "104-second-revision",
+        "fubon_code": "FBD1040804",
+        "page_count": 22,
+        "disability_schedule_item_count": 79,
+        "legacy_relaxed_validation": True,
+    },
+    "209291MZ1G00321A11Z10000003": {
+        "file_name": "209291MZ1G00321A11Z10000003-A.pdf",
+        "terms_revision": "105-third-revision",
+        "fubon_code": "FBD1050727",
+        "page_count": 22,
+        "disability_schedule_item_count": 79,
+        "legacy_relaxed_validation": True,
+    },
+    "209291MZ1G00321A11Z10000004": {
+        "file_name": "209291MZ1G00321A11Z10000004-A.pdf",
+        "terms_revision": "107-fourth-revision",
+        "fubon_code": "FBD1070914",
+        "page_count": 22,
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ1G00321A11Z10000005": {
+        "file_name": "209291MZ1G00321A11Z10000005-A.pdf",
+        "terms_revision": "109-fifth-revision",
+        "fubon_code": "FBD1090101",
+        "page_count": 22,
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ1G00321A11Z10000006": {
+        "file_name": "209291MZ1G00321A11Z10000006-A.pdf",
+        "terms_revision": "109-sixth-revision",
+        "fubon_code": "FBD1090901",
+        "page_count": 22,
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ1G00321A11Z10000007": {
+        "file_name": "209291MZ1G00321A11Z10000007-A.pdf",
+        "terms_revision": "111-seventh-revision",
+        "fubon_code": "FBD1111202",
+        "page_count": 22,
+        "disability_schedule_item_count": 80,
+    },
+}
+
+
+def is_fubon_new_million_heart_accident_health_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_NEW_MILLION_HEART_ACCIDENT_HEALTH_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+FUBON_NEW_MILLION_HEART_PLAN_VALUES = {
+    "plan-1": ("計畫一", 1_000_000, 1_000, 500),
+    "plan-2": ("計畫二", 2_000_000, 1_000, 500),
+    "plan-3": ("計畫三", 3_000_000, 1_000, 500),
+    "plan-4": ("計畫四", 5_000_000, 1_000, 500),
+    "plan-5": ("計畫五", 1_000_000, 2_000, 1_000),
+    "plan-6": ("計畫六", 2_000_000, 2_000, 1_000),
+    "plan-7": ("計畫七", 3_000_000, 2_000, 1_000),
+    "plan-8": ("計畫八", 5_000_000, 2_000, 1_000),
+}
+
+
+def fubon_new_million_heart_accident_health_entries(
+    plan_label: str,
+    accident_base: int,
+    daily_amount: int,
+    fracture_daily: int,
+) -> list[dict[str, Any]]:
+    source_ref = "條款第十二、十三、十七至十九、二十二至二十六條及附表一至四"
+    common_conditions = [
+        "本契約為一年期且不保證續保，最高可續保至被保險人保險年齡六十歲時之保險期間屆滿。",
+        "各給付依保單首頁所載計畫別與附表一金額辦理，本契約有效期間內不受理計畫別變更。",
+    ]
+    life_conditions = [
+        *common_conditions,
+        "身故保險金或完全失能保險金給付後，本契約效力終止；完全失能後身故僅就身故與完全失能其中一項給付。",
+    ]
+    hospital_conditions = [
+        *common_conditions,
+        "疾病或傷害住院含精神衛生法所稱日間留院；同一保單年度同一次住院最高給付九十日。",
+        "同一疾病、傷害或併發症於出院後十四日內於同一醫院再次住院，視為同一次住院；契約期滿後再次住院部分不予給付。",
+    ]
+    outpatient_conditions = [
+        *common_conditions,
+        "同一次手術中同一手術位置接受二項以上手術項目時，僅給付一次。",
+    ]
+    specific_treatment_conditions = [
+        *common_conditions,
+        "限未住院時於醫院或診所接受放射線治療或內視鏡處置；同一次治療同一位置二項以上特定處置僅給付一次。",
+        "同一位置上之同一次治療已給付特定處置保險金時，不再給付門診手術醫療保險金。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "被保險人於有效期間內遭受意外傷害事故，並於事故日起一百八十日內符合給付條件者給付；超過一百八十日須證明因果關係。",
+    ]
+    special_accident_conditions = [
+        *accident_conditions,
+        "陸上大眾運輸工具、公共建築物火災或電梯事故須符合條款所列事故定義。",
+    ]
+    entries: list[dict[str, Any]] = []
+
+    def add(
+        entry_id: str,
+        name: str,
+        amount: int,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_percent: int | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> None:
+        entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                amount,
+                basis,
+                f"{plan_label}：{note}",
+                source_ref,
+                calculation_basis=calculation_basis,
+                amount_role=amount_role,
+                limit_scope=limit_scope,
+                aggregation_rule=aggregation_rule,
+                conditions=conditions or common_conditions,
+                amount_tiers=amount_tiers,
+                rate_percent=rate_percent,
+                rate_min_percent=rate_min_percent,
+                rate_max_percent=rate_max_percent,
+            )
+        )
+
+    add(
+        "life-death-or-funeral",
+        "身故保險金或喪葬費用保險金",
+        1_000_000,
+        "依附表一所載金額給付後，本契約終止。",
+        limit_scope="per_policy",
+        conditions=life_conditions,
+    )
+    add(
+        "total-disability",
+        "完全失能保險金",
+        1_000_000,
+        "致成附表二完全失能程度之一時，依附表一所載金額給付後，本契約終止。",
+        limit_scope="per_policy",
+        conditions=life_conditions,
+    )
+    add(
+        "general-accidental-death",
+        "一般意外身故保險金或喪葬費用保險金",
+        accident_base,
+        "因一般意外事故於一百八十日內身故時給付。",
+        conditions=accident_conditions,
+    )
+    for entry_id, name in [
+        ("land-transit-accidental-death", "陸上大眾運輸工具意外身故保險金或喪葬費用保險金"),
+        ("public-building-fire-accidental-death", "公共建築物火災意外身故保險金或喪葬費用保險金"),
+        ("elevator-accidental-death", "電梯意外身故保險金或喪葬費用保險金"),
+    ]:
+        add(
+            entry_id,
+            name,
+            accident_base,
+            "符合特定事故條件時依附表一所載金額給付。",
+            aggregation_rule="conditional_additive",
+            conditions=special_accident_conditions,
+        )
+    add(
+        "general-accidental-disability",
+        "一般意外失能保險金",
+        accident_base,
+        "以附表一所列最高給付金額為基礎，依附表三失能等級 5% 至 100% 比例給付。",
+        basis="benefit_base",
+        calculation_basis="table_multiplier",
+        amount_role="base",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_conditions,
+        amount_tiers=disability_percentage_tiers(accident_base),
+        rate_min_percent=5,
+        rate_max_percent=100,
+    )
+    for entry_id, name in [
+        ("land-transit-first-level-disability", "陸上大眾運輸工具意外一級失能保險金"),
+        ("public-building-fire-first-level-disability", "公共建築物火災意外一級失能保險金"),
+        ("elevator-first-level-disability", "電梯意外一級失能保險金"),
+    ]:
+        add(
+            entry_id,
+            name,
+            accident_base,
+            "限同一次事故致成附表三第一級失能程度時給付。",
+            aggregation_rule="conditional_additive",
+            conditions=[
+                *special_accident_conditions,
+                "本項以同一次事故致成附表三第一級失能程度者為限。",
+            ],
+        )
+    add(
+        "major-burn",
+        "重大燒燙傷保險金",
+        accident_base // 10,
+        "重大燒燙傷保險金為意外保障基準的百分之十；事故日起屆滿十五日仍生存時給付，含續保期間以一次為限。",
+        conditions=[
+            *accident_conditions,
+            "二度燒燙傷面積大於全身面積 20%、三度燒燙傷面積大於全身面積 10%，或顏面燒燙傷合併五官功能障礙。",
+        ],
+        rate_percent=10,
+    )
+    add(
+        "hospital-daily",
+        "住院醫療日額保險金",
+        daily_amount,
+        "因疾病或傷害住院，每日給付附表一所載日額。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=hospital_conditions,
+    )
+    add(
+        "fracture-unhospitalized-medical",
+        "骨折未住院醫療保險金",
+        fracture_daily,
+        "骨折未住院或住院未達骨折日數表時，以附表一所載金額乘以未住院日數計算。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="highest",
+        conditions=accident_conditions,
+    )
+    add(
+        "outpatient-surgery",
+        "門診手術醫療保險金",
+        daily_amount,
+        "因疾病或傷害接受門診手術時給付。",
+        limit_scope="per_surgery",
+        conditions=outpatient_conditions,
+    )
+    add(
+        "specific-treatment",
+        "特定處置保險金",
+        daily_amount,
+        "因疾病或傷害接受放射線治療或內視鏡處置且未住院時給付。",
+        limit_scope="per_procedure",
+        conditions=specific_treatment_conditions,
+    )
+    return entries
+
+
+def parse_fubon_new_million_heart_accident_health_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_new_million_heart_accident_health_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_NEW_MILLION_HEART_ACCIDENT_HEALTH_PRODUCT_VERSIONS[
+        product_id
+    ]
+    if (
+        document.get("page_count") not in {None, version["page_count"]}
+        or document.get("pages_parsed") not in {None, version["page_count"]}
+    ):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_whitespace(text)
+    required_signals = [
+        str(version["fubon_code"]),
+        "富邦人壽新放百萬心傷害暨健康一年定期保險",
+        "本契約保障內容分八個計畫別",
+        "含日間留院",
+        "本契約最高可續保至被保險人保險年齡六十歲",
+        "同一保單年度同一次住院給付日數最高以九十日為限",
+        "自意外傷害事故發生之日起屆滿十五日仍生存",
+        "本契約有效期間內(含續保)被保險人得申領之重大燒燙燒保險金以一次為限",
+        "失能程度與保險金給付表",
+        "計畫一計畫二計畫三計畫四計畫五計畫六計畫七計畫八",
+    ]
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+    table_start = compact_text.find("附表一:")
+    table_end = compact_text.find("附表二:", table_start + 1)
+    if table_start < 0 or table_end <= table_start:
+        return None
+    table_text = compact_table_text(compact_text[table_start:table_end])
+    table_signals = [
+        "身故保險金或喪葬費用保險金100萬",
+        "完全失能保險金100萬",
+        "一般意外身故保險金或喪葬費用保險金100萬200萬300萬500萬100萬200萬300萬500萬",
+        "一般意外失能保險金致成失能等級之一100萬乘以附表三所列給付比例",
+        "陸上大眾運輸工具意外一級失能保險金100萬200萬300萬500萬100萬200萬300萬500萬",
+        "重大燒燙傷保險金100萬乘以百分之十200萬乘以百分之十300萬乘以百分之十500萬乘以百分之十",
+        "住院醫療日額保險金1,000元/日1,000元/日1,000元/日1,000元/日2,000元/日2,000元/日2,000元/日2,000元/日",
+        "骨折未住院醫療保險金500元1,000元",
+        "特定處置保險金1,000元1,000元1,000元1,000元2,000元2,000元2,000元2,000元",
+    ]
+    if any(compact_table_text(signal) not in table_text for signal in table_signals):
+        return None
+    disability_table_start = compact_text.find("失能程度與保險金給付表")
+    disability_table_end_candidates = [
+        index
+        for marker in ("附表四", "附表五", "燒燙傷面積", "短期費率表")
+        for index in [
+            compact_text.find(
+                marker,
+                disability_table_start + len("失能程度與保險金給付表"),
+            )
+        ]
+        if index > disability_table_start
+    ]
+    if disability_table_start < 0 or not disability_table_end_candidates:
+        return None
+    disability_table = compact_text[
+        disability_table_start:min(disability_table_end_candidates)
+    ]
+    disability_percentages = [
+        int(value) for value in re.findall(r"(\d{1,3})%", disability_table)
+    ]
+    if (
+        len(disability_percentages) != version["disability_schedule_item_count"]
+        or min(disability_percentages) != 5
+        or max(disability_percentages) != 100
+    ):
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫別",
+        "selection_guidance": "請依保單首頁所載計畫一至計畫八選擇；本商品不需輸入單位數。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": len(FUBON_NEW_MILLION_HEART_PLAN_VALUES),
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 60,
+            "day_hospital_explicit": True,
+            "same_hospital_readmission_days": 14,
+            "general_hospital_days_limit": 90,
+            "accident_claim_days": 180,
+            "major_burn_rate_percent": 10,
+            "major_burn_survival_days": 15,
+            "major_burn_lifetime_limit_times": 1,
+            "disability_term": "失能",
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": plan_label,
+                "coverage_entries": fubon_new_million_heart_accident_health_entries(
+                    plan_label,
+                    accident_base,
+                    daily_amount,
+                    fracture_daily,
+                ),
+            }
+            for plan_key, (
+                plan_label,
+                accident_base,
+                daily_amount,
+                fracture_daily,
+            ) in FUBON_NEW_MILLION_HEART_PLAN_VALUES.items()
+        ],
+    }
+
+
+FUBON_MILLION_HEART_ACCIDENT_HEALTH_PRODUCT_VERSIONS = {
+    "209291M12G00100": {
+        "file_name": "209291M12G00100-A.pdf",
+        "terms_revision": "102-original",
+        "fubon_code": "FBE1020401",
+        "page_count": 16,
+        "disability_term": "殘廢",
+        "day_hospital_explicit": False,
+        "disability_schedule_item_count": 75,
+    },
+    "209291M11G00201": {
+        "file_name": "209291M11G00201-A.pdf",
+        "terms_revision": "103-first-revision",
+        "fubon_code": "FBE1030501",
+        "page_count": 16,
+        "disability_term": "殘廢",
+        "day_hospital_explicit": True,
+        "disability_schedule_item_count": 75,
+    },
+    "209291MZ1G00221A11Z10000002": {
+        "file_name": "209291MZ1G00221A11Z10000002-A.pdf",
+        "terms_revision": "104-second-revision",
+        "fubon_code": "FBE1040804",
+        "page_count": 18,
+        "disability_term": "殘廢",
+        "day_hospital_explicit": True,
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ1G00221A11Z10000003": {
+        "file_name": "209291MZ1G00221A11Z10000003-A.pdf",
+        "terms_revision": "107-third-revision",
+        "fubon_code": "FBE1070914",
+        "page_count": 18,
+        "disability_term": "失能",
+        "day_hospital_explicit": True,
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ1G00221A11Z10000004": {
+        "file_name": "209291MZ1G00221A11Z10000004-A.pdf",
+        "terms_revision": "109-fourth-revision",
+        "fubon_code": "FBE1090101",
+        "page_count": 18,
+        "disability_term": "失能",
+        "day_hospital_explicit": True,
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ1G00221A11Z10000005": {
+        "file_name": "209291MZ1G00221A11Z10000005-A.pdf",
+        "terms_revision": "109-fifth-revision",
+        "fubon_code": "FBE1090901",
+        "page_count": 18,
+        "disability_term": "失能",
+        "day_hospital_explicit": True,
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ1G00221A11Z10000006": {
+        "file_name": "209291MZ1G00221A11Z10000006-A.pdf",
+        "terms_revision": "111-sixth-revision",
+        "fubon_code": "FBE1111202",
+        "page_count": 18,
+        "disability_term": "失能",
+        "day_hospital_explicit": True,
+        "disability_schedule_item_count": 80,
+    },
+}
+
+
+def is_fubon_million_heart_accident_health_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_MILLION_HEART_ACCIDENT_HEALTH_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+FUBON_MILLION_HEART_PLAN_VALUES = {
+    "plan-1": {"label": "計畫一", "life_base": 1_000_000, "accident_base": 1_000_000},
+    "plan-2": {"label": "計畫二", "life_base": 1_000_000, "accident_base": 2_000_000},
+    "plan-3": {"label": "計畫三", "life_base": 1_000_000, "accident_base": 3_000_000},
+    "plan-4": {"label": "計畫四", "life_base": 1_000_000, "accident_base": 4_000_000},
+    "plan-5": {"label": "計畫五", "life_base": 1_000_000, "accident_base": 5_000_000},
+    "plan-6": {"label": "計畫六", "life_base": 2_000_000, "accident_base": 1_000_000},
+    "plan-7": {"label": "計畫七", "life_base": 2_000_000, "accident_base": 2_000_000},
+    "plan-8": {"label": "計畫八", "life_base": 2_000_000, "accident_base": 3_000_000},
+    "plan-9": {"label": "計畫九", "life_base": 2_000_000, "accident_base": 4_000_000},
+    "plan-10": {"label": "計畫十", "life_base": 2_000_000, "accident_base": 5_000_000},
+}
+
+
+def fubon_million_heart_accident_health_entries(
+    plan_label: str,
+    *,
+    life_base: int,
+    accident_base: int,
+    disability_term: str,
+    day_hospital_explicit: bool,
+) -> list[dict[str, Any]]:
+    source_ref = "條款第十二、十三、十七、二十至二十三條及附表一至三，第 4-13 頁"
+    common_conditions = [
+        "依保單首頁所載計畫別與附表一金額給付；有效期間內不受理計畫別變更。",
+        "本商品為非保證續保，最高可續保至被保險人保險年齡五十歲時之保險期間屆滿。",
+    ]
+    life_conditions = [
+        *common_conditions,
+        f"給付身故保險金、喪葬費用保險金或完全{disability_term}保險金後，本契約效力終止。",
+    ]
+    hospital_conditions = [
+        *common_conditions,
+        "限因疾病或傷害住院診療。",
+        "同一保單年度同一次住院給付日數最高三十日；同一疾病或傷害於出院後十四日內同一醫院再次住院視為同一次住院。",
+        "同一疾病或傷害出院後同日再次入院時，該日不得重複計入住院醫療日數。",
+    ]
+    if day_hospital_explicit:
+        hospital_conditions.insert(
+            2,
+            "住院診療包含精神衛生法第三十五條所稱日間留院。",
+        )
+    accident_conditions = [
+        *common_conditions,
+        "限條款第二條約定之意外傷害事故。",
+        f"身故或{disability_term}原則上須自意外傷害事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+    ]
+    accident_disability_conditions = [
+        *accident_conditions,
+        f"按附表三{disability_term}給付比例計算；同一事故多項{disability_term}合計最高以附表一最高給付金額為限。",
+        f"同一意外傷害事故致成{disability_term}後身故時，意外身故與意外{disability_term}合計最高以意外身故保險金額為限。",
+    ]
+
+    def add(
+        entry_id: str,
+        name: str,
+        amount: int,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> dict[str, Any]:
+        return coverage_entry(
+            entry_id,
+            name,
+            amount,
+            basis,
+            f"{plan_label}：{note}",
+            source_ref,
+            calculation_basis=calculation_basis,
+            amount_role=amount_role,
+            limit_scope=limit_scope,
+            aggregation_rule=aggregation_rule,
+            conditions=conditions or common_conditions,
+            amount_tiers=amount_tiers,
+            rate_min_percent=rate_min_percent,
+            rate_max_percent=rate_max_percent,
+        )
+
+    return [
+        add(
+            "life-death-or-funeral",
+            "身故保險金或喪葬費用保險金",
+            life_base,
+            f"依附表一固定給付 {life_base:,} 元；給付後契約效力終止。",
+            limit_scope="per_policy",
+            conditions=[
+                *life_conditions,
+                "精神障礙或其他心智缺陷且不能辨識其行為能力者，身故保險金變更為喪葬費用保險金並適用法定限額。",
+            ],
+        ),
+        add(
+            "total-disability",
+            f"完全{disability_term}保險金",
+            life_base,
+            f"致成附表二七項完全{disability_term}程度之一者給付 {life_base:,} 元；給付後契約效力終止。",
+            limit_scope="per_policy",
+            conditions=life_conditions,
+        ),
+        add(
+            "hospital-daily",
+            "住院醫療日額保險金",
+            1_000,
+            "按實際住院日數給付每日 1,000 元，含入院及出院當日。",
+            basis="daily_total",
+            calculation_basis="per_day",
+            limit_scope="per_day",
+            aggregation_rule="cumulative_cap",
+            conditions=hospital_conditions,
+        ),
+        add(
+            "accidental-death-or-funeral",
+            "意外身故保險金或喪葬費用保險金",
+            accident_base,
+            f"附表一意外身故基準金額 {accident_base:,} 元。",
+            conditions=accident_conditions,
+        ),
+        add(
+            "accidental-disability",
+            f"意外{disability_term}保險金",
+            accident_base,
+            f"以附表一最高給付金額 {accident_base:,} 元乘以附表三所列給付比例。",
+            basis="benefit_base",
+            calculation_basis="table_multiplier",
+            amount_role="base",
+            aggregation_rule="cumulative_cap",
+            conditions=accident_disability_conditions,
+            amount_tiers=disability_percentage_tiers(accident_base),
+            rate_min_percent=5,
+            rate_max_percent=100,
+        ),
+    ]
+
+
+def parse_fubon_million_heart_accident_health_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_million_heart_accident_health_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_MILLION_HEART_ACCIDENT_HEALTH_PRODUCT_VERSIONS[product_id]
+    disability_term = str(version["disability_term"])
+    day_hospital_explicit = bool(version.get("day_hospital_explicit"))
+    if (
+        document.get("page_count") not in {None, version["page_count"]}
+        or document.get("pages_parsed") not in {None, version["page_count"]}
+    ):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_whitespace(text)
+    required_signals = [
+        str(version["fubon_code"]),
+        "富邦人壽放百萬心傷害暨健康一年定期保險",
+        "本契約保障內容分十個計畫別",
+        "各計畫別之給付內容詳附表一",
+        *(("含日間留院",) if day_hospital_explicit else ()),
+        "本契約最高可續保至被保險人保險年齡五十歲時",
+        "同一保單年度同一次住院給付日數最高以三十日",
+        f"{disability_term}程度與保險金給付表",
+        "計畫一計畫二計畫三計畫四計畫五計畫六計畫七計畫八計畫九計畫十",
+    ]
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+    if "富邦人壽新放百萬心傷害暨健康一年定期保險" in compact_text:
+        return None
+    for excluded_signal in ("重大燒燙傷", "門診手術", "特定處置"):
+        if excluded_signal in compact_text:
+            return None
+    table_start = compact_text.find("附表一:")
+    table_end = compact_text.find("附表二:", table_start + 1)
+    if table_start < 0 or table_end <= table_start:
+        return None
+    table_text = compact_table_text(compact_text[table_start:table_end])
+    table_signals = [
+        "計畫別保險金項目計畫一計畫二計畫三計畫四計畫五計畫六計畫七計畫八計畫九計畫十",
+        "身故保險金或喪葬費用保險金100萬200萬",
+        f"完全{disability_term}保險金100萬200萬",
+        "意外身故保險金或喪葬費用保險金100萬200萬300萬400萬500萬100萬200萬300萬400萬500萬",
+        f"致成{disability_term}等級之一100萬乘以附表三所列給付比例200萬乘以附表三所列給付比例300萬乘以附表三所列給付比例400萬乘以附表三所列給付比例500萬乘以附表三所列給付比例100萬乘以附表三所列給付比例200萬乘以附表三所列給付比例300萬乘以附表三所列給付比例400萬乘以附表三所列給付比例500萬乘以附表三所列給付比例",
+        "最高給付金額100萬200萬300萬400萬500萬100萬200萬300萬400萬500萬",
+        "住院醫療日額保險金1,000元/日",
+    ]
+    if any(compact_table_text(signal) not in table_text for signal in table_signals):
+        return None
+    disability_table_start = compact_text.find(
+        f"{disability_term}程度與保險金給付表"
+    )
+    disability_table_end_candidates = [
+        index
+        for marker in ("附表四", "短期費率表")
+        for index in [
+            compact_text.find(
+                marker,
+                disability_table_start + len("失能程度與保險金給付表"),
+            )
+        ]
+        if index > disability_table_start
+    ]
+    if disability_table_start < 0 or not disability_table_end_candidates:
+        return None
+    disability_table = compact_text[
+        disability_table_start:min(disability_table_end_candidates)
+    ]
+    disability_percentages = [
+        int(value) for value in re.findall(r"(\d{1,3})\s*%", disability_table)
+        if 0 < int(value) <= 100
+    ]
+    if (
+        len(disability_percentages)
+        < int(version["disability_schedule_item_count"]) - 15
+        or min(disability_percentages) != 5
+        or max(disability_percentages) != 100
+    ):
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫別",
+        "selection_guidance": "請依保單首頁選擇計畫一至十；本契約有效期間內不受理計畫別變更。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": len(FUBON_MILLION_HEART_PLAN_VALUES),
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 50,
+            "day_hospital_explicit": day_hospital_explicit,
+            "same_hospital_readmission_days": 14,
+            "hospital_daily_days_limit_per_policy_year_same_hospitalization": 30,
+            "accident_claim_days": 180,
+            "death_disability_same_accident_cap": True,
+            "disability_term": disability_term,
+            "total_disability_schedule_item_count": 7,
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_million_heart_accident_health_entries(
+                    str(values["label"]),
+                    life_base=int(values["life_base"]),
+                    accident_base=int(values["accident_base"]),
+                    disability_term=disability_term,
+                    day_hospital_explicit=day_hospital_explicit,
+                ),
+            }
+            for plan_key, values in FUBON_MILLION_HEART_PLAN_VALUES.items()
+        ],
+    }
+
+
+FUBON_MILLION_NEW_LIFE_ACCIDENT_HEALTH_PRODUCT_VERSIONS = {
+    "209291M12G00400": {
+        "file_name": "209291M12G00400-A.pdf",
+        "terms_revision": "102-original",
+        "fubon_code": "FBA1020401",
+        "page_count": 17,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+    },
+    "209291M11G00101": {
+        "file_name": "209291M11G00101-A.pdf",
+        "terms_revision": "103-first-revision",
+        "fubon_code": "FBA1030501",
+        "page_count": 17,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+    },
+    "209291MZ1G00121A11Z10000002": {
+        "file_name": "209291MZ1G00121A11Z10000002-A.pdf",
+        "terms_revision": "104-second-revision",
+        "fubon_code": "FBA1040804",
+        "page_count": 18,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ1G00121A11Z10000003": {
+        "file_name": "209291MZ1G00121A11Z10000003-A.pdf",
+        "terms_revision": "105-third-revision",
+        "fubon_code": "FBA1050727",
+        "page_count": 18,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ1G00121A11Z10000004": {
+        "file_name": "209291MZ1G00121A11Z10000004-A.pdf",
+        "terms_revision": "107-fourth-revision",
+        "fubon_code": "FBA1070914",
+        "page_count": 18,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ1G00121A11Z10000005": {
+        "file_name": "209291MZ1G00121A11Z10000005-A.pdf",
+        "terms_revision": "109-fifth-revision",
+        "fubon_code": "FBA1090101",
+        "page_count": 18,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ1G00121A11Z10000006": {
+        "file_name": "209291MZ1G00121A11Z10000006-A.pdf",
+        "terms_revision": "109-sixth-revision",
+        "fubon_code": "FBA1090901",
+        "page_count": 18,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ1G00121A11Z10000007": {
+        "file_name": "209291MZ1G00121A11Z10000007-A.pdf",
+        "terms_revision": "111-seventh-revision",
+        "fubon_code": "FBA1111202",
+        "page_count": 18,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+    },
+}
+
+
+def is_fubon_million_new_life_accident_health_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_MILLION_NEW_LIFE_ACCIDENT_HEALTH_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+FUBON_MILLION_NEW_LIFE_PLAN_VALUES = {
+    "plan-1": {"label": "計畫一", "accident_base": 1_000_000},
+    "plan-2": {"label": "計畫二", "accident_base": 2_000_000},
+    "plan-3": {"label": "計畫三", "accident_base": 3_000_000},
+    "plan-4": {"label": "計畫四", "accident_base": 4_000_000},
+    "plan-5": {"label": "計畫五", "accident_base": 5_000_000},
+}
+
+
+def fubon_million_new_life_accident_health_entries(
+    plan_label: str, accident_base: int, *, disability_term: str
+) -> list[dict[str, Any]]:
+    source_ref = "條款第十二、十三、十七、二十至二十三條及附表一、三，第 4-13 頁"
+    common_conditions = [
+        "依保單首頁所載計畫別與附表一金額給付；有效期間內不受理計畫別變更。",
+        "本商品為非保證續保，最高可續保至被保險人保險年齡五十歲時之該保險期間屆滿。",
+    ]
+    life_conditions = [
+        *common_conditions,
+        f"給付身故保險金、喪葬費用保險金或完全{disability_term}保險金後，本契約效力終止。",
+    ]
+    hospital_conditions = [
+        *common_conditions,
+        "限因疾病或傷害住院診療，包含精神衛生法第三十五條所稱日間留院。",
+        "同一保單年度同一次住院給付日數最高三十日；同一疾病或傷害於出院後十四日內同一醫院再次住院視為同一次住院。",
+        "同一疾病或傷害出院後同日再次入院時，該日不得重複計入住院醫療日數。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "限條款第二條約定之意外傷害事故。",
+        f"身故、{disability_term}或醫療原則上須自意外傷害事故發生日起一百八十日內符合給付條件；超過者須證明因果關係。",
+    ]
+    medical_conditions = [
+        *accident_conditions,
+        "實際醫療費用須為超過全民健康保險給付部分，且同一次傷害實支給付總額以附表一限額為限。",
+        "條款另約定依兩種日額換算方式中較優者給付；兩種換算方式不可全部相加。",
+    ]
+    accident_disability_conditions = [
+        *accident_conditions,
+        f"按附表三{disability_term}給付比例計算；同一事故多項{disability_term}合計最高以附表一最高給付金額為限。",
+        f"同一意外傷害事故致成{disability_term}後身故時，意外身故與意外{disability_term}合計最高以意外身故保險金額為限。",
+    ]
+
+    def add(
+        entry_id: str,
+        name: str,
+        amount: int,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> dict[str, Any]:
+        return coverage_entry(
+            entry_id,
+            name,
+            amount,
+            basis,
+            f"{plan_label}：{note}",
+            source_ref,
+            calculation_basis=calculation_basis,
+            amount_role=amount_role,
+            limit_scope=limit_scope,
+            aggregation_rule=aggregation_rule,
+            conditions=conditions or common_conditions,
+            amount_tiers=amount_tiers,
+            rate_min_percent=rate_min_percent,
+            rate_max_percent=rate_max_percent,
+        )
+
+    return [
+        add(
+            "life-death-or-funeral",
+            "身故保險金或喪葬費用保險金",
+            1_000_000,
+            "附表一固定為 100 萬元；給付後契約效力終止。",
+            limit_scope="per_policy",
+            conditions=[
+                *life_conditions,
+                "精神障礙或其他心智缺陷且不能辨識其行為能力者，身故保險金變更為喪葬費用保險金並適用法定限額。",
+            ],
+        ),
+        add(
+            "total-disability",
+            f"完全{disability_term}保險金",
+            1_000_000,
+            f"致成附表二七項完全{disability_term}程度之一者給付 100 萬元；給付後契約效力終止。",
+            limit_scope="per_policy",
+            conditions=life_conditions,
+        ),
+        add(
+            "hospital-daily",
+            "住院醫療日額保險金",
+            1_000,
+            "按實際住院日數給付每日 1,000 元，含入院及出院當日。",
+            basis="daily_total",
+            calculation_basis="per_day",
+            limit_scope="per_day",
+            aggregation_rule="cumulative_cap",
+            conditions=hospital_conditions,
+        ),
+        add(
+            "accidental-death-or-funeral",
+            "意外身故保險金或喪葬費用保險金",
+            accident_base,
+            f"附表一意外身故基準金額 {accident_base:,} 元。",
+            conditions=accident_conditions,
+        ),
+        add(
+            "accidental-disability",
+            f"意外{disability_term}保險金",
+            accident_base,
+            f"以附表一最高給付金額 {accident_base:,} 元乘以附表三所列給付比例。",
+            basis="benefit_base",
+            calculation_basis="table_multiplier",
+            amount_role="base",
+            aggregation_rule="cumulative_cap",
+            conditions=accident_disability_conditions,
+            amount_tiers=disability_percentage_tiers(accident_base),
+            rate_min_percent=5,
+            rate_max_percent=100,
+        ),
+        add(
+            "accident-medical-reimbursement",
+            "意外傷害醫療保險金",
+            30_000,
+            "超過全民健康保險給付部分實支實付，每次傷害限額 30,000 元。",
+            basis="per_injury_limit",
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_injury",
+            conditions=medical_conditions,
+        ),
+        add(
+            "accident-medical-daily-option-a",
+            "意外傷害醫療保險金日額換算一",
+            210,
+            "每 1 萬元意外傷害醫療限額換算住院每日 70 元；本商品限額 3 萬元，故為每日 210 元。",
+            basis="daily_total",
+            calculation_basis="per_day",
+            limit_scope="per_day",
+            aggregation_rule="choose_one",
+            conditions=[
+                *medical_conditions,
+                "每次事故給付日數總計最高九十日。",
+            ],
+        ),
+        add(
+            "accident-medical-daily-option-b",
+            "意外傷害醫療保險金日額換算二",
+            120,
+            "每 1 萬元意外傷害醫療限額換算住院每日 40 元、門診每日 20 元；本商品限額 3 萬元，故住院每日 120 元、門診每日 60 元。",
+            basis="daily_total",
+            calculation_basis="per_day",
+            limit_scope="per_day",
+            aggregation_rule="choose_one",
+            conditions=[
+                *medical_conditions,
+                "住院與門診給付日數分別最高九十日；門診一日多次以一日計。",
+            ],
+            amount_tiers=[
+                {"label": "住院每日", "amount": 120},
+                {"label": "門診每日", "amount": 60},
+            ],
+        ),
+    ]
+
+
+def parse_fubon_million_new_life_accident_health_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_million_new_life_accident_health_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_MILLION_NEW_LIFE_ACCIDENT_HEALTH_PRODUCT_VERSIONS[
+        product_id
+    ]
+    if (
+        document.get("page_count") not in {None, version["page_count"]}
+        or document.get("pages_parsed") not in {None, version["page_count"]}
+    ):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_whitespace(text)
+    disability_term = str(version["disability_term"])
+    required_signals = [
+        str(version["fubon_code"]),
+        "富邦人壽百萬新生活傷害暨健康一年定期保險",
+        "【本保險為非保證續保之保險商品】",
+        "本契約保障內容分五個計畫別",
+        "各計畫別之給付內容詳附表一",
+        "本契約最高可續保至被保險人保險年齡五十歲時之該保險期間屆滿",
+        "住院醫療日額保險金的給付",
+        "意外傷害醫療保險金的給付",
+        "每壹萬元換算住院每日柒拾元",
+        "每壹萬元換算住院每日肆拾元、門診每日貮拾元",
+        "同一保單年度同一次住院給付日數最高以三十日",
+        "每次事故給付日數總計以九十日",
+    ]
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+    table_start = compact_text.rfind("附表一:")
+    if table_start < 0:
+        table_start = compact_text.rfind("附表一")
+    table_end = compact_text.find("附表二", table_start + 1)
+    if table_start < 0 or table_end <= table_start:
+        return None
+    table_text = compact_table_text(compact_text[table_start:table_end])
+    table_signals = [
+        "計畫別保險金項目計畫一計畫二計畫三計畫四計畫五",
+        "身故保險金或喪葬費用保險金100萬",
+        f"完全{disability_term}保險金100萬",
+        "意外身故保險金或喪葬費用保險金100萬200萬300萬400萬500萬",
+        "100萬乘以附表三所列給付比例200萬乘以附表三所列給付比例300萬乘以附表三所列給付比例400萬乘以附表三所列給付比例500萬乘以附表三所列給付比例",
+        "最高給付金額100萬200萬300萬400萬500萬",
+        "意外傷害醫療保險金3萬",
+        "住院醫療日額保險金1000元/日",
+    ]
+    if any(compact_table_text(signal) not in table_text for signal in table_signals):
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫別",
+        "selection_guidance": "請依保單首頁選擇計畫一至五；本契約有效期間內不受理計畫別變更。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": len(FUBON_MILLION_NEW_LIFE_PLAN_VALUES),
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 50,
+            "day_hospital_explicit": True,
+            "same_hospital_readmission_days": 14,
+            "hospital_daily_days_limit_per_policy_year_same_hospitalization": 30,
+            "accident_claim_days": 180,
+            "accident_medical_limit": 30_000,
+            "accident_medical_daily_formula_per_10000_inpatient_only": 70,
+            "accident_medical_daily_formula_per_10000_inpatient_split": 40,
+            "accident_medical_daily_formula_per_10000_outpatient_split": 20,
+            "accident_medical_daily_formula_days_limit": 90,
+            "death_disability_same_accident_cap": True,
+            "disability_term": disability_term,
+            "total_disability_schedule_item_count": 7,
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_million_new_life_accident_health_entries(
+                    str(values["label"]),
+                    int(values["accident_base"]),
+                    disability_term=disability_term,
+                ),
+            }
+            for plan_key, values in FUBON_MILLION_NEW_LIFE_PLAN_VALUES.items()
+        ],
+    }
+
+
+FUBON_VISION_LIFE_ACCIDENT_HEALTH_PRODUCT_VERSIONS = {
+    "209291M12G00600": {
+        "file_name": "209291M12G00600-A.pdf",
+        "terms_revision": "102-original",
+        "fubon_code": "FBJ1020401",
+        "page_count": 20,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+        "cancer_waiting_days": 30,
+        "day_hospital_excluded": False,
+    },
+    "209291M12G00601": {
+        "file_name": "209291M12G00601-A.pdf",
+        "terms_revision": "103-first-revision",
+        "fubon_code": "FBJ1030501",
+        "page_count": 20,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+        "cancer_waiting_days": 30,
+        "day_hospital_excluded": True,
+    },
+    "209291MZ2G00421A11Z10000002": {
+        "file_name": "209291MZ2G00421A11Z10000002-A.pdf",
+        "terms_revision": "104-second-revision",
+        "fubon_code": "FBJ1040804",
+        "page_count": 21,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 79,
+        "cancer_waiting_days": 30,
+        "day_hospital_excluded": True,
+    },
+    "209291MZ2G00421A11Z10000003": {
+        "file_name": "209291MZ2G00421A11Z10000003-A.pdf",
+        "terms_revision": "107-third-revision",
+        "fubon_code": "FBJ1070430",
+        "page_count": 21,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 79,
+        "cancer_waiting_days": 0,
+        "day_hospital_excluded": True,
+    },
+    "209291MZ2G00421A11Z10000004": {
+        "file_name": "209291MZ2G00421A11Z10000004-A.pdf",
+        "terms_revision": "107-fourth-revision",
+        "fubon_code": "FBJ1070914",
+        "page_count": 21,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 79,
+        "cancer_waiting_days": 0,
+        "day_hospital_excluded": True,
+    },
+    "209291MZ2G00421A11Z10000005": {
+        "file_name": "209291MZ2G00421A11Z10000005-A.pdf",
+        "terms_revision": "108-fifth-revision",
+        "fubon_code": "FBJ1080101",
+        "page_count": 21,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 79,
+        "cancer_waiting_days": 0,
+        "day_hospital_excluded": True,
+    },
+    "209291MZ2G00421A11Z10000006": {
+        "file_name": "209291MZ2G00421A11Z10000006-A.pdf",
+        "terms_revision": "109-sixth-revision",
+        "fubon_code": "FBJ1090101",
+        "page_count": 21,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+        "cancer_waiting_days": 0,
+        "day_hospital_excluded": True,
+    },
+    "209291MZ2G00421A11Z10000007": {
+        "file_name": "209291MZ2G00421A11Z10000007-A.pdf",
+        "terms_revision": "109-seventh-revision",
+        "fubon_code": "FBJ1090901",
+        "page_count": 21,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+        "cancer_waiting_days": 0,
+        "day_hospital_excluded": True,
+    },
+    "209291MZ2G00421A11Z10000008": {
+        "file_name": "209291MZ2G00421A11Z10000008-A.pdf",
+        "terms_revision": "111-eighth-revision",
+        "fubon_code": "FBJ1111202",
+        "page_count": 21,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+        "cancer_waiting_days": 0,
+        "day_hospital_excluded": True,
+    },
+}
+
+
+def is_fubon_vision_life_accident_health_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_VISION_LIFE_ACCIDENT_HEALTH_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+FUBON_VISION_LIFE_PLAN_VALUES = {
+    "plan-1": {
+        "label": "計畫一",
+        "life_death": 500_000,
+        "total_disability": 500_000,
+        "accident_death": 1_000_000,
+        "mass_transit_death": 1_000_000,
+        "accident_disability_base": 1_000_000,
+        "mass_transit_disability_base": 1_000_000,
+        "major_burn": 250_000,
+        "accident_hospital_daily": 1_000,
+        "accident_icu_daily": 1_000,
+        "accident_burn_center_daily": 2_000,
+        "accident_outpatient_surgery": 1_000,
+        "cancer_hospital_daily": 1_000,
+        "cancer_surgery": 20_000,
+        "cancer_radiation_daily": 1_000,
+    },
+    "plan-2": {
+        "label": "計畫二",
+        "life_death": 1_000_000,
+        "total_disability": 1_000_000,
+        "accident_death": 2_000_000,
+        "mass_transit_death": 2_000_000,
+        "accident_disability_base": 2_000_000,
+        "mass_transit_disability_base": 2_000_000,
+        "major_burn": 500_000,
+        "accident_hospital_daily": 1_500,
+        "accident_icu_daily": 1_500,
+        "accident_burn_center_daily": 3_000,
+        "accident_outpatient_surgery": 1_500,
+        "cancer_hospital_daily": 1_500,
+        "cancer_surgery": 30_000,
+        "cancer_radiation_daily": 1_500,
+    },
+    "plan-3": {
+        "label": "計畫三",
+        "life_death": 2_000_000,
+        "total_disability": 2_000_000,
+        "accident_death": 4_000_000,
+        "mass_transit_death": 4_000_000,
+        "accident_disability_base": 4_000_000,
+        "mass_transit_disability_base": 4_000_000,
+        "major_burn": 1_000_000,
+        "accident_hospital_daily": 2_000,
+        "accident_icu_daily": 2_000,
+        "accident_burn_center_daily": 4_000,
+        "accident_outpatient_surgery": 2_000,
+        "cancer_hospital_daily": 2_000,
+        "cancer_surgery": 50_000,
+        "cancer_radiation_daily": 2_000,
+    },
+}
+
+
+def fubon_vision_life_accident_health_entries(
+    plan_label: str,
+    values: dict[str, int | str],
+    *,
+    disability_term: str,
+    cancer_waiting_days: int,
+) -> list[dict[str, Any]]:
+    source_ref = "條款第十二、十三、十七、十九至二十四條及附表一至三"
+    common_conditions = [
+        "本契約為一年期且不保證續保，最高可續保至被保險人保險年齡五十五歲時之保險期間屆滿。",
+        "各給付依保單首頁所載計畫別與附表一金額辦理，本契約有效期間內不受理計畫別變更。",
+    ]
+    life_conditions = [
+        *common_conditions,
+        f"身故保險金或完全{disability_term}保險金給付後，本契約效力終止；完全{disability_term}後身故僅就身故與完全{disability_term}其中一項給付。",
+    ]
+    cancer_timing_condition = (
+        "癌症須自契約生效日或復效日持續有效三十日後發生並診斷確定。"
+        if cancer_waiting_days
+        else "癌症須於契約生效日或復效日起之有效期間內診斷確定。"
+    )
+    cancer_conditions = [
+        *common_conditions,
+        cancer_timing_condition,
+        "須經病理組織切片或血液細胞學檢查診斷確定罹患癌症者給付。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "被保險人於有效期間內遭受非由疾病引起之外來突發事故，並於事故日起一百八十日內符合給付條件者給付。",
+    ]
+    mass_transit_conditions = [
+        *accident_conditions,
+        "以乘客身分搭乘大眾運輸工具發生意外時，除一般意外給付外另按附表一給付；同時符合二項以上大眾運輸事故者以一項為限。",
+    ]
+    accident_hospital_conditions = [
+        *accident_conditions,
+        "每次意外傷害事故住院醫療給付日數不得超過九十日；骨折未住院按骨折日數與住院日額二分之一計算。",
+    ]
+    entries: list[dict[str, Any]] = []
+
+    def int_amount(key: str) -> int:
+        value = values[key]
+        if not isinstance(value, int):
+            raise TypeError(f"plan value {key} must be an integer")
+        return value
+
+    def add_amount(
+        entry_id: str,
+        name: str,
+        amount: int,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_percent: int | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> None:
+        entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                amount,
+                basis,
+                f"{plan_label}：{note}",
+                source_ref,
+                calculation_basis=calculation_basis,
+                amount_role=amount_role,
+                limit_scope=limit_scope,
+                aggregation_rule=aggregation_rule,
+                conditions=conditions or common_conditions,
+                amount_tiers=amount_tiers,
+                rate_percent=rate_percent,
+                rate_min_percent=rate_min_percent,
+                rate_max_percent=rate_max_percent,
+            )
+        )
+
+    add_amount(
+        "life-death-or-funeral",
+        "身故保險金或喪葬費用保險金",
+        int_amount("life_death"),
+        "依附表一所載金額給付。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "total-disability",
+        f"完全{disability_term}保險金",
+        int_amount("total_disability"),
+        f"致成附表二完全{disability_term}程度之一時，依附表一所載金額給付。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "general-accidental-death",
+        "一般意外身故保險金或喪葬費用保險金",
+        int_amount("accident_death"),
+        "因一般意外事故於一百八十日內身故時給付。",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "mass-transit-accidental-death-additional",
+        "大眾運輸工具意外身故保險金或喪葬費用保險金",
+        int_amount("mass_transit_death"),
+        "以乘客身分搭乘大眾運輸工具發生意外身故時，除一般意外身故外另按本項給付。",
+        aggregation_rule="conditional_additive",
+        conditions=mass_transit_conditions,
+    )
+
+    for entry_id, name, base_key, conditions, aggregation_rule in [
+        (
+            "general-accidental-disability",
+            f"一般意外{disability_term}保險金",
+            "accident_disability_base",
+            accident_conditions,
+            "cumulative_cap",
+        ),
+        (
+            "mass-transit-accidental-disability-additional",
+            f"大眾運輸工具意外{disability_term}保險金",
+            "mass_transit_disability_base",
+            mass_transit_conditions,
+            "conditional_additive",
+        ),
+    ]:
+        base = int_amount(base_key)
+        add_amount(
+            entry_id,
+            name,
+            base,
+            f"按附表一最高給付金額乘以附表三{disability_term}給付比例，比例由 100% 至 5%。",
+            basis="benefit_base",
+            calculation_basis="table_multiplier",
+            amount_role="base",
+            aggregation_rule=aggregation_rule,
+            conditions=conditions,
+            amount_tiers=disability_percentage_tiers(base),
+            rate_min_percent=5,
+            rate_max_percent=100,
+        )
+
+    add_amount(
+        "major-burn",
+        "重大燒燙傷保險金",
+        int_amount("major_burn"),
+        "符合重大燒燙傷定義且事故日起屆滿十五日仍生存時給付；有效期間內含續保契約以一次為限。",
+        conditions=[
+            *accident_conditions,
+            "二度燒燙傷面積大於全身面積 20%、三度燒燙傷面積大於全身面積 10%，或顏面燒燙傷合併五官功能障礙。",
+        ],
+    )
+    add_amount(
+        "accident-hospital-daily",
+        "意外傷害住院醫療保險金",
+        int_amount("accident_hospital_daily"),
+        "依實際住院日數含出院及入院當日乘以日額給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_hospital_conditions,
+    )
+    add_amount(
+        "fracture-unhospitalized-medical",
+        "骨折未住院醫療保險金",
+        int_amount("accident_hospital_daily") // 2,
+        "骨折未住院或住院未達骨折日數表時，以住院日額二分之一乘以骨折日數計算。",
+        basis="daily_total",
+        calculation_basis="percentage_of_base",
+        amount_role="reference",
+        limit_scope="per_day",
+        aggregation_rule="highest",
+        conditions=accident_hospital_conditions,
+        rate_percent=50,
+    )
+    add_amount(
+        "accident-icu-hospital-daily",
+        "意外傷害加護病房住院醫療保險金",
+        int_amount("accident_icu_daily"),
+        "因意外住進加護病房時，按實際住進加護病房日數乘以日額給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_hospital_conditions,
+    )
+    add_amount(
+        "accident-burn-center-hospital-daily",
+        "意外傷害燒燙傷中心住院醫療保險金",
+        int_amount("accident_burn_center_daily"),
+        "因意外住進燒燙傷中心時，按實際住進燒燙傷中心日數乘以日額給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_hospital_conditions,
+    )
+    add_amount(
+        "accident-outpatient-surgery",
+        "意外傷害門診手術醫療保險金",
+        int_amount("accident_outpatient_surgery"),
+        "每次意外傷害得申領一次。",
+        limit_scope="per_surgery",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "cancer-hospital-daily",
+        "癌症住院醫療保險金",
+        int_amount("cancer_hospital_daily"),
+        "以治療癌症或癌症併發症為直接目的住院時，按實際住院日數乘以日額給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-surgery",
+        "癌症手術治療保險金",
+        int_amount("cancer_surgery"),
+        "每次以治療癌症或癌症併發症為直接目的接受外科手術治療時給付。",
+        limit_scope="per_surgery",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-radiation-daily",
+        "癌症放射線治療保險金",
+        int_amount("cancer_radiation_daily"),
+        "接受放射線治療時，按實際治療日數給付；同日一次或多次均以一日計。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=cancer_conditions,
+    )
+    return entries
+
+
+def parse_fubon_vision_life_accident_health_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_vision_life_accident_health_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_VISION_LIFE_ACCIDENT_HEALTH_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    disability_term = str(version["disability_term"])
+    required_signals = [
+        str(version["fubon_code"]),
+        "富邦人壽願景人生傷害暨健康一年定期保險",
+        "本契約保障內容分三個計畫別",
+        "計畫一計畫二計畫三身故保險金或喪葬費用保險金",
+        f"完全{disability_term}保險金 50 萬 100 萬 200 萬",
+        "一般意外身故保險金或喪葬費用保險金 100 萬 200 萬 400 萬",
+        "大眾運輸工具意外身故保險金或喪葬費用保險金 100 萬 200 萬 400 萬",
+        "重大燒燙傷保險金 25 萬 50 萬 100 萬",
+        "癌症手術治療保險金 2 萬/次 3 萬/次 5 萬/次",
+        "本契約最高可續保至被保險人保險年齡五十五歲",
+        "申領之重大燒燙傷保險金以一次為限",
+        "確定罹患第二條所約定之癌症",
+        f"{disability_term}程度與保險金給付表",
+        "11 5%",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+    required_patterns = [
+        r"意外傷害加護病房住院醫療保險金\s*1\s*,?\s*000\s*元/日\s*1,500\s*元/日\s*2,000\s*元/日",
+        r"意外傷害燒燙傷中心住院醫療保險金\s*2,000\s*元/日\s*3,000\s*元/日\s*4,000\s*元/日",
+        r"癌症放射線治療保險金\s*1,000\s*元/日\s*1,500\s*元/日\s*2,000\s*元/日",
+    ]
+    if any(re.search(pattern, text) is None for pattern in required_patterns):
+        return None
+    if document.get("page_count") not in {None, version["page_count"]}:
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫別",
+        "selection_guidance": "請依保單首頁所載計畫一、計畫二或計畫三選擇；本商品不需輸入單位數。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": len(FUBON_VISION_LIFE_PLAN_VALUES),
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 55,
+            "cancer_waiting_days": version["cancer_waiting_days"],
+            "day_hospital_excluded": version["day_hospital_excluded"],
+            "accident_claim_days": 180,
+            "accident_hospital_days_limit": 90,
+            "accident_icu_days_limit": 30,
+            "burn_center_days_limit": 30,
+            "accident_outpatient_surgery_limit_times": 1,
+            "fracture_daily_rate_percent": 50,
+            "major_burn_survival_days": 15,
+            "major_burn_lifetime_limit_times": 1,
+            "disability_term": disability_term,
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "mass_transit_additional_benefit": True,
+            "short_term_rate_table": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_vision_life_accident_health_entries(
+                    str(values["label"]),
+                    values,
+                    disability_term=disability_term,
+                    cancer_waiting_days=int(version["cancer_waiting_days"]),
+                ),
+            }
+            for plan_key, values in FUBON_VISION_LIFE_PLAN_VALUES.items()
+        ],
+    }
+
+
+FUBON_XIANGANBAO_ACCIDENT_MEDICAL_RIDER_PRODUCT_VERSIONS = {
+    "209211AZ1A00421A11Z10000000": {
+        "file_name": "209211AZ1A00421A11Z10000000-A.pdf",
+        "terms_revision": "113-original",
+        "fubon_code": "TMR1130715",
+        "page_count": 3,
+    },
+    "209211AZ1A00421A11Z10000001": {
+        "file_name": "209211AZ1A00421A11Z10000001-A.pdf",
+        "terms_revision": "113-first-revision",
+        "fubon_code": "TMR1130715",
+        "page_count": 3,
+    },
+    "209211AZ1A00421A11Z10000002": {
+        "file_name": "209211AZ1A00421A11Z10000002-A.pdf",
+        "terms_revision": "113-second-revision",
+        "fubon_code": "TMR1130715",
+        "page_count": 3,
+    },
+}
+
+
+def is_fubon_xianganbao_accident_medical_rider_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_XIANGANBAO_ACCIDENT_MEDICAL_RIDER_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def fubon_xianganbao_accident_medical_rider_entries() -> list[dict[str, Any]]:
+    accident_180_condition = "意外傷害事故發生日起一百八十日內；可證明因果關係者不受一百八十日限制。"
+    source_ref = "保單條款第四、第五條及附表一，第 1-3 頁"
+    dislocation_conditions = [
+        accident_180_condition,
+        "需經醫院或診所治療，診斷確定為附表一脫臼項目之一，且實際施行脫臼開放性復位術。",
+        "同一意外傷害事故僅給付一次；多項脫臼時僅給付較高比例一項。",
+    ]
+    medical_conditions = [
+        accident_180_condition,
+        "依實際醫療費用給付，已獲全民健康保險給付部分不給付。",
+        "已獲其他傷害醫療費用保險以實支實付給付者不重複給付，但依法令或主管機關規定之例外不在此限。",
+        "海外治療同一次傷害最高給付治療日數十四天，給付總額仍不得超過保險金額。",
+        "以全民健康保險身份承保但未以該身份接受治療者，按計算所得金額百分之七十五給付。",
+    ]
+    return [
+        coverage_entry(
+            "accident-dislocation-open-reduction",
+            "意外傷害脫臼開放性復位術保險金",
+            15_000,
+            "per_event",
+            "附表一以 15 萬元為基準，依脫臼部位 10% 至 30% 計算；實際給付為 15,000 元、30,000 元或 45,000 元。",
+            source_ref,
+            calculation_basis="tiered_or_stepped",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            amount_tiers=[
+                {"label": "髖關節 30%", "amount": 45_000},
+                {"label": "肩關節 20%", "amount": 30_000},
+                {"label": "膝關節 20%", "amount": 30_000},
+                {"label": "踝關節 20%", "amount": 30_000},
+                {"label": "足關節 20%", "amount": 30_000},
+                {"label": "肘關節 10%", "amount": 15_000},
+                {"label": "腕關節 10%", "amount": 15_000},
+                {"label": "其他關節 10%", "amount": 15_000},
+            ],
+            conditions=dislocation_conditions,
+        ),
+        coverage_entry(
+            "accident-medical-reimbursement-limit",
+            "意外傷害醫療保險金（實支實付）",
+            None,
+            "face_amount",
+            "同一次傷害的給付總額不得超過主契約保單首頁所記載的本附加條款保險金額。",
+            "保單條款第五條，第 1-2 頁",
+            calculation_basis="percentage_of_base",
+            amount_role="limit",
+            limit_scope="per_injury",
+            aggregation_rule="choose_one",
+            rate_percent=100,
+            conditions=medical_conditions,
+        ),
+        coverage_entry(
+            "accident-medical-icu-burn-center-limit",
+            "加護病房或燒燙傷中心意外醫療限額",
+            None,
+            "face_amount",
+            "於醫院加護病房或燒燙傷中心住院診療者，意外傷害醫療保險金給付限額提高為保險金額的一點五倍。",
+            "保單條款第五條，第 2 頁",
+            calculation_basis="percentage_of_base",
+            amount_role="limit",
+            limit_scope="per_injury",
+            aggregation_rule="choose_one",
+            rate_percent=150,
+            conditions=[
+                *medical_conditions,
+                "限醫院之加護病房或燒燙傷中心住院診療情形適用。",
+            ],
+        ),
+    ]
+
+
+def parse_fubon_xianganbao_accident_medical_rider_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_xianganbao_accident_medical_rider_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_XIANGANBAO_ACCIDENT_MEDICAL_RIDER_PRODUCT_VERSIONS[
+        product_id
+    ]
+    if (
+        document.get("page_count") not in {None, version["page_count"]}
+        or document.get("pages_parsed") not in {None, version["page_count"]}
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    required_signals = [
+        str(version["fubon_code"]),
+        "富邦人壽享安寶意外傷害醫療保險給付附加條款",
+        "意外傷害脫臼開放性復位術保險金",
+        "意外傷害醫療保險金",
+        "本附加條款適用於「富邦人壽享安寶意外傷害暨兒童傷害失能保險附約」",
+        "「保險金額」 :係指本附加條款投保時約定之保險金額",
+        "脫臼開放性復位術",
+        "同一次傷害的給付總額不得超過主契約保單首頁所記載的本附加條款",
+        "被保險人以全民健康保險身份承保,但未以此身份接受治療者",
+        "百分之七十五給付",
+        "給付限額提高為「 保險金額」的一點五倍",
+        "附表一:脫臼別表",
+        "肩關節 15萬元",
+        "髖關節 30%",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+
+    compact_text = compact_whitespace(text)
+    if not re.search(r"肘關節\s+10%\s+3\s+腕關節\s+10%", compact_text):
+        return None
+    if not re.search(r"膝關節\(膝蓋骨除外\)\s+20%\s+6\s+踝關節\s+20%", compact_text):
+        return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "本附加條款保險金額",
+        "selection_guidance": "請輸入主契約保單首頁或批註所記載的本附加條款保險金額。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "fubon_code": version["fubon_code"],
+            "accident_claim_days": 180,
+            "overseas_medical_treatment_days_limit": 14,
+            "non_nhi_payment_rate_percent": 75,
+            "medical_icu_burn_center_limit_rate_percent": 150,
+            "medical_reimbursement_nhi_excess_only": True,
+            "duplicate_reimbursement_excluded": True,
+            "dislocation_base_amount": 150_000,
+            "dislocation_table_item_count": 8,
+            "dislocation_rate_min_percent": 10,
+            "dislocation_rate_max_percent": 30,
+        },
+        "coverage_entries": fubon_xianganbao_accident_medical_rider_entries(),
+    }
+
+
+YUANTA_NEW_ACCIDENT_MEDICAL_RIDER_PRODUCT_VERSIONS = {
+    "261211RZ1AQR021A11Z10000000": {
+        "file_name": "261211RZ1AQR021A11Z10000000-A.pdf",
+        "terms_revision": "108-original",
+        "yuanta_code": "QR-上市日期:108.05.31",
+        "page_count": 2,
+    },
+    "261211RZ1AQR021A11Z10000001": {
+        "file_name": "261211RZ1AQR021A11Z10000001-A.pdf",
+        "terms_revision": "109-first-revision",
+        "yuanta_code": "QR-2020.01",
+        "page_count": 2,
+    },
+    "261211RZ1AQR021A11Z10000002": {
+        "file_name": "261211RZ1AQR021A11Z10000002-A.pdf",
+        "terms_revision": "110-second-revision",
+        "yuanta_code": "QR-2021.12",
+        "page_count": 2,
+    },
+    "261211RZ1AQR021A11Z10000003": {
+        "file_name": "261211RZ1AQR021A11Z10000003-A.pdf",
+        "terms_revision": "112-third-revision",
+        "yuanta_code": "QR-2023.01",
+        "page_count": 2,
+    },
+}
+
+
+def is_yuanta_new_accident_medical_rider_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = YUANTA_NEW_ACCIDENT_MEDICAL_RIDER_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def yuanta_new_accident_medical_rider_entries() -> list[dict[str, Any]]:
+    accident_180_condition = "意外傷害事故發生日起一百八十日內；可證明因果關係者不受一百八十日限制。"
+    return [
+        coverage_entry(
+            "accident-medical-reimbursement-limit",
+            "傷害醫療保險金（實支實付）",
+            None,
+            "face_amount",
+            "就實際醫療費用超過全民健康保險給付部分給付；同一次傷害的給付總額不得超過保險單所記載的每次實支實付傷害醫療保險金限額。",
+            "保單條款第四、五條，第 1 頁",
+            calculation_basis="percentage_of_base",
+            amount_role="limit",
+            limit_scope="per_injury",
+            rate_percent=100,
+            conditions=[
+                accident_180_condition,
+                "以實際醫療費用超過全民健康保險給付部分為給付範圍。",
+                "不以全民健康保險對象身分治療，或至不具全民健康保險之醫院或診所治療者，依實際醫療費用百分之六十五給付，仍以前述限額為限。",
+            ],
+        ),
+    ]
+
+
+def parse_yuanta_new_accident_medical_rider_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_yuanta_new_accident_medical_rider_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = YUANTA_NEW_ACCIDENT_MEDICAL_RIDER_PRODUCT_VERSIONS[product_id]
+    if (
+        document.get("page_count") not in {None, version["page_count"]}
+        or document.get("pages_parsed") not in {None, version["page_count"]}
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    required_signals = [
+        str(version["yuanta_code"]),
+        "元大人壽新意外傷害醫療保險附約",
+        "傷害醫療保險金",
+        "被保險人於本附約有效期間內遭受第二條約定的意外傷害事故",
+        "自意外傷害事故發生之日起一百八十日以內",
+        "本公司就其實際醫療費用,超過全民健康保險給付部分,給付傷害醫療保險金",
+        "前項同一次傷害的給付總額不得超過保險單所記載的",
+        "每次實支實付傷害醫療保險金限額",
+        "醫療費用未經全民健康保險給付者之處理方式",
+        "百分之六十五給付",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "每次實支實付傷害醫療保險金限額",
+        "selection_guidance": "請輸入保險單所記載的每次實支實付傷害醫療保險金限額。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "yuanta_code": version["yuanta_code"],
+            "accident_claim_days": 180,
+            "non_nhi_payment_rate_percent": 65,
+            "medical_reimbursement_nhi_excess_only": True,
+            "policy_recorded_limit_label": "每次實支實付傷害醫療保險金限額",
+        },
+        "coverage_entries": yuanta_new_accident_medical_rider_entries(),
+    }
+
+
+YUANTA_PERSONAL_ACCIDENT_RIDER_PRODUCT_VERSIONS = {
+    "261211RZ1APR021A11Z10000013": {
+        "file_name": "261211RZ1APR021A11Z10000013-A.pdf",
+        "terms_revision": "105-thirteenth-revision",
+        "filing_signal": "元壽字第 1050000730 號函備查",
+        "page_count": 5,
+    },
+    "261211RZ1APR021A11Z10000014": {
+        "file_name": "261211RZ1APR021A11Z10000014-A.pdf",
+        "terms_revision": "106-fourteenth-revision",
+        "filing_signal": "金管保財字第 10502502801 號令修正",
+        "page_count": 5,
+    },
+}
+
+
+def is_yuanta_personal_accident_rider_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = YUANTA_PERSONAL_ACCIDENT_RIDER_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def yuanta_personal_accident_rider_entries() -> list[dict[str, Any]]:
+    accident_180_condition = (
+        "自意外傷害事故發生之日起一百八十日以內死亡、致成殘廢或重大燒燙傷；"
+        "超過一百八十日者，受益人需證明與該意外傷害事故具有因果關係。"
+    )
+    minor_death_condition = (
+        "未滿十五足歲被保險人身故時，身故保險金於滿十五足歲日起發生效力；"
+        "未滿十五足歲前死亡者無息退還當年度所繳保險費。"
+    )
+    funeral_limit_condition = (
+        "精神障礙或其他心智缺陷且不能辨識行為或欠缺依辨識而行為能力者，"
+        "身故保險金變更為喪葬費用保險金，並受遺產稅喪葬費用扣除額半數之上限限制。"
+    )
+    return [
+        coverage_entry(
+            "accidental-death-or-funeral",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "face_amount",
+            "被保險人因第三條約定之意外傷害事故死亡時，按保險金額給付身故保險金；"
+            "特定未成年人或心智缺陷情形改依條款退還保費或給付喪葬費用保險金。",
+            "第五條【無息退還當年度所繳保險費、身故保險金或喪葬費用保險金的給付】",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            conditions=[
+                accident_180_condition,
+                minor_death_condition,
+                funeral_limit_condition,
+            ],
+        ),
+        coverage_entry(
+            "accidental-disability",
+            "殘廢保險金",
+            None,
+            "face_amount",
+            "被保險人因意外傷害事故致成附表一所列殘廢程度之一者，依附表一給付比例計算；"
+            "同一事故多項殘廢合計最高以保險金額為限，不同事故累計最高亦以保險金額為限。",
+            "第六條【殘廢保險金的給付】及附表一【殘廢程度與保險金給付表】",
+            calculation_basis="percentage_of_base",
+            amount_role="base",
+            limit_scope="per_policy",
+            aggregation_rule="cumulative_cap",
+            rate_min_percent=5,
+            rate_max_percent=100,
+            conditions=[
+                accident_180_condition,
+                "同一手或同一足之殘廢項目僅給付一項；等級不同時給付較嚴重項目。",
+                "合併以前殘廢後可領較嚴重項目者，應扣除以前殘廢視同已給付之金額。",
+            ],
+        ),
+        coverage_entry(
+            "major-burn",
+            "重大燒燙傷保險金",
+            None,
+            "face_amount",
+            "符合條款列示之二度燒燙傷面積、三度燒燙傷面積或顏面燒燙傷合併五官功能障礙者，"
+            "按保險金額百分之二十五給付，終生以一次為限。",
+            "第七條【重大燒燙傷保險金的給付】及附表二【重大燒燙傷範圍】",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="lifetime",
+            rate_percent=25,
+            conditions=[
+                accident_180_condition,
+                "重大燒燙傷範圍依現行全民健康保險重大傷病定義及附表二。",
+                "重大燒燙傷保險金終生以一次為限。",
+            ],
+        ),
+    ]
+
+
+def parse_yuanta_personal_accident_rider_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_yuanta_personal_accident_rider_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = YUANTA_PERSONAL_ACCIDENT_RIDER_PRODUCT_VERSIONS[product_id]
+    if (
+        document.get("page_count") not in {None, version["page_count"]}
+        or document.get("pages_parsed") not in {None, version["page_count"]}
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    required_signals = [
+        "元大人壽人身傷害保險附約",
+        "意外身故或喪葬費用、意外殘廢及重大燒燙傷保險金給付",
+        str(version["filing_signal"]),
+        "第五條【無息退還當年度所繳保險費、身故保險金或喪葬費用保險金的給付】",
+        "本公司按保險金額給付身故保險金",
+        "第六條【殘廢保險金的給付】",
+        "殘廢程度之一者,本公司給付殘廢保險金,其金額按該表所列之給付比例計算",
+        "殘廢程度殘廢等級給付比例",
+        "第七條【重大燒燙傷保險金的給付】",
+        "保險金額百分之二十五給付重大燒燙傷保險金",
+        "第八條【保險給付的限制】",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+    disability_table_start = text.find("殘廢程度殘廢等級給付比例")
+    if disability_table_start < 0:
+        return None
+    disability_table = text[disability_table_start:]
+    disability_percentages = [
+        int(value)
+        for value in re.findall(r"(\d{1,3})%", disability_table)
+        if 0 < int(value) <= 100
+    ]
+    if not disability_percentages:
+        return None
+    if min(disability_percentages) != 5 or max(disability_percentages) != 100:
+        return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保險單首頁或批註所記載的本附約保險金額。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "filing_signal": version["filing_signal"],
+            "accident_claim_days": 180,
+            "maximum_renewal_age": 75,
+            "child_maximum_renewal_age": 23,
+            "minor_death_premium_refund_before_age": 15,
+            "funeral_benefit_limit_rule": True,
+            "death_benefit_rate_percent": 100,
+            "disability_term": "殘廢",
+            "disability_schedule_item_count": len(disability_percentages),
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "major_burn_rate_percent": 25,
+            "major_burn_lifetime_limit_times": 1,
+            "death_disability_same_accident_cap": True,
+        },
+        "coverage_entries": yuanta_personal_accident_rider_entries(),
+    }
+
+
+YUANTA_FUNXINYOU_ACCIDENT_MEDICAL_ADDENDUM_PRODUCT_VERSIONS = {
+    "261221AZ1ATAM21A11Z10000003": {
+        "file_name": "261221AZ1ATAM21A11Z10000003-A.pdf",
+        "terms_revision": "third-revision",
+        "contract_reference": "本契約",
+        "page_count": 1,
+    },
+    "261221AZ1ATAM21A11Z10000004": {
+        "file_name": "261221AZ1ATAM21A11Z10000004-A.pdf",
+        "terms_revision": "fourth-revision",
+        "contract_reference": "主契約",
+        "page_count": 1,
+    },
+}
+
+
+def is_yuanta_funxinyou_accident_medical_addendum_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = YUANTA_FUNXINYOU_ACCIDENT_MEDICAL_ADDENDUM_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def yuanta_funxinyou_accident_medical_addendum_entries(
+    contract_reference: str,
+) -> list[dict[str, Any]]:
+    accident_180_condition = (
+        f"被保險人於本附加條款有效期間內遭受{contract_reference}第二條約定的意外傷害事故，"
+        "自事故發生日起一百八十日內治療；超過一百八十日繼續治療者，"
+        "受益人需證明治療與該意外傷害事故具有因果關係。"
+    )
+    return [
+        coverage_entry(
+            "accident-medical-reimbursement-limit",
+            "傷害醫療保險金",
+            None,
+            "policy_recorded_limit",
+            "經登記合格的醫院或診所治療時，就實際醫療費用超過全民健康保險給付部分給付；"
+            "同一次傷害給付總額不得超過保險單所記載的每次實支實付傷害醫療保險金限額。",
+            "第二條【傷害醫療保險金的給付】",
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_injury",
+            rate_percent=100,
+            conditions=[
+                accident_180_condition,
+                "以實際醫療費用超過全民健康保險給付部分為給付範圍。",
+            ],
+        ),
+        coverage_entry(
+            "non-nhi-medical-reimbursement",
+            "醫療費用未經全民健康保險給付者之處理方式",
+            None,
+            "policy_recorded_limit",
+            "未以全民健康保險身分住院診療，或前往不具有全民健康保險之醫院住院診療，"
+            "致各項醫療費用未經全民健康保險給付時，依實際支付各項費用 65% 給付，"
+            "仍以前述保險金條款約定限額為限。",
+            "第三條【醫療費用未經全民健康保險給付者之處理方式】",
+            calculation_basis="percentage_of_actual_expense_with_cap",
+            amount_role="payout",
+            limit_scope="per_injury",
+            rate_percent=65,
+            conditions=[accident_180_condition],
+        ),
+    ]
+
+
+def parse_yuanta_funxinyou_accident_medical_addendum_limit(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_yuanta_funxinyou_accident_medical_addendum_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = YUANTA_FUNXINYOU_ACCIDENT_MEDICAL_ADDENDUM_PRODUCT_VERSIONS[
+        product_id
+    ]
+    if (
+        document.get("page_count") not in {None, version["page_count"]}
+        or document.get("pages_parsed") not in {None, version["page_count"]}
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    contract_reference = str(version["contract_reference"])
+    required_signals = [
+        "元大人壽Fun 心遊傷害醫療保險給付附加條款",
+        "第二條【傷害醫療保險金的給付】",
+        f"遭受{contract_reference}第二條約定的意外傷害事故",
+        "超過全民健康保險給付部分,給付傷害醫療保險金",
+        "每次實支實付傷害醫療保險金限額",
+        "第三條【醫療費用未經全民健康保險給付者之處理方式】",
+        "本公司依被保險人實際支付之各項費用之65%給付",
+        "第四條【傷害醫療保險金的申領】",
+        "第五條【傷害醫療保險金受益人之指定】",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "每次實支實付傷害醫療保險金限額",
+        "selection_guidance": "請輸入保險單所記載的每次實支實付傷害醫療保險金限額。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "contract_reference": contract_reference,
+            "accident_claim_days": 180,
+            "non_nhi_payment_rate_percent": 65,
+            "medical_reimbursement_nhi_excess_only": True,
+            "policy_recorded_limit_label": "每次實支實付傷害醫療保險金限額",
+            "beneficiary_self_only": True,
+        },
+        "coverage_entries": yuanta_funxinyou_accident_medical_addendum_entries(
+            contract_reference
+        ),
+    }
+
+
+FUBON_NEW_PINGAN_ACCIDENT_PRODUCT_VERSIONS = {
+    "209291M11A00300": {
+        "file_name": "209291M11A00300-A.pdf",
+        "terms_revision": "102-original",
+        "fubon_code": "FBB1020401",
+        "page_count": 13,
+        "disability_schedule_item_count": 75,
+        "legacy_relaxed_validation": True,
+    },
+    "209291MZ1A00321A11Z10000001": {
+        "file_name": "209291MZ1A00321A11Z10000001-A.pdf",
+        "terms_revision": "104-first-revision",
+        "fubon_code": "FBB1040804",
+        "page_count": 14,
+        "disability_schedule_item_count": 79,
+        "legacy_relaxed_validation": True,
+    },
+    "209291MZ1A00321A11Z10000002": {
+        "file_name": "209291MZ1A00321A11Z10000002-A.pdf",
+        "terms_revision": "107-second-revision",
+        "fubon_code": "FBB1070914",
+        "page_count": 14,
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ1A00321A11Z10000003": {
+        "file_name": "209291MZ1A00321A11Z10000003-A.pdf",
+        "terms_revision": "109-third-revision",
+        "fubon_code": "FBB1090101",
+        "page_count": 14,
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ1A00321A11Z10000004": {
+        "file_name": "209291MZ1A00321A11Z10000004-A.pdf",
+        "terms_revision": "109-fourth-revision",
+        "fubon_code": "FBB1090901",
+        "page_count": 14,
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ1A00321A11Z10000005": {
+        "file_name": "209291MZ1A00321A11Z10000005-A.pdf",
+        "terms_revision": "111-fifth-revision",
+        "fubon_code": "FBB1111202",
+        "page_count": 14,
+        "disability_schedule_item_count": 80,
+    },
+}
+
+
+def is_fubon_new_pingan_accident_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_NEW_PINGAN_ACCIDENT_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+FUBON_NEW_PINGAN_PLAN_VALUES = {
+    "plan-1": {"label": "計畫一", "accident_base": 1_000_000, "medical_limit": 50_000},
+    "plan-2": {"label": "計畫二", "accident_base": 2_000_000, "medical_limit": 50_000},
+    "plan-3": {"label": "計畫三", "accident_base": 3_000_000, "medical_limit": 50_000},
+    "plan-4": {"label": "計畫四", "accident_base": 5_000_000, "medical_limit": 50_000},
+    "plan-5": {"label": "計畫五", "accident_base": 1_000_000, "hospital_daily": 1_500},
+    "plan-6": {"label": "計畫六", "accident_base": 2_000_000, "hospital_daily": 1_500},
+    "plan-7": {"label": "計畫七", "accident_base": 3_000_000, "hospital_daily": 1_500},
+    "plan-8": {"label": "計畫八", "accident_base": 5_000_000, "hospital_daily": 1_500},
+}
+
+
+def fubon_new_pingan_accident_entries(
+    plan_label: str,
+    values: dict[str, int | str],
+) -> list[dict[str, Any]]:
+    source_ref = "條款第七至十一條及附表一、二，第 2-8 頁"
+    accident_base = int(values["accident_base"])
+    medical_limit = int(values.get("medical_limit") or 0)
+    hospital_daily = int(values.get("hospital_daily") or 0)
+    common_conditions = [
+        "依保單首頁所載計畫別與附表一金額給付；有效期間內不受理計畫別變更。",
+        "本商品為非保證續保，最高可續保至被保險人保險年齡六十五歲時之該保險期間屆滿。",
+        "限條款第二條約定之意外傷害事故。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "身故、失能或醫療原則上須自意外傷害事故發生日起一百八十日內符合給付條件；超過者須證明因果關係。",
+    ]
+    disability_conditions = [
+        *accident_conditions,
+        "同一意外傷害事故多項失能合計最高以附表一最高給付金額為限。",
+        "同一意外傷害事故致成失能後身故時，意外身故與意外失能合計最高以意外身故保險金額為限。",
+        "失能等級第一級給付後，本契約效力終止。",
+    ]
+    medical_conditions = [
+        *accident_conditions,
+        "實際醫療費用須為超過全民健康保險給付部分，且同一次傷害實支給付總額以附表一限額為限。",
+        "條款另約定依兩種日額換算方式中較優者給付；兩種換算方式不可全部相加。",
+    ]
+    hospital_conditions = [
+        *accident_conditions,
+        "同一意外傷害事故住院給付日數最高九十日；出院後同日再次入院時，該日不得重複計入住院醫療日數。",
+    ]
+    fracture_conditions = [
+        *hospital_conditions,
+        "骨折未住院或住院未達骨折別表日數時，按住院日額二分之一乘以未住院日數給付。",
+        "不完全骨折按完全骨折日數二分之一，骨骼龜裂按四分之一；同時多項骨折給付較高者。",
+    ]
+
+    def add(
+        entry_id: str,
+        name: str,
+        amount: int,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_percent: int | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> dict[str, Any]:
+        return coverage_entry(
+            entry_id,
+            name,
+            amount,
+            basis,
+            f"{plan_label}：{note}",
+            source_ref,
+            calculation_basis=calculation_basis,
+            amount_role=amount_role,
+            limit_scope=limit_scope,
+            aggregation_rule=aggregation_rule,
+            conditions=conditions or common_conditions,
+            amount_tiers=amount_tiers,
+            rate_percent=rate_percent,
+            rate_min_percent=rate_min_percent,
+            rate_max_percent=rate_max_percent,
+        )
+
+    entries = [
+        add(
+            "accidental-death-or-funeral",
+            "意外身故保險金或喪葬費用保險金",
+            accident_base,
+            f"附表一意外身故基準金額 {accident_base:,} 元；給付後契約效力終止。",
+            limit_scope="per_policy",
+            conditions=accident_conditions,
+        ),
+        add(
+            "accidental-disability",
+            "意外失能保險金",
+            accident_base,
+            f"以附表一最高給付金額 {accident_base:,} 元乘以附表二所列給付比例。",
+            basis="benefit_base",
+            calculation_basis="table_multiplier",
+            amount_role="base",
+            aggregation_rule="cumulative_cap",
+            conditions=disability_conditions,
+            amount_tiers=disability_percentage_tiers(accident_base),
+            rate_min_percent=5,
+            rate_max_percent=100,
+        ),
+    ]
+    if medical_limit:
+        entries.extend(
+            [
+                add(
+                    "accident-medical-reimbursement",
+                    "意外傷害醫療保險金",
+                    medical_limit,
+                    f"超過全民健康保險給付部分實支實付，每次傷害限額 {medical_limit:,} 元。",
+                    basis="per_injury_limit",
+                    calculation_basis="reimbursement_with_cap",
+                    amount_role="limit",
+                    limit_scope="per_injury",
+                    conditions=medical_conditions,
+                ),
+                add(
+                    "accident-medical-daily-option-a",
+                    "意外傷害醫療保險金日額換算一",
+                    medical_limit // 10_000 * 70,
+                    "每 1 萬元意外傷害醫療限額換算住院每日 70 元；本商品限額 5 萬元，故為每日 350 元。",
+                    basis="daily_total",
+                    calculation_basis="per_day",
+                    limit_scope="per_day",
+                    aggregation_rule="choose_one",
+                    conditions=[
+                        *medical_conditions,
+                        "每次事故給付日數總計最高九十日。",
+                    ],
+                ),
+                add(
+                    "accident-medical-daily-option-b",
+                    "意外傷害醫療保險金日額換算二",
+                    medical_limit // 10_000 * 40,
+                    "每 1 萬元意外傷害醫療限額換算住院每日 40 元、門診每日 20 元；本商品限額 5 萬元，故住院每日 200 元、門診每日 100 元。",
+                    basis="daily_total",
+                    calculation_basis="per_day",
+                    limit_scope="per_day",
+                    aggregation_rule="choose_one",
+                    conditions=[
+                        *medical_conditions,
+                        "住院與門診給付日數分別最高九十日；門診一日多次以一日計。",
+                    ],
+                    amount_tiers=[
+                        {"label": "住院每日", "amount": medical_limit // 10_000 * 40},
+                        {"label": "門診每日", "amount": medical_limit // 10_000 * 20},
+                    ],
+                ),
+            ]
+        )
+    if hospital_daily:
+        entries.extend(
+            [
+                add(
+                    "accident-hospital-daily",
+                    "意外傷害住院醫療保險金",
+                    hospital_daily,
+                    f"按實際住院日數給付每日 {hospital_daily:,} 元，含入院及出院當日。",
+                    basis="daily_total",
+                    calculation_basis="per_day",
+                    limit_scope="per_day",
+                    aggregation_rule="cumulative_cap",
+                    conditions=hospital_conditions,
+                ),
+                add(
+                    "fracture-unhospitalized-daily",
+                    "骨折未住院醫療保險金",
+                    hospital_daily // 2,
+                    "骨折未住院或住院未達骨折別表日數時，以住院日額二分之一作為每日基準。",
+                    basis="daily_total",
+                    calculation_basis="percentage_of_base",
+                    amount_role="reference",
+                    limit_scope="per_day",
+                    aggregation_rule="highest",
+                    conditions=fracture_conditions,
+                    rate_percent=50,
+                ),
+            ]
+        )
+    return entries
+
+
+def parse_fubon_new_pingan_accident_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_new_pingan_accident_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_NEW_PINGAN_ACCIDENT_PRODUCT_VERSIONS[product_id]
+    if (
+        document.get("page_count") not in {None, version["page_count"]}
+        or document.get("pages_parsed") not in {None, version["page_count"]}
+    ):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_whitespace(text)
+    required_signals = [
+        str(version["fubon_code"]),
+        "富邦人壽新平安傷害一年定期保險",
+        "本契約保障內容分八個計畫別",
+        "各計畫別之給付內容詳附表一",
+        "本契約最高可續保至被保險人保險年齡六十五歲時之該保險期間屆滿",
+        "意外傷害醫療保險金的給付",
+        "每壹萬元換算住院每日柒拾元",
+        "每壹萬元換算住院每日肆拾元、門診每日貮拾元",
+        "意外傷害住院醫療保險金的給付",
+        "意外身故保險金及意外失能保險金給付的限制",
+        "失能程度與保險金給付表",
+        "計畫一計畫二計畫三計畫四計畫五計畫六計畫七計畫八",
+    ]
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+    table_start = compact_text.find("附表一:")
+    table_end = compact_text.find("附表二:", table_start + 1)
+    if table_start < 0 or table_end <= table_start:
+        return None
+    table_text = compact_table_text(compact_text[table_start:table_end])
+    table_signals = [
+        "計畫別保險金項目計畫一計畫二計畫三計畫四計畫五計畫六計畫七計畫八",
+        "意外身故保險金或喪葬費用保險金100萬200萬300萬500萬100萬200萬300萬500萬",
+        "意外失能保險金致成失能等級之一100萬乘以附表二所列給付比例200萬乘以附表二所列給付比例300萬乘以附表二所列給付比例500萬乘以附表二所列給付比例100萬乘以附表二所列給付比例200萬乘以附表二所列給付比例300萬乘以附表二所列給付比例500萬乘以附表二所列給付比例",
+        "最高給付金額100萬200萬300萬500萬100萬200萬300萬500萬",
+        "意外傷害醫療保險金5萬-",
+        "意外傷害住院醫療保險金-1500元/日",
+    ]
+    if any(compact_table_text(signal) not in table_text for signal in table_signals):
+        return None
+    disability_table_start = compact_text.find("失能程度與保險金給付表")
+    disability_table_end = compact_text.find("附表三", disability_table_start + 1)
+    if disability_table_start < 0 or disability_table_end <= disability_table_start:
+        return None
+    disability_percentages = [
+        int(value)
+        for value in re.findall(
+            r"(\d{1,3})%",
+            compact_text[disability_table_start:disability_table_end],
+        )
+    ]
+    if (
+        len(disability_percentages) != version["disability_schedule_item_count"]
+        or min(disability_percentages) != 5
+        or max(disability_percentages) != 100
+    ):
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫別",
+        "selection_guidance": "請依保單首頁選擇計畫一至八；計畫一至四為意外醫療限額，計畫五至八為意外住院日額。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": len(FUBON_NEW_PINGAN_PLAN_VALUES),
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 65,
+            "accident_claim_days": 180,
+            "accident_medical_limit": 50_000,
+            "accident_medical_daily_formula_per_10000_inpatient_only": 70,
+            "accident_medical_daily_formula_per_10000_inpatient_split": 40,
+            "accident_medical_daily_formula_per_10000_outpatient_split": 20,
+            "accident_medical_daily_formula_days_limit": 90,
+            "accident_hospital_daily_amount": 1_500,
+            "accident_hospital_days_limit": 90,
+            "fracture_daily_rate_percent": 50,
+            "death_disability_same_accident_cap": True,
+            "disability_term": "失能",
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_new_pingan_accident_entries(
+                    str(values["label"]),
+                    values,
+                ),
+            }
+            for plan_key, values in FUBON_NEW_PINGAN_PLAN_VALUES.items()
+        ],
+    }
+
+
+FUBON_666_ACCIDENT_HEALTH_PRODUCT_VERSIONS = {
+    "209291M12A00100": {
+        "file_name": "209291M12A00100-A.pdf",
+        "terms_revision": "102-original",
+        "ctbc_code": "CTBC1020401",
+        "page_count": 16,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+    },
+    "209291MZ2A00121A11Z10000001": {
+        "file_name": "209291MZ2A00121A11Z10000001-A.pdf",
+        "terms_revision": "104-first-revision",
+        "ctbc_code": "CTBC1040804",
+        "page_count": 17,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ2A00121A11Z10000002": {
+        "file_name": "209291MZ2A00121A11Z10000002-A.pdf",
+        "terms_revision": "105-second-revision",
+        "ctbc_code": "CTBC1050901",
+        "page_count": 17,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ2A00121A11Z10000003": {
+        "file_name": "209291MZ2A00121A11Z10000003-A.pdf",
+        "terms_revision": "107-third-revision",
+        "ctbc_code": "CTBC1070914",
+        "page_count": 17,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 79,
+    },
+    "209291MZ2A00121A11Z10000004": {
+        "file_name": "209291MZ2A00121A11Z10000004-A.pdf",
+        "terms_revision": "109-fourth-revision",
+        "ctbc_code": "CTBC1090101",
+        "page_count": 18,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ2A00121A11Z10000005": {
+        "file_name": "209291MZ2A00121A11Z10000005-A.pdf",
+        "terms_revision": "109-fifth-revision",
+        "ctbc_code": "CTBC1090901",
+        "page_count": 18,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ2A00121A11Z10000006": {
+        "file_name": "209291MZ2A00121A11Z10000006-A.pdf",
+        "terms_revision": "110-sixth-revision",
+        "ctbc_code": "CTBC1100701",
+        "page_count": 18,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+    },
+    "209291MZ2A00121A11Z10000007": {
+        "file_name": "209291MZ2A00121A11Z10000007-A.pdf",
+        "terms_revision": "111-seventh-revision",
+        "ctbc_code": "CTBC1111202",
+        "page_count": 18,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+    },
+}
+
+
+def is_fubon_666_accident_health_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_666_ACCIDENT_HEALTH_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+FUBON_666_PLAN_VALUES = {
+    "plan-1": {
+        "label": "計畫一",
+        "life_death": 1_000_000,
+        "total_disability": 1_000_000,
+        "general_accidental_death": 2_500_000,
+        "mass_transit_accidental_death": 2_500_000,
+        "general_accidental_disability_base": 2_500_000,
+        "mass_transit_accidental_disability_base": 2_500_000,
+        "accident_hospital_daily": 2_500,
+        "fracture_unhospitalized_daily": 1_250,
+    },
+    "plan-2": {
+        "label": "計畫二",
+        "life_death": None,
+        "total_disability": None,
+        "general_accidental_death": 2_500_000,
+        "mass_transit_accidental_death": 2_500_000,
+        "general_accidental_disability_base": 2_500_000,
+        "mass_transit_accidental_disability_base": 2_500_000,
+        "accident_hospital_daily": 2_000,
+        "fracture_unhospitalized_daily": 1_000,
+    },
+}
+
+
+def fubon_666_accident_health_entries(
+    plan_label: str,
+    values: dict[str, int | str | None],
+    disability_term: str,
+) -> list[dict[str, Any]]:
+    source_ref = "條款第十二條、第十三條、第十七條至第十九條及附表一至三，第 4-18 頁"
+    common_conditions = [
+        "須依保單首頁所載計畫別給付；本契約有效期間內不受理計畫別變更。",
+        "一年定期，非保證續保，最高可續保至被保險人保險年齡65歲時之該保險期間屆滿。",
+    ]
+    life_conditions = [
+        *common_conditions,
+        f"身故保險金或完全{disability_term}保險金依要保人投保計畫別對照附表一給付。",
+        f"身故保險金或完全{disability_term}保險金給付後，本契約效力終止；完全{disability_term}後身故者僅給付其中一項。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "限第二條約定之非由疾病引起之外來突發意外傷害事故。",
+        f"身故或{disability_term}原則上須自意外傷害事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+    ]
+    mass_transit_conditions = [
+        *accident_conditions,
+        "須以乘客身分搭乘條款定義之大眾運輸工具，並在進入至完全離開大眾運輸工具期間遭受意外傷害事故。",
+        f"大眾運輸工具意外身故或{disability_term}保險金係除一般意外給付外另依附表一金額給付。",
+    ]
+    hospital_conditions = [
+        *accident_conditions,
+        "意外傷害事故發生日起一百八十日以內經登記合格醫院住院治療者，按附表一日額乘以實際住院日數給付。",
+        "同一次意外傷害之意外傷害住院醫療保險金給付日數不得超過九十日。",
+    ]
+    fracture_conditions = [
+        *hospital_conditions,
+        "骨折未住院或住院未達骨折別所定日數者，未住院部分按骨折別所定日數乘以意外傷害住院醫療保險金日額的二分之一給付。",
+        "不完全骨折按完全骨折日數二分之一給付；骨骼龜裂按完全骨折日數四分之一給付；同時二項以上骨折僅給付較高等級一項。",
+    ]
+    entries: list[dict[str, Any]] = []
+
+    def add_amount(
+        entry_id: str,
+        name: str,
+        amount: int | None,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_percent: int | float | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> None:
+        if amount is None:
+            return
+        entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                amount,
+                basis,
+                f"{plan_label}：{note}",
+                source_ref,
+                calculation_basis=calculation_basis,
+                amount_role=amount_role,
+                limit_scope=limit_scope,
+                aggregation_rule=aggregation_rule,
+                conditions=conditions or common_conditions,
+                amount_tiers=amount_tiers,
+                rate_percent=rate_percent,
+                rate_min_percent=rate_min_percent,
+                rate_max_percent=rate_max_percent,
+            )
+        )
+
+    life_death = values.get("life_death")
+    total_disability = values.get("total_disability")
+    general_accidental_death = int(values["general_accidental_death"])
+    mass_transit_accidental_death = int(values["mass_transit_accidental_death"])
+    general_disability_base = int(values["general_accidental_disability_base"])
+    mass_transit_disability_base = int(
+        values["mass_transit_accidental_disability_base"]
+    )
+    accident_hospital_daily = int(values["accident_hospital_daily"])
+    fracture_unhospitalized_daily = int(values["fracture_unhospitalized_daily"])
+
+    add_amount(
+        "life-death-or-funeral",
+        "身故保險金或喪葬費用保險金",
+        life_death if isinstance(life_death, int) else None,
+        "被保險人於契約有效期間內身故者，按附表一所載金額給付。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "total-disability",
+        f"完全{disability_term}保險金",
+        total_disability if isinstance(total_disability, int) else None,
+        f"致成附表二所列完全{disability_term}程度之一者，按附表一所載金額給付。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "general-accidental-death-or-funeral",
+        "一般意外身故保險金或喪葬費用保險金",
+        general_accidental_death,
+        "一般意外身故按附表一計畫別金額給付。",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "mass-transit-accidental-death-or-funeral",
+        "大眾運輸工具意外身故保險金或喪葬費用保險金",
+        mass_transit_accidental_death,
+        "以乘客身分搭乘大眾運輸工具期間發生意外身故者，除一般意外身故外另給付。",
+        aggregation_rule="conditional_additive",
+        conditions=mass_transit_conditions,
+    )
+    add_amount(
+        "general-accidental-disability",
+        f"一般意外{disability_term}保險金",
+        general_disability_base,
+        f"按附表三{disability_term}等級給付比例計算；同一事故多項{disability_term}最高以附表一所列給付金額為限。",
+        basis="benefit_base",
+        calculation_basis="table_multiplier",
+        amount_role="base",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_conditions,
+        amount_tiers=disability_percentage_tiers(general_disability_base),
+        rate_min_percent=5,
+        rate_max_percent=100,
+    )
+    add_amount(
+        "mass-transit-accidental-disability",
+        f"大眾運輸工具意外{disability_term}保險金",
+        mass_transit_disability_base,
+        f"以乘客身分搭乘大眾運輸工具期間發生意外{disability_term}者，除一般意外{disability_term}外另依附表三比例給付。",
+        basis="benefit_base",
+        calculation_basis="table_multiplier",
+        amount_role="base",
+        aggregation_rule="conditional_additive",
+        conditions=mass_transit_conditions,
+        amount_tiers=disability_percentage_tiers(mass_transit_disability_base),
+        rate_min_percent=5,
+        rate_max_percent=100,
+    )
+    add_amount(
+        "accident-hospital-daily",
+        "意外傷害住院醫療保險金",
+        accident_hospital_daily,
+        "按實際住院日數含出院及入院當日乘以附表一日額給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=hospital_conditions,
+    )
+    add_amount(
+        "fracture-unhospitalized-daily",
+        "骨折未住院醫療保險金",
+        fracture_unhospitalized_daily,
+        "以意外傷害住院醫療保險金日額的二分之一作為完全骨折未住院日額；依骨折別所定日數計算。",
+        basis="daily_total",
+        calculation_basis="percentage_of_base",
+        limit_scope="per_day",
+        aggregation_rule="highest",
+        conditions=fracture_conditions,
+        rate_percent=50,
+    )
+    return entries
+
+
+def parse_fubon_666_accident_health_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_666_accident_health_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_666_ACCIDENT_HEALTH_PRODUCT_VERSIONS[product_id]
+    disability_term = str(version["disability_term"])
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = re.sub(r"\s+", "", text)
+    required_signals = [
+        "富邦人壽666保一身傷害暨一年定期保險",
+        str(version["ctbc_code"]),
+        "本契約保障內容分二個計畫別",
+        "附表一:計畫別保險金項目計畫一計畫二",
+        "身故保險金或喪葬費用保險金100萬無",
+        f"完全{disability_term}保險金100萬無",
+        "一般意外身故保險金或喪葬費用保險金250萬250萬",
+        "大眾運輸工具意外身故保險金或喪葬費用保險金250萬250萬",
+        f"一般意外{disability_term}保險金",
+        f"大眾運輸工具意外{disability_term}保險金",
+        f"致成{disability_term}等級之一250萬乘以附表三所列給付比例250萬乘以附表三所列給付比例",
+        "最高給付金額250萬250萬",
+        "意外傷害住院醫療保險金2,500元/日2,000元/日",
+        "按下列骨折別所定日數乘以前述意外傷害住院醫療保險金日額的二分之一給付",
+        "除按第一款約定給付一般意外身故保險金外,另按要保人投保計畫別對照附表一所載金額給付大眾運輸工具意外身故保險金",
+        f"除按第一款約定給付一般意外{disability_term}保險金外,另按要保人投保計畫別對照附表一所載金額給付大眾運輸工具意外{disability_term}保險金",
+    ]
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+    if document.get("page_count") not in {None, version["page_count"]}:
+        return None
+    disability_table_start = text.find(f"附表三:{disability_term}程度表")
+    disability_table_end = text.find("附表四", disability_table_start + 1)
+    if disability_table_start < 0 or disability_table_end < 0:
+        return None
+    disability_table = text[disability_table_start:disability_table_end]
+    disability_item_count = len(
+        set(
+            item.replace(" ", "")
+            for item in re.findall(
+                r"(?<!\d)(\d+\s*-\s*\d+\s*-\s*\d+)(?!\d)",
+                disability_table,
+            )
+        )
+    )
+    if disability_item_count != version["disability_schedule_item_count"]:
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "選擇計畫別",
+        "selection_guidance": "請依保單首頁或投保資料選擇計畫一或計畫二；本商品沒有單位數輸入，保障項目完全依條款附表一與第十二至十九條呈現。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": 2,
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 65,
+            "accident_claim_days": 180,
+            "accident_hospital_days_limit": 90,
+            "fracture_daily_rate_percent": 50,
+            "disability_term": disability_term,
+            "disability_schedule_item_count": disability_item_count,
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "mass_transit_additional_benefit": True,
+            "short_term_rate_table": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_666_accident_health_entries(
+                    str(values["label"]),
+                    values,
+                    disability_term,
+                ),
+            }
+            for plan_key, values in FUBON_666_PLAN_VALUES.items()
+        ],
+    }
+
+
+FUBON_TIANTIAN_ANXIN_500_PRODUCT_VERSIONS = {
+    "209291M12G00500": {
+        "file_name": "209291M12G00500-A.pdf",
+        "terms_revision": "102-original",
+        "fbg_code": "FBG1020401",
+        "page_count": 20,
+        "cancer_waiting_days": 30,
+        "disability_schedule_item_count": 75,
+        "legacy_relaxed_validation": True,
+    },
+    "209291M19G00401": {
+        "file_name": "209291M19G00401-A.pdf",
+        "terms_revision": "103-first-revision",
+        "fbg_code": "FBG1030501",
+        "page_count": 20,
+        "cancer_waiting_days": 30,
+        "disability_schedule_item_count": 75,
+        "legacy_relaxed_validation": True,
+    },
+    "209291MZ2G00321A11Z10000002": {
+        "file_name": "209291MZ2G00321A11Z10000002-A.pdf",
+        "terms_revision": "104-second-revision",
+        "fbg_code": "FBG1040804",
+        "page_count": 21,
+        "cancer_waiting_days": 30,
+        "disability_schedule_item_count": 79,
+        "legacy_relaxed_validation": True,
+    },
+    "209291MZ2G00321A11Z10000003": {
+        "file_name": "209291MZ2G00321A11Z10000003-A.pdf",
+        "terms_revision": "107-third-revision",
+        "fbg_code": "FBG1070430",
+        "page_count": 21,
+        "cancer_waiting_days": 0,
+        "disability_schedule_item_count": 79,
+        "legacy_relaxed_validation": True,
+    },
+    "209291MZ2G00321A11Z10000004": {
+        "file_name": "209291MZ2G00321A11Z10000004-A.pdf",
+        "terms_revision": "107-fourth-revision",
+        "fbg_code": "FBG1070914",
+        "page_count": 21,
+    },
+    "209291MZ2G00321A11Z10000005": {
+        "file_name": "209291MZ2G00321A11Z10000005-A.pdf",
+        "terms_revision": "108-fifth-revision",
+        "fbg_code": "FBG1080101",
+        "page_count": 21,
+    },
+    "209291MZ2G00321A11Z10000006": {
+        "file_name": "209291MZ2G00321A11Z10000006-A.pdf",
+        "terms_revision": "109-sixth-revision",
+        "fbg_code": "FBG1090101",
+        "page_count": 22,
+    },
+    "209291MZ2G00321A11Z10000007": {
+        "file_name": "209291MZ2G00321A11Z10000007-A.pdf",
+        "terms_revision": "109-seventh-revision",
+        "fbg_code": "FBG1090901",
+        "page_count": 22,
+    },
+    "209291MZ2G00321A11Z10000008": {
+        "file_name": "209291MZ2G00321A11Z10000008-A.pdf",
+        "terms_revision": "111-eighth-revision",
+        "fbg_code": "FBG1111202",
+        "page_count": 22,
+    },
+}
+
+
+def is_fubon_tiantian_anxin_500_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_TIANTIAN_ANXIN_500_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+FUBON_TIANTIAN_ANXIN_500_PLAN_VALUES = {
+    "plan-1": {
+        "label": "計畫一",
+        "accidental_death": 3_000_000,
+        "accidental_disability_base": 3_000_000,
+    },
+    "plan-2": {
+        "label": "計畫二",
+        "accidental_death": 5_000_000,
+        "accidental_disability_base": 5_000_000,
+    },
+    "plan-3": {
+        "label": "計畫三",
+        "accidental_death": 10_000_000,
+        "accidental_disability_base": 10_000_000,
+    },
+    "plan-4": {
+        "label": "計畫四",
+        "life_death": 1_000_000,
+        "total_disability": 1_000_000,
+        "cancer_death": 300_000,
+        "cancer_surgery": 30_000,
+        "cancer_hospital_daily": 1_000,
+        "cancer_radiation_daily": 1_000,
+        "general_hospital_daily": 1_000,
+        "icu_daily": 2_000,
+        "burn_center_daily": 3_000,
+        "major_burn": 500_000,
+        "fracture_unhospitalized_daily": 500,
+        "accidental_death": 2_000_000,
+        "accidental_disability_base": 2_000_000,
+    },
+}
+
+
+def fubon_tiantian_anxin_500_disability_tiers(base_amount: int) -> list[dict[str, Any]]:
+    percentages = [100, 90, 80, 70, 60, 50, 40, 30, 20, 10, 5]
+    return [
+        {"label": f"第{level}級 {percent}%", "amount": base_amount * percent // 100}
+        for level, percent in enumerate(percentages, start=1)
+    ]
+
+
+def fubon_tiantian_anxin_500_accident_health_entries(
+    plan_label: str,
+    values: dict[str, int | str],
+) -> list[dict[str, Any]]:
+    source_ref = "附表一、第二至四章保險範圍、附表三失能程度與保險金給付表"
+    common_conditions = [
+        "一年定期，非保證續保，最高續保至保險年齡65歲。",
+        "同一次住院：出院後14日內因同一疾病或傷害再次住院，視為同一次住院。",
+    ]
+    life_conditions = [
+        *common_conditions,
+        "身故保險金及完全失能保險金依要保人投保計畫別對照附表一給付。",
+        "身故保險金或完全失能保險金給付後，本契約效力終止。",
+    ]
+    cancer_conditions = [
+        *common_conditions,
+        "須於契約有效期間內始經病理組織切片或血液細胞學檢查診斷確定罹患條款約定之癌症。",
+        "癌症住院日額按實際住院日數給付；同日再次入院不得重複計入住院日數。",
+    ]
+    hospital_conditions = [
+        *common_conditions,
+        "一般住院醫療保險金同一保單年度同一次住院最高90日。",
+        "加護病房及燒燙傷中心住院醫療保險金同一保單年度同一次住院最高30日。",
+        "燒燙傷中心如設置於醫院加護中心或病房內，不另行給付加護病房住院醫療保險金。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "以非由疾病引起之外來突發意外傷害事故為限。",
+        "意外身故或意外失能須於事故日起180日內發生；超過180日須證明因果關係。",
+    ]
+    entries: list[dict[str, Any]] = []
+
+    def add_amount(
+        entry_id: str,
+        name: str,
+        amount: int | None,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> None:
+        if not amount:
+            return
+        entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                amount,
+                basis,
+                f"{plan_label}: {note}",
+                source_ref,
+                calculation_basis=calculation_basis,
+                amount_role=amount_role,
+                limit_scope=limit_scope,
+                aggregation_rule=aggregation_rule,
+                conditions=conditions or common_conditions,
+                amount_tiers=amount_tiers,
+                rate_min_percent=rate_min_percent,
+                rate_max_percent=rate_max_percent,
+            )
+        )
+
+    add_amount(
+        "life-death-or-funeral",
+        "身故保險金或喪葬費用保險金",
+        values.get("life_death") if isinstance(values.get("life_death"), int) else None,
+        "按附表一所載金額給付。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "total-disability",
+        "完全失能保險金",
+        values.get("total_disability")
+        if isinstance(values.get("total_disability"), int)
+        else None,
+        "致成附表二所列完全失能程度之一時，按附表一所載金額給付。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "cancer-death",
+        "癌症身故保險金",
+        values.get("cancer_death") if isinstance(values.get("cancer_death"), int) else None,
+        "因癌症或癌症併發症身故時給付，給付後契約效力終止。",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-surgery",
+        "癌症手術治療保險金",
+        values.get("cancer_surgery")
+        if isinstance(values.get("cancer_surgery"), int)
+        else None,
+        "以治療癌症或癌症併發症為直接目的接受外科手術治療，每次手術給付。",
+        limit_scope="per_surgery",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-hospital-daily",
+        "癌症住院醫療保險金",
+        values.get("cancer_hospital_daily")
+        if isinstance(values.get("cancer_hospital_daily"), int)
+        else None,
+        "以治療癌症或癌症併發症為直接目的住院，按日額乘以實際住院日數給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-radiation-daily",
+        "癌症放射線治療保險金",
+        values.get("cancer_radiation_daily")
+        if isinstance(values.get("cancer_radiation_daily"), int)
+        else None,
+        "以治療癌症為直接目的接受放射線治療，按實際治療日數給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "general-hospital-daily",
+        "一般住院醫療保險金",
+        values.get("general_hospital_daily")
+        if isinstance(values.get("general_hospital_daily"), int)
+        else None,
+        "因疾病或傷害住院診療，按實際住院日數給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=hospital_conditions,
+    )
+    add_amount(
+        "icu-hospital-daily",
+        "加護病房住院醫療保險金",
+        values.get("icu_daily") if isinstance(values.get("icu_daily"), int) else None,
+        "住進加護病房時，另按實際入住加護病房日數給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=hospital_conditions,
+    )
+    add_amount(
+        "burn-center-hospital-daily",
+        "燒燙傷中心住院醫療保險金",
+        values.get("burn_center_daily")
+        if isinstance(values.get("burn_center_daily"), int)
+        else None,
+        "因燒燙傷必須入住燒燙傷中心治療時，按實際入住日數給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=hospital_conditions,
+    )
+    add_amount(
+        "major-burn",
+        "重大燒燙傷保險金",
+        values.get("major_burn") if isinstance(values.get("major_burn"), int) else None,
+        "符合二度燒燙傷面積大於全身20%、三度燒燙傷面積大於全身10%或顏面燒燙傷合併五官功能障礙，且事故日起屆滿15日仍生存時給付；有效期間含續保以一次為限。",
+        conditions=[
+            *accident_conditions,
+            "有效期間內含續保契約，重大燒燙傷保險金申領以一次為限。",
+        ],
+    )
+    add_amount(
+        "fracture-unhospitalized-daily",
+        "骨折未住院醫療保險金",
+        values.get("fracture_unhospitalized_daily")
+        if isinstance(values.get("fracture_unhospitalized_daily"), int)
+        else None,
+        "事故日起180日內發生條款骨折表所列骨折，未住院或住院未達所定日數者，按日額乘以未住院部分日數給付；不完全骨折按二分之一、骨骼龜裂按四分之一，同時多項骨折給付較高等級一項。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="highest",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "accidental-death-or-funeral",
+        "意外身故保險金或喪葬費用保險金",
+        values.get("accidental_death")
+        if isinstance(values.get("accidental_death"), int)
+        else None,
+        "遭受意外傷害事故，於事故日起180日內身故時給付。",
+        conditions=accident_conditions,
+    )
+    accidental_disability_base = values.get("accidental_disability_base")
+    add_amount(
+        "accidental-disability",
+        "意外失能保險金",
+        accidental_disability_base if isinstance(accidental_disability_base, int) else None,
+        "致成附表三失能程度之一時，按附表一基準金額乘以附表三給付比例計算；同一或不同事故累計最高以附表一最高給付金額為限。",
+        basis="benefit_base",
+        calculation_basis="table_multiplier",
+        amount_role="base",
+        aggregation_rule="cumulative_cap",
+        conditions=accident_conditions,
+        amount_tiers=fubon_tiantian_anxin_500_disability_tiers(
+            accidental_disability_base
+        )
+        if isinstance(accidental_disability_base, int)
+        else None,
+        rate_min_percent=5,
+        rate_max_percent=100,
+    )
+    return entries
+
+
+def parse_fubon_tiantian_anxin_500_accident_health_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_tiantian_anxin_500_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_TIANTIAN_ANXIN_500_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    required_signals = [
+        "富邦人壽天天安心 500 傷害暨健康一年定期保險",
+        version["fbg_code"],
+        "本契約保障內容分四個計畫別",
+        "附表一: 計畫別保險金項目計畫一計畫二計畫三計畫四",
+        "意外身故保險金或喪葬費用保險金 300 萬 500 萬 1,000 萬 200 萬",
+        "癌症手術治療保險金無 3 萬/次",
+        "癌症住院醫療保險金無 1,000 元/日",
+        "骨折未住院醫療保險金無 500 元/日",
+        "燒燙傷中心住院醫療保險金無 3,000 元/日",
+        "附表三:失能程度表失能程度與保險金給付表",
+        "11 5%",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+    if document.get("page_count") not in {None, version["page_count"]}:
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫別",
+        "selection_guidance": "請依保單首頁或要保書記載的計畫一至計畫四選擇；不同計畫的保障項目與金額不同。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": 4,
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 65,
+            "cancer_waiting_days": 0,
+            "general_hospital_days_limit": 90,
+            "icu_days_limit": 30,
+            "burn_center_hospital_days_limit": 30,
+            "same_hospital_readmission_days": 14,
+            "accident_claim_days": 180,
+            "fracture_claim_days": 180,
+            "major_burn_survival_days": 15,
+            "major_burn_lifetime_limit_times": 1,
+            "disability_term": "失能",
+            "disability_schedule_item_count": 79,
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_tiantian_anxin_500_accident_health_entries(
+                    str(values["label"]), values
+                ),
+            }
+            for plan_key, values in FUBON_TIANTIAN_ANXIN_500_PLAN_VALUES.items()
+        ],
+    }
+
+
+def parse_fubon_new_pingan_accident_legacy_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    version = fubon_legacy_strict_source(
+        document,
+        FUBON_NEW_PINGAN_ACCIDENT_PRODUCT_VERSIONS,
+    )
+    if not version:
+        return None
+    text = str(document.get("text") or "")
+    compact_text = readable_terms_text(text)
+    required_signals = [
+        str(version["fubon_code"]),
+        "富邦人壽新平安傷害一年定期保險",
+        "計畫一計畫二計畫三計畫四計畫五計畫六計畫七計畫八",
+        "意外身故保險金或喪葬費用保險金100萬200萬300萬500萬100萬200萬300萬500萬",
+        "意外傷害醫療保險金5萬-",
+        "意外傷害住院醫療保險金-1,500元/日",
+    ]
+    if not readable_terms_has_all(compact_text, required_signals):
+        return None
+    if not has_readable_disability_table(
+        text,
+        int(version["disability_schedule_item_count"]),
+        tolerance=4,
+    ):
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫",
+        "selection_guidance": "請依保單首頁或要保書所載計畫別選擇。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": len(FUBON_NEW_PINGAN_PLAN_VALUES),
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 65,
+            "accident_claim_days": 180,
+            "accident_medical_limit": 50_000,
+            "accident_medical_daily_formula_per_10000_inpatient_only": 70,
+            "accident_medical_daily_formula_per_10000_inpatient_split": 40,
+            "accident_medical_daily_formula_per_10000_outpatient_split": 20,
+            "accident_medical_daily_formula_days_limit": 90,
+            "accident_hospital_daily_amount": 1_500,
+            "accident_hospital_days_limit": 90,
+            "death_disability_same_accident_cap": True,
+            "disability_term": "殘廢",
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+            "legacy_readable_validation": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_new_pingan_accident_entries(
+                    str(values["label"]),
+                    values,
+                ),
+            }
+            for plan_key, values in FUBON_NEW_PINGAN_PLAN_VALUES.items()
+        ],
+    }
+
+
+def parse_fubon_new_million_heart_accident_health_legacy_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    version = fubon_legacy_strict_source(
+        document,
+        FUBON_NEW_MILLION_HEART_ACCIDENT_HEALTH_PRODUCT_VERSIONS,
+    )
+    if not version:
+        return None
+    text = str(document.get("text") or "")
+    compact_text = readable_terms_text(text)
+    required_signals = [
+        str(version["fubon_code"]),
+        "富邦人壽新放百萬心傷害暨健康一年定期保險",
+        "計畫一計畫二計畫三計畫四計畫五計畫六計畫七計畫八",
+        "一般意外身故保險金或喪葬費用保險金100萬200萬300萬500萬100萬200萬300萬500萬",
+        "重大燒燙傷保險金100萬乘以百分之十",
+        "住院醫療日額保險金1,000元/日1,000元/日1,000元/日1,000元/日2,000元/日",
+        "骨折未住院醫療保險金500元1,000元",
+        "門診手術醫療保險金1,000元1,000元1,000元1,000元2,000元",
+        "特定處置保險金1,000元1,000元1,000元1,000元2,000元",
+    ]
+    if not readable_terms_has_all(compact_text, required_signals):
+        return None
+    if not has_readable_disability_table(
+        text,
+        int(version["disability_schedule_item_count"]),
+        tolerance=4,
+    ):
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫",
+        "selection_guidance": "請依保單首頁或要保書所載計畫別選擇。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": len(FUBON_NEW_MILLION_HEART_PLAN_VALUES),
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 60,
+            "day_hospital_explicit": True,
+            "same_hospital_readmission_days": 14,
+            "general_hospital_days_limit": 90,
+            "accident_claim_days": 180,
+            "major_burn_rate_percent": 10,
+            "major_burn_survival_days": 15,
+            "major_burn_lifetime_limit_times": 1,
+            "disability_term": "殘廢",
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+            "legacy_readable_validation": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": plan_label,
+                "coverage_entries": fubon_new_million_heart_accident_health_entries(
+                    plan_label,
+                    accident_base,
+                    daily_amount,
+                    fracture_daily,
+                ),
+            }
+            for plan_key, (
+                plan_label,
+                accident_base,
+                daily_amount,
+                fracture_daily,
+            ) in FUBON_NEW_MILLION_HEART_PLAN_VALUES.items()
+        ],
+    }
+
+
+def parse_fubon_tiantian_anxin_500_accident_health_legacy_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    version = fubon_legacy_strict_source(
+        document,
+        FUBON_TIANTIAN_ANXIN_500_PRODUCT_VERSIONS,
+    )
+    if not version:
+        return None
+    text = str(document.get("text") or "")
+    compact_text = readable_terms_text(text)
+    required_signals = [
+        str(version["fbg_code"]),
+        "富邦人壽天天安心",
+        "500傷害暨健康一年定期保險",
+        "計畫一計畫二計畫三計畫四",
+        "身故保險金或喪葬費用保險金無100萬",
+        "完全殘廢保險金無100萬",
+        "癌症身故保險金無30萬",
+        "重大燒燙傷保險金無50萬",
+        "意外身故保險金或喪葬費用保險金300萬500萬1,000萬200萬",
+        "癌症手術治療保險金無3萬/次",
+        "癌症住院醫療保險金無1,000元/日",
+        "癌症放射線治療保險金無1,000元/日",
+        "骨折未住院醫療保險金無500元/日",
+        "一般住院醫療保險金無1,000元/日",
+        "加護病房住院醫療保險金無2,000元/日",
+        "燒燙傷中心住院醫療保險金無3,000元/日",
+    ]
+    if not readable_terms_has_all(compact_text, required_signals):
+        return None
+    if not has_readable_disability_table(
+        text,
+        int(version["disability_schedule_item_count"]),
+        tolerance=4,
+    ):
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫",
+        "selection_guidance": "請依保單首頁或要保書所載計畫別選擇。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": 4,
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 65,
+            "cancer_waiting_days": version["cancer_waiting_days"],
+            "general_hospital_days_limit": 90,
+            "icu_days_limit": 30,
+            "burn_center_hospital_days_limit": 30,
+            "same_hospital_readmission_days": 14,
+            "accident_claim_days": 180,
+            "fracture_claim_days": 180,
+            "major_burn_survival_days": 15,
+            "major_burn_lifetime_limit_times": 1,
+            "disability_term": "殘廢",
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+            "legacy_readable_validation": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_tiantian_anxin_500_accident_health_entries(
+                    str(values["label"]), values
+                ),
+            }
+            for plan_key, values in FUBON_TIANTIAN_ANXIN_500_PLAN_VALUES.items()
+        ],
+    }
+
+
+def parse_fubon_new_shouhu_jinnang_late_accident_health_legacy_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    version = fubon_legacy_strict_source(
+        document,
+        FUBON_NEW_SHOUHU_JINNANG_LATE_ACCIDENT_HEALTH_PRODUCT_VERSIONS,
+    )
+    if not version:
+        return None
+    text = str(document.get("text") or "")
+    compact_text = readable_terms_text(text)
+    required_signals = [
+        str(version["fubon_code"]),
+        "富邦人壽新守護錦囊傷害暨健康一年定期保險",
+        "計畫七計畫八計畫九計畫十",
+        "身故保險金或喪葬費用保險金100萬100萬100萬50萬",
+        "完全失能保險金100萬100萬100萬50萬",
+        "一般意外身故保險金或喪葬費用保險金300萬200萬100萬50萬",
+        "大眾交通運輸工具意外身故保險金或喪葬費用保險金500萬500萬500萬無",
+        "意外傷害住院醫療保險金2,000元/日",
+        "意外傷害醫療保險金3萬",
+        "一般住院醫療日額保險金2,000元/日1,500元/日1,000元/日1,000元/日",
+        "癌症手術治療保險金2萬/次",
+        "癌症放射線治療保險金1,000元/日",
+        "癌症化學治療保險金1,000元/日",
+    ]
+    if not readable_terms_has_all(compact_text, required_signals):
+        return None
+    if not has_readable_disability_table(
+        text,
+        int(version["disability_schedule_item_count"]),
+        tolerance=4,
+    ):
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫",
+        "selection_guidance": "請依保單首頁或要保書所載計畫別選擇。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": len(FUBON_NEW_SHOUHU_JINNANG_LATE_PLAN_KEYS),
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 65,
+            "cancer_waiting_days": 0,
+            "general_hospital_days_limit": 90,
+            "icu_days_limit": 30,
+            "burn_center_hospital_days_limit": 30,
+            "same_hospital_readmission_days": 14,
+            "accident_claim_days": 180,
+            "accident_hospital_days_limit": 90,
+            "accident_outpatient_surgery_limit_times": 1,
+            "accident_reimbursement_non_nhi_rate_percent": 65,
+            "fracture_daily_rate_percent": 50,
+            "disability_term": "失能",
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+            "day_hospital_explicit": True,
+            "legacy_readable_validation": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(FUBON_NEW_SHOUHU_JINNANG_PLAN_VALUES[plan_key]["label"]),
+                "coverage_entries": fubon_new_shouhu_jinnang_late_accident_health_entries(
+                    str(FUBON_NEW_SHOUHU_JINNANG_PLAN_VALUES[plan_key]["label"]),
+                    FUBON_NEW_SHOUHU_JINNANG_PLAN_VALUES[plan_key],
+                ),
+            }
+            for plan_key in FUBON_NEW_SHOUHU_JINNANG_LATE_PLAN_KEYS
+        ],
+    }
+
+
+def parse_fubon_anxin_financial_life_accident_health_legacy_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    version = fubon_legacy_strict_source(
+        document,
+        FUBON_ANXIN_FINANCIAL_LIFE_PRODUCT_VERSIONS,
+    )
+    if not version:
+        return None
+    text = str(document.get("text") or "")
+    compact_text = readable_terms_text(text)
+    required_signals = [
+        str(version["fubon_code"]),
+        "富邦人壽安心理財人生傷害暨健康一年定期保險",
+        "計畫一至計畫三:六十五歲",
+        "計畫四及計畫五:七十歲",
+        "身故保險金或喪葬費用保險金",
+        "完全殘廢保險金",
+        "罹患癌症(輕度)保險金",
+        "重大疾病保險金",
+        "一般住院醫療保險金",
+        "加護病房住院醫療保險金",
+        "燒燙傷中心住院醫療保險金",
+        "意外身故保險金或喪葬費用保險金",
+        "意外殘廢保險金",
+    ]
+    if not readable_terms_has_all(compact_text, required_signals):
+        return None
+    if not has_readable_disability_table(
+        text,
+        int(version["disability_schedule_item_count"]),
+        tolerance=4,
+    ):
+        return None
+    disability_term = str(version["disability_term"])
+    disease_label = str(version["disease_label"])
+    legacy_cancer_split = bool(version.get("legacy_cancer_split"))
+    cancer_waiting_days = int(version["cancer_waiting_days"])
+    major_disease_waiting_days = int(version["major_disease_waiting_days"])
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫",
+        "selection_guidance": "請依保單首頁或要保書所載計畫別選擇。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": len(FUBON_ANXIN_FINANCIAL_LIFE_PLAN_VALUES),
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age_by_plan": {
+                "plan-1": 65,
+                "plan-2": 65,
+                "plan-3": 65,
+                "plan-4": 70,
+                "plan-5": 70,
+            },
+            "cancer_waiting_days": cancer_waiting_days,
+            "major_disease_waiting_days": major_disease_waiting_days,
+            "legacy_cancer_split": legacy_cancer_split,
+            "day_hospital_explicit": bool(version.get("day_hospital_explicit")),
+            "general_hospital_days_limit": 30,
+            "icu_days_limit": 30,
+            "burn_center_hospital_days_limit": 30,
+            "same_hospital_readmission_days": 14,
+            "accident_claim_days": 180,
+            "disability_term": disability_term,
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+            "legacy_readable_validation": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_anxin_financial_life_entries(
+                    str(values["label"]),
+                    values,
+                    disability_term=disability_term,
+                    disease_label=disease_label,
+                    legacy_cancer_split=legacy_cancer_split,
+                    cancer_waiting_days=cancer_waiting_days,
+                    major_disease_waiting_days=major_disease_waiting_days,
+                ),
+            }
+            for plan_key, values in FUBON_ANXIN_FINANCIAL_LIFE_PLAN_VALUES.items()
+        ],
+    }
+
+
+CHINA_LIFE_JINHAOYI_PRODUCT_VERSIONS = {
+    "205291M12A00104": {
+        "file_name": "205291M12A00104-A.pdf",
+        "terms_revision": "99-fourth-revision",
+        "revision_signal": "99.08.16 中壽商發字第 0990816001 號",
+    },
+    "205291M12A00105": {
+        "file_name": "205291M12A00105-A.pdf",
+        "terms_revision": "99-fifth-revision",
+        "revision_signal": "99 年 09 月 01日依行政院金融監督管理委員會 99 年 06 月 03 日金管保品字第 09902077400 號",
+    },
+    "205291M12A00106": {
+        "file_name": "205291M12A00106-A.pdf",
+        "terms_revision": "100-sixth-revision",
+        "revision_signal": "100 年 07 月 01 日依行政院金融監督管理委員會 100 年 04 月 11 日金管保品字第 10002523040 號",
+    },
+}
+
+
+def china_life_jinhaoyi_disability_percentages(text: str) -> list[int]:
+    normalized = unicodedata.normalize("NFKC", text)
+    table_markers = [
+        match.start()
+        for match in re.finditer("殘廢程度與保險金給付表", normalized)
+    ]
+    if not table_markers:
+        return []
+    table_start = table_markers[-1]
+    appendix_three = normalized.find("附表三", table_start + 1)
+    if appendix_three < 0:
+        return []
+    table_text = normalized[table_start:appendix_three]
+    percent_pattern = (
+        r"(?<!\d)(90|9\s*0|80|8\s*0|70|7\s*0|60|6\s*0|50|5\s*0|"
+        r"40|4\s*0|30|3\s*0|20|2\s*0|10|1\s*0|5)\s*%"
+    )
+    return [
+        int(re.sub(r"\s+", "", value))
+        for value in re.findall(percent_pattern, table_text)
+        if 0 < int(re.sub(r"\s+", "", value)) <= 90
+    ]
+
+
+def china_life_jinhaoyi_entries() -> list[dict[str, Any]]:
+    source_ref = "保單條款第二條、第十三條、附表一至三，第 2-18 頁"
+    premium_formula = (
+        "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+    )
+    accident_conditions = [
+        "限第二條定義之意外傷害事故。",
+        "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+    ]
+    traffic_conditions = [
+        *accident_conditions,
+        "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+    ]
+    aviation_conditions = [
+        *accident_conditions,
+        "限第二條定義之航空意外事故。",
+    ]
+    return [
+        coverage_entry(
+            "general-death-or-burial-premium-formula",
+            "一般身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "非意外傷害事故導致身故時，按合計已繳年繳化保險費乘上特定倍數給付。",
+            source_ref,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_event",
+            conditions=[premium_formula],
+        ),
+        coverage_entry(
+            "maturity-premium-formula",
+            "滿期保險金",
+            None,
+            "policy_recorded_limit",
+            "保險期間屆滿仍生存且契約有效時，按合計已繳年繳化保險費乘上特定倍數給付。",
+            source_ref,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            conditions=[premium_formula],
+        ),
+        coverage_entry(
+            "accidental-death-face-amount",
+            "意外傷害身故保險金或喪葬費用保險金（保險金額部分）",
+            None,
+            "face_amount",
+            "意外傷害身故按保險金額 100% 給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=accident_conditions + [premium_formula],
+        ),
+        coverage_entry(
+            "land-water-traffic-accidental-death-face-amount",
+            "陸上或水上交通意外傷害身故保險金（保險金額部分）",
+            None,
+            "face_amount",
+            "陸上或水上交通意外傷害身故按保險金額 2 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=200,
+            unit_key="face_amount",
+            conditions=traffic_conditions + [premium_formula],
+        ),
+        coverage_entry(
+            "aviation-accidental-death-face-amount",
+            "航空意外傷害身故保險金（保險金額部分）",
+            None,
+            "face_amount",
+            "航空意外傷害身故按保險金額 3 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=300,
+            unit_key="face_amount",
+            conditions=aviation_conditions + [premium_formula],
+        ),
+        coverage_entry(
+            "accidental-total-disability-face-amount",
+            "意外傷害全殘廢保險金（保險金額部分）",
+            None,
+            "face_amount",
+            "意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額 100% 給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=accident_conditions + [premium_formula],
+        ),
+        coverage_entry(
+            "land-water-total-disability-face-amount",
+            "陸上或水上交通意外傷害全殘廢保險金（保險金額部分）",
+            None,
+            "face_amount",
+            "陸上或水上交通意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額 2 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=200,
+            unit_key="face_amount",
+            conditions=traffic_conditions + [premium_formula],
+        ),
+        coverage_entry(
+            "aviation-total-disability-face-amount",
+            "航空意外傷害全殘廢保險金（保險金額部分）",
+            None,
+            "face_amount",
+            "航空意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額 3 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=300,
+            unit_key="face_amount",
+            conditions=aviation_conditions + [premium_formula],
+        ),
+        coverage_entry(
+            "accidental-disability-rate-table",
+            "意外傷害殘廢保險金",
+            None,
+            "face_amount",
+            "致成附表二所列殘廢程度之一者，按保險金額乘以該表給付比例給付。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            rate_min_percent=5,
+            rate_max_percent=90,
+            unit_key="face_amount",
+            conditions=accident_conditions + ["同一保單年度各項殘廢給付比例累計最高以百分之一百為限。"],
+        ),
+        coverage_entry(
+            "land-water-disability-rate-table",
+            "陸上或水上交通意外傷害殘廢保險金",
+            None,
+            "face_amount",
+            "致成附表二所列殘廢程度之一者，按保險金額 2 倍乘以該表給付比例給付。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            rate_min_percent=10,
+            rate_max_percent=180,
+            unit_key="face_amount",
+            conditions=traffic_conditions + ["同一保單年度各項殘廢給付比例累計最高以百分之一百為限。"],
+        ),
+        coverage_entry(
+            "aviation-disability-rate-table",
+            "航空意外傷害殘廢保險金",
+            None,
+            "face_amount",
+            "致成附表二所列殘廢程度之一者，按保險金額 3 倍乘以該表給付比例給付。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            rate_min_percent=15,
+            rate_max_percent=270,
+            unit_key="face_amount",
+            conditions=aviation_conditions + ["同一保單年度各項殘廢給付比例累計最高以百分之一百為限。"],
+        ),
+        coverage_entry(
+            "major-burn",
+            "重大燒燙傷保險金",
+            None,
+            "face_amount",
+            "遭受條款約定重大燒燙傷時，按診斷確定時保險金額的 30% 給付。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            rate_percent=30,
+            unit_key="face_amount",
+            conditions=["須符合附表三所示重大燒燙傷。"],
+        ),
+    ]
+
+
+def parse_china_life_jinhaoyi_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LIFE_JINHAOYI_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != version["file_name"]
+    ):
+        return None
+    if document.get("page_count") not in {None, version.get("page_count")}:
+        return None
+    text = str(document.get("text") or "")
+    compact_text = readable_terms_text(text)
+    required_signals = [
+        "中國人壽",
+        "金好意",
+        "身故保險金",
+        "全殘廢保險金",
+        "殘廢保險金",
+        "重大燒燙傷保險金",
+        "滿期保險金",
+        "特定倍數",
+        "10年期為1",
+        "12年期及20年期為1.06",
+        "意外傷害身故",
+        "陸上交通意外傷害身故",
+        "水上交通意外傷害身故",
+        "航空意外傷害身故",
+        "給付比例(百分之三十)",
+        str(version["revision_signal"]),
+    ]
+    if not readable_terms_has_all(compact_text, required_signals):
+        return None
+    disability_percentages = china_life_jinhaoyi_disability_percentages(text)
+    if (
+        len(disability_percentages) < 65
+        or min(disability_percentages) != 5
+        or max(disability_percentages) != 90
+    ):
+        return None
+    full_disability_signals = [
+        "附表一",
+        "殘廢程度表",
+        "所列七項全殘廢程度",
+    ]
+    if not readable_terms_has_all(compact_text, full_disability_signals):
+        return None
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單首頁所載本契約保險金額；系統會換算意外、交通、航空、全殘廢、殘廢與重大燒燙傷保額部分。一般身故、滿期及加計已繳保費部分需另依保單年度與年繳化保險費確認。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "special_multiplier_10_year_term": 1,
+            "special_multiplier_12_or_20_year_term": 1.06,
+            "accident_claim_days": 180,
+            "land_or_water_traffic_multiplier": 2,
+            "aviation_multiplier": 3,
+            "major_burn_rate_percent": 30,
+            "total_disability_schedule_item_count": 7,
+            "disability_schedule_item_count": 69,
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 90,
+            "disability_cumulative_cap_percent": 100,
+        },
+        "coverage_entries": china_life_jinhaoyi_entries(),
+    }
+
+
+TAIWAN_QIANWAN_CHUXING_A_ACCIDENT_PRODUCT_VERSIONS = {
+    "202211MZ2A89622A11Z10000000": {
+        "file_name": "202211MZ2A89622A11Z10000000-A.pdf",
+        "title": "台灣人壽千萬出行 A 型定期傷害保險",
+        "terms_revision": "110-original",
+        "filing_signal": "中華民國 110 年 10 月 29 日台壽字第 1102320135 號函備查",
+        "revision_date": "none",
+        "revision_number": "none",
+        "revision_basis": "original-filing",
+    },
+    "202211MZ2A89622A11Z10000001": {
+        "file_name": "202211MZ2A89622A11Z10000001-A.pdf",
+        "title": "台灣人壽千萬出行 A 型定期傷害保險",
+        "terms_revision": "112-first-partial-revision",
+        "filing_signal": "中華民國 110 年 10 月 29 日台壽字第 1102320135 號函備查",
+        "revision_signal": "中華民國 112 年 2 月 9 日依 111 年 12 月 8 日金管保壽字第 1110152342 號函修正",
+        "revision_date": "112-02-09",
+        "revision_number": "金管保壽字第1110152342號",
+        "revision_basis": "111-12-08-regulatory-amendment",
+    },
+    "202211MZ2A89622A11Z10000002": {
+        "file_name": "202211MZ2A89622A11Z10000002-A.pdf",
+        "title": "台灣人壽新千萬出行 A 型定期傷害保險",
+        "terms_revision": "112-second-partial-revision",
+        "filing_signal": "中華民國 110 年 10 月 29 日台壽字第 1102320135 號函備查",
+        "revision_signal": "中華民國 112 年 3 月 1 日台壽字第 1122320055 號函備查修正",
+        "revision_date": "112-03-01",
+        "revision_number": "台壽字第1122320055號",
+        "revision_basis": "company-filing-amendment",
+    },
+}
+
+
+def is_taiwan_qianwan_chuxing_a_accident_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_QIANWAN_CHUXING_A_ACCIDENT_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def taiwan_qianwan_chuxing_a_accident_entries() -> list[dict[str, Any]]:
+    common_conditions = [
+        "限本契約有效期間內符合條款第十三條至第十六條約定之給付條件。",
+        "保險期間自生效日起至被保險人保險年齡 85 歲屆滿時止。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "限第二條約定之意外傷害事故。",
+        "身故或失能原則上須自意外傷害事故發生日起 180 日內發生；超過 180 日者，須證明與該意外事故具有因果關係。",
+    ]
+    transport_highest_condition = (
+        "同一意外身故事故若可能落入多種交通工具分類，應依條款分類確認適用倍數。"
+    )
+    return [
+        coverage_entry(
+            "death-or-funeral-greater-of",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人身故時，按身故日年繳應繳保險費總和 1.06 倍與身故日保單價值準備金二者取其大給付；需保單實際保費與保單價值準備金才能精算。",
+            "保單條款第十三條，第 4 頁",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="choose_one",
+            rate_percent=106,
+            conditions=[
+                *common_conditions,
+                "若依法改為喪葬費用保險金，須受條款與法定喪葬費用總額限制。",
+                "給付後本契約效力終止；指定分期方式給付者依第十七條辦理。",
+            ],
+        ),
+        coverage_entry(
+            "air-or-train-mass-transit-accidental-death",
+            "空中大眾運輸工具或火車意外身故保險金",
+            None,
+            "face_amount",
+            "以乘客身分搭乘空中大眾運輸工具或陸上大眾運輸工具之火車期間發生意外身故，除第十三條身故給付外，另按保險金額 20 倍給付。",
+            "保單條款第十四條第一款，第 4 頁",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="conditional_additive",
+            multiplier=20,
+            conditions=[
+                *accident_conditions,
+                "須以乘客身分搭乘空中大眾運輸工具或火車。",
+                transport_highest_condition,
+            ],
+        ),
+        coverage_entry(
+            "water-or-nontrain-land-mass-transit-accidental-death",
+            "水上或非火車陸上大眾運輸工具意外身故保險金",
+            None,
+            "face_amount",
+            "以乘客身分搭乘水上大眾運輸工具或陸上大眾運輸工具之非火車期間發生意外身故，除第十三條身故給付外，另按保險金額 10 倍給付。",
+            "保單條款第十四條第二款，第 4 頁",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="conditional_additive",
+            multiplier=10,
+            conditions=[
+                *accident_conditions,
+                "須以乘客身分搭乘水上大眾運輸工具或陸上大眾運輸工具之非火車。",
+                transport_highest_condition,
+            ],
+        ),
+        coverage_entry(
+            "automobile-passenger-accidental-death",
+            "汽車乘客意外身故保險金",
+            None,
+            "face_amount",
+            "以乘客身分搭乘汽車（不含機車）期間發生意外身故，除第十三條身故給付外，另按保險金額 5 倍給付。",
+            "保單條款第十四條第三款，第 4 頁",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="conditional_additive",
+            multiplier=5,
+            conditions=[
+                *accident_conditions,
+                "須以乘客身分搭乘汽車，不含機車，且不含配置於汽車上之駕駛及工作人員。",
+            ],
+        ),
+        coverage_entry(
+            "other-accidental-death",
+            "其他意外身故保險金",
+            None,
+            "face_amount",
+            "非屬空中、水上、陸上大眾運輸工具或汽車乘客之其他意外身故，例如駕駛汽車本人或騎乘機車，除第十三條身故給付外，另按保險金額給付。",
+            "保單條款第十四條第四款，第 4 頁",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="conditional_additive",
+            multiplier=1,
+            conditions=accident_conditions,
+        ),
+        coverage_entry(
+            "accidental-disability",
+            "意外失能保險金",
+            None,
+            "face_amount",
+            "意外傷害事故致成附表一所列失能程度之一時，按失能診斷確定日之保險金額乘以附表一給付比例計算；比例自 5% 至 100%。",
+            "保單條款第十五條及附表一，第 4-16 頁",
+            calculation_basis="percentage_of_base",
+            amount_role="base",
+            limit_scope="per_policy",
+            aggregation_rule="cumulative_cap",
+            rate_min_percent=5,
+            rate_max_percent=100,
+            conditions=[
+                *accident_conditions,
+                "同一意外傷害事故致成二項以上失能程度時，給付各項之和，最高以保險金額為限。",
+                "不同失能項目屬於同一手或同一足時僅給付一項；等級不同時給付較嚴重項目。",
+                "本次失能合併既往失能可領較嚴重項目時，須扣除視同已給付之意外失能保險金。",
+                "不同意外傷害事故申領意外失能保險金時，累計給付最高以保險金額為限。",
+            ],
+        ),
+        coverage_entry(
+            "major-burn",
+            "重大燒燙傷保險金",
+            None,
+            "face_amount",
+            "符合附表二所列重大燒燙傷情事之一時，按意外傷害事故發生當時保險金額 20% 給付；以一次為限。",
+            "保單條款第十六條及附表二，第 5、16 頁",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="lifetime",
+            rate_percent=20,
+            conditions=[
+                *accident_conditions,
+                "重大燒燙傷為燒燙傷面積達全身 20% 以上，或顏面燒燙傷合併五官功能障礙，並以附表二為準。",
+                "重大燒燙傷保險金以乙次為限。",
+            ],
+        ),
+    ]
+
+
+def parse_taiwan_qianwan_chuxing_a_accident_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_qianwan_chuxing_a_accident_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_QIANWAN_CHUXING_A_ACCIDENT_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    required_signals = [
+        version["title"],
+        version["filing_signal"],
+        "一、「保險金額」:係指保險單面頁所載本契約之保險金額",
+        "本契約的保險期間自生效日起至被保險人保險年齡 85 歲屆滿時止",
+        "身故日之年繳應繳保險費總和的 1.06 倍",
+        "身故日之保單價值準備金",
+        "本公司另按保險金額的 20 倍給付",
+        "本公司另按保險金額的 10 倍給付",
+        "本公司另按保險金額的 5 倍給付",
+        "本公司另按保險金額給付",
+        "自意外傷害事故發生之日起一百八十日以內致成附表一所列失能程度之一",
+        "保險金額乘以附表一所列之給付比例計算",
+        "重大燒燙傷保險金以乙次為限",
+        "附表一: 失能程度與保險金給付表",
+        "附表二:重大燒燙傷程度表",
+        "T31.20-T31.99",
+    ]
+    revision_signal = version.get("revision_signal")
+    if revision_signal:
+        required_signals.append(str(revision_signal))
+    if any(signal not in text for signal in required_signals):
+        return None
+    if document.get("page_count") not in {None, 16}:
+        return None
+    try:
+        appendix_text = text[
+            text.index("附表一: 失能程度與保險金給付表"):
+            text.index("附表二:重大燒燙傷程度表")
+        ]
+    except ValueError:
+        return None
+    if len(set(re.findall(r"\b\d+-\d+-\d+\b", appendix_text))) != 80:
+        return None
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保險單面頁所載本契約之保險金額；意外身故與重大燒燙傷可依此換算，身故取大值仍需保單保費與保單價值準備金。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "filing_date": "110-10-29",
+            "filing_number": "台壽字第1102320135號",
+            "revision_date": version["revision_date"],
+            "revision_number": version["revision_number"],
+            "revision_basis": version["revision_basis"],
+            "maximum_coverage_age": 85,
+            "death_benefit_premium_total_rate_percent": 106,
+            "accident_claim_days": 180,
+            "air_or_train_mass_transit_accidental_death_multiplier": 20,
+            "water_or_nontrain_land_mass_transit_accidental_death_multiplier": 10,
+            "automobile_passenger_accidental_death_multiplier": 5,
+            "other_accidental_death_multiplier": 1,
+            "major_burn_rate_percent": 20,
+            "major_burn_lifetime_limit_times": 1,
+            "disability_term": "失能",
+            "disability_schedule_item_count": 80,
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "installment_death_benefit_available": True,
+        },
+        "coverage_entries": taiwan_qianwan_chuxing_a_accident_entries(),
+    }
+
+
 PLAN_TABLE_PARSERS = [
+    (
+        "china-life-jinhaoyi-face-amount-v1",
+        parse_china_life_jinhaoyi_face_amount,
+    ),
+    (
+        "taiwan-qianwan-chuxing-a-accident-face-amount-v1",
+        parse_taiwan_qianwan_chuxing_a_accident_face_amount,
+    ),
+    (
+        "fubon-xianganbao-accident-medical-rider-face-amount-v1",
+        parse_fubon_xianganbao_accident_medical_rider_face_amount,
+    ),
+    (
+        "yuanta-new-accident-medical-rider-face-amount-v1",
+        parse_yuanta_new_accident_medical_rider_face_amount,
+    ),
+    (
+        "yuanta-personal-accident-rider-face-amount-v1",
+        parse_yuanta_personal_accident_rider_face_amount,
+    ),
+    (
+        "yuanta-funxinyou-accident-medical-addendum-limit-v1",
+        parse_yuanta_funxinyou_accident_medical_addendum_limit,
+    ),
+    (
+        "fubon-new-pingan-accident-plan-v1",
+        parse_fubon_new_pingan_accident_plan_table,
+    ),
+    (
+        "fubon-new-pingan-accident-legacy-plan-v1",
+        parse_fubon_new_pingan_accident_legacy_plan_table,
+    ),
+    (
+        "fubon-666-accident-health-plan-v1",
+        parse_fubon_666_accident_health_plan_table,
+    ),
+    (
+        "fubon-new-shouhu-jinnang-accident-health-plan-v1",
+        parse_fubon_new_shouhu_jinnang_accident_health_plan_table,
+    ),
+    (
+        "fubon-new-shouhu-jinnang-late-accident-health-plan-v1",
+        parse_fubon_new_shouhu_jinnang_late_accident_health_plan_table,
+    ),
+    (
+        "fubon-new-shouhu-jinnang-late-accident-health-legacy-plan-v1",
+        parse_fubon_new_shouhu_jinnang_late_accident_health_legacy_plan_table,
+    ),
+    (
+        "fubon-comprehensive-accident-plan-v1",
+        parse_fubon_comprehensive_accident_plan_table,
+    ),
+    (
+        "fubon-new-million-heart-accident-health-plan-v1",
+        parse_fubon_new_million_heart_accident_health_plan_table,
+    ),
+    (
+        "fubon-new-million-heart-accident-health-legacy-plan-v1",
+        parse_fubon_new_million_heart_accident_health_legacy_plan_table,
+    ),
+    (
+        "fubon-million-heart-accident-health-plan-v1",
+        parse_fubon_million_heart_accident_health_plan_table,
+    ),
+    (
+        "fubon-million-new-life-accident-health-plan-v1",
+        parse_fubon_million_new_life_accident_health_plan_table,
+    ),
+    (
+        "fubon-vision-life-accident-health-plan-v1",
+        parse_fubon_vision_life_accident_health_plan_table,
+    ),
+    (
+        "fubon-anxin-financial-life-accident-health-plan-v1",
+        parse_fubon_anxin_financial_life_accident_health_plan_table,
+    ),
+    (
+        "fubon-anxin-financial-life-accident-health-legacy-plan-v1",
+        parse_fubon_anxin_financial_life_accident_health_legacy_plan_table,
+    ),
+    (
+        "fubon-anxin-456-accident-health-fixed-v1",
+        parse_fubon_anxin_456_accident_health_fixed_schedule,
+    ),
+    (
+        "fubon-tiantian-anxin-500-accident-health-plan-v1",
+        parse_fubon_tiantian_anxin_500_accident_health_plan_table,
+    ),
+    (
+        "fubon-tiantian-anxin-500-accident-health-legacy-plan-v1",
+        parse_fubon_tiantian_anxin_500_accident_health_legacy_plan_table,
+    ),
+    (
+        "fubon-wanan-365-accident-plan-v1",
+        parse_fubon_wanan_365_accident_plan_table,
+    ),
+    (
+        "fubon-family-gift-accident-health-plan-v1",
+        parse_fubon_family_gift_accident_health_plan_table,
+    ),
+    (
+        "prudential-china-life-one-three-five-accident-face-amount-v1",
+        parse_prudential_china_life_one_three_five_accident_face_amount,
+    ),
+    (
+        "prudential-group-specific-accident-rider-face-amount-v1",
+        parse_prudential_group_specific_accident_rider_face_amount,
+    ),
+    (
+        "prudential-fire-mass-transit-accident-face-amount-v1",
+        parse_prudential_fire_mass_transit_accident_face_amount,
+    ),
+    (
+        "prudential-china-life-accident-account-face-amount-v1",
+        parse_prudential_china_life_accident_account_face_amount,
+    ),
+    (
+        "taiwan-life-taipei-student-group-fixed-schedule-v1",
+        parse_taiwan_taipei_student_group_fixed_schedule,
+    ),
+    (
+        "taiwan-life-drug-anxin-cancer-precision-plan-v1",
+        parse_taiwan_drug_anxin_cancer_precision_plan_table,
+    ),
+    (
+        "taiwan-group-long-term-care-service-face-amount-v1",
+        parse_taiwan_group_long_term_care_service_face_amount,
+    ),
+    (
+        "taiwan-life-yiqijianzhi-specific-disease-face-amount-v1",
+        parse_taiwan_yiqijianzhi_specific_disease_face_amount,
+    ),
+    (
+        "taiwan-life-group-inpatient-limit-plan-v1",
+        parse_taiwan_group_inpatient_limit_plan_table,
+    ),
+    (
+        "taiwan-life-gold-group-inpatient-limit-plan-v1",
+        parse_taiwan_gold_group_inpatient_limit_plan_table,
+    ),
+    (
+        "taiwan-life-shishizai-inpatient-plan-v1",
+        parse_taiwan_shishizai_inpatient_plan_table,
+    ),
+    (
+        "global-e-road-peace-overseas-illness-face-amount-v1",
+        parse_global_e_road_peace_overseas_illness_face_amount,
+    ),
+    (
+        "global-nccu-student-group-fixed-schedule-v1",
+        parse_global_nccu_student_group_fixed_schedule,
+    ),
+    (
+        "chaoyang-xingnong-student-group-fixed-schedule-v1",
+        parse_chaoyang_xingnong_student_group_fixed_schedule,
+    ),
+    (
+        "yuanta-new-account-medical-type-daily-v1",
+        parse_yuanta_new_account_medical_type_daily,
+    ),
+    (
+        "yuanta-health-life-early-face-amount-v1",
+        parse_yuanta_health_life_early_face_amount,
+    ),
+    (
+        "yuanta-group-hospital-medical-plan-v1",
+        parse_yuanta_group_hospital_medical_plan_table,
+    ),
+    (
+        "yuanta-yuanqi-shizu-hospital-medical-plan-v1",
+        parse_yuanta_yuanqi_shizu_hospital_medical_plan_table,
+    ),
+    (
+        "yuanta-xiangyouxin-medical-plan-v1",
+        parse_yuanta_xiangyouxin_medical_plan_table,
+    ),
+    (
+        "yuanta-xiangan-medical-plan-v1",
+        parse_yuanta_xiangan_medical_plan_table,
+    ),
+    (
+        "yuanta-anxin100-critical-illness-face-amount-v1",
+        parse_yuanta_anxin100_critical_illness_face_amount,
+    ),
+    (
+        "farglory-kangfu-medical-plan-v1",
+        parse_farglory_kangfu_medical_plan_table,
+    ),
+    (
+        "fubon-statutory-infectious-plan-v1",
+        parse_fubon_statutory_infectious_plan_table,
+    ),
+    (
+        "fubon-hsl-inpatient-unit-v1",
+        parse_fubon_hsl_inpatient_unit_table,
+    ),
+    (
+        "chaoyang-xingnong-group-inpatient-unit-v1",
+        parse_chaoyang_xingnong_group_inpatient_unit_table,
+    ),
     (
         "global-winterthur-cancer-annuity-face-amount-v1",
         parse_global_winterthur_cancer_annuity_face_amount,
     ),
     (
+        "kgi-china-life-ritai-cancer-annuity-face-amount-v1",
+        parse_kgi_china_life_ritai_cancer_annuity_face_amount,
+    ),
+    (
         "antai-cancer-lifetime-rider-unit-v1",
         parse_antai_cancer_lifetime_rider_unit_table,
+    ),
+    (
+        "antai-new-cancer-lifetime-r11-unit-v1",
+        parse_antai_new_cancer_lifetime_r11_unit_table,
+    ),
+    (
+        "antai-specific-major-disease-health-unit-v1",
+        parse_antai_specific_major_disease_health_unit_table,
+    ),
+    (
+        "antai-cancer-medical-term-family-unit-v1",
+        parse_antai_cancer_medical_term_family_unit,
     ),
     (
         "antai-fubon-new-cancer-lifetime-unit-v1",
@@ -9509,6 +26371,10 @@ PLAN_TABLE_PARSERS = [
     (
         "fubon-cardio-device-unit-v1",
         parse_fubon_cardio_device_unit_table,
+    ),
+    (
+        "fubon-golden-medical-device-unit-v1",
+        parse_fubon_golden_medical_device_unit_table,
     ),
     (
         "fubon-new-complete-combined-plan-v1",
@@ -9545,6 +26411,26 @@ PLAN_TABLE_PARSERS = [
     (
         "fubon-little-tycoon-plan-v1",
         parse_fubon_little_tycoon_plan_table,
+    ),
+    (
+        "prudential-china-fixed-hospital-medical-plan-v1",
+        parse_prudential_china_fixed_hospital_medical_plan_table,
+    ),
+    (
+        "china-legacy-cancer-whole-life-unit-v1",
+        parse_china_legacy_cancer_whole_life_unit_table,
+    ),
+    (
+        "taiwan-life-fishermen-group-medical-plan-v1",
+        parse_taiwan_fishermen_group_medical_plan_table,
+    ),
+    (
+        "fubon-golden-health-whole-life-v1",
+        parse_fubon_golden_health_whole_life_table,
+    ),
+    (
+        "prudential-daily-hospital-96-plan-v1",
+        parse_prudential_daily_hospital_96_plan_table,
     ),
     (
         "prudential-china-daily-hospital-face-amount-v1",
@@ -9653,6 +26539,64 @@ def complete_strict_source_document(
         not (
             is_fubon_new_lohas_strict_source(document)
             or is_fubon_inpatient_medical_strict_source(document)
+            or is_fubon_hsl_inpatient_strict_source(document)
+            or is_chaoyang_xingnong_group_inpatient_strict_source(document)
+            or is_prudential_china_life_accident_account_strict_source(document)
+            or is_prudential_china_life_one_three_five_accident_strict_source(document)
+            or is_prudential_group_specific_accident_rider_strict_source(document)
+            or is_prudential_fire_mass_transit_accident_strict_source(document)
+            or is_fubon_xianganbao_accident_medical_rider_strict_source(document)
+            or is_yuanta_new_accident_medical_rider_strict_source(document)
+            or is_yuanta_personal_accident_rider_strict_source(document)
+            or is_yuanta_funxinyou_accident_medical_addendum_strict_source(
+                document
+            )
+            or is_fubon_new_pingan_accident_strict_source(document)
+            or is_fubon_666_accident_health_strict_source(document)
+            or is_fubon_new_shouhu_jinnang_accident_health_strict_source(document)
+            or is_fubon_new_shouhu_jinnang_late_accident_health_strict_source(
+                document
+            )
+            or is_fubon_comprehensive_accident_strict_source(document)
+            or is_fubon_new_million_heart_accident_health_strict_source(document)
+            or is_fubon_million_heart_accident_health_strict_source(document)
+            or is_fubon_million_new_life_accident_health_strict_source(document)
+            or is_fubon_vision_life_accident_health_strict_source(document)
+            or is_fubon_anxin_financial_life_strict_source(document)
+            or is_fubon_anxin_456_accident_health_strict_source(document)
+            or is_fubon_tiantian_anxin_500_strict_source(document)
+            or is_fubon_legacy_plan_strict_source(document)
+            or is_taiwan_qianwan_chuxing_a_accident_strict_source(document)
+            or is_fubon_wanan_365_accident_strict_source(document)
+            or is_fubon_family_gift_accident_health_strict_source(document)
+            or is_fubon_statutory_infectious_strict_source(document)
+            or is_farglory_kangfu_medical_strict_source(document)
+            or is_yuanta_xiangyouxin_medical_strict_source(document)
+            or is_yuanta_xiangan_medical_strict_source(document)
+            or is_yuanta_anxin100_critical_illness_strict_source(document)
+            or is_yuanta_group_hospital_medical_strict_source(document)
+            or is_yuanta_yuanqi_shizu_strict_source(document)
+            or is_yuanta_health_life_early_strict_source(document)
+            or is_yuanta_new_account_medical_strict_source(document)
+            or is_global_e_road_peace_overseas_illness_strict_source(document)
+            or is_global_nccu_student_group_strict_source(document)
+            or is_chaoyang_xingnong_student_group_strict_source(document)
+            or is_taiwan_taipei_student_group_strict_source(document)
+            or is_taiwan_drug_anxin_cancer_precision_strict_source(document)
+            or is_taiwan_yiqijianzhi_specific_disease_strict_source(document)
+            or is_taiwan_group_inpatient_limit_plan_strict_source(document)
+            or is_taiwan_gold_group_inpatient_limit_strict_source(document)
+            or is_taiwan_shishizai_inpatient_strict_source(document)
+            or is_taiwan_group_long_term_care_service_strict_source(document)
+            or is_fixed_hospital_medical_97_strict_source(document)
+            or is_china_legacy_cancer_whole_life_strict_source(document)
+            or is_antai_new_cancer_lifetime_r11_strict_source(document)
+            or is_antai_specific_major_disease_health_strict_source(document)
+            or is_antai_cancer_medical_term_strict_source(document)
+            or is_prudential_daily_hospital_96_strict_source(document)
+            or is_taiwan_fishermen_group_medical_strict_source(document)
+            or is_fubon_golden_health_strict_source(document)
+            or is_fubon_golden_medical_device_strict_source(document)
         )
         or not source_path.is_file()
     ):
@@ -9765,7 +26709,7 @@ def approved_schedules(
         if record.get("product_id")
     }
     schedules = {}
-    reviewed_records = []
+    promoted_by_product_id = {}
     for review in approval_payload.get("reviews", []):
         if review.get("decision") != "approved":
             continue
@@ -9795,7 +26739,7 @@ def approved_schedules(
                 existing_record.get(field) == review.get(field)
                 for field in frozen_review_fields
             ):
-                reviewed_records.append(existing_record)
+                promoted_by_product_id[product_id] = existing_record
                 continue
             raise SystemExit(
                 f"stale or mismatched approval for {product_id}: {', '.join(mismatches)}"
@@ -9825,7 +26769,20 @@ def approved_schedules(
             for field in unchanged_review_fields
         ):
             reviewed_record = existing_record
-        reviewed_records.append(reviewed_record)
+        promoted_by_product_id[product_id] = reviewed_record
+    reviewed_records = []
+    retained_product_ids = set()
+    for record in existing_reviewed_records or []:
+        product_id = str(record.get("product_id") or "")
+        if not product_id:
+            continue
+        reviewed_records.append(promoted_by_product_id.get(product_id, record))
+        retained_product_ids.add(product_id)
+    reviewed_records.extend(
+        record
+        for product_id, record in promoted_by_product_id.items()
+        if product_id not in retained_product_ids
+    )
     return schedules, reviewed_records
 
 

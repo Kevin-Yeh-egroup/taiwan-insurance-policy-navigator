@@ -27,6 +27,7 @@
     per_unit_per_day: "每單位／每日",
     per_day: "每日給付",
     reimbursement_with_cap: "實際支出限額內",
+    percentage_of_actual_expense_with_cap: "實際支出比例限額內",
     table_multiplier: "依條款倍數表",
     tiered_or_stepped: "依級距或階梯表",
     additional_benefit: "額外給付",
@@ -224,7 +225,7 @@
 
   function defaultAmountRole(basis) {
     if (basis === "percentage_of_base") return "base";
-    if (basis === "reimbursement_with_cap") return "limit";
+    if (["reimbursement_with_cap", "percentage_of_actual_expense_with_cap"].includes(basis)) return "limit";
     if (["table_multiplier", "tiered_or_stepped", "unknown"].includes(basis)) return "reference";
     return "payout";
   }
@@ -233,7 +234,15 @@
     if (["per_day", "per_unit_per_day"].includes(basis)) return "per_day";
     if (legacyBasis === "annual_limit") return "annual";
     if (legacyBasis === "per_injury_limit") return "per_injury";
-    if (["fixed_amount", "percentage_of_base", "additional_benefit", "reimbursement_with_cap"].includes(basis)) return "per_event";
+    if (
+      [
+        "fixed_amount",
+        "percentage_of_base",
+        "additional_benefit",
+        "reimbursement_with_cap",
+        "percentage_of_actual_expense_with_cap",
+      ].includes(basis)
+    ) return "per_event";
     return "unknown";
   }
 
@@ -424,18 +433,26 @@
       }
       return { ...result, state: "tiered_values", tier_values: tierValues };
     }
+    if (
+      [
+        "reimbursement_with_cap",
+        "percentage_of_actual_expense_with_cap",
+      ].includes(normalizedEntry.calculation_basis)
+    ) {
+      const unitBased = ["per_unit", "daily_per_unit"].includes(normalizedEntry.basis);
+      if (unitBased && !units) return { ...result, state: "needs_unit_count" };
+      const policyRecordedLimit = normalizedEntry.basis === "policy_recorded_limit";
+      const baseLimit = policyRecordedLimit ? (faceAmount || amount) : amount;
+      if (!baseLimit) return result;
+      const value = unitBased ? safeIntegerProduct(baseLimit, units) : baseLimit;
+      return value
+        ? { ...result, value, reference_amount: value, state: "benefit_limit" }
+        : { ...result, state: "amount_overflow" };
+    }
     if (normalizedEntry.calculation_basis === "unknown") return result;
     if (!amount) return result;
     if (normalizedEntry.calculation_basis === "per_day") {
       return { ...result, value: amount, state: "daily_rate" };
-    }
-    if (normalizedEntry.calculation_basis === "reimbursement_with_cap") {
-      const unitBased = ["per_unit", "daily_per_unit"].includes(normalizedEntry.basis);
-      if (unitBased && !units) return { ...result, state: "needs_unit_count" };
-      const value = unitBased ? safeIntegerProduct(amount, units) : amount;
-      return value
-        ? { ...result, value, reference_amount: value, state: "benefit_limit" }
-        : { ...result, state: "amount_overflow" };
     }
     if (normalizedEntry.calculation_basis === "additional_benefit") {
       return { ...result, value: amount, state: "conditional_amount" };

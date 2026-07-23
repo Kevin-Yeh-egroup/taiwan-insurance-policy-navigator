@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-20T14:44:38+08:00",
+  "generated_at": "2026-07-21T12:18:57+08:00",
   "batch_id": "tii-life-158",
-  "record_count": 6,
+  "record_count": 8,
   "records": [
     {
       "product_id": "262311R11A00600",
@@ -997,6 +997,306 @@
             "原位癌不給付癌症療養年金",
             "最長給付至第 9 個療養年金週年日或身故，二者先到者",
             "初次罹患癌症後附約自次一保單週月日起終止，療養年金仍依本條約定給付"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "262311R11A00201",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v32",
+      "parser_id": "ritai-dual-unit-inpatient-v1",
+      "source_file": "262311R11A00201-A.pdf",
+      "source_document_sha256": "47e0b0d8236371f27b10269595575067e67b014bc3162f25d497a72241d879b1",
+      "schedule_sha256": "f4877e964ac74c30e19e1e9b6d9ce56f1e0e31337df35b8dff614eaf53dd06c9",
+      "reviewed_by": "codex",
+      "reviewed_at": "2026-07-21T12:45:00+08:00",
+      "review_note": "Approved from the official policy terms PDF only. Preserves the non-investment fixed-enhanced rider first partial-change version with two independent unit inputs and 6 verified benefit formulas.",
+      "selection_type": "multi_unit",
+      "input_mode": "multi_unit",
+      "selection_source": "terms",
+      "selection_label": "兩項投保單位數",
+      "selection_guidance": "請依保單首頁分別填寫住院醫療保險金與手術及雜費保險金的單位數；兩者可能不同，系統會各自換算。",
+      "unit_fields": [
+        {
+          "key": "hospital_medical",
+          "label": "住院醫療保險金單位數"
+        },
+        {
+          "key": "surgery_misc",
+          "label": "手術及雜費保險金單位數"
+        }
+      ],
+      "coverage_entries": [
+        {
+          "id": "hospital-daily",
+          "name": "住院日額保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按住院醫療保險金投保單位數及實際住院日數給付。",
+          "source_ref": "保單條款第七條及住院醫療保險金表",
+          "amount": 500,
+          "unit_key": "hospital_medical",
+          "conditions": [
+            "疾病須於生效日起持續有效 30 日後發生；續保不受等待期限制",
+            "一般住院給付最高 365 日；正式條款明列不含加護病房及燒燙傷中心日數"
+          ]
+        },
+        {
+          "id": "intensive-care-daily",
+          "name": "加護病房日額保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "入住加護病房時，除住院日額外每日另行給付。",
+          "source_ref": "保單條款第七條及住院醫療保險金表",
+          "amount": 500,
+          "unit_key": "hospital_medical",
+          "conditions": [
+            "疾病須於生效日起持續有效 30 日後發生；續保不受等待期限制",
+            "轉出加護病房之日計入給付日數"
+          ]
+        },
+        {
+          "id": "burn-center-daily",
+          "name": "燒燙傷中心日額保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "入住燒燙傷中心時，除住院日額外每日另行給付。",
+          "source_ref": "保單條款第七條及住院醫療保險金表",
+          "amount": 500,
+          "unit_key": "hospital_medical",
+          "conditions": [
+            "疾病須於生效日起持續有效 30 日後發生；續保不受等待期限制",
+            "轉出燒燙傷中心之日計入給付日數"
+          ]
+        },
+        {
+          "id": "pre-post-outpatient",
+          "name": "住院前後七天門診保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院前七天及出院後七天內，因同一疾病、傷害或併發症門診時按次給付。",
+          "source_ref": "保單條款第七條及住院醫療保險金表",
+          "amount": 150,
+          "unit_key": "hospital_medical",
+          "conditions": [
+            "疾病須於生效日起持續有效 30 日後發生；續保不受等待期限制",
+            "每次門診給付，條款未另列次數上限"
+          ]
+        },
+        {
+          "id": "inpatient-surgery-base",
+          "name": "手術定額保險金基數",
+          "basis": "per_unit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "實際給付為每單位基數乘以手術附表比例（2% 至 400%）。",
+          "source_ref": "保單條款第八條、手術及雜費保險金表及附表一",
+          "amount": 5000,
+          "rate_min_percent": 2,
+          "rate_max_percent": 400,
+          "unit_key": "surgery_misc",
+          "conditions": [
+            "疾病須於生效日起持續有效 30 日後發生；續保不受等待期限制",
+            "同一次手術同一位置涉及多器官時只採最高比例",
+            "未列名手術須協議比照相當項目"
+          ]
+        },
+        {
+          "id": "inpatient-misc-daily",
+          "name": "住院雜費保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按手術及雜費保險金投保單位數及住院日數級距給付。",
+          "source_ref": "保單條款第八條、手術及雜費保險金表及附表一",
+          "amount": 300,
+          "unit_key": "surgery_misc",
+          "conditions": [
+            "疾病須於生效日起持續有效 30 日後發生；續保不受等待期限制",
+            "每次住院最高給付 365 日"
+          ],
+          "amount_tiers": [
+            {
+              "label": "住院第 1 至 7 日",
+              "amount": 300
+            },
+            {
+              "label": "住院第 8 日起",
+              "amount": 150
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "262311R11A00202",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v32",
+      "parser_id": "ritai-dual-unit-inpatient-v1",
+      "source_file": "262311R11A00202-A.pdf",
+      "source_document_sha256": "6724c1dbe17f2422b6f631aee99199ffa6d8cf7f3cedc94d597648fb398270c8",
+      "schedule_sha256": "f3aa960f157ee0537d37f5dd59a31587e20551232ee5522440c539c1f74e18a7",
+      "reviewed_by": "codex",
+      "reviewed_at": "2026-07-21T12:45:00+08:00",
+      "review_note": "Approved from the official policy terms PDF only. Preserves the non-investment fixed-enhanced rider second partial-change version with two independent unit inputs and 6 verified benefit formulas.",
+      "selection_type": "multi_unit",
+      "input_mode": "multi_unit",
+      "selection_source": "terms",
+      "selection_label": "兩項投保單位數",
+      "selection_guidance": "請依保單首頁分別填寫住院醫療保險金與手術及雜費保險金的單位數；兩者可能不同，系統會各自換算。",
+      "unit_fields": [
+        {
+          "key": "hospital_medical",
+          "label": "住院醫療保險金單位數"
+        },
+        {
+          "key": "surgery_misc",
+          "label": "手術及雜費保險金單位數"
+        }
+      ],
+      "coverage_entries": [
+        {
+          "id": "hospital-daily",
+          "name": "住院日額保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按住院醫療保險金投保單位數及實際住院日數給付。",
+          "source_ref": "保單條款第八條及住院醫療保險金表",
+          "amount": 500,
+          "unit_key": "hospital_medical",
+          "conditions": [
+            "疾病須於生效日起持續有效 30 日後發生；續保不受等待期限制",
+            "一般住院給付最高 365 日；正式條款明列不含加護病房及燒燙傷中心日數"
+          ]
+        },
+        {
+          "id": "intensive-care-daily",
+          "name": "加護病房日額保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "入住加護病房時，除住院日額外每日另行給付。",
+          "source_ref": "保單條款第八條及住院醫療保險金表",
+          "amount": 500,
+          "unit_key": "hospital_medical",
+          "conditions": [
+            "疾病須於生效日起持續有效 30 日後發生；續保不受等待期限制",
+            "轉出加護病房之日計入給付日數"
+          ]
+        },
+        {
+          "id": "burn-center-daily",
+          "name": "燒燙傷中心日額保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "per_unit_per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "入住燒燙傷中心時，除住院日額外每日另行給付。",
+          "source_ref": "保單條款第八條及住院醫療保險金表",
+          "amount": 500,
+          "unit_key": "hospital_medical",
+          "conditions": [
+            "疾病須於生效日起持續有效 30 日後發生；續保不受等待期限制",
+            "轉出燒燙傷中心之日計入給付日數"
+          ]
+        },
+        {
+          "id": "pre-post-outpatient",
+          "name": "住院前後七天門診保險金",
+          "basis": "per_unit",
+          "calculation_basis": "per_unit",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "住院前七天及出院後七天內，因同一疾病、傷害或併發症門診時按次給付。",
+          "source_ref": "保單條款第八條及住院醫療保險金表",
+          "amount": 150,
+          "unit_key": "hospital_medical",
+          "conditions": [
+            "疾病須於生效日起持續有效 30 日後發生；續保不受等待期限制",
+            "每次門診給付，條款未另列次數上限"
+          ]
+        },
+        {
+          "id": "inpatient-surgery-base",
+          "name": "手術定額保險金基數",
+          "basis": "per_unit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "實際給付為每單位基數乘以手術附表比例（2% 至 400%）。",
+          "source_ref": "保單條款第九條、手術及雜費保險金表及附表一",
+          "amount": 5000,
+          "rate_min_percent": 2,
+          "rate_max_percent": 400,
+          "unit_key": "surgery_misc",
+          "conditions": [
+            "疾病須於生效日起持續有效 30 日後發生；續保不受等待期限制",
+            "同一次手術同一位置涉及多器官時只採最高比例",
+            "未列名手術須協議比照相當項目"
+          ]
+        },
+        {
+          "id": "inpatient-misc-daily",
+          "name": "住院雜費保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "tiered_or_stepped",
+          "amount_role": "payout",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按手術及雜費保險金投保單位數及住院日數級距給付。",
+          "source_ref": "保單條款第九條、手術及雜費保險金表及附表一",
+          "amount": 300,
+          "unit_key": "surgery_misc",
+          "conditions": [
+            "疾病須於生效日起持續有效 30 日後發生；續保不受等待期限制",
+            "每次住院最高給付 365 日"
+          ],
+          "amount_tiers": [
+            {
+              "label": "住院第 1 至 7 日",
+              "amount": 300
+            },
+            {
+              "label": "住院第 8 日起",
+              "amount": 150
+            }
           ]
         }
       ]

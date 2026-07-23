@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T21:29:26+08:00",
+  "generated_at": "2026-07-21T17:18:07+08:00",
   "summary": {
     "generated_at": "2026-06-26T11:39:16+08:00",
     "source": "local TII files downloaded through captcha session",
@@ -16060,6 +16060,385 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "plan",
+      "input_mode": "plan",
+      "selection_source": "terms",
+      "selection_label": "保險計劃",
+      "selection_guidance": "請依保單首頁選擇 FHIR-5、FHIR-10、FHIR-15、FHIR-20、FHIR-25 或 FHIR-30；系統會顯示住院日額、加護病房日額與累計給付終止門檻，不需輸入單位數。",
+      "version_characteristics": {
+        "terms_revision": "96-first-revision",
+        "filing_date": "96.08.31",
+        "filing_number": "保誠總字第960667號",
+        "plan_count": 6,
+        "daily_hospital_days_limit": 365,
+        "intensive_care_days_limit": 365,
+        "same_hospital_readmission_days": 14,
+        "cumulative_termination_daily_multiplier": 1000,
+        "disability_terminology": "完全殘廢",
+        "no_surrender_value": true
+      },
+      "plan_options": [
+        {
+          "value": "fhir-5",
+          "label": "FHIR-5",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "FHIR-5 住院保險金日額每日 500 元，按住院日數含始日及終日給付。",
+              "source_ref": "保單條款第十一條與保險利益表，第 3、4 頁",
+              "amount": 500,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "每日加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "FHIR-5 進住加護病房治療期間，每日另按住院保險金日額 500 元給付。",
+              "source_ref": "保單條款第十二條與保險利益表，第 3、4 頁",
+              "amount": 500,
+              "conditions": [
+                "須因疾病或傷害住院且進住加護病房",
+                "含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累計給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一條及第十二條累計各項保險金總額達住院保險金日額 1,000 倍，FHIR-5 為 500,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 500000,
+              "multiplier": 1000,
+              "conditions": [
+                "累計住院與加護病房給付合計計入",
+                "住院保險金日額減少時，改按減少後日額之一千倍計算"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "fhir-10",
+          "label": "FHIR-10",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "FHIR-10 住院保險金日額每日 1,000 元，按住院日數含始日及終日給付。",
+              "source_ref": "保單條款第十一條與保險利益表，第 3、4 頁",
+              "amount": 1000,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "每日加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "FHIR-10 進住加護病房治療期間，每日另按住院保險金日額 1,000 元給付。",
+              "source_ref": "保單條款第十二條與保險利益表，第 3、4 頁",
+              "amount": 1000,
+              "conditions": [
+                "須因疾病或傷害住院且進住加護病房",
+                "含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累計給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一條及第十二條累計各項保險金總額達住院保險金日額 1,000 倍，FHIR-10 為 1,000,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 1000000,
+              "multiplier": 1000,
+              "conditions": [
+                "累計住院與加護病房給付合計計入",
+                "住院保險金日額減少時，改按減少後日額之一千倍計算"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "fhir-15",
+          "label": "FHIR-15",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "FHIR-15 住院保險金日額每日 1,500 元，按住院日數含始日及終日給付。",
+              "source_ref": "保單條款第十一條與保險利益表，第 3、4 頁",
+              "amount": 1500,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "每日加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "FHIR-15 進住加護病房治療期間，每日另按住院保險金日額 1,500 元給付。",
+              "source_ref": "保單條款第十二條與保險利益表，第 3、4 頁",
+              "amount": 1500,
+              "conditions": [
+                "須因疾病或傷害住院且進住加護病房",
+                "含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累計給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一條及第十二條累計各項保險金總額達住院保險金日額 1,000 倍，FHIR-15 為 1,500,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 1500000,
+              "multiplier": 1000,
+              "conditions": [
+                "累計住院與加護病房給付合計計入",
+                "住院保險金日額減少時，改按減少後日額之一千倍計算"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "fhir-20",
+          "label": "FHIR-20",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "FHIR-20 住院保險金日額每日 2,000 元，按住院日數含始日及終日給付。",
+              "source_ref": "保單條款第十一條與保險利益表，第 3、4 頁",
+              "amount": 2000,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "每日加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "FHIR-20 進住加護病房治療期間，每日另按住院保險金日額 2,000 元給付。",
+              "source_ref": "保單條款第十二條與保險利益表，第 3、4 頁",
+              "amount": 2000,
+              "conditions": [
+                "須因疾病或傷害住院且進住加護病房",
+                "含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累計給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一條及第十二條累計各項保險金總額達住院保險金日額 1,000 倍，FHIR-20 為 2,000,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 2000000,
+              "multiplier": 1000,
+              "conditions": [
+                "累計住院與加護病房給付合計計入",
+                "住院保險金日額減少時，改按減少後日額之一千倍計算"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "fhir-25",
+          "label": "FHIR-25",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "FHIR-25 住院保險金日額每日 2,500 元，按住院日數含始日及終日給付。",
+              "source_ref": "保單條款第十一條與保險利益表，第 3、4 頁",
+              "amount": 2500,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "每日加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "FHIR-25 進住加護病房治療期間，每日另按住院保險金日額 2,500 元給付。",
+              "source_ref": "保單條款第十二條與保險利益表，第 3、4 頁",
+              "amount": 2500,
+              "conditions": [
+                "須因疾病或傷害住院且進住加護病房",
+                "含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累計給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一條及第十二條累計各項保險金總額達住院保險金日額 1,000 倍，FHIR-25 為 2,500,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 2500000,
+              "multiplier": 1000,
+              "conditions": [
+                "累計住院與加護病房給付合計計入",
+                "住院保險金日額減少時，改按減少後日額之一千倍計算"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "fhir-30",
+          "label": "FHIR-30",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "FHIR-30 住院保險金日額每日 3,000 元，按住院日數含始日及終日給付。",
+              "source_ref": "保單條款第十一條與保險利益表，第 3、4 頁",
+              "amount": 3000,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "每日加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "FHIR-30 進住加護病房治療期間，每日另按住院保險金日額 3,000 元給付。",
+              "source_ref": "保單條款第十二條與保險利益表，第 3、4 頁",
+              "amount": 3000,
+              "conditions": [
+                "須因疾病或傷害住院且進住加護病房",
+                "含始日及終日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累計給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一條及第十二條累計各項保險金總額達住院保險金日額 1,000 倍，FHIR-30 為 3,000,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 3000000,
+              "multiplier": 1000,
+              "conditions": [
+                "累計住院與加護病房給付合計計入",
+                "住院保險金日額減少時，改按減少後日額之一千倍計算"
+              ]
+            }
+          ]
+        }
       ]
     },
     {
@@ -18712,6 +19091,610 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "plan",
+      "input_mode": "plan",
+      "selection_source": "terms",
+      "selection_label": "保險計劃",
+      "selection_guidance": "請依保單首頁的 IHLR/KHLR 計劃別選擇 5、10、15、20、25 或 30；系統會依條款表格帶出住院、加護病房與手術保障。",
+      "version_characteristics": {
+        "disease_initial_waiting_days": 0,
+        "daily_hospital_days_limit": 365,
+        "intensive_care_days_limit": 365,
+        "same_hospital_readmission_days": 14,
+        "surgery_base_daily_multiplier": 20,
+        "surgery_total_cap_daily_multiplier": 60,
+        "cumulative_termination_daily_multiplier": 1000,
+        "disability_terminology": "完全殘廢",
+        "day_hospital_excluded": false,
+        "post_expiry_readmission_excluded": false,
+        "claims_review_medical_opinion_revision": false,
+        "main_contract_forced_execution_exception": false,
+        "terms_revision": "101-revised"
+      },
+      "plan_options": [
+        {
+          "value": "plan-5",
+          "label": "計劃5",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每次住院期間按實際住院日數每日給付 500 元，含入院及出院當日，最高 365 日。",
+              "source_ref": "保單條款第十、十一條，第 3 頁；保險利益表第 5 頁",
+              "amount": 500,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "加護病房治療期間每日另行給付 500 元，最高 365 日。",
+              "source_ref": "保單條款第十、十三條，第 3 頁；保險利益表第 5 頁",
+              "amount": 500,
+              "conditions": [
+                "住進加護病房接受治療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "surgery-benefit-base",
+              "name": "手術費用保險金基準額",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院接受手術時，以住院日額 20 倍 10,000 元為基準，乘以附件二手術名稱及費用表所列比例給付。",
+              "source_ref": "保單條款第十、十二條及附件二，第 3 頁起；保險利益表第 5 頁",
+              "amount": 10000,
+              "rate_min_percent": 2,
+              "rate_max_percent": 300,
+              "conditions": [
+                "須依第十條約定住院並接受手術治療",
+                "非因當次住院事故治療目的所進行的牙科手術不給付",
+                "同一部位重複手術或同次手術涉及二項以上器官時僅給付較高一項"
+              ]
+            },
+            {
+              "id": "surgery-benefit-per-hospitalization-cap",
+              "name": "每次住院手術費用保險金總上限",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "每次住院期間各項手術費用保險金總和最高 30,000 元。",
+              "source_ref": "保單條款第十二條，第 3 頁",
+              "amount": 30000,
+              "multiplier": 60,
+              "conditions": [
+                "每次住院期間適用",
+                "各項手術費用保險金合計受此上限限制"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累積總給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一至十三條累計給付達住院日額 1000 倍 500,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 500000,
+              "multiplier": 1000,
+              "conditions": [
+                "住院保險金日額減少時，按減少後日額重新計算門檻"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-10",
+          "label": "計劃10",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每次住院期間按實際住院日數每日給付 1,000 元，含入院及出院當日，最高 365 日。",
+              "source_ref": "保單條款第十、十一條，第 3 頁；保險利益表第 5 頁",
+              "amount": 1000,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "加護病房治療期間每日另行給付 1,000 元，最高 365 日。",
+              "source_ref": "保單條款第十、十三條，第 3 頁；保險利益表第 5 頁",
+              "amount": 1000,
+              "conditions": [
+                "住進加護病房接受治療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "surgery-benefit-base",
+              "name": "手術費用保險金基準額",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院接受手術時，以住院日額 20 倍 20,000 元為基準，乘以附件二手術名稱及費用表所列比例給付。",
+              "source_ref": "保單條款第十、十二條及附件二，第 3 頁起；保險利益表第 5 頁",
+              "amount": 20000,
+              "rate_min_percent": 2,
+              "rate_max_percent": 300,
+              "conditions": [
+                "須依第十條約定住院並接受手術治療",
+                "非因當次住院事故治療目的所進行的牙科手術不給付",
+                "同一部位重複手術或同次手術涉及二項以上器官時僅給付較高一項"
+              ]
+            },
+            {
+              "id": "surgery-benefit-per-hospitalization-cap",
+              "name": "每次住院手術費用保險金總上限",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "每次住院期間各項手術費用保險金總和最高 60,000 元。",
+              "source_ref": "保單條款第十二條，第 3 頁",
+              "amount": 60000,
+              "multiplier": 60,
+              "conditions": [
+                "每次住院期間適用",
+                "各項手術費用保險金合計受此上限限制"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累積總給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一至十三條累計給付達住院日額 1000 倍 1,000,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 1000000,
+              "multiplier": 1000,
+              "conditions": [
+                "住院保險金日額減少時，按減少後日額重新計算門檻"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-15",
+          "label": "計劃15",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每次住院期間按實際住院日數每日給付 1,500 元，含入院及出院當日，最高 365 日。",
+              "source_ref": "保單條款第十、十一條，第 3 頁；保險利益表第 5 頁",
+              "amount": 1500,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "加護病房治療期間每日另行給付 1,500 元，最高 365 日。",
+              "source_ref": "保單條款第十、十三條，第 3 頁；保險利益表第 5 頁",
+              "amount": 1500,
+              "conditions": [
+                "住進加護病房接受治療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "surgery-benefit-base",
+              "name": "手術費用保險金基準額",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院接受手術時，以住院日額 20 倍 30,000 元為基準，乘以附件二手術名稱及費用表所列比例給付。",
+              "source_ref": "保單條款第十、十二條及附件二，第 3 頁起；保險利益表第 5 頁",
+              "amount": 30000,
+              "rate_min_percent": 2,
+              "rate_max_percent": 300,
+              "conditions": [
+                "須依第十條約定住院並接受手術治療",
+                "非因當次住院事故治療目的所進行的牙科手術不給付",
+                "同一部位重複手術或同次手術涉及二項以上器官時僅給付較高一項"
+              ]
+            },
+            {
+              "id": "surgery-benefit-per-hospitalization-cap",
+              "name": "每次住院手術費用保險金總上限",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "每次住院期間各項手術費用保險金總和最高 90,000 元。",
+              "source_ref": "保單條款第十二條，第 3 頁",
+              "amount": 90000,
+              "multiplier": 60,
+              "conditions": [
+                "每次住院期間適用",
+                "各項手術費用保險金合計受此上限限制"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累積總給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一至十三條累計給付達住院日額 1000 倍 1,500,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 1500000,
+              "multiplier": 1000,
+              "conditions": [
+                "住院保險金日額減少時，按減少後日額重新計算門檻"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-20",
+          "label": "計劃20",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每次住院期間按實際住院日數每日給付 2,000 元，含入院及出院當日，最高 365 日。",
+              "source_ref": "保單條款第十、十一條，第 3 頁；保險利益表第 5 頁",
+              "amount": 2000,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "加護病房治療期間每日另行給付 2,000 元，最高 365 日。",
+              "source_ref": "保單條款第十、十三條，第 3 頁；保險利益表第 5 頁",
+              "amount": 2000,
+              "conditions": [
+                "住進加護病房接受治療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "surgery-benefit-base",
+              "name": "手術費用保險金基準額",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院接受手術時，以住院日額 20 倍 40,000 元為基準，乘以附件二手術名稱及費用表所列比例給付。",
+              "source_ref": "保單條款第十、十二條及附件二，第 3 頁起；保險利益表第 5 頁",
+              "amount": 40000,
+              "rate_min_percent": 2,
+              "rate_max_percent": 300,
+              "conditions": [
+                "須依第十條約定住院並接受手術治療",
+                "非因當次住院事故治療目的所進行的牙科手術不給付",
+                "同一部位重複手術或同次手術涉及二項以上器官時僅給付較高一項"
+              ]
+            },
+            {
+              "id": "surgery-benefit-per-hospitalization-cap",
+              "name": "每次住院手術費用保險金總上限",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "每次住院期間各項手術費用保險金總和最高 120,000 元。",
+              "source_ref": "保單條款第十二條，第 3 頁",
+              "amount": 120000,
+              "multiplier": 60,
+              "conditions": [
+                "每次住院期間適用",
+                "各項手術費用保險金合計受此上限限制"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累積總給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一至十三條累計給付達住院日額 1000 倍 2,000,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 2000000,
+              "multiplier": 1000,
+              "conditions": [
+                "住院保險金日額減少時，按減少後日額重新計算門檻"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-25",
+          "label": "計劃25",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每次住院期間按實際住院日數每日給付 2,500 元，含入院及出院當日，最高 365 日。",
+              "source_ref": "保單條款第十、十一條，第 3 頁；保險利益表第 5 頁",
+              "amount": 2500,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "加護病房治療期間每日另行給付 2,500 元，最高 365 日。",
+              "source_ref": "保單條款第十、十三條，第 3 頁；保險利益表第 5 頁",
+              "amount": 2500,
+              "conditions": [
+                "住進加護病房接受治療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "surgery-benefit-base",
+              "name": "手術費用保險金基準額",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院接受手術時，以住院日額 20 倍 50,000 元為基準，乘以附件二手術名稱及費用表所列比例給付。",
+              "source_ref": "保單條款第十、十二條及附件二，第 3 頁起；保險利益表第 5 頁",
+              "amount": 50000,
+              "rate_min_percent": 2,
+              "rate_max_percent": 300,
+              "conditions": [
+                "須依第十條約定住院並接受手術治療",
+                "非因當次住院事故治療目的所進行的牙科手術不給付",
+                "同一部位重複手術或同次手術涉及二項以上器官時僅給付較高一項"
+              ]
+            },
+            {
+              "id": "surgery-benefit-per-hospitalization-cap",
+              "name": "每次住院手術費用保險金總上限",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "每次住院期間各項手術費用保險金總和最高 150,000 元。",
+              "source_ref": "保單條款第十二條，第 3 頁",
+              "amount": 150000,
+              "multiplier": 60,
+              "conditions": [
+                "每次住院期間適用",
+                "各項手術費用保險金合計受此上限限制"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累積總給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一至十三條累計給付達住院日額 1000 倍 2,500,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 2500000,
+              "multiplier": 1000,
+              "conditions": [
+                "住院保險金日額減少時，按減少後日額重新計算門檻"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-30",
+          "label": "計劃30",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每次住院期間按實際住院日數每日給付 3,000 元，含入院及出院當日，最高 365 日。",
+              "source_ref": "保單條款第十、十一條，第 3 頁；保險利益表第 5 頁",
+              "amount": 3000,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "加護病房治療期間每日另行給付 3,000 元，最高 365 日。",
+              "source_ref": "保單條款第十、十三條，第 3 頁；保險利益表第 5 頁",
+              "amount": 3000,
+              "conditions": [
+                "住進加護病房接受治療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "surgery-benefit-base",
+              "name": "手術費用保險金基準額",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院接受手術時，以住院日額 20 倍 60,000 元為基準，乘以附件二手術名稱及費用表所列比例給付。",
+              "source_ref": "保單條款第十、十二條及附件二，第 3 頁起；保險利益表第 5 頁",
+              "amount": 60000,
+              "rate_min_percent": 2,
+              "rate_max_percent": 300,
+              "conditions": [
+                "須依第十條約定住院並接受手術治療",
+                "非因當次住院事故治療目的所進行的牙科手術不給付",
+                "同一部位重複手術或同次手術涉及二項以上器官時僅給付較高一項"
+              ]
+            },
+            {
+              "id": "surgery-benefit-per-hospitalization-cap",
+              "name": "每次住院手術費用保險金總上限",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "每次住院期間各項手術費用保險金總和最高 180,000 元。",
+              "source_ref": "保單條款第十二條，第 3 頁",
+              "amount": 180000,
+              "multiplier": 60,
+              "conditions": [
+                "每次住院期間適用",
+                "各項手術費用保險金合計受此上限限制"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累積總給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一至十三條累計給付達住院日額 1000 倍 3,000,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 3000000,
+              "multiplier": 1000,
+              "conditions": [
+                "住院保險金日額減少時，按減少後日額重新計算門檻"
+              ]
+            }
+          ]
+        }
       ]
     },
     {
@@ -18960,6 +19943,610 @@
           "text_char_count": 1753,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "plan",
+      "input_mode": "plan",
+      "selection_source": "terms",
+      "selection_label": "保險計劃",
+      "selection_guidance": "請依保單首頁的 IHLR/KHLR 計劃別選擇 5、10、15、20、25 或 30；系統會依條款表格帶出住院、加護病房與手術保障。",
+      "version_characteristics": {
+        "disease_initial_waiting_days": 0,
+        "daily_hospital_days_limit": 365,
+        "intensive_care_days_limit": 365,
+        "same_hospital_readmission_days": 14,
+        "surgery_base_daily_multiplier": 20,
+        "surgery_total_cap_daily_multiplier": 60,
+        "cumulative_termination_daily_multiplier": 1000,
+        "disability_terminology": "完全殘廢",
+        "day_hospital_excluded": false,
+        "post_expiry_readmission_excluded": true,
+        "claims_review_medical_opinion_revision": false,
+        "main_contract_forced_execution_exception": false,
+        "terms_revision": "102-revised"
+      },
+      "plan_options": [
+        {
+          "value": "plan-5",
+          "label": "計劃5",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每次住院期間按實際住院日數每日給付 500 元，含入院及出院當日，最高 365 日。",
+              "source_ref": "保單條款第十、十一條，第 3 頁；保險利益表第 5 頁",
+              "amount": 500,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "加護病房治療期間每日另行給付 500 元，最高 365 日。",
+              "source_ref": "保單條款第十、十三條，第 3 頁；保險利益表第 5 頁",
+              "amount": 500,
+              "conditions": [
+                "住進加護病房接受治療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "surgery-benefit-base",
+              "name": "手術費用保險金基準額",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院接受手術時，以住院日額 20 倍 10,000 元為基準，乘以附件二手術名稱及費用表所列比例給付。",
+              "source_ref": "保單條款第十、十二條及附件二，第 3 頁起；保險利益表第 5 頁",
+              "amount": 10000,
+              "rate_min_percent": 2,
+              "rate_max_percent": 300,
+              "conditions": [
+                "須依第十條約定住院並接受手術治療",
+                "非因當次住院事故治療目的所進行的牙科手術不給付",
+                "同一部位重複手術或同次手術涉及二項以上器官時僅給付較高一項"
+              ]
+            },
+            {
+              "id": "surgery-benefit-per-hospitalization-cap",
+              "name": "每次住院手術費用保險金總上限",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "每次住院期間各項手術費用保險金總和最高 30,000 元。",
+              "source_ref": "保單條款第十二條，第 3 頁",
+              "amount": 30000,
+              "multiplier": 60,
+              "conditions": [
+                "每次住院期間適用",
+                "各項手術費用保險金合計受此上限限制"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累積總給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一至十三條累計給付達住院日額 1000 倍 500,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 500000,
+              "multiplier": 1000,
+              "conditions": [
+                "住院保險金日額減少時，按減少後日額重新計算門檻"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-10",
+          "label": "計劃10",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每次住院期間按實際住院日數每日給付 1,000 元，含入院及出院當日，最高 365 日。",
+              "source_ref": "保單條款第十、十一條，第 3 頁；保險利益表第 5 頁",
+              "amount": 1000,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "加護病房治療期間每日另行給付 1,000 元，最高 365 日。",
+              "source_ref": "保單條款第十、十三條，第 3 頁；保險利益表第 5 頁",
+              "amount": 1000,
+              "conditions": [
+                "住進加護病房接受治療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "surgery-benefit-base",
+              "name": "手術費用保險金基準額",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院接受手術時，以住院日額 20 倍 20,000 元為基準，乘以附件二手術名稱及費用表所列比例給付。",
+              "source_ref": "保單條款第十、十二條及附件二，第 3 頁起；保險利益表第 5 頁",
+              "amount": 20000,
+              "rate_min_percent": 2,
+              "rate_max_percent": 300,
+              "conditions": [
+                "須依第十條約定住院並接受手術治療",
+                "非因當次住院事故治療目的所進行的牙科手術不給付",
+                "同一部位重複手術或同次手術涉及二項以上器官時僅給付較高一項"
+              ]
+            },
+            {
+              "id": "surgery-benefit-per-hospitalization-cap",
+              "name": "每次住院手術費用保險金總上限",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "每次住院期間各項手術費用保險金總和最高 60,000 元。",
+              "source_ref": "保單條款第十二條，第 3 頁",
+              "amount": 60000,
+              "multiplier": 60,
+              "conditions": [
+                "每次住院期間適用",
+                "各項手術費用保險金合計受此上限限制"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累積總給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一至十三條累計給付達住院日額 1000 倍 1,000,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 1000000,
+              "multiplier": 1000,
+              "conditions": [
+                "住院保險金日額減少時，按減少後日額重新計算門檻"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-15",
+          "label": "計劃15",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每次住院期間按實際住院日數每日給付 1,500 元，含入院及出院當日，最高 365 日。",
+              "source_ref": "保單條款第十、十一條，第 3 頁；保險利益表第 5 頁",
+              "amount": 1500,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "加護病房治療期間每日另行給付 1,500 元，最高 365 日。",
+              "source_ref": "保單條款第十、十三條，第 3 頁；保險利益表第 5 頁",
+              "amount": 1500,
+              "conditions": [
+                "住進加護病房接受治療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "surgery-benefit-base",
+              "name": "手術費用保險金基準額",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院接受手術時，以住院日額 20 倍 30,000 元為基準，乘以附件二手術名稱及費用表所列比例給付。",
+              "source_ref": "保單條款第十、十二條及附件二，第 3 頁起；保險利益表第 5 頁",
+              "amount": 30000,
+              "rate_min_percent": 2,
+              "rate_max_percent": 300,
+              "conditions": [
+                "須依第十條約定住院並接受手術治療",
+                "非因當次住院事故治療目的所進行的牙科手術不給付",
+                "同一部位重複手術或同次手術涉及二項以上器官時僅給付較高一項"
+              ]
+            },
+            {
+              "id": "surgery-benefit-per-hospitalization-cap",
+              "name": "每次住院手術費用保險金總上限",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "每次住院期間各項手術費用保險金總和最高 90,000 元。",
+              "source_ref": "保單條款第十二條，第 3 頁",
+              "amount": 90000,
+              "multiplier": 60,
+              "conditions": [
+                "每次住院期間適用",
+                "各項手術費用保險金合計受此上限限制"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累積總給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一至十三條累計給付達住院日額 1000 倍 1,500,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 1500000,
+              "multiplier": 1000,
+              "conditions": [
+                "住院保險金日額減少時，按減少後日額重新計算門檻"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-20",
+          "label": "計劃20",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每次住院期間按實際住院日數每日給付 2,000 元，含入院及出院當日，最高 365 日。",
+              "source_ref": "保單條款第十、十一條，第 3 頁；保險利益表第 5 頁",
+              "amount": 2000,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "加護病房治療期間每日另行給付 2,000 元，最高 365 日。",
+              "source_ref": "保單條款第十、十三條，第 3 頁；保險利益表第 5 頁",
+              "amount": 2000,
+              "conditions": [
+                "住進加護病房接受治療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "surgery-benefit-base",
+              "name": "手術費用保險金基準額",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院接受手術時，以住院日額 20 倍 40,000 元為基準，乘以附件二手術名稱及費用表所列比例給付。",
+              "source_ref": "保單條款第十、十二條及附件二，第 3 頁起；保險利益表第 5 頁",
+              "amount": 40000,
+              "rate_min_percent": 2,
+              "rate_max_percent": 300,
+              "conditions": [
+                "須依第十條約定住院並接受手術治療",
+                "非因當次住院事故治療目的所進行的牙科手術不給付",
+                "同一部位重複手術或同次手術涉及二項以上器官時僅給付較高一項"
+              ]
+            },
+            {
+              "id": "surgery-benefit-per-hospitalization-cap",
+              "name": "每次住院手術費用保險金總上限",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "每次住院期間各項手術費用保險金總和最高 120,000 元。",
+              "source_ref": "保單條款第十二條，第 3 頁",
+              "amount": 120000,
+              "multiplier": 60,
+              "conditions": [
+                "每次住院期間適用",
+                "各項手術費用保險金合計受此上限限制"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累積總給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一至十三條累計給付達住院日額 1000 倍 2,000,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 2000000,
+              "multiplier": 1000,
+              "conditions": [
+                "住院保險金日額減少時，按減少後日額重新計算門檻"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-25",
+          "label": "計劃25",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每次住院期間按實際住院日數每日給付 2,500 元，含入院及出院當日，最高 365 日。",
+              "source_ref": "保單條款第十、十一條，第 3 頁；保險利益表第 5 頁",
+              "amount": 2500,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "加護病房治療期間每日另行給付 2,500 元，最高 365 日。",
+              "source_ref": "保單條款第十、十三條，第 3 頁；保險利益表第 5 頁",
+              "amount": 2500,
+              "conditions": [
+                "住進加護病房接受治療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "surgery-benefit-base",
+              "name": "手術費用保險金基準額",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院接受手術時，以住院日額 20 倍 50,000 元為基準，乘以附件二手術名稱及費用表所列比例給付。",
+              "source_ref": "保單條款第十、十二條及附件二，第 3 頁起；保險利益表第 5 頁",
+              "amount": 50000,
+              "rate_min_percent": 2,
+              "rate_max_percent": 300,
+              "conditions": [
+                "須依第十條約定住院並接受手術治療",
+                "非因當次住院事故治療目的所進行的牙科手術不給付",
+                "同一部位重複手術或同次手術涉及二項以上器官時僅給付較高一項"
+              ]
+            },
+            {
+              "id": "surgery-benefit-per-hospitalization-cap",
+              "name": "每次住院手術費用保險金總上限",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "每次住院期間各項手術費用保險金總和最高 150,000 元。",
+              "source_ref": "保單條款第十二條，第 3 頁",
+              "amount": 150000,
+              "multiplier": 60,
+              "conditions": [
+                "每次住院期間適用",
+                "各項手術費用保險金合計受此上限限制"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累積總給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一至十三條累計給付達住院日額 1000 倍 2,500,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 2500000,
+              "multiplier": 1000,
+              "conditions": [
+                "住院保險金日額減少時，按減少後日額重新計算門檻"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-30",
+          "label": "計劃30",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "每次住院期間按實際住院日數每日給付 3,000 元，含入院及出院當日，最高 365 日。",
+              "source_ref": "保單條款第十、十一條，第 3 頁；保險利益表第 5 頁",
+              "amount": 3000,
+              "conditions": [
+                "因疾病或傷害住院診療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "intensive-care-daily",
+              "name": "加護病房費用保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "加護病房治療期間每日另行給付 3,000 元，最高 365 日。",
+              "source_ref": "保單條款第十、十三條，第 3 頁；保險利益表第 5 頁",
+              "amount": 3000,
+              "conditions": [
+                "住進加護病房接受治療",
+                "含入院及出院當日",
+                "每次住院最高給付 365 日"
+              ]
+            },
+            {
+              "id": "surgery-benefit-base",
+              "name": "手術費用保險金基準額",
+              "basis": "benefit_base",
+              "calculation_basis": "percentage_of_base",
+              "amount_role": "base",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院接受手術時，以住院日額 20 倍 60,000 元為基準，乘以附件二手術名稱及費用表所列比例給付。",
+              "source_ref": "保單條款第十、十二條及附件二，第 3 頁起；保險利益表第 5 頁",
+              "amount": 60000,
+              "rate_min_percent": 2,
+              "rate_max_percent": 300,
+              "conditions": [
+                "須依第十條約定住院並接受手術治療",
+                "非因當次住院事故治療目的所進行的牙科手術不給付",
+                "同一部位重複手術或同次手術涉及二項以上器官時僅給付較高一項"
+              ]
+            },
+            {
+              "id": "surgery-benefit-per-hospitalization-cap",
+              "name": "每次住院手術費用保險金總上限",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "每次住院期間各項手術費用保險金總和最高 180,000 元。",
+              "source_ref": "保單條款第十二條，第 3 頁",
+              "amount": 180000,
+              "multiplier": 60,
+              "conditions": [
+                "每次住院期間適用",
+                "各項手術費用保險金合計受此上限限制"
+              ]
+            },
+            {
+              "id": "cumulative-benefit-termination-threshold",
+              "name": "累積總給付終止門檻",
+              "basis": "policy_total",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "reference",
+              "limit_scope": "lifetime",
+              "aggregation_rule": "cumulative_cap",
+              "source": "terms",
+              "note": "第十一至十三條累計給付達住院日額 1000 倍 3,000,000 元時，本附約終止。",
+              "source_ref": "保單條款第八條，第 2 頁",
+              "amount": 3000000,
+              "multiplier": 1000,
+              "conditions": [
+                "住院保險金日額減少時，按減少後日額重新計算門檻"
+              ]
+            }
+          ]
         }
       ]
     },

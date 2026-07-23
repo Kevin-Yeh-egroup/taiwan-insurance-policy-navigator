@@ -1,0 +1,1860 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-21T15:00:53+08:00",
+  "batch_id": "tii-life-164",
+  "record_count": 7,
+  "records": [
+    {
+      "product_id": "264311AZ1AETS21A11Z10000000",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v40",
+      "parser_id": "global-e-road-peace-overseas-illness-face-amount-v1",
+      "source_file": "264311AZ1AETS21A11Z10000000-A.pdf",
+      "source_document_sha256": "ea6b37d4c206241849db79b6b7b15f3f9b5845f215648e35894903d5adbbdb44",
+      "schedule_sha256": "745f7937dc39afe43d0f5d7804016b5ddfe5b3e0ab14694e1d5398efd040b9e0",
+      "reviewed_by": "codex",
+      "reviewed_at": "2026-07-21T13:59:11+08:00",
+      "review_note": "Source-reviewed against official A PDFs for Global Life e-road-peace overseas sudden illness medical rider versions 0 to 3; verified face-amount limits for overseas inpatient, outpatient, emergency, non-NHI payment handling, 180-day illness lookback, 180-day inpatient claim window, 14-day readmission grouping, day-hospital exclusion, post-expiry readmission exclusion, claim-date Taiwan Bank exchange-rate basis, unearned-premium refund, and version-specific revision signals. Versions 4 and 5 are deferred because the local PDF reader requires AES cryptography support for encrypted PDFs.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "海外突發疾病醫療保險金額",
+      "selection_guidance": "請填保險單所記載的海外突發疾病醫療保險金額；系統會換算海外突發疾病住院、門診、急診醫療費用的給付上限。",
+      "version_characteristics": {
+        "terms_revision": "original",
+        "overseas_illness_lookback_days": 180,
+        "inpatient_claim_days_limit": 180,
+        "outpatient_limit_rate_percent": 0.5,
+        "emergency_limit_rate_percent": 1,
+        "non_nhi_payment_rate_percent": 100,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": true,
+        "day_hospital_excluded": true,
+        "claims_exchange_rate_basis": "taiwan-bank-reference-rate-on-claim-date",
+        "regulatory_revision": false,
+        "claims_medical_opinion_revision": false
+      },
+      "coverage_entries": [
+        {
+          "id": "overseas-illness-inpatient-medical-limit",
+          "name": "海外突發疾病住院醫療保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "同一次住院首日起 180 日內，按實際住院醫療費用給付；總額不得超過保險單記載之海外突發疾病醫療保險金額。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 100,
+          "unit_key": "overseas_illness_medical_amount",
+          "conditions": [
+            "使用者輸入保險單所載海外突發疾病醫療保險金額後，系統依條款百分比呈現各項給付上限",
+            "限第二條約定之海外突發疾病",
+            "同一次住院首日起 180 日內"
+          ]
+        },
+        {
+          "id": "overseas-illness-outpatient-medical-limit",
+          "name": "海外突發疾病門診醫療保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "因海外突發疾病接受門診診療時，按實際門診醫療費用給付；每次給付總額不得超過海外突發疾病醫療保險金額的 0.5%。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 0.5,
+          "unit_key": "overseas_illness_medical_amount",
+          "conditions": [
+            "使用者輸入保險單所載海外突發疾病醫療保險金額後，系統依條款百分比呈現各項給付上限",
+            "限第二條約定之海外突發疾病",
+            "每次門診給付上限為保險金額 0.5%"
+          ]
+        },
+        {
+          "id": "overseas-illness-emergency-medical-limit",
+          "name": "海外突發疾病急診醫療保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "因海外突發疾病接受急診診療時，按實際急診醫療費用給付；每次給付總額不得超過海外突發疾病醫療保險金額的 1%。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 1,
+          "unit_key": "overseas_illness_medical_amount",
+          "conditions": [
+            "使用者輸入保險單所載海外突發疾病醫療保險金額後，系統依條款百分比呈現各項給付上限",
+            "限第二條約定之海外突發疾病",
+            "每次急診給付上限為保險金額 1%"
+          ]
+        },
+        {
+          "id": "non-nhi-payment-rate",
+          "name": "未經全民健康保險給付之處理方式",
+          "basis": "per_event",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "reference",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "第四至六條給付若未經全民健康保險給付，依實際支付費用 100% 給付，仍以前述各項保險金條款約定金額為限。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 100,
+          "unit_key": "actual_paid_expense",
+          "conditions": [
+            "不以全民健康保險身分接受診療，或前往不具有全民健康保險之醫療機構診療",
+            "仍受第四至六條各項上限限制"
+          ]
+        },
+        {
+          "id": "unearned-premium-refund",
+          "name": "未到期保險費返還",
+          "basis": "additional_benefit",
+          "calculation_basis": "table_multiplier",
+          "amount_role": "reference",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故致附加條款效力終止時，返還已繳保險費扣除已經過期間保險費後之未到期保險費。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "multiplier": 1,
+          "conditions": [
+            "因被保險人身故致本附加條款效力終止時適用"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "264311AZ1AETS21A11Z10000001",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v40",
+      "parser_id": "global-e-road-peace-overseas-illness-face-amount-v1",
+      "source_file": "264311AZ1AETS21A11Z10000001-A.pdf",
+      "source_document_sha256": "1bb65b61c41ce5ec42f38d7a0b421b0f152fc1e8c90756694a1b4ad88c455168",
+      "schedule_sha256": "af6200d1d9cbf44f2a60c89dec1af743a9b221f2386b8cb909e8d960a293b80d",
+      "reviewed_by": "codex",
+      "reviewed_at": "2026-07-21T13:59:11+08:00",
+      "review_note": "Source-reviewed against official A PDFs for Global Life e-road-peace overseas sudden illness medical rider versions 0 to 3; verified face-amount limits for overseas inpatient, outpatient, emergency, non-NHI payment handling, 180-day illness lookback, 180-day inpatient claim window, 14-day readmission grouping, day-hospital exclusion, post-expiry readmission exclusion, claim-date Taiwan Bank exchange-rate basis, unearned-premium refund, and version-specific revision signals. Versions 4 and 5 are deferred because the local PDF reader requires AES cryptography support for encrypted PDFs.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "海外突發疾病醫療保險金額",
+      "selection_guidance": "請填保險單所記載的海外突發疾病醫療保險金額；系統會換算海外突發疾病住院、門診、急診醫療費用的給付上限。",
+      "version_characteristics": {
+        "terms_revision": "107-first-revision",
+        "overseas_illness_lookback_days": 180,
+        "inpatient_claim_days_limit": 180,
+        "outpatient_limit_rate_percent": 0.5,
+        "emergency_limit_rate_percent": 1,
+        "non_nhi_payment_rate_percent": 100,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": true,
+        "day_hospital_excluded": true,
+        "claims_exchange_rate_basis": "taiwan-bank-reference-rate-on-claim-date",
+        "regulatory_revision": false,
+        "claims_medical_opinion_revision": false
+      },
+      "coverage_entries": [
+        {
+          "id": "overseas-illness-inpatient-medical-limit",
+          "name": "海外突發疾病住院醫療保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "同一次住院首日起 180 日內，按實際住院醫療費用給付；總額不得超過保險單記載之海外突發疾病醫療保險金額。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 100,
+          "unit_key": "overseas_illness_medical_amount",
+          "conditions": [
+            "使用者輸入保險單所載海外突發疾病醫療保險金額後，系統依條款百分比呈現各項給付上限",
+            "限第二條約定之海外突發疾病",
+            "同一次住院首日起 180 日內"
+          ]
+        },
+        {
+          "id": "overseas-illness-outpatient-medical-limit",
+          "name": "海外突發疾病門診醫療保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "因海外突發疾病接受門診診療時，按實際門診醫療費用給付；每次給付總額不得超過海外突發疾病醫療保險金額的 0.5%。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 0.5,
+          "unit_key": "overseas_illness_medical_amount",
+          "conditions": [
+            "使用者輸入保險單所載海外突發疾病醫療保險金額後，系統依條款百分比呈現各項給付上限",
+            "限第二條約定之海外突發疾病",
+            "每次門診給付上限為保險金額 0.5%"
+          ]
+        },
+        {
+          "id": "overseas-illness-emergency-medical-limit",
+          "name": "海外突發疾病急診醫療保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "因海外突發疾病接受急診診療時，按實際急診醫療費用給付；每次給付總額不得超過海外突發疾病醫療保險金額的 1%。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 1,
+          "unit_key": "overseas_illness_medical_amount",
+          "conditions": [
+            "使用者輸入保險單所載海外突發疾病醫療保險金額後，系統依條款百分比呈現各項給付上限",
+            "限第二條約定之海外突發疾病",
+            "每次急診給付上限為保險金額 1%"
+          ]
+        },
+        {
+          "id": "non-nhi-payment-rate",
+          "name": "未經全民健康保險給付之處理方式",
+          "basis": "per_event",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "reference",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "第四至六條給付若未經全民健康保險給付，依實際支付費用 100% 給付，仍以前述各項保險金條款約定金額為限。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 100,
+          "unit_key": "actual_paid_expense",
+          "conditions": [
+            "不以全民健康保險身分接受診療，或前往不具有全民健康保險之醫療機構診療",
+            "仍受第四至六條各項上限限制"
+          ]
+        },
+        {
+          "id": "unearned-premium-refund",
+          "name": "未到期保險費返還",
+          "basis": "additional_benefit",
+          "calculation_basis": "table_multiplier",
+          "amount_role": "reference",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故致附加條款效力終止時，返還已繳保險費扣除已經過期間保險費後之未到期保險費。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "multiplier": 1,
+          "conditions": [
+            "因被保險人身故致本附加條款效力終止時適用"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "264311AZ1AETS21A11Z10000002",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v40",
+      "parser_id": "global-e-road-peace-overseas-illness-face-amount-v1",
+      "source_file": "264311AZ1AETS21A11Z10000002-A.pdf",
+      "source_document_sha256": "a0635e42b679baeb2d9bfe3bb5058b47e4ffc4ec841e21db70086c6a5c584749",
+      "schedule_sha256": "09de74bab828c96846cc066f6e9174e88f379aafc16d73e97e357cb16e5cd3e3",
+      "reviewed_by": "codex",
+      "reviewed_at": "2026-07-21T13:59:11+08:00",
+      "review_note": "Source-reviewed against official A PDFs for Global Life e-road-peace overseas sudden illness medical rider versions 0 to 3; verified face-amount limits for overseas inpatient, outpatient, emergency, non-NHI payment handling, 180-day illness lookback, 180-day inpatient claim window, 14-day readmission grouping, day-hospital exclusion, post-expiry readmission exclusion, claim-date Taiwan Bank exchange-rate basis, unearned-premium refund, and version-specific revision signals. Versions 4 and 5 are deferred because the local PDF reader requires AES cryptography support for encrypted PDFs.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "海外突發疾病醫療保險金額",
+      "selection_guidance": "請填保險單所記載的海外突發疾病醫療保險金額；系統會換算海外突發疾病住院、門診、急診醫療費用的給付上限。",
+      "version_characteristics": {
+        "terms_revision": "108-second-revision",
+        "overseas_illness_lookback_days": 180,
+        "inpatient_claim_days_limit": 180,
+        "outpatient_limit_rate_percent": 0.5,
+        "emergency_limit_rate_percent": 1,
+        "non_nhi_payment_rate_percent": 100,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": true,
+        "day_hospital_excluded": true,
+        "claims_exchange_rate_basis": "taiwan-bank-reference-rate-on-claim-date",
+        "regulatory_revision": false,
+        "claims_medical_opinion_revision": false
+      },
+      "coverage_entries": [
+        {
+          "id": "overseas-illness-inpatient-medical-limit",
+          "name": "海外突發疾病住院醫療保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "同一次住院首日起 180 日內，按實際住院醫療費用給付；總額不得超過保險單記載之海外突發疾病醫療保險金額。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 100,
+          "unit_key": "overseas_illness_medical_amount",
+          "conditions": [
+            "使用者輸入保險單所載海外突發疾病醫療保險金額後，系統依條款百分比呈現各項給付上限",
+            "限第二條約定之海外突發疾病",
+            "同一次住院首日起 180 日內"
+          ]
+        },
+        {
+          "id": "overseas-illness-outpatient-medical-limit",
+          "name": "海外突發疾病門診醫療保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "因海外突發疾病接受門診診療時，按實際門診醫療費用給付；每次給付總額不得超過海外突發疾病醫療保險金額的 0.5%。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 0.5,
+          "unit_key": "overseas_illness_medical_amount",
+          "conditions": [
+            "使用者輸入保險單所載海外突發疾病醫療保險金額後，系統依條款百分比呈現各項給付上限",
+            "限第二條約定之海外突發疾病",
+            "每次門診給付上限為保險金額 0.5%"
+          ]
+        },
+        {
+          "id": "overseas-illness-emergency-medical-limit",
+          "name": "海外突發疾病急診醫療保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "因海外突發疾病接受急診診療時，按實際急診醫療費用給付；每次給付總額不得超過海外突發疾病醫療保險金額的 1%。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 1,
+          "unit_key": "overseas_illness_medical_amount",
+          "conditions": [
+            "使用者輸入保險單所載海外突發疾病醫療保險金額後，系統依條款百分比呈現各項給付上限",
+            "限第二條約定之海外突發疾病",
+            "每次急診給付上限為保險金額 1%"
+          ]
+        },
+        {
+          "id": "non-nhi-payment-rate",
+          "name": "未經全民健康保險給付之處理方式",
+          "basis": "per_event",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "reference",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "第四至六條給付若未經全民健康保險給付，依實際支付費用 100% 給付，仍以前述各項保險金條款約定金額為限。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 100,
+          "unit_key": "actual_paid_expense",
+          "conditions": [
+            "不以全民健康保險身分接受診療，或前往不具有全民健康保險之醫療機構診療",
+            "仍受第四至六條各項上限限制"
+          ]
+        },
+        {
+          "id": "unearned-premium-refund",
+          "name": "未到期保險費返還",
+          "basis": "additional_benefit",
+          "calculation_basis": "table_multiplier",
+          "amount_role": "reference",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故致附加條款效力終止時，返還已繳保險費扣除已經過期間保險費後之未到期保險費。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "multiplier": 1,
+          "conditions": [
+            "因被保險人身故致本附加條款效力終止時適用"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "264311AZ1AETS21A11Z10000003",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v40",
+      "parser_id": "global-e-road-peace-overseas-illness-face-amount-v1",
+      "source_file": "264311AZ1AETS21A11Z10000003-A.pdf",
+      "source_document_sha256": "b31024517c8d4cafa6be8bfcbc32ac42cfdca5a7092ccf3e3fa3329fe7cf39a3",
+      "schedule_sha256": "5c0fdfeac88f7099f769ef998b9e2d86f86eaf64e97817a282a7fbef55faf305",
+      "reviewed_by": "codex",
+      "reviewed_at": "2026-07-21T13:59:11+08:00",
+      "review_note": "Source-reviewed against official A PDFs for Global Life e-road-peace overseas sudden illness medical rider versions 0 to 3; verified face-amount limits for overseas inpatient, outpatient, emergency, non-NHI payment handling, 180-day illness lookback, 180-day inpatient claim window, 14-day readmission grouping, day-hospital exclusion, post-expiry readmission exclusion, claim-date Taiwan Bank exchange-rate basis, unearned-premium refund, and version-specific revision signals. Versions 4 and 5 are deferred because the local PDF reader requires AES cryptography support for encrypted PDFs.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "海外突發疾病醫療保險金額",
+      "selection_guidance": "請填保險單所記載的海外突發疾病醫療保險金額；系統會換算海外突發疾病住院、門診、急診醫療費用的給付上限。",
+      "version_characteristics": {
+        "terms_revision": "109-third-revision",
+        "overseas_illness_lookback_days": 180,
+        "inpatient_claim_days_limit": 180,
+        "outpatient_limit_rate_percent": 0.5,
+        "emergency_limit_rate_percent": 1,
+        "non_nhi_payment_rate_percent": 100,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": true,
+        "day_hospital_excluded": true,
+        "claims_exchange_rate_basis": "taiwan-bank-reference-rate-on-claim-date",
+        "regulatory_revision": true,
+        "claims_medical_opinion_revision": true
+      },
+      "coverage_entries": [
+        {
+          "id": "overseas-illness-inpatient-medical-limit",
+          "name": "海外突發疾病住院醫療保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "同一次住院首日起 180 日內，按實際住院醫療費用給付；總額不得超過保險單記載之海外突發疾病醫療保險金額。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 100,
+          "unit_key": "overseas_illness_medical_amount",
+          "conditions": [
+            "使用者輸入保險單所載海外突發疾病醫療保險金額後，系統依條款百分比呈現各項給付上限",
+            "限第二條約定之海外突發疾病",
+            "同一次住院首日起 180 日內"
+          ]
+        },
+        {
+          "id": "overseas-illness-outpatient-medical-limit",
+          "name": "海外突發疾病門診醫療保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "因海外突發疾病接受門診診療時，按實際門診醫療費用給付；每次給付總額不得超過海外突發疾病醫療保險金額的 0.5%。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 0.5,
+          "unit_key": "overseas_illness_medical_amount",
+          "conditions": [
+            "使用者輸入保險單所載海外突發疾病醫療保險金額後，系統依條款百分比呈現各項給付上限",
+            "限第二條約定之海外突發疾病",
+            "每次門診給付上限為保險金額 0.5%"
+          ]
+        },
+        {
+          "id": "overseas-illness-emergency-medical-limit",
+          "name": "海外突發疾病急診醫療保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "因海外突發疾病接受急診診療時，按實際急診醫療費用給付；每次給付總額不得超過海外突發疾病醫療保險金額的 1%。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 1,
+          "unit_key": "overseas_illness_medical_amount",
+          "conditions": [
+            "使用者輸入保險單所載海外突發疾病醫療保險金額後，系統依條款百分比呈現各項給付上限",
+            "限第二條約定之海外突發疾病",
+            "每次急診給付上限為保險金額 1%"
+          ]
+        },
+        {
+          "id": "non-nhi-payment-rate",
+          "name": "未經全民健康保險給付之處理方式",
+          "basis": "per_event",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "reference",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "第四至六條給付若未經全民健康保險給付，依實際支付費用 100% 給付，仍以前述各項保險金條款約定金額為限。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "rate_percent": 100,
+          "unit_key": "actual_paid_expense",
+          "conditions": [
+            "不以全民健康保險身分接受診療，或前往不具有全民健康保險之醫療機構診療",
+            "仍受第四至六條各項上限限制"
+          ]
+        },
+        {
+          "id": "unearned-premium-refund",
+          "name": "未到期保險費返還",
+          "basis": "additional_benefit",
+          "calculation_basis": "table_multiplier",
+          "amount_role": "reference",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故致附加條款效力終止時，返還已繳保險費扣除已經過期間保險費後之未到期保險費。",
+          "source_ref": "保單條款第二至十二條，第 1-4 頁",
+          "multiplier": 1,
+          "conditions": [
+            "因被保險人身故致本附加條款效力終止時適用"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "264396MZ9GY3221A11Z10000000",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v41",
+      "parser_id": "global-nccu-student-group-fixed-schedule-v1",
+      "source_file": "264396MZ9GY3221A11Z10000000-A.pdf",
+      "source_document_sha256": "27a751f585b17126e8586ea444a36060439b2546d6434fe36020d68964f03e0d",
+      "schedule_sha256": "b18f73a504d8b4af47c15d7e3b706060acea98ca406a345545e0ec7abc3686b2",
+      "reviewed_by": "codex",
+      "reviewed_at": "2026-07-21T14:08:35+08:00",
+      "review_note": "Source-reviewed NCCU student group fixed schedule against policy terms Articles 2, 4, 10-18 and appendices 1-4.",
+      "selection_type": "fixed",
+      "input_mode": "fixed",
+      "selection_source": "terms",
+      "selection_label": "固定保險金額",
+      "selection_guidance": "條款固定保險金額為新臺幣 1,000,000 元；系統依附表一直接呈現固定給付與限額。",
+      "version_characteristics": {
+        "terms_revision": "original",
+        "fixed_face_amount": 1000000,
+        "disability_levels": 11,
+        "disability_living_assistance_levels": "1-3",
+        "disability_living_assistance_annual_payments": 4,
+        "major_burn_rate_percent": 25,
+        "hospital_daily_days_limit": 90,
+        "fracture_daily_amount": 350,
+        "same_hospital_readmission_days": 14,
+        "non_nhi_payment_rate_percent": 75,
+        "post_expiry_accident_days_limit": 180,
+        "death_disability_annual_cap": 1000000,
+        "specific_accidental_death_excluded_from_cap": true,
+        "regulatory_revision": false
+      },
+      "coverage_entries": [
+        {
+          "id": "fixed-face-amount",
+          "name": "固定保險金額",
+          "basis": "benefit_base",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "第二條約定本契約保險金額為新臺幣 1,000,000 元，作為身故、殘廢、重大燒燙傷等給付基礎。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 1000000,
+          "conditions": [
+            "本團體保險條款固定保險金額為新臺幣 1,000,000 元，無計劃別或單位數選擇。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "per_event",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人身故時按保險金額給付身故保險金。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 1000000,
+          "conditions": [
+            "給付後該被保險人保險效力即行終止。",
+            "本團體保險條款固定保險金額為新臺幣 1,000,000 元，無計劃別或單位數選擇。"
+          ]
+        },
+        {
+          "id": "specific-accidental-death-additional",
+          "name": "特定意外身故保險金",
+          "basis": "additional_benefit",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "校外教學、全校正式運動比賽或經學校核准登記社團活動期間發生特定意外身故時，另按保險金額給付。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 1000000,
+          "conditions": [
+            "限條款列明之特定學校活動期間所致意外傷害身故。",
+            "此給付不列入身故與殘廢保險金年度合計上限。"
+          ]
+        },
+        {
+          "id": "disability-benefit",
+          "name": "殘廢保險金",
+          "basis": "per_event",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按附表二殘廢程度給付比例計算；附表一列第 1 級至第 11 級為 100%、90%、80%、70%、60%、50%、40%、30%、20%、10%、5%。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 1000000,
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "unit_key": "fixed_face_amount",
+          "conditions": [
+            "同一保險期間身故與殘廢保險金合計最高以保險金額為限。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "第 1 級",
+              "amount": 1000000
+            },
+            {
+              "label": "第 2 級",
+              "amount": 900000
+            },
+            {
+              "label": "第 3 級",
+              "amount": 800000
+            },
+            {
+              "label": "第 4 級",
+              "amount": 700000
+            },
+            {
+              "label": "第 5 級",
+              "amount": 600000
+            },
+            {
+              "label": "第 6 級",
+              "amount": 500000
+            },
+            {
+              "label": "第 7 級",
+              "amount": 400000
+            },
+            {
+              "label": "第 8 級",
+              "amount": 300000
+            },
+            {
+              "label": "第 9 級",
+              "amount": 200000
+            },
+            {
+              "label": "第 10 級",
+              "amount": 100000
+            },
+            {
+              "label": "第 11 級",
+              "amount": 50000
+            }
+          ]
+        },
+        {
+          "id": "disability-living-assistance-annual",
+          "name": "殘廢生活補助金",
+          "basis": "annual_limit",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "第一至第三級殘廢於診斷確定後第 1 至第 4 保單週年日仍生存時，按附表一每年給付。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 250000,
+          "conditions": [
+            "限第一至第三級殘廢。",
+            "各級補助金累計最高不得超過其殘廢保險金。",
+            "最多給付 4 次年度補助。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "第 1 級每年",
+              "amount": 250000
+            },
+            {
+              "label": "第 2 級每年",
+              "amount": 225000
+            },
+            {
+              "label": "第 3 級每年",
+              "amount": 200000
+            }
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "per_event",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合條款重大燒燙傷定義時，按保險金額 25% 給付。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 250000,
+          "rate_percent": 25,
+          "unit_key": "fixed_face_amount",
+          "conditions": [
+            "同一意外傷害事故以給付一次為限。"
+          ]
+        },
+        {
+          "id": "hospital-daily-general",
+          "name": "住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇日額型住院醫療保險金時，一般病房按實際住院日數每日給付 750 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 750,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "每次住院日額給付日數最高 90 日。"
+          ]
+        },
+        {
+          "id": "hospital-daily-icu",
+          "name": "加護病房住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇日額型且入住加護病房時，附表一以每日 1,500 元列示。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 1500,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "同日若同時符合加護、燒燙傷或癌症住院日額，僅得擇一給付。",
+            "每次住院日額給付日數最高 90 日。"
+          ]
+        },
+        {
+          "id": "hospital-daily-burn-ward",
+          "name": "燒燙傷病房住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇日額型且入住燒燙傷病房時，附表一以每日 1,500 元列示。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 1500,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "同日若同時符合加護、燒燙傷或癌症住院日額，僅得擇一給付。",
+            "每次住院日額給付日數最高 90 日。"
+          ]
+        },
+        {
+          "id": "hospital-daily-cancer",
+          "name": "癌症住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇日額型且因癌症住院診療時，附表一以每日 1,500 元列示。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 1500,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "同日若同時符合加護、燒燙傷或癌症住院日額，僅得擇一給付。",
+            "每次住院日額給付日數最高 90 日。"
+          ]
+        },
+        {
+          "id": "fracture-no-hospital-daily",
+          "name": "骨折未住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "骨折未住院或住院日數低於附表三日數時，按附表三日數每日 350 元計算；不完全骨折按二分之一，骨骼龜裂按四分之一。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 350,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "同一事故多處骨折時僅按最高等級給付。"
+          ]
+        },
+        {
+          "id": "inpatient-routine-expense-limit",
+          "name": "住院一般醫療費用限額",
+          "basis": "daily_total",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇實支實付型時，住院期間一般醫療費用每日限額 500 元；加護、燒燙傷或癌症住院期間每日限額 1,500 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 500,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "已由全民健康保險給付部分不再給付。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "一般住院每日",
+              "amount": 500
+            },
+            {
+              "label": "加護/燒燙傷/癌症住院每日",
+              "amount": 1500
+            }
+          ]
+        },
+        {
+          "id": "surgery-expense-limit",
+          "name": "手術醫療費用限額",
+          "basis": "per_event",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "選擇實支實付型時，每次住院手術費用限額 10,000 元；重大手術限額 50,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 10000,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "重大手術依附表四認定。",
+            "已由全民健康保險給付部分不再給付。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "一般手術",
+              "amount": 10000
+            },
+            {
+              "label": "重大手術",
+              "amount": 50000
+            }
+          ]
+        },
+        {
+          "id": "inpatient-medical-expense-limit",
+          "name": "每次住院醫療費用限額",
+          "basis": "per_event",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "選擇實支實付型時，每次住院醫療費用限額為 20,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 20000,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "未以全民健康保險身分或至非全民健康保險醫院就診者，按實際支付費用 75% 給付並受本限額限制。"
+          ]
+        },
+        {
+          "id": "accident-outpatient-limit",
+          "name": "意外門診醫療費用限額",
+          "basis": "per_event",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "因意外傷害門診診療時，每一事故實支實付限額 5,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 5000,
+          "conditions": [
+            "未以全民健康保險身分或至非全民健康保險醫院就診者，按實際支付費用 75% 給付並受本限額限制。"
+          ]
+        },
+        {
+          "id": "major-illness-benefit",
+          "name": "重大傷病保險金",
+          "basis": "per_event",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人經醫院醫師診斷確定初次罹患條款所列重大傷病時給付 50,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 50000,
+          "conditions": [
+            "同一重大傷病事故依條款約定申領。"
+          ]
+        },
+        {
+          "id": "campus-group-food-poisoning",
+          "name": "校園團體食物中毒慰問保險金",
+          "basis": "per_event",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "因學生餐廳食物或條款列明活動造成五人以上食物中毒並經診斷時，每人給付 1,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 1000,
+          "conditions": [
+            "須同一事故五人以上食物中毒，並經醫院或診所診斷。"
+          ]
+        },
+        {
+          "id": "first-cancer-benefit",
+          "name": "初次罹患癌症保險金",
+          "basis": "per_event",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "初次罹患癌症給付 150,000 元；原位癌給付 30,000 元，且初次罹患癌症給付總額最高 150,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 150000,
+          "conditions": [
+            "若癌症已依重大傷病保險金給付，應自初次罹患癌症保險金中扣除。",
+            "初次罹患癌症保險金總額最高 150,000 元。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "原位癌",
+              "amount": 30000
+            },
+            {
+              "label": "原位癌以外之癌症",
+              "amount": 150000
+            }
+          ]
+        },
+        {
+          "id": "death-disability-annual-cap",
+          "name": "身故與殘廢保險金年度合計上限",
+          "basis": "annual_limit",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "limit",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "每一保險期間內，身故及殘廢保險金合計最高以保險金額為限。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-19 頁",
+          "amount": 1000000,
+          "conditions": [
+            "不包含殘廢生活補助金。",
+            "特定意外身故保險金不列入此上限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "264396MZ9GY3221A11Z10000001",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v41",
+      "parser_id": "global-nccu-student-group-fixed-schedule-v1",
+      "source_file": "264396MZ9GY3221A11Z10000001-A.pdf",
+      "source_document_sha256": "be9dd205902047e5e71dac05e12ff663b2216a5cd689f61368ee3f015660c74a",
+      "schedule_sha256": "9bf358dad919884f8d5c48f43a62ffc96727407bf9db03562c685e0274dcc137",
+      "reviewed_by": "codex",
+      "reviewed_at": "2026-07-21T14:08:35+08:00",
+      "review_note": "Source-reviewed NCCU student group fixed schedule against policy terms Articles 2, 4, 10-18 and appendices 1-4.",
+      "selection_type": "fixed",
+      "input_mode": "fixed",
+      "selection_source": "terms",
+      "selection_label": "固定保險金額",
+      "selection_guidance": "條款固定保險金額為新臺幣 1,000,000 元；系統依附表一直接呈現固定給付與限額。",
+      "version_characteristics": {
+        "terms_revision": "104-first-revision",
+        "fixed_face_amount": 1000000,
+        "disability_levels": 11,
+        "disability_living_assistance_levels": "1-3",
+        "disability_living_assistance_annual_payments": 4,
+        "major_burn_rate_percent": 25,
+        "hospital_daily_days_limit": 90,
+        "fracture_daily_amount": 350,
+        "same_hospital_readmission_days": 14,
+        "non_nhi_payment_rate_percent": 75,
+        "post_expiry_accident_days_limit": 180,
+        "death_disability_annual_cap": 1000000,
+        "specific_accidental_death_excluded_from_cap": true,
+        "regulatory_revision": true
+      },
+      "coverage_entries": [
+        {
+          "id": "fixed-face-amount",
+          "name": "固定保險金額",
+          "basis": "benefit_base",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "第二條約定本契約保險金額為新臺幣 1,000,000 元，作為身故、殘廢、重大燒燙傷等給付基礎。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1000000,
+          "conditions": [
+            "本團體保險條款固定保險金額為新臺幣 1,000,000 元，無計劃別或單位數選擇。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "per_event",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人身故時按保險金額給付身故保險金。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1000000,
+          "conditions": [
+            "給付後該被保險人保險效力即行終止。",
+            "本團體保險條款固定保險金額為新臺幣 1,000,000 元，無計劃別或單位數選擇。"
+          ]
+        },
+        {
+          "id": "specific-accidental-death-additional",
+          "name": "特定意外身故保險金",
+          "basis": "additional_benefit",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "校外教學、全校正式運動比賽或經學校核准登記社團活動期間發生特定意外身故時，另按保險金額給付。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1000000,
+          "conditions": [
+            "限條款列明之特定學校活動期間所致意外傷害身故。",
+            "此給付不列入身故與殘廢保險金年度合計上限。"
+          ]
+        },
+        {
+          "id": "disability-benefit",
+          "name": "殘廢保險金",
+          "basis": "per_event",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按附表二殘廢程度給付比例計算；附表一列第 1 級至第 11 級為 100%、90%、80%、70%、60%、50%、40%、30%、20%、10%、5%。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1000000,
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "unit_key": "fixed_face_amount",
+          "conditions": [
+            "同一保險期間身故與殘廢保險金合計最高以保險金額為限。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "第 1 級",
+              "amount": 1000000
+            },
+            {
+              "label": "第 2 級",
+              "amount": 900000
+            },
+            {
+              "label": "第 3 級",
+              "amount": 800000
+            },
+            {
+              "label": "第 4 級",
+              "amount": 700000
+            },
+            {
+              "label": "第 5 級",
+              "amount": 600000
+            },
+            {
+              "label": "第 6 級",
+              "amount": 500000
+            },
+            {
+              "label": "第 7 級",
+              "amount": 400000
+            },
+            {
+              "label": "第 8 級",
+              "amount": 300000
+            },
+            {
+              "label": "第 9 級",
+              "amount": 200000
+            },
+            {
+              "label": "第 10 級",
+              "amount": 100000
+            },
+            {
+              "label": "第 11 級",
+              "amount": 50000
+            }
+          ]
+        },
+        {
+          "id": "disability-living-assistance-annual",
+          "name": "殘廢生活補助金",
+          "basis": "annual_limit",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "第一至第三級殘廢於診斷確定後第 1 至第 4 保單週年日仍生存時，按附表一每年給付。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 250000,
+          "conditions": [
+            "限第一至第三級殘廢。",
+            "各級補助金累計最高不得超過其殘廢保險金。",
+            "最多給付 4 次年度補助。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "第 1 級每年",
+              "amount": 250000
+            },
+            {
+              "label": "第 2 級每年",
+              "amount": 225000
+            },
+            {
+              "label": "第 3 級每年",
+              "amount": 200000
+            }
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "per_event",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合條款重大燒燙傷定義時，按保險金額 25% 給付。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 250000,
+          "rate_percent": 25,
+          "unit_key": "fixed_face_amount",
+          "conditions": [
+            "同一意外傷害事故以給付一次為限。"
+          ]
+        },
+        {
+          "id": "hospital-daily-general",
+          "name": "住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇日額型住院醫療保險金時，一般病房按實際住院日數每日給付 750 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 750,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "每次住院日額給付日數最高 90 日。"
+          ]
+        },
+        {
+          "id": "hospital-daily-icu",
+          "name": "加護病房住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇日額型且入住加護病房時，附表一以每日 1,500 元列示。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1500,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "同日若同時符合加護、燒燙傷或癌症住院日額，僅得擇一給付。",
+            "每次住院日額給付日數最高 90 日。"
+          ]
+        },
+        {
+          "id": "hospital-daily-burn-ward",
+          "name": "燒燙傷病房住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇日額型且入住燒燙傷病房時，附表一以每日 1,500 元列示。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1500,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "同日若同時符合加護、燒燙傷或癌症住院日額，僅得擇一給付。",
+            "每次住院日額給付日數最高 90 日。"
+          ]
+        },
+        {
+          "id": "hospital-daily-cancer",
+          "name": "癌症住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇日額型且因癌症住院診療時，附表一以每日 1,500 元列示。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1500,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "同日若同時符合加護、燒燙傷或癌症住院日額，僅得擇一給付。",
+            "每次住院日額給付日數最高 90 日。"
+          ]
+        },
+        {
+          "id": "fracture-no-hospital-daily",
+          "name": "骨折未住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "骨折未住院或住院日數低於附表三日數時，按附表三日數每日 350 元計算；不完全骨折按二分之一，骨骼龜裂按四分之一。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 350,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "同一事故多處骨折時僅按最高等級給付。"
+          ]
+        },
+        {
+          "id": "inpatient-routine-expense-limit",
+          "name": "住院一般醫療費用限額",
+          "basis": "daily_total",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇實支實付型時，住院期間一般醫療費用每日限額 500 元；加護、燒燙傷或癌症住院期間每日限額 1,500 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 500,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "已由全民健康保險給付部分不再給付。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "一般住院每日",
+              "amount": 500
+            },
+            {
+              "label": "加護/燒燙傷/癌症住院每日",
+              "amount": 1500
+            }
+          ]
+        },
+        {
+          "id": "surgery-expense-limit",
+          "name": "手術醫療費用限額",
+          "basis": "per_event",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "選擇實支實付型時，每次住院手術費用限額 10,000 元；重大手術限額 50,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 10000,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "重大手術依附表四認定。",
+            "已由全民健康保險給付部分不再給付。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "一般手術",
+              "amount": 10000
+            },
+            {
+              "label": "重大手術",
+              "amount": 50000
+            }
+          ]
+        },
+        {
+          "id": "inpatient-medical-expense-limit",
+          "name": "每次住院醫療費用限額",
+          "basis": "per_event",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "選擇實支實付型時，每次住院醫療費用限額為 20,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 20000,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "未以全民健康保險身分或至非全民健康保險醫院就診者，按實際支付費用 75% 給付並受本限額限制。"
+          ]
+        },
+        {
+          "id": "accident-outpatient-limit",
+          "name": "意外門診醫療費用限額",
+          "basis": "per_event",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "因意外傷害門診診療時，每一事故實支實付限額 5,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 5000,
+          "conditions": [
+            "未以全民健康保險身分或至非全民健康保險醫院就診者，按實際支付費用 75% 給付並受本限額限制。"
+          ]
+        },
+        {
+          "id": "major-illness-benefit",
+          "name": "重大傷病保險金",
+          "basis": "per_event",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人經醫院醫師診斷確定初次罹患條款所列重大傷病時給付 50,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 50000,
+          "conditions": [
+            "同一重大傷病事故依條款約定申領。"
+          ]
+        },
+        {
+          "id": "campus-group-food-poisoning",
+          "name": "校園團體食物中毒慰問保險金",
+          "basis": "per_event",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "因學生餐廳食物或條款列明活動造成五人以上食物中毒並經診斷時，每人給付 1,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1000,
+          "conditions": [
+            "須同一事故五人以上食物中毒，並經醫院或診所診斷。"
+          ]
+        },
+        {
+          "id": "first-cancer-benefit",
+          "name": "初次罹患癌症保險金",
+          "basis": "per_event",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "初次罹患癌症給付 150,000 元；原位癌給付 30,000 元，且初次罹患癌症給付總額最高 150,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 150000,
+          "conditions": [
+            "若癌症已依重大傷病保險金給付，應自初次罹患癌症保險金中扣除。",
+            "初次罹患癌症保險金總額最高 150,000 元。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "原位癌",
+              "amount": 30000
+            },
+            {
+              "label": "原位癌以外之癌症",
+              "amount": 150000
+            }
+          ]
+        },
+        {
+          "id": "death-disability-annual-cap",
+          "name": "身故與殘廢保險金年度合計上限",
+          "basis": "annual_limit",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "limit",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "每一保險期間內，身故及殘廢保險金合計最高以保險金額為限。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1000000,
+          "conditions": [
+            "不包含殘廢生活補助金。",
+            "特定意外身故保險金不列入此上限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "264396MZ9GY3221A11Z10000002",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v46",
+      "parser_id": "global-nccu-student-group-fixed-schedule-v1",
+      "source_file": "264396MZ9GY3221A11Z10000002-A.pdf",
+      "source_document_sha256": "9dfd3844fa7c34e01a7702c9c8dc879115344a30aee9a55e27daed5c992bd35e",
+      "schedule_sha256": "c6153fd606cf2657e9f4664704cabe5b4e5cbfc902bfea9f91710d7663917531",
+      "reviewed_by": "codex",
+      "reviewed_at": "2026-07-21T15:00:33+08:00",
+      "review_note": "Source-reviewed Global Life NCCU student group second revision against policy terms Articles 2, 4, 10-18 and appendix tables 1-4.",
+      "selection_type": "fixed",
+      "input_mode": "fixed",
+      "selection_source": "terms",
+      "selection_label": "固定保險金額",
+      "selection_guidance": "條款固定保險金額為新臺幣 1,000,000 元；系統依附表一直接呈現固定給付與限額。",
+      "version_characteristics": {
+        "terms_revision": "107-second-revision",
+        "fixed_face_amount": 1000000,
+        "disability_levels": 11,
+        "disability_living_assistance_levels": "1-3",
+        "disability_living_assistance_annual_payments": 4,
+        "major_burn_rate_percent": 25,
+        "hospital_daily_days_limit": 90,
+        "fracture_daily_amount": 350,
+        "same_hospital_readmission_days": 14,
+        "non_nhi_payment_rate_percent": 75,
+        "post_expiry_accident_days_limit": 180,
+        "death_disability_annual_cap": 1000000,
+        "specific_accidental_death_excluded_from_cap": true,
+        "regulatory_revision": true
+      },
+      "coverage_entries": [
+        {
+          "id": "fixed-face-amount",
+          "name": "固定保險金額",
+          "basis": "benefit_base",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "第二條約定本契約保險金額為新臺幣 1,000,000 元，作為身故、殘廢、重大燒燙傷等給付基礎。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1000000,
+          "conditions": [
+            "本團體保險條款固定保險金額為新臺幣 1,000,000 元，無計劃別或單位數選擇。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "per_event",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人身故時按保險金額給付身故保險金。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1000000,
+          "conditions": [
+            "給付後該被保險人保險效力即行終止。",
+            "本團體保險條款固定保險金額為新臺幣 1,000,000 元，無計劃別或單位數選擇。"
+          ]
+        },
+        {
+          "id": "specific-accidental-death-additional",
+          "name": "特定意外身故保險金",
+          "basis": "additional_benefit",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "校外教學、全校正式運動比賽或經學校核准登記社團活動期間發生特定意外身故時，另按保險金額給付。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1000000,
+          "conditions": [
+            "限條款列明之特定學校活動期間所致意外傷害身故。",
+            "此給付不列入身故與殘廢保險金年度合計上限。"
+          ]
+        },
+        {
+          "id": "disability-benefit",
+          "name": "殘廢保險金",
+          "basis": "per_event",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "按附表二殘廢程度給付比例計算；附表一列第 1 級至第 11 級為 100%、90%、80%、70%、60%、50%、40%、30%、20%、10%、5%。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1000000,
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "unit_key": "fixed_face_amount",
+          "conditions": [
+            "同一保險期間身故與殘廢保險金合計最高以保險金額為限。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "第 1 級",
+              "amount": 1000000
+            },
+            {
+              "label": "第 2 級",
+              "amount": 900000
+            },
+            {
+              "label": "第 3 級",
+              "amount": 800000
+            },
+            {
+              "label": "第 4 級",
+              "amount": 700000
+            },
+            {
+              "label": "第 5 級",
+              "amount": 600000
+            },
+            {
+              "label": "第 6 級",
+              "amount": 500000
+            },
+            {
+              "label": "第 7 級",
+              "amount": 400000
+            },
+            {
+              "label": "第 8 級",
+              "amount": 300000
+            },
+            {
+              "label": "第 9 級",
+              "amount": 200000
+            },
+            {
+              "label": "第 10 級",
+              "amount": 100000
+            },
+            {
+              "label": "第 11 級",
+              "amount": 50000
+            }
+          ]
+        },
+        {
+          "id": "disability-living-assistance-annual",
+          "name": "殘廢生活補助金",
+          "basis": "annual_limit",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "第一至第三級殘廢於診斷確定後第 1 至第 4 保單週年日仍生存時，按附表一每年給付。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 250000,
+          "conditions": [
+            "限第一至第三級殘廢。",
+            "各級補助金累計最高不得超過其殘廢保險金。",
+            "最多給付 4 次年度補助。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "第 1 級每年",
+              "amount": 250000
+            },
+            {
+              "label": "第 2 級每年",
+              "amount": 225000
+            },
+            {
+              "label": "第 3 級每年",
+              "amount": 200000
+            }
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "per_event",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合條款重大燒燙傷定義時，按保險金額 25% 給付。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 250000,
+          "rate_percent": 25,
+          "unit_key": "fixed_face_amount",
+          "conditions": [
+            "同一意外傷害事故以給付一次為限。"
+          ]
+        },
+        {
+          "id": "hospital-daily-general",
+          "name": "住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇日額型住院醫療保險金時，一般病房按實際住院日數每日給付 750 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 750,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "每次住院日額給付日數最高 90 日。"
+          ]
+        },
+        {
+          "id": "hospital-daily-icu",
+          "name": "加護病房住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇日額型且入住加護病房時，附表一以每日 1,500 元列示。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1500,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "同日若同時符合加護、燒燙傷或癌症住院日額，僅得擇一給付。",
+            "每次住院日額給付日數最高 90 日。"
+          ]
+        },
+        {
+          "id": "hospital-daily-burn-ward",
+          "name": "燒燙傷病房住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇日額型且入住燒燙傷病房時，附表一以每日 1,500 元列示。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1500,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "同日若同時符合加護、燒燙傷或癌症住院日額，僅得擇一給付。",
+            "每次住院日額給付日數最高 90 日。"
+          ]
+        },
+        {
+          "id": "hospital-daily-cancer",
+          "name": "癌症住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇日額型且因癌症住院診療時，附表一以每日 1,500 元列示。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1500,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "同日若同時符合加護、燒燙傷或癌症住院日額，僅得擇一給付。",
+            "每次住院日額給付日數最高 90 日。"
+          ]
+        },
+        {
+          "id": "fracture-no-hospital-daily",
+          "name": "骨折未住院日額保險金",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "骨折未住院或住院日數低於附表三日數時，按附表三日數每日 350 元計算；不完全骨折按二分之一，骨骼龜裂按四分之一。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 350,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "同一事故多處骨折時僅按最高等級給付。"
+          ]
+        },
+        {
+          "id": "inpatient-routine-expense-limit",
+          "name": "住院一般醫療費用限額",
+          "basis": "daily_total",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_day",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "選擇實支實付型時，住院期間一般醫療費用每日限額 500 元；加護、燒燙傷或癌症住院期間每日限額 1,500 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 500,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "已由全民健康保險給付部分不再給付。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "一般住院每日",
+              "amount": 500
+            },
+            {
+              "label": "加護/燒燙傷/癌症住院每日",
+              "amount": 1500
+            }
+          ]
+        },
+        {
+          "id": "surgery-expense-limit",
+          "name": "手術醫療費用限額",
+          "basis": "per_event",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "選擇實支實付型時，每次住院手術費用限額 10,000 元；重大手術限額 50,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 10000,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "重大手術依附表四認定。",
+            "已由全民健康保險給付部分不再給付。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "一般手術",
+              "amount": 10000
+            },
+            {
+              "label": "重大手術",
+              "amount": 50000
+            }
+          ]
+        },
+        {
+          "id": "inpatient-medical-expense-limit",
+          "name": "每次住院醫療費用限額",
+          "basis": "per_event",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "選擇實支實付型時，每次住院醫療費用限額為 20,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 20000,
+          "conditions": [
+            "同一事故或疾病住院時，住院醫療保險金按日額型或實支實付型擇一給付。",
+            "未以全民健康保險身分或至非全民健康保險醫院就診者，按實際支付費用 75% 給付並受本限額限制。"
+          ]
+        },
+        {
+          "id": "accident-outpatient-limit",
+          "name": "意外門診醫療費用限額",
+          "basis": "per_event",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "因意外傷害門診診療時，每一事故實支實付限額 5,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 5000,
+          "conditions": [
+            "未以全民健康保險身分或至非全民健康保險醫院就診者，按實際支付費用 75% 給付並受本限額限制。"
+          ]
+        },
+        {
+          "id": "major-illness-benefit",
+          "name": "重大傷病保險金",
+          "basis": "per_event",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人經醫院醫師診斷確定初次罹患條款所列重大傷病時給付 50,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 50000,
+          "conditions": [
+            "同一重大傷病事故依條款約定申領。"
+          ]
+        },
+        {
+          "id": "campus-group-food-poisoning",
+          "name": "校園團體食物中毒慰問保險金",
+          "basis": "per_event",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "因學生餐廳食物或條款列明活動造成五人以上食物中毒並經診斷時，每人給付 1,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1000,
+          "conditions": [
+            "須同一事故五人以上食物中毒，並經醫院或診所診斷。"
+          ]
+        },
+        {
+          "id": "first-cancer-benefit",
+          "name": "初次罹患癌症保險金",
+          "basis": "per_event",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "初次罹患癌症給付 150,000 元；原位癌給付 30,000 元，且初次罹患癌症給付總額最高 150,000 元。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 150000,
+          "conditions": [
+            "若癌症已依重大傷病保險金給付，應自初次罹患癌症保險金中扣除。",
+            "初次罹患癌症保險金總額最高 150,000 元。"
+          ],
+          "amount_tiers": [
+            {
+              "label": "原位癌",
+              "amount": 30000
+            },
+            {
+              "label": "原位癌以外之癌症",
+              "amount": 150000
+            }
+          ]
+        },
+        {
+          "id": "death-disability-annual-cap",
+          "name": "身故與殘廢保險金年度合計上限",
+          "basis": "annual_limit",
+          "calculation_basis": "fixed_amount",
+          "amount_role": "limit",
+          "limit_scope": "annual",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "每一保險期間內，身故及殘廢保險金合計最高以保險金額為限。",
+          "source_ref": "保單條款第二、四、十至十八條及附表一至四，第 1-22 頁",
+          "amount": 1000000,
+          "conditions": [
+            "不包含殘廢生活補助金。",
+            "特定意外身故保險金不列入此上限。"
+          ]
+        }
+      ]
+    }
+  ]
+}

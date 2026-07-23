@@ -1,0 +1,1259 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-21T10:38:47+08:00",
+  "batch_id": "tii-life-080",
+  "record_count": 3,
+  "records": [
+    {
+      "product_id": "216311RZ1A19421A11Z10000001",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v31",
+      "parser_id": "farglory-kangfu-medical-plan-v1",
+      "source_file": "216311RZ1A19421A11Z10000001-A.pdf",
+      "source_document_sha256": "7fa1c39710f64b6edbb8f1faa2f16b002cf3db89e9a5f609457c7e4a23a51ad8",
+      "schedule_sha256": "7cc6c7b24966f0a0cd6bf122188b22a842391526c5c9edf0b980b21703756c9e",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-21T11:06:00+08:00",
+      "review_note": "遠雄人壽康富醫療健康保險附約第1次至第3次部分變更。逐項核對 A 條款第八至十三條及附表；每版保留計劃一至計劃四，每計劃 5 項保障，包含住院日額、住院醫療輔助日額、住院慰問保險金、住院醫療費用限額、手術費用限額。計劃一至四主要金額：住院日額 500/1000/1500/2000 元；住院醫療輔助固定 500 元/日；住院慰問為住院日額 7 倍即 3500/7000/10500/14000 元；住院醫療費用限額 20萬/30萬/40萬/50萬；手術費用限額 15萬/20萬/25萬/30萬。保留未經全民健保給付時按實際支付費用 65% 給付且仍受限額約束。第3次部分變更保留被保險人通知權益修正差異。僅採 A 條款為正式金額來源。",
+      "selection_type": "plan",
+      "input_mode": "plan",
+      "selection_source": "terms",
+      "selection_label": "投保計劃別",
+      "selection_guidance": "請依保單首頁選擇計劃一至計劃四；系統會顯示住院日額、住院醫療輔助、住院慰問、住院醫療費用限額與手術費用限額，不需輸入單位數。",
+      "version_characteristics": {
+        "disease_initial_waiting_days": 0,
+        "day_hospital_excluded": true,
+        "post_expiry_readmission_excluded": true,
+        "nhi_uncovered_payment_rate_percent": 65,
+        "hospital_auxiliary_daily_fixed_amount": 500,
+        "hospital_consolation_daily_multiplier": 7,
+        "terms_revision": "107-revised",
+        "insured_notice_revision": false
+      },
+      "plan_options": [
+        {
+          "value": "plan-1",
+          "label": "計劃一",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "依計劃一住院日額每日給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日",
+                "日間住院及日間留院不在住院定義內"
+              ]
+            },
+            {
+              "id": "hospital-auxiliary-daily",
+              "name": "住院醫療輔助保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "住院診療時每日固定給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日"
+              ]
+            },
+            {
+              "id": "hospital-consolation",
+              "name": "住院慰問保險金",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "同一次住院另給付住院日額 7 倍，計劃一為 3,500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 3500,
+              "multiplier": 7,
+              "conditions": [
+                "同一次住院期間僅給付一次",
+                "以投保計劃別住院日額乘以 7 倍"
+              ]
+            },
+            {
+              "id": "inpatient-medical-limit",
+              "name": "住院醫療費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "同一次住院實支實付限額 200,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 200000,
+              "conditions": [
+                "須以全民健康保險保險對象身分住院診療，或急診暫留且醫院已收取暫留床費",
+                "限全民健康保險自行負擔及不屬健保給付範圍之列舉費用",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限",
+                "已獲全民健康保險給付部分不予給付"
+              ]
+            },
+            {
+              "id": "surgery-limit",
+              "name": "手術費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院或門診手術費用實支實付限額 150,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 150000,
+              "conditions": [
+                "手術須符合全民健康保險醫療費用支付標準第二部第二章第七節所列舉之手術",
+                "同一次住院或門診兩項以上手術分別計算，各項均受手術費用限額限制",
+                "同一手術位置接受兩項器官以上手術時合併計算，仍以限額為限",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-2",
+          "label": "計劃二",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "依計劃二住院日額每日給付 1,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 1000,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日",
+                "日間住院及日間留院不在住院定義內"
+              ]
+            },
+            {
+              "id": "hospital-auxiliary-daily",
+              "name": "住院醫療輔助保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "住院診療時每日固定給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日"
+              ]
+            },
+            {
+              "id": "hospital-consolation",
+              "name": "住院慰問保險金",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "同一次住院另給付住院日額 7 倍，計劃二為 7,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 7000,
+              "multiplier": 7,
+              "conditions": [
+                "同一次住院期間僅給付一次",
+                "以投保計劃別住院日額乘以 7 倍"
+              ]
+            },
+            {
+              "id": "inpatient-medical-limit",
+              "name": "住院醫療費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "同一次住院實支實付限額 300,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 300000,
+              "conditions": [
+                "須以全民健康保險保險對象身分住院診療，或急診暫留且醫院已收取暫留床費",
+                "限全民健康保險自行負擔及不屬健保給付範圍之列舉費用",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限",
+                "已獲全民健康保險給付部分不予給付"
+              ]
+            },
+            {
+              "id": "surgery-limit",
+              "name": "手術費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院或門診手術費用實支實付限額 200,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 200000,
+              "conditions": [
+                "手術須符合全民健康保險醫療費用支付標準第二部第二章第七節所列舉之手術",
+                "同一次住院或門診兩項以上手術分別計算，各項均受手術費用限額限制",
+                "同一手術位置接受兩項器官以上手術時合併計算，仍以限額為限",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-3",
+          "label": "計劃三",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "依計劃三住院日額每日給付 1,500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 1500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日",
+                "日間住院及日間留院不在住院定義內"
+              ]
+            },
+            {
+              "id": "hospital-auxiliary-daily",
+              "name": "住院醫療輔助保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "住院診療時每日固定給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日"
+              ]
+            },
+            {
+              "id": "hospital-consolation",
+              "name": "住院慰問保險金",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "同一次住院另給付住院日額 7 倍，計劃三為 10,500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 10500,
+              "multiplier": 7,
+              "conditions": [
+                "同一次住院期間僅給付一次",
+                "以投保計劃別住院日額乘以 7 倍"
+              ]
+            },
+            {
+              "id": "inpatient-medical-limit",
+              "name": "住院醫療費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "同一次住院實支實付限額 400,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 400000,
+              "conditions": [
+                "須以全民健康保險保險對象身分住院診療，或急診暫留且醫院已收取暫留床費",
+                "限全民健康保險自行負擔及不屬健保給付範圍之列舉費用",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限",
+                "已獲全民健康保險給付部分不予給付"
+              ]
+            },
+            {
+              "id": "surgery-limit",
+              "name": "手術費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院或門診手術費用實支實付限額 250,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 250000,
+              "conditions": [
+                "手術須符合全民健康保險醫療費用支付標準第二部第二章第七節所列舉之手術",
+                "同一次住院或門診兩項以上手術分別計算，各項均受手術費用限額限制",
+                "同一手術位置接受兩項器官以上手術時合併計算，仍以限額為限",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-4",
+          "label": "計劃四",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "依計劃四住院日額每日給付 2,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 2000,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日",
+                "日間住院及日間留院不在住院定義內"
+              ]
+            },
+            {
+              "id": "hospital-auxiliary-daily",
+              "name": "住院醫療輔助保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "住院診療時每日固定給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日"
+              ]
+            },
+            {
+              "id": "hospital-consolation",
+              "name": "住院慰問保險金",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "同一次住院另給付住院日額 7 倍，計劃四為 14,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 14000,
+              "multiplier": 7,
+              "conditions": [
+                "同一次住院期間僅給付一次",
+                "以投保計劃別住院日額乘以 7 倍"
+              ]
+            },
+            {
+              "id": "inpatient-medical-limit",
+              "name": "住院醫療費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "同一次住院實支實付限額 500,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500000,
+              "conditions": [
+                "須以全民健康保險保險對象身分住院診療，或急診暫留且醫院已收取暫留床費",
+                "限全民健康保險自行負擔及不屬健保給付範圍之列舉費用",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限",
+                "已獲全民健康保險給付部分不予給付"
+              ]
+            },
+            {
+              "id": "surgery-limit",
+              "name": "手術費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院或門診手術費用實支實付限額 300,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 300000,
+              "conditions": [
+                "手術須符合全民健康保險醫療費用支付標準第二部第二章第七節所列舉之手術",
+                "同一次住院或門診兩項以上手術分別計算，各項均受手術費用限額限制",
+                "同一手術位置接受兩項器官以上手術時合併計算，仍以限額為限",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "216311RZ1A19421A11Z10000002",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v31",
+      "parser_id": "farglory-kangfu-medical-plan-v1",
+      "source_file": "216311RZ1A19421A11Z10000002-A.pdf",
+      "source_document_sha256": "ea897d651713f2f2585e765794b115592b76aa6b27114115c548f14a916017db",
+      "schedule_sha256": "9d94a3c6e93a73c784298f324ea8f50ba38a367a73201e37fc8cc46e3acf8a0b",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-21T11:06:00+08:00",
+      "review_note": "遠雄人壽康富醫療健康保險附約第1次至第3次部分變更。逐項核對 A 條款第八至十三條及附表；每版保留計劃一至計劃四，每計劃 5 項保障，包含住院日額、住院醫療輔助日額、住院慰問保險金、住院醫療費用限額、手術費用限額。計劃一至四主要金額：住院日額 500/1000/1500/2000 元；住院醫療輔助固定 500 元/日；住院慰問為住院日額 7 倍即 3500/7000/10500/14000 元；住院醫療費用限額 20萬/30萬/40萬/50萬；手術費用限額 15萬/20萬/25萬/30萬。保留未經全民健保給付時按實際支付費用 65% 給付且仍受限額約束。第3次部分變更保留被保險人通知權益修正差異。僅採 A 條款為正式金額來源。",
+      "selection_type": "plan",
+      "input_mode": "plan",
+      "selection_source": "terms",
+      "selection_label": "投保計劃別",
+      "selection_guidance": "請依保單首頁選擇計劃一至計劃四；系統會顯示住院日額、住院醫療輔助、住院慰問、住院醫療費用限額與手術費用限額，不需輸入單位數。",
+      "version_characteristics": {
+        "disease_initial_waiting_days": 0,
+        "day_hospital_excluded": true,
+        "post_expiry_readmission_excluded": true,
+        "nhi_uncovered_payment_rate_percent": 65,
+        "hospital_auxiliary_daily_fixed_amount": 500,
+        "hospital_consolation_daily_multiplier": 7,
+        "terms_revision": "109-revised",
+        "insured_notice_revision": false
+      },
+      "plan_options": [
+        {
+          "value": "plan-1",
+          "label": "計劃一",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "依計劃一住院日額每日給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日",
+                "日間住院及日間留院不在住院定義內"
+              ]
+            },
+            {
+              "id": "hospital-auxiliary-daily",
+              "name": "住院醫療輔助保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "住院診療時每日固定給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日"
+              ]
+            },
+            {
+              "id": "hospital-consolation",
+              "name": "住院慰問保險金",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "同一次住院另給付住院日額 7 倍，計劃一為 3,500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 3500,
+              "multiplier": 7,
+              "conditions": [
+                "同一次住院期間僅給付一次",
+                "以投保計劃別住院日額乘以 7 倍"
+              ]
+            },
+            {
+              "id": "inpatient-medical-limit",
+              "name": "住院醫療費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "同一次住院實支實付限額 200,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 200000,
+              "conditions": [
+                "須以全民健康保險保險對象身分住院診療，或急診暫留且醫院已收取暫留床費",
+                "限全民健康保險自行負擔及不屬健保給付範圍之列舉費用",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限",
+                "已獲全民健康保險給付部分不予給付"
+              ]
+            },
+            {
+              "id": "surgery-limit",
+              "name": "手術費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院或門診手術費用實支實付限額 150,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 150000,
+              "conditions": [
+                "手術須符合全民健康保險醫療費用支付標準第二部第二章第七節所列舉之手術",
+                "同一次住院或門診兩項以上手術分別計算，各項均受手術費用限額限制",
+                "同一手術位置接受兩項器官以上手術時合併計算，仍以限額為限",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-2",
+          "label": "計劃二",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "依計劃二住院日額每日給付 1,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 1000,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日",
+                "日間住院及日間留院不在住院定義內"
+              ]
+            },
+            {
+              "id": "hospital-auxiliary-daily",
+              "name": "住院醫療輔助保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "住院診療時每日固定給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日"
+              ]
+            },
+            {
+              "id": "hospital-consolation",
+              "name": "住院慰問保險金",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "同一次住院另給付住院日額 7 倍，計劃二為 7,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 7000,
+              "multiplier": 7,
+              "conditions": [
+                "同一次住院期間僅給付一次",
+                "以投保計劃別住院日額乘以 7 倍"
+              ]
+            },
+            {
+              "id": "inpatient-medical-limit",
+              "name": "住院醫療費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "同一次住院實支實付限額 300,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 300000,
+              "conditions": [
+                "須以全民健康保險保險對象身分住院診療，或急診暫留且醫院已收取暫留床費",
+                "限全民健康保險自行負擔及不屬健保給付範圍之列舉費用",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限",
+                "已獲全民健康保險給付部分不予給付"
+              ]
+            },
+            {
+              "id": "surgery-limit",
+              "name": "手術費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院或門診手術費用實支實付限額 200,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 200000,
+              "conditions": [
+                "手術須符合全民健康保險醫療費用支付標準第二部第二章第七節所列舉之手術",
+                "同一次住院或門診兩項以上手術分別計算，各項均受手術費用限額限制",
+                "同一手術位置接受兩項器官以上手術時合併計算，仍以限額為限",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-3",
+          "label": "計劃三",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "依計劃三住院日額每日給付 1,500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 1500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日",
+                "日間住院及日間留院不在住院定義內"
+              ]
+            },
+            {
+              "id": "hospital-auxiliary-daily",
+              "name": "住院醫療輔助保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "住院診療時每日固定給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日"
+              ]
+            },
+            {
+              "id": "hospital-consolation",
+              "name": "住院慰問保險金",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "同一次住院另給付住院日額 7 倍，計劃三為 10,500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 10500,
+              "multiplier": 7,
+              "conditions": [
+                "同一次住院期間僅給付一次",
+                "以投保計劃別住院日額乘以 7 倍"
+              ]
+            },
+            {
+              "id": "inpatient-medical-limit",
+              "name": "住院醫療費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "同一次住院實支實付限額 400,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 400000,
+              "conditions": [
+                "須以全民健康保險保險對象身分住院診療，或急診暫留且醫院已收取暫留床費",
+                "限全民健康保險自行負擔及不屬健保給付範圍之列舉費用",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限",
+                "已獲全民健康保險給付部分不予給付"
+              ]
+            },
+            {
+              "id": "surgery-limit",
+              "name": "手術費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院或門診手術費用實支實付限額 250,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 250000,
+              "conditions": [
+                "手術須符合全民健康保險醫療費用支付標準第二部第二章第七節所列舉之手術",
+                "同一次住院或門診兩項以上手術分別計算，各項均受手術費用限額限制",
+                "同一手術位置接受兩項器官以上手術時合併計算，仍以限額為限",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-4",
+          "label": "計劃四",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "依計劃四住院日額每日給付 2,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 2000,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日",
+                "日間住院及日間留院不在住院定義內"
+              ]
+            },
+            {
+              "id": "hospital-auxiliary-daily",
+              "name": "住院醫療輔助保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "住院診療時每日固定給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日"
+              ]
+            },
+            {
+              "id": "hospital-consolation",
+              "name": "住院慰問保險金",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "同一次住院另給付住院日額 7 倍，計劃四為 14,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 14000,
+              "multiplier": 7,
+              "conditions": [
+                "同一次住院期間僅給付一次",
+                "以投保計劃別住院日額乘以 7 倍"
+              ]
+            },
+            {
+              "id": "inpatient-medical-limit",
+              "name": "住院醫療費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "同一次住院實支實付限額 500,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500000,
+              "conditions": [
+                "須以全民健康保險保險對象身分住院診療，或急診暫留且醫院已收取暫留床費",
+                "限全民健康保險自行負擔及不屬健保給付範圍之列舉費用",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限",
+                "已獲全民健康保險給付部分不予給付"
+              ]
+            },
+            {
+              "id": "surgery-limit",
+              "name": "手術費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院或門診手術費用實支實付限額 300,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 300000,
+              "conditions": [
+                "手術須符合全民健康保險醫療費用支付標準第二部第二章第七節所列舉之手術",
+                "同一次住院或門診兩項以上手術分別計算，各項均受手術費用限額限制",
+                "同一手術位置接受兩項器官以上手術時合併計算，仍以限額為限",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "216311RZ1A19421A11Z10000003",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v31",
+      "parser_id": "farglory-kangfu-medical-plan-v1",
+      "source_file": "216311RZ1A19421A11Z10000003-A.pdf",
+      "source_document_sha256": "53d96f391e2567441560a8d9ab738e6ecca2554e59cece91566052025a313787",
+      "schedule_sha256": "d026b08e6ed8eeba6e46a8c54d0a45ba344f3789e121bc231240450b6c938775",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-21T11:06:00+08:00",
+      "review_note": "遠雄人壽康富醫療健康保險附約第1次至第3次部分變更。逐項核對 A 條款第八至十三條及附表；每版保留計劃一至計劃四，每計劃 5 項保障，包含住院日額、住院醫療輔助日額、住院慰問保險金、住院醫療費用限額、手術費用限額。計劃一至四主要金額：住院日額 500/1000/1500/2000 元；住院醫療輔助固定 500 元/日；住院慰問為住院日額 7 倍即 3500/7000/10500/14000 元；住院醫療費用限額 20萬/30萬/40萬/50萬；手術費用限額 15萬/20萬/25萬/30萬。保留未經全民健保給付時按實際支付費用 65% 給付且仍受限額約束。第3次部分變更保留被保險人通知權益修正差異。僅採 A 條款為正式金額來源。",
+      "selection_type": "plan",
+      "input_mode": "plan",
+      "selection_source": "terms",
+      "selection_label": "投保計劃別",
+      "selection_guidance": "請依保單首頁選擇計劃一至計劃四；系統會顯示住院日額、住院醫療輔助、住院慰問、住院醫療費用限額與手術費用限額，不需輸入單位數。",
+      "version_characteristics": {
+        "disease_initial_waiting_days": 0,
+        "day_hospital_excluded": true,
+        "post_expiry_readmission_excluded": true,
+        "nhi_uncovered_payment_rate_percent": 65,
+        "hospital_auxiliary_daily_fixed_amount": 500,
+        "hospital_consolation_daily_multiplier": 7,
+        "terms_revision": "111-revised",
+        "insured_notice_revision": true
+      },
+      "plan_options": [
+        {
+          "value": "plan-1",
+          "label": "計劃一",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "依計劃一住院日額每日給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日",
+                "日間住院及日間留院不在住院定義內"
+              ]
+            },
+            {
+              "id": "hospital-auxiliary-daily",
+              "name": "住院醫療輔助保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "住院診療時每日固定給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日"
+              ]
+            },
+            {
+              "id": "hospital-consolation",
+              "name": "住院慰問保險金",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "同一次住院另給付住院日額 7 倍，計劃一為 3,500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 3500,
+              "multiplier": 7,
+              "conditions": [
+                "同一次住院期間僅給付一次",
+                "以投保計劃別住院日額乘以 7 倍"
+              ]
+            },
+            {
+              "id": "inpatient-medical-limit",
+              "name": "住院醫療費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "同一次住院實支實付限額 200,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 200000,
+              "conditions": [
+                "須以全民健康保險保險對象身分住院診療，或急診暫留且醫院已收取暫留床費",
+                "限全民健康保險自行負擔及不屬健保給付範圍之列舉費用",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限",
+                "已獲全民健康保險給付部分不予給付"
+              ]
+            },
+            {
+              "id": "surgery-limit",
+              "name": "手術費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院或門診手術費用實支實付限額 150,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 150000,
+              "conditions": [
+                "手術須符合全民健康保險醫療費用支付標準第二部第二章第七節所列舉之手術",
+                "同一次住院或門診兩項以上手術分別計算，各項均受手術費用限額限制",
+                "同一手術位置接受兩項器官以上手術時合併計算，仍以限額為限",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-2",
+          "label": "計劃二",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "依計劃二住院日額每日給付 1,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 1000,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日",
+                "日間住院及日間留院不在住院定義內"
+              ]
+            },
+            {
+              "id": "hospital-auxiliary-daily",
+              "name": "住院醫療輔助保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "住院診療時每日固定給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日"
+              ]
+            },
+            {
+              "id": "hospital-consolation",
+              "name": "住院慰問保險金",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "同一次住院另給付住院日額 7 倍，計劃二為 7,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 7000,
+              "multiplier": 7,
+              "conditions": [
+                "同一次住院期間僅給付一次",
+                "以投保計劃別住院日額乘以 7 倍"
+              ]
+            },
+            {
+              "id": "inpatient-medical-limit",
+              "name": "住院醫療費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "同一次住院實支實付限額 300,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 300000,
+              "conditions": [
+                "須以全民健康保險保險對象身分住院診療，或急診暫留且醫院已收取暫留床費",
+                "限全民健康保險自行負擔及不屬健保給付範圍之列舉費用",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限",
+                "已獲全民健康保險給付部分不予給付"
+              ]
+            },
+            {
+              "id": "surgery-limit",
+              "name": "手術費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院或門診手術費用實支實付限額 200,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 200000,
+              "conditions": [
+                "手術須符合全民健康保險醫療費用支付標準第二部第二章第七節所列舉之手術",
+                "同一次住院或門診兩項以上手術分別計算，各項均受手術費用限額限制",
+                "同一手術位置接受兩項器官以上手術時合併計算，仍以限額為限",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-3",
+          "label": "計劃三",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "依計劃三住院日額每日給付 1,500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 1500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日",
+                "日間住院及日間留院不在住院定義內"
+              ]
+            },
+            {
+              "id": "hospital-auxiliary-daily",
+              "name": "住院醫療輔助保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "住院診療時每日固定給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日"
+              ]
+            },
+            {
+              "id": "hospital-consolation",
+              "name": "住院慰問保險金",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "同一次住院另給付住院日額 7 倍，計劃三為 10,500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 10500,
+              "multiplier": 7,
+              "conditions": [
+                "同一次住院期間僅給付一次",
+                "以投保計劃別住院日額乘以 7 倍"
+              ]
+            },
+            {
+              "id": "inpatient-medical-limit",
+              "name": "住院醫療費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "同一次住院實支實付限額 400,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 400000,
+              "conditions": [
+                "須以全民健康保險保險對象身分住院診療，或急診暫留且醫院已收取暫留床費",
+                "限全民健康保險自行負擔及不屬健保給付範圍之列舉費用",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限",
+                "已獲全民健康保險給付部分不予給付"
+              ]
+            },
+            {
+              "id": "surgery-limit",
+              "name": "手術費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院或門診手術費用實支實付限額 250,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 250000,
+              "conditions": [
+                "手術須符合全民健康保險醫療費用支付標準第二部第二章第七節所列舉之手術",
+                "同一次住院或門診兩項以上手術分別計算，各項均受手術費用限額限制",
+                "同一手術位置接受兩項器官以上手術時合併計算，仍以限額為限",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限"
+              ]
+            }
+          ]
+        },
+        {
+          "value": "plan-4",
+          "label": "計劃四",
+          "coverage_entries": [
+            {
+              "id": "hospital-daily",
+              "name": "住院日額保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "依計劃四住院日額每日給付 2,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 2000,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日",
+                "日間住院及日間留院不在住院定義內"
+              ]
+            },
+            {
+              "id": "hospital-auxiliary-daily",
+              "name": "住院醫療輔助保險金",
+              "basis": "daily_total",
+              "calculation_basis": "per_day",
+              "amount_role": "payout",
+              "limit_scope": "per_day",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "住院診療時每日固定給付 500 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500,
+              "conditions": [
+                "含入院及出院當日",
+                "同一次住院最高 365 日"
+              ]
+            },
+            {
+              "id": "hospital-consolation",
+              "name": "住院慰問保險金",
+              "basis": "per_event",
+              "calculation_basis": "fixed_amount",
+              "amount_role": "payout",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "conditional_additive",
+              "source": "terms",
+              "note": "同一次住院另給付住院日額 7 倍，計劃四為 14,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 14000,
+              "multiplier": 7,
+              "conditions": [
+                "同一次住院期間僅給付一次",
+                "以投保計劃別住院日額乘以 7 倍"
+              ]
+            },
+            {
+              "id": "inpatient-medical-limit",
+              "name": "住院醫療費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_hospitalization",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "同一次住院實支實付限額 500,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 500000,
+              "conditions": [
+                "須以全民健康保險保險對象身分住院診療，或急診暫留且醫院已收取暫留床費",
+                "限全民健康保險自行負擔及不屬健保給付範圍之列舉費用",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限",
+                "已獲全民健康保險給付部分不予給付"
+              ]
+            },
+            {
+              "id": "surgery-limit",
+              "name": "手術費用保險金限額",
+              "basis": "per_event",
+              "calculation_basis": "reimbursement_with_cap",
+              "amount_role": "limit",
+              "limit_scope": "per_surgery",
+              "aggregation_rule": "separate",
+              "source": "terms",
+              "note": "住院或門診手術費用實支實付限額 300,000 元。",
+              "source_ref": "保單條款第八至十三條及附表，第 2-3、6 頁",
+              "amount": 300000,
+              "conditions": [
+                "手術須符合全民健康保險醫療費用支付標準第二部第二章第七節所列舉之手術",
+                "同一次住院或門診兩項以上手術分別計算，各項均受手術費用限額限制",
+                "同一手術位置接受兩項器官以上手術時合併計算，仍以限額為限",
+                "未經全民健康保險給付者按實際支付費用 65% 給付，仍以限額為限"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

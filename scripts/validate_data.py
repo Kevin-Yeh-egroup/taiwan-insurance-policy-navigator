@@ -110,11 +110,19 @@ def validate_coverage_entries(entries: object, context: str) -> None:
         "policy_total",
         "daily_per_unit",
         "daily_total",
+        "daily_limit",
         "per_event",
+        "per_event_limit",
+        "per_visit_limit",
+        "per_hospitalization",
+        "per_hospitalization_limit",
         "annual_limit",
         "benefit_base",
         "per_injury_limit",
         "additional_benefit",
+        "face_amount",
+        "policy_recorded_limit",
+        "hospital_daily_amount",
     }
     allowed_calculation_bases = {
         "fixed_amount",
@@ -124,6 +132,9 @@ def validate_coverage_entries(entries: object, context: str) -> None:
         "per_unit_per_day",
         "per_day",
         "reimbursement_with_cap",
+        "percentage_of_actual_expense_with_cap",
+        "aggregate_cap",
+        "greater_of",
         "table_multiplier",
         "tiered_or_stepped",
         "additional_benefit",
@@ -135,6 +146,8 @@ def validate_coverage_entries(entries: object, context: str) -> None:
         "per_event",
         "per_injury",
         "per_surgery",
+        "per_procedure",
+        "per_visit",
         "per_day",
         "per_hospitalization",
         "annual",
@@ -168,7 +181,33 @@ def validate_coverage_entries(entries: object, context: str) -> None:
             isinstance(entry.get(field), (int, float))
             and not isinstance(entry.get(field), bool)
             and entry[field] > 0
+            for field in (
+                "rate",
+                "rate_percent",
+                "rate_min",
+                "rate_min_percent",
+                "rate_max",
+                "rate_max_percent",
+            )
+        )
+        has_greater_of_formula = calculation_basis == "greater_of" and any(
+            isinstance(entry.get(field), (int, float))
+            and not isinstance(entry.get(field), bool)
+            and entry[field] > 0
             for field in ("rate", "rate_percent")
+        )
+        has_policy_recorded_cap = (
+            calculation_basis == "reimbursement_with_cap"
+            and amount is None
+            and entry.get("basis") == "policy_recorded_limit"
+        )
+        has_actual_expense_percentage_cap = (
+            calculation_basis == "percentage_of_actual_expense_with_cap"
+            and amount is None
+            and entry.get("basis") == "policy_recorded_limit"
+            and isinstance(entry.get("rate_percent"), (int, float))
+            and not isinstance(entry.get("rate_percent"), bool)
+            and entry["rate_percent"] > 0
         )
         has_multiplier_formula = (
             calculation_basis == "table_multiplier"
@@ -176,7 +215,20 @@ def validate_coverage_entries(entries: object, context: str) -> None:
             and not isinstance(entry.get("multiplier"), bool)
             and entry["multiplier"] > 0
         )
-        if not (has_amount or has_percentage_formula or has_multiplier_formula):
+        has_policy_recorded_unknown = (
+            calculation_basis == "unknown"
+            and amount is None
+            and entry.get("basis") in {"policy_recorded_limit", "hospital_daily_amount"}
+        )
+        if not (
+            has_amount
+            or has_percentage_formula
+            or has_greater_of_formula
+            or has_policy_recorded_cap
+            or has_actual_expense_percentage_cap
+            or has_multiplier_formula
+            or has_policy_recorded_unknown
+        ):
             fail(f"coverage entry amount or calculable formula is invalid: {context}")
         if entry.get("basis") is not None and entry["basis"] not in allowed_bases:
             fail(f"coverage entry legacy basis is invalid: {context}")
@@ -298,6 +350,9 @@ def validate_plan_options(record: dict, context: str) -> None:
             "post_expiry_readmission_excluded",
             "disability_schedule_revision",
         }
+        combined_health_disability_term_fields = combined_health_fields | {
+            "disability_term",
+        }
         golden_lohas_fields = {
             "disease_initial_waiting_days",
             "disease_reinstatement_waiting_days",
@@ -310,6 +365,7 @@ def validate_plan_options(record: dict, context: str) -> None:
             "overseas_stay_limit_days",
             "disability_schedule_revision",
         }
+        golden_lohas_term_fields = golden_lohas_fields | {"disability_term"}
         golden_complete_fields = {
             "disease_initial_waiting_days",
             "disease_reinstatement_waiting_days",
@@ -318,6 +374,7 @@ def validate_plan_options(record: dict, context: str) -> None:
             "maximum_renewal_age",
             "day_hospital_explicit",
             "day_hospital_excluded",
+            "disability_terminology",
             "cancer_definition_revision",
             "newborn_screening_revision",
             "reinstatement_notice_revision",
@@ -331,11 +388,900 @@ def validate_plan_options(record: dict, context: str) -> None:
             "missing_person_return_repayment_scope",
             "funeral_benefit_cap_reference",
         }
-        cancer_lifetime_pool_fields = {
+        new_lohas_term_fields = new_lohas_fields | {"disability_term"}
+        statutory_infectious_fields = {
+            "disease_initial_waiting_days",
+            "statutory_infectious_waiting_days",
+            "maximum_renewal_age",
+            "day_hospital_excluded",
+            "statutory_death_rate_percent",
+            "statutory_hospital_daily_rate_percent",
+            "statutory_infectious_diagnosis_limit",
+            "missing_person_return_rule",
+        }
+        farglory_kangfu_medical_fields = {
+            "disease_initial_waiting_days",
+            "day_hospital_excluded",
+            "post_expiry_readmission_excluded",
+            "nhi_uncovered_payment_rate_percent",
+            "hospital_auxiliary_daily_fixed_amount",
+            "hospital_consolation_daily_multiplier",
+            "terms_revision",
+            "insured_notice_revision",
+        }
+        yuanta_xiangyouxin_medical_fields = {
+            "disease_initial_waiting_days",
+            "renewal_disease_waiting_days",
+            "day_hospital_excluded",
+            "post_expiry_readmission_excluded",
+            "nhi_uncovered_payment_rate_percent",
+            "inpatient_medical_limit_after_60_days_multiplier",
+            "outpatient_pre_admission_days",
+            "outpatient_post_discharge_days",
+            "maximum_renewal_age_primary_or_spouse",
+            "maximum_renewal_age_child",
+            "terms_revision",
+            "claims_review_medical_opinion_revision",
+        }
+        yuanta_xiangan_medical_fields = {
+            "terms_revision",
+            "plan_count",
+            "disease_initial_waiting_days",
+            "day_hospital_excluded",
+            "icu_room_limit_multiplier",
+            "icu_room_limit_days",
+            "inpatient_medical_limit_after_60_days_multiplier",
+            "pre_admission_outpatient_days",
+            "post_discharge_outpatient_days",
+            "same_hospital_readmission_days",
+            "post_expiry_readmission_excluded",
+            "non_nhi_payment_rate_percent",
+            "surgery_table_min_percent",
+            "surgery_table_max_percent",
+            "newborn_metabolic_disease_revision",
+            "claims_review_medical_opinion_revision",
+        }
+        yuanta_anxin100_critical_illness_fields = {
+            "terms_revision",
+            "filing_date",
+            "filing_number",
+            "disease_waiting_days",
+            "cancer_waiting_days",
+            "premium_total_multiplier",
+            "specified_critical_rate_percent",
+            "public_transport_accident_death_rate_percent",
+            "maturity_age",
+            "disability_terminology",
+            "premium_waiver_disability_levels",
+            "excluded_critical_illness_item_count",
+        }
+        yuanta_new_account_medical_fields = {
+            "terms_revision",
+            "disease_initial_waiting_days",
+            "cancer_initial_waiting_days",
+            "major_disease_initial_waiting_days",
+            "day_hospital_excluded",
+            "same_hospital_readmission_days",
+            "post_expiry_readmission_excluded",
+            "face_amount_daily_multiplier",
+            "medical_lifetime_cap_daily_multiplier",
+            "medical_opinion_revision",
+        }
+        yuanta_health_life_early_fields = {
+            "terms_revision",
+            "disease_initial_waiting_days",
+            "daily_amount_face_amount_rate_percent",
+            "hospital_daily_days_limit",
+            "same_hospital_readmission_days",
+            "post_expiry_readmission_excluded",
+            "cumulative_medical_cap_daily_multiplier",
+            "surgery_min_daily_multiplier",
+            "surgery_max_daily_multiplier",
+            "child_benefit_max_age",
+            "child_specific_disease_daily_multiplier",
+            "child_food_poisoning_daily_multiplier",
+            "child_fracture_min_days",
+            "child_fracture_max_days",
+            "severe_burn_daily_multiplier",
+            "moderate_burn_daily_multiplier",
+            "burn_unit_daily_multiplier",
+            "burn_outpatient_daily_rate_percent",
+            "severe_burn_rehab_monthly_multiplier",
+            "severe_burn_rehab_months_limit",
+            "moderate_burn_rehab_monthly_multiplier",
+            "moderate_burn_rehab_months_limit",
+            "death_or_maturity_premium_rate_percent",
+            "maturity_age",
+            "premium_waiver_disability_levels",
+            "regulatory_revision",
+        }
+        global_e_road_peace_overseas_illness_fields = {
+            "terms_revision",
+            "overseas_illness_lookback_days",
+            "inpatient_claim_days_limit",
+            "outpatient_limit_rate_percent",
+            "emergency_limit_rate_percent",
+            "non_nhi_payment_rate_percent",
+            "same_hospital_readmission_days",
+            "post_expiry_readmission_excluded",
+            "day_hospital_excluded",
+            "claims_exchange_rate_basis",
+            "regulatory_revision",
+            "claims_medical_opinion_revision",
+        }
+        global_nccu_student_group_fields = {
+            "terms_revision",
+            "fixed_face_amount",
+            "disability_levels",
+            "disability_living_assistance_levels",
+            "disability_living_assistance_annual_payments",
+            "major_burn_rate_percent",
+            "hospital_daily_days_limit",
+            "fracture_daily_amount",
+            "same_hospital_readmission_days",
+            "non_nhi_payment_rate_percent",
+            "post_expiry_accident_days_limit",
+            "death_disability_annual_cap",
+            "specific_accidental_death_excluded_from_cap",
+            "regulatory_revision",
+        }
+        taiwan_taipei_student_group_fields = {
+            "terms_revision",
+            "disease_death_amount",
+            "accidental_death_amount",
+            "disease_disability_levels",
+            "accident_disability_levels",
+            "disability_living_assistance_levels",
+            "disability_living_assistance_annual_payments",
+            "hospital_daily_days_limit",
+            "same_hospital_readmission_days",
+            "post_accident_benefit_days_limit",
+            "disease_death_disability_period_cap",
+            "accidental_death_period_cap",
+            "low_income_project_subsidy",
+            "collective_food_poisoning_min_people",
+            "facial_reconstruction_labor_disability_item",
+        }
+        taiwan_drug_anxin_cancer_precision_fields = {
+            "terms_revision",
+            "cancer_waiting_days",
+            "non_guaranteed_renewal",
+            "maximum_renewal_age",
+            "post_cancer_claim_window_years",
+            "cancer_includes_carcinoma_in_situ",
+            "drug_table_item_count",
+            "health_promotion_renewal_discount_available",
+        }
+        yuanta_group_hospital_medical_fields = {
+            "terms_revision",
+            "plan_count",
+            "disease_initial_waiting_days",
+            "day_hospital_excluded",
+            "day_hospital_definition_revision",
+            "same_hospital_readmission_days",
+            "post_expiry_readmission_excluded",
+            "non_nhi_payment_rate_percent",
+            "inpatient_medical_limit_daily_multiplier",
+            "surgery_limit_daily_multiplier",
+            "insured_notice_revision",
+        }
+        yuanta_yuanqi_shizu_fields = {
+            "terms_revision",
+            "plan_count",
+            "disease_initial_waiting_days",
+            "renewal_disease_waiting_days",
+            "cancer_screening_min_age",
+            "hospital_daily_days_limit",
+            "mental_hospital_days_limit",
+            "same_hospital_readmission_days",
+            "post_expiry_readmission_excluded",
+            "non_nhi_payment_rate_percent",
+            "medical_device_heart_stent_annual_limit",
+            "special_procedure_annual_limit",
+            "surgery_table_min_percent",
+            "surgery_table_max_percent",
+            "insured_notice_revision",
+        }
+        fixed_hospital_medical_97_fields = {
+            "disease_initial_waiting_days",
+            "daily_hospital_days_limit",
+            "intensive_care_days_limit",
+            "same_hospital_readmission_days",
+            "surgery_base_daily_multiplier",
+            "surgery_total_cap_daily_multiplier",
+            "cumulative_termination_daily_multiplier",
+            "disability_terminology",
+            "day_hospital_excluded",
+            "post_expiry_readmission_excluded",
+            "claims_review_medical_opinion_revision",
+            "main_contract_forced_execution_exception",
+            "terms_revision",
+        }
+        prudential_daily_hospital_96_fields = {
+            "terms_revision",
+            "filing_date",
+            "filing_number",
+            "plan_count",
+            "daily_hospital_days_limit",
+            "intensive_care_days_limit",
+            "same_hospital_readmission_days",
+            "cumulative_termination_daily_multiplier",
+            "disability_terminology",
+            "no_surrender_value",
+        }
+        china_legacy_cancer_whole_life_fields = {
+            "terms_revision",
+            "cancer_responsibility_start_day",
+            "premium_waiver_disability_levels",
+            "minor_funeral_benefit_rule",
+        }
+        taiwan_fishermen_group_medical_fields = {
+            "terms_revision",
+            "nhi_uncovered_payment_rate_percent",
+            "same_hospital_readmission_days",
+            "post_expiry_readmission_excluded",
+            "annual_hospital_daily_days_limit",
+            "same_accident_deductible",
+            "insured_notice_revision",
+        }
+        taiwan_group_long_term_care_service_fields = {
+            "terms_revision",
+            "long_term_care_plan_months",
+            "lump_sum_face_amount_multiplier",
+            "monthly_service_face_amount_multiplier",
+            "unclaimed_balance_interest_rate_percent",
+            "service_area_limited",
+            "adl_impairment_min_items",
+            "adl_assessment_months",
+            "cdr_min_score",
+            "service_fee_revision_notice_months",
+            "service_fee_revision_limit_per_year",
+            "privacy_revision",
+        }
+        taiwan_yiqijianzhi_specific_disease_fields = {
+            "terms_revision",
+            "specific_disease_waiting_days",
+            "accident_exempt_waiting_period",
+            "maximum_coverage_age",
+            "no_claim_premium_refund_rate_percent",
+            "health_promotion_discount_rate_percent",
+            "installment_min_annual_amount",
+            "source_terms_sha256",
+        }
+        taiwan_group_inpatient_limit_plan_fields = {
+            "terms_revision",
+            "plan_count",
+            "same_hospital_readmission_days",
+            "post_expiry_readmission_excluded",
+            "day_hospital_excluded",
+            "outpatient_surgery_included",
+            "nhi_paid_excluded",
+            "daily_option_policy_face_page_days_limit",
+            "day_hospital_definition_revision",
+        }
+        taiwan_gold_group_inpatient_limit_fields = {
+            "terms_revision",
+            "plan_count",
+            "same_hospital_readmission_days",
+            "post_expiry_readmission_excluded",
+            "day_hospital_excluded",
+            "outpatient_surgery_included",
+            "nhi_paid_excluded",
+            "non_nhi_payment_rate_percent",
+            "hospital_medical_icu_limit_multiplier",
+            "hospital_daily_icu_multiplier",
+            "hospital_daily_days_limit",
+            "icu_daily_days_limit",
+            "medical_expense_or_daily_choose_one",
+            "conversion_right_after_months",
+            "experience_dividend_formula",
+        }
+        taiwan_shishizai_inpatient_fields = {
+            "filing_date",
+            "filing_number",
+            "disease_waiting_days",
+            "guaranteed_renewal",
+            "non_guaranteed_renewal_rate",
+            "day_hospital_excluded",
+            "hospital_days_limit",
+            "mental_disease_annual_days_limit",
+            "icu_or_burn_room_multiplier",
+            "outpatient_surgery_annual_count_limit",
+            "specified_procedure_annual_count_limit",
+            "pre_hospital_outpatient_days",
+            "post_discharge_outpatient_days",
+            "non_nhi_payment_percent",
+            "special_procedure_item_count",
+        }
+        fubon_golden_health_fields = {
+            "terms_revision",
+            "disease_initial_waiting_days",
+            "same_hospital_readmission_days",
+            "day_hospital_excluded",
+            "post_expiry_readmission_excluded",
+            "non_nhi_payment_rate_percent",
+            "icu_daily_multiplier",
+            "icu_daily_multiplier_days_limit",
+            "hospital_daily_days_limit",
+            "chronic_or_mental_annual_days_limit",
+            "outpatient_medical_annual_days_limit",
+            "medical_opinion_revision",
+        }
+        fubon_golden_medical_device_fields = {
+            "terms_revision",
+            "disease_initial_waiting_days",
+            "maximum_coverage_age",
+            "benefit_tiers_by_policy_year",
+            "unit_reduction_revision",
+            "all_items_paid_termination",
+        }
+        fubon_hsl_inpatient_fields = {
+            "terms_revision",
+            "disease_waiting_days",
+            "day_hospital_excluded",
+            "same_hospital_readmission_days",
+            "post_expiry_readmission_excluded",
+            "non_nhi_payment_rate_percent",
+            "room_daily_days_limit",
+            "renewal_age_self_or_spouse",
+            "renewal_age_child",
+            "linked_non_deductible_medical_required",
+            "newborn_metabolic_disease_exempt_waiting_period",
+            "prosthetic_eye_limb_room_net_limit_multiplier",
+        }
+        chaoyang_xingnong_group_inpatient_fields = {
+            "terms_revision",
+            "filing_date",
+            "filing_number",
+            "revision_date",
+            "revision_number",
+            "disease_waiting_days",
+            "room_board_days_limit",
+            "icu_days_limit",
+            "same_accident_readmission_days",
+            "social_insurance_unclaimed_payment_rate_percent",
+            "surgery_table_min_percent",
+            "surgery_table_max_percent",
+            "experience_dividend",
+        }
+        chaoyang_xingnong_student_group_fields = {
+            "terms_revision",
+            "filing_date",
+            "filing_number",
+            "revision_dates",
+            "death_amount",
+            "disability_term",
+            "disability_grade_count",
+            "disability_table_item_count",
+            "disability_living_assistance_grades",
+            "disability_living_assistance_annual_payments",
+            "inpatient_medical_limit",
+            "major_surgery_project_subsidy_limit",
+            "major_surgery_table_item_count",
+            "accident_outpatient_medical_limit",
+            "accident_outpatient_minimum_expense",
+            "same_hospital_readmission_days",
+            "major_surgery_claim_window_years",
+            "post_policy_claim_days_limit",
+            "death_disability_period_cap",
+        }
+        prudential_china_life_accident_account_fields = {
+            "terms_revision",
+            "children_covered",
+            "medical_rider_included",
+            "hospital_daily_rider_included",
+            "major_burn_rider_included",
+            "disability_term",
+            "accident_claim_days",
+            "same_hospital_readmission_days",
+            "post_expiry_readmission_excluded",
+            "day_hospital_excluded",
+            "non_nhi_payment_rate_percent",
+            "hospital_daily_days_limit",
+            "surgery_base_daily_multiplier",
+            "surgery_per_hospitalization_daily_multiplier_limit",
+            "surgery_table_min_percent",
+            "surgery_table_max_percent",
+        }
+        prudential_china_life_one_three_five_accident_fields = {
+            "terms_revision",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "accident_claim_days",
+            "domestic_general_multiplier",
+            "overseas_general_multiplier",
+            "flight_multiplier",
+            "same_accident_domestic_cap_multiplier",
+            "same_accident_overseas_cap_multiplier",
+            "same_accident_flight_cap_multiplier",
+        }
+        prudential_group_specific_accident_rider_fields = {
+            "terms_revision",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "accident_claim_days",
+            "general_specific_multiplier",
+            "flight_multiplier",
+            "same_accident_general_specific_cap_multiplier",
+            "same_accident_flight_cap_multiplier",
+        }
+        prudential_fire_mass_transit_accident_fields = {
+            "terms_revision",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "accident_claim_days",
+            "fire_accident_multiplier",
+            "land_water_mass_transit_multiplier",
+            "same_accident_fire_cap_multiplier",
+            "same_accident_land_water_mass_transit_cap_multiplier",
+            "cumulative_fire_disability_cap_multiplier",
+            "cumulative_land_water_mass_transit_disability_cap_multiplier",
+        }
+        taiwan_qianwan_chuxing_a_accident_fields = {
+            "terms_revision",
+            "filing_date",
+            "filing_number",
+            "revision_date",
+            "revision_number",
+            "revision_basis",
+            "maximum_coverage_age",
+            "death_benefit_premium_total_rate_percent",
+            "accident_claim_days",
+            "air_or_train_mass_transit_accidental_death_multiplier",
+            "water_or_nontrain_land_mass_transit_accidental_death_multiplier",
+            "automobile_passenger_accidental_death_multiplier",
+            "other_accidental_death_multiplier",
+            "major_burn_rate_percent",
+            "major_burn_lifetime_limit_times",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "installment_death_benefit_available",
+        }
+        fubon_xianganbao_accident_medical_rider_fields = {
+            "terms_revision",
+            "fubon_code",
+            "accident_claim_days",
+            "overseas_medical_treatment_days_limit",
+            "non_nhi_payment_rate_percent",
+            "medical_icu_burn_center_limit_rate_percent",
+            "medical_reimbursement_nhi_excess_only",
+            "duplicate_reimbursement_excluded",
+            "dislocation_base_amount",
+            "dislocation_table_item_count",
+            "dislocation_rate_min_percent",
+            "dislocation_rate_max_percent",
+        }
+        yuanta_new_accident_medical_rider_fields = {
+            "terms_revision",
+            "yuanta_code",
+            "accident_claim_days",
+            "non_nhi_payment_rate_percent",
+            "medical_reimbursement_nhi_excess_only",
+            "policy_recorded_limit_label",
+        }
+        yuanta_personal_accident_rider_fields = {
+            "terms_revision",
+            "filing_signal",
+            "accident_claim_days",
+            "maximum_renewal_age",
+            "child_maximum_renewal_age",
+            "minor_death_premium_refund_before_age",
+            "funeral_benefit_limit_rule",
+            "death_benefit_rate_percent",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "major_burn_rate_percent",
+            "major_burn_lifetime_limit_times",
+            "death_disability_same_accident_cap",
+        }
+        yuanta_funxinyou_accident_medical_addendum_fields = {
+            "terms_revision",
+            "contract_reference",
+            "accident_claim_days",
+            "non_nhi_payment_rate_percent",
+            "medical_reimbursement_nhi_excess_only",
+            "policy_recorded_limit_label",
+            "beneficiary_self_only",
+        }
+        fubon_family_gift_accident_health_fields = {
+            "terms_revision",
+            "plan_count",
+            "non_guaranteed_renewal",
+            "maximum_renewal_age",
+            "cancer_waiting_days",
+            "cancer_classification",
+            "general_hospital_days_limit",
+            "icu_days_limit",
+            "accident_treatment_window_days",
+            "accident_hospital_days_limit",
+            "major_burn_survival_days",
+            "disability_term",
+            "disability_levels",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "same_hospital_readmission_days",
+            "short_term_rate_table",
+        }
+        fubon_family_gift_accident_health_legacy_fields = (
+            fubon_family_gift_accident_health_fields
+            - {"cancer_classification", "disability_term"}
+        )
+        fubon_wanan_365_accident_fields = {
+            "terms_revision",
+            "plan_count",
+            "plan_a_face_amount",
+            "plan_b_face_amount",
+            "non_guaranteed_renewal",
+            "maximum_renewal_age",
+            "accident_claim_days",
+            "major_burn_survival_days",
+            "major_burn_rate_percent",
+            "food_poisoning_annual_limit_times",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "natural_disaster_disability_min_level",
+            "natural_disaster_disability_max_level",
+        }
+        fubon_tiantian_anxin_500_accident_health_fields = {
+            "terms_revision",
+            "plan_count",
+            "non_guaranteed_renewal",
+            "maximum_renewal_age",
+            "cancer_waiting_days",
+            "general_hospital_days_limit",
+            "icu_days_limit",
+            "burn_center_hospital_days_limit",
+            "same_hospital_readmission_days",
+            "accident_claim_days",
+            "fracture_claim_days",
+            "major_burn_survival_days",
+            "major_burn_lifetime_limit_times",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "short_term_rate_table",
+        }
+        fubon_new_shouhu_jinnang_accident_health_fields = {
+            "terms_revision",
+            "plan_count",
+            "non_guaranteed_renewal",
+            "plan_1_2_maximum_renewal_age",
+            "plan_3_4_maximum_renewal_age",
+            "plan_5_10_maximum_renewal_age",
+            "cancer_waiting_days",
+            "general_hospital_days_limit",
+            "icu_days_limit",
+            "burn_center_hospital_days_limit",
+            "same_hospital_readmission_days",
+            "accident_claim_days",
+            "accident_hospital_days_limit",
+            "accident_outpatient_surgery_limit_times",
+            "accident_reimbursement_non_nhi_rate_percent",
+            "fracture_daily_rate_percent",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "short_term_rate_table",
+        }
+        fubon_new_shouhu_jinnang_late_accident_health_fields = {
+            "terms_revision",
+            "plan_count",
+            "non_guaranteed_renewal",
+            "maximum_renewal_age",
+            "cancer_waiting_days",
+            "general_hospital_days_limit",
+            "icu_days_limit",
+            "burn_center_hospital_days_limit",
+            "same_hospital_readmission_days",
+            "accident_claim_days",
+            "accident_hospital_days_limit",
+            "accident_outpatient_surgery_limit_times",
+            "accident_reimbursement_non_nhi_rate_percent",
+            "fracture_daily_rate_percent",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "short_term_rate_table",
+            "day_hospital_explicit",
+        }
+        fubon_vision_life_accident_health_fields = {
+            "terms_revision",
+            "plan_count",
+            "non_guaranteed_renewal",
+            "maximum_renewal_age",
+            "cancer_waiting_days",
+            "day_hospital_excluded",
+            "accident_claim_days",
+            "accident_hospital_days_limit",
+            "accident_icu_days_limit",
+            "burn_center_days_limit",
+            "accident_outpatient_surgery_limit_times",
+            "fracture_daily_rate_percent",
+            "major_burn_survival_days",
+            "major_burn_lifetime_limit_times",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "mass_transit_additional_benefit",
+            "short_term_rate_table",
+        }
+        fubon_anxin_financial_life_accident_health_fields = {
+            "terms_revision",
+            "plan_count",
+            "non_guaranteed_renewal",
+            "plan_1_3_maximum_renewal_age",
+            "plan_4_5_maximum_renewal_age",
+            "cancer_waiting_days",
+            "major_disease_waiting_days",
+            "day_hospital_explicit",
+            "same_hospital_readmission_days",
+            "hospital_daily_days_limit_per_policy_year_same_hospitalization",
+            "icu_days_limit_per_policy_year_same_hospitalization",
+            "burn_center_days_limit_per_policy_year_same_hospitalization",
+            "accident_claim_days",
+            "mild_cancer_lifetime_limit_times",
+            "disability_term",
+            "total_disability_schedule_item_count",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "short_term_rate_table",
+        }
+        fubon_new_million_heart_accident_health_fields = {
+            "terms_revision",
+            "plan_count",
+            "non_guaranteed_renewal",
+            "maximum_renewal_age",
+            "day_hospital_explicit",
+            "same_hospital_readmission_days",
+            "general_hospital_days_limit",
+            "accident_claim_days",
+            "major_burn_rate_percent",
+            "major_burn_survival_days",
+            "major_burn_lifetime_limit_times",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "short_term_rate_table",
+        }
+        fubon_million_heart_accident_health_fields = {
+            "terms_revision",
+            "plan_count",
+            "non_guaranteed_renewal",
+            "maximum_renewal_age",
+            "day_hospital_explicit",
+            "same_hospital_readmission_days",
+            "hospital_daily_days_limit_per_policy_year_same_hospitalization",
+            "accident_claim_days",
+            "death_disability_same_accident_cap",
+            "disability_term",
+            "total_disability_schedule_item_count",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "short_term_rate_table",
+        }
+        fubon_million_new_life_accident_health_fields = {
+            "terms_revision",
+            "plan_count",
+            "non_guaranteed_renewal",
+            "maximum_renewal_age",
+            "day_hospital_explicit",
+            "same_hospital_readmission_days",
+            "hospital_daily_days_limit_per_policy_year_same_hospitalization",
+            "accident_claim_days",
+            "accident_medical_limit",
+            "accident_medical_daily_formula_per_10000_inpatient_only",
+            "accident_medical_daily_formula_per_10000_inpatient_split",
+            "accident_medical_daily_formula_per_10000_outpatient_split",
+            "accident_medical_daily_formula_days_limit",
+            "death_disability_same_accident_cap",
+            "disability_term",
+            "total_disability_schedule_item_count",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "short_term_rate_table",
+        }
+        fubon_comprehensive_accident_fields = {
+            "terms_revision",
+            "fubon_product_family",
+            "plan_count",
+            "policy_period_years",
+            "guaranteed_renewal_years",
+            "maximum_renewal_age",
+            "accident_claim_days",
+            "hospital_days_limit",
+            "icu_days_limit",
+            "nursing_days_limit",
+            "burn_center_days_limit",
+            "hospital_living_supplement_days_limit",
+            "food_poisoning_lifetime_limit_times",
+            "disability_living_supplement_lifetime_limit_times",
+            "burn_lifetime_limit_times",
+            "head_trauma_lifetime_limit_times",
+            "fracture_unhospitalized_rate_percent",
+            "occupational_class_by_plan",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "same_day_icu_or_burn_center_choose_one",
+        }
+        fubon_666_accident_health_fields = {
+            "terms_revision",
+            "plan_count",
+            "non_guaranteed_renewal",
+            "maximum_renewal_age",
+            "accident_claim_days",
+            "accident_hospital_days_limit",
+            "fracture_daily_rate_percent",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "mass_transit_additional_benefit",
+            "short_term_rate_table",
+        }
+        fubon_new_pingan_accident_fields = {
+            "terms_revision",
+            "plan_count",
+            "non_guaranteed_renewal",
+            "maximum_renewal_age",
+            "accident_claim_days",
+            "accident_medical_limit",
+            "accident_medical_daily_formula_per_10000_inpatient_only",
+            "accident_medical_daily_formula_per_10000_inpatient_split",
+            "accident_medical_daily_formula_per_10000_outpatient_split",
+            "accident_medical_daily_formula_days_limit",
+            "accident_hospital_daily_amount",
+            "accident_hospital_days_limit",
+            "fracture_daily_rate_percent",
+            "death_disability_same_accident_cap",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "short_term_rate_table",
+        }
+        fubon_anxin_456_accident_health_fields = {
+            "terms_revision",
+            "fixed_schedule",
+            "non_guaranteed_renewal",
+            "maximum_renewal_age",
+            "cancer_waiting_days",
+            "accident_claim_days",
+            "accident_hospital_days_limit",
+            "accident_icu_days_limit",
+            "burn_center_days_limit",
+            "fracture_daily_rate_percent",
+            "major_burn_survival_days",
+            "major_burn_lifetime_limit_times",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "short_term_rate_table",
+        }
+        china_life_jinhaoyi_fields = {
+            "terms_revision",
+            "special_multiplier_10_year_term",
+            "special_multiplier_12_or_20_year_term",
+            "accident_claim_days",
+            "land_or_water_traffic_multiplier",
+            "aviation_multiplier",
+            "major_burn_rate_percent",
+            "total_disability_schedule_item_count",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "disability_cumulative_cap_percent",
+        }
+        fubon_tiantian_anxin_500_accident_health_legacy_fields = (
+            fubon_tiantian_anxin_500_accident_health_fields
+            | {"legacy_readable_validation"}
+        )
+        fubon_new_shouhu_jinnang_late_accident_health_legacy_fields = (
+            fubon_new_shouhu_jinnang_late_accident_health_fields
+            | {"legacy_readable_validation"}
+        )
+        fubon_anxin_financial_life_accident_health_legacy_fields = {
+            "terms_revision",
+            "plan_count",
+            "non_guaranteed_renewal",
+            "maximum_renewal_age_by_plan",
+            "cancer_waiting_days",
+            "major_disease_waiting_days",
+            "legacy_cancer_split",
+            "day_hospital_explicit",
+            "general_hospital_days_limit",
+            "icu_days_limit",
+            "burn_center_hospital_days_limit",
+            "same_hospital_readmission_days",
+            "accident_claim_days",
+            "disability_term",
+            "disability_schedule_item_count",
+            "disability_rate_min_percent",
+            "disability_rate_max_percent",
+            "short_term_rate_table",
+            "legacy_readable_validation",
+        }
+        fubon_new_million_heart_accident_health_legacy_fields = (
+            fubon_new_million_heart_accident_health_fields
+            | {"legacy_readable_validation"}
+        )
+        fubon_new_pingan_accident_legacy_fields = (
+            (fubon_new_pingan_accident_fields - {"fracture_daily_rate_percent"})
+            | {"legacy_readable_validation"}
+        )
+        cancer_lifetime_pool_legacy_fields = {
             "cancer_waiting_days",
             "specific_cancer_rate_percent",
             "per_unit_total_cap",
             "funeral_benefit_rule",
+        }
+        cancer_lifetime_pool_fields = {
+            *cancer_lifetime_pool_legacy_fields,
+            "minor_death_or_disability_refund_rule",
+            "maturity_age",
+        }
+        antai_new_cancer_lifetime_r11_fields = {
+            "terms_revision",
+            "cancer_observation_days",
+            "minor_cancer_rate_percent",
+            "hospital_days_tier_one_limit",
+            "same_cancer_readmission_days",
+            "hospice_anniversary_payments",
+            "hospice_excluded_for_minor_cancer",
+            "post_death_last_hospitalization_date_basis",
+            "post_death_diagnosis_only_if_no_cancer_hospitalization",
+            "premium_period_diagnosis_amount",
+            "post_premium_period_diagnosis_amount",
+        }
+        antai_specific_major_disease_health_fields = {
+            "terms_revision",
+            "disease_waiting_days",
+            "cancer_initial_waiting_days",
+            "major_disease_waiting_days",
+            "initial_cancer_lifetime_limit_times",
+            "specific_cancer_lifetime_limit_times",
+            "myocardial_infarction_or_coronary_bypass_lifetime_limit_times",
+            "stroke_lifetime_limit_times",
+            "systemic_lupus_lifetime_limit_times",
+            "reconstruction_claim_days",
+            "same_reconstruction_item_lifetime_limit_times",
+            "claims_notification_days",
+            "claim_payment_days_after_complete_documents",
+        }
+        antai_cancer_medical_term_fields = {
+            "terms_revision",
+            "cancer_waiting_days",
+            "cancer_includes_carcinoma_in_situ",
+            "family_type_options",
+            "child_entry_age_limit",
+            "newborn_child_covered_from_birth",
+            "same_cancer_readmission_days",
+            "radiation_annual_days_limit",
+            "chemotherapy_annual_days_limit",
+            "post_death_presumed_cancer_start_days",
+            "premium_waiver_main_contract_death_or_disability",
         }
         cancer_annuity_fields = {
             "product_variant",
@@ -361,10 +1307,74 @@ def validate_plan_options(record: dict, context: str) -> None:
         if not isinstance(version, dict) or set(version) not in {
             frozenset(cancer_fields),
             frozenset(combined_health_fields),
+            frozenset(combined_health_disability_term_fields),
             frozenset(golden_lohas_fields),
+            frozenset(golden_lohas_term_fields),
             frozenset(golden_complete_fields),
             frozenset(new_lohas_fields),
+            frozenset(new_lohas_term_fields),
+            frozenset(statutory_infectious_fields),
+            frozenset(farglory_kangfu_medical_fields),
+            frozenset(yuanta_xiangyouxin_medical_fields),
+            frozenset(yuanta_xiangan_medical_fields),
+            frozenset(yuanta_anxin100_critical_illness_fields),
+            frozenset(yuanta_new_account_medical_fields),
+            frozenset(yuanta_health_life_early_fields),
+            frozenset(global_e_road_peace_overseas_illness_fields),
+            frozenset(global_nccu_student_group_fields),
+            frozenset(taiwan_taipei_student_group_fields),
+            frozenset(taiwan_drug_anxin_cancer_precision_fields),
+            frozenset(yuanta_group_hospital_medical_fields),
+            frozenset(yuanta_yuanqi_shizu_fields),
+            frozenset(fixed_hospital_medical_97_fields),
+            frozenset(prudential_daily_hospital_96_fields),
+            frozenset(china_legacy_cancer_whole_life_fields),
+            frozenset(taiwan_fishermen_group_medical_fields),
+            frozenset(taiwan_group_long_term_care_service_fields),
+            frozenset(taiwan_yiqijianzhi_specific_disease_fields),
+            frozenset(taiwan_group_inpatient_limit_plan_fields),
+            frozenset(taiwan_gold_group_inpatient_limit_fields),
+            frozenset(taiwan_shishizai_inpatient_fields),
+            frozenset(fubon_golden_health_fields),
+            frozenset(fubon_golden_medical_device_fields),
+            frozenset(fubon_hsl_inpatient_fields),
+            frozenset(chaoyang_xingnong_group_inpatient_fields),
+            frozenset(chaoyang_xingnong_student_group_fields),
+            frozenset(prudential_china_life_accident_account_fields),
+            frozenset(prudential_china_life_one_three_five_accident_fields),
+            frozenset(prudential_group_specific_accident_rider_fields),
+            frozenset(prudential_fire_mass_transit_accident_fields),
+            frozenset(taiwan_qianwan_chuxing_a_accident_fields),
+            frozenset(fubon_xianganbao_accident_medical_rider_fields),
+            frozenset(yuanta_new_accident_medical_rider_fields),
+            frozenset(yuanta_personal_accident_rider_fields),
+            frozenset(yuanta_funxinyou_accident_medical_addendum_fields),
+            frozenset(fubon_family_gift_accident_health_legacy_fields),
+            frozenset(fubon_family_gift_accident_health_fields),
+            frozenset(fubon_wanan_365_accident_fields),
+            frozenset(fubon_tiantian_anxin_500_accident_health_fields),
+            frozenset(fubon_tiantian_anxin_500_accident_health_legacy_fields),
+            frozenset(fubon_new_shouhu_jinnang_accident_health_fields),
+            frozenset(fubon_new_shouhu_jinnang_late_accident_health_fields),
+            frozenset(fubon_new_shouhu_jinnang_late_accident_health_legacy_fields),
+            frozenset(fubon_vision_life_accident_health_fields),
+            frozenset(fubon_anxin_financial_life_accident_health_fields),
+            frozenset(fubon_anxin_financial_life_accident_health_legacy_fields),
+            frozenset(fubon_new_million_heart_accident_health_fields),
+            frozenset(fubon_new_million_heart_accident_health_legacy_fields),
+            frozenset(fubon_million_heart_accident_health_fields),
+            frozenset(fubon_million_new_life_accident_health_fields),
+            frozenset(fubon_comprehensive_accident_fields),
+            frozenset(fubon_new_pingan_accident_fields),
+            frozenset(fubon_new_pingan_accident_legacy_fields),
+            frozenset(fubon_666_accident_health_fields),
+            frozenset(fubon_anxin_456_accident_health_fields),
+            frozenset(china_life_jinhaoyi_fields),
+            frozenset(cancer_lifetime_pool_legacy_fields),
             frozenset(cancer_lifetime_pool_fields),
+            frozenset(antai_new_cancer_lifetime_r11_fields),
+            frozenset(antai_specific_major_disease_health_fields),
+            frozenset(antai_cancer_medical_term_fields),
             frozenset(cancer_annuity_fields),
             frozenset(versioned_combined_fields),
             frozenset(new_complete_combined_fields),
@@ -386,7 +1396,7 @@ def validate_plan_options(record: dict, context: str) -> None:
             "first-revision",
         }:
             fail(f"coverage revision is invalid: {context}")
-        if "maximum_renewal_age" in version and version["maximum_renewal_age"] not in {65, 75}:
+        if "maximum_renewal_age" in version and version["maximum_renewal_age"] not in {50, 55, 60, 65, 70, 75}:
             fail(f"coverage maximum renewal age is invalid: {context}")
         for flag in [
             "terminates_next_policy_month_after_initial_cancer",
@@ -417,22 +1427,27 @@ def validate_plan_options(record: dict, context: str) -> None:
                 or version["annuity_anniversary_basis"] != expected_basis
             ):
                 fail(f"coverage cancer-annuity variant rules are invalid: {context}")
-            revised_investment = (
+            terminates_after_initial_cancer = version[
+                "terminates_next_policy_month_after_initial_cancer"
+            ]
+            post_death_evidence_allowed = version[
+                "post_death_actual_diagnosis_date_evidence_allowed"
+            ]
+            if terminates_after_initial_cancer != post_death_evidence_allowed:
+                fail(f"coverage cancer-annuity revision rules are invalid: {context}")
+            if version["product_variant"] == "traditional" and terminates_after_initial_cancer:
+                fail(f"coverage cancer-annuity revision rules are invalid: {context}")
+            if (
                 version["product_variant"] == "investment-linked"
                 and version["revision"] == "first-revision"
-            )
-            if (
-                version["terminates_next_policy_month_after_initial_cancer"]
-                != revised_investment
-                or version["post_death_actual_diagnosis_date_evidence_allowed"]
-                != revised_investment
+                and not terminates_after_initial_cancer
             ):
                 fail(f"coverage cancer-annuity revision rules are invalid: {context}")
-        if "disease_initial_waiting_days" in version and version["disease_initial_waiting_days"] != 30:
+        if "disease_initial_waiting_days" in version and version["disease_initial_waiting_days"] not in {0, 30}:
             fail(f"coverage disease waiting days are invalid: {context}")
         if "disease_reinstatement_waiting_days" in version and version["disease_reinstatement_waiting_days"] != 0:
             fail(f"coverage disease reinstatement waiting days are invalid: {context}")
-        if "major_disease_initial_waiting_days" in version and version["major_disease_initial_waiting_days"] != 90:
+        if "major_disease_initial_waiting_days" in version and version["major_disease_initial_waiting_days"] not in {30, 90}:
             fail(f"coverage major-disease initial waiting days are invalid: {context}")
         if "major_disease_reinstatement_waiting_days" in version and version["major_disease_reinstatement_waiting_days"] not in {0, 90}:
             fail(f"coverage major-disease reinstatement waiting days are invalid: {context}")
@@ -440,7 +1455,7 @@ def validate_plan_options(record: dict, context: str) -> None:
             fail(f"coverage mild-cancer initial waiting days are invalid: {context}")
         if "mild_cancer_reinstatement_waiting_days" in version and version["mild_cancer_reinstatement_waiting_days"] not in {0, 90}:
             fail(f"coverage mild-cancer reinstatement waiting days are invalid: {context}")
-        if "cancer_waiting_days" in version and version["cancer_waiting_days"] != 90:
+        if "cancer_waiting_days" in version and version["cancer_waiting_days"] not in {0, 30, 90}:
             fail(f"coverage cancer waiting days are invalid: {context}")
         if "specific_cancer_rate_percent" in version and version["specific_cancer_rate_percent"] != 15:
             fail(f"coverage specific-cancer rate is invalid: {context}")
@@ -451,6 +1466,12 @@ def validate_plan_options(record: dict, context: str) -> None:
             "2010-estate-tax-half-deduction",
         }:
             fail(f"coverage funeral-benefit rule is invalid: {context}")
+        if "minor_death_or_disability_refund_rule" in version and not isinstance(
+            version["minor_death_or_disability_refund_rule"], bool
+        ):
+            fail(f"coverage minor death or disability refund rule is invalid: {context}")
+        if "maturity_age" in version and version["maturity_age"] not in {100, 110, 111}:
+            fail(f"coverage maturity age is invalid: {context}")
         if "day_hospital_explicit" in version and not isinstance(version["day_hospital_explicit"], bool):
             fail(f"coverage day-hospital flag is invalid: {context}")
         if "day_hospital_excluded" in version and not isinstance(version["day_hospital_excluded"], bool):
@@ -472,8 +1493,15 @@ def validate_plan_options(record: dict, context: str) -> None:
         if "disability_terminology" in version and version["disability_terminology"] not in {
             "殘廢",
             "失能",
+            "完全殘廢",
+            "完全失能",
         }:
             fail(f"coverage disability terminology is invalid: {context}")
+        if "disability_term" in version and version["disability_term"] not in {
+            "殘廢",
+            "失能",
+        }:
+            fail(f"coverage disability term is invalid: {context}")
         if "cancer_classification" in version and version["cancer_classification"] not in {
             "original-two-tier",
             "2018-three-tier",

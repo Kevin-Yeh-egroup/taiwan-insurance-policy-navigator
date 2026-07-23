@@ -1,0 +1,492 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-23T10:06:26+08:00",
+  "batch_id": "tii-life-151",
+  "record_count": 8,
+  "records": [
+    {
+      "product_id": "261211RZ1AQR021A11Z10000000",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v89",
+      "parser_id": "yuanta-new-accident-medical-rider-face-amount-v1",
+      "source_file": "261211RZ1AQR021A11Z10000000-A.pdf",
+      "source_document_sha256": "64cd8ab4feaa53df9638d466c926daad03e7c50220a5f26c5d952e0c86a36b62",
+      "schedule_sha256": "1f62192613170075441aa066864645eeb4b29d886aefd63fb9ea9197af3f3b71",
+      "reviewed_by": "Codex",
+      "reviewed_at": "2026-07-22T19:55:11+08:00",
+      "review_note": "Verified against 元大人壽新意外傷害醫療保險附約 A 條款；structured policy-recorded per-injury accident medical reimbursement limit.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "每次實支實付傷害醫療保險金限額",
+      "selection_guidance": "請輸入保險單所記載的每次實支實付傷害醫療保險金限額。",
+      "version_characteristics": {
+        "terms_revision": "108-original",
+        "yuanta_code": "QR-上市日期:108.05.31",
+        "accident_claim_days": 180,
+        "non_nhi_payment_rate_percent": 65,
+        "medical_reimbursement_nhi_excess_only": true,
+        "policy_recorded_limit_label": "每次實支實付傷害醫療保險金限額"
+      },
+      "coverage_entries": [
+        {
+          "id": "accident-medical-reimbursement-limit",
+          "name": "傷害醫療保險金（實支實付）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "就實際醫療費用超過全民健康保險給付部分給付；同一次傷害的給付總額不得超過保險單所記載的每次實支實付傷害醫療保險金限額。",
+          "source_ref": "保單條款第四、五條，第 1 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "意外傷害事故發生日起一百八十日內；可證明因果關係者不受一百八十日限制。",
+            "以實際醫療費用超過全民健康保險給付部分為給付範圍。",
+            "不以全民健康保險對象身分治療，或至不具全民健康保險之醫院或診所治療者，依實際醫療費用百分之六十五給付，仍以前述限額為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "261211RZ1AQR021A11Z10000001",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v89",
+      "parser_id": "yuanta-new-accident-medical-rider-face-amount-v1",
+      "source_file": "261211RZ1AQR021A11Z10000001-A.pdf",
+      "source_document_sha256": "2cf4491db4c81c23c253b78fa27ffc1f2e90f9d6975debe72853ab41e7269ca3",
+      "schedule_sha256": "5f5ecf21e548304f8ffde3e0955375ba44b5418c4ce3d4265fb97f1c4aabcdd3",
+      "reviewed_by": "Codex",
+      "reviewed_at": "2026-07-22T19:55:11+08:00",
+      "review_note": "Verified against 元大人壽新意外傷害醫療保險附約 A 條款；structured policy-recorded per-injury accident medical reimbursement limit.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "每次實支實付傷害醫療保險金限額",
+      "selection_guidance": "請輸入保險單所記載的每次實支實付傷害醫療保險金限額。",
+      "version_characteristics": {
+        "terms_revision": "109-first-revision",
+        "yuanta_code": "QR-2020.01",
+        "accident_claim_days": 180,
+        "non_nhi_payment_rate_percent": 65,
+        "medical_reimbursement_nhi_excess_only": true,
+        "policy_recorded_limit_label": "每次實支實付傷害醫療保險金限額"
+      },
+      "coverage_entries": [
+        {
+          "id": "accident-medical-reimbursement-limit",
+          "name": "傷害醫療保險金（實支實付）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "就實際醫療費用超過全民健康保險給付部分給付；同一次傷害的給付總額不得超過保險單所記載的每次實支實付傷害醫療保險金限額。",
+          "source_ref": "保單條款第四、五條，第 1 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "意外傷害事故發生日起一百八十日內；可證明因果關係者不受一百八十日限制。",
+            "以實際醫療費用超過全民健康保險給付部分為給付範圍。",
+            "不以全民健康保險對象身分治療，或至不具全民健康保險之醫院或診所治療者，依實際醫療費用百分之六十五給付，仍以前述限額為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "261211RZ1AQR021A11Z10000002",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v89",
+      "parser_id": "yuanta-new-accident-medical-rider-face-amount-v1",
+      "source_file": "261211RZ1AQR021A11Z10000002-A.pdf",
+      "source_document_sha256": "aa3a06705cb9aafe49ecbab4b993e9ea894d3301ff6327d73b2d0b9177f8d738",
+      "schedule_sha256": "5b6c3fcfdbe92a093afe5d97bb6b52f432b38357a8d35cb59d2d4d4568299899",
+      "reviewed_by": "Codex",
+      "reviewed_at": "2026-07-22T19:55:11+08:00",
+      "review_note": "Verified against 元大人壽新意外傷害醫療保險附約 A 條款；structured policy-recorded per-injury accident medical reimbursement limit.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "每次實支實付傷害醫療保險金限額",
+      "selection_guidance": "請輸入保險單所記載的每次實支實付傷害醫療保險金限額。",
+      "version_characteristics": {
+        "terms_revision": "110-second-revision",
+        "yuanta_code": "QR-2021.12",
+        "accident_claim_days": 180,
+        "non_nhi_payment_rate_percent": 65,
+        "medical_reimbursement_nhi_excess_only": true,
+        "policy_recorded_limit_label": "每次實支實付傷害醫療保險金限額"
+      },
+      "coverage_entries": [
+        {
+          "id": "accident-medical-reimbursement-limit",
+          "name": "傷害醫療保險金（實支實付）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "就實際醫療費用超過全民健康保險給付部分給付；同一次傷害的給付總額不得超過保險單所記載的每次實支實付傷害醫療保險金限額。",
+          "source_ref": "保單條款第四、五條，第 1 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "意外傷害事故發生日起一百八十日內；可證明因果關係者不受一百八十日限制。",
+            "以實際醫療費用超過全民健康保險給付部分為給付範圍。",
+            "不以全民健康保險對象身分治療，或至不具全民健康保險之醫院或診所治療者，依實際醫療費用百分之六十五給付，仍以前述限額為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "261211RZ1AQR021A11Z10000003",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v89",
+      "parser_id": "yuanta-new-accident-medical-rider-face-amount-v1",
+      "source_file": "261211RZ1AQR021A11Z10000003-A.pdf",
+      "source_document_sha256": "7e7393fe70e893dc8d255f01390378780fc6a559cddedbf6671b81096d82bd8f",
+      "schedule_sha256": "f9d789bfd721b5a3b8860045a925e3b84b71ad6d6b5dc9541ea7e1017c4a4303",
+      "reviewed_by": "Codex",
+      "reviewed_at": "2026-07-22T19:55:11+08:00",
+      "review_note": "Verified against 元大人壽新意外傷害醫療保險附約 A 條款；structured policy-recorded per-injury accident medical reimbursement limit.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "每次實支實付傷害醫療保險金限額",
+      "selection_guidance": "請輸入保險單所記載的每次實支實付傷害醫療保險金限額。",
+      "version_characteristics": {
+        "terms_revision": "112-third-revision",
+        "yuanta_code": "QR-2023.01",
+        "accident_claim_days": 180,
+        "non_nhi_payment_rate_percent": 65,
+        "medical_reimbursement_nhi_excess_only": true,
+        "policy_recorded_limit_label": "每次實支實付傷害醫療保險金限額"
+      },
+      "coverage_entries": [
+        {
+          "id": "accident-medical-reimbursement-limit",
+          "name": "傷害醫療保險金（實支實付）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "就實際醫療費用超過全民健康保險給付部分給付；同一次傷害的給付總額不得超過保險單所記載的每次實支實付傷害醫療保險金限額。",
+          "source_ref": "保單條款第四、五條，第 1 頁",
+          "rate_percent": 100,
+          "conditions": [
+            "意外傷害事故發生日起一百八十日內；可證明因果關係者不受一百八十日限制。",
+            "以實際醫療費用超過全民健康保險給付部分為給付範圍。",
+            "不以全民健康保險對象身分治療，或至不具全民健康保險之醫院或診所治療者，依實際醫療費用百分之六十五給付，仍以前述限額為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "261211RZ1APR021A11Z10000013",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v91",
+      "parser_id": "yuanta-personal-accident-rider-face-amount-v1",
+      "source_file": "261211RZ1APR021A11Z10000013-A.pdf",
+      "source_document_sha256": "d59882983988c0fb69b93258bce97baee018de5e6aa04448107526cca1b8d25a",
+      "schedule_sha256": "c3817732a750f0470adcf8081de6111a7eff1a0dd61ef88bc831c8298a63fa17",
+      "reviewed_by": "Codex",
+      "reviewed_at": "2026-07-23T10:05:01+08:00",
+      "review_note": "Reviewed against exact TII policy_terms PDFs for Yuanta APR revisions 13-14; deterministic face-amount benefits for death/funeral, disability schedule, and major burn were verified by parser regression tests.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保險單首頁或批註所記載的本附約保險金額。",
+      "version_characteristics": {
+        "terms_revision": "105-thirteenth-revision",
+        "filing_signal": "元壽字第 1050000730 號函備查",
+        "accident_claim_days": 180,
+        "maximum_renewal_age": 75,
+        "child_maximum_renewal_age": 23,
+        "minor_death_premium_refund_before_age": 15,
+        "funeral_benefit_limit_rule": true,
+        "death_benefit_rate_percent": 100,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 115,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "major_burn_rate_percent": 25,
+        "major_burn_lifetime_limit_times": 1,
+        "death_disability_same_accident_cap": true
+      },
+      "coverage_entries": [
+        {
+          "id": "accidental-death-or-funeral",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人因第三條約定之意外傷害事故死亡時，按保險金額給付身故保險金；特定未成年人或心智缺陷情形改依條款退還保費或給付喪葬費用保險金。",
+          "source_ref": "第五條【無息退還當年度所繳保險費、身故保險金或喪葬費用保險金的給付】",
+          "rate_percent": 100,
+          "conditions": [
+            "自意外傷害事故發生之日起一百八十日以內死亡、致成殘廢或重大燒燙傷；超過一百八十日者，受益人需證明與該意外傷害事故具有因果關係。",
+            "未滿十五足歲被保險人身故時，身故保險金於滿十五足歲日起發生效力；未滿十五足歲前死亡者無息退還當年度所繳保險費。",
+            "精神障礙或其他心智缺陷且不能辨識行為或欠缺依辨識而行為能力者，身故保險金變更為喪葬費用保險金，並受遺產稅喪葬費用扣除額半數之上限限制。"
+          ]
+        },
+        {
+          "id": "accidental-disability",
+          "name": "殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "被保險人因意外傷害事故致成附表一所列殘廢程度之一者，依附表一給付比例計算；同一事故多項殘廢合計最高以保險金額為限，不同事故累計最高亦以保險金額為限。",
+          "source_ref": "第六條【殘廢保險金的給付】及附表一【殘廢程度與保險金給付表】",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "conditions": [
+            "自意外傷害事故發生之日起一百八十日以內死亡、致成殘廢或重大燒燙傷；超過一百八十日者，受益人需證明與該意外傷害事故具有因果關係。",
+            "同一手或同一足之殘廢項目僅給付一項；等級不同時給付較嚴重項目。",
+            "合併以前殘廢後可領較嚴重項目者，應扣除以前殘廢視同已給付之金額。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合條款列示之二度燒燙傷面積、三度燒燙傷面積或顏面燒燙傷合併五官功能障礙者，按保險金額百分之二十五給付，終生以一次為限。",
+          "source_ref": "第七條【重大燒燙傷保險金的給付】及附表二【重大燒燙傷範圍】",
+          "rate_percent": 25,
+          "conditions": [
+            "自意外傷害事故發生之日起一百八十日以內死亡、致成殘廢或重大燒燙傷；超過一百八十日者，受益人需證明與該意外傷害事故具有因果關係。",
+            "重大燒燙傷範圍依現行全民健康保險重大傷病定義及附表二。",
+            "重大燒燙傷保險金終生以一次為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "261211RZ1APR021A11Z10000014",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v91",
+      "parser_id": "yuanta-personal-accident-rider-face-amount-v1",
+      "source_file": "261211RZ1APR021A11Z10000014-A.pdf",
+      "source_document_sha256": "71390aaca2a185a22e730592e73e55eeec9c29fb0c33318bb519bd3ec8e14ed1",
+      "schedule_sha256": "4b5af7d2ae01bd527b9a45b20856b994899918eacd88e0c313b2d14f2fc49c7d",
+      "reviewed_by": "Codex",
+      "reviewed_at": "2026-07-23T10:05:01+08:00",
+      "review_note": "Reviewed against exact TII policy_terms PDFs for Yuanta APR revisions 13-14; deterministic face-amount benefits for death/funeral, disability schedule, and major burn were verified by parser regression tests.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保險單首頁或批註所記載的本附約保險金額。",
+      "version_characteristics": {
+        "terms_revision": "106-fourteenth-revision",
+        "filing_signal": "金管保財字第 10502502801 號令修正",
+        "accident_claim_days": 180,
+        "maximum_renewal_age": 75,
+        "child_maximum_renewal_age": 23,
+        "minor_death_premium_refund_before_age": 15,
+        "funeral_benefit_limit_rule": true,
+        "death_benefit_rate_percent": 100,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 115,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "major_burn_rate_percent": 25,
+        "major_burn_lifetime_limit_times": 1,
+        "death_disability_same_accident_cap": true
+      },
+      "coverage_entries": [
+        {
+          "id": "accidental-death-or-funeral",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人因第三條約定之意外傷害事故死亡時，按保險金額給付身故保險金；特定未成年人或心智缺陷情形改依條款退還保費或給付喪葬費用保險金。",
+          "source_ref": "第五條【無息退還當年度所繳保險費、身故保險金或喪葬費用保險金的給付】",
+          "rate_percent": 100,
+          "conditions": [
+            "自意外傷害事故發生之日起一百八十日以內死亡、致成殘廢或重大燒燙傷；超過一百八十日者，受益人需證明與該意外傷害事故具有因果關係。",
+            "未滿十五足歲被保險人身故時，身故保險金於滿十五足歲日起發生效力；未滿十五足歲前死亡者無息退還當年度所繳保險費。",
+            "精神障礙或其他心智缺陷且不能辨識行為或欠缺依辨識而行為能力者，身故保險金變更為喪葬費用保險金，並受遺產稅喪葬費用扣除額半數之上限限制。"
+          ]
+        },
+        {
+          "id": "accidental-disability",
+          "name": "殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "被保險人因意外傷害事故致成附表一所列殘廢程度之一者，依附表一給付比例計算；同一事故多項殘廢合計最高以保險金額為限，不同事故累計最高亦以保險金額為限。",
+          "source_ref": "第六條【殘廢保險金的給付】及附表一【殘廢程度與保險金給付表】",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "conditions": [
+            "自意外傷害事故發生之日起一百八十日以內死亡、致成殘廢或重大燒燙傷；超過一百八十日者，受益人需證明與該意外傷害事故具有因果關係。",
+            "同一手或同一足之殘廢項目僅給付一項；等級不同時給付較嚴重項目。",
+            "合併以前殘廢後可領較嚴重項目者，應扣除以前殘廢視同已給付之金額。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合條款列示之二度燒燙傷面積、三度燒燙傷面積或顏面燒燙傷合併五官功能障礙者，按保險金額百分之二十五給付，終生以一次為限。",
+          "source_ref": "第七條【重大燒燙傷保險金的給付】及附表二【重大燒燙傷範圍】",
+          "rate_percent": 25,
+          "conditions": [
+            "自意外傷害事故發生之日起一百八十日以內死亡、致成殘廢或重大燒燙傷；超過一百八十日者，受益人需證明與該意外傷害事故具有因果關係。",
+            "重大燒燙傷範圍依現行全民健康保險重大傷病定義及附表二。",
+            "重大燒燙傷保險金終生以一次為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "261221AZ1ATAM21A11Z10000003",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v91",
+      "parser_id": "yuanta-funxinyou-accident-medical-addendum-limit-v1",
+      "source_file": "261221AZ1ATAM21A11Z10000003-A.pdf",
+      "source_document_sha256": "1f5c321973bb488912977c44812c81beaaddb7abcc8579b605595e590efd8d4d",
+      "schedule_sha256": "be9ac1a9ee192b3b9c3a7b71e1f849e78f947d2975a89936ddfc77be7961faa1",
+      "reviewed_by": "Codex",
+      "reviewed_at": "2026-07-23T10:05:01+08:00",
+      "review_note": "Reviewed against exact TII policy_terms PDFs for Yuanta Funxinyou ATAM revisions 3-4; deterministic reimbursement limit and non-NHI 65 percent rule were verified by parser regression tests.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "每次實支實付傷害醫療保險金限額",
+      "selection_guidance": "請輸入保險單所記載的每次實支實付傷害醫療保險金限額。",
+      "version_characteristics": {
+        "terms_revision": "third-revision",
+        "contract_reference": "本契約",
+        "accident_claim_days": 180,
+        "non_nhi_payment_rate_percent": 65,
+        "medical_reimbursement_nhi_excess_only": true,
+        "policy_recorded_limit_label": "每次實支實付傷害醫療保險金限額",
+        "beneficiary_self_only": true
+      },
+      "coverage_entries": [
+        {
+          "id": "accident-medical-reimbursement-limit",
+          "name": "傷害醫療保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "經登記合格的醫院或診所治療時，就實際醫療費用超過全民健康保險給付部分給付；同一次傷害給付總額不得超過保險單所記載的每次實支實付傷害醫療保險金限額。",
+          "source_ref": "第二條【傷害醫療保險金的給付】",
+          "rate_percent": 100,
+          "conditions": [
+            "被保險人於本附加條款有效期間內遭受本契約第二條約定的意外傷害事故，自事故發生日起一百八十日內治療；超過一百八十日繼續治療者，受益人需證明治療與該意外傷害事故具有因果關係。",
+            "以實際醫療費用超過全民健康保險給付部分為給付範圍。"
+          ]
+        },
+        {
+          "id": "non-nhi-medical-reimbursement",
+          "name": "醫療費用未經全民健康保險給付者之處理方式",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_actual_expense_with_cap",
+          "amount_role": "payout",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未以全民健康保險身分住院診療，或前往不具有全民健康保險之醫院住院診療，致各項醫療費用未經全民健康保險給付時，依實際支付各項費用 65% 給付，仍以前述保險金條款約定限額為限。",
+          "source_ref": "第三條【醫療費用未經全民健康保險給付者之處理方式】",
+          "rate_percent": 65,
+          "conditions": [
+            "被保險人於本附加條款有效期間內遭受本契約第二條約定的意外傷害事故，自事故發生日起一百八十日內治療；超過一百八十日繼續治療者，受益人需證明治療與該意外傷害事故具有因果關係。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "261221AZ1ATAM21A11Z10000004",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v91",
+      "parser_id": "yuanta-funxinyou-accident-medical-addendum-limit-v1",
+      "source_file": "261221AZ1ATAM21A11Z10000004-A.pdf",
+      "source_document_sha256": "5c6ce1637ff0c1f33ebee3d8545aabb2f17682c2be6f4902304b605e0d139e49",
+      "schedule_sha256": "42725fff5e643763634c39eadaee5a60d33ea9ab828b0c9a873b7b7eb878463b",
+      "reviewed_by": "Codex",
+      "reviewed_at": "2026-07-23T10:05:01+08:00",
+      "review_note": "Reviewed against exact TII policy_terms PDFs for Yuanta Funxinyou ATAM revisions 3-4; deterministic reimbursement limit and non-NHI 65 percent rule were verified by parser regression tests.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "每次實支實付傷害醫療保險金限額",
+      "selection_guidance": "請輸入保險單所記載的每次實支實付傷害醫療保險金限額。",
+      "version_characteristics": {
+        "terms_revision": "fourth-revision",
+        "contract_reference": "主契約",
+        "accident_claim_days": 180,
+        "non_nhi_payment_rate_percent": 65,
+        "medical_reimbursement_nhi_excess_only": true,
+        "policy_recorded_limit_label": "每次實支實付傷害醫療保險金限額",
+        "beneficiary_self_only": true
+      },
+      "coverage_entries": [
+        {
+          "id": "accident-medical-reimbursement-limit",
+          "name": "傷害醫療保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "經登記合格的醫院或診所治療時，就實際醫療費用超過全民健康保險給付部分給付；同一次傷害給付總額不得超過保險單所記載的每次實支實付傷害醫療保險金限額。",
+          "source_ref": "第二條【傷害醫療保險金的給付】",
+          "rate_percent": 100,
+          "conditions": [
+            "被保險人於本附加條款有效期間內遭受主契約第二條約定的意外傷害事故，自事故發生日起一百八十日內治療；超過一百八十日繼續治療者，受益人需證明治療與該意外傷害事故具有因果關係。",
+            "以實際醫療費用超過全民健康保險給付部分為給付範圍。"
+          ]
+        },
+        {
+          "id": "non-nhi-medical-reimbursement",
+          "name": "醫療費用未經全民健康保險給付者之處理方式",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_actual_expense_with_cap",
+          "amount_role": "payout",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "未以全民健康保險身分住院診療，或前往不具有全民健康保險之醫院住院診療，致各項醫療費用未經全民健康保險給付時，依實際支付各項費用 65% 給付，仍以前述保險金條款約定限額為限。",
+          "source_ref": "第三條【醫療費用未經全民健康保險給付者之處理方式】",
+          "rate_percent": 65,
+          "conditions": [
+            "被保險人於本附加條款有效期間內遭受主契約第二條約定的意外傷害事故，自事故發生日起一百八十日內治療；超過一百八十日繼續治療者，受益人需證明治療與該意外傷害事故具有因果關係。"
+          ]
+        }
+      ]
+    }
+  ]
+}

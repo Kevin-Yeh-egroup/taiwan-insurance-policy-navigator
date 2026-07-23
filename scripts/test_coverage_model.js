@@ -123,6 +123,33 @@ const calculationCases = [
     { value: null, state: "needs_unit_count" },
   ],
   [
+    { basis: "policy_recorded_limit", calculation_basis: "reimbursement_with_cap", amount_role: "limit", source: "terms" },
+    { face_amount: 30_000 },
+    { value: 30_000, state: "benefit_limit" },
+  ],
+  [
+    {
+      basis: "policy_recorded_limit",
+      calculation_basis: "percentage_of_actual_expense_with_cap",
+      amount_role: "payout",
+      rate_percent: 65,
+      source: "terms",
+    },
+    { face_amount: 30_000 },
+    { value: 30_000, state: "benefit_limit" },
+  ],
+  [
+    {
+      basis: "policy_recorded_limit",
+      calculation_basis: "percentage_of_actual_expense_with_cap",
+      amount_role: "payout",
+      rate_percent: 65,
+      source: "terms",
+    },
+    {},
+    { value: null, state: "missing_amount" },
+  ],
+  [
     { calculation_basis: "table_multiplier", multiplier: 2, source: "terms" },
     { face_amount: 1_000_000 },
     { value: 2_000_000, state: "calculated" },

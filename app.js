@@ -229,6 +229,12 @@ function coverageEntryText(entry, selectedValues) {
     const limit = result.value || amount;
     return `${name}：${unitBased && units ? `${formatNumber.format(units)} 單位，` : ""}${scope}最高 ${formatNumber.format(limit)} 元；實際給付依支出與條款`;
   }
+  if (normalized.calculation_basis === "percentage_of_actual_expense_with_cap") {
+    const scope = coverageModel.LIMIT_SCOPES[normalized.limit_scope] || coverageModel.LIMIT_SCOPES.unknown;
+    const limit = result.value || amount || normalizeCoverageAmount(selection.face_amount);
+    const rateText = normalized.rate ? `${formatNumber.format(normalized.rate * 100)}%` : "條款比例";
+    return `${name}：實際支出 ${rateText}，${scope}最高 ${formatNumber.format(limit)} 元；實際給付依支出與條款`;
+  }
   if (normalized.calculation_basis === "per_day") return `${name}：每日 ${formattedAmount}`;
   if (normalized.calculation_basis === "additional_benefit") return `${name}：額外給付 ${formattedAmount}`;
   if (normalized.calculation_basis === "tiered_or_stepped") {

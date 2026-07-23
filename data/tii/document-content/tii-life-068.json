@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-07T15:59:21+08:00",
+  "generated_at": "2026-07-21T18:05:36+08:00",
   "summary": {
     "generated_at": "2026-07-07T15:59:21+08:00",
     "source": "local TII files downloaded through captcha session",
@@ -28934,6 +28934,116 @@
           "text_char_count": 9303,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "unit",
+      "input_mode": "unit",
+      "selection_source": "terms",
+      "selection_label": "投保單位數",
+      "selection_guidance": "請輸入要保書或被保險人名冊所載的正整數投保單位數；系統依附表一每一單位金額換算。",
+      "version_characteristics": {
+        "terms_revision": "87-08-15-revision",
+        "filing_date": "83.06.03",
+        "filing_number": "台財保第831481668號",
+        "revision_date": "87.08.15",
+        "revision_number": "台財保第872441034號",
+        "disease_waiting_days": 30,
+        "room_board_days_limit": 120,
+        "icu_days_limit": 10,
+        "same_accident_readmission_days": 90,
+        "social_insurance_unclaimed_payment_rate_percent": 70,
+        "surgery_table_min_percent": 2.5,
+        "surgery_table_max_percent": 100,
+        "experience_dividend": true
+      },
+      "coverage_entries": [
+        {
+          "id": "room-board-daily",
+          "name": "病房及膳食費用保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數；保障項目由要保書所載被保險人給付項目決定。實支實付型以每日最高補償限額為準；日額型最多給付 120 日。",
+          "source_ref": "保單條款第十四至十六條及附表一",
+          "amount": 100,
+          "conditions": [
+            "有社會保險者應優先申請；未優先申請時，依約應給付金額按 70% 給付。",
+            "同一事故或併發症住院二次以上，且每次住院間隔未超過 90 日者，視為一次住院辦理。"
+          ]
+        },
+        {
+          "id": "icu-daily",
+          "name": "加護病房費用保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數；保障項目由要保書所載被保險人給付項目決定。實支實付型以每日最高補償限額為準；日額型每次最多給付 10 日。",
+          "source_ref": "保單條款第十四至十六條及附表一",
+          "amount": 300,
+          "conditions": [
+            "有社會保險者應優先申請；未優先申請時，依約應給付金額按 70% 給付。",
+            "同一事故或併發症住院二次以上，且每次住院間隔未超過 90 日者，視為一次住院辦理。"
+          ]
+        },
+        {
+          "id": "inpatient-medical-expense",
+          "name": "住院醫療費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數；保障項目由要保書所載被保險人給付項目決定。包含條款第十四條列示之診察護理、手術室治療室、藥品、敷料、檢驗、物理治療、麻醉氧氣、X 光、輸注、輸血及救護車等住院醫療費用。",
+          "source_ref": "保單條款第十四至十六條及附表一",
+          "amount": 1000,
+          "conditions": [
+            "有社會保險者應優先申請；未優先申請時，依約應給付金額按 70% 給付。",
+            "同一事故或併發症住院二次以上，且每次住院間隔未超過 90 日者，視為一次住院辦理。"
+          ]
+        },
+        {
+          "id": "surgery-expense-base",
+          "name": "外科手術費用保險金",
+          "basis": "per_unit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數；保障項目由要保書所載被保險人給付項目決定。每次手術以附表二手術百分率計算，手術表範圍為 2.5% 至 100%。",
+          "source_ref": "保單條款第十四條、附表一及附表二",
+          "amount": 1000,
+          "rate_min_percent": 2.5,
+          "rate_max_percent": 100,
+          "conditions": [
+            "有社會保險者應優先申請；未優先申請時，依約應給付金額按 70% 給付。",
+            "同一事故或併發症住院二次以上，且每次住院間隔未超過 90 日者，視為一次住院辦理。"
+          ]
+        },
+        {
+          "id": "home-recovery-daily",
+          "name": "出院在家療養保險金",
+          "basis": "daily_per_unit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "表列金額乘以投保單位數；保障項目由要保書所載被保險人給付項目決定。依實際支付之病房及膳食費用保險金的 50% 給付；附表每單位為 50 元。",
+          "source_ref": "保單條款第十四至十六條及附表一",
+          "amount": 50,
+          "multiplier": 0.5,
+          "conditions": [
+            "有社會保險者應優先申請；未優先申請時，依約應給付金額按 70% 給付。",
+            "同一事故或併發症住院二次以上，且每次住院間隔未超過 90 日者，視為一次住院辦理。"
+          ]
         }
       ]
     },

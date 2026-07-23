@@ -1,0 +1,4395 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-23T11:00:00+08:00",
+  "batch_id": "tii-life-025",
+  "record_count": 24,
+  "records": [
+    {
+      "product_id": "205211RZ1A00121A11Z10000005",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v60",
+      "parser_id": "prudential-china-life-accident-account-face-amount-v1",
+      "source_file": "205211RZ1A00121A11Z10000005-A.pdf",
+      "source_document_sha256": "8bc4822440de5d5db1bb9800e4964de19b6acd208cb477c26088cf71631536ac",
+      "schedule_sha256": "3eae238ce134913eb41f4aea37c9f8fe28bae6f53e0f9b911d7e7fbb3792e5a8",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-22T00:00:00+08:00",
+      "review_note": "核對中國人壽/凱基一年定期意外傷害帳戶型附約；以保險金額為基礎，含有重大燒燙傷附加條款者保留35%給付，確認來源文件與 schedule 雜湊。",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "本附約保險金額",
+      "selection_guidance": "請輸入保單或批註所載本附約保險金額；傷害醫療限額與意外住院日額需另依保單頁面確認。",
+      "version_characteristics": {
+        "terms_revision": "china-life-fifth-revision",
+        "children_covered": true,
+        "medical_rider_included": true,
+        "hospital_daily_rider_included": true,
+        "major_burn_rider_included": true,
+        "disability_term": "殘廢",
+        "accident_claim_days": 180,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": false,
+        "day_hospital_excluded": false,
+        "non_nhi_payment_rate_percent": 70,
+        "hospital_daily_days_limit": 120,
+        "surgery_base_daily_multiplier": 20,
+        "surgery_per_hospitalization_daily_multiplier_limit": 60,
+        "surgery_table_min_percent": 1.0,
+        "surgery_table_max_percent": 300.0
+      },
+      "coverage_entries": [
+        {
+          "id": "accidental-death-or-funeral",
+          "name": "意外身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人因意外事故身故時，依本附約保險金額給付；特定未成年或依法限制身故給付者依喪葬費用規定辦理。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "給付後本附約效力終止。"
+          ]
+        },
+        {
+          "id": "accidental-disability",
+          "name": "意外殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依殘廢程度與保險金給付表比例乘以本附約保險金額，比例範圍 100% 至 100%。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_min_percent": 100,
+          "rate_max_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故多項殘廢給付合計最高以保險金額為限。",
+            "不同事故累計申領殘廢保險金時，最高以保險金額為限。"
+          ]
+        },
+        {
+          "id": "injury-medical-reimbursement-limit",
+          "name": "傷害醫療保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此限額不是條款固定金額，須依保單所記載的「每次實支實付傷害醫療保險金限額」輸入或確認。",
+          "source_ref": "人身意外傷害醫療保險給付附加條款第一條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "超過全民健康保險給付部分實支實付。",
+            "未以全民健康保險身分就醫或於非全民健康保險醫院治療者，依實際支付費用 70% 給付，仍受限額限制。"
+          ]
+        },
+        {
+          "id": "accident-pre-post-outpatient",
+          "name": "意外傷害門診醫療費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住院前 7 日及出院後 14 日內，同一意外傷害原因之門診醫療按該日額二分之一乘以門診日數給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第一條",
+          "multiplier": 0.5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+          ]
+        },
+        {
+          "id": "accident-hospital-daily",
+          "name": "意外傷害住院保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 因意外傷害住院時，按實際住院日數含入院及出院日給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "fracture-without-hospitalization",
+          "name": "骨折未住院醫療保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 骨折未住院或住院未達骨折表日數時，依骨折日數乘以日額二分之一給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條骨折表",
+          "multiplier": 0.5,
+          "conditions": [
+            "依骨折表完全骨折日數計算；不完全骨折二分之一，骨骼龜裂四分之一。"
+          ]
+        },
+        {
+          "id": "accident-inpatient-surgery",
+          "name": "意外傷害住院手術費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 以日額 20 倍乘以手術名稱及費用表比例給付；表列比例範圍 1.0% 至 300.0%。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第三條及附表三",
+          "rate_min_percent": 1.0,
+          "rate_max_percent": 300.0,
+          "multiplier": 20,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院各項手術費用保險金總和最高以住院日額 60 倍為限。",
+            "同一部位多次手術或同一次手術涉及多器官時，僅給付較高一項。"
+          ]
+        },
+        {
+          "id": "accident-icu-daily",
+          "name": "意外傷害加護病房費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住進加護病房治療期間，每日另按該日額給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第四條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合重大燒燙傷定義並經醫院診斷確定時，按本契約或本附約所載保險金額 35% 給付。",
+          "source_ref": "人身意外傷害重大燒燙傷保險給付附加條款第二條",
+          "rate_percent": 35,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "本項於有效期間內以給付一次為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211RZ1A00121A11Z10000007",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v60",
+      "parser_id": "prudential-china-life-accident-account-face-amount-v1",
+      "source_file": "205211RZ1A00121A11Z10000007-A.pdf",
+      "source_document_sha256": "5773bda6d1ec391c4a8c826fbf52a4985247a160a2b64f3e80c52065d36072e3",
+      "schedule_sha256": "e05dd32293d9f839abe608dbb382a630f2085f9bc10c8c191369e58d37383421",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-22T00:00:00+08:00",
+      "review_note": "核對中國人壽/凱基一年定期意外傷害帳戶型附約；以保險金額為基礎，含有重大燒燙傷附加條款者保留35%給付，確認來源文件與 schedule 雜湊。",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "本附約保險金額",
+      "selection_guidance": "請輸入保單或批註所載本附約保險金額；傷害醫療限額與意外住院日額需另依保單頁面確認。",
+      "version_characteristics": {
+        "terms_revision": "china-life-seventh-revision",
+        "children_covered": true,
+        "medical_rider_included": true,
+        "hospital_daily_rider_included": true,
+        "major_burn_rider_included": true,
+        "disability_term": "失能",
+        "accident_claim_days": 180,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": false,
+        "day_hospital_excluded": false,
+        "non_nhi_payment_rate_percent": 70,
+        "hospital_daily_days_limit": 120,
+        "surgery_base_daily_multiplier": 20,
+        "surgery_per_hospitalization_daily_multiplier_limit": 60,
+        "surgery_table_min_percent": 1.0,
+        "surgery_table_max_percent": 300.0
+      },
+      "coverage_entries": [
+        {
+          "id": "accidental-death-or-funeral",
+          "name": "意外身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人因意外事故身故時，依本附約保險金額給付；特定未成年或依法限制身故給付者依喪葬費用規定辦理。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "給付後本附約效力終止。"
+          ]
+        },
+        {
+          "id": "accidental-disability",
+          "name": "意外殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依殘廢程度與保險金給付表比例乘以本附約保險金額，比例範圍 100% 至 100%。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_min_percent": 100,
+          "rate_max_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故多項殘廢給付合計最高以保險金額為限。",
+            "不同事故累計申領殘廢保險金時，最高以保險金額為限。"
+          ]
+        },
+        {
+          "id": "injury-medical-reimbursement-limit",
+          "name": "傷害醫療保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此限額不是條款固定金額，須依保單所記載的「每次實支實付傷害醫療保險金限額」輸入或確認。",
+          "source_ref": "人身意外傷害醫療保險給付附加條款第一條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "超過全民健康保險給付部分實支實付。",
+            "未以全民健康保險身分就醫或於非全民健康保險醫院治療者，依實際支付費用 70% 給付，仍受限額限制。"
+          ]
+        },
+        {
+          "id": "accident-pre-post-outpatient",
+          "name": "意外傷害門診醫療費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住院前 7 日及出院後 14 日內，同一意外傷害原因之門診醫療按該日額二分之一乘以門診日數給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第一條",
+          "multiplier": 0.5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+          ]
+        },
+        {
+          "id": "accident-hospital-daily",
+          "name": "意外傷害住院保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 因意外傷害住院時，按實際住院日數含入院及出院日給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "fracture-without-hospitalization",
+          "name": "骨折未住院醫療保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 骨折未住院或住院未達骨折表日數時，依骨折日數乘以日額二分之一給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條骨折表",
+          "multiplier": 0.5,
+          "conditions": [
+            "依骨折表完全骨折日數計算；不完全骨折二分之一，骨骼龜裂四分之一。"
+          ]
+        },
+        {
+          "id": "accident-inpatient-surgery",
+          "name": "意外傷害住院手術費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 以日額 20 倍乘以手術名稱及費用表比例給付；表列比例範圍 1.0% 至 300.0%。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第三條及附表三",
+          "rate_min_percent": 1.0,
+          "rate_max_percent": 300.0,
+          "multiplier": 20,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院各項手術費用保險金總和最高以住院日額 60 倍為限。",
+            "同一部位多次手術或同一次手術涉及多器官時，僅給付較高一項。"
+          ]
+        },
+        {
+          "id": "accident-icu-daily",
+          "name": "意外傷害加護病房費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住進加護病房治療期間，每日另按該日額給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第四條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合重大燒燙傷定義並經醫院診斷確定時，按本契約或本附約所載保險金額 35% 給付。",
+          "source_ref": "人身意外傷害重大燒燙傷保險給付附加條款第二條",
+          "rate_percent": 35,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "本項於有效期間內以給付一次為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211RZ1A00121A11Z10000008",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v60",
+      "parser_id": "prudential-china-life-accident-account-face-amount-v1",
+      "source_file": "205211RZ1A00121A11Z10000008-A.pdf",
+      "source_document_sha256": "ce5b47b29753622180ba882bd0b5077266db5063c9a20465d5ea4bf66a6df5d9",
+      "schedule_sha256": "4b91ca6bb956246290eca9289bad0208323508a7504fdcd8731161dd13f20cb6",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-22T00:00:00+08:00",
+      "review_note": "核對中國人壽/凱基一年定期意外傷害帳戶型附約；以保險金額為基礎，含有重大燒燙傷附加條款者保留35%給付，確認來源文件與 schedule 雜湊。",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "本附約保險金額",
+      "selection_guidance": "請輸入保單或批註所載本附約保險金額；傷害醫療限額與意外住院日額需另依保單頁面確認。",
+      "version_characteristics": {
+        "terms_revision": "china-life-eighth-revision",
+        "children_covered": true,
+        "medical_rider_included": true,
+        "hospital_daily_rider_included": true,
+        "major_burn_rider_included": true,
+        "disability_term": "失能",
+        "accident_claim_days": 180,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": false,
+        "day_hospital_excluded": false,
+        "non_nhi_payment_rate_percent": 70,
+        "hospital_daily_days_limit": 120,
+        "surgery_base_daily_multiplier": 20,
+        "surgery_per_hospitalization_daily_multiplier_limit": 60,
+        "surgery_table_min_percent": 1.0,
+        "surgery_table_max_percent": 300.0
+      },
+      "coverage_entries": [
+        {
+          "id": "accidental-death-or-funeral",
+          "name": "意外身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人因意外事故身故時，依本附約保險金額給付；特定未成年或依法限制身故給付者依喪葬費用規定辦理。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "給付後本附約效力終止。"
+          ]
+        },
+        {
+          "id": "accidental-disability",
+          "name": "意外殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依殘廢程度與保險金給付表比例乘以本附約保險金額，比例範圍 100% 至 100%。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_min_percent": 100,
+          "rate_max_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故多項殘廢給付合計最高以保險金額為限。",
+            "不同事故累計申領殘廢保險金時，最高以保險金額為限。"
+          ]
+        },
+        {
+          "id": "injury-medical-reimbursement-limit",
+          "name": "傷害醫療保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此限額不是條款固定金額，須依保單所記載的「每次實支實付傷害醫療保險金限額」輸入或確認。",
+          "source_ref": "人身意外傷害醫療保險給付附加條款第一條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "超過全民健康保險給付部分實支實付。",
+            "未以全民健康保險身分就醫或於非全民健康保險醫院治療者，依實際支付費用 70% 給付，仍受限額限制。"
+          ]
+        },
+        {
+          "id": "accident-pre-post-outpatient",
+          "name": "意外傷害門診醫療費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住院前 7 日及出院後 14 日內，同一意外傷害原因之門診醫療按該日額二分之一乘以門診日數給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第一條",
+          "multiplier": 0.5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+          ]
+        },
+        {
+          "id": "accident-hospital-daily",
+          "name": "意外傷害住院保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 因意外傷害住院時，按實際住院日數含入院及出院日給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "fracture-without-hospitalization",
+          "name": "骨折未住院醫療保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 骨折未住院或住院未達骨折表日數時，依骨折日數乘以日額二分之一給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條骨折表",
+          "multiplier": 0.5,
+          "conditions": [
+            "依骨折表完全骨折日數計算；不完全骨折二分之一，骨骼龜裂四分之一。"
+          ]
+        },
+        {
+          "id": "accident-inpatient-surgery",
+          "name": "意外傷害住院手術費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 以日額 20 倍乘以手術名稱及費用表比例給付；表列比例範圍 1.0% 至 300.0%。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第三條及附表三",
+          "rate_min_percent": 1.0,
+          "rate_max_percent": 300.0,
+          "multiplier": 20,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院各項手術費用保險金總和最高以住院日額 60 倍為限。",
+            "同一部位多次手術或同一次手術涉及多器官時，僅給付較高一項。"
+          ]
+        },
+        {
+          "id": "accident-icu-daily",
+          "name": "意外傷害加護病房費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住進加護病房治療期間，每日另按該日額給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第四條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合重大燒燙傷定義並經醫院診斷確定時，按本契約或本附約所載保險金額 35% 給付。",
+          "source_ref": "人身意外傷害重大燒燙傷保險給付附加條款第二條",
+          "rate_percent": 35,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "本項於有效期間內以給付一次為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211RZ1A00121A11Z10000009",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v60",
+      "parser_id": "prudential-china-life-accident-account-face-amount-v1",
+      "source_file": "205211RZ1A00121A11Z10000009-A.pdf",
+      "source_document_sha256": "389b341a0ccdb07d857c61b3792263a01cf4a56b45ff183135d00a3a99a4d467",
+      "schedule_sha256": "d2cca17c0aa484a16c57abc0b14881f9fe1d78742c7d9b43ee5b8456a98062fd",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-22T00:00:00+08:00",
+      "review_note": "核對中國人壽/凱基一年定期意外傷害帳戶型附約；以保險金額為基礎，含有重大燒燙傷附加條款者保留35%給付，確認來源文件與 schedule 雜湊。",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "本附約保險金額",
+      "selection_guidance": "請輸入保單或批註所載本附約保險金額；傷害醫療限額與意外住院日額需另依保單頁面確認。",
+      "version_characteristics": {
+        "terms_revision": "china-life-ninth-revision",
+        "children_covered": true,
+        "medical_rider_included": true,
+        "hospital_daily_rider_included": true,
+        "major_burn_rider_included": true,
+        "disability_term": "失能",
+        "accident_claim_days": 180,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": false,
+        "day_hospital_excluded": false,
+        "non_nhi_payment_rate_percent": 70,
+        "hospital_daily_days_limit": 120,
+        "surgery_base_daily_multiplier": 20,
+        "surgery_per_hospitalization_daily_multiplier_limit": 60,
+        "surgery_table_min_percent": 1.0,
+        "surgery_table_max_percent": 300.0
+      },
+      "coverage_entries": [
+        {
+          "id": "accidental-death-or-funeral",
+          "name": "意外身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人因意外事故身故時，依本附約保險金額給付；特定未成年或依法限制身故給付者依喪葬費用規定辦理。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "給付後本附約效力終止。"
+          ]
+        },
+        {
+          "id": "accidental-disability",
+          "name": "意外殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依殘廢程度與保險金給付表比例乘以本附約保險金額，比例範圍 100% 至 100%。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_min_percent": 100,
+          "rate_max_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故多項殘廢給付合計最高以保險金額為限。",
+            "不同事故累計申領殘廢保險金時，最高以保險金額為限。"
+          ]
+        },
+        {
+          "id": "injury-medical-reimbursement-limit",
+          "name": "傷害醫療保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此限額不是條款固定金額，須依保單所記載的「每次實支實付傷害醫療保險金限額」輸入或確認。",
+          "source_ref": "人身意外傷害醫療保險給付附加條款第一條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "超過全民健康保險給付部分實支實付。",
+            "未以全民健康保險身分就醫或於非全民健康保險醫院治療者，依實際支付費用 70% 給付，仍受限額限制。"
+          ]
+        },
+        {
+          "id": "accident-pre-post-outpatient",
+          "name": "意外傷害門診醫療費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住院前 7 日及出院後 14 日內，同一意外傷害原因之門診醫療按該日額二分之一乘以門診日數給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第一條",
+          "multiplier": 0.5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+          ]
+        },
+        {
+          "id": "accident-hospital-daily",
+          "name": "意外傷害住院保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 因意外傷害住院時，按實際住院日數含入院及出院日給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "fracture-without-hospitalization",
+          "name": "骨折未住院醫療保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 骨折未住院或住院未達骨折表日數時，依骨折日數乘以日額二分之一給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條骨折表",
+          "multiplier": 0.5,
+          "conditions": [
+            "依骨折表完全骨折日數計算；不完全骨折二分之一，骨骼龜裂四分之一。"
+          ]
+        },
+        {
+          "id": "accident-inpatient-surgery",
+          "name": "意外傷害住院手術費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 以日額 20 倍乘以手術名稱及費用表比例給付；表列比例範圍 1.0% 至 300.0%。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第三條及附表三",
+          "rate_min_percent": 1.0,
+          "rate_max_percent": 300.0,
+          "multiplier": 20,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院各項手術費用保險金總和最高以住院日額 60 倍為限。",
+            "同一部位多次手術或同一次手術涉及多器官時，僅給付較高一項。"
+          ]
+        },
+        {
+          "id": "accident-icu-daily",
+          "name": "意外傷害加護病房費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住進加護病房治療期間，每日另按該日額給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第四條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合重大燒燙傷定義並經醫院診斷確定時，按本契約或本附約所載保險金額 35% 給付。",
+          "source_ref": "人身意外傷害重大燒燙傷保險給付附加條款第二條",
+          "rate_percent": 35,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "本項於有效期間內以給付一次為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211RZ1A00121A11Z10000010",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v60",
+      "parser_id": "prudential-china-life-accident-account-face-amount-v1",
+      "source_file": "205211RZ1A00121A11Z10000010-A.pdf",
+      "source_document_sha256": "61b51f46b2e10f2f4dfe699daa3ae87ec196f14a730aa72d060b7b821bb495e7",
+      "schedule_sha256": "6e6146aec021b9e7725c2c4912c2a5348e1150039bde8c79f80db7290c059b51",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-22T00:00:00+08:00",
+      "review_note": "核對中國人壽/凱基一年定期意外傷害帳戶型附約；以保險金額為基礎，含有重大燒燙傷附加條款者保留35%給付，確認來源文件與 schedule 雜湊。",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "本附約保險金額",
+      "selection_guidance": "請輸入保單或批註所載本附約保險金額；傷害醫療限額與意外住院日額需另依保單頁面確認。",
+      "version_characteristics": {
+        "terms_revision": "china-life-tenth-revision",
+        "children_covered": true,
+        "medical_rider_included": true,
+        "hospital_daily_rider_included": true,
+        "major_burn_rider_included": true,
+        "disability_term": "失能",
+        "accident_claim_days": 180,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": false,
+        "day_hospital_excluded": false,
+        "non_nhi_payment_rate_percent": 70,
+        "hospital_daily_days_limit": 120,
+        "surgery_base_daily_multiplier": 20,
+        "surgery_per_hospitalization_daily_multiplier_limit": 60,
+        "surgery_table_min_percent": 1.0,
+        "surgery_table_max_percent": 300.0
+      },
+      "coverage_entries": [
+        {
+          "id": "accidental-death-or-funeral",
+          "name": "意外身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人因意外事故身故時，依本附約保險金額給付；特定未成年或依法限制身故給付者依喪葬費用規定辦理。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "給付後本附約效力終止。"
+          ]
+        },
+        {
+          "id": "accidental-disability",
+          "name": "意外殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依殘廢程度與保險金給付表比例乘以本附約保險金額，比例範圍 100% 至 100%。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_min_percent": 100,
+          "rate_max_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故多項殘廢給付合計最高以保險金額為限。",
+            "不同事故累計申領殘廢保險金時，最高以保險金額為限。"
+          ]
+        },
+        {
+          "id": "injury-medical-reimbursement-limit",
+          "name": "傷害醫療保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此限額不是條款固定金額，須依保單所記載的「每次實支實付傷害醫療保險金限額」輸入或確認。",
+          "source_ref": "人身意外傷害醫療保險給付附加條款第一條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "超過全民健康保險給付部分實支實付。",
+            "未以全民健康保險身分就醫或於非全民健康保險醫院治療者，依實際支付費用 70% 給付，仍受限額限制。"
+          ]
+        },
+        {
+          "id": "accident-pre-post-outpatient",
+          "name": "意外傷害門診醫療費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住院前 7 日及出院後 14 日內，同一意外傷害原因之門診醫療按該日額二分之一乘以門診日數給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第一條",
+          "multiplier": 0.5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+          ]
+        },
+        {
+          "id": "accident-hospital-daily",
+          "name": "意外傷害住院保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 因意外傷害住院時，按實際住院日數含入院及出院日給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "fracture-without-hospitalization",
+          "name": "骨折未住院醫療保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 骨折未住院或住院未達骨折表日數時，依骨折日數乘以日額二分之一給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條骨折表",
+          "multiplier": 0.5,
+          "conditions": [
+            "依骨折表完全骨折日數計算；不完全骨折二分之一，骨骼龜裂四分之一。"
+          ]
+        },
+        {
+          "id": "accident-inpatient-surgery",
+          "name": "意外傷害住院手術費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 以日額 20 倍乘以手術名稱及費用表比例給付；表列比例範圍 1.0% 至 300.0%。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第三條及附表三",
+          "rate_min_percent": 1.0,
+          "rate_max_percent": 300.0,
+          "multiplier": 20,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院各項手術費用保險金總和最高以住院日額 60 倍為限。",
+            "同一部位多次手術或同一次手術涉及多器官時，僅給付較高一項。"
+          ]
+        },
+        {
+          "id": "accident-icu-daily",
+          "name": "意外傷害加護病房費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住進加護病房治療期間，每日另按該日額給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第四條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合重大燒燙傷定義並經醫院診斷確定時，按本契約或本附約所載保險金額 35% 給付。",
+          "source_ref": "人身意外傷害重大燒燙傷保險給付附加條款第二條",
+          "rate_percent": 35,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "本項於有效期間內以給付一次為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211RZ1A00121A11Z10000011",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v60",
+      "parser_id": "prudential-china-life-accident-account-face-amount-v1",
+      "source_file": "205211RZ1A00121A11Z10000011-A.pdf",
+      "source_document_sha256": "66e3ca10fa2820cb676489e910fc3b46097419ffdc3f1d83b98d2177eb0e8823",
+      "schedule_sha256": "5a4b0a56b62a57a4091fd43e41ccbe80cbf8dec9e0d9bd31c40b4f0ef931805c",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-22T00:00:00+08:00",
+      "review_note": "核對中國人壽/凱基一年定期意外傷害帳戶型附約；以保險金額為基礎，含有重大燒燙傷附加條款者保留35%給付，確認來源文件與 schedule 雜湊。",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "本附約保險金額",
+      "selection_guidance": "請輸入保單或批註所載本附約保險金額；傷害醫療限額與意外住院日額需另依保單頁面確認。",
+      "version_characteristics": {
+        "terms_revision": "china-life-eleventh-revision",
+        "children_covered": true,
+        "medical_rider_included": true,
+        "hospital_daily_rider_included": true,
+        "major_burn_rider_included": true,
+        "disability_term": "失能",
+        "accident_claim_days": 180,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": false,
+        "day_hospital_excluded": false,
+        "non_nhi_payment_rate_percent": 70,
+        "hospital_daily_days_limit": 120,
+        "surgery_base_daily_multiplier": 20,
+        "surgery_per_hospitalization_daily_multiplier_limit": 60,
+        "surgery_table_min_percent": 1.0,
+        "surgery_table_max_percent": 300.0
+      },
+      "coverage_entries": [
+        {
+          "id": "accidental-death-or-funeral",
+          "name": "意外身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人因意外事故身故時，依本附約保險金額給付；特定未成年或依法限制身故給付者依喪葬費用規定辦理。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "給付後本附約效力終止。"
+          ]
+        },
+        {
+          "id": "accidental-disability",
+          "name": "意外殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依殘廢程度與保險金給付表比例乘以本附約保險金額，比例範圍 100% 至 100%。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_min_percent": 100,
+          "rate_max_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故多項殘廢給付合計最高以保險金額為限。",
+            "不同事故累計申領殘廢保險金時，最高以保險金額為限。"
+          ]
+        },
+        {
+          "id": "injury-medical-reimbursement-limit",
+          "name": "傷害醫療保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此限額不是條款固定金額，須依保單所記載的「每次實支實付傷害醫療保險金限額」輸入或確認。",
+          "source_ref": "人身意外傷害醫療保險給付附加條款第一條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "超過全民健康保險給付部分實支實付。",
+            "未以全民健康保險身分就醫或於非全民健康保險醫院治療者，依實際支付費用 70% 給付，仍受限額限制。"
+          ]
+        },
+        {
+          "id": "accident-pre-post-outpatient",
+          "name": "意外傷害門診醫療費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住院前 7 日及出院後 14 日內，同一意外傷害原因之門診醫療按該日額二分之一乘以門診日數給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第一條",
+          "multiplier": 0.5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+          ]
+        },
+        {
+          "id": "accident-hospital-daily",
+          "name": "意外傷害住院保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 因意外傷害住院時，按實際住院日數含入院及出院日給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "fracture-without-hospitalization",
+          "name": "骨折未住院醫療保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 骨折未住院或住院未達骨折表日數時，依骨折日數乘以日額二分之一給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條骨折表",
+          "multiplier": 0.5,
+          "conditions": [
+            "依骨折表完全骨折日數計算；不完全骨折二分之一，骨骼龜裂四分之一。"
+          ]
+        },
+        {
+          "id": "accident-inpatient-surgery",
+          "name": "意外傷害住院手術費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 以日額 20 倍乘以手術名稱及費用表比例給付；表列比例範圍 1.0% 至 300.0%。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第三條及附表三",
+          "rate_min_percent": 1.0,
+          "rate_max_percent": 300.0,
+          "multiplier": 20,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院各項手術費用保險金總和最高以住院日額 60 倍為限。",
+            "同一部位多次手術或同一次手術涉及多器官時，僅給付較高一項。"
+          ]
+        },
+        {
+          "id": "accident-icu-daily",
+          "name": "意外傷害加護病房費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住進加護病房治療期間，每日另按該日額給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第四條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合重大燒燙傷定義並經醫院診斷確定時，按本契約或本附約所載保險金額 35% 給付。",
+          "source_ref": "人身意外傷害重大燒燙傷保險給付附加條款第二條",
+          "rate_percent": 35,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "本項於有效期間內以給付一次為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211RZ1A00121A11Z10000012",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v60",
+      "parser_id": "prudential-china-life-accident-account-face-amount-v1",
+      "source_file": "205211RZ1A00121A11Z10000012-A.pdf",
+      "source_document_sha256": "4cdbfa9db01fa6c3c3ca65949196886da39abb28ac7246989bd2bd9e160d3578",
+      "schedule_sha256": "34bf8267fdba338c624cb5fdafdb6fe91c420f3848bc1adcdee08c654a3e27ca",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-22T00:00:00+08:00",
+      "review_note": "核對中國人壽/凱基一年定期意外傷害帳戶型附約；以保險金額為基礎，含有重大燒燙傷附加條款者保留35%給付，確認來源文件與 schedule 雜湊。",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "本附約保險金額",
+      "selection_guidance": "請輸入保單或批註所載本附約保險金額；傷害醫療限額與意外住院日額需另依保單頁面確認。",
+      "version_characteristics": {
+        "terms_revision": "kgi-life-twelfth-revision",
+        "children_covered": true,
+        "medical_rider_included": true,
+        "hospital_daily_rider_included": true,
+        "major_burn_rider_included": false,
+        "disability_term": "失能",
+        "accident_claim_days": 180,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": false,
+        "day_hospital_excluded": false,
+        "non_nhi_payment_rate_percent": 70,
+        "hospital_daily_days_limit": 120,
+        "surgery_base_daily_multiplier": 20,
+        "surgery_per_hospitalization_daily_multiplier_limit": 60,
+        "surgery_table_min_percent": 2.0,
+        "surgery_table_max_percent": 300.0
+      },
+      "coverage_entries": [
+        {
+          "id": "accidental-death-or-funeral",
+          "name": "意外身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人因意外事故身故時，依本附約保險金額給付；特定未成年或依法限制身故給付者依喪葬費用規定辦理。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "給付後本附約效力終止。"
+          ]
+        },
+        {
+          "id": "accidental-disability",
+          "name": "意外殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依殘廢程度與保險金給付表比例乘以本附約保險金額，比例範圍 100% 至 100%。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_min_percent": 100,
+          "rate_max_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故多項殘廢給付合計最高以保險金額為限。",
+            "不同事故累計申領殘廢保險金時，最高以保險金額為限。"
+          ]
+        },
+        {
+          "id": "injury-medical-reimbursement-limit",
+          "name": "傷害醫療保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此限額不是條款固定金額，須依保單所記載的「每次實支實付傷害醫療保險金限額」輸入或確認。",
+          "source_ref": "人身意外傷害醫療保險給付附加條款第一條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "超過全民健康保險給付部分實支實付。",
+            "未以全民健康保險身分就醫或於非全民健康保險醫院治療者，依實際支付費用 70% 給付，仍受限額限制。"
+          ]
+        },
+        {
+          "id": "accident-pre-post-outpatient",
+          "name": "意外傷害門診醫療費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住院前 7 日及出院後 14 日內，同一意外傷害原因之門診醫療按該日額二分之一乘以門診日數給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第一條",
+          "multiplier": 0.5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+          ]
+        },
+        {
+          "id": "accident-hospital-daily",
+          "name": "意外傷害住院保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 因意外傷害住院時，按實際住院日數含入院及出院日給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "fracture-without-hospitalization",
+          "name": "骨折未住院醫療保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 骨折未住院或住院未達骨折表日數時，依骨折日數乘以日額二分之一給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條骨折表",
+          "multiplier": 0.5,
+          "conditions": [
+            "依骨折表完全骨折日數計算；不完全骨折二分之一，骨骼龜裂四分之一。"
+          ]
+        },
+        {
+          "id": "accident-inpatient-surgery",
+          "name": "意外傷害住院手術費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 以日額 20 倍乘以手術名稱及費用表比例給付；表列比例範圍 2.0% 至 300.0%。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第三條及附表三",
+          "rate_min_percent": 2.0,
+          "rate_max_percent": 300.0,
+          "multiplier": 20,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院各項手術費用保險金總和最高以住院日額 60 倍為限。",
+            "同一部位多次手術或同一次手術涉及多器官時，僅給付較高一項。"
+          ]
+        },
+        {
+          "id": "accident-icu-daily",
+          "name": "意外傷害加護病房費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住進加護病房治療期間，每日另按該日額給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第四條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211M11A00200",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v61",
+      "parser_id": "prudential-china-life-one-three-five-accident-face-amount-v1",
+      "source_file": "205211M11A00200-A.pdf",
+      "source_document_sha256": "57f3fc059fb85f40a6904213ff444225bcc775f98aeaa178eceab9c0e19235c9",
+      "schedule_sha256": "aec6c6fdb1950c69bd96fa2a230d981e71dc757e63e63da39245dbe2ad7b662b",
+      "reviewed_by": "Codex structured extraction review",
+      "reviewed_at": "2026-07-22T09:41:28+08:00",
+      "review_note": "Verified against local TII policy terms PDF: one-three-five accident death/funeral and disability multipliers by basic face amount.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單頁面記載的基本保險金額；國內一般、海外一般與飛航事故會分別按 1 倍、3 倍、5 倍換算。",
+      "version_characteristics": {
+        "terms_revision": "china-life-original",
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "accident_claim_days": 180,
+        "domestic_general_multiplier": 1,
+        "overseas_general_multiplier": 3,
+        "flight_multiplier": 5,
+        "same_accident_domestic_cap_multiplier": 1,
+        "same_accident_overseas_cap_multiplier": 3,
+        "same_accident_flight_cap_multiplier": 5
+      },
+      "coverage_entries": [
+        {
+          "id": "domestic-general-accidental-death-or-funeral",
+          "name": "國內一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 1 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第五條",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-death-or-funeral",
+          "name": "海外一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 3 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第六條",
+          "rate_percent": 300,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-death-or-funeral",
+          "name": "飛航意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 5 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第七條",
+          "rate_percent": 500,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        },
+        {
+          "id": "domestic-general-accidental-disability",
+          "name": "一般意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 1 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 1,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-disability",
+          "name": "海外一般意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 3 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 3,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-disability",
+          "name": "飛航意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 5 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211M11A00201",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v61",
+      "parser_id": "prudential-china-life-one-three-five-accident-face-amount-v1",
+      "source_file": "205211M11A00201-A.pdf",
+      "source_document_sha256": "57f3fc059fb85f40a6904213ff444225bcc775f98aeaa178eceab9c0e19235c9",
+      "schedule_sha256": "ce765d3bbc06787ecf8cc28c896990ae2f46dd68b6e17d5bab5b8200feb5295c",
+      "reviewed_by": "Codex structured extraction review",
+      "reviewed_at": "2026-07-22T09:41:28+08:00",
+      "review_note": "Verified against local TII policy terms PDF: one-three-five accident death/funeral and disability multipliers by basic face amount.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單頁面記載的基本保險金額；國內一般、海外一般與飛航事故會分別按 1 倍、3 倍、5 倍換算。",
+      "version_characteristics": {
+        "terms_revision": "china-life-first-revision",
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "accident_claim_days": 180,
+        "domestic_general_multiplier": 1,
+        "overseas_general_multiplier": 3,
+        "flight_multiplier": 5,
+        "same_accident_domestic_cap_multiplier": 1,
+        "same_accident_overseas_cap_multiplier": 3,
+        "same_accident_flight_cap_multiplier": 5
+      },
+      "coverage_entries": [
+        {
+          "id": "domestic-general-accidental-death-or-funeral",
+          "name": "國內一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 1 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第五條",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-death-or-funeral",
+          "name": "海外一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 3 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第六條",
+          "rate_percent": 300,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-death-or-funeral",
+          "name": "飛航意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 5 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第七條",
+          "rate_percent": 500,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        },
+        {
+          "id": "domestic-general-accidental-disability",
+          "name": "一般意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 1 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 1,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-disability",
+          "name": "海外一般意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 3 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 3,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-disability",
+          "name": "飛航意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 5 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211MZ1A00421A11Z10000007",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v63",
+      "parser_id": "prudential-china-life-one-three-five-accident-face-amount-v1",
+      "source_file": "205211MZ1A00421A11Z10000007-A.pdf",
+      "source_document_sha256": "c4c4734870453b339635bfb9e6320ac000c409a3df73c8fc4dfb56056fbd45cb",
+      "schedule_sha256": "a11a456752cd15647d40ae8b1d080d057af5995352fb3bc406578c0b2ff7c172",
+      "reviewed_by": "Codex structured extraction review",
+      "reviewed_at": "2026-07-22T10:04:19+08:00",
+      "review_note": "Verified against local TII policy terms PDF: late-revision one-three-five accident death/funeral and disability/disablement multipliers by basic face amount.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單頁面記載的基本保險金額；國內一般、海外一般與飛航事故會分別按 1 倍、3 倍、5 倍換算。",
+      "version_characteristics": {
+        "terms_revision": "china-life-seventh-revision",
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "accident_claim_days": 180,
+        "domestic_general_multiplier": 1,
+        "overseas_general_multiplier": 3,
+        "flight_multiplier": 5,
+        "same_accident_domestic_cap_multiplier": 1,
+        "same_accident_overseas_cap_multiplier": 3,
+        "same_accident_flight_cap_multiplier": 5
+      },
+      "coverage_entries": [
+        {
+          "id": "domestic-general-accidental-death-or-funeral",
+          "name": "國內一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 1 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第五條",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-death-or-funeral",
+          "name": "海外一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 3 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第六條",
+          "rate_percent": 300,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-death-or-funeral",
+          "name": "飛航意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 5 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第七條",
+          "rate_percent": 500,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        },
+        {
+          "id": "domestic-general-accidental-disability",
+          "name": "一般意外傷害失能保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 1 倍為基礎，再依附件三失能給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 1,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致失能後身故時，身故與失能給付合計以該事故類型的基本保險金額倍數為限。",
+            "依失能程度與保險金給付表比例計算；同一事故多項失能依條款限制合併或擇較重者。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-disability",
+          "name": "海外一般意外傷害失能保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 3 倍為基礎，再依附件三失能給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 3,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致失能後身故時，身故與失能給付合計以該事故類型的基本保險金額倍數為限。",
+            "依失能程度與保險金給付表比例計算；同一事故多項失能依條款限制合併或擇較重者。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-disability",
+          "name": "飛航意外傷害失能保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 5 倍為基礎，再依附件三失能給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致失能後身故時，身故與失能給付合計以該事故類型的基本保險金額倍數為限。",
+            "依失能程度與保險金給付表比例計算；同一事故多項失能依條款限制合併或擇較重者。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211MZ1A00421A11Z10000008",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v63",
+      "parser_id": "prudential-china-life-one-three-five-accident-face-amount-v1",
+      "source_file": "205211MZ1A00421A11Z10000008-A.pdf",
+      "source_document_sha256": "76c8c873919048865a405c7cf922b0734517b2c83d9175cbfb6418a81701f311",
+      "schedule_sha256": "2958920335b29d9ed3e14e1b001399f0ad22a90d0b6d5ea73e1b8806b51cb9f5",
+      "reviewed_by": "Codex structured extraction review",
+      "reviewed_at": "2026-07-22T10:04:19+08:00",
+      "review_note": "Verified against local TII policy terms PDF: late-revision one-three-five accident death/funeral and disability/disablement multipliers by basic face amount.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單頁面記載的基本保險金額；國內一般、海外一般與飛航事故會分別按 1 倍、3 倍、5 倍換算。",
+      "version_characteristics": {
+        "terms_revision": "kgi-life-eighth-revision",
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "accident_claim_days": 180,
+        "domestic_general_multiplier": 1,
+        "overseas_general_multiplier": 3,
+        "flight_multiplier": 5,
+        "same_accident_domestic_cap_multiplier": 1,
+        "same_accident_overseas_cap_multiplier": 3,
+        "same_accident_flight_cap_multiplier": 5
+      },
+      "coverage_entries": [
+        {
+          "id": "domestic-general-accidental-death-or-funeral",
+          "name": "國內一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 1 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第五條",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-death-or-funeral",
+          "name": "海外一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 3 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第六條",
+          "rate_percent": 300,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-death-or-funeral",
+          "name": "飛航意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 5 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第七條",
+          "rate_percent": 500,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        },
+        {
+          "id": "domestic-general-accidental-disability",
+          "name": "一般意外傷害失能保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 1 倍為基礎，再依附件三失能給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 1,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致失能後身故時，身故與失能給付合計以該事故類型的基本保險金額倍數為限。",
+            "依失能程度與保險金給付表比例計算；同一事故多項失能依條款限制合併或擇較重者。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-disability",
+          "name": "海外一般意外傷害失能保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 3 倍為基礎，再依附件三失能給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 3,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致失能後身故時，身故與失能給付合計以該事故類型的基本保險金額倍數為限。",
+            "依失能程度與保險金給付表比例計算；同一事故多項失能依條款限制合併或擇較重者。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-disability",
+          "name": "飛航意外傷害失能保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 5 倍為基礎，再依附件三失能給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致失能後身故時，身故與失能給付合計以該事故類型的基本保險金額倍數為限。",
+            "依失能程度與保險金給付表比例計算；同一事故多項失能依條款限制合併或擇較重者。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211M11A00202",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v72",
+      "parser_id": "prudential-china-life-one-three-five-accident-face-amount-v1",
+      "source_file": "205211M11A00202-A.pdf",
+      "source_document_sha256": "e70e6fd6a890c3775209399157c496c7777384aa8cb9188172725387321031f9",
+      "schedule_sha256": "d28f51e4c40bc5af53ce8afdaf8fd049749925dc35c2c2da4cba3d5e04d3b039",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-22T13:18:30+08:00",
+      "review_note": "Source-reviewed against Prudential/China Life 135 personal accident policy terms: basic face amount input, domestic general accident 1x, overseas general accident 3x, flight accident 5x, accident 180-day claim window, same-accident payout caps, and disability schedule isolated before burn/short-rate appendices.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單頁面記載的基本保險金額；國內一般、海外一般與飛航事故會分別按 1 倍、3 倍、5 倍換算。",
+      "version_characteristics": {
+        "terms_revision": "china-life-second-revision",
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "accident_claim_days": 180,
+        "domestic_general_multiplier": 1,
+        "overseas_general_multiplier": 3,
+        "flight_multiplier": 5,
+        "same_accident_domestic_cap_multiplier": 1,
+        "same_accident_overseas_cap_multiplier": 3,
+        "same_accident_flight_cap_multiplier": 5
+      },
+      "coverage_entries": [
+        {
+          "id": "domestic-general-accidental-death-or-funeral",
+          "name": "國內一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 1 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第五條",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-death-or-funeral",
+          "name": "海外一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 3 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第六條",
+          "rate_percent": 300,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-death-or-funeral",
+          "name": "飛航意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 5 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第七條",
+          "rate_percent": 500,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        },
+        {
+          "id": "domestic-general-accidental-disability",
+          "name": "一般意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 1 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 1,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-disability",
+          "name": "海外一般意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 3 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 3,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-disability",
+          "name": "飛航意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 5 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211MZ1A00421A11Z10000003",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v72",
+      "parser_id": "prudential-china-life-one-three-five-accident-face-amount-v1",
+      "source_file": "205211MZ1A00421A11Z10000003-A.pdf",
+      "source_document_sha256": "5bbbe6da0c0d21091ffe103db1b6cc81c9b78995f12c3c96b02d1466738b6eeb",
+      "schedule_sha256": "010e905a40bb0647d7b650908c45499630c3e15a3f23c122f8f9b278bb6d5a8d",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-22T13:18:30+08:00",
+      "review_note": "Source-reviewed against Prudential/China Life 135 personal accident policy terms: basic face amount input, domestic general accident 1x, overseas general accident 3x, flight accident 5x, accident 180-day claim window, same-accident payout caps, and disability schedule isolated before burn/short-rate appendices.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單頁面記載的基本保險金額；國內一般、海外一般與飛航事故會分別按 1 倍、3 倍、5 倍換算。",
+      "version_characteristics": {
+        "terms_revision": "china-life-third-revision",
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 79,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "accident_claim_days": 180,
+        "domestic_general_multiplier": 1,
+        "overseas_general_multiplier": 3,
+        "flight_multiplier": 5,
+        "same_accident_domestic_cap_multiplier": 1,
+        "same_accident_overseas_cap_multiplier": 3,
+        "same_accident_flight_cap_multiplier": 5
+      },
+      "coverage_entries": [
+        {
+          "id": "domestic-general-accidental-death-or-funeral",
+          "name": "國內一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 1 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第五條",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-death-or-funeral",
+          "name": "海外一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 3 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第六條",
+          "rate_percent": 300,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-death-or-funeral",
+          "name": "飛航意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 5 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第七條",
+          "rate_percent": 500,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        },
+        {
+          "id": "domestic-general-accidental-disability",
+          "name": "一般意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 1 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 1,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-disability",
+          "name": "海外一般意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 3 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 3,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-disability",
+          "name": "飛航意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 5 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211MZ1A00421A11Z10000004",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v72",
+      "parser_id": "prudential-china-life-one-three-five-accident-face-amount-v1",
+      "source_file": "205211MZ1A00421A11Z10000004-A.pdf",
+      "source_document_sha256": "5aa3bb3bcd6990a1307f9f1b536bc40237baf72606c54644a364d183ba946ff8",
+      "schedule_sha256": "199a6eb03ca30901a0808dfacc62034a487da738b6b5f15d1956abd87dcadfe4",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-22T13:18:30+08:00",
+      "review_note": "Source-reviewed against Prudential/China Life 135 personal accident policy terms: basic face amount input, domestic general accident 1x, overseas general accident 3x, flight accident 5x, accident 180-day claim window, same-accident payout caps, and disability schedule isolated before burn/short-rate appendices.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單頁面記載的基本保險金額；國內一般、海外一般與飛航事故會分別按 1 倍、3 倍、5 倍換算。",
+      "version_characteristics": {
+        "terms_revision": "china-life-fourth-revision",
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 79,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "accident_claim_days": 180,
+        "domestic_general_multiplier": 1,
+        "overseas_general_multiplier": 3,
+        "flight_multiplier": 5,
+        "same_accident_domestic_cap_multiplier": 1,
+        "same_accident_overseas_cap_multiplier": 3,
+        "same_accident_flight_cap_multiplier": 5
+      },
+      "coverage_entries": [
+        {
+          "id": "domestic-general-accidental-death-or-funeral",
+          "name": "國內一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 1 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第五條",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-death-or-funeral",
+          "name": "海外一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 3 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第六條",
+          "rate_percent": 300,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-death-or-funeral",
+          "name": "飛航意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 5 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第七條",
+          "rate_percent": 500,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        },
+        {
+          "id": "domestic-general-accidental-disability",
+          "name": "一般意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 1 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 1,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-disability",
+          "name": "海外一般意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 3 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 3,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-disability",
+          "name": "飛航意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 5 倍為基礎，再依附件三殘廢給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致殘廢後身故時，身故與殘廢給付合計以該事故類型的基本保險金額倍數為限。",
+            "依殘廢程度與保險金給付表比例計算；同一事故多項殘廢依條款限制合併或擇較重者。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211R11A54600",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v84",
+      "parser_id": "prudential-china-life-accident-account-face-amount-v1",
+      "source_file": "205211R11A54600-A.pdf",
+      "source_document_sha256": "dcf1c9c5b63220515bab3b2aa70ee602002d2a36bbdc2ca1af688d9b37f30e00",
+      "schedule_sha256": "23ecc3e9784ff38b19f9dd3f3334278ef331b7f404ef9d51489c22aabb39e85c",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-22T00:00:00+08:00",
+      "review_note": "核對中國人壽一年定期意外傷害帳戶型保險附約原始至第2次部分變更；以本附約保險金額為基礎，包含意外身故/喪葬、意外殘廢、傷害醫療實支、意外住院日額、骨折未住院、住院手術、加護病房與重大燒燙傷保障。",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "本附約保險金額",
+      "selection_guidance": "請輸入保單或批註所載本附約保險金額；傷害醫療限額與意外住院日額需另依保單頁面確認。",
+      "version_characteristics": {
+        "terms_revision": "china-life-original",
+        "children_covered": true,
+        "medical_rider_included": true,
+        "hospital_daily_rider_included": true,
+        "major_burn_rider_included": true,
+        "disability_term": "殘廢",
+        "accident_claim_days": 180,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": false,
+        "day_hospital_excluded": false,
+        "non_nhi_payment_rate_percent": 70,
+        "hospital_daily_days_limit": 120,
+        "surgery_base_daily_multiplier": 20,
+        "surgery_per_hospitalization_daily_multiplier_limit": 60,
+        "surgery_table_min_percent": 1.0,
+        "surgery_table_max_percent": 300.0
+      },
+      "coverage_entries": [
+        {
+          "id": "accidental-death-or-funeral",
+          "name": "意外身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人因意外事故身故時，依本附約保險金額給付；特定未成年或依法限制身故給付者依喪葬費用規定辦理。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "給付後本附約效力終止。"
+          ]
+        },
+        {
+          "id": "accidental-disability",
+          "name": "意外殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依殘廢程度與保險金給付表比例乘以本附約保險金額，比例範圍 100% 至 100%。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_min_percent": 100,
+          "rate_max_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故多項殘廢給付合計最高以保險金額為限。",
+            "不同事故累計申領殘廢保險金時，最高以保險金額為限。"
+          ]
+        },
+        {
+          "id": "injury-medical-reimbursement-limit",
+          "name": "傷害醫療保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此限額不是條款固定金額，須依保單所記載的「每次實支實付傷害醫療保險金限額」輸入或確認。",
+          "source_ref": "人身意外傷害醫療保險給付附加條款第一條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "超過全民健康保險給付部分實支實付。",
+            "未以全民健康保險身分就醫或於非全民健康保險醫院治療者，依實際支付費用 70% 給付，仍受限額限制。"
+          ]
+        },
+        {
+          "id": "accident-pre-post-outpatient",
+          "name": "意外傷害門診醫療費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住院前 7 日及出院後 14 日內，同一意外傷害原因之門診醫療按該日額二分之一乘以門診日數給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第一條",
+          "multiplier": 0.5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+          ]
+        },
+        {
+          "id": "accident-hospital-daily",
+          "name": "意外傷害住院保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 因意外傷害住院時，按實際住院日數含入院及出院日給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "fracture-without-hospitalization",
+          "name": "骨折未住院醫療保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 骨折未住院或住院未達骨折表日數時，依骨折日數乘以日額二分之一給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條骨折表",
+          "multiplier": 0.5,
+          "conditions": [
+            "依骨折表完全骨折日數計算；不完全骨折二分之一，骨骼龜裂四分之一。"
+          ]
+        },
+        {
+          "id": "accident-inpatient-surgery",
+          "name": "意外傷害住院手術費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 以日額 20 倍乘以手術名稱及費用表比例給付；表列比例範圍 1.0% 至 300.0%。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第三條及附表三",
+          "rate_min_percent": 1.0,
+          "rate_max_percent": 300.0,
+          "multiplier": 20,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院各項手術費用保險金總和最高以住院日額 60 倍為限。",
+            "同一部位多次手術或同一次手術涉及多器官時，僅給付較高一項。"
+          ]
+        },
+        {
+          "id": "accident-icu-daily",
+          "name": "意外傷害加護病房費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住進加護病房治療期間，每日另按該日額給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第四條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合重大燒燙傷定義並經醫院診斷確定時，按本契約或本附約所載保險金額 35% 給付。",
+          "source_ref": "人身意外傷害重大燒燙傷保險給付附加條款第二條",
+          "rate_percent": 35,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "本項於有效期間內以給付一次為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211R11A54601",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v84",
+      "parser_id": "prudential-china-life-accident-account-face-amount-v1",
+      "source_file": "205211R11A54601-A.pdf",
+      "source_document_sha256": "9e07fcc403b1134068713f559a28e90d71aa736233077dcd92c99816b0d221ef",
+      "schedule_sha256": "ed17a30d1c852cda19b5b6f94e687035abc4808f6ba7190c21fd5d5d17b9cf4d",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-22T00:00:00+08:00",
+      "review_note": "核對中國人壽一年定期意外傷害帳戶型保險附約原始至第2次部分變更；以本附約保險金額為基礎，包含意外身故/喪葬、意外殘廢、傷害醫療實支、意外住院日額、骨折未住院、住院手術、加護病房與重大燒燙傷保障。",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "本附約保險金額",
+      "selection_guidance": "請輸入保單或批註所載本附約保險金額；傷害醫療限額與意外住院日額需另依保單頁面確認。",
+      "version_characteristics": {
+        "terms_revision": "china-life-first-revision",
+        "children_covered": true,
+        "medical_rider_included": true,
+        "hospital_daily_rider_included": true,
+        "major_burn_rider_included": true,
+        "disability_term": "殘廢",
+        "accident_claim_days": 180,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": false,
+        "day_hospital_excluded": false,
+        "non_nhi_payment_rate_percent": 70,
+        "hospital_daily_days_limit": 120,
+        "surgery_base_daily_multiplier": 20,
+        "surgery_per_hospitalization_daily_multiplier_limit": 60,
+        "surgery_table_min_percent": 1.0,
+        "surgery_table_max_percent": 300.0
+      },
+      "coverage_entries": [
+        {
+          "id": "accidental-death-or-funeral",
+          "name": "意外身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人因意外事故身故時，依本附約保險金額給付；特定未成年或依法限制身故給付者依喪葬費用規定辦理。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "給付後本附約效力終止。"
+          ]
+        },
+        {
+          "id": "accidental-disability",
+          "name": "意外殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依殘廢程度與保險金給付表比例乘以本附約保險金額，比例範圍 100% 至 100%。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_min_percent": 100,
+          "rate_max_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故多項殘廢給付合計最高以保險金額為限。",
+            "不同事故累計申領殘廢保險金時，最高以保險金額為限。"
+          ]
+        },
+        {
+          "id": "injury-medical-reimbursement-limit",
+          "name": "傷害醫療保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此限額不是條款固定金額，須依保單所記載的「每次實支實付傷害醫療保險金限額」輸入或確認。",
+          "source_ref": "人身意外傷害醫療保險給付附加條款第一條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "超過全民健康保險給付部分實支實付。",
+            "未以全民健康保險身分就醫或於非全民健康保險醫院治療者，依實際支付費用 70% 給付，仍受限額限制。"
+          ]
+        },
+        {
+          "id": "accident-pre-post-outpatient",
+          "name": "意外傷害門診醫療費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住院前 7 日及出院後 14 日內，同一意外傷害原因之門診醫療按該日額二分之一乘以門診日數給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第一條",
+          "multiplier": 0.5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+          ]
+        },
+        {
+          "id": "accident-hospital-daily",
+          "name": "意外傷害住院保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 因意外傷害住院時，按實際住院日數含入院及出院日給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "fracture-without-hospitalization",
+          "name": "骨折未住院醫療保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 骨折未住院或住院未達骨折表日數時，依骨折日數乘以日額二分之一給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條骨折表",
+          "multiplier": 0.5,
+          "conditions": [
+            "依骨折表完全骨折日數計算；不完全骨折二分之一，骨骼龜裂四分之一。"
+          ]
+        },
+        {
+          "id": "accident-inpatient-surgery",
+          "name": "意外傷害住院手術費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 以日額 20 倍乘以手術名稱及費用表比例給付；表列比例範圍 1.0% 至 300.0%。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第三條及附表三",
+          "rate_min_percent": 1.0,
+          "rate_max_percent": 300.0,
+          "multiplier": 20,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院各項手術費用保險金總和最高以住院日額 60 倍為限。",
+            "同一部位多次手術或同一次手術涉及多器官時，僅給付較高一項。"
+          ]
+        },
+        {
+          "id": "accident-icu-daily",
+          "name": "意外傷害加護病房費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住進加護病房治療期間，每日另按該日額給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第四條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合重大燒燙傷定義並經醫院診斷確定時，按本契約或本附約所載保險金額 35% 給付。",
+          "source_ref": "人身意外傷害重大燒燙傷保險給付附加條款第二條",
+          "rate_percent": 35,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "本項於有效期間內以給付一次為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211R11A54602",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v84",
+      "parser_id": "prudential-china-life-accident-account-face-amount-v1",
+      "source_file": "205211R11A54602-A.pdf",
+      "source_document_sha256": "ed642bdfb4317fbe37f11535c83f519e2628474b2c8a3b8c34b3f56b877501a5",
+      "schedule_sha256": "5113c156e9e26a1bc00c2b52469b545fa9d7910c61e2db7c144d7ac138992313",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-22T00:00:00+08:00",
+      "review_note": "核對中國人壽一年定期意外傷害帳戶型保險附約原始至第2次部分變更；以本附約保險金額為基礎，包含意外身故/喪葬、意外殘廢、傷害醫療實支、意外住院日額、骨折未住院、住院手術、加護病房與重大燒燙傷保障。",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "本附約保險金額",
+      "selection_guidance": "請輸入保單或批註所載本附約保險金額；傷害醫療限額與意外住院日額需另依保單頁面確認。",
+      "version_characteristics": {
+        "terms_revision": "china-life-second-revision",
+        "children_covered": true,
+        "medical_rider_included": true,
+        "hospital_daily_rider_included": true,
+        "major_burn_rider_included": true,
+        "disability_term": "殘廢",
+        "accident_claim_days": 180,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": false,
+        "day_hospital_excluded": false,
+        "non_nhi_payment_rate_percent": 70,
+        "hospital_daily_days_limit": 120,
+        "surgery_base_daily_multiplier": 20,
+        "surgery_per_hospitalization_daily_multiplier_limit": 60,
+        "surgery_table_min_percent": 1.0,
+        "surgery_table_max_percent": 300.0
+      },
+      "coverage_entries": [
+        {
+          "id": "accidental-death-or-funeral",
+          "name": "意外身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人因意外事故身故時，依本附約保險金額給付；特定未成年或依法限制身故給付者依喪葬費用規定辦理。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "給付後本附約效力終止。"
+          ]
+        },
+        {
+          "id": "accidental-disability",
+          "name": "意外殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依殘廢程度與保險金給付表比例乘以本附約保險金額，比例範圍 100% 至 100%。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_min_percent": 100,
+          "rate_max_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故多項殘廢給付合計最高以保險金額為限。",
+            "不同事故累計申領殘廢保險金時，最高以保險金額為限。"
+          ]
+        },
+        {
+          "id": "injury-medical-reimbursement-limit",
+          "name": "傷害醫療保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此限額不是條款固定金額，須依保單所記載的「每次實支實付傷害醫療保險金限額」輸入或確認。",
+          "source_ref": "人身意外傷害醫療保險給付附加條款第一條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "超過全民健康保險給付部分實支實付。",
+            "未以全民健康保險身分就醫或於非全民健康保險醫院治療者，依實際支付費用 70% 給付，仍受限額限制。"
+          ]
+        },
+        {
+          "id": "accident-pre-post-outpatient",
+          "name": "意外傷害門診醫療費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住院前 7 日及出院後 14 日內，同一意外傷害原因之門診醫療按該日額二分之一乘以門診日數給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第一條",
+          "multiplier": 0.5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+          ]
+        },
+        {
+          "id": "accident-hospital-daily",
+          "name": "意外傷害住院保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 因意外傷害住院時，按實際住院日數含入院及出院日給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "fracture-without-hospitalization",
+          "name": "骨折未住院醫療保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 骨折未住院或住院未達骨折表日數時，依骨折日數乘以日額二分之一給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條骨折表",
+          "multiplier": 0.5,
+          "conditions": [
+            "依骨折表完全骨折日數計算；不完全骨折二分之一，骨骼龜裂四分之一。"
+          ]
+        },
+        {
+          "id": "accident-inpatient-surgery",
+          "name": "意外傷害住院手術費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 以日額 20 倍乘以手術名稱及費用表比例給付；表列比例範圍 1.0% 至 300.0%。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第三條及附表三",
+          "rate_min_percent": 1.0,
+          "rate_max_percent": 300.0,
+          "multiplier": 20,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院各項手術費用保險金總和最高以住院日額 60 倍為限。",
+            "同一部位多次手術或同一次手術涉及多器官時，僅給付較高一項。"
+          ]
+        },
+        {
+          "id": "accident-icu-daily",
+          "name": "意外傷害加護病房費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住進加護病房治療期間，每日另按該日額給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第四條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合重大燒燙傷定義並經醫院診斷確定時，按本契約或本附約所載保險金額 35% 給付。",
+          "source_ref": "人身意外傷害重大燒燙傷保險給付附加條款第二條",
+          "rate_percent": 35,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "本項於有效期間內以給付一次為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211MZ1A00421A11Z10000005",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v91",
+      "parser_id": "prudential-china-life-one-three-five-accident-face-amount-v1",
+      "source_file": "205211MZ1A00421A11Z10000005-A.pdf",
+      "source_document_sha256": "4eef9a2d4d3b2135fb65f716063108f4fa4931d0f98ee652bf9ad2ddd2efb522",
+      "schedule_sha256": "090ddfafa5374456ace65da803e1d7bffc1bdadb25e86d06ad951750120ab5e8",
+      "reviewed_by": "Codex",
+      "reviewed_at": "2026-07-23T10:20:10+08:00",
+      "review_note": "Reviewed as China Life one-three-five accident revisions 5-6; exact policy_terms PDFs passed the existing strict-source parser and targeted smoke test before promotion.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單頁面記載的基本保險金額；國內一般、海外一般與飛航事故會分別按 1 倍、3 倍、5 倍換算。",
+      "version_characteristics": {
+        "terms_revision": "china-life-fifth-revision",
+        "disability_term": "失能",
+        "disability_schedule_item_count": 79,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "accident_claim_days": 180,
+        "domestic_general_multiplier": 1,
+        "overseas_general_multiplier": 3,
+        "flight_multiplier": 5,
+        "same_accident_domestic_cap_multiplier": 1,
+        "same_accident_overseas_cap_multiplier": 3,
+        "same_accident_flight_cap_multiplier": 5
+      },
+      "coverage_entries": [
+        {
+          "id": "domestic-general-accidental-death-or-funeral",
+          "name": "國內一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 1 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第五條",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-death-or-funeral",
+          "name": "海外一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 3 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第六條",
+          "rate_percent": 300,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-death-or-funeral",
+          "name": "飛航意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 5 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第七條",
+          "rate_percent": 500,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        },
+        {
+          "id": "domestic-general-accidental-disability",
+          "name": "一般意外傷害失能保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 1 倍為基礎，再依附件三失能給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 1,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致失能後身故時，身故與失能給付合計以該事故類型的基本保險金額倍數為限。",
+            "依失能程度與保險金給付表比例計算；同一事故多項失能依條款限制合併或擇較重者。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-disability",
+          "name": "海外一般意外傷害失能保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 3 倍為基礎，再依附件三失能給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 3,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致失能後身故時，身故與失能給付合計以該事故類型的基本保險金額倍數為限。",
+            "依失能程度與保險金給付表比例計算；同一事故多項失能依條款限制合併或擇較重者。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-disability",
+          "name": "飛航意外傷害失能保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 5 倍為基礎，再依附件三失能給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致失能後身故時，身故與失能給付合計以該事故類型的基本保險金額倍數為限。",
+            "依失能程度與保險金給付表比例計算；同一事故多項失能依條款限制合併或擇較重者。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211MZ1A00421A11Z10000006",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v91",
+      "parser_id": "prudential-china-life-one-three-five-accident-face-amount-v1",
+      "source_file": "205211MZ1A00421A11Z10000006-A.pdf",
+      "source_document_sha256": "a1e757919c87581b25f81ca2e15fbabe6bc7b2fb36d3a1af744e297fb27410f8",
+      "schedule_sha256": "73bb3377eb49111018286e391d02eaa50797086a442e952e4b85406464a2cc7c",
+      "reviewed_by": "Codex",
+      "reviewed_at": "2026-07-23T10:20:10+08:00",
+      "review_note": "Reviewed as China Life one-three-five accident revisions 5-6; exact policy_terms PDFs passed the existing strict-source parser and targeted smoke test before promotion.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單頁面記載的基本保險金額；國內一般、海外一般與飛航事故會分別按 1 倍、3 倍、5 倍換算。",
+      "version_characteristics": {
+        "terms_revision": "china-life-sixth-revision",
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "accident_claim_days": 180,
+        "domestic_general_multiplier": 1,
+        "overseas_general_multiplier": 3,
+        "flight_multiplier": 5,
+        "same_accident_domestic_cap_multiplier": 1,
+        "same_accident_overseas_cap_multiplier": 3,
+        "same_accident_flight_cap_multiplier": 5
+      },
+      "coverage_entries": [
+        {
+          "id": "domestic-general-accidental-death-or-funeral",
+          "name": "國內一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 1 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第五條",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-death-or-funeral",
+          "name": "海外一般意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 3 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第六條",
+          "rate_percent": 300,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-death-or-funeral",
+          "name": "飛航意外傷害身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "按基本保險金額的 5 倍給付；實際金額由使用者輸入的基本保險金額換算。",
+          "source_ref": "條款第七條",
+          "rate_percent": 500,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "未滿十四足歲或心神喪失、精神耗弱者，身故保險金變更為喪葬費用保險金並受主管機關限額。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        },
+        {
+          "id": "domestic-general-accidental-disability",
+          "name": "一般意外傷害失能保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 1 倍為基礎，再依附件三失能給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 1,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致失能後身故時，身故與失能給付合計以該事故類型的基本保險金額倍數為限。",
+            "依失能程度與保險金給付表比例計算；同一事故多項失能依條款限制合併或擇較重者。"
+          ]
+        },
+        {
+          "id": "overseas-general-accidental-disability",
+          "name": "海外一般意外傷害失能保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 3 倍為基礎，再依附件三失能給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 3,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致失能後身故時，身故與失能給付合計以該事故類型的基本保險金額倍數為限。",
+            "依失能程度與保險金給付表比例計算；同一事故多項失能依條款限制合併或擇較重者。",
+            "須符合海外停留期間內發生，且不包含飛航意外傷害事故。"
+          ]
+        },
+        {
+          "id": "flight-accidental-disability",
+          "name": "飛航意外傷害失能保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "以基本保險金額的 5 倍為基礎，再依附件三失能給付比例 5% 至 100% 計算。",
+          "source_ref": "條款第八條及附件三",
+          "rate_min_percent": 5,
+          "rate_max_percent": 100,
+          "multiplier": 5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故致失能後身故時，身故與失能給付合計以該事故類型的基本保險金額倍數為限。",
+            "依失能程度與保險金給付表比例計算；同一事故多項失能依條款限制合併或擇較重者。",
+            "須以乘客身分搭乘空中大眾運輸交通工具於飛航期間內發生。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211R11A54603",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v91",
+      "parser_id": "prudential-china-life-accident-account-face-amount-v1",
+      "source_file": "205211R11A54603-A.pdf",
+      "source_document_sha256": "d30b3195785ea62ec2592e131b4aca9010071954e3188a43a9a601c5e33fdffa",
+      "schedule_sha256": "91f410846b0dc77fc9a081ff15c159f62ca434dea48834c8943a71c4c8913b84",
+      "reviewed_by": "Codex",
+      "reviewed_at": "2026-07-23T10:20:16+08:00",
+      "review_note": "Reviewed as China Life one-year accident account rider revisions 3 and 6; exact policy_terms PDFs passed the existing strict-source parser and targeted smoke test before promotion.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "本附約保險金額",
+      "selection_guidance": "請輸入保單或批註所載本附約保險金額；傷害醫療限額與意外住院日額需另依保單頁面確認。",
+      "version_characteristics": {
+        "terms_revision": "china-life-third-revision",
+        "children_covered": true,
+        "medical_rider_included": true,
+        "hospital_daily_rider_included": true,
+        "major_burn_rider_included": true,
+        "disability_term": "殘廢",
+        "accident_claim_days": 180,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": false,
+        "day_hospital_excluded": false,
+        "non_nhi_payment_rate_percent": 70,
+        "hospital_daily_days_limit": 120,
+        "surgery_base_daily_multiplier": 20,
+        "surgery_per_hospitalization_daily_multiplier_limit": 60,
+        "surgery_table_min_percent": 1.0,
+        "surgery_table_max_percent": 300.0
+      },
+      "coverage_entries": [
+        {
+          "id": "accidental-death-or-funeral",
+          "name": "意外身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人因意外事故身故時，依本附約保險金額給付；特定未成年或依法限制身故給付者依喪葬費用規定辦理。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "給付後本附約效力終止。"
+          ]
+        },
+        {
+          "id": "accidental-disability",
+          "name": "意外殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依殘廢程度與保險金給付表比例乘以本附約保險金額，比例範圍 100% 至 100%。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_min_percent": 100,
+          "rate_max_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故多項殘廢給付合計最高以保險金額為限。",
+            "不同事故累計申領殘廢保險金時，最高以保險金額為限。"
+          ]
+        },
+        {
+          "id": "injury-medical-reimbursement-limit",
+          "name": "傷害醫療保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此限額不是條款固定金額，須依保單所記載的「每次實支實付傷害醫療保險金限額」輸入或確認。",
+          "source_ref": "人身意外傷害醫療保險給付附加條款第一條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "超過全民健康保險給付部分實支實付。",
+            "未以全民健康保險身分就醫或於非全民健康保險醫院治療者，依實際支付費用 70% 給付，仍受限額限制。"
+          ]
+        },
+        {
+          "id": "accident-pre-post-outpatient",
+          "name": "意外傷害門診醫療費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住院前 7 日及出院後 14 日內，同一意外傷害原因之門診醫療按該日額二分之一乘以門診日數給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第一條",
+          "multiplier": 0.5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+          ]
+        },
+        {
+          "id": "accident-hospital-daily",
+          "name": "意外傷害住院保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 因意外傷害住院時，按實際住院日數含入院及出院日給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "fracture-without-hospitalization",
+          "name": "骨折未住院醫療保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 骨折未住院或住院未達骨折表日數時，依骨折日數乘以日額二分之一給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條骨折表",
+          "multiplier": 0.5,
+          "conditions": [
+            "依骨折表完全骨折日數計算；不完全骨折二分之一，骨骼龜裂四分之一。"
+          ]
+        },
+        {
+          "id": "accident-inpatient-surgery",
+          "name": "意外傷害住院手術費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 以日額 20 倍乘以手術名稱及費用表比例給付；表列比例範圍 1.0% 至 300.0%。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第三條及附表三",
+          "rate_min_percent": 1.0,
+          "rate_max_percent": 300.0,
+          "multiplier": 20,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院各項手術費用保險金總和最高以住院日額 60 倍為限。",
+            "同一部位多次手術或同一次手術涉及多器官時，僅給付較高一項。"
+          ]
+        },
+        {
+          "id": "accident-icu-daily",
+          "name": "意外傷害加護病房費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住進加護病房治療期間，每日另按該日額給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第四條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合重大燒燙傷定義並經醫院診斷確定時，按本契約或本附約所載保險金額 35% 給付。",
+          "source_ref": "人身意外傷害重大燒燙傷保險給付附加條款第二條",
+          "rate_percent": 35,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "本項於有效期間內以給付一次為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205211RZ1A00121A11Z10000006",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v91",
+      "parser_id": "prudential-china-life-accident-account-face-amount-v1",
+      "source_file": "205211RZ1A00121A11Z10000006-A.pdf",
+      "source_document_sha256": "e6021c46cf0637001dbf04503389a5d27da8a25f3cce29a7fc5ece4a106b5ed4",
+      "schedule_sha256": "c9dc751d32325b76b72569f0b832b8d9ccce96bfc08d02478a4d7aa34c69f4a1",
+      "reviewed_by": "Codex",
+      "reviewed_at": "2026-07-23T10:20:16+08:00",
+      "review_note": "Reviewed as China Life one-year accident account rider revisions 3 and 6; exact policy_terms PDFs passed the existing strict-source parser and targeted smoke test before promotion.",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "本附約保險金額",
+      "selection_guidance": "請輸入保單或批註所載本附約保險金額；傷害醫療限額與意外住院日額需另依保單頁面確認。",
+      "version_characteristics": {
+        "terms_revision": "china-life-sixth-revision",
+        "children_covered": true,
+        "medical_rider_included": true,
+        "hospital_daily_rider_included": true,
+        "major_burn_rider_included": true,
+        "disability_term": "失能",
+        "accident_claim_days": 180,
+        "same_hospital_readmission_days": 14,
+        "post_expiry_readmission_excluded": false,
+        "day_hospital_excluded": false,
+        "non_nhi_payment_rate_percent": 70,
+        "hospital_daily_days_limit": 120,
+        "surgery_base_daily_multiplier": 20,
+        "surgery_per_hospitalization_daily_multiplier_limit": 60,
+        "surgery_table_min_percent": 1.0,
+        "surgery_table_max_percent": 300.0
+      },
+      "coverage_entries": [
+        {
+          "id": "accidental-death-or-funeral",
+          "name": "意外身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人因意外事故身故時，依本附約保險金額給付；特定未成年或依法限制身故給付者依喪葬費用規定辦理。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "給付後本附約效力終止。"
+          ]
+        },
+        {
+          "id": "accidental-disability",
+          "name": "意外殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "base",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依殘廢程度與保險金給付表比例乘以本附約保險金額，比例範圍 100% 至 100%。",
+          "source_ref": "保單條款主附約及人身意外傷害醫療、住院醫療定額附加條款",
+          "rate_min_percent": 100,
+          "rate_max_percent": 100,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "同一事故多項殘廢給付合計最高以保險金額為限。",
+            "不同事故累計申領殘廢保險金時，最高以保險金額為限。"
+          ]
+        },
+        {
+          "id": "injury-medical-reimbursement-limit",
+          "name": "傷害醫療保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此限額不是條款固定金額，須依保單所記載的「每次實支實付傷害醫療保險金限額」輸入或確認。",
+          "source_ref": "人身意外傷害醫療保險給付附加條款第一條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "超過全民健康保險給付部分實支實付。",
+            "未以全民健康保險身分就醫或於非全民健康保險醫院治療者，依實際支付費用 70% 給付，仍受限額限制。"
+          ]
+        },
+        {
+          "id": "accident-pre-post-outpatient",
+          "name": "意外傷害門診醫療費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住院前 7 日及出院後 14 日內，同一意外傷害原因之門診醫療按該日額二分之一乘以門診日數給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第一條",
+          "multiplier": 0.5,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。"
+          ]
+        },
+        {
+          "id": "accident-hospital-daily",
+          "name": "意外傷害住院保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 因意外傷害住院時，按實際住院日數含入院及出院日給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "fracture-without-hospitalization",
+          "name": "骨折未住院醫療保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_injury",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 骨折未住院或住院未達骨折表日數時，依骨折日數乘以日額二分之一給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第二條骨折表",
+          "multiplier": 0.5,
+          "conditions": [
+            "依骨折表完全骨折日數計算；不完全骨折二分之一，骨骼龜裂四分之一。"
+          ]
+        },
+        {
+          "id": "accident-inpatient-surgery",
+          "name": "意外傷害住院手術費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 以日額 20 倍乘以手術名稱及費用表比例給付；表列比例範圍 1.0% 至 300.0%。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第三條及附表三",
+          "rate_min_percent": 1.0,
+          "rate_max_percent": 300.0,
+          "multiplier": 20,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院各項手術費用保險金總和最高以住院日額 60 倍為限。",
+            "同一部位多次手術或同一次手術涉及多器官時，僅給付較高一項。"
+          ]
+        },
+        {
+          "id": "accident-icu-daily",
+          "name": "意外傷害加護病房費用保險金",
+          "basis": "hospital_daily_amount",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "conditional_additive",
+          "source": "terms",
+          "note": "此日額不是條款固定金額，須依保單所記載的「意外傷害住院保險金日額」輸入或確認。 住進加護病房治療期間，每日另按該日額給付。",
+          "source_ref": "人身意外傷害住院醫療定額保險給付附加條款第四條",
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "每次住院期間最高給付 120 日。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "符合重大燒燙傷定義並經醫院診斷確定時，按本契約或本附約所載保險金額 35% 給付。",
+          "source_ref": "人身意外傷害重大燒燙傷保險給付附加條款第二條",
+          "rate_percent": 35,
+          "conditions": [
+            "事故發生日起 180 日內；超過 180 日須證明與該意外事故具有因果關係。",
+            "本項於有效期間內以給付一次為限。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205291M12A00104",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v91",
+      "parser_id": "china-life-jinhaoyi-face-amount-v1",
+      "source_file": "205291M12A00104-A.pdf",
+      "source_document_sha256": "a0edcfc4824d851e58a807701a6d83bee584f4f3b2b6c6d900c3d44545c86771",
+      "schedule_sha256": "bfcefd7363a838d94b2367fd00d8a5a56c7ba9a71e9ea95699abbce47e58957c",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-23T10:58:32+08:00",
+      "review_note": "China Life Jinhaoyi face-amount schedule matched source terms for death, total disability, disability table, major burn, maturity formulas, and revision-specific source signals",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單首頁所載本契約保險金額；系統會換算意外、交通、航空、全殘廢、殘廢與重大燒燙傷保額部分。一般身故、滿期及加計已繳保費部分需另依保單年度與年繳化保險費確認。",
+      "version_characteristics": {
+        "terms_revision": "99-fourth-revision",
+        "special_multiplier_10_year_term": 1,
+        "special_multiplier_12_or_20_year_term": 1.06,
+        "accident_claim_days": 180,
+        "land_or_water_traffic_multiplier": 2,
+        "aviation_multiplier": 3,
+        "major_burn_rate_percent": 30,
+        "total_disability_schedule_item_count": 7,
+        "disability_schedule_item_count": 69,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 90,
+        "disability_cumulative_cap_percent": 100
+      },
+      "coverage_entries": [
+        {
+          "id": "general-death-or-burial-premium-formula",
+          "name": "一般身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "非意外傷害事故導致身故時，按合計已繳年繳化保險費乘上特定倍數給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "conditions": [
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "maturity-premium-formula",
+          "name": "滿期保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "保險期間屆滿仍生存且契約有效時，按合計已繳年繳化保險費乘上特定倍數給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "conditions": [
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "accidental-death-face-amount",
+          "name": "意外傷害身故保險金或喪葬費用保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "意外傷害身故按保險金額 100% 給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "land-water-traffic-accidental-death-face-amount",
+          "name": "陸上或水上交通意外傷害身故保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "陸上或水上交通意外傷害身故按保險金額 2 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 200,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "aviation-accidental-death-face-amount",
+          "name": "航空意外傷害身故保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "航空意外傷害身故按保險金額 3 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 300,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之航空意外事故。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "accidental-total-disability-face-amount",
+          "name": "意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額 100% 給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "land-water-total-disability-face-amount",
+          "name": "陸上或水上交通意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "陸上或水上交通意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額 2 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 200,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "aviation-total-disability-face-amount",
+          "name": "航空意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "航空意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額 3 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 300,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之航空意外事故。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "accidental-disability-rate-table",
+          "name": "意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 5,
+          "rate_max_percent": 90,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "同一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "land-water-disability-rate-table",
+          "name": "陸上或水上交通意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額 2 倍乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 10,
+          "rate_max_percent": 180,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "同一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "aviation-disability-rate-table",
+          "name": "航空意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額 3 倍乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 15,
+          "rate_max_percent": 270,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之航空意外事故。",
+            "同一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "遭受條款約定重大燒燙傷時，按診斷確定時保險金額的 30% 給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 30,
+          "unit_key": "face_amount",
+          "conditions": [
+            "須符合附表三所示重大燒燙傷。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205291M12A00105",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v91",
+      "parser_id": "china-life-jinhaoyi-face-amount-v1",
+      "source_file": "205291M12A00105-A.pdf",
+      "source_document_sha256": "e98b993d3c83b7ec9be68b25f1ba0fe439500902590b379d181e83cee209defa",
+      "schedule_sha256": "c30579560893bdc118a47dae354136d3122578b66fc1df6bbe258643d60fe43c",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-23T10:58:32+08:00",
+      "review_note": "China Life Jinhaoyi face-amount schedule matched source terms for death, total disability, disability table, major burn, maturity formulas, and revision-specific source signals",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單首頁所載本契約保險金額；系統會換算意外、交通、航空、全殘廢、殘廢與重大燒燙傷保額部分。一般身故、滿期及加計已繳保費部分需另依保單年度與年繳化保險費確認。",
+      "version_characteristics": {
+        "terms_revision": "99-fifth-revision",
+        "special_multiplier_10_year_term": 1,
+        "special_multiplier_12_or_20_year_term": 1.06,
+        "accident_claim_days": 180,
+        "land_or_water_traffic_multiplier": 2,
+        "aviation_multiplier": 3,
+        "major_burn_rate_percent": 30,
+        "total_disability_schedule_item_count": 7,
+        "disability_schedule_item_count": 69,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 90,
+        "disability_cumulative_cap_percent": 100
+      },
+      "coverage_entries": [
+        {
+          "id": "general-death-or-burial-premium-formula",
+          "name": "一般身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "非意外傷害事故導致身故時，按合計已繳年繳化保險費乘上特定倍數給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "conditions": [
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "maturity-premium-formula",
+          "name": "滿期保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "保險期間屆滿仍生存且契約有效時，按合計已繳年繳化保險費乘上特定倍數給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "conditions": [
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "accidental-death-face-amount",
+          "name": "意外傷害身故保險金或喪葬費用保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "意外傷害身故按保險金額 100% 給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "land-water-traffic-accidental-death-face-amount",
+          "name": "陸上或水上交通意外傷害身故保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "陸上或水上交通意外傷害身故按保險金額 2 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 200,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "aviation-accidental-death-face-amount",
+          "name": "航空意外傷害身故保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "航空意外傷害身故按保險金額 3 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 300,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之航空意外事故。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "accidental-total-disability-face-amount",
+          "name": "意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額 100% 給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "land-water-total-disability-face-amount",
+          "name": "陸上或水上交通意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "陸上或水上交通意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額 2 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 200,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "aviation-total-disability-face-amount",
+          "name": "航空意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "航空意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額 3 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 300,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之航空意外事故。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "accidental-disability-rate-table",
+          "name": "意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 5,
+          "rate_max_percent": 90,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "同一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "land-water-disability-rate-table",
+          "name": "陸上或水上交通意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額 2 倍乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 10,
+          "rate_max_percent": 180,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "同一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "aviation-disability-rate-table",
+          "name": "航空意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額 3 倍乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 15,
+          "rate_max_percent": 270,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之航空意外事故。",
+            "同一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "遭受條款約定重大燒燙傷時，按診斷確定時保險金額的 30% 給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 30,
+          "unit_key": "face_amount",
+          "conditions": [
+            "須符合附表三所示重大燒燙傷。"
+          ]
+        }
+      ]
+    },
+    {
+      "product_id": "205291M12A00106",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v91",
+      "parser_id": "china-life-jinhaoyi-face-amount-v1",
+      "source_file": "205291M12A00106-A.pdf",
+      "source_document_sha256": "0df716d784ef689752dbfe460e354a80633f32fba7175f150090ea0e0fb089bc",
+      "schedule_sha256": "ac07dca26c9c89eb2ebc23df6cf46479330154a78414ec942aed23611ba3b825",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-23T10:58:32+08:00",
+      "review_note": "China Life Jinhaoyi face-amount schedule matched source terms for death, total disability, disability table, major burn, maturity formulas, and revision-specific source signals",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單首頁所載本契約保險金額；系統會換算意外、交通、航空、全殘廢、殘廢與重大燒燙傷保額部分。一般身故、滿期及加計已繳保費部分需另依保單年度與年繳化保險費確認。",
+      "version_characteristics": {
+        "terms_revision": "100-sixth-revision",
+        "special_multiplier_10_year_term": 1,
+        "special_multiplier_12_or_20_year_term": 1.06,
+        "accident_claim_days": 180,
+        "land_or_water_traffic_multiplier": 2,
+        "aviation_multiplier": 3,
+        "major_burn_rate_percent": 30,
+        "total_disability_schedule_item_count": 7,
+        "disability_schedule_item_count": 69,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 90,
+        "disability_cumulative_cap_percent": 100
+      },
+      "coverage_entries": [
+        {
+          "id": "general-death-or-burial-premium-formula",
+          "name": "一般身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "非意外傷害事故導致身故時，按合計已繳年繳化保險費乘上特定倍數給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "conditions": [
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "maturity-premium-formula",
+          "name": "滿期保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "保險期間屆滿仍生存且契約有效時，按合計已繳年繳化保險費乘上特定倍數給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "conditions": [
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "accidental-death-face-amount",
+          "name": "意外傷害身故保險金或喪葬費用保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "意外傷害身故按保險金額 100% 給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "land-water-traffic-accidental-death-face-amount",
+          "name": "陸上或水上交通意外傷害身故保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "陸上或水上交通意外傷害身故按保險金額 2 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 200,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "aviation-accidental-death-face-amount",
+          "name": "航空意外傷害身故保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "航空意外傷害身故按保險金額 3 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 300,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之航空意外事故。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "accidental-total-disability-face-amount",
+          "name": "意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額 100% 給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "land-water-total-disability-face-amount",
+          "name": "陸上或水上交通意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "陸上或水上交通意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額 2 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 200,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "aviation-total-disability-face-amount",
+          "name": "航空意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "航空意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額 3 倍給付，並另加計特定倍數乘上合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 300,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之航空意外事故。",
+            "此項須依保單年度、年繳化保險費與保險期間判斷；特定倍數為 10 年期 1，12 年期及 20 年期 1.06。"
+          ]
+        },
+        {
+          "id": "accidental-disability-rate-table",
+          "name": "意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 5,
+          "rate_max_percent": 90,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "同一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "land-water-disability-rate-table",
+          "name": "陸上或水上交通意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額 2 倍乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 10,
+          "rate_max_percent": 180,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "同一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "aviation-disability-rate-table",
+          "name": "航空意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額 3 倍乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 15,
+          "rate_max_percent": 270,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "限第二條定義之航空意外事故。",
+            "同一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "遭受條款約定重大燒燙傷時，按診斷確定時保險金額的 30% 給付。",
+          "source_ref": "保單條款第二條、第十三條、附表一至三，第 2-18 頁",
+          "rate_percent": 30,
+          "unit_key": "face_amount",
+          "conditions": [
+            "須符合附表三所示重大燒燙傷。"
+          ]
+        }
+      ]
+    }
+  ]
+}
