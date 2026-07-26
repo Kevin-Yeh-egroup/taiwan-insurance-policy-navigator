@@ -1,0 +1,164 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-26T17:39:00+08:00",
+  "batch_id": "tii-life-077",
+  "record_count": 2,
+  "records": [
+    {
+      "product_id": "215141M31A00100",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v196",
+      "parser_id": "hsingfu-legacy-variable-universal-life-v1",
+      "source_file": "215141M31A001-A.pdf",
+      "source_document_sha256": "a08e8e1308a2c5aa6ff22d4271d5bd047f4ae318130a825b1c7bc18c45187168",
+      "schedule_sha256": "147d60f2de4cea666c2c95face065a98c0138ce6eaf74079f1e245a0bffe50de",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-26T17:38:36+08:00",
+      "review_note": "exact product_id/source PDF matched; deterministic terms parser",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保額",
+      "selection_guidance": "請依保單面頁輸入基本保額，並確認甲型或乙型；甲型與乙型的身故/完全殘廢公式不同。",
+      "coverage_entries": [
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "甲型按保單價值總額之一點一倍但不低於基本保額；乙型按基本保額與保單價值總額之和。",
+          "source_ref": "保單條款，身故保險金的給付",
+          "unit_key": "selected_type_a_or_b_death_amount",
+          "conditions": [
+            "給付後本契約效力終止。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全殘廢保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "甲型按保單價值總額之一點一倍但不低於基本保額；乙型按基本保額與保單價值總額之和。",
+          "source_ref": "保單條款，完全殘廢保險金的給付",
+          "unit_key": "selected_type_a_or_b_death_amount",
+          "conditions": [
+            "致成完全殘廢者適用；給付後本契約效力終止。"
+          ]
+        },
+        {
+          "id": "survival-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "條款列有祝壽保險金，依保單價值總額等投資帳戶資料判讀。",
+          "source_ref": "保單條款，祝壽保險金",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "依條款約定之年齡及契約有效狀態適用。"
+          ]
+        }
+      ],
+      "version_characteristics": {
+        "product_family": "hsingfu-legacy-variable-universal-life",
+        "terms_revision": "超越變額萬能壽險(UVL)",
+        "death_total_disability_amount_formula": "type_a_greater_of_basic_amount_or_policy_value_1_1x_type_b_basic_amount_plus_policy_value",
+        "insurance_type_options": [
+          "甲型",
+          "乙型"
+        ],
+        "total_disability_term": "完全殘廢",
+        "non_participating_policy": true
+      }
+    },
+    {
+      "product_id": "215141M31A00211",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v196",
+      "parser_id": "hsingfu-legacy-variable-universal-life-v1",
+      "source_file": "215141M31A00211-A.pdf",
+      "source_document_sha256": "48031b65cd1e86cb2ef7b74b9293f0e0dbf5e2630f161b4adc8a9ca966fa7ff0",
+      "schedule_sha256": "8fc97dfde0ceff9bd94008513fc1cf2536ec882823a162fb82119e49dfb28fec",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-26T17:38:36+08:00",
+      "review_note": "exact product_id/source PDF matched; deterministic terms parser",
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保額",
+      "selection_guidance": "請依保單面頁輸入基本保額，並確認甲型或乙型；甲型與乙型的身故/完全殘廢公式不同。",
+      "coverage_entries": [
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "甲型按保單價值總額之一點一倍但不低於基本保額；乙型按基本保額與保單價值總額之和。",
+          "source_ref": "保單條款，身故保險金的給付",
+          "unit_key": "selected_type_a_or_b_death_amount",
+          "conditions": [
+            "給付後本契約效力終止。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全殘廢保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "甲型按保單價值總額之一點一倍但不低於基本保額；乙型按基本保額與保單價值總額之和。",
+          "source_ref": "保單條款，完全殘廢保險金的給付",
+          "unit_key": "selected_type_a_or_b_death_amount",
+          "conditions": [
+            "致成完全殘廢者適用；給付後本契約效力終止。"
+          ]
+        },
+        {
+          "id": "funeral-benefit",
+          "name": "喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "保險型態為乙型且特定心智狀態被保險人適用，身故保險金變更為喪葬費用保險金。",
+          "source_ref": "保單條款，喪葬費用保險金的給付",
+          "unit_key": "funeral_benefit_limit",
+          "conditions": [
+            "喪葬費用保險金受法定額度上限限制。"
+          ]
+        }
+      ],
+      "version_characteristics": {
+        "product_family": "hsingfu-legacy-variable-universal-life",
+        "terms_revision": "優越變額萬能終身壽險(VL2)第11次部分變更",
+        "death_total_disability_amount_formula": "type_a_greater_of_basic_amount_or_policy_value_1_1x_type_b_basic_amount_plus_policy_value",
+        "insurance_type_options": [
+          "甲型",
+          "乙型"
+        ],
+        "total_disability_term": "完全殘廢",
+        "non_participating_policy": true
+      }
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T15:03:26+08:00",
+  "generated_at": "2026-07-26T10:07:11+08:00",
   "summary": {
     "generated_at": "2026-07-15T15:03:26+08:00",
     "source": "local TII files downloaded through captcha session",
@@ -6889,6 +6889,102 @@
           "extraction_method": "pypdf",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-expert-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": false,
+        "funeral_benefit_excludes_account_value": false,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十三條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十四條，身故保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付身故保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。",
+            "保單帳戶價值依投資標的類別使用受理日次一或次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列全殘情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上全殘情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
+        }
       ]
     },
     {
@@ -7141,6 +7237,102 @@
           "extraction_method": "pypdf",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-expert-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": false,
+        "funeral_benefit_excludes_account_value": false,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十三條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十四條，身故保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付身故保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。",
+            "保單帳戶價值依投資標的類別使用受理日次一或次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列全殘情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上全殘情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
+        }
       ]
     },
     {
@@ -7391,6 +7583,102 @@
           "extraction_status": "extracted",
           "extraction_method": "pypdf",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-expert-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": false,
+        "funeral_benefit_excludes_account_value": false,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十三條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十四條，身故保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付身故保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。",
+            "保單帳戶價值依投資標的類別使用受理日次一或次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列全殘情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上全殘情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
         }
       ]
     },
@@ -7644,6 +7932,102 @@
           "extraction_method": "pypdf",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-expert-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": false,
+        "funeral_benefit_excludes_account_value": false,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十三條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十四條，身故保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付身故保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。",
+            "保單帳戶價值依投資標的類別使用受理日次一或次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列全殘情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上全殘情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
+        }
       ]
     },
     {
@@ -7896,6 +8280,102 @@
           "extraction_method": "pypdf",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-expert-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": false,
+        "funeral_benefit_excludes_account_value": false,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十三條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十四條，身故保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付身故保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。",
+            "保單帳戶價值依投資標的類別使用受理日次一或次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列全殘情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上全殘情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
+        }
       ]
     },
     {
@@ -8147,6 +8627,102 @@
           "extraction_method": "pypdf",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-expert-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": false,
+        "funeral_benefit_excludes_account_value": false,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十三條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十四條，身故保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付身故保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。",
+            "保單帳戶價值依投資標的類別使用受理日次一或次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列全殘情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上全殘情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
+        }
       ]
     },
     {
@@ -8397,6 +8973,102 @@
           "extraction_status": "extracted",
           "extraction_method": "pypdf",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-expert-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": false,
+        "funeral_benefit_excludes_account_value": false,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十三條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十四條，身故保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付身故保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。",
+            "保單帳戶價值依投資標的類別使用受理日次一或次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列全殘情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上全殘情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
         }
       ]
     },
@@ -8650,6 +9322,102 @@
           "extraction_method": "pypdf",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-expert-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": false,
+        "funeral_benefit_excludes_account_value": false,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十三條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十四條，身故保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付身故保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。",
+            "保單帳戶價值依投資標的類別使用受理日次一或次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列全殘情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上全殘情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
+        }
       ]
     },
     {
@@ -8901,6 +9669,102 @@
           "extraction_status": "extracted",
           "extraction_method": "pypdf",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-expert-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": false,
+        "funeral_benefit_excludes_account_value": false,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十三條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十四條，身故保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付身故保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。",
+            "保單帳戶價值依投資標的類別使用受理日次一或次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列全殘情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上全殘情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
         }
       ]
     },
@@ -9154,6 +10018,102 @@
           "extraction_method": "pypdf",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-expert-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": false,
+        "funeral_benefit_excludes_account_value": false,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十三條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十四條，身故保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付身故保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。",
+            "保單帳戶價值依投資標的類別使用受理日次一或次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列全殘情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上全殘情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
+        }
       ]
     },
     {
@@ -9405,6 +10365,102 @@
           "extraction_status": "extracted",
           "extraction_method": "pypdf",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-expert-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": false,
+        "funeral_benefit_excludes_account_value": false,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十三條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十四條，身故保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付身故保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。",
+            "保單帳戶價值依投資標的類別使用受理日次一或次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列全殘情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上全殘情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
         }
       ]
     },
@@ -9662,6 +10718,102 @@
           "extraction_status": "extracted",
           "extraction_method": "pypdf",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-expert-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": false,
+        "funeral_benefit_excludes_account_value": false,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十三條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十四條，身故保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付身故保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。",
+            "保單帳戶價值依投資標的類別使用受理日次一或次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列全殘情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上全殘情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
         }
       ]
     },
@@ -10155,6 +11307,102 @@
           "extraction_method": "windows_ocr",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-head-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": true,
+        "funeral_benefit_excludes_account_value": true,
+        "minor_death_before_age_14_account_value_rule": true,
+        "minor_disability_before_age_14_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十四條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，身故或喪葬費用保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "訂立保險型別為B型且以未滿十四足歲之未成年人、心神喪失或精神耗弱之人為被保險人時，身故保險金變更為喪葬費用保險金，按保險金額給付且不包含投資部分之保單帳戶價值。",
+            "給付身故或喪葬費用保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列殘廢情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十六條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上殘廢情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
+        }
       ]
     },
     {
@@ -10410,6 +11658,102 @@
           "extraction_status": "extracted",
           "extraction_method": "pypdf",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-head-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": true,
+        "funeral_benefit_excludes_account_value": true,
+        "minor_death_before_age_14_account_value_rule": true,
+        "minor_disability_before_age_14_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十四條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，身故或喪葬費用保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "訂立保險型別為B型且以未滿十四足歲之未成年人、心神喪失或精神耗弱之人為被保險人時，身故保險金變更為喪葬費用保險金，按保險金額給付且不包含投資部分之保單帳戶價值。",
+            "給付身故或喪葬費用保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列殘廢情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十六條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上殘廢情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
         }
       ]
     },
@@ -10667,6 +12011,102 @@
           "extraction_method": "pypdf",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-head-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": true,
+        "funeral_benefit_excludes_account_value": true,
+        "minor_death_before_age_14_account_value_rule": true,
+        "minor_disability_before_age_14_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十四條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，身故或喪葬費用保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "訂立保險型別為B型且以未滿十四足歲之未成年人、心神喪失或精神耗弱之人為被保險人時，身故保險金變更為喪葬費用保險金，按保險金額給付且不包含投資部分之保單帳戶價值。",
+            "給付身故或喪葬費用保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列殘廢情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十六條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上殘廢情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
+        }
       ]
     },
     {
@@ -10922,6 +12362,102 @@
           "extraction_status": "extracted",
           "extraction_method": "pypdf",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-head-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": true,
+        "funeral_benefit_excludes_account_value": true,
+        "minor_death_before_age_14_account_value_rule": true,
+        "minor_disability_before_age_14_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十四條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，身故或喪葬費用保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "訂立保險型別為B型且以未滿十四足歲之未成年人、心神喪失或精神耗弱之人為被保險人時，身故保險金變更為喪葬費用保險金，按保險金額給付且不包含投資部分之保單帳戶價值。",
+            "給付身故或喪葬費用保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列殘廢情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十六條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上殘廢情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
         }
       ]
     },
@@ -11179,6 +12715,102 @@
           "extraction_method": "pypdf",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-head-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": true,
+        "funeral_benefit_excludes_account_value": true,
+        "minor_death_before_age_14_account_value_rule": true,
+        "minor_disability_before_age_14_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十四條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，身故或喪葬費用保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "訂立保險型別為B型且以未滿十四足歲之未成年人、心神喪失或精神耗弱之人為被保險人時，身故保險金變更為喪葬費用保險金，按保險金額給付且不包含投資部分之保單帳戶價值。",
+            "給付身故或喪葬費用保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列殘廢情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十六條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上殘廢情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
+        }
       ]
     },
     {
@@ -11434,6 +13066,102 @@
           "extraction_status": "extracted",
           "extraction_method": "pypdf",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+      "version_characteristics": {
+        "product_family": "global-ritai-financial-head-variable-universal-life",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+        "investment_linked_policy": true,
+        "insurance_type_required": true,
+        "insurance_type_options": [
+          "A型",
+          "B型"
+        ],
+        "insurance_amount_basis": "policy_face_amount",
+        "death_total_disability_amount_formula": "selectable_type_a_greater_of_face_amount_or_policy_account_value_type_b_face_amount_plus_policy_account_value",
+        "death_benefit_formula": "death_total_disability_insurance_amount",
+        "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "risk_amount_required": true,
+        "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+        "redemption_valuation_timing_required": true,
+        "valuation_reference": "fund_type_next_or_second_valuation_date",
+        "insurance_cost_refund_after_event": false,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": true,
+        "funeral_benefit_excludes_account_value": true,
+        "minor_death_before_age_14_account_value_rule": true,
+        "minor_disability_before_age_14_account_value_rule": false,
+        "complete_disability_schedule_ref": "附表二",
+        "complete_disability_table_item_count": 7,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+          "source_ref": "保單條款第十四條，祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付後本契約效力即行終止。",
+            "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。"
+          ]
+        },
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十五條，身故或喪葬費用保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "訂立保險型別為B型且以未滿十四足歲之未成年人、心神喪失或精神耗弱之人為被保險人時，身故保險金變更為喪葬費用保險金，按保險金額給付且不包含投資部分之保單帳戶價值。",
+            "給付身故或喪葬費用保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內發生附表二所列殘廢情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+          "source_ref": "保單條款第十六條，全殘保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "death_total_disability_insurance_amount",
+          "conditions": [
+            "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+            "同時致成附表二二種以上殘廢情事者，只給付一種全殘保險金。",
+            "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。"
+          ]
         }
       ]
     },

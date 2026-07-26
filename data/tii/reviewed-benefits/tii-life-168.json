@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-07-26T15:42:46+08:00",
+  "batch_id": "tii-life-168",
+  "record_count": 1,
+  "records": [
+    {
+      "product_id": "264421MV1AVZA23A11Z90000000",
+      "status": "verified_reference",
+      "extractor_version": "tii-plan-benefits-v194",
+      "parser_id": "variable-annuity-account-value-formula-v1",
+      "source_file": "264421MV1AVZA23A11Z90000000-A.pdf",
+      "source_document_sha256": "5b64562014014590f6fa1323b8255606ecc5b278385d8eb0c5e628dc8316b4e1",
+      "schedule_sha256": "458881fe087e37bfbbacb86289060579aefbcacad9bbb8812c3c5c03d317380d",
+      "reviewed_by": "codex-assisted-source-review",
+      "reviewed_at": "2026-07-26T15:42:23+08:00",
+      "review_note": "Approved exact TII policy terms match for investment-linked variable annuity account-value formula. Review gate used batch_id + product_id + source_file + source_document_sha256; annuity amount remains formula-based because actual payout depends on policy account value, annuity start date, assumed interest rate, annuity life table, guarantee period, and payment method.",
+      "selection_type": "account_value",
+      "input_mode": "account_value",
+      "selection_source": "terms",
+      "selection_label": "保單帳戶價值",
+      "selection_guidance": "請輸入或確認年金給付開始日時的保單帳戶價值，並依保單首頁確認年金給付開始日、保證期間與給付方式；系統可整理條款公式，但實際年金需依保險公司年金生命表與預定利率換算。",
+      "version_characteristics": {
+        "product_family": "investment-linked-variable-annuity-account-value",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "investment_linked_policy": true,
+        "annuity_policy": true,
+        "annuity_amount_formula": "policy_account_value_at_annuity_start_using_assumed_interest_rate_and_annuity_life_table",
+        "policy_account_value_required": true,
+        "annuity_start_date_required": true,
+        "assumed_interest_rate_required": true,
+        "annuity_life_table_required": true,
+        "investment_target_value_required": true,
+        "payment_frequency_options": [
+          "lump_sum",
+          "annual"
+        ],
+        "guarantee_period_required": true,
+        "minimum_death_benefit": false,
+        "unpaid_annuity_balance": true,
+        "low_annual_annuity_lump_sum_rule": true,
+        "high_annual_annuity_account_value_return_rule": false,
+        "non_participating_policy": true,
+        "guarantee_period_options_years": [
+          5,
+          10,
+          15,
+          20
+        ],
+        "default_annuity_start_age": 70,
+        "max_annuity_start_age": 80,
+        "max_annuity_payment_age": 110
+      },
+      "coverage_entries": [
+        {
+          "id": "annuity-payment",
+          "name": "年金給付",
+          "basis": "policy_account_value",
+          "calculation_basis": "account_value_annuity_factor",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於年金給付開始日後仍生存且契約有效時，依條款計算並給付年金金額。",
+          "source_ref": "年金金額的計算／年金給付",
+          "unit_key": "annuity_amount",
+          "conditions": [
+            "年金金額需依年金給付開始日時之保單帳戶價值、預定利率及年金生命表計算。",
+            "實際年金金額需依保單首頁約定之年金給付開始日、保證期間及給付方式確認。",
+            "條款載明保證期間選項為 5 年、10 年、15 年、20 年。",
+            "若每年領取之年金金額低於條款門檻，改依保單帳戶價值一次給付。"
+          ]
+        },
+        {
+          "id": "account-value-return-before-annuity-start",
+          "name": "返還保單帳戶價值",
+          "basis": "policy_account_value",
+          "calculation_basis": "account_value",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "被保險人於年金給付開始日前身故時，依條款返還保單帳戶價值。",
+          "source_ref": "被保險人身故的通知與返還保單帳戶價值",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "保單帳戶價值需依條款指定之申領文件收齊日、資產評價日、匯率及未還款項計算。",
+            "給付後契約效力終止。"
+          ]
+        },
+        {
+          "id": "unpaid-annuity-balance",
+          "name": "未支領之年金餘額",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於年金給付開始日後身故且仍有未支領之年金餘額時，依條款給付予身故受益人或其他應得之人。",
+          "source_ref": "年金的給付與申領／未支領之年金餘額",
+          "unit_key": "unpaid_annuity_balance",
+          "conditions": [
+            "保證期間內通常不論被保險人生存與否均保證給付。",
+            "提前給付時，貼現利率依計算年金金額所採用之預定利率。"
+          ]
+        }
+      ]
+    }
+  ]
+}

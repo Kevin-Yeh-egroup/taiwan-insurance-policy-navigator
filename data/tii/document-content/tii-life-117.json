@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-14T12:02:47+08:00",
+  "generated_at": "2026-07-25T11:06:21+08:00",
   "summary": {
     "generated_at": "2026-07-14T12:02:47+08:00",
     "source": "local TII files downloaded through captcha session",
@@ -31171,6 +31171,154 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "身故/完全殘廢保險金額",
+      "selection_guidance": "請輸入保險證或保險手冊所載保險金額；住院醫療限額為條款附表三固定金額。",
+      "version_characteristics": {
+        "terms_revision": "83-original",
+        "group_policy": true,
+        "hospital_room_daily_limit": 2000,
+        "surgery_fee_base": 43200,
+        "hospital_miscellaneous_limit": 68000,
+        "hospital_total_limit": 450000,
+        "hospital_days_limit": 90,
+        "alternative_daily_allowance": 2000,
+        "same_condition_readmission_days": 90,
+        "surgery_percentage_table": true,
+        "total_disability_schedule_item_count": 7
+      },
+      "coverage_entries": [
+        {
+          "id": "life-death-face-amount",
+          "name": "身故保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依保險金額100%給付。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本契約為團體保險；身故與完全殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。"
+          ]
+        },
+        {
+          "id": "total-disability-face-amount",
+          "name": "完全殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "致成附表一所列完全殘廢程度之一者，依保險金額100%給付；給付後該被保險人保險效力終止。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本契約為團體保險；身故與完全殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。"
+          ]
+        },
+        {
+          "id": "hospital-room-daily-limit",
+          "name": "每日病房費限額",
+          "basis": "daily_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_day",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "每日醫師診察費、護理費、病房費及膳食費限額為2,000元。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 2000,
+          "conditions": [
+            "本契約為團體保險；身故與完全殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "每次住院最高90日；同一傷害、疾病及其併發症再住院間隔不足90日者視為同一次住院。"
+          ]
+        },
+        {
+          "id": "hospital-surgery-fee-base",
+          "name": "每次手術費基準額",
+          "basis": "benefit_base",
+          "calculation_basis": "table_multiplier",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "手術費最高保險金額按附表四手術補償百分比乘以43,200元計算。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 43200,
+          "rate_min_percent": 4,
+          "rate_max_percent": 220,
+          "conditions": [
+            "本契約為團體保險；身故與完全殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "手術費包含切開術費用、麻醉費、手術室及其設備使用費；每次住院多次手術時，各手術最高限額分別計算。"
+          ]
+        },
+        {
+          "id": "hospital-miscellaneous-limit",
+          "name": "每次住院醫院雜費限額",
+          "basis": "per_hospitalization_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "醫院雜費包含醫藥、敷料、檢驗、心電圖、物理治療、X光/鐳/同位素治療、輸血、氧氣與救護車費等項目。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 68000,
+          "conditions": [
+            "本契約為團體保險；身故與完全殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "每次住院最高日數90日；須檢附醫療費用明細表及收據正本。"
+          ]
+        },
+        {
+          "id": "hospitalization-total-limit",
+          "name": "每次住院保險金限額",
+          "basis": "per_hospitalization_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "每次住院保險金限額為新台幣450,000元。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 450000,
+          "conditions": [
+            "本契約為團體保險；身故與完全殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "此限額只適用於條款保險金表列明每次住院保險金限額的版本。"
+          ]
+        },
+        {
+          "id": "hospital-allowance-without-original-receipt",
+          "name": "未提出正本收據住院津貼",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "無法提出收據正本申請理賠時，依其他申領文件所載住院天數每日給付2,000元。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 2000,
+          "conditions": [
+            "本契約為團體保險；身故與完全殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "每次事故最長給付90天；此為無法提出正本收據時的替代給付。"
+          ]
+        }
       ]
     },
     {
@@ -31440,6 +31588,154 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "身故/完全殘廢保險金額",
+      "selection_guidance": "請輸入保險證或保險手冊所載保險金額；住院醫療限額為條款附表三固定金額。",
+      "version_characteristics": {
+        "terms_revision": "95-first-revision",
+        "group_policy": true,
+        "hospital_room_daily_limit": 2000,
+        "surgery_fee_base": 43200,
+        "hospital_miscellaneous_limit": 68000,
+        "hospital_total_limit": 450000,
+        "hospital_days_limit": 90,
+        "alternative_daily_allowance": 2000,
+        "same_condition_readmission_days": 90,
+        "surgery_percentage_table": true,
+        "total_disability_schedule_item_count": 7
+      },
+      "coverage_entries": [
+        {
+          "id": "life-death-face-amount",
+          "name": "身故保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依保險金額100%給付。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本契約為團體保險；身故與完全殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。"
+          ]
+        },
+        {
+          "id": "total-disability-face-amount",
+          "name": "完全殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "致成附表一所列完全殘廢程度之一者，依保險金額100%給付；給付後該被保險人保險效力終止。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本契約為團體保險；身故與完全殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。"
+          ]
+        },
+        {
+          "id": "hospital-room-daily-limit",
+          "name": "每日病房費限額",
+          "basis": "daily_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_day",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "每日醫師診察費、護理費、病房費及膳食費限額為2,000元。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 2000,
+          "conditions": [
+            "本契約為團體保險；身故與完全殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "每次住院最高90日；同一傷害、疾病及其併發症再住院間隔不足90日者視為同一次住院。"
+          ]
+        },
+        {
+          "id": "hospital-surgery-fee-base",
+          "name": "每次手術費基準額",
+          "basis": "benefit_base",
+          "calculation_basis": "table_multiplier",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "手術費最高保險金額按附表四手術補償百分比乘以43,200元計算。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 43200,
+          "rate_min_percent": 4,
+          "rate_max_percent": 220,
+          "conditions": [
+            "本契約為團體保險；身故與完全殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "手術費包含切開術費用、麻醉費、手術室及其設備使用費；每次住院多次手術時，各手術最高限額分別計算。"
+          ]
+        },
+        {
+          "id": "hospital-miscellaneous-limit",
+          "name": "每次住院醫院雜費限額",
+          "basis": "per_hospitalization_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "醫院雜費包含醫藥、敷料、檢驗、心電圖、物理治療、X光/鐳/同位素治療、輸血、氧氣與救護車費等項目。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 68000,
+          "conditions": [
+            "本契約為團體保險；身故與完全殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "每次住院最高日數90日；須檢附醫療費用明細表及收據正本。"
+          ]
+        },
+        {
+          "id": "hospitalization-total-limit",
+          "name": "每次住院保險金限額",
+          "basis": "per_hospitalization_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "每次住院保險金限額為新台幣450,000元。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 450000,
+          "conditions": [
+            "本契約為團體保險；身故與完全殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "此限額只適用於條款保險金表列明每次住院保險金限額的版本。"
+          ]
+        },
+        {
+          "id": "hospital-allowance-without-original-receipt",
+          "name": "未提出正本收據住院津貼",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "無法提出收據正本申請理賠時，依其他申領文件所載住院天數每日給付2,000元。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 2000,
+          "conditions": [
+            "本契約為團體保險；身故與完全殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "每次事故最長給付90天；此為無法提出正本收據時的替代給付。"
+          ]
+        }
       ]
     },
     {
@@ -31705,6 +32001,135 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "身故/完全殘廢保險金額",
+      "selection_guidance": "請輸入保險證或保險手冊所載保險金額；住院醫療限額為條款附表三固定金額。",
+      "version_characteristics": {
+        "terms_revision": "100-second-revision",
+        "group_policy": true,
+        "hospital_room_daily_limit": 2000,
+        "surgery_fee_base": 43200,
+        "hospital_miscellaneous_limit": 68000,
+        "hospital_days_limit": 90,
+        "alternative_daily_allowance": 2000,
+        "same_condition_readmission_days": 90,
+        "surgery_percentage_table": true,
+        "total_disability_schedule_item_count": 7
+      },
+      "coverage_entries": [
+        {
+          "id": "life-death-face-amount",
+          "name": "身故保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依保險金額100%給付。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本契約為團體保險；身故與殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。"
+          ]
+        },
+        {
+          "id": "total-disability-face-amount",
+          "name": "完全殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "致成附表一所列永久完全殘廢之一者，依保險金額100%給付；給付後該被保險人保險效力終止。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本契約為團體保險；身故與殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。"
+          ]
+        },
+        {
+          "id": "hospital-room-daily-limit",
+          "name": "每日病房費限額",
+          "basis": "daily_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_day",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "每日醫師診察費、護理費、病房費及膳食費限額為2,000元。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 2000,
+          "conditions": [
+            "本契約為團體保險；身故與殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "每次住院最高90日；同一傷害、疾病及其併發症再住院間隔不足90日者視為同一次住院。"
+          ]
+        },
+        {
+          "id": "hospital-surgery-fee-base",
+          "name": "每次手術費基準額",
+          "basis": "benefit_base",
+          "calculation_basis": "table_multiplier",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "手術費最高保險金額按附表四手術補償百分比乘以43,200元計算。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 43200,
+          "rate_min_percent": 4,
+          "rate_max_percent": 220,
+          "conditions": [
+            "本契約為團體保險；身故與殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "手術費包含切開術費用、麻醉費、手術室及其設備使用費；每次住院多次手術時，各手術最高限額分別計算。"
+          ]
+        },
+        {
+          "id": "hospital-miscellaneous-limit",
+          "name": "每次住院醫院雜費限額",
+          "basis": "per_hospitalization_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "醫院雜費包含醫藥、敷料、檢驗、心電圖、物理治療、X光/鐳/同位素治療、輸血、氧氣與救護車費等項目。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 68000,
+          "conditions": [
+            "本契約為團體保險；身故與殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "每次住院最高日數90日；須檢附醫療費用明細表及收據正本。"
+          ]
+        },
+        {
+          "id": "hospital-allowance-without-original-receipt",
+          "name": "未提出正本收據住院津貼",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "無法提出收據正本申請理賠時，依其他申領文件所載住院天數每日給付2,000元。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 2000,
+          "conditions": [
+            "本契約為團體保險；身故與殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "每次事故最長給付90天；此為無法提出正本收據時的替代給付。"
+          ]
+        }
       ]
     },
     {
@@ -31963,6 +32388,135 @@
           "text_char_count": 1138,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "身故/完全殘廢保險金額",
+      "selection_guidance": "請輸入保險證或保險手冊所載保險金額；住院醫療限額為條款附表三固定金額。",
+      "version_characteristics": {
+        "terms_revision": "101-third-revision",
+        "group_policy": true,
+        "hospital_room_daily_limit": 2000,
+        "surgery_fee_base": 43200,
+        "hospital_miscellaneous_limit": 68000,
+        "hospital_days_limit": 90,
+        "alternative_daily_allowance": 2000,
+        "same_condition_readmission_days": 90,
+        "surgery_percentage_table": true,
+        "total_disability_schedule_item_count": 7
+      },
+      "coverage_entries": [
+        {
+          "id": "life-death-face-amount",
+          "name": "身故保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "依保險金額100%給付。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本契約為團體保險；身故與殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。"
+          ]
+        },
+        {
+          "id": "total-disability-face-amount",
+          "name": "完全殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "致成附表一所列永久完全殘廢之一者，依保險金額100%給付；給付後該被保險人保險效力終止。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本契約為團體保險；身故與殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。"
+          ]
+        },
+        {
+          "id": "hospital-room-daily-limit",
+          "name": "每日病房費限額",
+          "basis": "daily_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_day",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "每日醫師診察費、護理費、病房費及膳食費限額為2,000元。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 2000,
+          "conditions": [
+            "本契約為團體保險；身故與殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "每次住院最高90日；同一傷害、疾病及其併發症再住院間隔不足90日者視為同一次住院。"
+          ]
+        },
+        {
+          "id": "hospital-surgery-fee-base",
+          "name": "每次手術費基準額",
+          "basis": "benefit_base",
+          "calculation_basis": "table_multiplier",
+          "amount_role": "base",
+          "limit_scope": "per_surgery",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "手術費最高保險金額按附表四手術補償百分比乘以43,200元計算。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 43200,
+          "rate_min_percent": 4,
+          "rate_max_percent": 220,
+          "conditions": [
+            "本契約為團體保險；身故與殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "手術費包含切開術費用、麻醉費、手術室及其設備使用費；每次住院多次手術時，各手術最高限額分別計算。"
+          ]
+        },
+        {
+          "id": "hospital-miscellaneous-limit",
+          "name": "每次住院醫院雜費限額",
+          "basis": "per_hospitalization_limit",
+          "calculation_basis": "reimbursement_with_cap",
+          "amount_role": "limit",
+          "limit_scope": "per_hospitalization",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "醫院雜費包含醫藥、敷料、檢驗、心電圖、物理治療、X光/鐳/同位素治療、輸血、氧氣與救護車費等項目。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 68000,
+          "conditions": [
+            "本契約為團體保險；身故與殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "每次住院最高日數90日；須檢附醫療費用明細表及收據正本。"
+          ]
+        },
+        {
+          "id": "hospital-allowance-without-original-receipt",
+          "name": "未提出正本收據住院津貼",
+          "basis": "daily_total",
+          "calculation_basis": "per_day",
+          "amount_role": "payout",
+          "limit_scope": "per_day",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "無法提出收據正本申請理賠時，依其他申領文件所載住院天數每日給付2,000元。",
+          "source_ref": "條款第七條至第九條及附表三至四，第 2-7 頁",
+          "amount": 2000,
+          "conditions": [
+            "本契約為團體保險；身故與殘廢保險金依保險證或保險手冊所載保險金額給付。",
+            "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+            "每次事故最長給付90天；此為無法提出正本收據時的替代給付。"
+          ]
         }
       ]
     }

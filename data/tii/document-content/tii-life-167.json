@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-15T17:03:10+08:00",
+  "generated_at": "2026-07-26T00:50:51+08:00",
   "summary": {
     "generated_at": "2026-07-15T17:03:10+08:00",
     "source": "local TII files downloaded through captcha session",
@@ -7436,6 +7436,99 @@
           "extraction_method": "pypdf",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單上的保險金額；本投資型壽險的身故與完全失能按保險金額給付，祝壽金需依保單帳戶價值、淨危險保額與投資標的贖回評價時點計算。",
+      "version_characteristics": {
+        "product_family": "investment-linked-life-guaranteed-face-amount",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "investment_linked_policy": true,
+        "insurance_amount_basis": "policy_insurance_amount",
+        "death_benefit_formula": "policy_insurance_amount",
+        "total_disability_benefit_formula": "policy_insurance_amount",
+        "maturity_trigger": "age_110_policy_anniversary",
+        "maturity_age": 110,
+        "maturity_benefit_formula": "policy_account_value_at_age_110_policy_anniversary",
+        "maturity_interest_crediting": false,
+        "policy_account_value_required": true,
+        "net_amount_at_risk_required": true,
+        "net_amount_at_risk_formula_type": "not_classified",
+        "basic_amount_required": true,
+        "insurance_deduction_amount_required": false,
+        "investment_target_value_required": true,
+        "redemption_valuation_timing_required": true,
+        "insurance_cost_refund_after_event": true,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": true,
+        "funeral_benefit_excludes_account_value": true,
+        "minor_death_before_age_15_account_value_rule": true,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_table_item_count": 7,
+        "disability_term": "失能",
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡屆滿一百一十歲仍生存且契約有效時，依贖回評價時點投資標的價值計算保單帳戶價值給付。",
+          "source_ref": "祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付祝壽保險金後，保單帳戶結清且契約效力終止。",
+            "實際金額需依保單當時投資標的價值、贖回評價時點與保單帳戶資料計算。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故者，按保險金額給付身故保險金；受監護宣告未撤銷者改給付喪葬費用保險金。",
+          "source_ref": "身故保險金或喪葬費用保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "喪葬費用保險金額不包含投資部分之保單帳戶價值。",
+            "喪葬費用保險金受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+            "保險事故日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            "以未滿十五足歲之未成年人為被保險人者，滿十五足歲前死亡依條款返還保單帳戶價值。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內經診斷確定致成完全失能者，按保險金額給付完全失能保險金。",
+          "source_ref": "完全失能保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "同時有兩項以上完全失能時僅給付一項完全失能保險金。",
+            "完全失能診斷確定日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。"
+          ]
+        }
       ]
     },
     {
@@ -8672,6 +8765,99 @@
           "extraction_method": "pypdf",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單上的保險金額；本投資型壽險的身故與完全失能按保險金額給付，祝壽金需依保單帳戶價值、淨危險保額與投資標的贖回評價時點計算。",
+      "version_characteristics": {
+        "product_family": "investment-linked-life-guaranteed-face-amount",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "investment_linked_policy": true,
+        "insurance_amount_basis": "policy_insurance_amount",
+        "death_benefit_formula": "policy_insurance_amount",
+        "total_disability_benefit_formula": "policy_insurance_amount",
+        "maturity_trigger": "age_96_policy_anniversary",
+        "maturity_age": 96,
+        "maturity_benefit_formula": "policy_account_value_at_age_96_policy_anniversary",
+        "maturity_interest_crediting": true,
+        "policy_account_value_required": true,
+        "net_amount_at_risk_required": true,
+        "net_amount_at_risk_formula_type": "not_classified",
+        "basic_amount_required": true,
+        "insurance_deduction_amount_required": false,
+        "investment_target_value_required": true,
+        "redemption_valuation_timing_required": true,
+        "insurance_cost_refund_after_event": true,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": true,
+        "funeral_benefit_excludes_account_value": true,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_table_item_count": 7,
+        "disability_term": "失能",
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達九十六歲之保單週年日仍生存且契約有效時，依贖回評價時點投資標的價值計算保單帳戶價值給付。",
+          "source_ref": "祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付祝壽保險金後，保單帳戶結清且契約效力終止。",
+            "實際金額需依保單當時投資標的價值、贖回評價時點與保單帳戶資料計算。",
+            "祝壽保險金給付時依條款加計自投資機構交付金額日起至給付日前一日之利息。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故者，按保險金額給付身故保險金；受監護宣告未撤銷者改給付喪葬費用保險金。",
+          "source_ref": "身故保險金或喪葬費用保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "喪葬費用保險金額不包含投資部分之保單帳戶價值。",
+            "喪葬費用保險金受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+            "保險事故日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內經診斷確定致成完全失能者，按保險金額給付完全失能保險金。",
+          "source_ref": "完全失能保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "同時有兩項以上完全失能時僅給付一項完全失能保險金。",
+            "完全失能診斷確定日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。"
+          ]
+        }
       ]
     },
     {
@@ -9657,6 +9843,100 @@
           "extraction_method": "pypdf",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單上的保險金額；本投資型壽險的身故與完全失能按保險金額給付，祝壽金需依保單帳戶價值、淨危險保額與投資標的贖回評價時點計算。",
+      "version_characteristics": {
+        "product_family": "investment-linked-life-guaranteed-face-amount",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "investment_linked_policy": true,
+        "insurance_amount_basis": "policy_insurance_amount",
+        "death_benefit_formula": "policy_insurance_amount",
+        "total_disability_benefit_formula": "policy_insurance_amount",
+        "maturity_trigger": "age_96_policy_anniversary",
+        "maturity_age": 96,
+        "maturity_benefit_formula": "policy_account_value_at_age_96_policy_anniversary",
+        "maturity_interest_crediting": true,
+        "policy_account_value_required": true,
+        "net_amount_at_risk_required": true,
+        "net_amount_at_risk_formula_type": "not_classified",
+        "basic_amount_required": true,
+        "insurance_deduction_amount_required": false,
+        "investment_target_value_required": true,
+        "redemption_valuation_timing_required": true,
+        "insurance_cost_refund_after_event": true,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": true,
+        "funeral_benefit_excludes_account_value": true,
+        "minor_death_before_age_15_account_value_rule": true,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_table_item_count": 7,
+        "disability_term": "失能",
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達九十六歲之保單週年日仍生存且契約有效時，依贖回評價時點投資標的價值計算保單帳戶價值給付。",
+          "source_ref": "祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付祝壽保險金後，保單帳戶結清且契約效力終止。",
+            "實際金額需依保單當時投資標的價值、贖回評價時點與保單帳戶資料計算。",
+            "祝壽保險金給付時依條款加計自投資機構交付金額日起至給付日前一日之利息。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故者，按保險金額給付身故保險金；受監護宣告未撤銷者改給付喪葬費用保險金。",
+          "source_ref": "身故保險金或喪葬費用保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "喪葬費用保險金額不包含投資部分之保單帳戶價值。",
+            "喪葬費用保險金受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+            "保險事故日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            "以未滿十五足歲之未成年人為被保險人者，滿十五足歲前死亡依條款返還保單帳戶價值。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內經診斷確定致成完全失能者，按保險金額給付完全失能保險金。",
+          "source_ref": "完全失能保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "同時有兩項以上完全失能時僅給付一項完全失能保險金。",
+            "完全失能診斷確定日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。"
+          ]
+        }
       ]
     },
     {
@@ -10151,6 +10431,100 @@
           "extraction_method": "pypdf",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單上的保險金額；本投資型壽險的身故與完全失能按保險金額給付，祝壽金需依保單帳戶價值、淨危險保額與投資標的贖回評價時點計算。",
+      "version_characteristics": {
+        "product_family": "investment-linked-life-guaranteed-face-amount",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "investment_linked_policy": true,
+        "insurance_amount_basis": "policy_insurance_amount",
+        "death_benefit_formula": "policy_insurance_amount",
+        "total_disability_benefit_formula": "policy_insurance_amount",
+        "maturity_trigger": "age_96_policy_anniversary",
+        "maturity_age": 96,
+        "maturity_benefit_formula": "policy_account_value_at_age_96_policy_anniversary",
+        "maturity_interest_crediting": true,
+        "policy_account_value_required": true,
+        "net_amount_at_risk_required": true,
+        "net_amount_at_risk_formula_type": "not_classified",
+        "basic_amount_required": true,
+        "insurance_deduction_amount_required": false,
+        "investment_target_value_required": true,
+        "redemption_valuation_timing_required": true,
+        "insurance_cost_refund_after_event": true,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": true,
+        "funeral_benefit_excludes_account_value": true,
+        "minor_death_before_age_15_account_value_rule": true,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_table_item_count": 7,
+        "disability_term": "失能",
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達九十六歲之保單週年日仍生存且契約有效時，依贖回評價時點投資標的價值計算保單帳戶價值給付。",
+          "source_ref": "祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付祝壽保險金後，保單帳戶結清且契約效力終止。",
+            "實際金額需依保單當時投資標的價值、贖回評價時點與保單帳戶資料計算。",
+            "祝壽保險金給付時依條款加計自投資機構交付金額日起至給付日前一日之利息。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故者，按保險金額給付身故保險金；受監護宣告未撤銷者改給付喪葬費用保險金。",
+          "source_ref": "身故保險金或喪葬費用保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "喪葬費用保險金額不包含投資部分之保單帳戶價值。",
+            "喪葬費用保險金受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+            "保險事故日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            "以未滿十五足歲之未成年人為被保險人者，滿十五足歲前死亡依條款返還保單帳戶價值。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內經診斷確定致成完全失能者，按保險金額給付完全失能保險金。",
+          "source_ref": "完全失能保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "同時有兩項以上完全失能時僅給付一項完全失能保險金。",
+            "完全失能診斷確定日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。"
+          ]
+        }
       ]
     },
     {
@@ -10397,6 +10771,100 @@
           "extraction_status": "extracted",
           "extraction_method": "pypdf",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單上的保險金額；本投資型壽險的身故與完全失能按保險金額給付，祝壽金需依保單帳戶價值、淨危險保額與投資標的贖回評價時點計算。",
+      "version_characteristics": {
+        "product_family": "investment-linked-life-guaranteed-face-amount",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "investment_linked_policy": true,
+        "insurance_amount_basis": "policy_insurance_amount",
+        "death_benefit_formula": "policy_insurance_amount",
+        "total_disability_benefit_formula": "policy_insurance_amount",
+        "maturity_trigger": "age_96_policy_anniversary",
+        "maturity_age": 96,
+        "maturity_benefit_formula": "policy_account_value_at_age_96_policy_anniversary",
+        "maturity_interest_crediting": true,
+        "policy_account_value_required": true,
+        "net_amount_at_risk_required": true,
+        "net_amount_at_risk_formula_type": "not_classified",
+        "basic_amount_required": true,
+        "insurance_deduction_amount_required": false,
+        "investment_target_value_required": true,
+        "redemption_valuation_timing_required": true,
+        "insurance_cost_refund_after_event": true,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": true,
+        "funeral_benefit_excludes_account_value": true,
+        "minor_death_before_age_15_account_value_rule": true,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_table_item_count": 7,
+        "disability_term": "失能",
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達九十六歲之保單週年日仍生存且契約有效時，依贖回評價時點投資標的價值計算保單帳戶價值給付。",
+          "source_ref": "祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付祝壽保險金後，保單帳戶結清且契約效力終止。",
+            "實際金額需依保單當時投資標的價值、贖回評價時點與保單帳戶資料計算。",
+            "祝壽保險金給付時依條款加計自投資機構交付金額日起至給付日前一日之利息。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故者，按保險金額給付身故保險金；受監護宣告未撤銷者改給付喪葬費用保險金。",
+          "source_ref": "身故保險金或喪葬費用保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "喪葬費用保險金額不包含投資部分之保單帳戶價值。",
+            "喪葬費用保險金受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+            "保險事故日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            "以未滿十五足歲之未成年人為被保險人者，滿十五足歲前死亡依條款返還保單帳戶價值。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內經診斷確定致成完全失能者，按保險金額給付完全失能保險金。",
+          "source_ref": "完全失能保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "同時有兩項以上完全失能時僅給付一項完全失能保險金。",
+            "完全失能診斷確定日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。"
+          ]
         }
       ]
     },
@@ -16828,6 +17296,99 @@
           "extraction_method": "pypdf",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單上的保險金額；本投資型壽險的身故與完全失能按保險金額給付，祝壽金需依保單帳戶價值、淨危險保額與投資標的贖回評價時點計算。",
+      "version_characteristics": {
+        "product_family": "investment-linked-life-guaranteed-face-amount",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "investment_linked_policy": true,
+        "insurance_amount_basis": "policy_insurance_amount",
+        "death_benefit_formula": "policy_insurance_amount",
+        "total_disability_benefit_formula": "policy_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": true,
+        "policy_account_value_required": true,
+        "net_amount_at_risk_required": true,
+        "net_amount_at_risk_formula_type": "not_classified",
+        "basic_amount_required": true,
+        "insurance_deduction_amount_required": false,
+        "investment_target_value_required": true,
+        "redemption_valuation_timing_required": true,
+        "insurance_cost_refund_after_event": true,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": true,
+        "funeral_benefit_excludes_account_value": true,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_table_item_count": 7,
+        "disability_term": "失能",
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存且契約有效時，依贖回評價時點投資標的價值計算保單帳戶價值給付。",
+          "source_ref": "祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付祝壽保險金後，保單帳戶結清且契約效力終止。",
+            "實際金額需依保單當時投資標的價值、贖回評價時點與保單帳戶資料計算。",
+            "祝壽保險金給付時依條款加計自投資機構交付金額日起至給付日前一日之利息。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故者，按保險金額給付身故保險金；受監護宣告未撤銷者改給付喪葬費用保險金。",
+          "source_ref": "身故保險金或喪葬費用保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "喪葬費用保險金額不包含投資部分之保單帳戶價值。",
+            "喪葬費用保險金受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+            "保險事故日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內經診斷確定致成完全失能者，按保險金額給付完全失能保險金。",
+          "source_ref": "完全失能保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "同時有兩項以上完全失能時僅給付一項完全失能保險金。",
+            "完全失能診斷確定日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。"
+          ]
+        }
       ]
     },
     {
@@ -17074,6 +17635,99 @@
           "extraction_status": "extracted",
           "extraction_method": "pypdf",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單上的保險金額；本投資型壽險的身故與完全失能按保險金額給付，祝壽金需依保單帳戶價值、淨危險保額與投資標的贖回評價時點計算。",
+      "version_characteristics": {
+        "product_family": "investment-linked-life-guaranteed-face-amount",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "investment_linked_policy": true,
+        "insurance_amount_basis": "policy_insurance_amount",
+        "death_benefit_formula": "policy_insurance_amount",
+        "total_disability_benefit_formula": "policy_insurance_amount",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_age": 100,
+        "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest_crediting": true,
+        "policy_account_value_required": true,
+        "net_amount_at_risk_required": true,
+        "net_amount_at_risk_formula_type": "not_classified",
+        "basic_amount_required": true,
+        "insurance_deduction_amount_required": false,
+        "investment_target_value_required": true,
+        "redemption_valuation_timing_required": true,
+        "insurance_cost_refund_after_event": true,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": true,
+        "funeral_benefit_excludes_account_value": true,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_table_item_count": 7,
+        "disability_term": "失能",
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達一百歲之保單週年日仍生存且契約有效時，依贖回評價時點投資標的價值計算保單帳戶價值給付。",
+          "source_ref": "祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付祝壽保險金後，保單帳戶結清且契約效力終止。",
+            "實際金額需依保單當時投資標的價值、贖回評價時點與保單帳戶資料計算。",
+            "祝壽保險金給付時依條款加計自投資機構交付金額日起至給付日前一日之利息。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故者，按保險金額給付身故保險金；受監護宣告未撤銷者改給付喪葬費用保險金。",
+          "source_ref": "身故保險金或喪葬費用保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "喪葬費用保險金額不包含投資部分之保單帳戶價值。",
+            "喪葬費用保險金受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+            "保險事故日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內經診斷確定致成完全失能者，按保險金額給付完全失能保險金。",
+          "source_ref": "完全失能保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "同時有兩項以上完全失能時僅給付一項完全失能保險金。",
+            "完全失能診斷確定日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。"
+          ]
         }
       ]
     },
@@ -18559,6 +19213,99 @@
           "extraction_status": "extracted",
           "extraction_method": "pypdf",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單上的保險金額；本投資型壽險的身故與完全失能按保險金額給付，祝壽金需依保單帳戶價值、淨危險保額與投資標的贖回評價時點計算。",
+      "version_characteristics": {
+        "product_family": "investment-linked-life-guaranteed-face-amount",
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "investment_linked_policy": true,
+        "insurance_amount_basis": "policy_insurance_amount",
+        "death_benefit_formula": "policy_insurance_amount",
+        "total_disability_benefit_formula": "policy_insurance_amount",
+        "maturity_trigger": "age_96_policy_anniversary",
+        "maturity_age": 96,
+        "maturity_benefit_formula": "policy_account_value_at_age_96_policy_anniversary",
+        "maturity_interest_crediting": true,
+        "policy_account_value_required": true,
+        "net_amount_at_risk_required": true,
+        "net_amount_at_risk_formula_type": "not_classified",
+        "basic_amount_required": true,
+        "insurance_deduction_amount_required": false,
+        "investment_target_value_required": true,
+        "redemption_valuation_timing_required": true,
+        "insurance_cost_refund_after_event": true,
+        "account_value_return_on_time_bar": true,
+        "funeral_benefit_limit_rule": true,
+        "funeral_benefit_excludes_account_value": true,
+        "minor_death_before_age_15_account_value_rule": false,
+        "minor_disability_before_age_15_account_value_rule": false,
+        "complete_disability_table_item_count": 7,
+        "disability_term": "失能",
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於保險年齡達九十六歲之保單週年日仍生存且契約有效時，依贖回評價時點投資標的價值計算保單帳戶價值給付。",
+          "source_ref": "祝壽保險金的給付",
+          "unit_key": "policy_account_value",
+          "conditions": [
+            "給付祝壽保險金後，保單帳戶結清且契約效力終止。",
+            "實際金額需依保單當時投資標的價值、贖回評價時點與保單帳戶資料計算。",
+            "祝壽保險金給付時依條款加計自投資機構交付金額日起至給付日前一日之利息。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故者，按保險金額給付身故保險金；受監護宣告未撤銷者改給付喪葬費用保險金。",
+          "source_ref": "身故保險金或喪葬費用保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "喪葬費用保險金額不包含投資部分之保單帳戶價值。",
+            "喪葬費用保險金受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+            "保險事故日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內經診斷確定致成完全失能者，按保險金額給付完全失能保險金。",
+          "source_ref": "完全失能保險金的給付",
+          "rate_percent": 100,
+          "unit_key": "policy_insurance_amount",
+          "conditions": [
+            "同時有兩項以上完全失能時僅給付一項完全失能保險金。",
+            "完全失能診斷確定日後已收取之保險成本依條款併同給付。",
+            "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。"
+          ]
         }
       ]
     },

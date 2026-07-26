@@ -11,7 +11,7 @@ from typing import Any
 
 
 TAIPEI_TZ = timezone(timedelta(hours=8))
-EXTRACTOR_VERSION = "tii-plan-benefits-v91"
+EXTRACTOR_VERSION = "tii-plan-benefits-v196"
 PLAN_HEADERS = [
     "意外傷害身故",
     "意外傷害失能",
@@ -8660,6 +8660,221 @@ def parse_prudential_china_medical_endowment_plan_unit(
     }
 
 
+FUBON_GOLDEN_LUCK_UNIVERSAL_PRODUCT_ID = "209131MB1A00323A11Z10000005"
+FUBON_GOLDEN_LUCK_UNIVERSAL_FILE_NAME = (
+    f"{FUBON_GOLDEN_LUCK_UNIVERSAL_PRODUCT_ID}-A.pdf"
+)
+
+
+def is_fubon_golden_luck_universal_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    return (
+        str(document.get("product_id") or "")
+        == FUBON_GOLDEN_LUCK_UNIVERSAL_PRODUCT_ID
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "")
+        == FUBON_GOLDEN_LUCK_UNIVERSAL_FILE_NAME
+    )
+
+
+def parse_fubon_golden_luck_universal_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_golden_luck_universal_whole_life_strict_source(document):
+        return None
+    if document.get("page_count") not in {None, 10}:
+        return None
+    if document.get("pages_parsed") not in {None, 10}:
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = [
+        "UWA21100701",
+        "商品代號:UWA2",
+        "富邦人壽金好運萬能終身壽險(V1)",
+        "給付項目:身故保險金或喪葬費用保險金、完全失能保險金、祝壽保險金",
+        "106.02.24富壽商精字第1050004386號函備查",
+        "110.07.01富壽商精字第1100001193號函備查",
+        "本契約所用名詞定義如下",
+        "保險金額",
+        "淨危險保額",
+        "保單價值準備金",
+        "基本保險費",
+        "增額保險費",
+        "已繳保險費總和",
+        "保險成本",
+        "保費費用",
+        "宣告利率",
+        "第十條本公司於本契約每一保單年度末應依約定方式通知要保人其保單價值準備金",
+        "第一保單月份",
+        "第二保單月份及以後",
+        "第十四條被保險人於本契約有效期間內身故者本公司按下列三者之最大值給付身故保險金後本契約效力即行終止",
+        "身故時之保險金額",
+        "身故時之保單價值準備金",
+        "第十五條被保險人於本契約有效期間內致成附表四所列完全失能程度之一者本公司按下列三者之最大值給付完全失能保險金後本契約效力即行終止",
+        "完全失能診斷確定時之保險金額",
+        "完全失能診斷確定時之保單價值準備金",
+        "第十六條要保人選擇前二條身故保險金或完全失能保險金為分期定期給付者",
+        "分期定期保險金給付期間屆滿時本契約即行終止",
+        "第十七條被保險人於本契約有效期間內且在保險年齡屆滿一百一十歲仍生存者本公司按下列三者之最大值給付祝壽保險金後本契約效力即行終止",
+        "保險年齡屆滿一百一十歲時之保險金額",
+        "保險年齡屆滿一百一十歲時之保單價值準備金",
+        "計算分期定期保險金之指定保險金如低於新臺幣二十萬元",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+
+    three_way_formula = "greater_of_face_amount_policy_reserve_paid_premium_total"
+    entries = [
+        coverage_entry(
+            "policy-value-reserve-reference",
+            "保單價值準備金／解約金參考",
+            None,
+            "policy_recorded_limit",
+            "保單價值準備金依已收保費扣除保費費用、保險成本與申請減少金額後，再按宣告利率日單利計算；解約金為保單價值準備金扣除解約費用。",
+            "保單條款第十條及第十一條，保單價值準備金的通知與計算、契約的終止",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_value_reserve",
+            conditions=[
+                "本契約保單價值準備金不得為負數。",
+                "實際保單價值準備金需依保單月份、已收保費、保費費用、保險成本、減少金額與宣告利率計算。",
+                "解約金另須扣除附表三所列解約費用。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "有效期間內身故時，按身故時保險金額、身故時保單價值準備金、已繳保險費總和三者最大值給付。",
+            "保單條款第十四條，身故保險金或喪葬費用保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key=three_way_formula,
+            conditions=[
+                "三者取最大值: 身故時保險金額、身故時保單價值準備金、已繳保險費總和。",
+                "受監護宣告尚未撤銷者，身故保險金變更為喪葬費用保險金並受主管機關限額與多張保單合計規則限制。",
+                "若身故日後有依第二十八條申請減少保單價值準備金，且按保險金額或保單價值準備金給付者，須扣除所減少之保單價值準備金。",
+                "給付後契約效力即行終止。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            "有效期間內致成附表四完全失能程度之一時，按診斷確定時保險金額、診斷確定時保單價值準備金、已繳保險費總和三者最大值給付。",
+            "保單條款第十五條，完全失能保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key=three_way_formula,
+            conditions=[
+                "三者取最大值: 完全失能診斷確定時保險金額、完全失能診斷確定時保單價值準備金、已繳保險費總和。",
+                "須符合附表四所列完全失能程度之一。",
+                "若失能診斷確定日後有依第二十八條申請減少保單價值準備金，且按保險金額或保單價值準備金給付者，須扣除所減少之保單價值準備金。",
+                "給付後契約效力即行終止。",
+            ],
+        ),
+        coverage_entry(
+            "installment-periodic-benefit",
+            "分期定期保險金給付",
+            None,
+            "policy_recorded_limit",
+            "要保人可選擇將身故保險金或完全失能保險金中的指定保險金，依給付期間與分期定期保險金預定利率換算為每年初給付金額。",
+            "保單條款第十六條及第十九條，分期定期保險金給付與變更限制",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="specified_insurance_amount_periodic_payout",
+            conditions=[
+                "給付期間依要保書約定為 10 年或 20 年。",
+                "指定保險金低於新臺幣 200,000 元，或每年給付之分期定期保險金低於新臺幣 20,000 元時，改一次給付指定保險金。",
+                "分期定期保險金給付期間內不得變更或終止契約，且不得以保險契約為質向公司借款。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "有效期間內且保險年齡屆滿 110 歲仍生存時，按屆滿時保險金額、屆滿時保單價值準備金、已繳保險費總和三者最大值給付。",
+            "保單條款第十七條，祝壽保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key=three_way_formula,
+            conditions=[
+                "三者取最大值: 保險年齡屆滿 110 歲時之保險金額、保單價值準備金、已繳保險費總和。",
+                "給付後契約效力即行終止。",
+            ],
+        ),
+    ]
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單面頁所載保險金額；本商品屬萬能終身壽險，身故、完全失能與祝壽金額都需再與保單價值準備金、已繳保險費總和取最大值，實際金額需依保單當期資料確認。",
+        "version_characteristics": {
+            "product_family": "fubon-golden-luck-universal-whole-life",
+            "terms_revision": "fifth-partial-revision",
+            "fubon_code": "UWA21100701",
+            "product_code": "UWA2",
+            "filing_date": "106.02.24",
+            "filing_number": "富壽商精字第1050004386號",
+            "revision_events": [
+                "107.09.14-金管保壽字第10704158370號",
+                "109.01.01-金管保壽字第10804904941號",
+                "109.01.01-金管保壽字第10804933330號",
+                "109.07.01-富壽商精字第1090002112號",
+                "109.09.01-富壽商精字第1090003802號",
+                "110.07.01-富壽商精字第1100001193號",
+            ],
+            "universal_life_policy": True,
+            "non_participating_policy": True,
+            "declared_rate_frequency": "annual_policy_year_declared_month",
+            "declared_rate_non_negative": True,
+            "policy_value_reserve_formula": "premiums_minus_premium_fee_minus_monthly_insurance_cost_minus_reductions_plus_declared_rate_daily_simple_interest",
+            "insurance_cost_deduction_frequency": "monthly",
+            "premium_fee_table_required": True,
+            "surrender_charge_table_required": True,
+            "death_benefit_formula": three_way_formula,
+            "total_disability_benefit_formula": three_way_formula,
+            "maturity_benefit_formula": three_way_formula,
+            "maturity_age": 110,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "paid_premium_total_required": True,
+            "basic_premium_supported": True,
+            "flexible_additional_premium_supported": True,
+            "premium_payment_ratio_schedule_required": True,
+            "installment_benefit_available": True,
+            "installment_period_options": [10, 20],
+            "installment_interest_rate_source": "company_announced_rate_on_installment_start_date",
+            "minimum_specified_insurance_amount": 200_000,
+            "minimum_annual_installment_amount": 20_000,
+            "guardianship_funeral_benefit_rule": True,
+            "funeral_benefit_limit_rule": True,
+            "disability_schedule_item_count": 7,
+        },
+        "coverage_entries": entries,
+    }
+
+
 def is_prudential_china_life_accident_account_strict_source(
     document: dict[str, Any],
 ) -> bool:
@@ -17236,6 +17451,6793 @@ def parse_yuanta_anxin100_critical_illness_face_amount(
     }
 
 
+YUANTA_ZHEN_ANXIN_RETURN_CANCER_PRODUCT_VERSIONS = {
+    "261121MZ2GC2022A11Z10000004": "fourth-partial-revision",
+    "261121MZ2GC2022A11Z10000005": "fifth-regulatory-revision",
+}
+
+
+def is_yuanta_zhen_anxin_return_cancer_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in YUANTA_ZHEN_ANXIN_RETURN_CANCER_PRODUCT_VERSIONS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_yuanta_zhen_anxin_return_cancer_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_yuanta_zhen_anxin_return_cancer_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = [
+        "元大人壽真安心保本防癌保險",
+        "本險之癌症等待期間為九十日",
+        "本契約各項保險金皆以保險金額為計算基礎",
+        "當年度保險金額」於第一至第二保單年度為一點零六倍的年繳保險費總額",
+        "第三保單年度起為保險金額",
+        "意外住院給付日額」係指本契約之保險金額乘以千分之一",
+        "無息退還所繳保險費",
+        "意外身故保險金或喪葬費用保險金的給付",
+        "搭乘大眾運輸工具意外身故保險金或喪葬費用保險金的給付",
+        "完全殘廢保險金的給付",
+        "意外第一級殘廢保險金的給付",
+        "搭乘大眾運輸工具意外第一級殘廢保險金的給付",
+        "意外殘廢保險金的給付",
+        "意外住院醫療保險金的給付",
+        "初次罹患低侵襲性癌症保險金的給付",
+        "初次罹患癌症保險金的給付",
+        "滿期保險金的給付",
+        "給付金額為下列三款計算方式所得數額之最大者之百分之十",
+        "其給付金額為一點零六倍的年繳保險費總額",
+    ]
+    if any(signal not in dense_text for signal in required_signals):
+        return None
+
+    terms_revision = YUANTA_ZHEN_ANXIN_RETURN_CANCER_PRODUCT_VERSIONS[product_id]
+    entries = [
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "benefit_base",
+            "領取滿期保險金前身故，依當年度保險金額、保單價值準備金、一點零六倍年繳保險費總額三者取最大值給付。",
+            "保單條款第十一條，無息退還所繳保險費、身故保險金或喪葬費用保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="greater_of_annual_insured_amount_policy_reserve_premium_total",
+            conditions=[
+                "第一或第二保單年度因意外傷害事故身故且非除外責任者，依身故當時保險金額給付。",
+                "保險年齡達 16 歲前身故改依條款無息退還所繳保險費或按所繳保險費給付。",
+                "受監護宣告者身故保險金變更為喪葬費用保險金，並受法定上限限制。",
+                "給付後契約效力終止。",
+            ],
+        ),
+        coverage_entry(
+            "accidental-death-benefit",
+            "意外身故保險金",
+            None,
+            "face_amount",
+            "保險年齡達 16 歲後且領取滿期保險金前，因意外傷害事故 180 日內身故，除身故給付外另給付保險金額。",
+            "保單條款第十二條，意外身故保險金或喪葬費用保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="conditional_additive",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=["事故日起 180 日內；超過 180 日需證明因果關係。", "給付後契約效力終止。"],
+        ),
+        coverage_entry(
+            "mass-transit-accidental-death-benefit",
+            "搭乘大眾運輸工具意外身故保險金",
+            None,
+            "face_amount",
+            "保險年齡達 16 歲後且領取滿期保險金前，以乘客身分搭乘大眾運輸工具發生意外 180 日內身故，除身故及意外身故給付外另給付保險金額。",
+            "保單條款第十三條，搭乘大眾運輸工具意外身故保險金或喪葬費用保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="conditional_additive",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=["事故日起 180 日內；超過 180 日需證明因果關係。", "需檢附該次搭乘大眾運輸工具之購票或搭乘證明。", "給付後契約效力終止。"],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全殘廢保險金",
+            None,
+            "benefit_base",
+            "領取滿期保險金前致成附表一所列完全殘廢之一，依當年度保險金額、保單價值準備金、一點零六倍年繳保險費總額三者取最大值給付。",
+            "保單條款第十四條，完全殘廢保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="greater_of_annual_insured_amount_policy_reserve_premium_total",
+            conditions=[
+                "第一或第二保單年度因意外傷害事故完全殘廢且非除外責任者，依完全殘廢當時保險金額給付。",
+                "保險年齡達 16 歲前完全殘廢改按所繳保險費給付。",
+                "給付後契約效力終止。",
+            ],
+        ),
+        coverage_entry(
+            "accidental-first-degree-disability-benefit",
+            "意外第一級殘廢保險金",
+            None,
+            "face_amount",
+            "保險年齡達 16 歲後且領取滿期保險金前，意外事故致成附表二第一級殘廢之一，除完全殘廢給付外另給付保險金額。",
+            "保單條款第十五條，意外第一級殘廢保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="conditional_additive",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=["事故日起 180 日內；超過 180 日需證明因果關係。", "給付後契約效力終止。"],
+        ),
+        coverage_entry(
+            "mass-transit-accidental-first-degree-disability-benefit",
+            "搭乘大眾運輸工具意外第一級殘廢保險金",
+            None,
+            "face_amount",
+            "保險年齡達 16 歲後且領取滿期保險金前，搭乘大眾運輸工具意外致附表二第一級殘廢之一，除完全殘廢及意外第一級殘廢給付外另給付保險金額。",
+            "保單條款第十六條，搭乘大眾運輸工具意外第一級殘廢保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="conditional_additive",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=["事故日起 180 日內；超過 180 日需證明因果關係。", "需檢附該次搭乘大眾運輸工具之購票或搭乘證明。", "給付後契約效力終止。"],
+        ),
+        coverage_entry(
+            "accidental-disability-benefit",
+            "意外殘廢保險金",
+            None,
+            "face_amount",
+            "領取滿期保險金前因意外事故致成附表二第二級至第十一級殘廢之一，依保險金額乘以附表比例給付。",
+            "保單條款第十七條，意外殘廢保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            rate_min_percent=5,
+            rate_max_percent=90,
+            unit_key="face_amount",
+            conditions=[
+                "事故日起 180 日內；超過 180 日需證明因果關係。",
+                "同一意外事故致二項以上殘廢時合計給付最高以保險金額為限；同一手或同一足僅給付較嚴重項目。",
+                "每一保單年度因不同意外傷害事故累計給付最高以保險金額為限。",
+            ],
+        ),
+        coverage_entry(
+            "accident-hospital-daily-benefit",
+            "意外住院醫療保險金",
+            None,
+            "face_amount",
+            "因意外傷害事故 180 日內經醫師診斷必須住院治療，按意外住院給付日額乘以住院日數給付；日額為保險金額千分之一。",
+            "保單條款第四條及第十八條，意外住院醫療保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_day",
+            aggregation_rule="cumulative_cap",
+            rate_percent=0.1,
+            unit_key="face_amount",
+            conditions=["含入院日及出院日。", "每一保單年度給付以 90 天為限。", "每張保單最高累積給付限額為意外住院給付日額 500 倍。"],
+        ),
+        coverage_entry(
+            "fracture-unhospitalized-benefit",
+            "骨折未住院意外住院醫療保險金",
+            None,
+            "face_amount",
+            "因意外骨折未住院或住院未達附表四完全骨折日數時，未住院部分按完全骨折日數乘以意外住院給付日額二分之一給付。",
+            "保單條款第十八條及附表四，完全骨折日數表",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_day",
+            aggregation_rule="cumulative_cap",
+            rate_percent=0.05,
+            unit_key="face_amount",
+            conditions=["完全骨折日數依附表四，最高 60 天。", "不完全骨折按完全骨折日數二分之一；骨骼龜裂按四分之一。", "同時二項以上骨折時僅給付較高等級一項。"],
+        ),
+        coverage_entry(
+            "low-invasive-cancer-benefit",
+            "初次罹患低侵襲性癌症保險金",
+            None,
+            "benefit_base",
+            "生效日或復效日起第 91 日含以後初次罹患低侵襲性癌症，按保險金額、保單價值準備金、一點零六倍年繳保險費總額三者取最大值的 10% 給付。",
+            "保單條款第十九條，初次罹患低侵襲性癌症保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=10,
+            unit_key="greater_of_face_amount_policy_reserve_premium_total",
+            conditions=["癌症等待期間為 90 日；第 91 日含以後始符合本項給付。", "低侵襲性癌症包含第一期前列腺癌、原位癌、甲狀腺微乳頭狀癌及部分皮膚癌。"],
+        ),
+        coverage_entry(
+            "initial-cancer-benefit",
+            "初次罹患癌症保險金",
+            None,
+            "benefit_base",
+            "生效日或復效日起第 91 日含以後初次罹患低侵襲性癌症以外之其他癌症，按保險金額、保單價值準備金、一點零六倍年繳保險費總額三者取最大值給付。",
+            "保單條款第二十條，初次罹患癌症保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="greater_of_face_amount_policy_reserve_premium_total",
+            conditions=["癌症等待期間為 90 日；第 91 日含以後始符合本項給付。", "若已申領初次罹患低侵襲性癌症保險金，僅就扣除已申領金額後的剩餘範圍負給付責任。", "給付後契約效力終止。"],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "benefit_base",
+            "被保險人於繳費期滿後起算第十保單週年日仍生存且契約仍有效時，給付一點零六倍年繳保險費總額。",
+            "保單條款第二十一條，滿期保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=106,
+            unit_key="annual_premium_total",
+            conditions=["給付滿期保險金後，不再給付身故、意外身故、交通意外身故、完全殘廢、意外第一級殘廢、交通意外第一級殘廢及意外殘廢。", "意外住院醫療、初次罹患低侵襲性癌症及初次罹患癌症仍依條款條件繼續有效。"],
+        ),
+    ]
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單首頁所載保險金額；意外身故、交通意外、意外住院日額與骨折日額可依保險金額試算，身故、完全殘廢、癌症與滿期仍需搭配年繳保險費總額與保單價值準備金確認。",
+        "version_characteristics": {
+            "terms_revision": terms_revision,
+            "cancer_waiting_days": 90,
+            "annual_insured_amount_formula": "first_two_policy_years_premium_total_times_1_06_then_face_amount",
+            "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_and_premium_total_times_1_06",
+            "accidental_death_rate_percent": 100,
+            "mass_transit_accidental_death_rate_percent": 100,
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_and_premium_total_times_1_06",
+            "total_disability_terminology": "完全殘廢",
+            "accidental_first_degree_disability_rate_percent": 100,
+            "mass_transit_accidental_first_degree_disability_rate_percent": 100,
+            "accidental_disability_rate_min_percent": 5,
+            "accidental_disability_rate_max_percent": 90,
+            "accidental_disability_annual_cap_rate_percent": 100,
+            "accident_hospital_daily_rate_percent": 0.1,
+            "accident_hospital_policy_year_day_limit": 90,
+            "accident_hospital_lifetime_daily_limit_multiplier": 500,
+            "fracture_unhospitalized_daily_rate_percent": 0.05,
+            "fracture_table_max_days": 60,
+            "low_invasive_cancer_rate_percent": 10,
+            "initial_cancer_rate_percent": 100,
+            "initial_cancer_low_invasive_offset": True,
+            "maturity_benefit_formula": "annual_premium_total_times_1_06",
+            "maturity_after_paid_up_years": 10,
+            "premium_multiplier": 1.06,
+            "face_amount_required": True,
+            "policy_reserve_required": True,
+            "annual_premium_total_required": True,
+            "minor_death_or_disability_refund_rule": True,
+            "funeral_benefit_limit_rule": True,
+            "no_dividend": True,
+            "health_part_no_cash_value": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
+YUANTA_ZHENAI_BABY_RETURN_PRODUCT_ID = "261111M19GJB005"
+YUANTA_ZHENAI_BABY_RETURN_FILE_NAME = "261111M19GJB005-A.pdf"
+
+
+def is_yuanta_zhenai_baby_return_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    return (
+        str(document.get("product_id") or "") == YUANTA_ZHENAI_BABY_RETURN_PRODUCT_ID
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == YUANTA_ZHENAI_BABY_RETURN_FILE_NAME
+    )
+
+
+def parse_yuanta_zhenai_baby_return_life_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_yuanta_zhenai_baby_return_life_strict_source(document):
+        return None
+    if document.get("page_count") not in {None, 15}:
+        return None
+    if document.get("pages_parsed") not in {None, 15}:
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = [
+        "元大人壽珍愛貝比還本保險",
+        "97年06月12日金管保二字第09702091920號函核准",
+        "103年3月10日依103年2月5日金管保壽字第10302008450號函辦理公司更名",
+        "本契約各項保險金皆以保險金額為計算基礎",
+        "本契約所稱「被保險人」係指要保孕婦申請投保當時已懷孕",
+        "特定重大殘疾保險金的給付",
+        "按保險金額的百分之五十",
+        "每一類給付以一次為限",
+        "給付累計最高以保險金額為限",
+        "腦性麻痺保險金的給付",
+        "按保險金額的百分之二十給付",
+        "重大燒燙傷保險金的給付",
+        "自意外傷害事故發生之日起一百八十日以內",
+        "本契約所稱「重大燒燙傷」係指燒燙傷面積達全身百分之二十以上",
+        "生存保險金給付日",
+        "第七保單週年日至第十二保單週年日",
+        "按當時保險金額計算所得之年繳保險費",
+        "被保險人於契約有效期間內全部死亡時",
+        "無息退還以身故當時的保險金額計算所繳保費",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+
+    article_starts = [
+        text.find("第十一條", 7000),
+        text.find("第十二條", 7000),
+        text.find("第十三條", 7000),
+        text.find("第十四條", 7000),
+        text.find("第十五條", 7000),
+        text.find("第十六條", 7000),
+    ]
+    if any(start < 0 for start in article_starts) or article_starts != sorted(
+        article_starts
+    ):
+        return None
+    major_burn_clause = text[article_starts[2] : article_starts[3]]
+    if (
+        "之二十給付" not in major_burn_clause
+        or "本公司按保險金額的百分" not in major_burn_clause
+    ):
+        return None
+
+    entries = [
+        coverage_entry(
+            "specific-major-disability-benefit",
+            "特定重大殘疾保險金",
+            None,
+            "face_amount",
+            "經診斷確定罹患條款第二條第六項十八類特定重大殘疾之一，按保險金額 50% 給付。",
+            "保單條款第十一條，特定重大殘疾保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            rate_percent=50,
+            unit_key="face_amount",
+            conditions=[
+                "每一類給付以一次為限。",
+                "同一被保險人二類以上累計最高以保險金額為限。",
+                "被保險人不只一人時，每人給付總額最高各以保險金額為限。",
+            ],
+        ),
+        coverage_entry(
+            "cerebral-palsy-benefit",
+            "腦性麻痺保險金",
+            None,
+            "face_amount",
+            "經診斷確定罹患條款第二條第七項腦性麻痺，按保險金額 20% 給付。",
+            "保單條款第十二條，腦性麻痺保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="lifetime",
+            aggregation_rule="cumulative_cap",
+            rate_percent=20,
+            unit_key="face_amount",
+            conditions=[
+                "給付以一次為限。",
+                "被保險人不只一人時，每人給付總額各以保險金額 20% 為限。",
+            ],
+        ),
+        coverage_entry(
+            "major-burn-benefit",
+            "重大燒燙傷保險金",
+            None,
+            "face_amount",
+            "有效期間內因意外傷害事故，事故日起 180 日內致成重大燒燙傷，按保險金額 20% 給付。",
+            "保單條款第十三條及附表一，重大燒燙傷保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_injury",
+            aggregation_rule="separate",
+            rate_percent=20,
+            unit_key="face_amount",
+            conditions=[
+                "重大燒燙傷為燒燙傷面積達全身 20% 以上，或顏面燒傷合併五官功能障礙者。",
+                "需因非疾病引起之外來突發意外傷害事故。",
+                "條款第十六條列有故意、犯罪、酒駕、戰爭、核能及特定競賽表演等除外責任。",
+            ],
+        ),
+        coverage_entry(
+            "survival-benefit",
+            "生存保險金",
+            None,
+            "policy_recorded_limit",
+            "第七至第十二保單週年日仍生存且契約有效時，給付按當時保險金額計算所得之年繳保險費。",
+            "保單條款第二條及第十四條，生存保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="annual_premium_by_current_face_amount",
+            conditions=[
+                "生存保險金給付日為第 7 至第 12 保單週年日之每一保單週年日。",
+                "被保險人不只一人時，其中一人仍生存且契約有效即給付，且給付以一人為限。",
+                "實際金額需依保單當時保險金額及年繳保險費資料確認。",
+            ],
+        ),
+        coverage_entry(
+            "all-insured-death-premium-refund",
+            "全部被保險人死亡退還所繳保費",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內全部死亡時，無息退還以身故當時保險金額計算之所繳保費予要保人。",
+            "保單條款第廿五條，契約終止及退還所繳保險費",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="paid_premium_by_death_face_amount",
+            conditions=[
+                "要保人應檢具被保險人死亡證明書並以書面通知終止契約。",
+                "實際金額需依身故當時保險金額計算所繳保費。",
+            ],
+        ),
+    ]
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單首頁所載保險金額；特定重大殘疾、腦性麻痺及重大燒燙傷可依比例換算，生存保險金與全部被保險人死亡退還所繳保費需搭配保單年繳保費或已繳保費資料確認。",
+        "version_characteristics": {
+            "product_family": "yuanta-zhenai-baby-return-life",
+            "terms_revision": "fifth-partial-revision",
+            "approval_filing_number": "金管保二字第09702091920號",
+            "company_name_change_filing_number": "金管保壽字第10302008450號",
+            "face_amount_required": True,
+            "multiple_insured_supported": True,
+            "unborn_child_policy": True,
+            "insurance_benefit_basis": "policy_face_amount",
+            "specific_major_disability_category_count": 18,
+            "specific_major_disability_rate_percent": 50,
+            "specific_major_disability_per_category_limit_times": 1,
+            "specific_major_disability_cumulative_cap_percent": 100,
+            "cerebral_palsy_rate_percent": 20,
+            "cerebral_palsy_lifetime_limit_times": 1,
+            "major_burn_rate_percent": 20,
+            "accident_claim_days": 180,
+            "major_burn_definition_body_surface_percent": 20,
+            "survival_benefit_start_policy_anniversary": 7,
+            "survival_benefit_end_policy_anniversary": 12,
+            "survival_benefit_payment_count": 6,
+            "survival_benefit_formula": "annual_premium_calculated_by_current_face_amount",
+            "survival_benefit_single_survivor_limit": True,
+            "death_refund_formula": "paid_premium_calculated_by_face_amount_at_death",
+            "fetal_condition_known_exclusion": True,
+            "non_participating_policy": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
+YUANTA_YUANMAN225_PRODUCT_ID = "261121MA1AYE022A11Z10000002"
+YUANTA_YUANMAN225_FILE_NAME = f"{YUANTA_YUANMAN225_PRODUCT_ID}-A.pdf"
+
+
+def is_yuanta_yuanman225_interest_endowment_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    return (
+        str(document.get("product_id") or "") == YUANTA_YUANMAN225_PRODUCT_ID
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == YUANTA_YUANMAN225_FILE_NAME
+    )
+
+
+def parse_yuanta_yuanman225_interest_endowment_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_yuanta_yuanman225_interest_endowment_strict_source(document):
+        return None
+    if document.get("page_count") not in {None, 3}:
+        return None
+    if document.get("pages_parsed") not in {None, 3}:
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = [
+        "元大人壽元滿225利率變動型養老保險",
+        "104年5月18日元壽字第10400661號函備查",
+        "104年8月4日依104年6月24日金管保壽字第10402049830號函修正",
+        "增值回饋分享金",
+        "身故保險金或喪葬費用保險金",
+        "完全殘廢保險金",
+        "滿期保險金",
+        "本契約名詞定義如下",
+        "保險期間」為二十五年",
+        "預定利率(1.5%)",
+        "給付金額為下列二款計算方式所得數額之最大者",
+        "年繳保險費總額」的一點零一倍",
+        "本公司按第二十五保單週年日之當年度保險金額的一點六倍給付",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+
+    entries = [
+        coverage_entry(
+            "value-sharing-paid-up-addition",
+            "增值回饋分享金／增額繳清保險金額",
+            None,
+            "policy_recorded_limit",
+            "每一保單週年日依宣告利率與預定利率差額，按保單價值準備金計算增值回饋分享金，並以躉繳純保險費方式換算增額繳清保險金額。",
+            "保單條款第二條及第十條，增值回饋分享金與增額繳清保險金額",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="annual",
+            aggregation_rule="cumulative_cap",
+            unit_key="value_sharing_paid_up_addition",
+            conditions=[
+                "宣告利率低於預定利率時，以預定利率為準，不給付差額型增值回饋分享金。",
+                "被保險人保險年齡到達 16 歲以前，增值回饋分享金先抵繳保險費；繳費期滿後則依宣告利率逐年複利累積，至到達 16 歲時一次換算增額繳清保險金額。",
+                "契約終止或到達 16 歲前發生身故、完全殘廢時，依條款退還累積儲存生息金額。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "有效期間內身故時，給付身故當時保單價值準備金與年繳保險費總額一點零一倍兩者較大者。",
+            "保單條款第十一條，身故保險金或喪葬費用保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            unit_key="greater_of_policy_reserve_premium_total_1_01",
+            conditions=[
+                "給付金額取身故當時保單價值準備金，或年繳保險費總額的 1.01 倍之較大者。",
+                "實際年齡未滿 15 足歲身故時，無息退還所繳保險費；實際年齡滿 15 足歲且保險年齡未滿 16 歲身故時，按所繳保險費給付。",
+                "受監護宣告尚未撤銷者之喪葬費用保險金，依條款所列主管機關額度上限辦理。",
+                "給付或退還後契約效力即行終止。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "有效期間內致成附表一完全殘廢項別之一時，給付診斷確定當時保單價值準備金與年繳保險費總額一點零一倍兩者較大者。",
+            "保單條款第十二條，完全殘廢保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            unit_key="greater_of_policy_reserve_premium_total_1_01",
+            conditions=[
+                "給付金額取診斷確定當時保單價值準備金，或年繳保險費總額的 1.01 倍之較大者。",
+                "保險年齡未滿 16 歲致成完全殘廢時，按所繳保險費給付。",
+                "同時致成附表一二項以上完全殘廢程度者，只給付一項完全殘廢保險金。",
+                "給付後契約效力即行終止。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於第二十五保單週年日仍生存且契約有效時，按該保單週年日之當年度保險金額一點六倍給付。",
+            "保單條款第十三條，滿期保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=160,
+            unit_key="annual_insured_amount",
+            conditions=[
+                "當年度保險金額為保險金額加計累計增加保險金額；實際金額須依保單首頁、契約變更與第十條累計增額確認。",
+                "給付後契約效力即行終止。",
+            ],
+        ),
+    ]
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "當年度保險金額",
+        "selection_guidance": "請輸入保單目前適用之當年度保險金額；身故與完全殘廢金額需搭配保單價值準備金、年繳保險費總額與所繳保費資料確認，滿期保險金按第 25 保單週年日當年度保險金額 1.6 倍計算。",
+        "version_characteristics": {
+            "product_family": "yuanta-yuanman225-interest-endowment",
+            "terms_revision": "second-partial-revision",
+            "filing_date": "104.05.18",
+            "filing_number": "元壽字第10400661號",
+            "regulatory_revision_date": "104.08.04",
+            "regulatory_revision_number": "金管保壽字第10402049830號",
+            "policy_period_years": 25,
+            "expected_interest_rate_percent": 1.5,
+            "declared_rate_frequency": "monthly",
+            "value_sharing_bonus_available": True,
+            "value_sharing_formula": "positive_difference_between_declared_rate_and_expected_rate_times_policy_reserve",
+            "annual_insured_amount_formula": "face_amount_plus_cumulative_paid_up_addition",
+            "death_benefit_formula": "greater_of_policy_reserve_or_annual_premium_total_times_1_01",
+            "total_disability_benefit_formula": "greater_of_policy_reserve_or_annual_premium_total_times_1_01",
+            "maturity_benefit_formula": "annual_insured_amount_times_1_6_on_25th_policy_anniversary",
+            "maturity_policy_anniversary": 25,
+            "maturity_multiplier": 1.6,
+            "premium_multiplier": 1.01,
+            "policy_reserve_required": True,
+            "annual_premium_total_required": True,
+            "accumulated_paid_up_additions_required": True,
+            "stored_interest_before_age_16": True,
+            "minor_death_refund_rule": True,
+            "funeral_benefit_limit_rule": True,
+            "full_disability_table_item_count": 7,
+            "non_participating_policy": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
+YUANTA_MEINIANDUOLI_USD_PRODUCT_VERSIONS = {
+    "261121MA1AFU023B11Z10000000": {
+        "terms_revision": "original",
+        "product_name": "元大人壽美年多利美元利率變動型增額還本終身保險",
+        "disability_term": "完全殘廢",
+        "page_count": 5,
+        "filing_date": "106.06.15",
+        "filing_number": "元壽字第1060001248號",
+    },
+    "261121MA1AFU023B11Z10000001": {
+        "terms_revision": "first-partial-revision",
+        "product_name": "元大人壽美年多利美元利率變動型增額還本終身保險(第1次部分變更)",
+        "disability_term": "完全失能",
+        "page_count": 5,
+    },
+    "261121MA1AFU023B11Z10000002": {
+        "terms_revision": "second-partial-revision",
+        "product_name": "元大人壽美年多利美元利率變動型增額還本終身保險(第2次部分變更)",
+        "disability_term": "完全失能",
+        "page_count": 5,
+    },
+    "261121MA1AFU023B11Z10000003": {
+        "terms_revision": "third-partial-revision",
+        "product_name": "元大人壽美年多利美元利率變動型增額還本終身保險(第3次部分變更)",
+        "disability_term": "完全失能",
+        "page_count": 5,
+        "benefit_amount_definition_in_article_2": True,
+    },
+    "261121MA1AFU023B11Z10000004": {
+        "terms_revision": "fourth-partial-revision",
+        "product_name": "元大人壽美年多利美元利率變動型增額還本終身保險(第4次部分變更)",
+        "disability_term": "完全失能",
+        "page_count": 6,
+        "benefit_amount_definition_in_article_2": True,
+    },
+}
+
+
+def is_yuanta_meinianduoli_usd_incremental_return_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in YUANTA_MEINIANDUOLI_USD_PRODUCT_VERSIONS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def yuanta_meinianduoli_usd_incremental_return_entries(
+    disability_term: str,
+) -> list[dict[str, Any]]:
+    disability_name = f"{disability_term}保險金"
+    return [
+        coverage_entry(
+            "value-sharing-bonus",
+            "增值回饋分享金",
+            None,
+            "policy_recorded_limit",
+            "每一保單年度屆滿時，按宣告利率超過預定利率 2.5% 的差值乘以期末保單價值準備金（含生存保險金）計算；宣告利率低於預定利率時以預定利率為準。",
+            "第二條、第十三條",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="annual",
+            aggregation_rule="separate",
+            unit_key="declared_rate_excess_times_terminal_policy_reserve",
+            conditions=[
+                "繳費期間內僅得選擇購買增額繳清保險金額或抵繳保險費。",
+                "繳費期滿後可依條款選擇現金給付、儲存生息或購買增額繳清保險金額。",
+                "選擇現金給付且低於 100 美元時，條款約定改依儲存生息方式辦理。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "繳費期間內取「年繳保險費總額」1.06 倍扣除已領取生存保險金總額與保單價值準備金二者較大值；繳費期滿後再納入「當年度保險金額」取三者較大值。",
+            "第十四條",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            multiplier=1.06,
+            unit_key="greater_of_annual_insured_amount_premium_total_1_06_policy_reserve",
+            conditions=[
+                "被保險人保險年齡未達十六歲身故時，依條款改按所繳保險費無息退還。",
+                "喪葬費用保險金受遺產稅喪葬費用扣除額半數及指定美元匯率換算限制。",
+                "給付身故保險金、喪葬費用保險金或無息退還所繳保險費後契約終止。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            disability_name,
+            None,
+            "policy_recorded_limit",
+            f"{disability_term}時，繳費期間內取「年繳保險費總額」1.06 倍扣除已領取生存保險金總額與保單價值準備金二者較大值；繳費期滿後再納入「當年度保險金額」取三者較大值。",
+            "第十五條",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            multiplier=1.06,
+            unit_key="greater_of_annual_insured_amount_premium_total_1_06_policy_reserve",
+            conditions=[
+                f"被保險人保險年齡達十六歲前致成{disability_term}時，依條款改按所繳保險費給付。",
+                f"給付「{disability_name}」後契約終止。",
+            ],
+        ),
+        coverage_entry(
+            "survival-benefit-during-payment",
+            "生存保險金（繳費期間）",
+            None,
+            "policy_recorded_limit",
+            "繳費期間內（含繳費期間屆滿保單週年日），按表定年繳保險費 1.8% 乘以已經過保單年度數，再分別乘以保險金額與累計增加保險金額每萬元單位後加總。",
+            "第十六條",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="annual",
+            aggregation_rule="separate",
+            rate_percent=1.8,
+            unit_key="standard_annual_premium_per_10000_times_elapsed_policy_years",
+            conditions=[
+                "被保險人於每一保單週年日仍生存時給付。",
+                "給付至保險年齡達一百一十一歲之保單週年日止。",
+            ],
+        ),
+        coverage_entry(
+            "survival-benefit-after-paid-up",
+            "生存保險金（繳費期滿後）",
+            None,
+            "policy_recorded_limit",
+            "繳費期滿後，年給付型按保險金額與累計增加保險金額分別乘以 15% 後加總；月給付型按年給付金額依預定利率換算為月給付金額，每一保單年度給付十二次。",
+            "第十六條",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="annual",
+            aggregation_rule="separate",
+            rate_percent=15,
+            unit_key="face_amount_plus_accumulated_paid_up_additions",
+            conditions=[
+                "要保人得選擇年給付型或月給付型，未選擇者依年給付型辦理。",
+                "月給付型於祝壽保險金給付契約終止後，仍給付至該保單年度第十二次月給付為止。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡達一百一十一歲且仍生存時，按當年度保險金額給付祝壽保險金。",
+            "第十七條",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                "給付祝壽保險金後契約終止。",
+                "已選擇月給付型生存保險金者，條款另約定該保單年度尚未給付的月給付仍繼續給付。",
+            ],
+        ),
+    ]
+
+
+def parse_yuanta_meinianduoli_usd_incremental_return_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_yuanta_meinianduoli_usd_incremental_return_whole_life_strict_source(
+        document
+    ):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    version = YUANTA_MEINIANDUOLI_USD_PRODUCT_VERSIONS[product_id]
+    expected_page_count = version["page_count"]
+    if document.get("page_count") not in {None, expected_page_count}:
+        return None
+    if document.get("pages_parsed") not in {None, expected_page_count}:
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    disability_term = str(version["disability_term"])
+    required_signals = [
+        "元大人壽美年多利美元利率變動型增額還本終身保險",
+        "增值回饋分享金",
+        "宣告利率",
+        "預定利率 (2.5%)",
+        "當年度保險金額",
+        "年繳保險費總額",
+        "表定年繳保險費",
+        "保單價值準備金",
+        "身故保險金",
+        f"{disability_term}保險金",
+        "生存保險金",
+        "祝壽保險金",
+        "百分之一點八",
+        "百分之十五",
+        "一點零六",
+        "一百一十一歲",
+        "指定美元匯率",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+    if version.get("benefit_amount_definition_in_article_2"):
+        if any(
+            compact_table_text(signal) not in dense_text
+            for signal in ["身故保險金額", f"{disability_term}保險金額"]
+        ):
+            return None
+
+    disability_category = "殘廢" if disability_term == "完全殘廢" else "失能"
+    characteristics = {
+        "product_family": "yuanta-meinianduoli-usd-incremental-return-whole-life",
+        "terms_revision": version["terms_revision"],
+        "currency": "USD",
+        "expected_interest_rate_percent": 2.5,
+        "declared_rate_frequency": "monthly",
+        "value_sharing_bonus_available": True,
+        "value_sharing_formula": "positive_difference_between_declared_rate_and_expected_rate_times_terminal_policy_reserve_including_survival_benefit",
+        "annual_insured_amount_formula": "face_amount_plus_accumulated_paid_up_additions_times_policy_year_coefficient",
+        "death_benefit_formula": "during_payment_greater_of_premium_total_times_1_06_minus_received_survival_or_policy_reserve_after_paid_up_add_annual_insured_amount",
+        "total_disability_benefit_formula": "during_payment_greater_of_premium_total_times_1_06_minus_received_survival_or_policy_reserve_after_paid_up_add_annual_insured_amount",
+        "survival_benefit_during_payment_rate_percent": 1.8,
+        "survival_benefit_after_paid_up_annual_rate_percent": 15,
+        "monthly_survival_benefit_available": True,
+        "maturity_age": 111,
+        "maturity_benefit_formula": "annual_insured_amount_at_age_111",
+        "premium_multiplier": 1.06,
+        "policy_face_amount_required": True,
+        "accumulated_paid_up_additions_required": True,
+        "annual_insured_amount_required": True,
+        "standard_annual_premium_required": True,
+        "annual_premium_total_required": True,
+        "policy_reserve_required": True,
+        "received_survival_benefit_total_required": True,
+        "foreign_currency_policy": True,
+        "exchange_rate_risk_disclosed": True,
+        "no_contract_conversion_from_twd": True,
+        "minor_death_refund_rule": True,
+        "funeral_benefit_limit_rule": True,
+        "disability_term": disability_category,
+        "non_participating_policy": True,
+    }
+    if version.get("filing_date"):
+        characteristics["filing_date"] = version["filing_date"]
+    if version.get("filing_number"):
+        characteristics["filing_number"] = version["filing_number"]
+    if version.get("benefit_amount_definition_in_article_2"):
+        characteristics["benefit_amount_definition_in_article_2"] = True
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單上的保險金額；本保單的身故、完全失能/完全殘廢、生存與祝壽給付還需依保單年度、累計增加保險金額、表定年繳保險費、保單價值準備金與已領取生存保險金總額判定。",
+        "version_characteristics": characteristics,
+        "coverage_entries": yuanta_meinianduoli_usd_incremental_return_entries(
+            disability_term
+        ),
+    }
+
+
+INVESTMENT_LIFE_GUARANTEED_FACE_AMOUNT_PRODUCT_BATCHES = {
+    "tii-life-011": (
+        "202131MV1A05B23A11Z90000000",
+        "202131MV1A06B23B11Z90000000",
+        "202131MV1A34923B11C90000010",
+        "202131MV1A34923B11C90000011",
+        "202131MV1A34923B11C90000012",
+        "202131MV1A34923B11C90000013",
+        "202131MV1A34923B11C90000014",
+        "202131MV1A38623A11C90000007",
+        "202131MV1A38623A11C90000008",
+        "202131MV1A38623A11C90000009",
+        "202131MV1A38623A11C90000010",
+        "202131MV1A38623A11C90000011",
+        "202131MV1A42423Z11C90000007",
+        "202131MV1A42423Z11C90000008",
+        "202131MV1A42423Z11C90000009",
+        "202131MV1A42623A11C90000006",
+        "202131MV1A42623A11C90000007",
+        "202131MV1A42623A11C90000008",
+        "202131MV1A42623A11C90000009",
+        "202131MV1A42623A11C90000010",
+        "202131MV1A51023A11C90000007",
+        "202131MV1A51023A11C90000008",
+        "202131MV1A51023A11C90000009",
+        "202131MV1A51023A11C90000010",
+        "202131MV1A51023A11C90000011",
+        "202131MV1A51023A11C90000012",
+        "202131MV1A51023A11C90000013",
+        "202131MV1A51023A11C90000014",
+        "202131MV1A57023A11C90000000",
+        "202131MV1A57023A11C90000001",
+        "202131MV1A38A23B11Z90000000",
+        "202131MV1A38A23B11Z90000001",
+        "202131MV1A39A23A11Z90000000",
+        "202131MV1A39A23A11Z90000001",
+        "202131MV1A58A23A11Z90000000",
+        "202131MV1A58A23A11Z90000001",
+        "202131MV1A58A23A11Z90000002",
+        "202131MV1A59A23B11Z90000000",
+        "202131MV1A59A23B11Z90000001",
+        "202131MV1A59A23B11Z90000002",
+        "202131MV1A62923J11Z90000001",
+        "202131MV1A62923J11Z90000002",
+        "202131MV1A62923J11Z90000003",
+        "202131MV1A62923J11Z90000004",
+        "202131MV1A66823Z11Z90000001",
+        "202131MV1A66823Z11Z90000002",
+        "202131MV1A66823Z11Z90000003",
+        "202131MV1A66823Z11Z90000004",
+        "202131MV1A66823Z11Z90000005",
+        "202131MV1A66823Z11Z90000006",
+        "202131MV1A66823Z11Z90000007",
+        "202131MV1A66823Z11Z90000008",
+        "202131MV1A68323A11Z90000000",
+        "202131MV1A68323A11Z90000001",
+        "202131MV1A68323A11Z90000002",
+        "202131MV1A68323A11Z90000003",
+        "202131MV1A68323A11Z90000004",
+        "202131MV1A68323A11Z90000005",
+        "202131MV1A68323A11Z90000006",
+        "202131MV1A68323A11Z90000007",
+        "202131MV1A68323A11Z90000008",
+        "202131MV1A68323A11Z90000009",
+        "202131MV1A68323A11Z90000010",
+        "202131MV1A68423Z11Z90000000",
+        "202131MV1A68423Z11Z90000001",
+        "202131MV1A68423Z11Z90000002",
+        "202131MV1A68423Z11Z90000003",
+        "202131MV1A68423Z11Z90000004",
+        "202131MV1A68423Z11Z90000005",
+        "202131MV1A68423Z11Z90000006",
+        "202131MV1A68423Z11Z90000007",
+        "202131MV1A68423Z11Z90000008",
+        "202131MV1A68423Z11Z90000009",
+        "202131MV1A68423Z11Z90000010",
+        "202131MV1A69823A11C90000000",
+        "202131MV1A69823A11C90000001",
+        "202131MV1A69823A11C90000002",
+        "202131MV1A69823A11C90000003",
+        "202131MV1A69823A11C90000004",
+        "202131MV1A69823A11C90000005",
+        "202131MV1A69823A11C90000006",
+        "202131MV1A69823A11C90000007",
+        "202131MV1A69823A11C90000008",
+        "202131MV1A72823A11Z90000000",
+        "202131MV1A72823A11Z90000001",
+        "202131MV1A72823A11Z90000002",
+        "202131MV1A72823A11Z90000003",
+        "202131MV1A72823A11Z90000004",
+        "202131MV1A72823A11Z90000005",
+        "202131MV1A72823A11Z90000006",
+        "202131MV1A73323A11C90000000",
+        "202131MV1A73323A11C90000001",
+        "202131MV1A73323A11C90000002",
+        "202131MV1A73323A11C90000003",
+        "202131MV1A73323A11C90000004",
+        "202131MV1A73523Z11C90000000",
+        "202131MV1A73523Z11C90000001",
+        "202131MV1A73523Z11C90000002",
+        "202131MV1A73523Z11C90000003",
+        "202131MV1A73523Z11C90000004",
+        "202131MV1A75823A11Z90000000",
+        "202131MV1A75823A11Z90000001",
+        "202131MV1A75823A11Z90000002",
+        "202131MV1A75823A11Z90000003",
+        "202131MV1A75823A11Z90000004",
+        "202131MV1A75823A11Z90000005",
+        "202131MV1A75823A11Z90000006",
+        "202131MV1A75823A11Z90000007",
+        "202131MV1A75823A11Z90000008",
+        "202131MV1A75823A11Z90000009",
+        "202131MV1A75823A11Z90000010",
+        "202131MV1A75823A11Z90000011",
+        "202131MV1A79923A11Z90000000",
+        "202131MV1A79923A11Z90000001",
+        "202131MV1A79923A11Z90000002",
+        "202131MV1A79923A11Z90000003",
+        "202131MV1A79923A11Z90000004",
+        "202131MV1A79923A11Z90000005",
+        "202131MV1A79923A11Z90000006",
+        "202131MV1A79923A11Z90000007",
+        "202131MV1A79923A11Z90000008",
+        "202131MV1A79923A11Z90000009",
+        "202131MV1A80123B11Z90000000",
+        "202131MV1A80123B11Z90000001",
+        "202131MV1A80123B11Z90000002",
+        "202131MV1A80123B11Z90000003",
+        "202131MV1A80123B11Z90000004",
+        "202131MV1A80123B11Z90000005",
+        "202131MV1A80123B11Z90000006",
+        "202131MV1A80123B11Z90000007",
+        "202131MV1A80123B11Z90000008",
+        "202131MV1A80123B11Z90000009",
+        "202131MV1A84A23A11Z90000000",
+        "202131MV1A84A23A11Z90000001",
+        "202131MV1A85A23B11Z90000000",
+        "202131MV1A85A23B11Z90000001",
+        "202131MV1A90623A11Z90000000",
+        "202131MV1A90623A11Z90000001",
+        "202131MV1A90623A11Z90000002",
+        "202131MV1A90623A11Z90000003",
+        "202131MV1A90623A11Z90000004",
+        "202131MV1A90723B11Z90000000",
+        "202131MV1A90723B11Z90000001",
+        "202131MV1A90723B11Z90000002",
+        "202131MV1A90723B11Z90000003",
+        "202131MV1A90723B11Z90000004",
+        "202131MV1A93223A11Z90000000",
+        "202131MV1A93223A11Z90000001",
+        "202131MV1A93223A11Z90000002",
+        "202131MV1A93223A11Z90000003",
+        "202131MV1A93323B11Z90000000",
+        "202131MV1A93323B11Z90000001",
+        "202131MV1A93323B11Z90000002",
+        "202131MV1A93323B11Z90000003",
+        "202131MV1A94A23A11Z90000000",
+        "202131MV1A95A23Z11Z90000000",
+        "202131MV1A96323B11Z90000000",
+        "202131MV1A96323B11Z90000001",
+        "202131MV1A96323B11Z90000002",
+        "202131MV1A96323B11Z90000003",
+        "202131MV1A98323A11Z90000000",
+        "202131MV1A98423B11Z90000000",
+        "202131MV1AUFL23A11C90000019",
+        "202131MV1AUFL23A11C90000020",
+    ),
+    "tii-life-017": (
+        "203131MU1A00123A11Z90000042",
+        "203131MU1A00123A11Z90000043",
+        "203131MV1A00123A11Z90000036",
+        "203131MV1A00123A11Z90000037",
+        "203131MV1A00123A11Z90000038",
+        "203131MV1A00123A11Z90000039",
+        "203131MV1A00123A11Z90000040",
+        "203131MV1A00123A11Z90000041",
+        "203131MV1A00123A11Z90000042",
+        "203131MV1A00123A11Z90000043",
+        "203131MV1A00123A11Z90000044",
+        "203131MV1A00123A11Z90000045",
+        "203131MV1A00123A11Z90000046",
+        "203131MV1A00323B11Z90000019",
+        "203131MV1A00323B11Z90000020",
+        "203131MV1A00323B11Z90000021",
+        "203131MV1A00323B11Z90000022",
+        "203131MV1A00323B11Z90000023",
+        "203131MV1A00323B11Z90000024",
+        "203131MV1A00323B11Z90000025",
+        "203131MV1A00323B11Z90000026",
+        "203131MV1A00323B11Z90000027",
+        "203131MV1A00823J11C90000008",
+        "203131MV1A00823J11C90000009",
+        "203131MV1A00823J11C90000010",
+        "203131MV1A00823J11C90000011",
+        "203131MV1A00823J11C90000012",
+        "203131MV1A00823J11C90000013",
+        "203131MV1A01023A11C90000008",
+        "203131MV1A01023A11C90000009",
+        "203131MV1A01023A11C90000010",
+        "203131MV1A01023A11C90000011",
+        "203131MV1A01023A11C90000012",
+        "203131MV1A01023A11C90000013",
+        "203131MV1A01023A11C90000014",
+        "203131MV1A01023A11C90000015",
+        "203131MV1A01023A11C90000016",
+        "203131MV1A01523Z11Z90000005",
+        "203131MV1A01523Z11Z90000006",
+        "203131MV1A01523Z11Z90000007",
+        "203131MV1A01523Z11Z90000008",
+        "203131MV1A01523Z11Z90000009",
+        "203131MV1A01523Z11Z90000010",
+        "203131MV1A01523Z11Z90000011",
+        "203131MV1A01523Z11Z90000012",
+        "203131MV1A01623A11Z90000004",
+        "203131MV1A01623A11Z90000005",
+        "203131MV1A01623A11Z90000006",
+        "203131MV1A01623A11Z90000007",
+        "203131MV1A01623A11Z90000008",
+        "203131MV1A01623A11Z90000009",
+        "203131MV1A01623A11Z90000010",
+        "203131MV1A01623A11Z90000011",
+        "203131MV1A01623A11Z90000012",
+        "203131MV1A01723B11Z90000004",
+        "203131MV1A01723B11Z90000005",
+        "203131MV1A01723B11Z90000006",
+        "203131MV1A01723B11Z90000007",
+        "203131MV1A01723B11Z90000008",
+        "203131MV1A01723B11Z90000009",
+        "203131MV1A01723B11Z90000010",
+        "203131MV1A01723B11Z90000011",
+        "203131MV1A01723B11Z90000012",
+        "203131MV1A02123A11Z90000003",
+        "203131MV1A02123A11Z90000004",
+        "203131MV1A02223Z11Z90000003",
+        "203131MV1A02223Z11Z90000004",
+        "203131MV1A02523A11Z90000004",
+        "203131MV1A02523A11Z90000005",
+        "203131MV1A02623Z11Z90000004",
+        "203131MV1A02623Z11Z90000005",
+        "203131MV1A02823B11C90000001",
+        "203131MV1A02823B11C90000002",
+        "203131MV1A02823B11C90000003",
+        "203131MV1A02823B11C90000004",
+        "203131MV1A02823B11C90000005",
+        "203131MV1A02823B11C90000006",
+        "203131MV1A02823Z11C90000007",
+        "203131MV1A02823Z11C90000008",
+        "203131MV1A02823Z11C90000009",
+        "203131MV1A02923A11Z90000000",
+        "203131MV1A02923A11Z90000001",
+        "203131MV1A02923A11Z90000002",
+        "203131MV1A02923A11Z90000003",
+        "203131MV1A02923A11Z90000004",
+        "203131MV1A02923A11Z90000005",
+        "203131MV1A03023A11Z90000000",
+        "203131MV1A03023A11Z90000001",
+        "203131MV1A03023A11Z90000002",
+        "203131MV1A03023A11Z90000003",
+        "203131MV1A03023A11Z90000004",
+        "203131MV1A03023A11Z90000005",
+        "203131MV1A03123A11Z90000000",
+        "203131MV1A03123A11Z90000001",
+        "203131MV1A03123A11Z90000002",
+        "203131MV1A03223B11Z90000000",
+        "203131MV1A03223Z11Z90000001",
+        "203131MV1A03223Z11Z90000002",
+        "203131MV1A03223Z11Z90000003",
+        "203131MV1A03323A11Z90000000",
+        "203131MV1A03423Z11Z90000000",
+        "203131MV1A03523A11Z90000000",
+        "203131MV1A03523A11Z90000001",
+        "203131MV1A03623B11Z90000000",
+        "203131MV1A03623B11Z90000001",
+        "203131MV1A03723A11C90000000",
+        "203131MV1A03823B11C90000000",
+        "203131MV1A03923A11C90000000",
+        "203131MV1A04023B11C90000000",
+        "203131MV1A04123A11Z90000000",
+        "203131MV1A04223Z11Z90000000",
+        "203131MV1A04323A11C90000000",
+        "203131MV1A04423Z11C90000000",
+        "203131MU1A00123A11Z90000037",
+        "203131MU1A00123A11Z90000038",
+        "203131MU1A00123A11Z90000039",
+        "203131MU1A00123A11Z90000040",
+        "203131MV1A00323B11Z90000017",
+        "203131MV1A00323B11Z90000018",
+        "203131MV1A00623B11C90000010",
+        "203131MV1A00623B11C90000011",
+        "203131MV1A00823J11C90000006",
+        "203131MV1A00823J11C90000007",
+        "203131MV1A01023A11C90000006",
+        "203131MV1A01023A11C90000007",
+        "203131MV1A01323B11C90000004",
+        "203131MV1A01323B11C90000005",
+        "203131MV1A01523Z11Z90000002",
+        "203131MV1A01523Z11Z90000003",
+        "203131MV1A01523Z11Z90000004",
+        "203131MV1A01623A11Z90000002",
+        "203131MV1A01623A11Z90000003",
+        "203131MV1A01723B11Z90000002",
+        "203131MV1A01723B11Z90000003",
+        "203131MV1A01823B11C90000002",
+        "203131MV1A01823B11C90000003",
+        "203131MV1A01923A11Z90000001",
+        "203131MV1A01923A11Z90000002",
+        "203131MV1A02023Z11Z90000001",
+        "203131MV1A02023Z11Z90000002",
+        "203131MV1A02123A11Z90000000",
+        "203131MV1A02123A11Z90000001",
+        "203131MV1A02223Z11Z90000000",
+        "203131MV1A02223Z11Z90000001",
+        "203131MV1A02523A11Z90000000",
+        "203131MV1A02523A11Z90000001",
+        "203131MV1A02523A11Z90000002",
+        "203131MV1A02623Z11Z90000000",
+        "203131MV1A02623Z11Z90000001",
+        "203131MV1A02623Z11Z90000002",
+        "203131MV1A02823B11C90000000",
+        "203131MU1A00123A11Z90000041",
+        "203131MV1A02123A11Z90000002",
+        "203131MV1A02223Z11Z90000002",
+        "203131MV1A02323A11Z90000000",
+        "203131MV1A02323A11Z90000001",
+        "203131MV1A02323A11Z90000002",
+        "203131MV1A02323A11Z90000003",
+        "203131MV1A02323A11Z90000004",
+        "203131MV1A02323A11Z90000005",
+        "203131MV1A02423B11Z90000000",
+        "203131MV1A02423B11Z90000001",
+        "203131MV1A02423Z11Z90000002",
+        "203131MV1A02423Z11Z90000003",
+        "203131MV1A02423Z11Z90000004",
+        "203131MV1A02423Z11Z90000005",
+        "203131MV1A02423Z11Z90000006",
+        "203131MV1A02523A11Z90000003",
+        "203131MV1A02623Z11Z90000003",
+    ),
+    "tii-life-029": (
+        "205131MV1A00123A11C90000004",
+        "205131MV1A00123A11C90000005",
+        "205131MV1A00123A11C90000001",
+        "205131MV1A00123A11C90000002",
+        "205131MV1A00123A11C90000003",
+        "205131MV1A00423A11C90000008",
+        "205131MV1A00423A11C90000009",
+        "205131MV1A00423A11C90000005",
+        "205131MV1A00423A11C90000006",
+        "205131MV1A00423A11C90000007",
+        "205131MV1A00623A11C90000004",
+        "205131MV1A00623A11C90000005",
+        "205131MV1A00623A11C90000001",
+        "205131MV1A00623A11C90000002",
+        "205131MV1A00623A11C90000003",
+        "205131MV1A00923A11C90000004",
+        "205131MV1A00923A11C90000005",
+        "205131MV1A00923A11C90000006",
+        "205131MV1A00923A11C90000007",
+        "205131MV1A00923A11C90000008",
+        "205131MV1A00923A11C90000009",
+        "205131MV1A00923A11C90000010",
+        "205131MV1A00923A11C90000011",
+        "205131MV1A00923A11C90000001",
+        "205131MV1A00923A11C90000002",
+        "205131MV1A00923A11C90000003",
+        "205131MV1A01023A11C90000001",
+        "205131MV1A01023A11C90000002",
+        "205131MV1A01323A11C90000000",
+        "205131MV1A01323A11C90000001",
+        "205131MV1A01323A11C90000002",
+        "205131MV1A01323A11C90000003",
+        "205131MV1A01323A11C90000004",
+        "205131MV1A01423Z11C90000000",
+        "205131MV1A01423Z11C90000001",
+        "205131MV1A01423Z11C90000002",
+        "205131MV1A01423Z11C90000003",
+        "205131MV1A01423Z11C90000004",
+        "205131MV1A01423Z11C90000005",
+        "205131MV1A01723A11C90000000",
+        "205131MV1A01723A11C90000001",
+        "205131MV1A01723A11C90000002",
+        "205131MV1A01723A11C90000003",
+        "205131MV1A01923A11C90000000",
+        "205131MV1A01923A11C90000001",
+        "205131MV1A01923A11C90000002",
+        "205131MV1A01923A11C90000003",
+        "205131MV1A01923A11C90000004",
+        "205131MV1A01923A11C90000005",
+        "205131MV1A01923A11C90000006",
+        "205131MV1A01923A11C90000007",
+        "205131MV1A02023A11C90000000",
+        "205131MV1A02023A11C90000001",
+        "205131MV1A02223A11C90000000",
+        "205131MV1A02623A11C90000000",
+        "205131MV1A02623A11C90000001",
+        "205131MV1A02823A11C90000000",
+        "205131MV1A02823A11C90000001",
+        "205131MV1A02823A11C90000002",
+        "205131MV1A02823A11C90000003",
+        "205131MV1A02823A11C90000004",
+        "205131MV1A02823A11C90000005",
+        "205131MV1A03023A11C90000000",
+        "205131MV1A03123A11C90000000",
+        "205131MV1A03123A11C90000001",
+        "205131MV1A03123A11C90000002",
+        "205131MV1A03123A11C90000003",
+        "205131MV1A03123A11C90000004",
+        "205131MV1A03423A11C90000000",
+        "205131MV1A03423A11C90000001",
+        "205131MV1A03423A11C90000002",
+        "205131MV1A03423A11C90000003",
+        "205131MV1A03423A11C90000004",
+        "205131MV1A03423A11C90000005",
+        "205131MV1A03623A11C90000000",
+        "205131MV1A03623A11C90000001",
+        "205131MV1A03623A11C90000002",
+        "205131MV1A03623A11C90000003",
+        "205131MV1A03623A11C90000004",
+        "205131MV1A03623A11C90000005",
+        "205131MV1A03823A11C90000000",
+        "205131MV1A03823A11C90000001",
+        "205131MV1A03823A11C90000002",
+        "205131MV1A03823A11C90000003",
+        "205131MV1A03823A11C90000004",
+        "205131MV1A03823A11C90000005",
+        "205131MV1A03823A11C90000006",
+        "205131MV1A03923A11C90000000",
+        "205131MV1A03923A11C90000001",
+        "205131MV1A03923A11C90000002",
+        "205131MV1A04123A11C90000000",
+        "205131MV1A04223A11C90000000",
+        "205131MV1A04223A11C90000001",
+        "205131MV1A04423A11C90000000",
+        "205131MV1A04623A11C90000000",
+    ),
+    "tii-life-053": (
+        "209131MV1A00123A11Z90000010",
+        "209131MV1A00123A11Z90000011",
+        "209131MV1A00123A11Z90000013",
+        "209131MV1A00123A11Z90000014",
+        "209131MV1A00123A11Z90000015",
+        "209131MV1A00123A11Z90000016",
+        "209131MV1A00123A11Z90000017",
+        "209131MV1A00123A11Z90000018",
+        "209131MV1A00323Z11Z90000004",
+        "209131MV1A00323Z11Z90000005",
+        "209131MV1A00323Z11Z90000006",
+        "209131MV1A00423A11C90000007",
+        "209131MV1A00423A11C90000008",
+        "209131MV1A00423A11C90000009",
+        "209131MV1A00423A11C90000010",
+        "209131MV1A00423A11C90000011",
+        "209131MV1A00423A11C90000012",
+        "209131MV1A00423A11C90000013",
+        "209131MV1A00423A11Z90000004",
+        "209131MV1A00423A11Z90000005",
+        "209131MV1A00523Z11Z90000003",
+        "209131MV1A00523Z11Z90000004",
+        "209131MV1A00523Z11Z90000005",
+        "209131MV1A00623A11Z90000003",
+        "209131MV1A00623A11Z90000004",
+        "209131MV1A00623A11Z90000005",
+        "209131MV1A00623A11Z90000006",
+        "209131MV1A00623A11Z90000007",
+        "209131MV1A00623A11Z90000008",
+        "209131MV1A00623A11Z90000009",
+        "209131MV1A00623A11Z90000010",
+        "209131MV1A00623A11Z90000011",
+        "209131MV1A00623A11Z90000012",
+        "209131MV1A01523A11C90000000",
+        "209131MV1A01523A11C90000001",
+        "209131MV1A01523A11C90000002",
+        "209131MV1A01523A11C90000003",
+        "209131MV1A01523A11C90000004",
+        "209131MV1A02023A11C90000000",
+        "209131MV1A02023A11C90000001",
+        "209131MV1A02023A11C90000002",
+        "209131MV1A02023A11C90000003",
+        "209131MV1A02023A11C90000004",
+        "209131MV1A02123B11C90000000",
+        "209131MV1A02123B11C90000001",
+        "209131MV1A02123B11C90000002",
+        "209131MV1A02123B11C90000003",
+        "209131MV1A02123B11C90000004",
+        "209131MV1A02123B11C90000005",
+        "209131MV1A02123B11C90000006",
+        "209131MV1A02223A11C90000000",
+        "209131MV1A02223A11C90000001",
+        "209131MV1A02223A11C90000002",
+        "209131MV1A02223A11C90000003",
+        "209131MV1A02223A11C90000004",
+        "209131MV1A02323B11C90000000",
+        "209131MV1A02323B11C90000001",
+        "209131MV1A02323B11C90000002",
+        "209131MV1A02423A11Z90000000",
+        "209131MV1A02423A11Z90000001",
+        "209131MV1A02423A11Z90000002",
+        "209131MV1A02423A11Z90000003",
+        "209131MV1A02423A11Z90000004",
+        "209131MV1A02423A11Z90000005",
+        "209131MV1A02423A11Z90000006",
+        "209131MV1A02423A11Z90000007",
+        "209131MV1A02423A11Z90000008",
+        "209131MV1A02423A11Z90000009",
+        "209131MV1A02423A11Z90000010",
+        "209131MV1A00123A11Z90000012",
+        "209131MV1A00423A11C90000006",
+        "209131MV1A00723A11Z90000000",
+        "209131MV1A00723A11Z90000001",
+        "209131MV1A00723A11Z90000002",
+        "209131MV1A00723A11Z90000003",
+        "209131MV1A00723A11Z90000004",
+        "209131MV1A00723A11Z90000005",
+        "209131MV1A00723A11Z90000006",
+        "209131MV1A00723A11Z90000007",
+        "209131MV1A00723A11Z90000008",
+        "209131MV1A00723A11Z90000009",
+        "209131MV1A00723A11Z90000010",
+        "209131MV1A00723A11Z90000011",
+        "209131MV1A00723A11Z90000012",
+        "209131MV1A00723A11Z90000013",
+        "209131MV1A00723A11Z90000014",
+        "209131MV1A00723A11Z90000015",
+        "209131MV1A00723A11Z90000016",
+        "209131MV1A00723A11Z90000017",
+        "209131MV1A00723A11Z90000018",
+        "209131MV1A00723A11Z90000019",
+        "209131MV1A01823A11C90000000",
+        "209131MV1A01823A11C90000001",
+        "209131MV1A01823A11C90000002",
+        "209131MV1A01823A11C90000003",
+        "209131MV1A02623A11C90000000",
+    ),
+    "tii-life-167": (
+        "264131MV1AVLN23A11Z90000002",
+        "264131MV1AVLO23A11Z90000004",
+        "264131MV1AVLO23A11Z90000008",
+        "264131MV1AVLO23A11Z90000010",
+        "264131MV1AVLO23A11Z90000011",
+        "264131MV1AVLW23A11Z90000002",
+        "264131MV1AVLW23A11Z90000003",
+        "264131MV1AVLZ23A11Z90000000",
+    ),
+}
+INVESTMENT_LIFE_GUARANTEED_FACE_AMOUNT_PRODUCT_IDS = frozenset(
+    product_id
+    for product_ids in INVESTMENT_LIFE_GUARANTEED_FACE_AMOUNT_PRODUCT_BATCHES.values()
+    for product_id in product_ids
+)
+
+
+def is_investment_life_guaranteed_face_amount_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in INVESTMENT_LIFE_GUARANTEED_FACE_AMOUNT_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_investment_life_guaranteed_face_amount_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_investment_life_guaranteed_face_amount_strict_source(document):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = [
+        "投資標的",
+        "保單帳戶價值",
+        "淨危險保額",
+        "保險金額",
+        "祝壽保險金的給付",
+        "身故保險金或喪葬費用保險金的給付",
+        "喪葬費用保險金額",
+        "保單帳戶即為結清",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+    has_complete_disability = compact_table_text("完全失能保險金的給付") in dense_text
+    has_legacy_complete_disability = (
+        compact_table_text("完全殘廢保險金的給付") in dense_text
+    )
+    if not (has_complete_disability or has_legacy_complete_disability):
+        return None
+    disability_term = "失能" if has_complete_disability else "殘廢"
+    gate_text = re.sub(r"第\d+頁共\d+頁", "", dense_text)
+    insurance_amount_pattern = r"按(?:「)?保.{0,24}?險金額(?:」)?給付"
+    if not re.search(f"{insurance_amount_pattern}身故保險金", gate_text):
+        return None
+    if not re.search(f"{insurance_amount_pattern}完全{disability_term}保險金", gate_text):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    product_name = str(document.get("product_name") or "")
+    if product_id.startswith("202"):
+        company_group = "taiwan_life"
+    elif product_id.startswith("203"):
+        company_group = "prudential"
+    elif product_id.startswith("209"):
+        company_group = "fubon_life"
+    elif product_id.startswith("264"):
+        company_group = "global_life"
+    else:
+        company_group = "kgi_china_life"
+    front_end = text.find("【保險契約的構成】")
+    front_matter = text[:front_end] if front_end > 0 else text[:1200]
+    is_foreign_currency = (
+        "外幣" in product_name
+        or "人民幣" in product_name
+        or "外幣變額" in front_matter
+        or "外幣計價" in front_matter
+        or "外幣保單" in front_matter
+        or "外幣保險單" in front_matter
+        or "均以美元計價" in front_matter
+        or "均以人民幣計價" in front_matter
+        or "指定幣別匯率" in front_matter
+    )
+    maturity_start = text.find("祝壽保險金的給付")
+    maturity_end = text.find("身故保險金", maturity_start + 1)
+    maturity_clause = (
+        text[maturity_start:maturity_end]
+        if maturity_start >= 0 and maturity_end > maturity_start
+        else text[maturity_start : maturity_start + 1600]
+    )
+    maturity_uses_net_risk = "淨危險保額與保單帳戶價值兩者之總和" in maturity_clause
+    has_age_111_maturity = re.search(
+        r"「?保險年齡」?達(?:111|一百一十一|一百十一)歲", dense_text
+    )
+    has_age_110_maturity = re.search(
+        r"「?保險年齡」?(?:達|屆滿)(?:110|一百一十)歲", dense_text
+    )
+    has_age_99_maturity = re.search(
+        r"「?保險年齡」?達(?:99|九十九)歲", dense_text
+    )
+    has_age_100_maturity = re.search(
+        r"「?保險年齡」?達(?:100|一百)歲", dense_text
+    )
+    has_age_96_maturity = re.search(
+        r"「?保險年齡」?達(?:96|九十六)歲", dense_text
+    )
+    if "本契約滿期日" in text:
+        maturity_trigger = "policy_maturity_date"
+        maturity_age = None
+    elif has_age_111_maturity:
+        maturity_trigger = "age_111_policy_anniversary"
+        maturity_age = 111
+    elif has_age_110_maturity:
+        maturity_trigger = "age_110_policy_anniversary"
+        maturity_age = 110
+    elif has_age_99_maturity:
+        maturity_trigger = "age_99_policy_anniversary"
+        maturity_age = 99
+    elif has_age_100_maturity:
+        maturity_trigger = "age_100_policy_anniversary"
+        maturity_age = 100
+    elif has_age_96_maturity:
+        maturity_trigger = "age_96_policy_anniversary"
+        maturity_age = 96
+    else:
+        return None
+    if maturity_trigger == "policy_maturity_date":
+        maturity_formula = (
+            "net_amount_at_risk_plus_policy_account_value_at_policy_maturity_date"
+            if maturity_uses_net_risk
+            else "policy_account_value_at_policy_maturity_date"
+        )
+    elif maturity_trigger == "age_111_policy_anniversary":
+        maturity_formula = (
+            "net_amount_at_risk_plus_policy_account_value_at_age_111_policy_anniversary"
+        )
+    elif maturity_trigger == "age_110_policy_anniversary":
+        maturity_formula = (
+            "net_amount_at_risk_plus_policy_account_value_at_age_110_policy_anniversary"
+            if maturity_uses_net_risk
+            else "policy_account_value_at_age_110_policy_anniversary"
+        )
+    elif maturity_trigger == "age_99_policy_anniversary":
+        maturity_formula = "policy_account_value_at_age_99_policy_anniversary"
+    elif maturity_trigger == "age_100_policy_anniversary":
+        maturity_formula = "policy_account_value_at_age_100_policy_anniversary"
+    else:
+        maturity_formula = "policy_account_value_at_age_96_policy_anniversary"
+    maturity_unit_key = (
+        "net_amount_at_risk_plus_policy_account_value"
+        if maturity_uses_net_risk
+        else "policy_account_value"
+    )
+    interest_on_maturity = "給付祝壽保險金時應加計利息" in text
+    currency_basis = "foreign_currency" if is_foreign_currency else "twd"
+    net_risk_definition = re.search(
+        r"淨危險保額」?[:：](.{0,900}?)(?:[三四五]、(?:「)?保險金額|[三四五]、(?:「)?保價乘數)",
+        text,
+        re.DOTALL,
+    )
+    net_risk_definition_text = net_risk_definition.group(1) if net_risk_definition else ""
+    if "未滿十五足歲" in net_risk_definition_text:
+        net_risk_formula_type = "jia_yi_bing_ding_minor_age_15"
+    elif "戊型" in net_risk_definition_text:
+        net_risk_formula_type = "jia_wu"
+    elif "乙型" in net_risk_definition_text:
+        net_risk_formula_type = "jia_yi"
+    elif "基本保額扣除保險金扣除額後" in net_risk_definition_text:
+        net_risk_formula_type = "basic_amount_less_deduction_less_account_value"
+    else:
+        net_risk_formula_type = "not_classified"
+    minor_death_before_age_15 = "滿十五足歲前死亡" in text
+    minor_disability_before_age_15 = (
+        "滿十五足歲以前致成完全失能" in text
+        or "未滿十五足歲前,致成完全失能" in text
+        or "未滿十五足歲前，致成完全失能" in text
+        or "滿十五足歲以前致成完全殘廢" in text
+        or "未滿十五足歲前,致成完全殘廢" in text
+        or "未滿十五足歲前，致成完全殘廢" in text
+    )
+
+    entries = [
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            (
+                (
+                    "被保險人於滿期日仍生存且契約有效時，依贖回評價時點投資標的價值計算淨危險保額與保單帳戶價值總和給付。"
+                    if maturity_uses_net_risk
+                    else "被保險人於滿期日仍生存且契約有效時，依贖回評價時點投資標的價值計算保單帳戶價值給付。"
+                )
+                if maturity_trigger == "policy_maturity_date"
+                else (
+                    "被保險人於保險年齡達一百一十一歲之保單週年日仍生存且契約有效時，依贖回評價時點計算淨危險保額與保單帳戶價值總和給付。"
+                    if maturity_trigger == "age_111_policy_anniversary"
+                    else (
+                        "被保險人於保險年齡屆滿一百一十歲仍生存且契約有效時，依贖回評價時點投資標的價值計算保單帳戶價值給付。"
+                        if maturity_trigger == "age_110_policy_anniversary"
+                        else (
+                            "被保險人於保險年齡達九十九歲之保單週年日仍生存且契約有效時，依贖回評價時點投資標的價值計算保單帳戶價值給付。"
+                            if maturity_trigger == "age_99_policy_anniversary"
+                            else (
+                                "被保險人於保險年齡達一百歲之保單週年日仍生存且契約有效時，依贖回評價時點投資標的價值計算保單帳戶價值給付。"
+                                if maturity_trigger == "age_100_policy_anniversary"
+                                else "被保險人於保險年齡達九十六歲之保單週年日仍生存且契約有效時，依贖回評價時點投資標的價值計算保單帳戶價值給付。"
+                            )
+                        )
+                    )
+                )
+            ),
+            "祝壽保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key=maturity_unit_key,
+            conditions=[
+                "給付祝壽保險金後，保單帳戶結清且契約效力終止。",
+                "實際金額需依保單當時投資標的價值、贖回評價時點與保單帳戶資料計算。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內身故者，按保險金額給付身故保險金；受監護宣告未撤銷者改給付喪葬費用保險金。",
+            "身故保險金或喪葬費用保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=[
+                "喪葬費用保險金額不包含投資部分之保單帳戶價值。",
+                "喪葬費用保險金受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+                "保險事故日後已收取之保險成本依條款併同給付。",
+                "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            f"完全{disability_term}保險金",
+            None,
+            "policy_recorded_limit",
+            f"被保險人於契約有效期間內經診斷確定致成完全{disability_term}者，按保險金額給付完全{disability_term}保險金。",
+            f"完全{disability_term}保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=[
+                f"同時有兩項以上完全{disability_term}時僅給付一項完全{disability_term}保險金。",
+                f"完全{disability_term}診斷確定日後已收取之保險成本依條款併同給付。",
+                "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            ],
+        ),
+    ]
+    if interest_on_maturity:
+        entries[0]["conditions"].append(
+            "祝壽保險金給付時依條款加計自投資機構交付金額日起至給付日前一日之利息。"
+        )
+    if minor_death_before_age_15:
+        entries[1]["conditions"].append(
+            "以未滿十五足歲之未成年人為被保險人者，滿十五足歲前死亡依條款返還保單帳戶價值。"
+        )
+    if minor_disability_before_age_15:
+        entries[2]["conditions"].append(
+            f"被保險人滿十五足歲以前致成完全{disability_term}者，依條款改以保單帳戶價值給付。"
+        )
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單上的保險金額；本投資型壽險的身故與完全失能按保險金額給付，祝壽金需依保單帳戶價值、淨危險保額與投資標的贖回評價時點計算。",
+        "version_characteristics": {
+            "product_family": "investment-linked-life-guaranteed-face-amount",
+            "company_group": company_group,
+            "currency_basis": currency_basis,
+            "investment_linked_policy": True,
+            "insurance_amount_basis": "policy_insurance_amount",
+            "death_benefit_formula": "policy_insurance_amount",
+            "total_disability_benefit_formula": "policy_insurance_amount",
+            "maturity_trigger": maturity_trigger,
+            **({"maturity_age": maturity_age} if maturity_age is not None else {}),
+            "maturity_benefit_formula": maturity_formula,
+            "maturity_interest_crediting": interest_on_maturity,
+            "policy_account_value_required": True,
+            "net_amount_at_risk_required": "淨危險保額" in text,
+            "net_amount_at_risk_formula_type": net_risk_formula_type,
+            "basic_amount_required": "基本保額" in text,
+            "insurance_deduction_amount_required": "保險金扣除額" in text,
+            "investment_target_value_required": True,
+            "redemption_valuation_timing_required": True,
+            "insurance_cost_refund_after_event": True,
+            "account_value_return_on_time_bar": True,
+            "funeral_benefit_limit_rule": True,
+            "funeral_benefit_excludes_account_value": True,
+            "minor_death_before_age_15_account_value_rule": minor_death_before_age_15,
+            "minor_disability_before_age_15_account_value_rule": minor_disability_before_age_15,
+            "complete_disability_table_item_count": 7,
+            "disability_term": disability_term,
+            "non_participating_policy": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
+KGI_CHINA_LEGACY_INVESTMENT_LIFE_PRODUCT_IDS = frozenset(
+    (
+        "205141M31A53806",
+        "205141M31A53807",
+        "205141M31A53810",
+        "205141M31A53811",
+        "205141M31A53814",
+        "205141M31A53815",
+        "205141M31A54006",
+        "205141M31A54007",
+        "205141M31A54008",
+        "205141M31A54009",
+        "205141M31A54010",
+        "205141M31A54011",
+        "205141M31A54012",
+        "205141M31A54013",
+        "205141M31A54014",
+        "205141M31A54015",
+        "205141M31A54502",
+        "205141M31A54702",
+        "205141M31A54902",
+        "205141M31A54100",
+        "205141M31A54101",
+        "205141M31A54110",
+        "205141M31A54200",
+        "205141M31A54202",
+        "205141M31A54203",
+        "205141M31A54204",
+        "205141M31A54402",
+        "205141M31A54403",
+        "205141M31A54602",
+        "205141M31A54802",
+        "205141M31A55000",
+        "205141M31A55001",
+        "205141M31A55002",
+        "205141M31A55100",
+        "205141M31A55200",
+        "205141M31A55201",
+        "205141M31A55202",
+        "205131MV1A00123A11C90000000",
+        "205131MV1A00323A11C90000016",
+        "205131MV1A00423A11C90000004",
+        "205131MV1A00523A11C90000003",
+        "205131MV1A00623A11C90000000",
+        "205131MV1A00923A11C90000000",
+        "205131MV1A01023A11C90000000",
+    )
+)
+
+
+def is_kgi_china_legacy_investment_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in KGI_CHINA_LEGACY_INVESTMENT_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def kgi_china_legacy_death_disability_formula_type(
+    dense_text: str,
+) -> str | None:
+    plain_dense_text = dense_text.replace("「", "").replace("」", "").replace(" ", "")
+    if (
+        compact_table_text("甲型").replace(" ", "") in plain_dense_text
+        and compact_table_text("乙型").replace(" ", "") in plain_dense_text
+        and compact_table_text("下列兩者金額較大者").replace(" ", "")
+        in plain_dense_text
+        and compact_table_text("保單帳戶價值與基本保額兩者之和").replace(" ", "")
+        in plain_dense_text
+        and compact_table_text("保單帳戶價值乘上保價係數之值").replace(" ", "")
+        in plain_dense_text
+    ):
+        return "selectable_type_a_greater_of_basic_amount_or_account_value_times_value_ratio_type_b_greater_of_basic_amount_plus_account_value_or_account_value_times_value_ratio"
+    if (
+        compact_table_text("保單帳戶價值與保險金額兩者之和") in dense_text
+        and compact_table_text("保單帳戶價值乘上「保價係數」") in dense_text
+        and compact_table_text("百分之一百三十") in dense_text
+        and compact_table_text("百分之一百十五") in dense_text
+        and compact_table_text("百分之一百零一") in dense_text
+    ):
+        return "greater_of_face_amount_plus_account_value_or_account_value_times_value_ratio"
+    if (
+        (
+            compact_table_text("者金額較大者") in dense_text
+            or compact_table_text("者中金額較大者") in dense_text
+        )
+        and compact_table_text("一保險金額") in dense_text
+        and compact_table_text("保單帳戶價值並乘上「保價係數」") in dense_text
+        and compact_table_text("百分之一百三十") in dense_text
+        and compact_table_text("百分之一百十五") in dense_text
+        and compact_table_text("百分之一百零一") in dense_text
+    ):
+        return "greater_of_face_amount_or_account_value_times_value_ratio"
+    if (
+        compact_table_text("下列兩者金額較大者").replace(" ", "")
+        in plain_dense_text
+        and compact_table_text("基本保額").replace(" ", "") in plain_dense_text
+        and compact_table_text("保單帳戶價值並乘上保價係數之值").replace(" ", "")
+        in plain_dense_text
+        and compact_table_text("保單帳戶價值與基本保額兩者之和").replace(" ", "")
+        not in plain_dense_text
+    ):
+        return "greater_of_basic_amount_or_account_value_times_value_ratio"
+    if (
+        compact_table_text("下列兩者金額較大者").replace(" ", "")
+        in plain_dense_text
+        and compact_table_text("保單帳戶價值與基本保額兩者之和").replace(" ", "")
+        in plain_dense_text
+        and compact_table_text("保單帳戶價值乘上保價係數之值").replace(" ", "")
+        in plain_dense_text
+    ):
+        return "greater_of_basic_amount_plus_account_value_or_account_value_times_value_ratio"
+    if (
+        compact_table_text("下列兩者金額較大者").replace(" ", "")
+        in plain_dense_text
+        and compact_table_text("基本保額").replace(" ", "") in plain_dense_text
+        and compact_table_text("本契約項下的保單帳戶價值").replace(" ", "")
+        in plain_dense_text
+        and compact_table_text("保價係數").replace(" ", "") not in plain_dense_text
+    ):
+        return "greater_of_basic_amount_or_policy_account_value"
+    if (
+        compact_table_text("下列二者加總之值") in dense_text
+        and compact_table_text("保單帳戶價值") in dense_text
+        and (
+            compact_table_text("保險金額") in dense_text
+            or compact_table_text("當年度保險金額") in dense_text
+        )
+    ):
+        return "face_amount_plus_policy_account_value"
+    return None
+
+
+def parse_kgi_china_legacy_investment_life_maturity_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_kgi_china_legacy_investment_life_strict_source(document):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = [
+        "變額壽險",
+        "喪葬費用保險金的給付",
+        "完全殘廢保險金的給付",
+        "保單帳戶價值",
+        "投資標的價值",
+        "滿期日",
+        "保險年齡屆滿九十九歲",
+        "不分紅",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+    has_maturity_or_survival_heading = (
+        compact_table_text("滿期保險金的給付") in dense_text
+        or compact_table_text("祝壽保險金的給付") in dense_text
+    )
+    has_death_account_return_heading = (
+        compact_table_text("未滿十五足歲身故保單帳戶價值之返還與身故保險金的給付")
+        in dense_text
+        or compact_table_text("身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還")
+        in dense_text
+    )
+    if not (has_maturity_or_survival_heading and has_death_account_return_heading):
+        return None
+
+    death_disability_formula = kgi_china_legacy_death_disability_formula_type(
+        dense_text
+    )
+    if death_disability_formula is None:
+        return None
+
+    valuation_schedule_ref = (
+        "附表三"
+        if (
+            compact_table_text("附表三「贖回評價時點」") in dense_text
+            or compact_table_text("附表三之「贖回評價時點」") in dense_text
+        )
+        else "附表四"
+    )
+    face_amount_basis = (
+        "current_year_insurance_amount"
+        if compact_table_text("當年度保險金額") in dense_text
+        else "basic_premium_times_face_amount_ratio"
+        if compact_table_text("保險金額」係指「基本保險費」乘以附表一「保額保費比率」所得之數額")
+        in dense_text
+        else "policy_insurance_amount"
+    )
+    if compact_table_text("均以人民幣為貨幣單位") in dense_text:
+        currency_basis = "foreign_currency"
+        payment_currency_label = "人民幣"
+    elif compact_table_text("均以美元為貨幣單位") in dense_text:
+        currency_basis = "foreign_currency"
+        payment_currency_label = "美元"
+    else:
+        currency_basis = "twd"
+        payment_currency_label = "新台幣"
+    premium_waiver_available = (
+        compact_table_text("二至六級殘廢豁免基本保險費") in dense_text
+        and compact_table_text("六十五歲之保單週年日") in dense_text
+    )
+    risk_amount_required = compact_table_text("危險保額") in dense_text
+
+    entries = [
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於滿期日時仍生存且契約有效時，以滿期日為基準日，依贖回評價時點計算保單帳戶價值給付。",
+            "保單條款滿期保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=["滿期日為被保險人保險年齡屆滿九十九歲且契約仍有效之保單週年日。"],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人滿十五足歲後身故者，按身故、完全殘廢保險金額給付；喪葬費用保險金不包含投資部分之保單帳戶價值。",
+            "保單條款未滿十五足歲身故保單帳戶價值之返還與身故保險金的給付、喪葬費用保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "未滿十五足歲身故時返還保單帳戶價值。",
+                "給付後本契約項下之保單帳戶結清，契約效力終止。",
+                "喪葬費用保險金額不包含其屬投資部分之保單帳戶價值。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內致成完全殘廢並經診斷確定者，按身故、完全殘廢保險金額給付。",
+            "保單條款完全殘廢保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "完全殘廢定義為條款列示七項完全殘廢程度。",
+                "未滿十五足歲前完全殘廢時，以申請文件送達日為基準日計算保單帳戶價值。",
+                "給付後本契約項下之保單帳戶結清，契約效力終止。",
+            ],
+        ),
+    ]
+    if premium_waiver_available:
+        entries.append(
+            coverage_entry(
+                "disability-premium-waiver",
+                "二至六級殘廢豁免基本保險費",
+                None,
+                "policy_premium",
+                "被保險人於契約有效期間內致成附表所列第二級至第六級殘廢程度之一者，豁免基本保險費至六十五歲之保單週年日。",
+                "保單條款二至六級殘廢豁免基本保險費至六十五歲之保單週年日",
+                calculation_basis="waiver",
+                amount_role="premium_waiver",
+                limit_scope="per_policy",
+                aggregation_rule="separate",
+                unit_key="basic_premium",
+                conditions=["豁免後契約仍繼續有效。"],
+            )
+        )
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單所載保險金額；身故與完全殘廢金額另依條款所定保單帳戶價值、保價係數或當年度保險金額計算。",
+        "version_characteristics": {
+            "product_family": "kgi-china-legacy-investment-linked-life-maturity-face-amount",
+            "company_group": "kgi_china_life",
+            "currency_basis": currency_basis,
+            "payment_currency_label": payment_currency_label,
+            "investment_linked_policy": True,
+            "insurance_amount_basis": face_amount_basis,
+            "death_total_disability_amount_formula": death_disability_formula,
+            "death_benefit_formula": "death_total_disability_insurance_amount",
+            "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+            "maturity_trigger": "age_99_policy_anniversary",
+            "maturity_age": 99,
+            "maturity_benefit_formula": "policy_account_value_at_age_99_policy_anniversary",
+            "maturity_interest_crediting": False,
+            "policy_account_value_required": True,
+            "risk_amount_required": risk_amount_required,
+            "risk_amount_formula_type": (
+                "death_total_disability_amount_less_account_value_nonnegative"
+                if risk_amount_required
+                else None
+            ),
+            "redemption_valuation_timing_required": True,
+            "valuation_schedule_ref": valuation_schedule_ref,
+            "insurance_cost_refund_after_event": True,
+            "account_value_return_on_time_bar": True,
+            "funeral_benefit_limit_rule": True,
+            "funeral_benefit_excludes_account_value": True,
+            "minor_death_before_age_15_account_value_rule": True,
+            "minor_disability_before_age_15_account_value_rule": True,
+            "premium_waiver_available": premium_waiver_available,
+            **(
+                {
+                    "premium_waiver_disability_levels": "2-6",
+                    "premium_waiver_until": "age_65_policy_anniversary",
+                }
+                if premium_waiver_available
+                else {}
+            ),
+            "complete_disability_table_item_count": 7,
+            "legacy_disability_wording": True,
+            "disability_term": "殘廢",
+            "total_disability_term": "完全殘廢",
+            "non_participating_policy": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
+TAIWAN_XINXIANGLE_INVESTMENT_LIFE_PRODUCT_ID = "202131MV1AUFL23A11C90000018"
+
+
+def is_taiwan_xinxiangle_investment_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id == TAIWAN_XINXIANGLE_INVESTMENT_LIFE_PRODUCT_ID
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_taiwan_xinxiangle_investment_life_age111_value_bonus(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_xinxiangle_investment_life_strict_source(document):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    plain_dense_text = dense_text.replace("「", "").replace("」", "")
+    required_signals = [
+        "台灣人壽新享樂人生變額萬能壽險",
+        "身故保險金或喪葬費用保險金與保單帳戶價值之返還",
+        "完全殘廢保險金",
+        "祝壽保險金",
+        "保單價值加值金",
+        "甲型:基本保額扣除保單帳戶價值之餘額但不得為負值",
+        "乙型:基本保額",
+        "淨危險保額與保單帳戶價值兩者之總和給付",
+        "保險年齡達一百十一歲之保單週年日",
+        "每日保單帳戶價值之平均值的千分之五",
+        "本保險為不分紅",
+    ]
+    if any(
+        compact_table_text(signal).replace("「", "").replace("」", "")
+        not in plain_dense_text
+        for signal in required_signals
+    ):
+        return None
+
+    entries = [
+        coverage_entry(
+            "survival-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於保險年齡達一百十一歲之保單週年日仍生存且契約有效時，按該保單年度第一個資產評價日計算之淨危險保額與保單帳戶價值總和給付。",
+            "保單條款第二十三條，祝壽保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=["給付後本契約效力終止。"],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內身故者，按保險金額給付身故保險金，並返還以月為基礎按日數比例計算之未滿期保險成本。",
+            "保單條款第二十四條，身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=[
+                "訂立契約時未滿十五足歲者僅可投保乙型；滿十五足歲前死亡時返還保單帳戶價值。",
+                "喪葬費用保險金不包含投資部分之保單帳戶價值，並受法定限額規範。",
+                "給付後本契約效力終止；逾請求時效時條款另約定返還保單帳戶價值。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內致成附表五所列完全殘廢等級之一並經診斷確定者，按保險金額給付，並返還以月為基礎按日數比例計算之未滿期保險成本。",
+            "保單條款第二十五條，完全殘廢保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=[
+                "滿十五足歲以前致成完全殘廢者，改以收齊申領文件後第一個資產評價日保單帳戶價值給付。",
+                "同時有兩項以上完全殘廢時僅給付一項完全殘廢保險金。",
+                "給付後本契約效力終止；逾請求時效時條款另約定返還保單帳戶價值。",
+            ],
+        ),
+        coverage_entry(
+            "policy-value-bonus",
+            "保單價值加值金",
+            None,
+            "policy_recorded_limit",
+            "契約有效期間內，自生效日起算每屆滿三年之保單週年日，按該週年日前三年每日保單帳戶價值平均值的千分之五作為保單價值加值金。",
+            "保單條款第二十六條，保單價值加值金",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=0.5,
+            unit_key="average_daily_policy_account_value",
+            conditions=[
+                "每屆滿三個保單週年日之次三個資產評價日，依當時約定目標保險費之投資標的及比例分配，進行保單帳戶價值加值。"
+            ],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保額",
+        "selection_guidance": "請輸入保單所載基本保額，並依保單選擇的甲型或乙型確認淨危險保額；身故、完全殘廢與祝壽按淨危險保額加保單帳戶價值計算。",
+        "version_characteristics": {
+            "product_family": "taiwan-xinxiangle-investment-linked-life-age111-value-bonus",
+            "company_group": "taiwan_life",
+            "currency_basis": "twd",
+            "payment_currency_label": "新台幣",
+            "investment_linked_policy": True,
+            "insurance_type_required": True,
+            "insurance_type_options": ["甲型", "乙型"],
+            "insurance_amount_basis": "net_amount_at_risk_plus_policy_account_value",
+            "insurance_amount_formula": "net_amount_at_risk_plus_policy_account_value",
+            "net_amount_at_risk_formula_type": "type_a_basic_amount_less_account_value_nonnegative_type_b_basic_amount",
+            "death_benefit_formula": "policy_insurance_amount",
+            "total_disability_benefit_formula": "policy_insurance_amount",
+            "survival_benefit_formula": "policy_insurance_amount_at_age_111_policy_anniversary",
+            "maturity_benefit_formula": "policy_insurance_amount_at_age_111_policy_anniversary",
+            "maturity_trigger": "age_111_policy_anniversary",
+            "maturity_age": 111,
+            "policy_account_value_required": True,
+            "redemption_valuation_timing_required": True,
+            "valuation_reference": "next_asset_valuation_date",
+            "insurance_cost_refund_after_event": True,
+            "account_value_return_on_time_bar": True,
+            "funeral_benefit_limit_rule": True,
+            "funeral_benefit_excludes_account_value": True,
+            "minor_death_before_age_15_account_value_rule": True,
+            "minor_disability_before_age_15_account_value_rule": True,
+            "complete_disability_schedule_ref": "附表五",
+            "complete_disability_table_item_count": 7,
+            "legacy_disability_wording": True,
+            "disability_term": "殘廢",
+            "total_disability_term": "完全殘廢",
+            "policy_value_bonus_available": True,
+            "policy_value_bonus_rate_percent": 0.5,
+            "policy_value_bonus_frequency_years": 3,
+            "policy_value_bonus_basis": "previous_3_year_average_daily_policy_account_value",
+            "non_participating_policy": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
+TAIWAN_AGE111_VARIABLE_UNIVERSAL_LIFE_CONFIGS: dict[str, dict[str, Any]] = {
+    "202131MV1A34923B11C90000009": {
+        "terms_revision": "第9次部分變更",
+        "filing_number": "台壽字第1052330017號函備查修正",
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "美元",
+        "insurance_type_options": ["甲型", "乙型", "丙型", "丁型"],
+        "net_amount_at_risk_formula_type": (
+            "type_a_basic_amount_less_deduction_less_account_value_"
+            "type_b_basic_amount_type_c_or_d_value_multiplier"
+        ),
+        "policy_value_bonus_available": False,
+        "required_currency_signal": "美元計價",
+    },
+    "202131MV1A38223A11C90000006": {
+        "terms_revision": "第6次部分變更",
+        "filing_number": "台壽字第1052000001號函備查修正",
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "insurance_type_options": ["甲型", "乙型", "丙型", "丁型"],
+        "net_amount_at_risk_formula_type": (
+            "type_a_basic_amount_less_deduction_less_account_value_"
+            "type_b_basic_amount_type_c_or_d_value_multiplier"
+        ),
+        "policy_value_bonus_available": True,
+        "policy_value_bonus_type": "fixed_rate",
+        "policy_value_bonus_rate_percent": 0.2,
+        "policy_value_bonus_basis": "previous_1_year_average_daily_policy_account_value",
+        "required_bonus_signal": "每日保單帳戶價值之平均值的千分之二",
+    },
+    "202131MV1A38623A11C90000006": {
+        "terms_revision": "第6次部分變更",
+        "filing_number": "台壽字第1052330019號函備查修正",
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "insurance_type_options": ["甲型", "乙型", "丙型", "丁型"],
+        "net_amount_at_risk_formula_type": (
+            "type_a_basic_amount_less_deduction_less_account_value_"
+            "type_b_basic_amount_type_c_or_d_value_multiplier"
+        ),
+        "policy_value_bonus_available": True,
+        "policy_value_bonus_type": "appendix_five_schedule",
+        "policy_value_bonus_basis": "previous_1_year_average_daily_policy_account_value",
+        "policy_value_bonus_schedule": [
+            {"policy_anniversary": "1", "rate_percent": 0.4},
+            {"policy_anniversary": "2", "rate_percent": 0.1},
+            {"policy_anniversary": "3", "rate_percent": 0.1},
+            {"policy_anniversary": "5", "rate_percent": 0.5},
+            {"policy_anniversary": "10", "rate_percent": 0.5},
+            {"policy_anniversary": "15_and_every_5_years_after", "rate_percent": 0.5},
+        ],
+        "required_bonus_signal": "附表五:保單價值加值金給付比率表",
+    },
+    "202131MV1A62923J11Z90000000": {
+        "terms_revision": "原始版本",
+        "filing_number": "台壽字第1062331020號函備查",
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "人民幣",
+        "insurance_type_options": ["甲型", "乙型", "丙型", "丁型"],
+        "net_amount_at_risk_formula_type": (
+            "type_a_basic_amount_less_deduction_less_account_value_"
+            "type_b_basic_amount_type_c_or_d_value_multiplier"
+        ),
+        "policy_value_bonus_available": False,
+        "required_currency_signal": "人民幣計價",
+    },
+    "202131MV1A66823Z11Z90000000": {
+        "terms_revision": "原始版本",
+        "filing_number": "台壽字第1072330004號函備查",
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "約定外幣",
+        "insurance_type_options": ["甲型", "乙型"],
+        "net_amount_at_risk_formula_type": (
+            "type_a_basic_amount_less_deduction_less_account_value_type_b_basic_amount"
+        ),
+        "policy_value_bonus_available": False,
+        "required_currency_signal": "約定外幣計價",
+    },
+}
+
+
+def is_taiwan_age111_variable_universal_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-011"
+        and product_id in TAIWAN_AGE111_VARIABLE_UNIVERSAL_LIFE_CONFIGS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_taiwan_age111_variable_universal_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_age111_variable_universal_life_strict_source(document):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    config = TAIWAN_AGE111_VARIABLE_UNIVERSAL_LIFE_CONFIGS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = [
+        "主要給付項目",
+        "身故保險金或喪葬費用保險金與保單帳戶價值之返還",
+        "完全殘廢保險金",
+        "祝壽保險金",
+        "本保險為不分紅保險單",
+        "淨危險保額與保單帳戶價值兩者之總和",
+        "保險金額給付身故保險金",
+        "滿十五足歲前死亡者",
+        "滿十五足歲以前致成完全殘廢",
+        "附表四所列贖回評價時點",
+        "基本保額扣除保險金扣除額後",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+
+    for option in config["insurance_type_options"]:
+        if compact_table_text(option) not in dense_text:
+            return None
+
+    currency_signal = config.get("required_currency_signal")
+    if currency_signal and compact_table_text(currency_signal) not in dense_text:
+        return None
+
+    bonus_available = bool(config["policy_value_bonus_available"])
+    if bonus_available:
+        bonus_signal = str(config.get("required_bonus_signal") or "")
+        if compact_table_text(bonus_signal) not in dense_text:
+            return None
+    elif compact_table_text("保單價值加值金") in dense_text:
+        return None
+
+    entries = [
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡達111歲之保單週年日仍生存且契約有效時，按該保單年度第一個資產評價日計算淨危險保額與保單帳戶價值兩者總和給付。",
+            "條款「祝壽保險金的給付」",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="net_amount_at_risk_plus_policy_account_value",
+            conditions=["保險年齡達111歲之保單週年日仍生存且本契約仍有效"],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人身故時按保險金額給付；保險金額為淨危險保額與保單帳戶價值總和。精神障礙或心智缺陷情形改為喪葬費用保險金，投資部分保單帳戶價值另按條款返還。",
+            "條款「身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還」",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=[
+                "身故保險金於被保險人滿十五足歲之日起發生效力",
+                "未滿十五足歲前死亡者返還保單帳戶價值",
+                "喪葬費用保險金不包含投資部分之保單帳戶價值，並受法定上限限制",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人致成附表一所列完全殘廢等級之一並經診斷確定者，按保險金額給付；保險金額為淨危險保額與保單帳戶價值總和。",
+            "條款「完全殘廢保險金的給付」",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=[
+                "被保險人滿十五足歲以前致成完全殘廢者改以保單帳戶價值給付",
+                "同時有兩項以上完全殘廢時僅給付一項完全殘廢保險金",
+            ],
+        ),
+    ]
+    if bonus_available:
+        bonus_entry_kwargs: dict[str, Any] = {
+            "calculation_basis": "percentage_of_base",
+            "amount_role": "payout",
+            "limit_scope": "per_policy",
+            "unit_key": "average_daily_policy_account_value",
+            "conditions": [
+                "於保單週年日後第三個資產評價日依約定投資標的及配置比例加值"
+            ],
+        }
+        if "policy_value_bonus_rate_percent" in config:
+            bonus_entry_kwargs["rate_percent"] = config["policy_value_bonus_rate_percent"]
+        else:
+            bonus_entry_kwargs["rate_min_percent"] = 0.1
+            bonus_entry_kwargs["rate_max_percent"] = 0.5
+        entries.append(
+            coverage_entry(
+                "policy-value-bonus",
+                "保單價值加值金",
+                None,
+                "policy_recorded_limit",
+                "依條款約定，以保單週年日前一年每日保單帳戶價值平均值為基礎計算加值金。",
+                "條款「保單價值加值金」",
+                **bonus_entry_kwargs,
+            )
+        )
+
+    characteristics = {
+        "product_family": "taiwan-age111-variable-universal-life",
+        "company_group": "taiwan_life",
+        "currency_basis": config["currency_basis"],
+        "payment_currency_label": config["payment_currency_label"],
+        "terms_revision": config["terms_revision"],
+        "filing_number": config["filing_number"],
+        "investment_linked_policy": True,
+        "variable_universal_life_policy": True,
+        "foreign_currency_policy": config["currency_basis"] == "foreign_currency",
+        "insurance_type_required": True,
+        "insurance_type_options": config["insurance_type_options"],
+        "insurance_amount_basis": "net_amount_at_risk_plus_policy_account_value",
+        "insurance_amount_formula": "net_amount_at_risk_plus_policy_account_value",
+        "death_total_disability_amount_formula": "net_amount_at_risk_plus_policy_account_value",
+        "net_amount_at_risk_required": True,
+        "net_amount_at_risk_formula_type": config[
+            "net_amount_at_risk_formula_type"
+        ],
+        "insurance_deduction_amount_required": True,
+        "policy_value_multiplier_schedule": {
+            "age_15_to_40_percent": 130,
+            "age_41_to_70_percent": 115,
+            "age_71_plus_percent": 101,
+        }
+        if len(config["insurance_type_options"]) == 4
+        else None,
+        "death_benefit_formula": "policy_insurance_amount",
+        "funeral_benefit_formula": (
+            "policy_insurance_amount_subject_to_statutory_cap_plus_account_value_return"
+        ),
+        "total_disability_benefit_formula": "policy_insurance_amount",
+        "maturity_trigger": "age_111_policy_anniversary",
+        "maturity_age": 111,
+        "maturity_benefit_formula": (
+            "net_amount_at_risk_plus_policy_account_value_at_first_asset_valuation_date"
+        ),
+        "policy_account_value_required": True,
+        "redemption_valuation_timing_required": True,
+        "valuation_schedule_ref": "附表四",
+        "insurance_cost_refund_after_event": True,
+        "account_value_return_on_time_bar": True,
+        "funeral_benefit_limit_rule": True,
+        "funeral_benefit_excludes_account_value": True,
+        "minor_death_before_age_15_account_value_rule": True,
+        "minor_disability_before_age_15_account_value_rule": True,
+        "complete_disability_schedule_ref": "附表一",
+        "complete_disability_table_item_count": 7,
+        "legacy_disability_wording": True,
+        "disability_term": "殘廢",
+        "total_disability_term": "完全殘廢",
+        "policy_value_bonus_available": bonus_available,
+        "non_participating_policy": True,
+        "policy_dividend_available": False,
+    }
+    if characteristics["policy_value_multiplier_schedule"] is None:
+        del characteristics["policy_value_multiplier_schedule"]
+    if bonus_available:
+        for field in (
+            "policy_value_bonus_type",
+            "policy_value_bonus_rate_percent",
+            "policy_value_bonus_basis",
+            "policy_value_bonus_schedule",
+        ):
+            if field in config:
+                characteristics[field] = config[field]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保額",
+        "selection_guidance": "請依保單填入基本保額，並確認保險型態為甲型、乙型，或條款允許時之丙型、丁型；保險金額依條款以淨危險保額加保單帳戶價值計算。",
+        "version_characteristics": characteristics,
+        "coverage_entries": entries,
+    }
+
+
+TAIWAN_XINFUMANZAI_USD_VARIABLE_LIFE_REVISIONS = {
+    "202131MV1A96022B11Z90000000": {
+        "terms_revision": "原始版本",
+        "filing_number": "台壽字第1112330135號函備查",
+    },
+    "202131MV1A96022B11Z90000001": {
+        "terms_revision": "第1次部分變更",
+        "filing_number": "依111年11月29日金管保壽字第1110462568號函修正",
+    },
+    "202131MV1A96022B11Z90000002": {
+        "terms_revision": "第2次部分變更",
+        "filing_number": "依112年8月21日金管保壽字第11204262022號函修正",
+    },
+    "202131MV1A96022B11Z90000003": {
+        "terms_revision": "第3次部分變更",
+        "filing_number": "依113年9月23日金管保壽字第1130427324號函修正",
+    },
+}
+
+
+def is_taiwan_xinfumanzai_usd_variable_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-011"
+        and product_id in TAIWAN_XINFUMANZAI_USD_VARIABLE_LIFE_REVISIONS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_taiwan_xinfumanzai_usd_variable_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_xinfumanzai_usd_variable_life_strict_source(document):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    revision = TAIWAN_XINFUMANZAI_USD_VARIABLE_LIFE_REVISIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = [
+        "台灣人壽鑫福滿載外幣變額壽險",
+        "身故保險金或喪葬費用保險金與保單帳戶價值之返還",
+        "完全失能保險金",
+        "滿期保險金",
+        "本保險為外幣保險單",
+        "美元計價",
+        "保險費:係指要保人於本契約投保時所交付之躉繳保險費",
+        "淨危險保額:係指基本保額",
+        "保險金額:係指本公司於被保險人身故或完全失能所給付之金額",
+        "附表四所列贖回評價時點",
+        "附表六之一",
+        "附表六之二:保本型基金本次未連結此投資標的",
+        "附表六之三:目標到期基金本次未連結此投資標的",
+        "本契約依第六條恢復契約效力者本公司不負給付滿期保險金之責",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+
+    entries = [
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "policy_recorded_limit",
+            "投資標的運用期屆滿時，依附表六之一、六之二或六之三所列投資標的運用期屆滿計算公式取得金額後給付；本次保單條款連結附表六之一國際債券，附表六之二及六之三未連結。",
+            "條款「滿期保險金的給付」及附表六",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            unit_key="investment_target_maturity_formula",
+            conditions=[
+                "投資標的運用期屆滿時契約仍有效，或事故已發生但尚未申領身故、喪葬費用或完全失能保險金",
+                "滿期前若部分提領或以保單帳戶價值扣抵保單借款本息，滿期保險金依扣取之單位數減少",
+                "契約依復效條款恢復效力者，公司不負給付滿期保險金之責",
+                "給付滿期保險金時加計美元活期存款利率之日單利",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人身故時按保險金額給付；保險金額為淨危險保額與保單帳戶價值總和，且本商品淨危險保額為基本保額。受監護宣告尚未撤銷者改給付喪葬費用保險金。",
+            "條款「身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還」",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=[
+                "若已給付滿期保險金，公司得先扣抵已給付金額後給付餘額",
+                "喪葬費用保險金不包含投資部分之保單帳戶價值，並按美元匯率換算後受法定上限限制",
+                "超過請求時效時，條款另約定返還保單帳戶價值",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人致成附表一所列完全失能等級之一並經診斷確定者，按保險金額給付；保險金額為基本保額與保單帳戶價值總和。",
+            "條款「完全失能保險金的給付」",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=[
+                "若已給付滿期保險金，公司得先扣抵已給付金額後給付餘額",
+                "同時有兩項以上完全失能時僅給付一項完全失能保險金",
+                "超過請求時效時，條款另約定返還保單帳戶價值",
+            ],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保額",
+        "selection_guidance": "請依保單填入基本保額；本商品淨危險保額等於基本保額，身故與完全失能保險金另需加上保單帳戶價值，滿期金額須依附表六投資標的到期公式與實際單位數確認。",
+        "version_characteristics": {
+            "product_family": "taiwan-xinfumanzai-usd-variable-life",
+            "company_group": "taiwan_life",
+            "currency_basis": "foreign_currency",
+            "payment_currency_label": "美元",
+            "terms_revision": revision["terms_revision"],
+            "filing_number": revision["filing_number"],
+            "investment_linked_policy": True,
+            "variable_life_policy": True,
+            "single_premium_policy": True,
+            "foreign_currency_policy": True,
+            "insurance_amount_basis": "net_amount_at_risk_plus_policy_account_value",
+            "insurance_amount_formula": "basic_amount_plus_policy_account_value",
+            "death_total_disability_amount_formula": "basic_amount_plus_policy_account_value",
+            "net_amount_at_risk_required": True,
+            "net_amount_at_risk_formula_type": "basic_amount",
+            "basic_amount_required": True,
+            "death_benefit_formula": "policy_insurance_amount",
+            "funeral_benefit_formula": "policy_insurance_amount_subject_to_statutory_cap_plus_account_value_return",
+            "total_disability_benefit_formula": "policy_insurance_amount",
+            "maturity_trigger": "investment_target_operation_period_maturity",
+            "maturity_benefit_formula": "appendix_six_investment_target_maturity_formula",
+            "maturity_interest_crediting": True,
+            "maturity_interest_rate_source": "specified_bank_usd_demand_deposit_rate_daily_simple_interest",
+            "maturity_reduced_by_partial_withdrawal_or_policy_loan_offset": True,
+            "reinstatement_excludes_maturity_benefit": True,
+            "policy_account_value_required": True,
+            "investment_target_value_required": True,
+            "redemption_valuation_timing_required": True,
+            "valuation_schedule_ref": "附表四",
+            "linked_investment_appendix": "附表六之一",
+            "linked_investment_type": "international_bond",
+            "unlinked_investment_appendices": ["附表六之二", "附表六之三"],
+            "account_value_return_on_time_bar": True,
+            "guardianship_funeral_benefit_rule": True,
+            "funeral_benefit_limit_rule": True,
+            "funeral_benefit_excludes_account_value": True,
+            "complete_disability_schedule_ref": "附表一",
+            "complete_disability_table_item_count": 7,
+            "disability_term": "失能",
+            "total_disability_term": "完全失能",
+            "non_participating_policy": True,
+            "policy_dividend_available": False,
+        },
+        "coverage_entries": entries,
+    }
+
+
+TAIWAN_XINFU_LIFE_MATURITY_GUARANTEE_PRODUCT_IDS = frozenset(
+    (
+        "202131MV1A59422A11Z90000000",
+        "202131MV1A59422A11Z90000001",
+        "202131MV1A59422A11Z90000002",
+        "202131MV1A59422A11Z90000003",
+        "202131MV1A59422A11Z90000004",
+        "202131MV1A59522B11Z90000000",
+        "202131MV1A59522B11Z90000001",
+        "202131MV1A59522B11Z90000002",
+        "202131MV1A59522B11Z90000003",
+        "202131MV1A59522B11Z90000004",
+    )
+)
+
+TAIWAN_XINFU_LIFE_MATURITY_GUARANTEE_REVISIONS = {
+    "202131MV1A59422A11Z90000000": "原始版本",
+    "202131MV1A59422A11Z90000001": "107-09-14-regulatory-revision",
+    "202131MV1A59422A11Z90000002": "108-04-24-filing-revision",
+    "202131MV1A59422A11Z90000003": "108-07-05-filing-revision",
+    "202131MV1A59422A11Z90000004": "109-01-01-filing-revision",
+    "202131MV1A59522B11Z90000000": "原始版本",
+    "202131MV1A59522B11Z90000001": "107-09-14-regulatory-revision",
+    "202131MV1A59522B11Z90000002": "108-04-24-filing-revision",
+    "202131MV1A59522B11Z90000003": "108-07-05-filing-revision",
+    "202131MV1A59522B11Z90000004": "109-01-01-regulatory-revision",
+}
+
+
+def is_taiwan_xinfu_life_maturity_guarantee_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-011"
+        and product_id in TAIWAN_XINFU_LIFE_MATURITY_GUARANTEE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_taiwan_xinfu_life_maturity_guarantee(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_xinfu_life_maturity_guarantee_strict_source(document):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    plain_dense_text = dense_text.replace("「", "").replace("」", "")
+    is_foreign_currency = "本保險為外幣保險單" in text
+    product_title = (
+        "台灣人壽鑫富人生外幣變額壽險"
+        if is_foreign_currency
+        else "台灣人壽鑫富人生變額壽險"
+    )
+    if compact_table_text("完全失能保險金") in dense_text:
+        disability_term = "失能"
+    elif compact_table_text("完全殘廢保險金") in dense_text:
+        disability_term = "殘廢"
+    else:
+        return None
+    required_signals = [
+        product_title,
+        f"主要給付項目:1.身故保險金或喪葬費用保險金2.完全{disability_term}保險金3.滿期保證金額或到期收益金額",
+        "淨危險保額:係指基本保額",
+        f"保險金額:係指本公司於被保險人身故或完全{disability_term}所給付之金額",
+        "該金額以淨危險保額與保單帳戶價值兩者之總和給付",
+        "保險費:係指要保人於本契約投保時所繳付之躉繳保險費",
+        f"保險成本:係指提供被保險人本契約生效日起至滿期日止之身故、完全{disability_term}保障所需的成本",
+        "本契約於保險單上所載附表六之一投資標的運用期屆滿時",
+        "滿期保證金額計算公式",
+        "本契約於保險單上所載附表六之二投資標的運用期屆滿時",
+        "到期收益金額計算公式",
+        "被保險人於本契約有效期間內身故者,本公司按保險金額給付身故保險金",
+        "喪葬費用保險金額,不包含其屬投資部分之保單帳戶價值",
+        f"被保險人於本契約有效期間內致成附表一所列之完全{disability_term}等級之一",
+        f"附表一:完全{disability_term}表",
+        f"完全{disability_term}指下列七項{disability_term}程度之一",
+        "本保險為不分紅保險單,不參加紅利分配",
+    ]
+    if is_foreign_currency:
+        required_signals.append("本保險為外幣保險單,本公司所收取之款項均以美元計價")
+
+    if any(
+        compact_table_text(signal).replace("「", "").replace("」", "")
+        not in plain_dense_text
+        for signal in required_signals
+    ):
+        return None
+
+    terms_revision = TAIWAN_XINFU_LIFE_MATURITY_GUARANTEE_REVISIONS.get(product_id)
+    if terms_revision is None:
+        return None
+
+    if is_foreign_currency:
+        currency_basis = "foreign_currency"
+        payment_currency_label = "美元"
+        filing_number = "台壽字第1062330002號"
+        maturity_guarantee_ref = "保單條款第十七條，滿期保證金額的給付"
+        maturity_income_ref = "保單條款第十八條，到期收益金額的給付"
+        death_ref = "保單條款第十九條，身故保險金或喪葬費用保險金的給付"
+        disability_ref = f"保單條款第二十條，完全{disability_term}保險金的給付"
+    else:
+        currency_basis = "twd"
+        payment_currency_label = "新臺幣"
+        filing_number = "台壽字第1062330001號"
+        maturity_guarantee_ref = "保單條款第十六條，滿期保證金額的給付"
+        maturity_income_ref = "保單條款第十七條，到期收益金額的給付"
+        death_ref = "保單條款第十八條，身故保險金或喪葬費用保險金的給付"
+        disability_ref = f"保單條款第十九條，完全{disability_term}保險金的給付"
+
+    entries = [
+        coverage_entry(
+            "maturity-guaranteed-amount",
+            "滿期保證金額",
+            None,
+            "policy_recorded_limit",
+            f"被保險人於附表六之一投資標的運用期屆滿時仍生存且契約有效，或已身故、完全{disability_term}但尚未申領相關保險金時，依附表六之一滿期保證金額計算公式給付。",
+            maturity_guarantee_ref,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="appendix_6_1_formula_amount",
+            conditions=[
+                "投資標的運用期屆滿前如有部分提領或保單帳戶價值扣抵保單借款本息，滿期保證金額依扣取單位數減少。",
+                "契約復效者，給付金額改以收到受益人申請文件次一個資產評價日之保單帳戶價值。",
+                "給付後本契約效力終止。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-income-amount",
+            "到期收益金額",
+            None,
+            "policy_recorded_limit",
+            f"被保險人於附表六之二投資標的運用期屆滿時仍生存且契約有效，或已身故、完全{disability_term}但尚未申領相關保險金時，依附表六之二到期收益金額計算公式給付。",
+            maturity_income_ref,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="appendix_6_2_formula_amount",
+            conditions=[
+                "投資標的運用期屆滿前如有部分提領或保單帳戶價值扣抵保單借款本息，到期收益金額依扣取單位數減少。",
+                "契約復效者，給付金額改以收到受益人申請文件次一個資產評價日之保單帳戶價值。",
+                "給付後本契約效力終止。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內身故者，按保險金額給付；保險金額為淨危險保額與保單帳戶價值總和，淨危險保額為基本保額。",
+            death_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=[
+                "本公司已給付滿期保證金額或到期收益金額者，得先扣抵已給付金額後給付餘額。",
+                "訂立契約時以受監護宣告尚未撤銷者為被保險人，身故保險金變更為喪葬費用保險金。",
+                "喪葬費用保險金額不包含投資部分之保單帳戶價值，且受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+                "逾請求時效時，條款另約定以次一個資產評價日為基準計算保單帳戶價值返還應得之人。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            f"完全{disability_term}保險金",
+            None,
+            "policy_recorded_limit",
+            f"被保險人於契約有效期間內致成附表一所列七項完全{disability_term}程度之一並經診斷確定者，按保險金額給付。",
+            disability_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=[
+                "本公司已給付滿期保證金額或到期收益金額者，得先扣抵已給付金額後給付餘額。",
+                f"被保險人同時有兩項以上完全{disability_term}時，僅給付一項完全{disability_term}保險金。",
+                "逾請求時效時，條款另約定以次一個資產評價日為基準計算保單帳戶價值返還應得之人。",
+                "給付後本契約效力終止。",
+            ],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保額",
+        "selection_guidance": f"請輸入保單所載基本保額；本契約為躉繳投資型壽險，身故與完全{disability_term}保險金額為基本保額加保單帳戶價值，滿期保證金額與到期收益金額須依保單投資標的附表六公式及是否部分提領確認。",
+        "version_characteristics": {
+            "product_family": "taiwan-xinfu-life-investment-linked-life-maturity-guarantee",
+            "company_group": "taiwan_life",
+            "currency_basis": currency_basis,
+            "payment_currency_label": payment_currency_label,
+            "terms_revision": terms_revision,
+            "filing_number": filing_number,
+            "investment_linked_policy": True,
+            "single_premium_policy": True,
+            "foreign_currency_policy": is_foreign_currency,
+            "insurance_amount_basis": "net_amount_at_risk_plus_policy_account_value",
+            "insurance_amount_formula": "net_amount_at_risk_plus_policy_account_value",
+            "net_amount_at_risk_required": True,
+            "net_amount_at_risk_formula_type": "basic_amount",
+            "death_benefit_formula": "policy_insurance_amount",
+            "total_disability_benefit_formula": "policy_insurance_amount",
+            "maturity_trigger": "investment_target_operation_period_end",
+            "maturity_benefit_formula": "investment_target_formula_amount_or_policy_account_value_after_reinstatement",
+            "maturity_guaranteed_amount_formula_ref": "附表六之一",
+            "maturity_income_amount_formula_ref": "附表六之二",
+            "maturity_interest_crediting": False,
+            "policy_account_value_required": True,
+            "investment_target_value_required": True,
+            "redemption_valuation_timing_required": True,
+            "valuation_schedule_ref": "附表四",
+            "insurance_cost_refund_after_event": False,
+            "account_value_return_on_time_bar": True,
+            "funeral_benefit_limit_rule": True,
+            "funeral_benefit_excludes_account_value": True,
+            "minor_death_before_age_15_account_value_rule": False,
+            "minor_disability_before_age_15_account_value_rule": False,
+            "complete_disability_schedule_ref": "附表一",
+            "complete_disability_table_item_count": 7,
+            "legacy_disability_wording": disability_term == "殘廢",
+            "disability_term": disability_term,
+            "total_disability_term": f"完全{disability_term}",
+            "non_participating_policy": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
+TAIWAN_WUDONG_LEGACY_VARIABLE_UNIVERSAL_LIFE_PRODUCT_IDS = frozenset(
+    (
+        "202191M31AZE000",
+        "202191M31AZE001",
+        "202191M31AZE002",
+        "202191M31AZE003",
+        "202191M31AZE004",
+        "202191M31AZE005",
+        "202191M31AZE006",
+        "202191M31AZE007",
+        "202191M31AZE008",
+        "202191M31AZE009",
+        "202191M31AZE010",
+        "202191M31AZE011",
+        "202191M31AZE012",
+        "202191M31AZE013",
+        "202191M31AZE014",
+        "202191M31AZE015",
+        "202191M31AZE016",
+        "202191M31AZE017",
+        "202191M31AZE018",
+        "202191M31AZE019",
+    )
+)
+
+TAIWAN_WUDONG_LEGACY_VARIABLE_UNIVERSAL_LIFE_REVISIONS = {
+    "202191M31AZE000": "原始版本",
+    "202191M31AZE001": "第1次部分變更",
+    "202191M31AZE002": "第2次部分變更",
+    "202191M31AZE003": "第3次部分變更",
+    "202191M31AZE004": "96-12-31-filing-revision",
+    "202191M31AZE005": "97-03-20-filing-revision",
+    "202191M31AZE006": "第6次部分變更",
+    "202191M31AZE007": "97-08-26-regulatory-revision",
+    "202191M31AZE008": "第8次部分變更",
+    "202191M31AZE009": "97-12-08-filing-revision",
+    "202191M31AZE010": "97-12-26-filing-revision",
+    "202191M31AZE011": "98-07-20-filing-revision",
+    "202191M31AZE012": "第12次部分變更",
+    "202191M31AZE013": "第13次部分變更",
+    "202191M31AZE014": "98-12-15-filing-revision",
+    "202191M31AZE015": "第15次部分變更",
+    "202191M31AZE016": "第16次部分變更",
+    "202191M31AZE017": "第17次部分變更",
+    "202191M31AZE018": "第18次部分變更",
+    "202191M31AZE019": "第19次部分變更",
+}
+
+
+def is_taiwan_wudong_legacy_variable_universal_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-011"
+        and product_id in TAIWAN_WUDONG_LEGACY_VARIABLE_UNIVERSAL_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_taiwan_wudong_legacy_variable_universal_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_wudong_legacy_variable_universal_life_strict_source(document):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    plain_dense_text = dense_text.replace("「", "").replace("」", "")
+    required_signals = [
+        "台灣人壽舞動人生變額萬能壽險",
+        "身故保險金",
+        "喪葬費用保險金",
+        "全殘廢保險金",
+        "生命末期保險金",
+        "祝壽保險金",
+        "保險金額:係指保險單面頁所載本契約之投保金額",
+        "保險型態:係指投保時約定的身故給付型態,分為甲型與乙型",
+        "淨危險保額:係指「身故、全殘廢保險金額」扣除保單帳戶價值之金額",
+        "被保險人於保險年齡達一百一十歲之保單週年日仍生存且本契約仍屬有效時",
+        "計算保單帳戶價值給付祝壽保險金",
+        "被保險人於本契約有效期間內身故者,本公司按「身故、全殘廢保險金額」給付身故保險金",
+        "喪葬費用保險金額,不包含其屬投資部分之保單帳戶價值",
+        "被保險人於本契約有效期間內致成附件五所列之全殘廢程度之一",
+        "按「身故、全殘廢保險金額」給付全殘廢保險金",
+        "給付型態為乙型時",
+        "保價乘數",
+        "本保險為不分紅保單,不參加紅利分配",
+    ]
+    if any(
+        compact_table_text(signal).replace("「", "").replace("」", "")
+        not in plain_dense_text
+        for signal in required_signals
+    ):
+        return None
+    minor_death_age = 15 if compact_table_text("滿十五足歲前死亡") in dense_text else 14
+    minor_death_signal = (
+        "滿十五足歲前死亡"
+        if minor_death_age == 15
+        else "十四足歲以前身故"
+    )
+    if compact_table_text(minor_death_signal) not in dense_text:
+        return None
+    terminal_benefit_signals = (
+        "百分之五十",
+        "給付生命末期",
+        "生命末期保險金",
+    )
+    if any(compact_table_text(signal) not in dense_text for signal in terminal_benefit_signals):
+        return None
+
+    terms_revision = TAIWAN_WUDONG_LEGACY_VARIABLE_UNIVERSAL_LIFE_REVISIONS.get(
+        product_id
+    )
+    if terms_revision is None:
+        return None
+
+    entries = [
+        coverage_entry(
+            "survival-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於保險年齡達一百一十歲之保單週年日仍生存且契約有效時，依附件一投資標的單位淨值日為基準計算保單帳戶價值給付。",
+            "保單條款第十六條，祝壽保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="policy_account_value",
+            conditions=["給付後本契約即行終止。"],
+        ),
+        coverage_entry(
+            "death-benefit",
+            "身故保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內身故者，按身故、全殘廢保險金額給付。",
+            "保單條款第十七條，身故保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "給付後本契約效力即行終止。",
+                "逾請求時效時，條款另約定依附件一投資標的單位淨值日計算保單帳戶價值返還應得之人。",
+            ],
+        ),
+        coverage_entry(
+            "funeral-benefit",
+            "喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "訂立契約時，以未滿十四足歲之未成年人且於十四足歲以前身故，或心神喪失或精神耗弱之人為被保險人時，前條身故保險金的淨危險保額部分變更為喪葬費用保險金。",
+            "保單條款第十八條，喪葬費用保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="net_amount_at_risk",
+            conditions=[
+                "喪葬費用保險金額不包含投資部分之保單帳戶價值；原投資部分保單帳戶價值按條款約定給付予要保人或其他應得之人。",
+                "喪葬費用保險金受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內致成附件五所列全殘廢程度之一並經診斷確定者，按身故、全殘廢保險金額給付。",
+            "保單條款第十九條，全殘廢保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "同時有兩項以上殘廢時，僅給付一項全殘廢保險金。",
+                "給付後本契約效力即行終止。",
+                "逾請求時效時，條款另約定依附件一投資標的單位淨值日計算保單帳戶價值返還應得之人。",
+            ],
+        ),
+        coverage_entry(
+            "terminal-illness-benefit",
+            "生命末期保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內經診斷確定符合生命末期狀態時，按身故、全殘廢保險金額之百分之五十給付。",
+            "保單條款第二十條，生命末期保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=50,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "生命末期狀態係指醫院醫師診斷認定依目前醫療技術無法治癒，且平均存活期在六個月以下。",
+                "約定給付型態為乙型時，須當時保險金額與保單帳戶價值二者之總和不小於保單帳戶價值乘以保價乘數，始得申領。",
+            ],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單面頁所載保險金額，並依保單給付型態（甲型或乙型）確認身故、全殘廢保險金額；祝壽按保單帳戶價值，生命末期按身故、全殘廢保險金額的 50% 給付。",
+        "version_characteristics": {
+            "product_family": "taiwan-wudong-legacy-variable-universal-life",
+            "company_group": "taiwan_life",
+            "currency_basis": "twd",
+            "payment_currency_label": "新台幣",
+            "terms_revision": terms_revision,
+            "filing_number": "96台壽投商字第00064號",
+            "investment_linked_policy": True,
+            "variable_universal_life_policy": True,
+            "insurance_type_required": True,
+            "insurance_type_options": ["甲型", "乙型"],
+            "insurance_amount_basis": "death_total_disability_insurance_amount",
+            "insurance_amount_formula": "death_total_disability_insurance_amount",
+            "death_total_disability_amount_formula": "contract_selected_formula_by_type_a_or_b",
+            "net_amount_at_risk_required": True,
+            "net_amount_at_risk_formula_type": "death_total_disability_amount_less_account_value",
+            "death_benefit_formula": "death_total_disability_insurance_amount",
+            "funeral_benefit_formula": "net_amount_at_risk_with_account_value_paid_separately",
+            "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+            "terminal_illness_benefit_formula": "50_percent_of_death_total_disability_insurance_amount",
+            "terminal_illness_rate_percent": 50,
+            "terminal_illness_survival_months_max": 6,
+            "terminal_illness_type_b_policy_value_multiplier_condition": True,
+            "survival_benefit_formula": "policy_account_value_at_age_110_policy_anniversary",
+            "maturity_benefit_formula": "policy_account_value_at_age_110_policy_anniversary",
+            "maturity_trigger": "age_110_policy_anniversary",
+            "maturity_age": 110,
+            "policy_account_value_required": True,
+            "redemption_valuation_timing_required": True,
+            "valuation_reference": "appendix_1_investment_target_unit_value_date",
+            "account_value_return_on_time_bar": True,
+            "funeral_benefit_limit_rule": True,
+            "funeral_benefit_excludes_account_value": True,
+            "minor_death_before_age_14_account_value_rule": minor_death_age == 14,
+            "minor_death_before_age_15_account_value_rule": minor_death_age == 15,
+            "minor_disability_before_age_14_account_value_rule": False,
+            "complete_disability_schedule_ref": "附件五",
+            "complete_disability_table_item_count": 7,
+            "legacy_disability_wording": True,
+            "disability_term": "殘廢",
+            "total_disability_term": "完全殘廢",
+            "non_participating_policy": True,
+            "policy_dividend_available": False,
+        },
+        "coverage_entries": entries,
+    }
+
+
+TAIWAN_XINDEYI_VARIABLE_UNIVERSAL_LIFE_PRODUCT_IDS = frozenset(
+    (
+        "202191M31AZG000",
+        "202191M31AZG001",
+        "202191M31AZG002",
+        "202191M31AZG003",
+        "202191M31AZG004",
+        "202191M31AZG005",
+        "202191M31AZG006",
+        "202191M31AZG007",
+        "202191M31AZG008",
+        "202191M31AZG009",
+        "202191M31AZG010",
+        "202191M31AZG011",
+        "202191M31AZG012",
+        "202191M31AZG013",
+        "202191M31AZG014",
+        "202191M31AZG015",
+        "202191M31AZG016",
+        "202191M31AZG017",
+        "202191M31AZG018",
+        "202191M31AZG019",
+        "202191M31AZG020",
+        "202191M31AZG021",
+        "202191M31AZG022",
+        "202191M31AZG023",
+    )
+)
+
+TAIWAN_XINDEYI_VARIABLE_UNIVERSAL_LIFE_REVISIONS = {
+    "202191M31AZG000": "原始版本",
+    "202191M31AZG001": "第1次部分變更",
+    "202191M31AZG002": "第2次部分變更",
+    "202191M31AZG003": "第3次部分變更",
+    "202191M31AZG004": "第4次部分變更",
+    "202191M31AZG005": "第5次部分變更",
+    "202191M31AZG006": "第6次部分變更",
+    "202191M31AZG007": "第7次部分變更",
+    "202191M31AZG008": "第8次部分變更",
+    "202191M31AZG009": "第9次部分變更",
+    "202191M31AZG010": "第10次部分變更",
+    "202191M31AZG011": "第11次部分變更",
+    "202191M31AZG012": "第12次部分變更",
+    "202191M31AZG013": "第13次部分變更",
+    "202191M31AZG014": "第14次部分變更",
+    "202191M31AZG015": "第15次部分變更",
+    "202191M31AZG016": "第16次部分變更",
+    "202191M31AZG017": "第17次部分變更",
+    "202191M31AZG018": "第18次部分變更",
+    "202191M31AZG019": "第19次部分變更",
+    "202191M31AZG020": "第20次部分變更",
+    "202191M31AZG021": "第21次部分變更",
+    "202191M31AZG022": "第22次部分變更",
+    "202191M31AZG023": "第23次部分變更",
+}
+
+
+def is_taiwan_xindeyi_variable_universal_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-011"
+        and product_id in TAIWAN_XINDEYI_VARIABLE_UNIVERSAL_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_taiwan_xindeyi_variable_universal_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_xindeyi_variable_universal_life_strict_source(document):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    title_signals = (
+        "台灣人壽新得益人生變額萬能壽險",
+        "台灣人壽得益人生變額萬能壽險",
+    )
+    if not any(compact_table_text(signal) in dense_text for signal in title_signals):
+        return None
+    required_signals = [
+        "保單帳戶價值",
+        "身故、全殘廢保險金額",
+        "保險金額與保單帳戶價值兩者之總和",
+        "給付祝壽保險金",
+        "被保險人於保險年齡達九十九歲之保單週年日仍生存",
+        "給付身故保險金",
+        "喪葬費用保險金",
+        "給付全殘廢保險金",
+        "附件四之投資標的單位淨值日",
+        "附件五所列之全殘廢程度",
+        "本保險為不分紅保單",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    terms_revision = TAIWAN_XINDEYI_VARIABLE_UNIVERSAL_LIFE_REVISIONS.get(
+        product_id
+    )
+    entries = [
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於保險年齡達九十九歲之保單週年日仍生存且契約仍有效時，依附件四之投資標的單位淨值日計算保單帳戶價值給付。",
+            "保單條款第十七條，祝壽保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=[
+                "給付祝壽保險金後，本契約效力即行終止。",
+                "保單帳戶價值依附件四之投資標的單位淨值日為基準計算。",
+            ],
+        ),
+        coverage_entry(
+            "death-benefit",
+            "身故保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內身故時，按身故、全殘廢保險金額給付；該金額為保險金額與保單帳戶價值兩者之總和。",
+            "保單條款第十八條，身故保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "身故保險金不得超過主管機關所訂定之身故保險金額度上限，超過部分退還要保人。",
+                "給付身故保險金後，本契約效力即行終止。",
+                "超過時效申請時，本公司改以送達文件時依附件四計算之保單帳戶價值返還應得之人。",
+            ],
+        ),
+        coverage_entry(
+            "funeral-benefit",
+            "喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "以未滿十四足歲之未成年人且十四足歲以前身故，或心神喪失或精神耗弱者為被保險人時，前條身故保險金之保險金額部分變更為喪葬費用保險金，原投資部分保單帳戶價值另依約定給付。",
+            "保單條款第十九條，喪葬費用保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="policy_face_amount",
+            conditions=[
+                "喪葬費用保險金合計受主管機關所訂定之喪葬費用額度上限限制。",
+                "保單帳戶價值以受益人檢齊文件送達本公司時，依附件四之投資標的單位淨值日計算。",
+                "原投資部分之保單帳戶價值按約定給付予要保人或其他應得之人。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內致成附件五所列全殘廢程度之一並經診斷確定時，按身故、全殘廢保險金額給付。",
+            "保單條款第二十條，全殘廢保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "同時有兩項以上殘廢時，僅給付一項全殘廢保險金。",
+                "給付全殘廢保險金後，本契約效力即行終止。",
+                "超過時效申請時，本公司改以送達文件時依附件四計算之保單帳戶價值返還應得之人。",
+            ],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單面頁所載保險金額；身故與全殘廢保險金額依條款為保險金額加保單帳戶價值，祝壽以保單帳戶價值給付。",
+        "version_characteristics": {
+            "product_family": "taiwan-xindeyi-variable-universal-life",
+            "company_group": "taiwan_life",
+            "currency_basis": "twd",
+            "payment_currency_label": "新台幣",
+            "terms_revision": terms_revision,
+            "investment_linked_policy": True,
+            "insurance_amount_basis": "policy_face_amount",
+            "death_total_disability_amount_formula": "face_amount_plus_policy_account_value",
+            "death_benefit_formula": "death_total_disability_insurance_amount",
+            "funeral_benefit_formula": "policy_face_amount_subject_to_statutory_cap_plus_account_value_return",
+            "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+            "maturity_trigger": "age_99_policy_anniversary",
+            "maturity_age": 99,
+            "maturity_benefit_formula": "policy_account_value_at_age_99_policy_anniversary",
+            "maturity_interest_crediting": False,
+            "policy_account_value_required": True,
+            "face_amount_required": True,
+            "investment_target_value_required": True,
+            "redemption_valuation_timing_required": True,
+            "valuation_schedule_ref": "附件四",
+            "insurance_cost_refund_after_event": False,
+            "account_value_return_on_time_bar": True,
+            "funeral_benefit_limit_rule": True,
+            "funeral_benefit_excludes_account_value": True,
+            "minor_death_before_age_14_account_value_rule": True,
+            "minor_disability_before_age_14_account_value_rule": False,
+            "complete_disability_schedule_ref": "附件五",
+            "complete_disability_table_item_count": 7,
+            "legacy_disability_wording": True,
+            "disability_term": "殘廢",
+            "total_disability_term": "完全殘廢",
+            "non_participating_policy": True,
+            "policy_dividend_available": False,
+        },
+        "coverage_entries": entries,
+    }
+
+
+TAIWAN_ZHIDUOXIN_VARIABLE_UNIVERSAL_LIFE_PRODUCT_IDS = frozenset(
+    (
+        "202191M31AZQ000",
+        "202191M31AZQ001",
+        "202191M31AZQ002",
+        "202191M31AZQ003",
+        "202191M31AZQ004",
+        "202191M31AZQ005",
+        "202191M31AZQ006",
+        "202191MV1AZQ023A11C90000007",
+        "202191MV1AZQ023A11C90000008",
+    )
+)
+
+TAIWAN_ZHIDUOXIN_VARIABLE_UNIVERSAL_LIFE_REVISIONS = {
+    "202191M31AZQ000": "原始版本",
+    "202191M31AZQ001": "第1次部分變更",
+    "202191M31AZQ002": "第2次部分變更",
+    "202191M31AZQ003": "第3次部分變更",
+    "202191M31AZQ004": "第4次部分變更",
+    "202191M31AZQ005": "第5次部分變更",
+    "202191M31AZQ006": "第6次部分變更",
+    "202191MV1AZQ023A11C90000007": "第7次部分變更",
+    "202191MV1AZQ023A11C90000008": "第8次部分變更",
+}
+
+
+def is_taiwan_zhiduoxin_variable_universal_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-011"
+        and product_id in TAIWAN_ZHIDUOXIN_VARIABLE_UNIVERSAL_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_taiwan_zhiduoxin_variable_universal_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_zhiduoxin_variable_universal_life_strict_source(document):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    if compact_table_text("智多鑫變額萬能壽險") not in dense_text:
+        return None
+    disability_label = (
+        "完全殘廢"
+        if compact_table_text("完全殘廢保險金") in dense_text
+        else "全殘廢"
+    )
+    disability_amount_label = f"身故、{disability_label}保險金額"
+    if compact_table_text(f"{disability_label}保險金") not in dense_text:
+        return None
+    amount_formula_signal = (
+        "淨危險保額與保單帳戶價值兩者之總和"
+        if compact_table_text("淨危險保額與保單帳戶價值兩者之總和") in dense_text
+        else "保險金額與保單帳戶價值兩者之總和"
+    )
+    required_signals = [
+        "保單帳戶價值",
+        amount_formula_signal,
+        "被保險人於保險年齡達九十九歲之保單週年日仍生存",
+        "滿十五足歲之日起發生效力",
+        "滿十五足歲前死亡者",
+        "喪葬費用保險金",
+        "精神障礙或其他心智缺陷",
+        f"給付{disability_label}保險金",
+        f"附件五所列之{disability_label}",
+        "本保險為不分紅保險單",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+    if compact_table_text(disability_amount_label) not in dense_text and compact_table_text(
+        f"身故或{disability_label}所給付之金額"
+    ) not in dense_text:
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    terms_revision = TAIWAN_ZHIDUOXIN_VARIABLE_UNIVERSAL_LIFE_REVISIONS.get(
+        product_id
+    )
+    entries = [
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於保險年齡達九十九歲之保單週年日仍生存且契約仍有效時，依附件四之投資標的單位淨值日計算保單帳戶價值給付。",
+            "保單條款第二十一條，祝壽保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=[
+                "給付祝壽保險金後，本契約效力即行終止。",
+                "保單帳戶價值依附件四之投資標的單位淨值日為基準計算。",
+            ],
+        ),
+        coverage_entry(
+            "death-benefit",
+            "身故保險金",
+            None,
+            "policy_recorded_limit",
+            f"身故保險金給付於被保險人滿十五足歲之日起發生效力；{disability_amount_label}依條款名詞定義及保單帳戶價值計算。",
+            "保單條款第二十二條，身故保險金的給付與保單帳戶價值之返還；第二條名詞定義",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "被保險人滿十五足歲前死亡者，不給付身故保險金，改返還本契約之保單帳戶價值。",
+                "給付身故保險金或返還保單帳戶價值後，本契約效力即行終止。",
+                "超過時效申請身故保險金時，改以申請文件送達時依附件四計算之保單帳戶價值返還應得之人。",
+            ],
+        ),
+        coverage_entry(
+            "minor-death-account-value-return",
+            "滿十五足歲前死亡返還保單帳戶價值",
+            None,
+            "policy_recorded_limit",
+            "訂立契約時以未滿十五足歲之未成年人為被保險人，且被保險人滿十五足歲前死亡者，本公司返還本契約之保單帳戶價值。",
+            "保單條款第二十二條，身故保險金的給付與保單帳戶價值之返還",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=[
+                "返還保單帳戶價值後，本契約效力即行終止。",
+                "此項為滿十五足歲前死亡情境，非身故保險金。",
+            ],
+        ),
+        coverage_entry(
+            "funeral-benefit",
+            "喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "以精神障礙或其他心智缺陷致不能辨識其行為或欠缺依其辨識而行為能力者為被保險人時，身故保險金之保險金額部分變更為喪葬費用保險金，原投資部分保單帳戶價值另依約定給付。",
+            "保單條款第二十三條，喪葬費用保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="policy_face_amount",
+            conditions=[
+                "民國九十九年二月三日含以後所投保之喪葬費用保險金額總和，不得超過訂約時遺產及贈與稅法喪葬費扣除額之半數。",
+                "原投資部分之保單帳戶價值按約定給付予要保人或其他應得之人。",
+                "保單帳戶價值依申請文件送達時附件四之投資標的單位淨值日計算。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            f"{disability_label}保險金",
+            None,
+            "policy_recorded_limit",
+            f"被保險人於契約有效期間內致成附件五所列{disability_label}等級或程度之一並經診斷確定時，按{disability_amount_label}給付。",
+            f"保單條款第二十四條，{disability_label}保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                f"同時有兩項以上{disability_label}時，僅給付一項{disability_label}保險金。",
+                f"給付{disability_label}保險金後，本契約效力即行終止。",
+                "超過時效申請時，本公司改以送達文件時依附件四計算之保單帳戶價值返還應得之人。",
+            ],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": f"請輸入保單面頁所載保險金額；身故與{disability_label}保險金額依條款定義及保單帳戶價值計算，身故保險金須滿十五足歲後才生效。",
+        "version_characteristics": {
+            "product_family": "taiwan-zhiduoxin-variable-universal-life",
+            "company_group": "taiwan_life",
+            "currency_basis": "twd",
+            "payment_currency_label": "新台幣",
+            "terms_revision": terms_revision,
+            "investment_linked_policy": True,
+            "insurance_amount_basis": "policy_face_amount",
+            "death_total_disability_amount_formula": (
+                "net_amount_at_risk_plus_policy_account_value"
+                if amount_formula_signal.startswith("淨危險保額")
+                else "face_amount_plus_policy_account_value"
+            ),
+            "death_benefit_formula": "death_total_disability_insurance_amount_after_age_15",
+            "minor_death_account_value_return_formula": "policy_account_value_before_age_15",
+            "funeral_benefit_formula": "policy_face_amount_subject_to_statutory_cap_plus_account_value_return",
+            "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+            "maturity_trigger": "age_99_policy_anniversary",
+            "maturity_age": 99,
+            "maturity_benefit_formula": "policy_account_value_at_age_99_policy_anniversary",
+            "maturity_interest_crediting": False,
+            "policy_account_value_required": True,
+            "face_amount_required": True,
+            "investment_target_value_required": True,
+            "redemption_valuation_timing_required": True,
+            "valuation_schedule_ref": "附件四",
+            "insurance_cost_refund_after_event": False,
+            "account_value_return_on_time_bar": True,
+            "death_benefit_effective_age": 15,
+            "minor_death_before_age_15_account_value_rule": True,
+            "minor_disability_before_age_15_account_value_rule": False,
+            "mental_disability_funeral_benefit_rule": True,
+            "funeral_benefit_limit_rule": True,
+            "funeral_benefit_excludes_account_value": True,
+            "complete_disability_schedule_ref": "附件五",
+            "complete_disability_table_item_count": 7,
+            "legacy_disability_wording": True,
+            "disability_term": "殘廢",
+            "total_disability_term": disability_label,
+            "non_participating_policy": True,
+            "policy_dividend_available": False,
+        },
+        "coverage_entries": entries,
+    }
+
+
+TAIWAN_ZHANGWO_VARIABLE_UNIVERSAL_LIFE_PRODUCT_IDS = frozenset(
+    (
+        "202191M31AZB000",
+        "202191M31AZB001",
+        "202191M31AZB002",
+        "202191M31AZB003",
+    )
+)
+
+TAIWAN_ZHANGWO_VARIABLE_UNIVERSAL_LIFE_REVISIONS = {
+    "202191M31AZB000": "原始版本",
+    "202191M31AZB001": "第1次部分變更",
+    "202191M31AZB002": "第2次部分變更",
+    "202191M31AZB003": "第3次部分變更",
+}
+
+
+def is_taiwan_zhangwo_variable_universal_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-011"
+        and product_id in TAIWAN_ZHANGWO_VARIABLE_UNIVERSAL_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_taiwan_zhangwo_variable_universal_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_zhangwo_variable_universal_life_strict_source(document):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = [
+        "掌握人生變額萬能壽險",
+        "身故保險金",
+        "喪葬費用保險金",
+        "全殘廢保險金",
+        "生命末期保險金",
+        "保單價值",
+        "保險金額",
+        "淨危險保額",
+        "百分之五十",
+        "五百萬元",
+        "不分紅保險單",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+
+    is_original_formula = product_id == "202191M31AZB000"
+    if is_original_formula:
+        formula_signal = "保單價值與保險金額之較大者"
+        death_formula = "greater_of_policy_value_or_face_amount"
+        death_note = "依條款以保單價值與保險金額較大者給付。"
+        terminal_note = "依條款以單位數百分之五十的保單價值與保險金額百分之五十較大者給付，且保險金額百分之五十超過新台幣五百萬元者以五百萬元為限。"
+    else:
+        formula_signal = "當年度保險金額為保險金額與保單價值之較大者"
+        death_formula = "selected_type_annual_insurance_amount"
+        death_note = "依當年度保險金額給付；甲型為保險金額與保單價值較大者，乙型為保險金額與保單價值之和。"
+        terminal_note = "依當年度保險金額之百分之五十給付，且保險金額百分之五十超過新台幣五百萬元者以五百萬元為限。"
+        if compact_table_text("當年度保險金額為保險金額與保單價值之和") not in dense_text:
+            return None
+    if compact_table_text(formula_signal) not in dense_text:
+        return None
+
+    entries = [
+        coverage_entry(
+            "death-benefit",
+            "身故保險金",
+            None,
+            "policy_recorded_limit",
+            death_note,
+            "保單條款，身故保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="death_benefit_formula",
+            conditions=["給付後本契約效力即行終止。"],
+        ),
+        coverage_entry(
+            "funeral-benefit",
+            "喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "未滿十四足歲或特定心神狀態被保險人之身故給付依條款轉為喪葬費用保險金，並受喪葬費用額度上限限制。",
+            "保單條款，喪葬費用保險金",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="funeral_benefit_limit",
+            conditions=["喪葬費用保險金不包含投資部分之保單價值。"],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            death_note,
+            "保單條款，全殘廢保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="death_total_disability_formula",
+            conditions=["致成附表所列殘廢項目之一並經診斷確定者適用。"],
+        ),
+        coverage_entry(
+            "terminal-illness-benefit",
+            "生命末期保險金",
+            None,
+            "policy_recorded_limit",
+            terminal_note,
+            "保單條款，生命末期保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=50,
+            unit_key="terminal_illness_formula",
+            conditions=["生命末期狀態依醫院醫師診斷認定，平均存活期在六個月以下。"],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請依保單面頁輸入保險金額；若保單有甲型/乙型，需依保單面頁選定型態判讀身故、全殘廢與生命末期保險金。",
+        "coverage_entries": entries,
+        "version_characteristics": {
+            "product_family": "taiwan-zhangwo-variable-universal-life",
+            "terms_revision": TAIWAN_ZHANGWO_VARIABLE_UNIVERSAL_LIFE_REVISIONS.get(product_id),
+            "death_total_disability_amount_formula": death_formula,
+            "terminal_illness_rate_percent": 50,
+            "terminal_illness_cap_amount": 5_000_000,
+            "non_participating_policy": True,
+        },
+    }
+
+
+CHINA_XINCHUANG_VARIABLE_LIFE_PRODUCT_IDS = frozenset(
+    (
+        "205131MV1A00722A11Z90000000",
+        "205131MV1A00722A11Z90000001",
+        "205131MV1A00722A11Z90000002",
+    )
+)
+
+CHINA_XINCHUANG_VARIABLE_LIFE_REVISIONS = {
+    "205131MV1A00722A11Z90000000": "原始版本",
+    "205131MV1A00722A11Z90000001": "第1次部分變更",
+    "205131MV1A00722A11Z90000002": "第2次部分變更",
+}
+
+
+def is_china_xinchuang_variable_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-029"
+        and product_id in CHINA_XINCHUANG_VARIABLE_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_china_xinchuang_variable_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_china_xinchuang_variable_life_strict_source(document):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    disability_label = "完全失能" if compact_table_text("完全失能保險金") in dense_text else "完全殘廢"
+    required_signals = [
+        "鑫創時代變額壽險",
+        "身故保險金",
+        f"{disability_label}保險金",
+        "滿期保險金",
+        "基本保額",
+        "保單帳戶價值",
+        "其金額為下列二者加總之值一基本保額",
+        "附表三",
+        "不分紅保險單",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+
+    entries = [
+        coverage_entry(
+            "death-benefit",
+            "身故保險金",
+            None,
+            "policy_recorded_limit",
+            "保險金額為基本保額加計依附表三贖回評價時點計算之保單帳戶價值。",
+            "保單條款，身故保險金或喪葬費用保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="basic_amount_plus_policy_account_value",
+            conditions=["給付後本契約效力即行終止。"],
+        ),
+        coverage_entry(
+            "funeral-benefit",
+            "喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "特定心智或監護情形之身故保險金依條款轉為喪葬費用保險金，且不包含投資部分之保單帳戶價值。",
+            "保單條款，喪葬費用保險金",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="funeral_benefit_limit",
+            conditions=["喪葬費用保險金受法定額度上限限制。"],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            f"{disability_label}保險金",
+            None,
+            "policy_recorded_limit",
+            "按保險金額給付；保險金額為基本保額加計保單帳戶價值。",
+            f"保單條款，{disability_label}保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="basic_amount_plus_policy_account_value",
+            conditions=[f"致成條款所列{disability_label}程度之一並經診斷確定者適用。"],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "policy_recorded_limit",
+            "運用期屆滿仍生存且契約有效時，依目標到期基金及貨幣帳戶等保單帳戶價值計算滿期保險金。",
+            "保單條款，滿期保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value_at_maturity",
+            conditions=["如有保險單借款，依條款扣除借款及應付利息。"],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保額",
+        "selection_guidance": "請依保單面頁輸入基本保額；身故與完全失能/完全殘廢依基本保額加計保單帳戶價值判讀。",
+        "coverage_entries": entries,
+        "version_characteristics": {
+            "product_family": "china-xinchuang-variable-life",
+            "terms_revision": CHINA_XINCHUANG_VARIABLE_LIFE_REVISIONS.get(product_id),
+            "death_total_disability_amount_formula": "basic_amount_plus_policy_account_value",
+            "maturity_benefit_formula": "policy_account_value_at_maturity_less_policy_loan",
+            "total_disability_term": disability_label,
+            "non_participating_policy": True,
+        },
+    }
+
+
+CHINA_LEGACY_INVESTMENT_LINKED_LIFE_PRODUCT_IDS = frozenset(
+    (
+        "205191M31A03000",
+        "205191M31A03001",
+        "205191M31A05300",
+    )
+)
+
+CHINA_LEGACY_INVESTMENT_LINKED_LIFE_FILE_NAMES = {
+    "205191M31A03000": "205191M31A030-A.pdf",
+    "205191M31A03001": "205191M31A03001-A.pdf",
+    "205191M31A05300": "205191M31A053-A.pdf",
+}
+
+CHINA_LEGACY_INVESTMENT_LINKED_LIFE_REVISIONS = {
+    "205191M31A03000": "輕鬆致富原始版本",
+    "205191M31A03001": "輕鬆致富第1次部分變更",
+    "205191M31A05300": "高優質獲利",
+}
+
+
+def is_china_legacy_investment_linked_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-029"
+        and product_id in CHINA_LEGACY_INVESTMENT_LINKED_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "")
+        == CHINA_LEGACY_INVESTMENT_LINKED_LIFE_FILE_NAMES.get(product_id)
+    )
+
+
+def parse_china_legacy_investment_linked_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_china_legacy_investment_linked_life_strict_source(document):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = [
+        "身故保險金",
+        "全殘廢保險金",
+        "滿期保險金",
+        "投資收益",
+        "投資帳戶價值",
+        "投資起始日前身故者本公司按躉繳保險費與保險金額之較高者",
+        "投資帳戶價值加計保險金額",
+        "附表三所載之滿期保險金計算公式",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+
+    entries = [
+        coverage_entry(
+            "death-benefit-before-investment-start",
+            "身故保險金（投資起始日前）",
+            None,
+            "policy_recorded_limit",
+            "投資起始日前身故，按躉繳保險費與保險金額較高者給付。",
+            "保單條款，保險範圍",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="greater_of_single_premium_or_face_amount",
+            conditions=["給付後本契約效力即行終止。"],
+        ),
+        coverage_entry(
+            "death-benefit-after-investment-start",
+            "身故保險金（投資起始日後）",
+            None,
+            "policy_recorded_limit",
+            "投資起始日後身故，按投資帳戶價值加計保險金額給付。",
+            "保單條款，保險範圍",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="investment_account_value_plus_face_amount",
+            conditions=["以受益人備齊文件送達後之次二評價日投資帳戶價值計算。"],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "投資起始日前按躉繳保險費與保險金額較高者；投資起始日後按投資帳戶價值加計保險金額。",
+            "保單條款，保險範圍",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="investment_account_value_or_single_premium_formula",
+            conditions=["致成附表一第一級七項殘廢程度之一並經診斷確定者適用。"],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "policy_recorded_limit",
+            "投資運用期屆滿仍生存時，按附表三所載滿期保險金計算公式給付。",
+            "保單條款，保險範圍",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="appendix_3_maturity_formula",
+            conditions=["給付後本契約效力即行終止。"],
+        ),
+        coverage_entry(
+            "investment-income",
+            "投資收益",
+            None,
+            "policy_recorded_limit",
+            "投資起始日後每屆滿一年仍生存者，按附表三投資收益計算公式計算並依約定儲存生息或現金給付。",
+            "保單條款，投資收益的計算及給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="appendix_3_investment_income_formula",
+            conditions=["投資收益自當時投資帳戶價值中扣除或儲存生息，依條款約定辦理。"],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請依保單面頁輸入保險金額；投資起始日前後的身故與全殘廢公式不同，滿期與投資收益需依附表三計算。",
+        "coverage_entries": entries,
+        "version_characteristics": {
+            "product_family": "china-legacy-investment-linked-life",
+            "terms_revision": CHINA_LEGACY_INVESTMENT_LINKED_LIFE_REVISIONS.get(product_id),
+            "death_total_disability_amount_formula": "before_start_greater_of_single_premium_or_face_amount_after_start_investment_account_value_plus_face_amount",
+            "maturity_benefit_formula": "appendix_3_maturity_formula",
+            "investment_income_formula": "appendix_3_investment_income_formula",
+            "non_participating_policy": True,
+        },
+    }
+
+
+FUBON_XINXIANGYOULI_VARIABLE_LIFE_PRODUCT_IDS = frozenset(
+    (
+        "209131MV1A00822Z11Z90000000",
+        "209131MV1A00822Z11Z90000001",
+        "209131MV1A00822Z11Z90000002",
+    )
+)
+
+FUBON_XINXIANGYOULI_VARIABLE_LIFE_REVISIONS = {
+    "209131MV1A00822Z11Z90000000": "原始版本",
+    "209131MV1A00822Z11Z90000001": "第1次部分變更",
+    "209131MV1A00822Z11Z90000002": "第2次部分變更",
+}
+
+
+def is_fubon_xinxiangyouli_variable_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-053"
+        and product_id in FUBON_XINXIANGYOULI_VARIABLE_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_fubon_xinxiangyouli_variable_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_xinxiangyouli_variable_life_strict_source(document):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = [
+        "鑫享優利變額壽險",
+        "完全失能保險金",
+        "滿期保險金",
+        "保單帳戶價值",
+        "淨危險保額與保單帳戶價值兩者之總和",
+        "保險金額扣除基金投資標的發行公司收取之基金贖回買回費用",
+        "滿期評價時點",
+        "滿十五足歲前死亡者本公司應返還本契約之保單帳戶價值",
+        "如被保險人於未滿十五足歲前致成完全失能者本公司改以「保單帳戶價值」",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+
+    entries = [
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "policy_recorded_limit",
+            "運用期屆滿仍生存且契約有效時，依附表三評價時點計算保單帳戶價值，扣除保單借款及應付利息後給付。",
+            "保單條款第二十三條，滿期保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value_at_maturity_less_policy_loan",
+            conditions=["給付後本契約效力即行終止。"],
+        ),
+        coverage_entry(
+            "death-benefit",
+            "身故保險金",
+            None,
+            "policy_recorded_limit",
+            "按保險金額扣除基金投資標的發行公司收取之基金贖回買回費用後給付；保險金額以淨危險保額與保單帳戶價值兩者總和定義。",
+            "保單條款第二十四條，身故保險金或喪葬費用保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="insurance_amount_less_fund_redemption_fee",
+            conditions=["身故保險金給付於被保險人滿十五足歲之日起發生效力。"],
+        ),
+        coverage_entry(
+            "minor-death-account-value-return",
+            "滿十五足歲前死亡返還保單帳戶價值",
+            None,
+            "policy_recorded_limit",
+            "被保險人滿十五足歲前死亡者，返還本契約保單帳戶價值。",
+            "保單條款第二十四條，保單帳戶價值之返還",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=["此情境非身故保險金給付。"],
+        ),
+        coverage_entry(
+            "funeral-benefit",
+            "喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "受監護宣告尚未撤銷者為被保險人時，身故保險金依條款變更為喪葬費用保險金，且不包含投資部分之保單帳戶價值。",
+            "保單條款第二十四條，喪葬費用保險金",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="funeral_benefit_limit",
+            conditions=["喪葬費用保險金受法定額度上限限制。"],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            "按保險金額扣除基金贖回買回費用後給付；未滿十五足歲前致成完全失能者改以保單帳戶價值給付。",
+            "保單條款第二十五條，完全失能保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="insurance_amount_less_fund_redemption_fee",
+            conditions=["致成附表四完全失能程度表所列等級之一並經診斷確定者適用。"],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請依保單面頁輸入保險金額；身故與完全失能給付需扣除基金贖回買回費用，滿期依保單帳戶價值扣除借款。",
+        "coverage_entries": entries,
+        "version_characteristics": {
+            "product_family": "fubon-xinxiangyouli-variable-life",
+            "terms_revision": FUBON_XINXIANGYOULI_VARIABLE_LIFE_REVISIONS.get(product_id),
+            "death_total_disability_amount_formula": "insurance_amount_less_fund_redemption_fee",
+            "minor_death_before_age_15_account_value_rule": True,
+            "minor_disability_before_age_15_account_value_rule": True,
+            "maturity_benefit_formula": "policy_account_value_at_maturity_less_policy_loan",
+            "total_disability_term": "完全失能",
+            "non_participating_policy": True,
+        },
+    }
+
+
+HSINGFU_LEGACY_VARIABLE_UNIVERSAL_LIFE_PRODUCT_IDS = frozenset(
+    (
+        "215141M31A00100",
+        "215141M31A00211",
+    )
+)
+
+HSINGFU_LEGACY_VARIABLE_UNIVERSAL_LIFE_FILE_NAMES = {
+    "215141M31A00100": "215141M31A001-A.pdf",
+    "215141M31A00211": "215141M31A00211-A.pdf",
+}
+
+HSINGFU_LEGACY_VARIABLE_UNIVERSAL_LIFE_REVISIONS = {
+    "215141M31A00100": "超越變額萬能壽險(UVL)",
+    "215141M31A00211": "優越變額萬能終身壽險(VL2)第11次部分變更",
+}
+
+
+def is_hsingfu_legacy_variable_universal_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-077"
+        and product_id in HSINGFU_LEGACY_VARIABLE_UNIVERSAL_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "")
+        == HSINGFU_LEGACY_VARIABLE_UNIVERSAL_LIFE_FILE_NAMES.get(product_id)
+    )
+
+
+def parse_hsingfu_legacy_variable_universal_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_hsingfu_legacy_variable_universal_life_strict_source(document):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    product_signal = (
+        "超越變額萬能壽險"
+        if product_id == "215141M31A00100"
+        else "優越變額萬能終身壽險"
+    )
+    required_signals = [
+        product_signal,
+        "身故保險金",
+        "完全殘廢保險金",
+        "保單價值總額",
+        "基本保額",
+        "甲型保險金額為保單價值總額之一點一倍但不得低於基本保額",
+        "乙型保險金額為基本保額與保單價值總額之和",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+
+    entries = [
+        coverage_entry(
+            "death-benefit",
+            "身故保險金",
+            None,
+            "policy_recorded_limit",
+            "甲型按保單價值總額之一點一倍但不低於基本保額；乙型按基本保額與保單價值總額之和。",
+            "保單條款，身故保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="selected_type_a_or_b_death_amount",
+            conditions=["給付後本契約效力終止。"],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "甲型按保單價值總額之一點一倍但不低於基本保額；乙型按基本保額與保單價值總額之和。",
+            "保單條款，完全殘廢保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="selected_type_a_or_b_death_amount",
+            conditions=["致成完全殘廢者適用；給付後本契約效力終止。"],
+        ),
+    ]
+    if product_id == "215141M31A00100":
+        entries.append(
+            coverage_entry(
+                "survival-benefit",
+                "祝壽保險金",
+                None,
+                "policy_recorded_limit",
+                "條款列有祝壽保險金，依保單價值總額等投資帳戶資料判讀。",
+                "保單條款，祝壽保險金",
+                calculation_basis="unknown",
+                amount_role="payout",
+                limit_scope="per_policy",
+                aggregation_rule="separate",
+                unit_key="policy_account_value",
+                conditions=["依條款約定之年齡及契約有效狀態適用。"],
+            )
+        )
+    else:
+        entries.append(
+            coverage_entry(
+                "funeral-benefit",
+                "喪葬費用保險金",
+                None,
+                "policy_recorded_limit",
+                "保險型態為乙型且特定心智狀態被保險人適用，身故保險金變更為喪葬費用保險金。",
+                "保單條款，喪葬費用保險金的給付",
+                calculation_basis="unknown",
+                amount_role="payout",
+                limit_scope="per_policy",
+                aggregation_rule="separate",
+                unit_key="funeral_benefit_limit",
+                conditions=["喪葬費用保險金受法定額度上限限制。"],
+            )
+        )
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保額",
+        "selection_guidance": "請依保單面頁輸入基本保額，並確認甲型或乙型；甲型與乙型的身故/完全殘廢公式不同。",
+        "coverage_entries": entries,
+        "version_characteristics": {
+            "product_family": "hsingfu-legacy-variable-universal-life",
+            "terms_revision": HSINGFU_LEGACY_VARIABLE_UNIVERSAL_LIFE_REVISIONS.get(product_id),
+            "death_total_disability_amount_formula": "type_a_greater_of_basic_amount_or_policy_value_1_1x_type_b_basic_amount_plus_policy_value",
+            "insurance_type_options": ["甲型", "乙型"],
+            "total_disability_term": "完全殘廢",
+            "non_participating_policy": True,
+        },
+    }
+
+
+GLOBAL_RITAI_FINANCIAL_EXPERT_PRODUCT_IDS = frozenset(
+    (
+        "262141M31A00200",
+        "262141M31A00201",
+        "262141M31A00202",
+        "262141M31A00203",
+        "262141M31A00204",
+        "262141M31A00205",
+        "262141M31A00206",
+        "262141M31A00207",
+        "262141M31A00208",
+        "262141M31A00209",
+        "262141M31A00210",
+        "262141M31A00211",
+    )
+)
+
+
+def global_ritai_financial_expert_file_name(product_id: str) -> str:
+    if product_id == "262141M31A00200":
+        return "262141M31A002-A.pdf"
+    return f"{product_id}-A.pdf"
+
+
+def is_global_ritai_financial_expert_variable_universal_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-161"
+        and product_id in GLOBAL_RITAI_FINANCIAL_EXPERT_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "")
+        == global_ritai_financial_expert_file_name(product_id)
+    )
+
+
+def parse_global_ritai_financial_expert_variable_universal_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_global_ritai_financial_expert_variable_universal_life_strict_source(
+        document
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    plain_dense_text = dense_text.replace("「", "").replace("」", "")
+    required_signals = [
+        "理財專家變額萬能壽險A、B型",
+        "瑞士商環球瑞泰人壽保險股份有限公司台灣分公司",
+        "不參加紅利分配",
+        "保險型別",
+        "分A型與B型二種",
+        "保險費用為危險保額乘以死亡發生率所得之數額",
+        "危險保額",
+        "A型:保險金額減去以保單週月日前一評價日計算所得之保單帳戶價值後之數額",
+        "若計算當時保單帳戶價值大於保險金額時,則該次之危險保額為零",
+        "B型:保險金額",
+        "年齡達一百歲之保單週年日仍生存",
+        "以保單帳戶價值給付祝壽保險金",
+        "依要保人所選擇之保險型別給付身故保險金",
+        "A型:保險金額與保單帳戶價值中較高者",
+        "B型:保險金額與保單帳戶價值之和",
+        "所列全殘情事之一",
+        "依要保人所選擇之保險型別給付全殘保險金",
+    ]
+    if any(
+        compact_table_text(signal).replace("「", "").replace("」", "")
+        not in plain_dense_text
+        for signal in required_signals
+    ):
+        return None
+    headline_signals = [
+        "身故給付、全殘給付及祝壽保險金",
+        "身故或喪葬費用保險金、全殘保險金及祝壽保險金",
+    ]
+    if not any(
+        compact_table_text(signal).replace("「", "").replace("」", "")
+        in plain_dense_text
+        for signal in headline_signals
+    ):
+        return None
+
+    death_disability_formula = (
+        "selectable_type_a_greater_of_face_amount_or_policy_account_value_"
+        "type_b_face_amount_plus_policy_account_value"
+    )
+    entries = [
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+            "保單條款第十三條，祝壽保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=[
+                "給付後本契約效力即行終止。",
+                "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。",
+            ],
+        ),
+        coverage_entry(
+            "death-benefit",
+            "身故保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+            "保單條款第十四條，身故保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "給付身故保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+                "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。",
+                "保單帳戶價值依投資標的類別使用受理日次一或次二評價日淨值計算。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "全殘保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內發生附表二所列全殘情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+            "保單條款第十五條，全殘保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+                "同時致成附表二二種以上全殘情事者，只給付一種全殘保險金。",
+                "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。",
+            ],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+        "version_characteristics": {
+            "product_family": "global-ritai-financial-expert-variable-universal-life",
+            "company_group": "global_life",
+            "currency_basis": "twd",
+            "payment_currency_label": "新台幣",
+            "investment_linked_policy": True,
+            "insurance_type_required": True,
+            "insurance_type_options": ["A型", "B型"],
+            "insurance_amount_basis": "policy_face_amount",
+            "death_total_disability_amount_formula": death_disability_formula,
+            "death_benefit_formula": "death_total_disability_insurance_amount",
+            "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+            "maturity_trigger": "age_100_policy_anniversary",
+            "maturity_age": 100,
+            "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+            "maturity_interest_crediting": False,
+            "policy_account_value_required": True,
+            "risk_amount_required": True,
+            "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+            "redemption_valuation_timing_required": True,
+            "valuation_reference": "fund_type_next_or_second_valuation_date",
+            "insurance_cost_refund_after_event": False,
+            "account_value_return_on_time_bar": True,
+            "funeral_benefit_limit_rule": False,
+            "funeral_benefit_excludes_account_value": False,
+            "minor_death_before_age_15_account_value_rule": False,
+            "minor_disability_before_age_15_account_value_rule": False,
+            "complete_disability_schedule_ref": "附表二",
+            "complete_disability_table_item_count": 7,
+            "non_participating_policy": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
+GLOBAL_RITAI_FINANCIAL_HEAD_PRODUCT_IDS = frozenset(
+    (
+        "262141M31A00300",
+        "262141M31A00301",
+        "262141M31A00302",
+        "262141M31A00303",
+        "262141M31A00304",
+        "262141M31A00305",
+    )
+)
+
+
+def global_ritai_financial_head_file_name(product_id: str) -> str:
+    if product_id == "262141M31A00300":
+        return "262141M31A003-A.pdf"
+    return f"{product_id}-A.pdf"
+
+
+def is_global_ritai_financial_head_variable_universal_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-161"
+        and product_id in GLOBAL_RITAI_FINANCIAL_HEAD_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "")
+        == global_ritai_financial_head_file_name(product_id)
+    )
+
+
+def parse_global_ritai_financial_head_variable_universal_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_global_ritai_financial_head_variable_universal_life_strict_source(
+        document
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    plain_dense_text = dense_text.replace("「", "").replace("」", "")
+    required_signals = [
+        "理財頭家變額萬能壽險A、B型",
+        "瑞士商環球瑞泰人壽保險股份有限公司台灣分公司",
+        "身故或喪葬費用保險金、全殘保險金及祝壽保險金",
+        "不參加紅利分配",
+        "保險型別",
+        "分A型與B型二種",
+        "保險費用為危險保額乘以死亡發生率所得之數額",
+        "危險保額",
+        "A型:保險金額減去以保單週月日前一評價日計算所得之保單帳戶價值後之數額",
+        "若計算當時保單帳戶價值大於保險金額時,則該次之危險保額為零",
+        "B型:保險金額",
+        "年齡達一百歲之保單週年日仍生存",
+        "以保單帳戶價值給付祝壽保險金",
+        "依要保人所選擇之保險型別給付身故保險金",
+        "A型:保險金額與保單帳戶價值中較高者",
+        "B型:保險金額與保單帳戶價值之和",
+        "所列殘廢情事之一",
+        "依要保人所選擇之保險型別給付全殘保險金",
+    ]
+    if any(
+        compact_table_text(signal).replace("「", "").replace("」", "")
+        not in plain_dense_text
+        for signal in required_signals
+    ):
+        return None
+
+    death_disability_formula = (
+        "selectable_type_a_greater_of_face_amount_or_policy_account_value_"
+        "type_b_face_amount_plus_policy_account_value"
+    )
+    entries = [
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於保險年齡達一百歲之保單週年日仍生存時，以保單帳戶價值給付祝壽保險金。",
+            "保單條款第十四條，祝壽保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=[
+                "給付後本契約效力即行終止。",
+                "第一類基金以週年日次一評價日淨值計算；第二類基金以週年日次二評價日淨值計算。",
+            ],
+        ),
+        coverage_entry(
+            "death-benefit",
+            "身故保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內身故時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+            "保單條款第十五條，身故或喪葬費用保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "訂立保險型別為B型且以未滿十四足歲之未成年人、心神喪失或精神耗弱之人為被保險人時，身故保險金變更為喪葬費用保險金，按保險金額給付且不包含投資部分之保單帳戶價值。",
+                "給付身故或喪葬費用保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+                "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自身故時至當日止所收之保險費用返還予要保人。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "全殘保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內發生附表二所列殘廢情事之一並經醫院診斷確定時，依保險型別給付；A型為保險金額與保單帳戶價值較高者，B型為保險金額加保單帳戶價值。",
+            "保單條款第十六條，全殘保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "給付全殘保險金後，保單帳戶價值即為結清，本契約效力即行終止。",
+                "同時致成附表二二種以上殘廢情事者，只給付一種全殘保險金。",
+                "理賠申請文件送達時已逾請求權時效者，改以保單帳戶價值加上自全殘診斷確定時至當日止所收之保險費用返還予要保人。",
+            ],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單面頁所載保險金額，並依保單保險型別選擇 A型或 B型；身故與全殘依 A/B 型公式與保單帳戶價值計算，祝壽則以保單帳戶價值給付。",
+        "version_characteristics": {
+            "product_family": "global-ritai-financial-head-variable-universal-life",
+            "company_group": "global_life",
+            "currency_basis": "twd",
+            "payment_currency_label": "新台幣",
+            "investment_linked_policy": True,
+            "insurance_type_required": True,
+            "insurance_type_options": ["A型", "B型"],
+            "insurance_amount_basis": "policy_face_amount",
+            "death_total_disability_amount_formula": death_disability_formula,
+            "death_benefit_formula": "death_total_disability_insurance_amount",
+            "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+            "maturity_trigger": "age_100_policy_anniversary",
+            "maturity_age": 100,
+            "maturity_benefit_formula": "policy_account_value_at_age_100_policy_anniversary",
+            "maturity_interest_crediting": False,
+            "policy_account_value_required": True,
+            "risk_amount_required": True,
+            "risk_amount_formula_type": "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount",
+            "redemption_valuation_timing_required": True,
+            "valuation_reference": "fund_type_next_or_second_valuation_date",
+            "insurance_cost_refund_after_event": False,
+            "account_value_return_on_time_bar": True,
+            "funeral_benefit_limit_rule": True,
+            "funeral_benefit_excludes_account_value": True,
+            "minor_death_before_age_14_account_value_rule": True,
+            "minor_disability_before_age_14_account_value_rule": False,
+            "complete_disability_schedule_ref": "附表二",
+            "complete_disability_table_item_count": 7,
+            "non_participating_policy": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
+PRUDENTIAL_SHARED_GENERATIONS_VARIABLE_UNIVERSAL_LIFE_PRODUCT_IDS = frozenset(
+    (
+        "203131MV1A01123A11C90000000",
+        "203131MV1A01123A11C90000001",
+        "203131MV1A01123A11C90000002",
+    )
+)
+
+PRUDENTIAL_SHARED_GENERATIONS_VARIABLE_UNIVERSAL_LIFE_REVISIONS = {
+    "203131MV1A01123A11C90000000": {
+        "terms_revision": "原始版本",
+        "filing_number": "民國104年12月21日保誠總字第1040668號",
+        "complete_disability_schedule_ref": "附表四",
+    },
+    "203131MV1A01123A11C90000001": {
+        "terms_revision": "第1次部份變更",
+        "filing_number": "民國106年06月05日保誠總字第1060201號",
+        "complete_disability_schedule_ref": "附表四",
+    },
+    "203131MV1A01123A11C90000002": {
+        "terms_revision": "第2次部份變更",
+        "filing_number": "民國106年10月06日保誠總字第1060585號",
+        "complete_disability_schedule_ref": "附表五",
+    },
+}
+
+
+def is_prudential_shared_generations_variable_universal_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-017"
+        and product_id
+        in PRUDENTIAL_SHARED_GENERATIONS_VARIABLE_UNIVERSAL_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def prudential_shared_generations_signal_text(value: str) -> str:
+    text = compact_table_text(normalize_terms_text(value))
+    for char in "「」『』()（）:：,，.。、 \n\t":
+        text = text.replace(char, "")
+    return text
+
+
+def parse_prudential_shared_generations_variable_universal_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_prudential_shared_generations_variable_universal_life_strict_source(
+        document
+    ):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    revision = PRUDENTIAL_SHARED_GENERATIONS_VARIABLE_UNIVERSAL_LIFE_REVISIONS[
+        product_id
+    ]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    relaxed_text = prudential_shared_generations_signal_text(text)
+    required_signals = [
+        "保誠人壽世代共享變額萬能壽險",
+        "祝壽保險金身故保險金或喪葬費用保險金完全殘廢保險金保單帳戶價值之返還",
+        "分為主被保險人及次被保險人",
+        "以子女為主被保險人父母為次被保險人",
+        "本契約被保險人二人之基本保額須相同",
+        "主被保險人之基本保額於其保險年齡到達二十五歲之保單週年日含起始生效力",
+        "淨危險保額係指基本保額",
+        "被保險人於本契約有效期間內身故或致成完全殘廢者",
+        "保險年齡達九十九歲之保單週年日仍生存",
+        "主被保險人於保險年齡達九十九歲之保單週年日仍生存",
+        "主被保險人於保險年齡達二十五歲之保單週年日不含前身故",
+        "本公司應返還本契約之保單帳戶價值",
+        "主被保險人於保險年齡達二十五歲之保單週年日含後身故",
+        "基本保額與保單帳戶價值兩者之總和",
+        "次被保險人身故者",
+        "本公司按基本保額給付身故保險金",
+        "完全殘廢等級之一",
+        "本保險為不分紅保單",
+    ]
+    if any(
+        prudential_shared_generations_signal_text(signal) not in relaxed_text
+        for signal in required_signals
+    ):
+        return None
+
+    entries = [
+        coverage_entry(
+            "survival-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "主被保險人於保險年齡達九十九歲之保單週年日仍生存且契約有效時，依贖回評價時點之投資標的價值計算保單帳戶價值給付祝壽保險金。",
+            "祝壽保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=[
+                "以主被保險人達九十九歲之保單週年日為基準日。",
+                "給付後本契約效力即行終止。",
+            ],
+        ),
+        coverage_entry(
+            "primary-death-before-age-25-account-value-return",
+            "主被保險人25歲前身故：返還保單帳戶價值",
+            None,
+            "policy_recorded_limit",
+            "主被保險人於保險年齡達二十五歲之保單週年日前身故時，返還本契約之保單帳戶價值。",
+            "身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=[
+                "適用主被保險人保險年齡二十五歲保單週年日不含以前。",
+                "若次被保險人尚未發生保險事故，返還主被保險人保險事故日後已收取之保險成本。",
+            ],
+        ),
+        coverage_entry(
+            "primary-death-after-age-25-benefit",
+            "主被保險人25歲後身故保險金",
+            None,
+            "policy_recorded_limit",
+            "主被保險人於保險年齡達二十五歲之保單週年日後身故時，按基本保額與保單帳戶價值兩者之總和給付身故保險金。",
+            "身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="basic_amount_plus_policy_account_value",
+            conditions=[
+                "適用主被保險人保險年齡二十五歲保單週年日含以後。",
+                "一併返還主被保險人保險事故日後已收取之保險成本。",
+            ],
+        ),
+        coverage_entry(
+            "secondary-death-before-primary-age-25-benefit",
+            "次被保險人於主被保險人25歲前身故保險金",
+            None,
+            "policy_recorded_limit",
+            "主被保險人保險年齡達二十五歲之保單週年日前，次被保險人身故時，按基本保額給付身故保險金。",
+            "身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="basic_amount",
+            conditions=[
+                "僅次被保險人部分契約效力終止，其餘部分契約效力不受影響。",
+                "一併返還次被保險人保險事故日後已收取之保險成本。",
+            ],
+        ),
+        coverage_entry(
+            "funeral-benefit",
+            "喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "符合條款所列精神障礙或其他心智缺陷情形者，身故保險金變更為喪葬費用保險金；喪葬費用保險金額不包含投資部分之保單帳戶價值。",
+            "身故保險金或喪葬費用保險金的給付與保單帳戶價值之返還",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="statutory_funeral_cap_plus_account_value_return",
+            conditions=[
+                "喪葬費用保險金受法定上限限制。",
+                "其原投資部分之保單帳戶價值按約定返還。",
+            ],
+        ),
+        coverage_entry(
+            "primary-total-disability-before-age-25-account-value-return",
+            "主被保險人25歲前完全殘廢：返還保單帳戶價值",
+            None,
+            "policy_recorded_limit",
+            "主被保險人於保險年齡達二十五歲之保單週年日前致成完全殘廢時，返還本契約之保單帳戶價值。",
+            "完全殘廢保險金的給付與保單帳戶價值之返還",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=[
+                "適用主被保險人保險年齡二十五歲保單週年日不含以前。",
+                "若次被保險人尚未發生保險事故，返還主被保險人保險事故日後已收取之保險成本。",
+            ],
+        ),
+        coverage_entry(
+            "primary-total-disability-after-age-25-benefit",
+            "主被保險人25歲後完全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "主被保險人於保險年齡達二十五歲之保單週年日後致成完全殘廢時，按基本保額與保單帳戶價值兩者之總和給付完全殘廢保險金。",
+            "完全殘廢保險金的給付與保單帳戶價值之返還",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="basic_amount_plus_policy_account_value",
+            conditions=[
+                "適用主被保險人保險年齡二十五歲保單週年日含以後。",
+                "一併返還主被保險人保險事故日後已收取之保險成本。",
+            ],
+        ),
+        coverage_entry(
+            "secondary-total-disability-before-primary-age-25-benefit",
+            "次被保險人於主被保險人25歲前完全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "主被保險人保險年齡達二十五歲之保單週年日前，次被保險人致成完全殘廢時，按基本保額給付完全殘廢保險金。",
+            "完全殘廢保險金的給付與保單帳戶價值之返還",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="basic_amount",
+            conditions=[
+                "僅次被保險人部分契約效力終止，其餘部分契約效力不受影響。",
+                "被保險人同時有兩項以上完全殘廢時，僅給付一項完全殘廢保險金。",
+            ],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保額",
+        "selection_guidance": "請輸入保單上的基本保額；本契約為主、次被保險人共享設計，二人基本保額須相同，主被保險人25歲前後的身故與完全殘廢公式不同。",
+        "version_characteristics": {
+            "product_family": "prudential-shared-generations-variable-universal-life",
+            "company_group": "prudential",
+            "currency_basis": "twd",
+            "payment_currency_label": "新臺幣",
+            "terms_revision": revision["terms_revision"],
+            "filing_number": revision["filing_number"],
+            "investment_linked_policy": True,
+            "variable_universal_life_policy": True,
+            "dual_insured_policy": True,
+            "primary_insured_role": "child",
+            "secondary_insured_role": "parent",
+            "insured_relationship_required": "parent_child",
+            "basic_amount_same_for_both_insured": True,
+            "basic_amount_max_target_premium_multiple": 10,
+            "primary_basic_amount_effective_age": 25,
+            "secondary_coverage_before_primary_age": 25,
+            "target_premium_single_payment": True,
+            "excess_premium_allowed": True,
+            "insurance_amount_basis": "dual_insured_age_25_tiered_formula",
+            "insurance_amount_formula": "basic_amount_plus_policy_account_value_after_primary_age_25",
+            "net_amount_at_risk_required": True,
+            "net_amount_at_risk_formula_type": "basic_amount",
+            "primary_death_before_age_25_formula": "policy_account_value_return",
+            "primary_death_after_age_25_formula": "basic_amount_plus_policy_account_value",
+            "secondary_death_before_primary_age_25_formula": "basic_amount",
+            "primary_total_disability_before_age_25_formula": "policy_account_value_return",
+            "primary_total_disability_after_age_25_formula": "basic_amount_plus_policy_account_value",
+            "secondary_total_disability_before_primary_age_25_formula": "basic_amount",
+            "maturity_trigger": "primary_insured_age_99_policy_anniversary",
+            "maturity_age": 99,
+            "maturity_benefit_formula": "policy_account_value_at_primary_insured_age_99_policy_anniversary",
+            "maturity_interest_crediting": False,
+            "policy_account_value_required": True,
+            "investment_target_value_required": True,
+            "redemption_valuation_timing_required": True,
+            "valuation_reference": "redemption_valuation_timing",
+            "insurance_cost_refund_after_event": True,
+            "account_value_return_on_time_bar": True,
+            "mental_disability_funeral_benefit_rule": True,
+            "funeral_benefit_limit_rule": True,
+            "funeral_benefit_excludes_account_value": True,
+            "complete_disability_schedule_ref": revision[
+                "complete_disability_schedule_ref"
+            ],
+            "complete_disability_table_item_count": 7,
+            "legacy_disability_wording": True,
+            "disability_term": "殘廢",
+            "total_disability_term": "完全殘廢",
+            "non_participating_policy": True,
+            "policy_dividend_available": False,
+        },
+        "coverage_entries": entries,
+    }
+
+
+PRUDENTIAL_CHUANGFU_VARIABLE_LIFE_PRODUCT_IDS = frozenset(
+    f"203141M31A0120{suffix}" for suffix in range(6)
+)
+
+PRUDENTIAL_CHUANGFU_VARIABLE_LIFE_REVISIONS = {
+    "203141M31A01200": "原始版本",
+    "203141M31A01201": "第1次部份變更",
+    "203141M31A01202": "第2次部份變更",
+    "203141M31A01203": "第3次部份變更",
+    "203141M31A01204": "第4次部份變更",
+    "203141M31A01205": "第5次部份變更",
+}
+
+
+def is_prudential_chuangfu_variable_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        str(document.get("batch_id") or "") == "tii-life-017"
+        and product_id in PRUDENTIAL_CHUANGFU_VARIABLE_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_prudential_chuangfu_variable_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_prudential_chuangfu_variable_life_strict_source(document):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    plain_dense_text = (
+        dense_text.replace("「", "")
+        .replace("」", "")
+        .replace(":", "")
+        .replace("：", "")
+    )
+    required_signals = [
+        "保誠人壽創富人生變額壽險保險單條款",
+        "給付項目滿期保險金、身故保險金或喪葬費用保險金、完全殘廢保險金",
+        "本契約所稱保險金額係指累積保險費餘額乘以附表一保額保費比率所得之數額",
+        "本契約所稱危險保額係指保險金額扣除",
+        "不得為負",
+        "身故、完全殘廢保險金額係指下列二者中金額較大者",
+        "依贖回評價時點之投資標的價值計算之本契約項下的保單帳戶價值",
+        "滿期日係指被保險人保險年齡屆滿九十九歲且本契約仍屬有效之保單週年日",
+        "被保險人在本契約有效期間內身故者本公司按身故、完全殘廢保險金額給付身故保險金",
+        "被保險人在本契約有效期間內致成附表五所列完全殘廢程度之一",
+        "本保險為不分紅保險單",
+    ]
+    if any(
+        compact_table_text(signal)
+        .replace("「", "")
+        .replace("」", "")
+        .replace(":", "")
+        .replace("：", "")
+        not in plain_dense_text
+        for signal in required_signals
+    ):
+        return None
+
+    product_id = str(document.get("product_id") or "")
+    terms_revision = PRUDENTIAL_CHUANGFU_VARIABLE_LIFE_REVISIONS.get(product_id)
+    currency_basis, payment_currency_label = (
+        prudential_legacy_investment_payment_currency(text)
+    )
+    entries = [
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於滿期日仍生存且契約有效時，以滿期日為基準日，依贖回評價時點計算保單帳戶價值給付。",
+            "保單條款第十八條，滿期保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=[
+                "滿期日為被保險人保險年齡屆滿九十九歲且契約仍有效之保單週年日。",
+                "給付後本契約項下之保單帳戶結清，契約效力終止。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內身故者，按身故、完全殘廢保險金額給付；該金額為保險金額與保單帳戶價值二者中較大者。",
+            "保單條款第十九條，身故保險金或喪葬費用保險金的給付；第三條名詞定義",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "保險金額係指累積保險費餘額乘以附表一保額保費比率所得之數額。",
+                "喪葬費用保險金額不包含其屬投資部分之保單帳戶價值。",
+                "喪葬費用保險金受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+                "原投資部分之保單帳戶價值按條款給付予要保人或其他應得之人。",
+                "保險事故日後已收取之保險成本依條款併同給付。",
+                "給付後本契約項下之保單帳戶結清，契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內致成附表五所列完全殘廢程度之一並經診斷確定者，按身故、完全殘廢保險金額給付。",
+            "保單條款第二十條，完全殘廢保險金的給付；第三條名詞定義",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "身故、完全殘廢保險金額為保險金額與保單帳戶價值二者中較大者。",
+                "完全殘廢程度依附表五。",
+                "保險事故日後已收取之保險成本依條款併同給付。",
+                "給付後本契約項下之保單帳戶結清，契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            ],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單所載或由累積保險費餘額乘以保額保費比率計算出的保險金額；身故與完全殘廢保險金額為保險金額與保單帳戶價值二者中較大者，滿期金依保單帳戶價值計算。",
+        "version_characteristics": {
+            "product_family": "prudential-chuangfu-variable-life",
+            "company_group": "prudential",
+            "currency_basis": currency_basis,
+            "payment_currency_label": payment_currency_label,
+            "terms_revision": terms_revision,
+            "investment_linked_policy": True,
+            "insurance_amount_basis": "accumulated_premium_balance_times_coverage_premium_ratio",
+            "insurance_amount_formula": "accumulated_premium_balance_times_coverage_premium_ratio",
+            "death_total_disability_amount_formula": "greater_of_insurance_amount_or_policy_account_value",
+            "death_benefit_formula": "death_total_disability_insurance_amount",
+            "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+            "maturity_trigger": "age_99_policy_anniversary",
+            "maturity_age": 99,
+            "maturity_benefit_formula": "policy_account_value_at_age_99_policy_anniversary",
+            "maturity_interest_crediting": False,
+            "policy_account_value_required": True,
+            "accumulated_premium_balance_required": True,
+            "coverage_premium_ratio_required": True,
+            "risk_amount_required": True,
+            "risk_amount_formula_type": "insurance_amount_less_policy_account_value_nonnegative",
+            "investment_target_value_required": True,
+            "redemption_valuation_timing_required": True,
+            "valuation_reference": "redemption_valuation_timing",
+            "insurance_cost_refund_after_event": True,
+            "account_value_return_on_time_bar": True,
+            "mental_disability_funeral_benefit_rule": True,
+            "funeral_benefit_limit_rule": True,
+            "funeral_benefit_excludes_account_value": True,
+            "complete_disability_schedule_ref": "附表五",
+            "complete_disability_table_item_count": 7,
+            "legacy_disability_wording": True,
+            "disability_term": "殘廢",
+            "total_disability_term": "完全殘廢",
+            "non_participating_policy": True,
+            "policy_dividend_available": False,
+        },
+        "coverage_entries": entries,
+    }
+
+
+PRUDENTIAL_YOUYOU_LEGACY_INVESTMENT_LIFE_PRODUCT_IDS = frozenset(
+    (
+        "203141M31A00516",
+        "203141M31A00517",
+        "203141M31A00518",
+        "203141M31A00519",
+        "203141M31A00520",
+        "203141M31A00521",
+        "203141M31A00522",
+        "203141M31A00523",
+        "203141M31A00524",
+        "203141M31A00525",
+        "203141M31A00526",
+        "203141M31A00527",
+        "203141M31A00528",
+        "203141M31A00529",
+    )
+)
+
+
+def is_prudential_youyou_legacy_investment_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in PRUDENTIAL_YOUYOU_LEGACY_INVESTMENT_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def prudential_youyou_waiver_schedule_ref(dense_text: str) -> str | None:
+    plain_dense_text = dense_text.replace("「", "").replace("」", "")
+    if compact_table_text("致成附表四所列第二級至第六級等三十一項殘廢程度之一") in plain_dense_text:
+        return "附表四"
+    if compact_table_text("致成附表五所列第二級至第六級等三十一項殘廢程度之一") in plain_dense_text:
+        return "附表五"
+    return None
+
+
+def parse_prudential_youyou_legacy_investment_life_maturity_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_prudential_youyou_legacy_investment_life_strict_source(document):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    plain_dense_text = dense_text.replace("「", "").replace("」", "")
+    required_signals = [
+        "保誠人壽悠遊人生變額壽險保險單條款",
+        "投資連結型商品",
+        "保單帳戶價值",
+        "保險金額係指本保險單所載明之基本保險金額",
+        "身故、完全殘廢保險金額係指下列二者加總之值",
+        "依贖回評價時點之投資標的價值計算之本契約項下的保單帳戶價值",
+        "滿期保險金的給付",
+        "身故保險金或喪葬費用保險金的給付或保單帳戶價值之返還",
+        "完全殘廢保險金的給付或保單帳戶價值之返還",
+        "二至六級殘廢豁免基本保險費至六十五歲",
+        "保險年齡屆滿九十九歲",
+        "喪葬費用保險金額不包含其屬投資部分之保單帳戶價值",
+        "本契約項下之保單帳戶即為結清",
+        "本保險為不分紅",
+    ]
+    if any(
+        compact_table_text(signal).replace("「", "").replace("」", "")
+        not in plain_dense_text
+        for signal in required_signals
+    ):
+        return None
+
+    waiver_schedule_ref = prudential_youyou_waiver_schedule_ref(dense_text)
+    if waiver_schedule_ref is None:
+        return None
+
+    if compact_table_text("均以新台幣為貨幣單位") in plain_dense_text:
+        currency_basis = "twd"
+        payment_currency_label = "新台幣"
+    elif compact_table_text("均以新臺幣為貨幣單位") in plain_dense_text:
+        currency_basis = "twd"
+        payment_currency_label = "新臺幣"
+    else:
+        return None
+
+    entries = [
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於滿期日時仍生存且契約有效時，以滿期日為基準日，依贖回評價時點計算保單帳戶價值給付。",
+            "保單條款第二十一條，滿期保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=[
+                "滿期日為被保險人保險年齡屆滿九十九歲且契約仍有效之保單週年日。",
+                "給付後本契約項下之保單帳戶結清，契約效力終止。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人滿十五足歲後身故者，按身故、完全殘廢保險金額給付；該金額為保險金額與保單帳戶價值二者加總。",
+            "保單條款第二十二條，身故保險金或喪葬費用保險金的給付或保單帳戶價值之返還",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "未滿十五足歲身故時返還保單帳戶價值。",
+                "喪葬費用保險金額不包含投資部分之保單帳戶價值。",
+                "喪葬費用保險金受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+                "保險事故日後已收取之保險成本依條款併同給付。",
+                "給付後本契約項下之保單帳戶結清，契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人滿十五足歲後於契約有效期間內致成完全殘廢並經診斷確定者，按身故、完全殘廢保險金額給付。",
+            "保單條款第二十三條，完全殘廢保險金的給付或保單帳戶價值之返還",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "未滿十五足歲完全殘廢時返還保單帳戶價值。",
+                "完全殘廢為條款所列七項完全殘廢程度之一。",
+                "保險事故日後已收取之保險成本依條款併同給付。",
+                "給付後本契約項下之保單帳戶結清，契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            ],
+        ),
+        coverage_entry(
+            "disability-premium-waiver",
+            "二至六級殘廢豁免基本保險費",
+            None,
+            "policy_premium",
+            "被保險人於契約有效期間內致成附表所列第二級至第六級殘廢程度之一者，豁免基本保險費至六十五歲之保單週年日。",
+            "保單條款第二十四條，二至六級殘廢豁免基本保險費至六十五歲",
+            calculation_basis="waiver",
+            amount_role="premium_waiver",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="basic_premium",
+            conditions=[
+                f"第二級至第六級殘廢程度依{waiver_schedule_ref}。",
+                "豁免期間內按基本保險費配置比例投入基本保費保單帳戶。",
+                "豁免後不得申請變更本契約內容。",
+            ],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單所載保險金額；身故與完全殘廢保險金額為保險金額加上保單帳戶價值，滿期金依保單帳戶價值計算，另有第二級至第六級殘廢豁免基本保險費。",
+        "version_characteristics": {
+            "product_family": "prudential-youyou-legacy-investment-linked-life-maturity-face-amount",
+            "company_group": "prudential",
+            "currency_basis": currency_basis,
+            "payment_currency_label": payment_currency_label,
+            "investment_linked_policy": True,
+            "insurance_amount_basis": "policy_basic_insurance_amount",
+            "death_total_disability_amount_formula": "face_amount_plus_policy_account_value",
+            "death_benefit_formula": "death_total_disability_insurance_amount",
+            "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+            "maturity_trigger": "age_99_policy_anniversary",
+            "maturity_age": 99,
+            "maturity_benefit_formula": "policy_account_value_at_age_99_policy_anniversary",
+            "maturity_interest_crediting": False,
+            "policy_account_value_required": True,
+            "risk_amount_required": False,
+            "redemption_valuation_timing_required": True,
+            "insurance_cost_refund_after_event": True,
+            "account_value_return_on_time_bar": True,
+            "funeral_benefit_limit_rule": True,
+            "funeral_benefit_excludes_account_value": True,
+            "minor_death_before_age_15_account_value_rule": True,
+            "minor_disability_before_age_15_account_value_rule": True,
+            "premium_waiver_available": True,
+            "premium_waiver_disability_levels": "2-6",
+            "premium_waiver_until": "age_65_policy_anniversary",
+            "premium_waiver_schedule_ref": waiver_schedule_ref,
+            "complete_disability_table_item_count": 7,
+            "legacy_disability_wording": True,
+            "disability_term": "殘廢",
+            "total_disability_term": "完全殘廢",
+            "non_participating_policy": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
+LEGACY_INVESTMENT_LIFE_FACE_OR_ACCOUNT_VALUE_PRODUCT_BATCHES = {
+    "tii-life-017": frozenset(
+        (
+            "203141M31A00210",
+            "203141M31A00211",
+            "203141M31A00319",
+            "203141M31A00320",
+            "203141M31A00321",
+            "203141M31A00322",
+            "203141M31A00323",
+            "203141M31A00324",
+            "203141M31A00325",
+            "203141M31A00326",
+            "203141M31A00327",
+            "203141M31A00328",
+            "203141M31A00329",
+        )
+    ),
+    "tii-life-029": frozenset(
+        (
+            "205141M31A53605",
+            "205141M31A53606",
+            "205141M31A53607",
+            "205141M31A53608",
+            "205141M31A53609",
+            "205141M31A53610",
+            "205141M31A53611",
+            "205141M31A53705",
+            "205141M31A53706",
+            "205141M31A53707",
+            "205141M31A53708",
+            "205141M31A53709",
+        )
+    ),
+}
+
+
+def legacy_investment_life_face_or_account_value_company_group(
+    batch_id: str,
+) -> str | None:
+    if batch_id == "tii-life-017":
+        return "prudential"
+    if batch_id == "tii-life-029":
+        return "kgi_china_life"
+    return None
+
+
+def legacy_investment_life_face_or_account_value_batch_id(product_id: str) -> str | None:
+    for batch_id, product_ids in (
+        LEGACY_INVESTMENT_LIFE_FACE_OR_ACCOUNT_VALUE_PRODUCT_BATCHES.items()
+    ):
+        if product_id in product_ids:
+            return batch_id
+    return None
+
+
+def is_legacy_investment_life_face_or_account_value_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    batch_id = str(document.get("batch_id") or "") or (
+        legacy_investment_life_face_or_account_value_batch_id(product_id) or ""
+    )
+    return (
+        product_id
+        in LEGACY_INVESTMENT_LIFE_FACE_OR_ACCOUNT_VALUE_PRODUCT_BATCHES.get(
+            batch_id, frozenset()
+        )
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_legacy_investment_life_face_or_account_value(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_legacy_investment_life_face_or_account_value_strict_source(document):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    plain_dense_text = dense_text.replace("「", "").replace("」", "")
+    required_signals = [
+        "變額壽險",
+        "投資標的",
+        "保單帳戶價值",
+        "滿期保險金的給付",
+        "身故保險金的給付",
+        "完全殘廢保險金的給付",
+        "累積保險費餘額乘以附表一保額保費比率",
+        "保險金額扣除保單帳戶價值之餘額但不得為負值",
+        "二者中金額較大者",
+        "保險年齡屆滿九十九歲",
+        "本契約項下之保單帳戶即為結清",
+        "本保險為不分紅",
+    ]
+    if any(
+        compact_table_text(signal).replace("「", "").replace("」", "")
+        not in plain_dense_text
+        for signal in required_signals
+    ):
+        return None
+
+    terms_body_dense_text = compact_table_text(
+        text.split("附表一、保額保費比率", 1)[0]
+    )
+    if (
+        "保價係數" in terms_body_dense_text
+        or "喪葬費用" in terms_body_dense_text
+        or "未滿十五足歲" in terms_body_dense_text
+    ):
+        return None
+
+    batch_id = str(document.get("batch_id") or "") or (
+        legacy_investment_life_face_or_account_value_batch_id(
+            str(document.get("product_id") or "")
+        )
+        or ""
+    )
+    company_group = legacy_investment_life_face_or_account_value_company_group(
+        batch_id
+    )
+    if company_group is None:
+        return None
+
+    if compact_table_text("均以新台幣為貨幣單位") in plain_dense_text:
+        currency_basis = "twd"
+        payment_currency_label = "新台幣"
+    elif compact_table_text("均以新臺幣為貨幣單位") in plain_dense_text:
+        currency_basis = "twd"
+        payment_currency_label = "新臺幣"
+    else:
+        return None
+
+    death_benefit_cap_rule = (
+        compact_table_text("身故保險金額度上限") in plain_dense_text
+    )
+    death_conditions = [
+        "身故、完全殘廢保險金額係取保險金額與申請文件送達日基準之保單帳戶價值兩者較大者。",
+        "保險事故日後已收取之保險成本依條款併同身故保險金給付。",
+        "給付後本契約項下之保單帳戶結清，契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+    ]
+    if death_benefit_cap_rule:
+        death_conditions.append(
+            "身故保險金不得超過主管機關所訂身故保險金額度上限，超過部分以相當金額之保單帳戶價值退還要保人。"
+        )
+
+    entries = [
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於滿期日時仍生存且契約有效時，以滿期日為基準日，依贖回評價時點計算保單帳戶價值給付。",
+            "保單條款滿期保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=["滿期日為被保險人保險年齡屆滿九十九歲且契約仍有效之保單週年日。"],
+        ),
+        coverage_entry(
+            "death-benefit",
+            "身故保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人在契約有效期間內身故者，按身故、完全殘廢保險金額給付。",
+            "保單條款身故保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=death_conditions,
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內因疾病或意外傷害事故致成附表五所列完全殘廢並經診斷確定者，按身故、完全殘廢保險金額給付。",
+            "保單條款完全殘廢保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="death_total_disability_insurance_amount",
+            conditions=[
+                "完全殘廢定義依附表五所列完全殘廢項目。",
+                "給付後本契約項下之保單帳戶結清，契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            ],
+        ),
+    ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單上依累積保險費餘額與保額保費比率計算後的保險金額；身故與完全殘廢保險金額另依條款取保險金額與保單帳戶價值較大者，滿期金依保單帳戶價值計算。",
+        "version_characteristics": {
+            "product_family": "legacy-investment-linked-life-face-or-account-value",
+            "company_group": company_group,
+            "currency_basis": currency_basis,
+            "payment_currency_label": payment_currency_label,
+            "investment_linked_policy": True,
+            "insurance_amount_basis": "accumulated_premium_balance_times_face_amount_ratio",
+            "death_total_disability_amount_formula": "greater_of_face_amount_or_policy_account_value",
+            "death_benefit_formula": "death_total_disability_insurance_amount",
+            "total_disability_benefit_formula": "death_total_disability_insurance_amount",
+            "maturity_trigger": "age_99_policy_anniversary",
+            "maturity_age": 99,
+            "maturity_benefit_formula": "policy_account_value_at_age_99_policy_anniversary",
+            "maturity_interest_crediting": False,
+            "policy_account_value_required": True,
+            "risk_amount_required": True,
+            "risk_amount_formula_type": "face_amount_less_account_value_nonnegative",
+            "redemption_valuation_timing_required": True,
+            "valuation_schedule_ref": "附表四",
+            "insurance_cost_refund_after_event": True,
+            "account_value_return_on_time_bar": True,
+            "death_benefit_cap_rule": death_benefit_cap_rule,
+            "funeral_benefit_limit_rule": False,
+            "funeral_benefit_excludes_account_value": False,
+            "minor_death_before_age_15_account_value_rule": False,
+            "minor_disability_before_age_15_account_value_rule": False,
+            "complete_disability_schedule_ref": "附表五",
+            "complete_disability_table_item_count": 7,
+            "legacy_disability_wording": True,
+            "disability_term": "殘廢",
+            "total_disability_term": "完全殘廢",
+            "non_participating_policy": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
+def variable_annuity_company_group(batch_id: str, product_id: str) -> str:
+    if product_id.startswith("202"):
+        return "taiwan_life"
+    if product_id.startswith("203"):
+        return "prudential"
+    if product_id.startswith("205"):
+        return "kgi_china_life"
+    if product_id.startswith("209"):
+        return "fubon_life"
+    if product_id.startswith("254"):
+        return "ctbc_life"
+    if product_id.startswith("255"):
+        return "taishin_life"
+    if product_id.startswith("264"):
+        return "global_life"
+    return batch_id or "unknown"
+
+
+def variable_annuity_front_matter(text: str) -> str:
+    end_candidates = [
+        index
+        for marker in ("【保險契約的構成】", "第一條【保險契約的構成】", "第一條")
+        for index in [text.find(marker)]
+        if index > 0
+    ]
+    end = min(end_candidates) if end_candidates else min(len(text), 1400)
+    return text[:end]
+
+
+def variable_annuity_currency(text: str, front_matter: str) -> tuple[str, str]:
+    account_value_currency = re.search(
+        r"保單帳戶價值[：:][^。]{0,180}?以(新臺幣|新台幣|美元|人民幣|澳幣)",
+        text,
+    )
+    if account_value_currency:
+        label = account_value_currency.group(1)
+    elif "人民幣" in front_matter:
+        label = "人民幣"
+    elif "澳幣" in front_matter:
+        label = "澳幣"
+    elif "美元" in front_matter:
+        label = "美元"
+    else:
+        label = "新臺幣"
+    currency_basis = "twd" if label in {"新臺幣", "新台幣"} else "foreign_currency"
+    return currency_basis, label
+
+
+def variable_annuity_guarantee_period_options(text: str) -> list[int]:
+    match = re.search(r"保證期間[：:][^。]{0,220}", text)
+    snippet = match.group(0) if match else text[:2500]
+    options: list[int] = []
+    for label, value in (
+        ("五年", 5),
+        ("5年", 5),
+        ("十年", 10),
+        ("10年", 10),
+        ("十五年", 15),
+        ("15年", 15),
+        ("二十年", 20),
+        ("20年", 20),
+    ):
+        if label in snippet and value not in options:
+            options.append(value)
+    return sorted(options)
+
+
+def variable_annuity_payment_frequency_options(text: str) -> list[str]:
+    options: list[str] = []
+    frequency_labels = (
+        ("一次給付", "lump_sum"),
+        ("年給付", "annual"),
+        ("每年分期給付", "annual"),
+        ("半年給付", "semiannual"),
+        ("季給付", "quarterly"),
+        ("月給付", "monthly"),
+    )
+    for label, value in frequency_labels:
+        if label in text and value not in options:
+            options.append(value)
+    return options or ["annual"]
+
+
+def parse_variable_annuity_account_value_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    file_name = str(document.get("file_name") or "")
+    if (
+        not product_id
+        or document.get("document_type") != "policy_terms"
+        or not file_name.endswith("-A.pdf")
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    front_matter = variable_annuity_front_matter(text)
+    if "批註條款" in front_matter:
+        return None
+    if not (
+        (
+            "變額年金" in front_matter
+            or "變額遞延年金" in front_matter
+            or "投資連結型變額年金" in front_matter
+        )
+        and "年金" in front_matter
+    ):
+        return None
+    required_signals = [
+        "年金金額",
+        "年金給付開始日",
+        "預定利率",
+        "投資標的",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+    if not any(
+        signal in text
+        for signal in ("保單帳戶價值", "保單價值準備金", "現金價值")
+    ):
+        return None
+    if not any(signal in text for signal in ("年金生命表", "預定危險發生率")):
+        return None
+    if not any(
+        signal in text
+        for signal in (
+            "年金金額的計算",
+            "年金金額之計算",
+            "年金給付的開始",
+            "年金給付之開始",
+        )
+    ):
+        return None
+
+    batch_id = str(document.get("batch_id") or "")
+    company_group = variable_annuity_company_group(batch_id, product_id)
+    currency_basis, payment_currency_label = variable_annuity_currency(
+        text, front_matter
+    )
+    guarantee_period_options = variable_annuity_guarantee_period_options(text)
+    payment_frequency_options = variable_annuity_payment_frequency_options(text)
+    has_minimum_death = "保證最低身故金額" in text
+    has_unpaid_annuity_balance = "未支領之年金餘額" in text
+    has_full_account_withdrawal = "年金累積期間屆滿時保單帳戶價值之全額提領" in text
+    has_low_annuity_lump_sum_rule = bool(
+        re.search(r"年金金額若低於.{0,30}?一萬", text)
+    )
+    has_high_annuity_cap_rule = bool(
+        re.search(r"年金金額.{0,40}?一百二十萬", text)
+    )
+    default_start_age = 70 if "七十歲" in text or "70歲" in text else None
+    max_start_age = 80 if "八十歲" in text or "80歲" in text else None
+    max_payment_age = 110 if "一百一十歲" in text or "110歲" in text else None
+
+    annuity_conditions = [
+        "年金金額需依年金給付開始日時之保單帳戶價值、預定利率及年金生命表計算。",
+        "實際年金金額需依保單首頁約定之年金給付開始日、保證期間及給付方式確認。",
+    ]
+    if guarantee_period_options:
+        annuity_conditions.append(
+            "條款載明保證期間選項為 "
+            + "、".join(f"{value} 年" for value in guarantee_period_options)
+            + "。"
+        )
+    if has_low_annuity_lump_sum_rule:
+        annuity_conditions.append("若每年領取之年金金額低於條款門檻，改依保單帳戶價值一次給付。")
+    if has_high_annuity_cap_rule:
+        annuity_conditions.append("若年領年金金額超過條款門檻所需帳戶價值，超出部分返還要保人。")
+
+    entries = [
+        coverage_entry(
+            "annuity-payment",
+            "年金給付",
+            None,
+            "policy_account_value",
+            "被保險人於年金給付開始日後仍生存且契約有效時，依條款計算並給付年金金額。",
+            "年金金額的計算／年金給付",
+            calculation_basis="account_value_annuity_factor",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="annuity_amount",
+            conditions=annuity_conditions,
+        )
+    ]
+
+    if has_minimum_death:
+        entries.append(
+            coverage_entry(
+                "minimum-death-benefit-before-annuity-start",
+                "保證最低身故金額",
+                None,
+                "policy_recorded_limit",
+                "被保險人於年金給付開始日前身故時，依條款返還保證最低身故金額。",
+                "保險範圍／保證最低身故金額",
+                calculation_basis="greater_of",
+                amount_role="payout",
+                limit_scope="per_policy",
+                aggregation_rule="choose_one",
+                unit_key="greater_of_policy_account_value_and_guaranteed_death_base",
+                conditions=[
+                    "保證最低身故金額通常為保單帳戶價值與保證身故基準額二者取其大。",
+                    "實際金額需依事故時之保單帳戶價值、保證身故基準額、匯率及保單借款本息扣除後計算。",
+                ],
+            )
+        )
+    else:
+        entries.append(
+            coverage_entry(
+                "account-value-return-before-annuity-start",
+                "返還保單帳戶價值",
+                None,
+                "policy_account_value",
+                "被保險人於年金給付開始日前身故時，依條款返還保單帳戶價值。",
+                "被保險人身故的通知與返還保單帳戶價值",
+                calculation_basis="account_value",
+                amount_role="payout",
+                limit_scope="per_policy",
+                aggregation_rule="choose_one",
+                unit_key="policy_account_value",
+                conditions=[
+                    "保單帳戶價值需依條款指定之申領文件收齊日、資產評價日、匯率及未還款項計算。",
+                    "給付後契約效力終止。",
+                ],
+            )
+        )
+
+    if has_unpaid_annuity_balance:
+        entries.append(
+            coverage_entry(
+                "unpaid-annuity-balance",
+                "未支領之年金餘額",
+                None,
+                "policy_recorded_limit",
+                "被保險人於年金給付開始日後身故且仍有未支領之年金餘額時，依條款給付予身故受益人或其他應得之人。",
+                "年金的給付與申領／未支領之年金餘額",
+                calculation_basis="unknown",
+                amount_role="payout",
+                limit_scope="per_policy",
+                aggregation_rule="separate",
+                unit_key="unpaid_annuity_balance",
+                conditions=[
+                    "保證期間內通常不論被保險人生存與否均保證給付。",
+                    "提前給付時，貼現利率依計算年金金額所採用之預定利率。",
+                ],
+            )
+        )
+
+    if has_full_account_withdrawal:
+        entries.append(
+            coverage_entry(
+                "full-account-value-withdrawal-at-annuity-start",
+                "年金累積期間屆滿時保單帳戶價值全額提領",
+                None,
+                "policy_account_value",
+                "要保人得於條款約定期限內選擇一次領回年金累積期間屆滿當日之保單帳戶價值。",
+                "年金累積期間屆滿時保單帳戶價值之全額提領",
+                calculation_basis="account_value",
+                amount_role="payout",
+                limit_scope="per_policy",
+                aggregation_rule="choose_one",
+                unit_key="policy_account_value_at_annuity_start",
+                conditions=[
+                    "選擇全額提領後契約效力終止。",
+                    "未選擇時通常依條款開始給付年金。",
+                ],
+            )
+        )
+
+    version_characteristics: dict[str, Any] = {
+        "product_family": "investment-linked-variable-annuity-account-value",
+        "company_group": company_group,
+        "currency_basis": currency_basis,
+        "payment_currency_label": payment_currency_label,
+        "investment_linked_policy": True,
+        "annuity_policy": True,
+        "annuity_amount_formula": "policy_account_value_at_annuity_start_using_assumed_interest_rate_and_annuity_life_table",
+        "policy_account_value_required": True,
+        "annuity_start_date_required": True,
+        "assumed_interest_rate_required": True,
+        "annuity_life_table_required": True,
+        "investment_target_value_required": True,
+        "payment_frequency_options": payment_frequency_options,
+        "guarantee_period_required": True,
+        "minimum_death_benefit": has_minimum_death,
+        "unpaid_annuity_balance": has_unpaid_annuity_balance,
+        "low_annual_annuity_lump_sum_rule": has_low_annuity_lump_sum_rule,
+        "high_annual_annuity_account_value_return_rule": has_high_annuity_cap_rule,
+        "non_participating_policy": "不分紅保險單" in text,
+    }
+    if guarantee_period_options:
+        version_characteristics["guarantee_period_options_years"] = guarantee_period_options
+    if default_start_age:
+        version_characteristics["default_annuity_start_age"] = default_start_age
+    if max_start_age:
+        version_characteristics["max_annuity_start_age"] = max_start_age
+    if max_payment_age:
+        version_characteristics["max_annuity_payment_age"] = max_payment_age
+    if has_full_account_withdrawal:
+        version_characteristics["account_value_full_withdrawal_at_annuity_start"] = True
+
+    return {
+        "selection_type": "account_value",
+        "input_mode": "account_value",
+        "selection_source": "terms",
+        "selection_label": "保單帳戶價值",
+        "selection_guidance": "請輸入或確認年金給付開始日時的保單帳戶價值，並依保單首頁確認年金給付開始日、保證期間與給付方式；系統可整理條款公式，但實際年金需依保險公司年金生命表與預定利率換算。",
+        "version_characteristics": version_characteristics,
+        "coverage_entries": entries,
+    }
+
+
+FUBON_LEGACY_INVESTMENT_LIFE_PRODUCT_IDS = frozenset(
+    (
+        "209131MV1A00123A11Z90000000",
+        "209131MV1A00123A11Z90000001",
+        "209131MV1A00123A11Z90000002",
+        "209131MV1A00123A11Z90000003",
+        "209131MV1A00123A11Z90000004",
+        "209131MV1A00123A11Z90000005",
+        "209131MV1A00123A11Z90000006",
+        "209131MV1A00123A11Z90000007",
+        "209131MV1A00123A11Z90000008",
+        "209131MV1A00123A11Z90000009",
+        "209131MV1A00223Z11Z90000000",
+        "209131MV1A00223Z11Z90000001",
+        "209131MV1A00223Z11Z90000002",
+        "209131MV1A00223Z11Z90000003",
+        "209131MV1A00223Z11Z90000004",
+        "209131MV1A00223Z11Z90000005",
+        "209131MV1A00223Z11Z90000006",
+        "209131MV1A00223Z11Z90000007",
+        "209131MV1A00223Z11Z90000008",
+        "209131MV1A00223Z11Z90000009",
+        "209131MV1A00323Z11Z90000000",
+        "209131MV1A00323Z11Z90000001",
+        "209131MV1A00323Z11Z90000002",
+        "209131MV1A00423A11Z90000000",
+        "209131MV1A00423A11Z90000001",
+        "209131MV1A00423A11Z90000002",
+        "209131MV1A00423A11Z90000003",
+        "209131MV1A00523Z11Z90000000",
+        "209131MV1A00523Z11Z90000001",
+        "209131MV1A00523Z11Z90000002",
+        "209131MV1A00623A11Z90000000",
+        "209131MV1A00623A11Z90000001",
+        "209131MV1A00623A11Z90000002",
+    )
+)
+
+
+def is_fubon_legacy_investment_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in FUBON_LEGACY_INVESTMENT_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def parse_fubon_legacy_investment_life_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_legacy_investment_life_strict_source(document):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = [
+        "富邦人壽",
+        "變額壽險",
+        "投資標的",
+        "保單帳戶價值",
+        "淨危險保額",
+        "保險金額",
+        "祝壽保險金的給付",
+        "身故保險金或喪葬費用保險金的給付",
+        "完全殘廢保險金的給付",
+        "以淨危險保額與保單帳戶價值兩者之總和給付",
+        "喪葬費用保險金額不包含其屬投資部分之保單帳戶價值",
+        "保單帳戶即為結清",
+        "附表三",
+        "附表四",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+    gate_text = re.sub(r"第\d+頁共\d+頁", "", dense_text)
+    insurance_amount_pattern = r"按(?:「)?保.{0,24}?險金額(?:」)?給付"
+    if not re.search(f"{insurance_amount_pattern}身故保險金", gate_text):
+        return None
+    if not re.search(f"{insurance_amount_pattern}完全殘廢保險金", gate_text):
+        return None
+    if not re.search(r"保險年齡.{0,10}(?:屆滿|達)(?:110|一百一十)歲", gate_text):
+        return None
+
+    currency_basis = "foreign_currency" if "外幣保單" in text else "twd"
+    payment_currency_label = "外幣" if currency_basis == "foreign_currency" else "新臺幣"
+    minor_death_before_age_15 = "滿十五足歲前死亡" in dense_text
+    minor_disability_before_age_15 = (
+        "未滿十五足歲前致成完全殘廢" in dense_text
+        or "於未滿十五足歲前致成完全殘廢" in dense_text
+    )
+
+    entries = [
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於保險年齡屆滿一百一十歲仍生存且契約有效時，依贖回評價時點之投資標的價值計算保單帳戶價值給付。",
+            "祝壽保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=[
+                "給付祝壽保險金後，保單帳戶結清且契約效力終止。",
+                "實際金額需依保單當時投資標的價值、贖回評價時點與保單帳戶資料計算。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內身故者，按條款所稱保險金額給付；保險金額為淨危險保額與保單帳戶價值兩者之總和。",
+            "身故保險金或喪葬費用保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=[
+                "喪葬費用保險金額不包含投資部分之保單帳戶價值。",
+                "喪葬費用保險金受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+                "保險事故日後已收取之保險成本依條款併同給付。",
+                "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內致成條款附表所列完全殘廢等級之一並經診斷確定者，按條款所稱保險金額給付。",
+            "完全殘廢保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=[
+                "同時有兩項以上完全殘廢時僅給付一項完全殘廢保險金。",
+                "完全殘廢診斷確定日後已收取之保險成本依條款併同給付。",
+                "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            ],
+        ),
+    ]
+    if minor_death_before_age_15:
+        entries[1]["conditions"].append(
+            "以未滿十五足歲之未成年人為被保險人者，滿十五足歲前死亡依條款返還保單帳戶價值。"
+        )
+    if minor_disability_before_age_15:
+        entries[2]["conditions"].append(
+            "被保險人未滿十五足歲前致成完全殘廢者，依條款改以保單帳戶價值給付。"
+        )
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單上的保險金額；本舊版富邦投資型壽險的身故或完全殘廢按保險金額給付，保險金額需由淨危險保額與保單帳戶價值合計，祝壽金則依保單帳戶價值計算。",
+        "version_characteristics": {
+            "product_family": "fubon-legacy-investment-linked-life-face-amount",
+            "company_group": "fubon_life",
+            "currency_basis": currency_basis,
+            "payment_currency_label": payment_currency_label,
+            "investment_linked_policy": True,
+            "insurance_amount_basis": "policy_insurance_amount",
+            "insurance_amount_formula": "net_amount_at_risk_plus_policy_account_value",
+            "death_benefit_formula": "policy_insurance_amount",
+            "total_disability_benefit_formula": "policy_insurance_amount",
+            "maturity_trigger": "age_110_policy_anniversary",
+            "maturity_age": 110,
+            "maturity_benefit_formula": "policy_account_value_at_age_110_policy_anniversary",
+            "maturity_interest_crediting": False,
+            "policy_account_value_required": True,
+            "net_amount_at_risk_required": True,
+            "net_amount_at_risk_formula_type": "jia_yi",
+            "basic_amount_required": True,
+            "basic_amount_formula_type": "basic_amount_by_selected_type",
+            "investment_target_value_required": True,
+            "redemption_valuation_timing_required": True,
+            "valuation_reference": "附表三",
+            "insurance_cost_refund_after_event": True,
+            "account_value_return_on_time_bar": True,
+            "funeral_benefit_limit_rule": True,
+            "funeral_benefit_excludes_account_value": True,
+            "minor_death_before_age_15_account_value_rule": minor_death_before_age_15,
+            "minor_disability_before_age_15_account_value_rule": minor_disability_before_age_15,
+            "complete_disability_schedule_ref": "附表四",
+            "complete_disability_table_item_count": 7,
+            "legacy_disability_wording": True,
+            "disability_term": "殘廢",
+            "total_disability_term": "完全殘廢",
+            "non_participating_policy": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
+PRUDENTIAL_LEGACY_INVESTMENT_LIFE_PRODUCT_IDS = frozenset(
+    (
+        "203131MV1A00323B11Z90000015",
+        "203131MV1A00323B11Z90000016",
+        "203131MV1A00523B11Z90000009",
+        "203131MV1A00623B11C90000008",
+        "203131MV1A00623B11C90000009",
+        "203131MV1A00723B11C90000005",
+        "203131MV1A00823J11C90000001",
+        "203131MV1A00823J11C90000002",
+        "203131MV1A00823J11C90000003",
+        "203131MV1A00823J11C90000004",
+        "203131MV1A00823J11C90000005",
+        "203131MV1A01023A11C90000000",
+        "203131MV1A01023A11C90000001",
+        "203131MV1A01023A11C90000002",
+        "203131MV1A01023A11C90000003",
+        "203131MV1A01023A11C90000004",
+        "203131MV1A01023A11C90000005",
+        "203131MV1A01323B11C90000002",
+        "203131MV1A01323B11C90000003",
+        "203131MV1A01523Z11Z90000000",
+        "203131MV1A01523Z11Z90000001",
+        "203131MV1A01623A11Z90000000",
+        "203131MV1A01623A11Z90000001",
+        "203131MV1A01723B11Z90000000",
+        "203131MV1A01723B11Z90000001",
+        "203131MV1A01823B11C90000000",
+        "203131MV1A01823B11C90000001",
+        "203141M31A01700",
+        "203131MU1A00123A11Z90000031",
+        "203131MU1A00123A11Z90000032",
+        "203131MU1A00123A11Z90000033",
+        "203131MU1A00123A11Z90000034",
+        "203131MU1A00123A11Z90000035",
+        "203131MU1A00123A11Z90000036",
+        "203131MV1A00123A11Z90000031",
+        "203131MV1A00123A11Z90000032",
+        "203131MV1A00123A11Z90000033",
+        "203131MV1A00123A11Z90000034",
+        "203131MV1A00123A11Z90000035",
+        "203131MV1A00223A11Z90000030",
+        "203131MV1A00423A11Z90000007",
+        "203131MV1A00423A11Z90000008",
+        "203131MV1A00423A11Z90000009",
+        "203131MV1A00423A11Z90000010",
+        "203131MV1A00423A11Z90000011",
+        "203131MV1A00923A11Z90000001",
+        "203131MV1A00923A11Z90000002",
+        "203131MV1A01423A11Z90000001",
+        "203131MV1A01423A11Z90000002",
+        "203131MV1A01923A11Z90000000",
+        "203131MV1A02023Z11Z90000000",
+        "203141M31A00330",
+        "203141M31A01206",
+        "203141M31A00530",
+        "203141M31A01800",
+    )
+)
+
+
+def is_prudential_legacy_investment_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in PRUDENTIAL_LEGACY_INVESTMENT_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def prudential_legacy_investment_payment_currency(text: str) -> tuple[str, str]:
+    head_text = text[:1600]
+    is_foreign_currency = "外幣保單" in head_text
+    currency_label = "新臺幣"
+    currency_match = re.search(r"均以([^,，()（）]{1,12})計價", head_text)
+    if currency_match:
+        currency_label = currency_match.group(1).strip()
+        is_foreign_currency = True
+    elif is_foreign_currency:
+        currency_label = "外幣"
+    return ("foreign_currency" if is_foreign_currency else "twd", currency_label)
+
+
+def prudential_legacy_basic_amount_formula_type(dense_text: str) -> str:
+    plain_dense_text = dense_text.replace("「", "").replace("」", "")
+    if compact_table_text("累積保險費餘額乘以") in plain_dense_text and compact_table_text(
+        "保額保費比例"
+    ) in plain_dense_text:
+        return "accumulated_premium_balance_times_ratio"
+    if compact_table_text("目標保險費乘以附表三保額係數") in plain_dense_text:
+        return "target_premium_times_amount_factor"
+    if compact_table_text("目標保險費乘以") in plain_dense_text and compact_table_text(
+        "保額係數"
+    ) in plain_dense_text:
+        return "target_premium_times_amount_factor"
+    if compact_table_text(
+        "年繳化目標保險費乘以附表三對應之保額倍數"
+    ) in plain_dense_text:
+        return "annualized_target_premium_times_coverage_multiple"
+    if compact_table_text("目標保險費乘以二") in plain_dense_text and compact_table_text(
+        "保單帳戶價值及本次繳交保險費兩者之和乘以附表一保額保費比例"
+    ) in plain_dense_text:
+        return "target_premium_times_two_with_account_value_ratio_adjustment"
+    if compact_table_text("基本保額係指本契約所載明之投保金額") in plain_dense_text:
+        return "policy_recorded_basic_amount"
+    return "not_classified"
+
+
+def parse_prudential_legacy_investment_life_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_prudential_legacy_investment_life_strict_source(document):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    plain_dense_text = dense_text.replace("「", "").replace("」", "")
+    required_signals = [
+        "給付項目",
+        "祝壽保險金",
+        "身故保險金或喪葬費用保險金",
+        "完全殘廢保險金",
+        "淨危險保額",
+        "保險金額",
+        "保險年齡達九十九歲之保單週年日",
+        "按保險金額給付身故保險金",
+        "按保險金額給付完全殘廢保險金",
+        "淨危險保額與保單帳戶價值兩者之總和給付",
+        "本契約項下之保單帳戶即為結清",
+        "喪葬費用保險金額不包含其屬投資部分之保單帳戶價值",
+        "本保險為不分紅",
+    ]
+    if any(
+        compact_table_text(signal).replace("「", "").replace("」", "")
+        not in plain_dense_text
+        for signal in required_signals
+    ):
+        return None
+    account_value_return_signal = (
+        compact_table_text("保單帳戶價值之返還").replace("「", "").replace("」", "")
+        in plain_dense_text
+        or compact_table_text("保單帳戶價值返還予應得之人")
+        .replace("「", "")
+        .replace("」", "")
+        in plain_dense_text
+    )
+    if not account_value_return_signal:
+        return None
+
+    complete_disability_schedule_ref = None
+    for schedule_ref in ("附表七", "附表六", "附表五"):
+        if compact_table_text(
+            f"{schedule_ref}所列之完全殘廢等級之一"
+        ) in plain_dense_text:
+            complete_disability_schedule_ref = schedule_ref
+            break
+    if (
+        complete_disability_schedule_ref is None
+        and compact_table_text("致成完全殘廢並經完全殘廢診斷確定")
+        in plain_dense_text
+    ):
+        complete_disability_schedule_ref = "完全殘廢程度表"
+    if complete_disability_schedule_ref is None:
+        return None
+
+    currency_basis, payment_currency_label = (
+        prudential_legacy_investment_payment_currency(text)
+    )
+    valuation_reference = (
+        "next_asset_valuation_date"
+        if compact_table_text("次一個資產評價日") in plain_dense_text
+        else "claim_documents_received_date"
+    )
+    minor_death_before_age_15 = compact_table_text("滿十五足歲前死亡") in plain_dense_text
+    minor_disability_before_age_15 = (
+        compact_table_text("完全殘廢當時未滿十五足歲") in plain_dense_text
+    )
+    if (
+        compact_table_text("淨危險保額係指基本保額扣除保單帳戶價值之餘額但不得為負值")
+        in plain_dense_text
+        or compact_table_text("淨危險保額係指基本保額扣除保單帳戶價值後之餘額但不得為負值")
+        in plain_dense_text
+    ):
+        net_amount_at_risk_formula_type = "basic_amount_less_account_value_nonnegative"
+    elif compact_table_text("淨危險保額係指基本保額") in plain_dense_text:
+        net_amount_at_risk_formula_type = "basic_amount"
+    else:
+        return None
+
+    entries = [
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於保險年齡達九十九歲之保單週年日仍生存且契約有效時，依贖回評價時點之投資標的價值計算保單帳戶價值給付。",
+            "祝壽保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_account_value",
+            conditions=[
+                "給付祝壽保險金後，契約效力終止。",
+                "實際金額需依保單當時投資標的價值、贖回評價時點與保單帳戶資料計算。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內身故者，按條款所稱保險金額給付；保險金額為淨危險保額與保單帳戶價值兩者之總和。",
+            "身故保險金或喪葬費用保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=[
+                "喪葬費用保險金額不包含投資部分之保單帳戶價值。",
+                "喪葬費用保險金受遺產稅喪葬費扣除額半數上限及同業合計規則限制。",
+                "保險事故日後已收取之保險成本依條款併同給付。",
+                "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間內致成條款附表所列完全殘廢等級之一並經診斷確定者，按條款所稱保險金額給付。",
+            "完全殘廢保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="policy_insurance_amount",
+            conditions=[
+                "同時有兩項以上完全殘廢時僅給付一項完全殘廢保險金。",
+                "完全殘廢診斷確定日後已收取之保險成本依條款併同給付。",
+                "給付後保單帳戶結清且契約效力終止；若超過請求時效，條款另約定返還保單帳戶價值。",
+            ],
+        ),
+    ]
+    if minor_death_before_age_15:
+        entries[1]["conditions"].append(
+            "以未滿十五足歲之未成年人為被保險人者，滿十五足歲前死亡依條款返還保單帳戶價值。"
+        )
+    if minor_disability_before_age_15:
+        entries[2]["conditions"].append(
+            "被保險人滿十五足歲前致成完全殘廢者，依條款改以保單帳戶價值返還。"
+        )
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單上的保險金額；本舊版投資型壽險的身故或完全殘廢按保險金額給付，保險金額需由淨危險保額與保單帳戶價值合計，祝壽金則依保單帳戶價值計算。",
+        "version_characteristics": {
+            "product_family": "prudential-legacy-investment-linked-life-face-amount",
+            "company_group": "prudential",
+            "currency_basis": currency_basis,
+            "payment_currency_label": payment_currency_label,
+            "investment_linked_policy": True,
+            "insurance_amount_basis": "policy_insurance_amount",
+            "insurance_amount_formula": "net_amount_at_risk_plus_policy_account_value",
+            "death_benefit_formula": "policy_insurance_amount",
+            "total_disability_benefit_formula": "policy_insurance_amount",
+            "maturity_trigger": "age_99_policy_anniversary",
+            "maturity_age": 99,
+            "maturity_benefit_formula": "policy_account_value_at_age_99_policy_anniversary",
+            "maturity_interest_crediting": False,
+            "policy_account_value_required": True,
+            "net_amount_at_risk_required": True,
+            "net_amount_at_risk_formula_type": net_amount_at_risk_formula_type,
+            "basic_amount_required": True,
+            "basic_amount_formula_type": prudential_legacy_basic_amount_formula_type(
+                dense_text
+            ),
+            "investment_target_value_required": True,
+            "redemption_valuation_timing_required": True,
+            "valuation_reference": valuation_reference,
+            "insurance_cost_refund_after_event": True,
+            "account_value_return_on_time_bar": True,
+            "funeral_benefit_limit_rule": True,
+            "funeral_benefit_excludes_account_value": True,
+            "minor_death_before_age_15_account_value_rule": minor_death_before_age_15,
+            "minor_disability_before_age_15_account_value_rule": minor_disability_before_age_15,
+            "complete_disability_schedule_ref": complete_disability_schedule_ref,
+            "complete_disability_table_item_count": 7,
+            "legacy_disability_wording": True,
+            "disability_term": "殘廢",
+            "total_disability_term": "完全殘廢",
+            "non_participating_policy": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
+HSINGFU_FUYU_DWA_PRODUCT_ID = "215141M21A00102"
+HSINGFU_FUYU_DWA_FILE_NAME = "215141M21A00202-A.pdf"
+HSINGFU_PLATINUM_ENDOWMENT_PRODUCT_ID = "215121M11A05608"
+HSINGFU_PLATINUM_ENDOWMENT_FILE_NAME = "215121M11A05608-A.pdf"
+
+
+def is_hsingfu_fuyu_dwa_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    return (
+        str(document.get("product_id") or "") == HSINGFU_FUYU_DWA_PRODUCT_ID
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == HSINGFU_FUYU_DWA_FILE_NAME
+    )
+
+
+def parse_hsingfu_fuyu_dwa_whole_life_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_hsingfu_fuyu_dwa_whole_life_strict_source(document):
+        return None
+    if document.get("page_count") not in {None, 19}:
+        return None
+    if document.get("pages_parsed") not in {None, 19}:
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = [
+        "幸福人壽富裕利率變動型終身壽險",
+        "檔案名稱:215141M21A00202",
+        "九十五年十月二日部分變更送審",
+        "本契約所稱「基本保險金額」係指保險單首頁所載本保險契約之投保金額",
+        "本契約所稱「累計增加保險金額」係指就每一保單週年日依第十條約定計算所得增額繳清保險金額逐次累計之值",
+        "本契約所稱「保險金額」,於被保險人保險年齡達十五歲之保單週年日前為基本保險金額",
+        "本契約所稱「預定利率」係指本商品計算保費之預定利率,為百分之二點七五",
+        "本公司於本契約有效期間內之每一保單週年日",
+        "按當年度宣告利率平均值減去本契約預定利率之差值",
+        "換算為自該保單週年日當日起生效之增額繳清保險金額",
+        "祝壽保險金的給付",
+        "保險年齡屆滿一百一十歲之保單年度末仍生存時",
+        "本公司按保險金額給付「祝壽保險金」",
+        "身故或喪葬費用保險金的給付",
+        "本公司按保險金額給付「身故保險金」",
+        "完全殘廢保險金的給付",
+        "本公司按保險金額給付「完全殘廢保險金」",
+        "因意外傷害或疾病致成附表二所列第二級至第六級殘廢程度之一者",
+        "免繳本契約未到期的保險費",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+
+    entries = [
+        coverage_entry(
+            "declared-rate-paid-up-addition",
+            "宣告利率增額繳清保險金額",
+            None,
+            "policy_recorded_limit",
+            "每一保單週年日依宣告利率平均值減預定利率後的差值，乘以前一保單年度期中保單價值準備金作為調整因子，換算增額繳清保險金額。",
+            "保單條款第二條及第十條，累計增加保險金額與增額繳清保險金額的計算",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="annual",
+            aggregation_rule="cumulative_cap",
+            unit_key="declared_rate_paid_up_addition",
+            conditions=[
+                "保險金額於 15 歲保單週年前為基本保險金額；15 歲保單週年日起為基本保險金額加累計增加保險金額。",
+                "宣告利率每月第一個營業日宣告，條款預定利率為 2.75%。",
+                "實際增額需依保單年度宣告利率、期中保單價值準備金與附件公式計算。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-age-110",
+            "祝壽保險金",
+            None,
+            "face_amount",
+            "有效期間內，被保險人保險年齡屆滿 110 歲之保單年度末仍生存時，按保險金額給付。",
+            "保單條款第十一條，祝壽保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=["給付後契約即行終止。"],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "face_amount",
+            "有效期間內身故時，按保險金額給付；未滿特定年齡及受監護或心神狀態者依喪葬費用限制與條款退還規則處理。",
+            "保單條款第十二條，身故或喪葬費用保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[
+                "身故當時未達 15 歲保單週年日者，另返還遞延至 15 歲保單週年日起生效之累計增加保險金額對應保單價值準備金。",
+                "繳費期間內身故者，另按日數比例加計基本保險金額部分之當期已繳未到期保險費。",
+                "未滿十四足歲、心神喪失或精神耗弱者之身故給付改為喪葬費用保險金，並受主管機關額度上限限制。",
+                "給付後契約即行終止。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全殘廢保險金",
+            None,
+            "face_amount",
+            "有效期間內致成附表一所列完全殘廢程度之一時，按保險金額給付。",
+            "保單條款第十三條，完全殘廢保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="choose_one",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[
+                "完全殘廢確定時未達 15 歲保單週年日者，另返還遞延至 15 歲保單週年日起生效之累計增加保險金額對應保單價值準備金。",
+                "繳費期間內完全殘廢者，另按日數比例加計基本保險金額部分之當期已繳未到期保險費。",
+                "同時致成附表一二項以上完全殘廢程度者，只給付一項完全殘廢保險金。",
+                "給付後契約即行終止。",
+            ],
+        ),
+        coverage_entry(
+            "disability-premium-waiver",
+            "豁免保費",
+            None,
+            "policy_recorded_limit",
+            "有效且於繳費期間內，因意外傷害或疾病致成附表二第二級至第六級殘廢程度之一者，免繳未到期保險費。",
+            "保單條款第十四條，豁免保費",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="future_premium_by_basic_face_amount",
+            conditions=[
+                "豁免金額以前項情形發生當時之基本保險金額計算所應繳保險費為準。",
+                "豁免後契約繼續有效，且條款列明不再適用特定契約變更與附約加保事項。",
+            ],
+        ),
+    ]
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單目前適用之保險金額；本契約 15 歲保單週年前為基本保險金額，之後為基本保險金額加累計增加保險金額，利變增額需依宣告利率與保單價值準備金確認。",
+        "version_characteristics": {
+            "product_family": "hsingfu-fuyu-dwa-whole-life",
+            "terms_revision": "second-partial-revision",
+            "source_file_id": "215141M21A00202",
+            "partial_change_filing_date": "95.10.02",
+            "planned_interest_rate_percent": 2.75,
+            "declared_rate_addition_available": True,
+            "declared_rate_frequency": "monthly",
+            "face_amount_formula": "before_age_15_policy_anniversary_basic_face_amount_then_basic_plus_cumulative_paid_up_addition",
+            "insurance_amount_age_15_switch": True,
+            "maturity_age": 110,
+            "death_benefit_rate_percent": 100,
+            "total_disability_benefit_rate_percent": 100,
+            "premium_waiver_disability_levels": "2-6",
+            "unexpired_premium_proration_included": True,
+            "funeral_benefit_limit_rule": True,
+            "non_participating_policy": True,
+            "paid_up_addition_reference_required": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
+def is_hsingfu_platinum_endowment_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    return (
+        str(document.get("product_id") or "") == HSINGFU_PLATINUM_ENDOWMENT_PRODUCT_ID
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == HSINGFU_PLATINUM_ENDOWMENT_FILE_NAME
+    )
+
+
+def parse_hsingfu_platinum_endowment_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_hsingfu_platinum_endowment_strict_source(document):
+        return None
+    if document.get("page_count") not in {None, 10}:
+        return None
+    if document.get("pages_parsed") not in {None, 10}:
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = compact_table_text(text)
+    required_signals = [
+        "幸福人壽白金人生養老保險(ENU)",
+        "給付項目:滿期保險金、身故保險金或喪葬費用保險金、完全殘廢保險金",
+        "核備文號:92.01.28福算字第0240號",
+        "本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目",
+        "被保險人於本契約有效期間內身故者,本公司按「當年度保險金額」給付「身故保險金」",
+        "本契約所稱「當年度保險金額」係指第一保單年度同保單保險金額",
+        "第二保單年度起每年按保單保險金額每滿該一保單年度,以一倍增值單獨計算後",
+        "被保險人於本契約有效期間內致成附表一所列完全殘廢程度之一者",
+        "本公司按「當年度保險金額」給付「完全殘廢保險金」",
+        "被保險人於本契約有效且於滿期時仍生存者",
+        "按「當年度保險金額」給付「滿期保險金」",
+    ]
+    if any(compact_table_text(signal) not in dense_text for signal in required_signals):
+        return None
+
+    entries = [
+        coverage_entry(
+            "annual-insured-amount-reference",
+            "當年度保險金額參考",
+            None,
+            "policy_recorded_limit",
+            "第一保單年度同保單保險金額；第二保單年度起每年按保單保險金額增值單獨計算後逐筆累加，實際年度金額需依保單與附表確認。",
+            "保單條款第十二條，當年度保險金額定義",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="annual",
+            aggregation_rule="cumulative_cap",
+            unit_key="annual_insured_amount",
+            conditions=[
+                "本 parser 要求使用者輸入目前保單適用之當年度保險金額。",
+                "若只知道原始保單保險金額，仍需依保單年度與條款附表換算當年度保險金額。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "face_amount",
+            "被保險人於本契約有效且於滿期時仍生存者，按當年度保險金額給付。",
+            "保單條款第十四條，滿期保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=["給付後契約效力即行終止。"],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "face_amount",
+            "被保險人於本契約有效期間內身故者，按當年度保險金額給付；特定心智狀態被保險人改以喪葬費用保險金並受條款限額約束。",
+            "保單條款第十二條，身故保險金或喪葬費用保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                "喪葬費用保險金總和不得超過條款所定遺產稅喪葬費扣除額半數上限。",
+                "給付後契約即行終止。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全殘廢保險金",
+            None,
+            "face_amount",
+            "被保險人於本契約有效期間內致成附表一所列完全殘廢程度之一者，按當年度保險金額給付。",
+            "保單條款第十三條，完全殘廢保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="choose_one",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=["給付後契約效力即行終止。"],
+        ),
+    ]
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "當年度保險金額",
+        "selection_guidance": "請輸入保單目前適用之當年度保險金額；若僅有保單保險金額，需依保單年度與條款附表先換算。",
+        "version_characteristics": {
+            "product_family": "hsingfu-platinum-endowment",
+            "terms_revision": "eighth-partial-revision",
+            "filing_number": "92.01.28 福算字第 0240 號",
+            "latest_revision_basis": "100.9.1 依 100.4.11 金管保品字第 10002523040 號函修正",
+            "annual_insured_amount_formula": "first_policy_year_policy_face_amount_then_annual_face_amount_step_accumulation",
+            "maturity_benefit_formula": "annual_insured_amount_at_policy_maturity",
+            "death_benefit_rate_percent": 100,
+            "total_disability_benefit_rate_percent": 100,
+            "funeral_benefit_limit_rule": True,
+            "non_participating_policy": True,
+            "annual_insured_amount_table_required": True,
+        },
+        "coverage_entries": entries,
+    }
+
+
 def is_yuanta_new_account_medical_strict_source(document: dict[str, Any]) -> bool:
     product_id = str(document.get("product_id") or "")
     file_name = str(document.get("file_name") or "")
@@ -21244,6 +28246,649 @@ def parse_fubon_new_shouhu_jinnang_late_accident_health_plan_table(
     }
 
 
+FUBON_HAOZHOUQUAN_ACCIDENT_HEALTH_PRODUCT_VERSIONS = {
+    "209191M12G00200": {
+        "file_name": "209191M12G00200-A.pdf",
+        "terms_revision": "102-original",
+        "fubon_code": "CTBD1020401",
+        "page_count": 17,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+    },
+    "209191M19G00101": {
+        "file_name": "209191M19G00101-A.pdf",
+        "terms_revision": "103-first-revision",
+        "fubon_code": "CTBD1030501",
+        "page_count": 17,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+    },
+    "209131MZ9G00121A11Z10000002": {
+        "file_name": "209131MZ9G00121A11Z10000002-A.pdf",
+        "terms_revision": "104-second-revision",
+        "fubon_code": "CTBD1040804",
+        "page_count": 18,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 79,
+    },
+    "209131MZ9G00121A11Z10000003": {
+        "file_name": "209131MZ9G00121A11Z10000003-A.pdf",
+        "terms_revision": "105-third-revision",
+        "fubon_code": "CTBD1050727",
+        "page_count": 18,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 79,
+    },
+    "209131MZ9G00121A11Z10000004": {
+        "file_name": "209131MZ9G00121A11Z10000004-A.pdf",
+        "terms_revision": "107-fourth-revision",
+        "fubon_code": "CTBD1070914",
+        "page_count": 18,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 79,
+    },
+    "209131MZ9G00121A11Z10000006": {
+        "file_name": "209131MZ9G00121A11Z10000006-A.pdf",
+        "terms_revision": "109-sixth-revision",
+        "fubon_code": "CTBD1090901",
+        "page_count": 18,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+    },
+    "209131MZ9G00121A11Z10000007": {
+        "file_name": "209131MZ9G00121A11Z10000007-A.pdf",
+        "terms_revision": "111-seventh-revision",
+        "fubon_code": "CTBD1111202",
+        "page_count": 18,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+    },
+}
+
+
+def is_fubon_haozhouquan_accident_health_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_HAOZHOUQUAN_ACCIDENT_HEALTH_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+FUBON_HAOZHOUQUAN_PLAN_VALUES = {
+    "plan-1": {
+        "label": "計畫一",
+        "life_death": 1_000_000,
+        "total_disability": 1_000_000,
+        "accident_death": 1_000_000,
+        "mass_transit_death": 3_000_000,
+        "accident_disability_base": 1_000_000,
+        "mass_transit_disability_base": 3_000_000,
+        "general_hospital_daily": 1_000,
+    },
+    "plan-2": {
+        "label": "計畫二",
+        "life_death": 2_000_000,
+        "total_disability": 2_000_000,
+        "accident_death": 2_000_000,
+        "mass_transit_death": 6_000_000,
+        "accident_disability_base": 2_000_000,
+        "mass_transit_disability_base": 6_000_000,
+        "general_hospital_daily": 2_000,
+    },
+    "plan-3": {
+        "label": "計畫三",
+        "life_death": 1_000_000,
+        "total_disability": 1_000_000,
+        "accident_death": 1_000_000,
+        "mass_transit_death": 3_000_000,
+        "accident_disability_base": 1_000_000,
+        "mass_transit_disability_base": 3_000_000,
+        "general_hospital_daily": 2_000,
+    },
+}
+
+
+def fubon_haozhouquan_accident_health_entries(
+    plan_label: str,
+    values: dict[str, int | str],
+    disability_term: str,
+) -> list[dict[str, Any]]:
+    source_ref = "條款第十二條、第十三條、第十七條、第二十條、第二十一條及附表一至三"
+    common_conditions = [
+        "須依保單首頁所載計畫別給付；本契約有效期間內不受理計畫別變更。",
+        "本商品為一年定期且非保證續保；最高可續保至被保險人保險年齡六十五歲該保險期間屆滿。",
+    ]
+    life_conditions = [
+        *common_conditions,
+        f"身故保險金或完全{disability_term}保險金給付後，本契約效力即行終止。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "限第二條約定之意外傷害事故所致。",
+        f"意外身故或{disability_term}原則上須自意外傷害事故發生日起一百八十日以內發生或診斷確定；超過者須證明與該意外事故具因果關係。",
+    ]
+    hospital_conditions = [
+        *common_conditions,
+        "因疾病或傷害住院診療，住院醫療日額保險金按實際住院日數計算。",
+        "同一保單年度同一次住院給付日數最高九十日；因同一疾病或傷害於出院後十四日內同一醫院再次住院時，視為同一次住院。",
+    ]
+    entries: list[dict[str, Any]] = []
+
+    def int_amount(key: str) -> int:
+        value = values[key]
+        if not isinstance(value, int):
+            raise ValueError(f"non-integer plan amount: {key}")
+        return value
+
+    def add_amount(
+        entry_id: str,
+        name: str,
+        amount: int,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str],
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> None:
+        entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                amount,
+                basis,
+                f"{plan_label}：{note}",
+                source_ref,
+                calculation_basis=calculation_basis,
+                amount_role=amount_role,
+                limit_scope=limit_scope,
+                aggregation_rule=aggregation_rule,
+                conditions=conditions,
+                amount_tiers=amount_tiers,
+                rate_min_percent=rate_min_percent,
+                rate_max_percent=rate_max_percent,
+            )
+        )
+
+    add_amount(
+        "life-death-or-funeral",
+        "身故保險金或喪葬費用保險金",
+        int_amount("life_death"),
+        "依附表一所載金額給付；精神障礙或其他心智缺陷者適用喪葬費用保險金法定限額。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "total-disability",
+        f"完全{disability_term}保險金",
+        int_amount("total_disability"),
+        f"致成附表二完全{disability_term}程度之一者，依附表一金額給付。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "general-accidental-death",
+        "一般意外身故保險金或喪葬費用保險金",
+        int_amount("accident_death"),
+        "一般意外身故依附表一所載金額給付；給付後本契約效力終止。",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "mass-transit-accidental-death-additional",
+        "大眾運輸工具意外身故保險金或喪葬費用保險金",
+        int_amount("mass_transit_death"),
+        "以乘客身分搭乘大眾運輸工具期間，除一般意外身故外另給付。",
+        aggregation_rule="conditional_additive",
+        conditions=accident_conditions,
+    )
+
+    for entry_id, name, base_key, aggregation_rule in [
+        (
+            "general-accidental-disability",
+            f"一般意外{disability_term}保險金",
+            "accident_disability_base",
+            "cumulative_cap",
+        ),
+        (
+            "mass-transit-accidental-disability-additional",
+            f"大眾運輸工具意外{disability_term}保險金",
+            "mass_transit_disability_base",
+            "conditional_additive",
+        ),
+    ]:
+        base = int_amount(base_key)
+        add_amount(
+            entry_id,
+            name,
+            base,
+            f"致成附表三{disability_term}等級之一者，以附表一基準金額乘以附表三給付比例；第一級至第十一級為 100% 至 5%。",
+            basis="benefit_base",
+            calculation_basis="table_multiplier",
+            amount_role="base",
+            aggregation_rule=aggregation_rule,
+            conditions=accident_conditions,
+            amount_tiers=disability_percentage_tiers(base),
+            rate_min_percent=5,
+            rate_max_percent=100,
+        )
+
+    add_amount(
+        "general-hospital-daily",
+        "住院醫療日額保險金",
+        int_amount("general_hospital_daily"),
+        "依附表一日額乘以實際住院日數給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=hospital_conditions,
+    )
+    return entries
+
+
+def parse_fubon_haozhouquan_accident_health_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_haozhouquan_accident_health_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_HAOZHOUQUAN_ACCIDENT_HEALTH_PRODUCT_VERSIONS[product_id]
+    text = str(document.get("text") or "")
+    compact_text = readable_terms_text(text)
+    disability_term = str(version["disability_term"])
+    required_signals = [
+        str(version["fubon_code"]),
+        "富邦人壽好周全傷害暨健康一年定期保險",
+        "本契約保障內容分三個計畫別,各計畫別之給付內容詳附表一",
+        "身故保險金或喪葬費用保險金100萬200萬100萬",
+        f"完全{disability_term}保險金100萬200萬100萬",
+        "一般意外身故保險金或喪葬費用保險金100萬200萬100萬",
+        "大眾運輸工具意外身故保險金或喪葬費用保險金300萬600萬300萬",
+        f"一般意外{disability_term}保險金",
+        f"大眾運輸工具意外{disability_term}保險金",
+        "住院醫療日額保險金1,000元/日2,000元/日2,000元/日",
+        "本契約最高可續保至被保險人保險年齡六十五歲",
+    ]
+    if not readable_terms_has_all(compact_text, required_signals):
+        return None
+    if not has_readable_disability_table(
+        text,
+        int(version["disability_schedule_item_count"]),
+    ):
+        return None
+    if document.get("page_count") not in {None, version["page_count"]}:
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫別",
+        "selection_guidance": "請依保單首頁所載計畫一至計畫三選擇；本商品不需輸入單位數。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": 3,
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 65,
+            "general_hospital_days_limit": 90,
+            "same_hospital_readmission_days": 14,
+            "accident_claim_days": 180,
+            "disability_term": disability_term,
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_haozhouquan_accident_health_entries(
+                    str(values["label"]),
+                    values,
+                    disability_term,
+                ),
+            }
+            for plan_key, values in FUBON_HAOZHOUQUAN_PLAN_VALUES.items()
+        ],
+    }
+
+
+FUBON_HEALTH_LIMIT_UP_ACCIDENT_HEALTH_PRODUCT_VERSIONS = {
+    "209191M12G00400": {
+        "file_name": "209191M12G00400-A.pdf",
+        "terms_revision": "103-original",
+        "fubon_code": "FBL1030402",
+        "page_count": 16,
+        "cancer_waiting_days": 30,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 75,
+    },
+    "209191MZ2G00221A11Z10000001": {
+        "file_name": "209191MZ2G00221A11Z10000001-A.pdf",
+        "terms_revision": "104-first-revision",
+        "fubon_code": "FBL1040804",
+        "page_count": 17,
+        "cancer_waiting_days": 30,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 79,
+    },
+    "209191MZ2G00221A11Z10000002": {
+        "file_name": "209191MZ2G00221A11Z10000002-A.pdf",
+        "terms_revision": "107-second-revision",
+        "fubon_code": "FBL1070430",
+        "page_count": 17,
+        "cancer_waiting_days": 0,
+        "disability_term": "殘廢",
+        "disability_schedule_item_count": 79,
+    },
+    "209191MZ2G00221A11Z10000004": {
+        "file_name": "209191MZ2G00221A11Z10000004-A.pdf",
+        "terms_revision": "108-fourth-revision",
+        "fubon_code": "FBL1080101",
+        "page_count": 17,
+        "cancer_waiting_days": 0,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 79,
+    },
+    "209191MZ2G00221A11Z10000005": {
+        "file_name": "209191MZ2G00221A11Z10000005-A.pdf",
+        "terms_revision": "109-fifth-revision",
+        "fubon_code": "FBL1090101",
+        "page_count": 17,
+        "cancer_waiting_days": 0,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 79,
+    },
+}
+
+
+def is_fubon_health_limit_up_accident_health_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_HEALTH_LIMIT_UP_ACCIDENT_HEALTH_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+FUBON_HEALTH_LIMIT_UP_FIXED_VALUES = {
+    "life_death": 1_000_000,
+    "total_disability": 1_000_000,
+    "disability_base": 1_000_000,
+    "general_hospital_daily": 1_500,
+    "icu_daily": 3_000,
+    "burn_center_daily": 4_500,
+    "cancer_surgery": 30_000,
+    "cancer_hospital_daily": 1_000,
+    "cancer_radiation_daily": 1_000,
+}
+
+
+def fubon_health_limit_up_accident_health_entries(
+    cancer_waiting_days: int,
+    disability_term: str,
+) -> list[dict[str, Any]]:
+    source_ref = (
+        "條款第二條、第十二條至第十四條、第二十條、第二十一條及附表一至附表三"
+    )
+    common_conditions = [
+        "一年定期且不保證續保；續保須經公司同意，最高續保至保險年齡65歲。",
+        "附表一列示固定保險金額，本契約有效期間內公司不受理變更保險金額。",
+    ]
+    life_conditions = [
+        *common_conditions,
+        f"身故保險金或完全{disability_term}保險金給付後，本契約效力終止。",
+    ]
+    disability_conditions = [
+        *common_conditions,
+        f"因疾病或意外傷害事故致成附表三{disability_term}等級第二至十一級之一時，按附表一基準金額乘以附表三給付比例計算。",
+        "意外傷害事故所致殘廢須於事故日起180日內發生；超過180日須證明因果關係。",
+        "因不同疾病或意外傷害事故申領時，累計最高以附表一所載100萬元為限。",
+    ]
+    cancer_waiting_condition = (
+        "癌症須於契約生效日後，或復效日持續有效30日後之有效期間內，經病理組織切片或血液細胞學檢查診斷確定。"
+        if cancer_waiting_days
+        else "癌症須於契約生效日或復效日起之有效期間內，經病理組織切片或血液細胞學檢查診斷確定。"
+    )
+    cancer_conditions = [
+        *common_conditions,
+        cancer_waiting_condition,
+        "癌症住院日數含出院及入院當日；同日再次入院不得重複計入住院日數。",
+    ]
+    hospital_conditions = [
+        *common_conditions,
+        "因疾病或傷害住院診療，日數含出院及入院當日。",
+        "同一傷害或疾病出院後14日內於同一醫院再次住院，視為同一次住院。",
+    ]
+    entries: list[dict[str, Any]] = []
+
+    def add_amount(
+        entry_id: str,
+        name: str,
+        amount: int,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> None:
+        entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                amount,
+                basis,
+                note,
+                source_ref,
+                calculation_basis=calculation_basis,
+                amount_role=amount_role,
+                limit_scope=limit_scope,
+                aggregation_rule=aggregation_rule,
+                conditions=conditions or common_conditions,
+                amount_tiers=amount_tiers,
+                rate_min_percent=rate_min_percent,
+                rate_max_percent=rate_max_percent,
+            )
+        )
+
+    values = FUBON_HEALTH_LIMIT_UP_FIXED_VALUES
+    add_amount(
+        "life-death-or-funeral",
+        "身故保險金或喪葬費用保險金",
+        values["life_death"],
+        "按附表一所載金額給付。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "total-disability",
+        f"完全{disability_term}保險金",
+        values["total_disability"],
+        f"致成附表二所列完全{disability_term}程度之一時，按附表一所載金額給付。",
+        conditions=life_conditions,
+    )
+    add_amount(
+        "disease-or-accidental-disability",
+        f"{disability_term}保險金",
+        values["disability_base"],
+        f"僅給付{disability_term}等級第二至十一級，按100萬元乘以附表三給付比例計算。",
+        basis="benefit_base",
+        calculation_basis="table_multiplier",
+        amount_role="base",
+        aggregation_rule="cumulative_cap",
+        conditions=disability_conditions,
+        amount_tiers=disability_percentage_tiers_for_levels(
+            values["disability_base"],
+            [90, 80, 70, 60, 50, 40, 30, 20, 10, 5],
+            start_level=2,
+        ),
+        rate_min_percent=5,
+        rate_max_percent=90,
+    )
+    add_amount(
+        "cancer-hospital-daily",
+        "癌症住院醫療保險金",
+        values["cancer_hospital_daily"],
+        "以治療癌症或癌症併發症為直接目的住院，按日額乘以實際住院日數給付。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-surgery",
+        "癌症手術治療保險金",
+        values["cancer_surgery"],
+        "以治療癌症或癌症併發症為直接目的接受外科手術治療，每次手術給付。",
+        limit_scope="per_surgery",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-radiation-daily",
+        "癌症放射線治療保險金",
+        values["cancer_radiation_daily"],
+        "以治療癌症為直接目的接受放射線治療，按實際治療日數給付；每日治療一次或多次均以一日計。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "general-hospital-daily",
+        "一般住院醫療保險金",
+        values["general_hospital_daily"],
+        "因疾病或傷害住院診療，按日額乘以實際住院日數給付；每次住院最高90日。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=[
+            *hospital_conditions,
+            "每次住院給付日數最高90日。",
+        ],
+    )
+    add_amount(
+        "icu-hospital-daily",
+        "加護病房住院醫療保險金",
+        values["icu_daily"],
+        "入住加護病房時，除一般住院醫療保險金外另按實際入住日數給付；每次住院最高30日。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="conditional_additive",
+        conditions=[
+            *hospital_conditions,
+            "除一般住院醫療保險金外另行給付，每次住院給付日數最高30日。",
+        ],
+    )
+    add_amount(
+        "burn-center-hospital-daily",
+        "燒燙傷中心住院醫療保險金",
+        values["burn_center_daily"],
+        "因燒燙傷必須入住燒燙傷中心時，除一般住院醫療保險金外另按實際入住日數給付；每次住院最高30日。",
+        basis="daily_total",
+        limit_scope="per_day",
+        aggregation_rule="conditional_additive",
+        conditions=[
+            *hospital_conditions,
+            "每次住院給付日數最高30日。",
+            "燒燙傷中心設於加護中心或病房內時，不另行給付加護病房住院醫療保險金。",
+        ],
+    )
+    return entries
+
+
+def parse_fubon_health_limit_up_accident_health_fixed_schedule(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_health_limit_up_accident_health_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_HEALTH_LIMIT_UP_ACCIDENT_HEALTH_PRODUCT_VERSIONS[product_id]
+    text = str(document.get("text") or "")
+    compact_text = readable_terms_text(text)
+    disability_term = str(version["disability_term"])
+    required_signals = [
+        str(version["fubon_code"]),
+        "富邦人壽健康漲停板健康暨傷害一年定期保險",
+        "附表一:保險金項目保險金額",
+        "身故保險金或喪葬費用保險金100萬",
+        f"完全{disability_term}保險金100萬",
+        f"{disability_term}保險金(僅給付{disability_term}等級第二至十一級)",
+        "最高給付金額100萬",
+        "一般住院醫療保險金1,500元/日",
+        "加護病房住院醫療保險金3,000元/日",
+        "燒燙傷中心住院醫療保險金4,500元/日",
+        "癌症手術治療保險金3萬/次",
+        "癌症住院醫療保險金1,000元/日",
+        "癌症放射線治療保險金1,000元/日",
+        "本契約有效期間內,本公司不受理變更保險金額",
+        "本契約最高可續保至被保險人保險年齡六十五歲",
+    ]
+    cancer_signal = (
+        "第二十條被保險人自本契約生效日(或復效日持續有效三十日)後之有效期間內"
+        if int(version["cancer_waiting_days"])
+        else "第二十條被保險人自本契約生效日(或復效日)起之有效期間內"
+    )
+    required_signals.append(cancer_signal)
+    if not readable_terms_has_all(compact_text, required_signals):
+        return None
+    if not has_readable_disability_table(
+        text,
+        int(version["disability_schedule_item_count"]),
+    ):
+        return None
+    if document.get("page_count") not in {None, version["page_count"]}:
+        return None
+    if document.get("pages_parsed") not in {None, version["page_count"]}:
+        return None
+    return {
+        "selection_type": "fixed",
+        "input_mode": "fixed",
+        "selection_source": "terms",
+        "selection_label": "附表一固定保險金額",
+        "selection_guidance": "本商品依附表一固定金額給付；加入保單集合時不需輸入單位數或計畫別。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "fubon_code": version["fubon_code"],
+            "fixed_terms_amount": True,
+            "non_guaranteed_renewal": True,
+            "maximum_renewal_age": 65,
+            "cancer_waiting_days": version["cancer_waiting_days"],
+            "general_hospital_days_limit": 90,
+            "icu_days_limit": 30,
+            "burn_center_hospital_days_limit": 30,
+            "same_hospital_readmission_days": 14,
+            "accident_claim_days": 180,
+            "disability_term": disability_term,
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 90,
+            "short_term_rate_table": True,
+        },
+        "coverage_entries": fubon_health_limit_up_accident_health_entries(
+            int(version["cancer_waiting_days"]),
+            disability_term,
+        ),
+    }
+
+
 FUBON_COMPREHENSIVE_ACCIDENT_PRODUCT_VERSIONS = {
     "209211MZ1A01421A11Z10000000": {
         "file_name": "209211MZ1A01421A11Z10000000-A.pdf",
@@ -21915,6 +29560,22 @@ def parse_fubon_comprehensive_accident_plan_table(
 
 
 FUBON_NEW_MILLION_HEART_ACCIDENT_HEALTH_PRODUCT_VERSIONS = {
+    "209191M12G00300": {
+        "file_name": "209191M12G00300-A.pdf",
+        "terms_revision": "102-original",
+        "fubon_code": "FBD1020712",
+        "page_count": 21,
+        "disability_schedule_item_count": 75,
+        "legacy_relaxed_validation": True,
+    },
+    "209191M11G00101": {
+        "file_name": "209191M11G00101-A.pdf",
+        "terms_revision": "103-first-revision",
+        "fubon_code": "FBD1030501",
+        "page_count": 21,
+        "disability_schedule_item_count": 75,
+        "legacy_relaxed_validation": True,
+    },
     "209291MZ1G00321A11Z10000002": {
         "file_name": "209291MZ1G00321A11Z10000002-A.pdf",
         "terms_revision": "104-second-revision",
@@ -21993,6 +29654,9 @@ def fubon_new_million_heart_accident_health_entries(
     accident_base: int,
     daily_amount: int,
     fracture_daily: int,
+    *,
+    total_disability_term: str = "完全失能",
+    disability_term: str = "失能",
 ) -> list[dict[str, Any]]:
     source_ref = "條款第十二、十三、十七至十九、二十二至二十六條及附表一至四"
     common_conditions = [
@@ -22001,7 +29665,7 @@ def fubon_new_million_heart_accident_health_entries(
     ]
     life_conditions = [
         *common_conditions,
-        "身故保險金或完全失能保險金給付後，本契約效力終止；完全失能後身故僅就身故與完全失能其中一項給付。",
+        f"身故保險金或{total_disability_term}保險金給付後，本契約效力終止；{total_disability_term}後身故僅就身故與{total_disability_term}其中一項給付。",
     ]
     hospital_conditions = [
         *common_conditions,
@@ -22074,9 +29738,9 @@ def fubon_new_million_heart_accident_health_entries(
     )
     add(
         "total-disability",
-        "完全失能保險金",
+        f"{total_disability_term}保險金",
         1_000_000,
-        "致成附表二完全失能程度之一時，依附表一所載金額給付後，本契約終止。",
+        f"致成附表二{total_disability_term}程度之一時，依附表一所載金額給付後，本契約終止。",
         limit_scope="per_policy",
         conditions=life_conditions,
     )
@@ -22102,9 +29766,9 @@ def fubon_new_million_heart_accident_health_entries(
         )
     add(
         "general-accidental-disability",
-        "一般意外失能保險金",
+        f"一般意外{disability_term}保險金",
         accident_base,
-        "以附表一所列最高給付金額為基礎，依附表三失能等級 5% 至 100% 比例給付。",
+        f"以附表一所列最高給付金額為基礎，依附表三{disability_term}等級 5% 至 100% 比例給付。",
         basis="benefit_base",
         calculation_basis="table_multiplier",
         amount_role="base",
@@ -22115,19 +29779,19 @@ def fubon_new_million_heart_accident_health_entries(
         rate_max_percent=100,
     )
     for entry_id, name in [
-        ("land-transit-first-level-disability", "陸上大眾運輸工具意外一級失能保險金"),
-        ("public-building-fire-first-level-disability", "公共建築物火災意外一級失能保險金"),
-        ("elevator-first-level-disability", "電梯意外一級失能保險金"),
+        ("land-transit-first-level-disability", f"陸上大眾運輸工具意外一級{disability_term}保險金"),
+        ("public-building-fire-first-level-disability", f"公共建築物火災意外一級{disability_term}保險金"),
+        ("elevator-first-level-disability", f"電梯意外一級{disability_term}保險金"),
     ]:
         add(
             entry_id,
             name,
             accident_base,
-            "限同一次事故致成附表三第一級失能程度時給付。",
+            f"限同一次事故致成附表三第一級{disability_term}程度時給付。",
             aggregation_rule="conditional_additive",
             conditions=[
                 *special_accident_conditions,
-                "本項以同一次事故致成附表三第一級失能程度者為限。",
+                f"本項以同一次事故致成附表三第一級{disability_term}程度者為限。",
             ],
         )
     add(
@@ -25304,6 +32968,8 @@ def parse_fubon_new_million_heart_accident_health_legacy_plan_table(
                     accident_base,
                     daily_amount,
                     fracture_daily,
+                    total_disability_term="完全殘廢",
+                    disability_term="殘廢",
                 ),
             }
             for plan_key, (
@@ -25564,6 +33230,11302 @@ def parse_fubon_anxin_financial_life_accident_health_legacy_plan_table(
             }
             for plan_key, values in FUBON_ANXIN_FINANCIAL_LIFE_PLAN_VALUES.items()
         ],
+    }
+
+
+FUBON_GOLDEN_GUARD_ACCIDENT_HEALTH_PRODUCT_VERSIONS = {
+    "209131MZ9G00521A11Z10000000": {
+        "file_name": "209131MZ9G00521A11Z10000000-A.pdf",
+        "terms_revision": "108-original",
+        "fubon_code": "MGB21080304",
+    },
+    "209131MZ9G00521A11Z10000001": {
+        "file_name": "209131MZ9G00521A11Z10000001-A.pdf",
+        "terms_revision": "109-first-revision",
+        "fubon_code": "MGB21090101",
+    },
+}
+
+
+def is_fubon_golden_guard_accident_health_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_GOLDEN_GUARD_ACCIDENT_HEALTH_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+FUBON_GOLDEN_GUARD_ACCIDENT_HEALTH_PLAN_VALUES = {
+    "plan-1": {
+        "label": "計畫一",
+        "life_death": 500_000,
+        "one_to_three_disability_base": 500_000,
+        "carcinoma_in_situ": 5_000,
+        "cancer_light_or_severe": 50_000,
+        "major_burn": 400_000,
+        "accident_death": 1_000_000,
+        "air_transit_death": 2_000_000,
+        "water_land_transit_death": 1_000_000,
+        "public_fire_death": 1_000_000,
+        "elevator_death": 1_000_000,
+        "accident_disability_base": 1_000_000,
+        "air_transit_disability_base": 2_000_000,
+        "water_land_transit_disability_base": 1_000_000,
+        "public_fire_disability_base": 1_000_000,
+        "elevator_disability_base": 1_000_000,
+        "cancer_surgery": 30_000,
+        "cancer_hospital_daily": 1_000,
+        "cancer_discharge_daily": 1_000,
+        "cancer_radiation_daily": 1_000,
+        "cancer_chemotherapy_daily": 1_000,
+    },
+    "plan-2": {
+        "label": "計畫二",
+        "life_death": 1_000_000,
+        "one_to_three_disability_base": 1_000_000,
+        "carcinoma_in_situ": 5_000,
+        "cancer_light_or_severe": 50_000,
+        "major_burn": 400_000,
+        "accident_death": 1_000_000,
+        "air_transit_death": 2_000_000,
+        "water_land_transit_death": 1_000_000,
+        "public_fire_death": 1_000_000,
+        "elevator_death": 1_000_000,
+        "accident_disability_base": 1_000_000,
+        "air_transit_disability_base": 2_000_000,
+        "water_land_transit_disability_base": 1_000_000,
+        "public_fire_disability_base": 1_000_000,
+        "elevator_disability_base": 1_000_000,
+        "cancer_surgery": 30_000,
+        "cancer_hospital_daily": 1_000,
+        "cancer_discharge_daily": 1_000,
+        "cancer_radiation_daily": 1_000,
+        "cancer_chemotherapy_daily": 1_000,
+    },
+}
+
+
+def fubon_golden_guard_accident_health_entries(
+    plan_label: str,
+    values: dict[str, int | str],
+) -> list[dict[str, Any]]:
+    source_ref = "條款第十二條、第十五條至第十八條、第二十六條至第二十七條及附表一至三，第 5-19 頁"
+    common_conditions = [
+        "須依保單首頁所載計畫別給付；本契約有效期間內不受理計畫別變更。",
+        "本契約保險期間為一年，保險期間屆滿得逐年續保，最高續保至保險年齡七十五歲時之該保險期間屆滿。",
+    ]
+    cancer_conditions = [
+        *common_conditions,
+        "須於契約生效日或復效日起持續有效三十日後診斷確定罹患條款約定癌症；續保不受三十日等待期間限制。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "限第二條約定之非由疾病引起之外來突發意外傷害事故。",
+        "意外身故或失能原則上須自意外傷害事故發生日起一百八十日內發生；超過者須證明因果關係。",
+    ]
+    entries: list[dict[str, Any]] = []
+
+    def add_amount(
+        entry_id: str,
+        name: str,
+        amount: int,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> None:
+        entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                amount,
+                basis,
+                f"{plan_label}：{note}",
+                source_ref,
+                calculation_basis=calculation_basis,
+                amount_role=amount_role,
+                limit_scope=limit_scope,
+                aggregation_rule=aggregation_rule,
+                conditions=conditions or common_conditions,
+                amount_tiers=amount_tiers,
+                rate_min_percent=rate_min_percent,
+                rate_max_percent=rate_max_percent,
+            )
+        )
+
+    one_to_three_base = int(values["one_to_three_disability_base"])
+    add_amount(
+        "life-death-or-funeral",
+        "身故保險金或喪葬費用保險金",
+        int(values["life_death"]),
+        "按附表一所載金額給付；給付後契約效力終止。",
+        conditions=[
+            *common_conditions,
+            "以受監護宣告尚未撤銷者為被保險人時，身故保險金變更為喪葬費用保險金並適用法定限額。",
+        ],
+    )
+    add_amount(
+        "one-to-three-disability",
+        "一至三級失能保險金",
+        one_to_three_base,
+        "致成附表二第一級至第三級失能程度之一者，以附表一基準金額乘以一至三級失能給付比例。",
+        basis="benefit_base",
+        calculation_basis="table_multiplier",
+        amount_role="base",
+        aggregation_rule="cumulative_cap",
+        amount_tiers=disability_percentage_tiers_for_levels(
+            one_to_three_base, [100, 90, 80]
+        ),
+        rate_min_percent=80,
+        rate_max_percent=100,
+    )
+    add_amount(
+        "first-cancer-initial",
+        "初次罹患癌症保險金（癌症初期）",
+        int(values["carcinoma_in_situ"]),
+        "初次診斷確定罹患癌症（初期）時給付；本契約有效期間含續保以一次為限。",
+        conditions=[*cancer_conditions, "癌症（初期）與癌症（輕度）或癌症（重度）各以一次為限。"],
+    )
+    add_amount(
+        "first-cancer-light-or-severe",
+        "初次罹患癌症保險金（癌症輕度或重度）",
+        int(values["cancer_light_or_severe"]),
+        "初次診斷確定罹患癌症（輕度）或癌症（重度）時給付；本契約有效期間含續保以一次為限。",
+        conditions=[*cancer_conditions, "癌症（初期）與癌症（輕度）或癌症（重度）各以一次為限。"],
+    )
+    add_amount(
+        "major-burn",
+        "重大燒燙傷保險金",
+        int(values["major_burn"]),
+        "符合附表三重大燒燙傷範圍，經醫師診斷治療且事故日起屆滿十五日仍生存時給付。",
+        conditions=accident_conditions,
+    )
+
+    death_specs = [
+        ("general-accidental-death", "一般意外身故保險金或喪葬費用保險金", "accident_death"),
+        (
+            "air-transit-accidental-death-additional",
+            "空中大眾運輸工具意外身故保險金或喪葬費用保險金",
+            "air_transit_death",
+        ),
+        (
+            "water-land-transit-accidental-death-additional",
+            "水上或陸地大眾運輸工具意外身故保險金或喪葬費用保險金",
+            "water_land_transit_death",
+        ),
+        (
+            "public-building-fire-accidental-death-additional",
+            "公共建築物火災意外身故保險金或喪葬費用保險金",
+            "public_fire_death",
+        ),
+        (
+            "elevator-accidental-death-additional",
+            "電梯意外身故保險金或喪葬費用保險金",
+            "elevator_death",
+        ),
+    ]
+    for entry_id, name, value_key in death_specs:
+        add_amount(
+            entry_id,
+            name,
+            int(values[value_key]),
+            (
+                "符合特定事故條件時，除一般意外身故保險金外另行給付。"
+                if "additional" in entry_id
+                else "遭受意外傷害事故身故時，按附表一所載金額給付。"
+            ),
+            aggregation_rule=(
+                "conditional_additive" if "additional" in entry_id else "separate"
+            ),
+            conditions=accident_conditions,
+        )
+
+    disability_specs = [
+        ("general-accidental-disability", "一般意外失能保險金", "accident_disability_base"),
+        (
+            "air-transit-accidental-disability-additional",
+            "空中大眾運輸工具意外失能保險金",
+            "air_transit_disability_base",
+        ),
+        (
+            "water-land-transit-accidental-disability-additional",
+            "水上或陸地大眾運輸工具意外失能保險金",
+            "water_land_transit_disability_base",
+        ),
+        (
+            "public-building-fire-accidental-disability-additional",
+            "公共建築物火災意外失能保險金",
+            "public_fire_disability_base",
+        ),
+        (
+            "elevator-accidental-disability-additional",
+            "電梯意外失能保險金",
+            "elevator_disability_base",
+        ),
+    ]
+    for entry_id, name, value_key in disability_specs:
+        base_amount = int(values[value_key])
+        add_amount(
+            entry_id,
+            name,
+            base_amount,
+            "致成附表二失能等級之一者，以附表一基準金額乘以附表二給付比例。",
+            basis="benefit_base",
+            calculation_basis="table_multiplier",
+            amount_role="base",
+            aggregation_rule=(
+                "conditional_additive" if "additional" in entry_id else "cumulative_cap"
+            ),
+            conditions=accident_conditions,
+            amount_tiers=disability_percentage_tiers(base_amount),
+            rate_min_percent=5,
+            rate_max_percent=100,
+        )
+
+    cancer_fixed_specs = [
+        ("cancer-surgery", "癌症手術治療保險金", "cancer_surgery", "per_surgery", "每次手術給付。"),
+        ("cancer-hospital-daily", "癌症住院醫療保險金", "cancer_hospital_daily", "per_day", "按實際住院日數給付，出院及入院當日均計入。"),
+        ("cancer-discharge-recovery-daily", "癌症出院療養保險金", "cancer_discharge_daily", "per_day", "按實際住院日數給付，同一次住院最高二十一日。"),
+        ("cancer-radiation-daily", "癌症放射線治療保險金", "cancer_radiation_daily", "per_day", "按實際接受放射線治療日數給付，同一保單年度最高六十日。"),
+        ("cancer-chemotherapy-daily", "癌症化學治療保險金", "cancer_chemotherapy_daily", "per_day", "按實際接受化學治療日數給付，同一保單年度最高六十日。"),
+    ]
+    for entry_id, name, value_key, limit_scope, note in cancer_fixed_specs:
+        add_amount(
+            entry_id,
+            name,
+            int(values[value_key]),
+            note,
+            basis="daily_total" if limit_scope == "per_day" else "per_event",
+            calculation_basis="per_day" if limit_scope == "per_day" else "fixed_amount",
+            limit_scope=limit_scope,
+            aggregation_rule="cumulative_cap" if limit_scope == "per_day" else "separate",
+            conditions=cancer_conditions,
+        )
+    return entries
+
+
+def parse_fubon_golden_guard_accident_health_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_golden_guard_accident_health_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_GOLDEN_GUARD_ACCIDENT_HEALTH_PRODUCT_VERSIONS[product_id]
+    if (
+        document.get("page_count") not in {None, 20}
+        or document.get("pages_parsed") not in {None, 20}
+    ):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "富邦人壽金守護傷害暨健康一年定期保險",
+        str(version["fubon_code"]),
+        "本契約保障內容分二個計畫別",
+        "本公司不得拒絕續保",
+        "最高可續保至被保險人保險年齡七十五歲時之該保險期間屆滿",
+        "癌症放射線治療保險金",
+        "癌症化學治療保險金",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    table_start = text.rfind("附表一")
+    table_end = text.find("附表二:", table_start + 1)
+    if table_end < 0:
+        table_end = text.find("附表二：", table_start + 1)
+    if table_start < 0 or table_end <= table_start:
+        return None
+    table_text = compact_table_text(text[table_start:table_end])
+    table_signals = [
+        "計畫別保險金項目計畫一計畫二",
+        "身故保險金或喪葬費用保險金50萬100萬",
+        "一至三級失能保險金致成失能等級之一50萬乘以附表二所列一至三級失能給付比例100萬乘以附表二所列一至三級失能給付比例最高給付金額50萬100萬",
+        "初次罹患癌症保險金給付次數各以一次為限癌症初期5000元癌症輕度或癌症重度50000元",
+        "重大燒燙傷保險金40萬",
+        "一般意外身故保險金或喪葬費用保險金100萬",
+        "大眾運輸工具意外身故保險金或喪葬費用保險金「空中大眾運輸工具」200萬「水上大眾運輸工具」或「陸地大眾運輸工具」100萬",
+        "公共建築物火災意外身故保險金或喪葬費用保險金100萬",
+        "電梯意外身故保險金或喪葬費用保險金100萬",
+        "一般意外失能保險金致成失能等級之一100萬乘以附表二所列給付比例最高給付金額100萬",
+        "大眾運輸工具意外失能保險金「空中大眾運輸工具」致成失能等級之一200萬乘以附表二所列給付比例最高給付金額200萬",
+        "「水上大眾運輸工具」或「陸地大眾運輸工具」致成失能等級之一100萬乘以附表二所列給付比例最高給付金額100萬",
+        "癌症手術治療保險金3萬/次",
+        "癌症住院醫療保險金1000元/日",
+        "癌症出院療養保險金1000元/日",
+        "癌症放射線治療保險金1000元/日",
+        "癌症化學治療保險金1000元/日",
+    ]
+    if any(compact_table_text(signal) not in table_text for signal in table_signals):
+        return None
+    if not has_readable_disability_table(text, 80, tolerance=2):
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫別",
+        "selection_guidance": "請依保單首頁或要保書所載計畫一或計畫二選擇；本商品不需輸入單位數。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": 2,
+            "guaranteed_renewal": True,
+            "maximum_renewal_age": 75,
+            "cancer_waiting_days": 30,
+            "cancer_classification": "2018-three-tier",
+            "cancer_discharge_recovery_days_limit": 21,
+            "cancer_radiation_days_limit_per_policy_year": 60,
+            "cancer_chemotherapy_days_limit_per_policy_year": 60,
+            "accident_claim_days": 180,
+            "major_burn_survival_days": 15,
+            "disability_term": "失能",
+            "disability_schedule_item_count": 80,
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_golden_guard_accident_health_entries(
+                    str(values["label"]), values
+                ),
+            }
+            for plan_key, values in FUBON_GOLDEN_GUARD_ACCIDENT_HEALTH_PLAN_VALUES.items()
+        ],
+    }
+
+
+FUBON_XINFU_LIFE_PRODUCT_VERSIONS = {
+    "209191M12G00100": {
+        "file_name": "209191M12G00100-A.pdf",
+        "terms_revision": "102-second-revision",
+        "fubon_code": "MGB1020116",
+        "product_name": "富邦人壽薪富人生傷害暨健康一年定期壽險",
+        "plan_values_key": "mgb",
+        "page_count": 24,
+        "disability_schedule_item_count": 75,
+    },
+    "209191M12G00101": {
+        "file_name": "209191M12G00101-A.pdf",
+        "terms_revision": "102-first-revision",
+        "fubon_code": "MGB1020301",
+        "product_name": "富邦人壽薪富人生傷害暨健康一年定期壽險",
+        "plan_values_key": "mgb",
+        "page_count": 24,
+        "disability_schedule_item_count": 75,
+    },
+    "209191MZ2G00121A11Z10000003": {
+        "file_name": "209191MZ2G00121A11Z10000003-A.pdf",
+        "terms_revision": "104-third-revision",
+        "fubon_code": "MGB1040804",
+        "product_name": "富邦人壽薪富人生傷害暨健康一年定期壽險",
+        "plan_values_key": "mgb",
+        "page_count": 25,
+        "disability_schedule_item_count": 79,
+    },
+    "209191MZ2G00121A11Z10000004": {
+        "file_name": "209191MZ2G00121A11Z10000004-A.pdf",
+        "terms_revision": "105-fourth-revision",
+        "fubon_code": "MGB1050815",
+        "product_name": "富邦人壽薪富人生傷害暨健康一年定期壽險",
+        "plan_values_key": "mgb",
+        "page_count": 25,
+        "disability_schedule_item_count": 79,
+    },
+    "209191MZ2G00121A11Z10000005": {
+        "file_name": "209191MZ2G00121A11Z10000005-A.pdf",
+        "terms_revision": "107-fifth-revision",
+        "fubon_code": "MGB1070914",
+        "product_name": "富邦人壽薪富人生傷害暨健康一年定期壽險",
+        "plan_values_key": "mgb",
+        "page_count": 25,
+        "disability_schedule_item_count": 79,
+        "total_disability_term": "完全失能",
+        "disability_term": "失能",
+    },
+    "209191MZ2G00121A11Z10000006": {
+        "file_name": "209191MZ2G00121A11Z10000006-A.pdf",
+        "terms_revision": "109-sixth-revision",
+        "fubon_code": "MGB1090101",
+        "product_name": "富邦人壽薪富人生傷害暨健康一年定期壽險",
+        "plan_values_key": "mgb",
+        "page_count": 25,
+        "disability_schedule_item_count": 79,
+        "total_disability_term": "完全失能",
+        "disability_term": "失能",
+    },
+    "209191MZ9G00121A11Z10000001": {
+        "file_name": "209191MZ9G00121A11Z10000001-A.pdf",
+        "terms_revision": "110-first-revision",
+        "fubon_code": "MGB11040804",
+        "product_name": "富邦人壽新薪富人生傷害暨健康一年定期保險",
+        "plan_values_key": "mgb1",
+        "page_count": 25,
+        "disability_schedule_item_count": 79,
+    },
+    "209191MZ9G00121A11Z10000002": {
+        "file_name": "209191MZ9G00121A11Z10000002-A.pdf",
+        "terms_revision": "110-second-revision",
+        "fubon_code": "MGB11050815",
+        "product_name": "富邦人壽新薪富人生傷害暨健康一年定期保險",
+        "plan_values_key": "mgb1",
+        "page_count": 25,
+        "disability_schedule_item_count": 79,
+    },
+    "209191MZ9G00121A11Z10000003": {
+        "file_name": "209191MZ9G00121A11Z10000003-A.pdf",
+        "terms_revision": "110-third-revision",
+        "fubon_code": "MGB11070430",
+        "product_name": "富邦人壽新薪富人生傷害暨健康一年定期保險",
+        "plan_values_key": "mgb1",
+        "page_count": 25,
+        "disability_schedule_item_count": 79,
+    },
+}
+
+
+FUBON_XINFU_LIFE_PLAN_VALUES = {
+    "plan-1": {
+        "label": "計畫一",
+        "life_death": 500_000,
+        "total_disability": 500_000,
+        "carcinoma_in_situ": 5_000,
+        "malignant_cancer": 50_000,
+        "cancer_death": 200_000,
+        "major_burn": 400_000,
+        "accident_death": 1_000_000,
+        "air_transit_death": 2_000_000,
+        "water_land_transit_death": 1_000_000,
+        "public_fire_death": 1_000_000,
+        "elevator_death": 1_000_000,
+        "accident_disability_base": 1_000_000,
+        "air_transit_disability_base": 2_000_000,
+        "water_land_transit_disability_base": 1_000_000,
+        "public_fire_disability_base": 1_000_000,
+        "elevator_disability_base": 1_000_000,
+        "cancer_surgery": 10_000,
+        "cancer_hospital_daily": 1_000,
+        "cancer_discharge_daily": 1_000,
+        "cancer_radiation_daily": 1_000,
+        "cancer_chemotherapy_daily": 1_000,
+        "accident_hospital_daily": 1_000,
+        "accident_icu_daily": 1_000,
+        "accident_fracture_daily": 500,
+        "accident_outpatient_surgery": 2_000,
+        "general_hospital_daily": 1_000,
+        "icu_daily": 2_000,
+        "burn_center_daily": 3_000,
+    },
+    "plan-2": {
+        "label": "計畫二",
+        "life_death": 500_000,
+        "total_disability": 500_000,
+        "carcinoma_in_situ": 5_000,
+        "malignant_cancer": 50_000,
+        "cancer_death": 200_000,
+        "major_burn": 800_000,
+        "accident_death": 2_000_000,
+        "air_transit_death": 4_000_000,
+        "water_land_transit_death": 2_000_000,
+        "public_fire_death": 2_000_000,
+        "elevator_death": 2_000_000,
+        "accident_disability_base": 2_000_000,
+        "air_transit_disability_base": 4_000_000,
+        "water_land_transit_disability_base": 2_000_000,
+        "public_fire_disability_base": 2_000_000,
+        "elevator_disability_base": 2_000_000,
+        "cancer_surgery": 30_000,
+        "cancer_hospital_daily": 1_000,
+        "cancer_discharge_daily": 1_000,
+        "cancer_radiation_daily": 1_000,
+        "cancer_chemotherapy_daily": 1_000,
+        "accident_hospital_daily": 1_000,
+        "accident_icu_daily": 1_000,
+        "accident_fracture_daily": 500,
+        "accident_outpatient_surgery": 2_000,
+        "general_hospital_daily": 1_000,
+        "icu_daily": 2_000,
+        "burn_center_daily": 3_000,
+    },
+    "plan-3": {
+        "label": "計畫三",
+        "life_death": 1_000_000,
+        "total_disability": 1_000_000,
+        "carcinoma_in_situ": 5_000,
+        "malignant_cancer": 50_000,
+        "cancer_death": 300_000,
+        "major_burn": 800_000,
+        "accident_death": 2_000_000,
+        "air_transit_death": 4_000_000,
+        "water_land_transit_death": 2_000_000,
+        "public_fire_death": 2_000_000,
+        "elevator_death": 2_000_000,
+        "accident_disability_base": 2_000_000,
+        "air_transit_disability_base": 4_000_000,
+        "water_land_transit_disability_base": 2_000_000,
+        "public_fire_disability_base": 2_000_000,
+        "elevator_disability_base": 2_000_000,
+        "cancer_surgery": 30_000,
+        "cancer_hospital_daily": 1_000,
+        "cancer_discharge_daily": 1_000,
+        "cancer_radiation_daily": 1_000,
+        "cancer_chemotherapy_daily": 1_000,
+        "accident_hospital_daily": 1_000,
+        "accident_icu_daily": 1_000,
+        "accident_fracture_daily": 500,
+        "accident_outpatient_surgery": 2_000,
+        "general_hospital_daily": 1_000,
+        "icu_daily": 2_000,
+        "burn_center_daily": 3_000,
+    },
+}
+
+
+FUBON_XINFU_LIFE_MGB1_PLAN_VALUES = {
+    plan_key: {
+        **values,
+        "accident_hospital_daily": 1_005,
+        "accident_icu_daily": 1_005,
+        "accident_fracture_daily": 1_005,
+    }
+    for plan_key, values in FUBON_XINFU_LIFE_PLAN_VALUES.items()
+}
+
+
+FUBON_XINFU_LIFE_PLAN_VALUE_SETS = {
+    "mgb": FUBON_XINFU_LIFE_PLAN_VALUES,
+    "mgb1": FUBON_XINFU_LIFE_MGB1_PLAN_VALUES,
+}
+
+
+def fubon_xinfu_life_entries(
+    plan_label: str,
+    values: dict[str, int | str],
+    *,
+    total_disability_term: str = "完全殘廢",
+    disability_term: str = "殘廢",
+) -> list[dict[str, Any]]:
+    source_ref = "條款第十二條、第十三條、第十七條、第十八條、第二十一條至第二十五條及附表一至四，第 4-16 頁"
+    common_conditions = [
+        "須依保單首頁所載計畫別給付；本契約有效期間內不受理計畫別變更。",
+        "本商品為一年定期，不保證續保；同一次住院指因同一疾病或傷害於出院後14日內於同一醫院再次住院。",
+    ]
+    cancer_conditions = [
+        *common_conditions,
+        "須於契約生效日或復效日起持續有效三十日後診斷確定罹患條款約定癌症；續保不受三十日等待期間限制。",
+    ]
+    accident_conditions = [
+        *common_conditions,
+        "限第二條約定之非由疾病引起之外來突發意外傷害事故。",
+        f"意外身故、{disability_term}或治療原則上須自意外傷害事故發生日起一百八十日內發生；超過者須證明因果關係。",
+    ]
+    entries: list[dict[str, Any]] = []
+
+    def add_amount(
+        entry_id: str,
+        name: str,
+        amount: int,
+        note: str,
+        *,
+        basis: str = "per_event",
+        calculation_basis: str = "fixed_amount",
+        amount_role: str = "payout",
+        limit_scope: str = "per_event",
+        aggregation_rule: str = "separate",
+        conditions: list[str] | None = None,
+        amount_tiers: list[dict[str, Any]] | None = None,
+        rate_min_percent: int | None = None,
+        rate_max_percent: int | None = None,
+    ) -> None:
+        entries.append(
+            coverage_entry(
+                entry_id,
+                name,
+                amount,
+                basis,
+                f"{plan_label}：{note}",
+                source_ref,
+                calculation_basis=calculation_basis,
+                amount_role=amount_role,
+                limit_scope=limit_scope,
+                aggregation_rule=aggregation_rule,
+                conditions=conditions or common_conditions,
+                amount_tiers=amount_tiers,
+                rate_min_percent=rate_min_percent,
+                rate_max_percent=rate_max_percent,
+            )
+        )
+
+    add_amount(
+        "life-death-or-funeral",
+        "身故保險金或喪葬費用保險金",
+        int(values["life_death"]),
+        "按附表一所載金額給付；給付後契約效力終止。",
+        conditions=[
+            *common_conditions,
+            "精神障礙或其他心智缺陷且不能辨識其行為能力者，身故保險金變更為喪葬費用保險金並適用法定限額。",
+        ],
+    )
+    add_amount(
+        "total-disability",
+        f"{total_disability_term}保險金",
+        int(values["total_disability"]),
+        f"致成附表二七項{total_disability_term}程度之一者給付；給付後契約效力終止。",
+    )
+    add_amount(
+        "first-carcinoma-in-situ",
+        "初次罹患癌症保險金（原位癌）",
+        int(values["carcinoma_in_situ"]),
+        "初次診斷確定罹患原位癌時給付；有效期間含續保以一次為限。",
+        conditions=[
+            *cancer_conditions,
+            "原位癌及惡性腫瘤給付責任各以一次為限。",
+        ],
+    )
+    add_amount(
+        "first-malignant-cancer",
+        "初次罹患癌症保險金（惡性腫瘤）",
+        int(values["malignant_cancer"]),
+        "初次診斷確定罹患惡性腫瘤時給付；有效期間含續保以一次為限。",
+        conditions=[
+            *cancer_conditions,
+            "原位癌及惡性腫瘤給付責任各以一次為限。",
+        ],
+    )
+    add_amount(
+        "cancer-death",
+        "癌症身故保險金",
+        int(values["cancer_death"]),
+        "因癌症或癌症所引起之併發症身故時給付；給付後契約效力終止。",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-surgery",
+        "癌症手術治療保險金",
+        int(values["cancer_surgery"]),
+        "以治療癌症或癌症併發症為直接目的接受外科手術治療，每次手術給付。",
+        limit_scope="per_surgery",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-hospital-daily",
+        "癌症住院醫療保險金",
+        int(values["cancer_hospital_daily"]),
+        "以治療癌症或癌症併發症為直接目的住院治療，按日額乘以實際住院日數給付。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=cancer_conditions,
+    )
+    add_amount(
+        "cancer-discharge-recovery-daily",
+        "癌症出院療養保險金",
+        int(values["cancer_discharge_daily"]),
+        "癌症住院出院後，按癌症住院日數給付；同一次住院最高二十一日。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=[*cancer_conditions, "同一次癌症住院之出院療養給付日數最高21日。"],
+    )
+    add_amount(
+        "cancer-radiation-daily",
+        "癌症放射線治療保險金",
+        int(values["cancer_radiation_daily"]),
+        "以治療癌症為直接目的接受放射線治療，按實際治療日數給付；每日多次治療以一日計。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=[*cancer_conditions, "同一保單年度最高給付60日。"],
+    )
+    add_amount(
+        "cancer-chemotherapy-daily",
+        "癌症化學治療保險金",
+        int(values["cancer_chemotherapy_daily"]),
+        "以治療癌症為直接目的接受化學治療，按實際治療日數給付；每日多次治療以一日計。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=[*cancer_conditions, "同一保單年度最高給付60日。"],
+    )
+    add_amount(
+        "general-hospital-daily",
+        "一般住院醫療保險金",
+        int(values["general_hospital_daily"]),
+        "因疾病或傷害住院診療，按實際住院日數給付。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=[
+            *common_conditions,
+            "同一保單年度同一次住院最高365日；同日再次入院不得重複計入。",
+        ],
+    )
+    add_amount(
+        "icu-hospital-daily",
+        "加護病房住院醫療保險金",
+        int(values["icu_daily"]),
+        "住進加護病房時，除一般住院醫療保險金外另按實際入住日數給付。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=[*common_conditions, "同一保單年度同一次住院最高30日。"],
+    )
+    add_amount(
+        "burn-center-hospital-daily",
+        "燒燙傷中心住院醫療保險金",
+        int(values["burn_center_daily"]),
+        "因燒燙傷必須入住燒燙傷中心治療時，除一般住院醫療保險金外另按實際入住日數給付。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=[
+            *common_conditions,
+            "每次事故最高30日；燒燙傷中心設於加護中心或病房內時不另給付加護病房住院醫療保險金。",
+        ],
+    )
+    add_amount(
+        "major-burn",
+        "重大燒燙傷保險金",
+        int(values["major_burn"]),
+        "符合附表四重大燒燙傷範圍且事故日起屆滿十五日仍生存時給付。",
+        conditions=[
+            *accident_conditions,
+            "重大燒燙傷包含二度燒燙傷面積大於全身20%、三度燒燙傷面積大於全身10%，或顏面燒燙傷合併五官功能障礙。",
+        ],
+    )
+    add_amount(
+        "accident-hospital-daily",
+        "意外傷害住院醫療保險金",
+        int(values["accident_hospital_daily"]),
+        "因意外傷害事故住院治療，按實際住院日數給付。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=[*accident_conditions, "同一次意外傷害最高給付365日。"],
+    )
+    add_amount(
+        "fracture-unhospitalized-medical",
+        "骨折未住院醫療保險金",
+        int(values["accident_fracture_daily"]),
+        "骨折未住院或住院未達骨折表日數時，以意外傷害住院日額二分之一乘以未住院部分日數計算。",
+        basis="daily_total",
+        calculation_basis="table_multiplier",
+        amount_role="reference",
+        limit_scope="per_injury",
+        aggregation_rule="highest",
+        conditions=[
+            *accident_conditions,
+            "完全骨折表列14日至60日；不完全骨折按二分之一、骨骼龜裂按四分之一；同時多項骨折僅給付較高等級一項。",
+        ],
+    )
+    add_amount(
+        "accident-icu-hospital-daily",
+        "意外傷害加護病房住院醫療保險金",
+        int(values["accident_icu_daily"]),
+        "意外傷害事故入住加護病房時，除意外傷害住院醫療保險金外另按實際入住日數給付。",
+        basis="daily_total",
+        calculation_basis="per_day",
+        limit_scope="per_day",
+        aggregation_rule="cumulative_cap",
+        conditions=[*accident_conditions, "受同一次意外傷害住院365日上限限制。"],
+    )
+    add_amount(
+        "accident-outpatient-surgery",
+        "意外傷害門診手術醫療保險金",
+        int(values["accident_outpatient_surgery"]),
+        "因意外傷害經醫師診斷須進行門診手術者，按次給付。",
+        limit_scope="per_surgery",
+        conditions=[*accident_conditions, "每次意外傷害得申領一次。"],
+    )
+    add_amount(
+        "general-accidental-death",
+        "一般意外身故保險金或喪葬費用保險金",
+        int(values["accident_death"]),
+        "遭受意外傷害事故身故時，按附表一所載金額給付。",
+        conditions=accident_conditions,
+    )
+    add_amount(
+        "air-transit-accidental-death-additional",
+        "空中大眾運輸工具意外身故保險金或喪葬費用保險金",
+        int(values["air_transit_death"]),
+        "以乘客身分搭乘空中大眾運輸工具發生意外身故，除一般意外身故外另給付。",
+        aggregation_rule="conditional_additive",
+        conditions=[
+            *accident_conditions,
+            "同時符合二項以上大眾運輸工具意外傷害事故者，以給付最高一項為限。",
+        ],
+    )
+    add_amount(
+        "water-land-transit-accidental-death-additional",
+        "水上或陸地大眾運輸工具意外身故保險金或喪葬費用保險金",
+        int(values["water_land_transit_death"]),
+        "以乘客身分搭乘水上或陸地大眾運輸工具發生意外身故，除一般意外身故外另給付。",
+        aggregation_rule="conditional_additive",
+        conditions=[
+            *accident_conditions,
+            "同時符合二項以上大眾運輸工具意外傷害事故者，以給付最高一項為限。",
+        ],
+    )
+    add_amount(
+        "public-building-fire-accidental-death-additional",
+        "公共建築物火災意外身故保險金或喪葬費用保險金",
+        int(values["public_fire_death"]),
+        "於戲院、旅館或其他公共建築物中遭受火災意外身故，除一般意外身故外另給付。",
+        aggregation_rule="conditional_additive",
+        conditions=[*accident_conditions, "須火災發生前已進入該公共建築物中。"],
+    )
+    add_amount(
+        "elevator-accidental-death-additional",
+        "電梯意外身故保險金或喪葬費用保險金",
+        int(values["elevator_death"]),
+        "因乘坐電梯遭受意外身故，除一般意外身故外另給付。",
+        aggregation_rule="conditional_additive",
+        conditions=accident_conditions,
+    )
+
+    disability_specs = [
+        ("general-accidental-disability", f"一般意外{disability_term}保險金", int(values["accident_disability_base"])),
+        ("air-transit-accidental-disability-additional", f"空中大眾運輸工具意外{disability_term}保險金", int(values["air_transit_disability_base"])),
+        ("water-land-transit-accidental-disability-additional", f"水上或陸地大眾運輸工具意外{disability_term}保險金", int(values["water_land_transit_disability_base"])),
+        ("public-building-fire-accidental-disability-additional", f"公共建築物火災意外{disability_term}保險金", int(values["public_fire_disability_base"])),
+        ("elevator-accidental-disability-additional", f"電梯意外{disability_term}保險金", int(values["elevator_disability_base"])),
+    ]
+    for entry_id, name, base_amount in disability_specs:
+        add_amount(
+            entry_id,
+            name,
+            base_amount,
+            f"致成附表三{disability_term}等級之一者，以附表一基準金額乘以附表三給付比例。",
+            basis="benefit_base",
+            calculation_basis="table_multiplier",
+            amount_role="base",
+            aggregation_rule="conditional_additive" if "additional" in entry_id else "cumulative_cap",
+            conditions=[
+                *accident_conditions,
+                f"同一意外傷害事故致成二項以上{disability_term}程度時，合計最高以該計畫別與事故類型之最高給付金額為限。",
+            ],
+            amount_tiers=disability_percentage_tiers(base_amount),
+            rate_min_percent=5,
+            rate_max_percent=100,
+        )
+    return entries
+
+
+def parse_fubon_xinfu_life_accident_health_plan_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_XINFU_LIFE_PRODUCT_VERSIONS.get(product_id)
+    if (
+        not version
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != version["file_name"]
+        or document.get("page_count") not in {None, version["page_count"]}
+        or document.get("pages_parsed") not in {None, version["page_count"]}
+    ):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    plan_values = FUBON_XINFU_LIFE_PLAN_VALUE_SETS.get(
+        str(version.get("plan_values_key") or "mgb"),
+        FUBON_XINFU_LIFE_PLAN_VALUES,
+    )
+    total_disability_term = str(version.get("total_disability_term") or "完全殘廢")
+    disability_term = str(version.get("disability_term") or "殘廢")
+    accident_hospital_daily = int(plan_values["plan-1"]["accident_hospital_daily"])
+    accident_icu_daily = int(plan_values["plan-1"]["accident_icu_daily"])
+    required_signals = [
+        str(version.get("product_name") or "富邦人壽薪富人生傷害暨健康一年定期壽險"),
+        str(version["fubon_code"]),
+        "本契約保障內容分三個計畫別",
+        "各計畫別之給付內容詳附表一",
+        "癌症放射線治療保險金",
+        "意外傷害門診手術醫療保險金",
+        f"一般意外{disability_term}保險金",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    table_start = text.rfind("附表一:")
+    table_end = text.find("附表二", table_start + 1)
+    if table_start < 0 or table_end <= table_start:
+        return None
+    table_text = compact_table_text(text[table_start:table_end])
+    table_signals = [
+        "計畫別保險金項目計畫一計畫二計畫三",
+        "身故保險金或喪葬費用保險金50萬50萬100萬",
+        f"{total_disability_term}保險金50萬50萬100萬",
+        "原位癌5000元",
+        "惡性腫瘤50000元",
+        "癌症身故保險金20萬20萬30萬",
+        "重大燒燙傷保險金40萬80萬80萬",
+        "一般意外身故保險金或喪葬費用保險金100萬200萬200萬",
+        "「空中大眾運輸工具」200萬400萬400萬",
+        "「水上大眾運輸工具」或「陸地大眾運輸工具」100萬200萬200萬",
+        "公共建築物火災意外身故保險金或喪葬費用保險金100萬200萬200萬",
+        "電梯意外身故保險金或喪葬費用保險金100萬200萬200萬",
+        "癌症手術治療保險金1萬/次3萬/次3萬/次",
+        "癌症住院醫療保險金1000元/日",
+        "癌症出院療養保險金1000元/日",
+        "癌症放射線治療保險金1000元/日",
+        "癌症化學治療保險金1000元/日",
+        f"意外傷害住院醫療保險金{accident_hospital_daily:,}元/日",
+        f"意外傷害加護病房住院醫療保險金{accident_icu_daily:,}元/日",
+        "意外傷害門診手術醫療保險金2000元/次",
+        "一般住院醫療保險金1000元/日",
+        "加護病房住院醫療保險金2000元/日",
+        "燒燙傷中心住院醫療保險金3000元/日",
+    ]
+    if any(compact_table_text(signal) not in table_text for signal in table_signals):
+        return None
+    if not has_readable_disability_table(
+        text,
+        int(version["disability_schedule_item_count"]),
+        tolerance=1,
+    ):
+        return None
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "投保計畫別",
+        "selection_guidance": "請依保單首頁或要保書所載計畫一至計畫三選擇；本商品不需輸入單位數。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "plan_count": 3,
+            "non_guaranteed_renewal": True,
+            "cancer_waiting_days": 30,
+            "same_hospital_readmission_days": 14,
+            "general_hospital_days_limit": 365,
+            "icu_days_limit": 30,
+            "burn_center_hospital_days_limit": 30,
+            "cancer_discharge_recovery_days_limit": 21,
+            "cancer_radiation_days_limit_per_policy_year": 60,
+            "cancer_chemotherapy_days_limit_per_policy_year": 60,
+            "accident_claim_days": 180,
+            "accident_hospital_days_limit": 365,
+            "major_burn_survival_days": 15,
+            "total_disability_term": total_disability_term,
+            "disability_term": disability_term,
+            "disability_schedule_item_count": version[
+                "disability_schedule_item_count"
+            ],
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "short_term_rate_table": True,
+        },
+        "plan_options": [
+            {
+                "value": plan_key,
+                "label": str(values["label"]),
+                "coverage_entries": fubon_xinfu_life_entries(
+                    str(values["label"]),
+                    values,
+                    total_disability_term=total_disability_term,
+                    disability_term=disability_term,
+                ),
+            }
+            for plan_key, values in plan_values.items()
+        ],
+    }
+
+
+FUBON_TZU_CHI_MARROW_PRODUCT_VERSIONS = {
+    "252197M12B00100": {
+        "file_name": "252197M12B001-A.pdf",
+        "terms_revision": "83-original",
+        "product_name": "安泰人壽慈濟髓緣人壽暨住院醫療團體保險",
+        "benefit_signal": "核准文號: 83.11.16台財保第831518650號函核准",
+        "hospital_benefit_signal": "本公司依據被保險人實際支出之住院醫療費用按保險金表所載金額給付",
+        "table_start_marker": "保險金表",
+        "table_end_marker": "手術費用表",
+        "total_disability_term": "完全殘廢",
+        "page_count": 8,
+        "hospital_total_limit": 450_000,
+    },
+    "252197M12B00201": {
+        "file_name": "252197M12B00201-A.pdf",
+        "terms_revision": "95-first-revision",
+        "product_name": "安泰人壽慈濟髓緣人壽暨住院醫療團體保險",
+        "benefit_signal": "身故保險金、完全殘廢保險金、住院醫療每日住院津貼保險金",
+        "hospital_benefit_signal": "本公司依據被保險人實際支出之住院醫療費用按保險金表所載金額給付",
+        "table_start_marker": "保險金表",
+        "table_end_marker": "手術費用表",
+        "total_disability_term": "完全殘廢",
+        "page_count": 9,
+        "hospital_total_limit": 450_000,
+    },
+    "209197M12B00105": {
+        "file_name": "209197M12B00105-A.pdf",
+        "terms_revision": "99-fifth-revision",
+        "product_name": "富邦人壽慈濟髓緣團體人壽暨住院醫療保險",
+        "total_disability_term": "完全殘廢",
+        "page_count": 9,
+    },
+    "209197M12B00106": {
+        "file_name": "209197M12B00106-A.pdf",
+        "terms_revision": "100-sixth-revision",
+        "product_name": "富邦人壽慈濟髓緣團體人壽暨住院醫療保險",
+        "total_disability_term": "完全殘廢",
+        "page_count": 9,
+    },
+    "209193M11B00107": {
+        "file_name": "209193M11B00107-A.pdf",
+        "terms_revision": "101-seventh-revision",
+        "product_name": "富邦人壽慈濟髓緣團體人壽暨住院醫療保險",
+        "total_disability_term": "完全殘廢",
+        "page_count": 9,
+    },
+    "209197M12B00107": {
+        "file_name": "209197M12B00107-A.pdf",
+        "terms_revision": "101-seventh-revision",
+        "product_name": "富邦人壽慈濟髓緣團體人壽暨住院醫療保險",
+        "total_disability_term": "完全殘廢",
+        "page_count": 9,
+    },
+    "209193MZ1B00121A11Z10000008": {
+        "file_name": "209193MZ1B00121A11Z10000008-A.pdf",
+        "terms_revision": "eighth-revision",
+        "product_name": "富邦人壽慈濟髓緣團體人壽暨住院醫療保險",
+        "total_disability_term": "完全失能",
+        "page_count": 8,
+    },
+    "209193MZ1B00121A11Z10000009": {
+        "file_name": "209193MZ1B00121A11Z10000009-A.pdf",
+        "terms_revision": "ninth-revision",
+        "product_name": "富邦人壽慈濟髓緣團體人壽暨住院醫療保險",
+        "total_disability_term": "完全失能",
+        "page_count": 8,
+    },
+    "209193MZ1B00121A11Z10000010": {
+        "file_name": "209193MZ1B00121A11Z10000010-A.pdf",
+        "terms_revision": "tenth-revision",
+        "product_name": "富邦人壽慈濟髓緣團體人壽暨住院醫療保險",
+        "total_disability_term": "完全失能",
+        "page_count": 8,
+    },
+    "209193MZ1B00121A11Z10000011": {
+        "file_name": "209193MZ1B00121A11Z10000011-A.pdf",
+        "terms_revision": "eleventh-revision",
+        "product_name": "富邦人壽慈濟髓緣團體人壽暨住院醫療保險",
+        "total_disability_term": "完全失能",
+        "page_count": 8,
+    },
+    "209193MZ1B00121A11Z10000012": {
+        "file_name": "209193MZ1B00121A11Z10000012-A.pdf",
+        "terms_revision": "twelfth-revision",
+        "product_name": "富邦人壽慈濟髓緣團體人壽暨住院醫療保險",
+        "total_disability_term": "完全失能",
+        "page_count": 8,
+    },
+    "209193MZ1B00121A11Z10000013": {
+        "file_name": "209193MZ1B00121A11Z10000013-A.pdf",
+        "terms_revision": "thirteenth-revision",
+        "product_name": "富邦人壽慈濟髓緣團體人壽暨住院醫療保險",
+        "total_disability_term": "完全失能",
+        "page_count": 8,
+    },
+    "252197M12B00202": {
+        "file_name": "252197M12B00202-A.pdf",
+        "terms_revision": "100-second-revision",
+        "product_name": "安泰人壽慈濟髓緣團體人壽暨住院醫療保險",
+        "total_disability_term": "完全殘廢",
+        "page_count": 9,
+    },
+    "252197M12B00203": {
+        "file_name": "252197M12B00203-A.pdf",
+        "terms_revision": "101-third-revision",
+        "product_name": "安泰人壽慈濟髓緣團體人壽暨住院醫療保險",
+        "total_disability_term": "完全殘廢",
+        "page_count": 9,
+    },
+}
+
+
+def fubon_tzu_chi_marrow_entries(
+    total_disability_term: str = "完全殘廢",
+    hospital_total_limit: int | None = None,
+) -> list[dict[str, Any]]:
+    source_ref = "條款第七條至第九條及附表三至四，第 2-7 頁"
+    disability_term = total_disability_term or "完全殘廢"
+    common_conditions = [
+        f"本契約為團體保險；身故與{disability_term}保險金依保險證或保險手冊所載保險金額給付。",
+        "住院醫療限因疾病或意外傷害必須在醫院住院醫療，且依附表三保險金表給付。",
+    ]
+    entries = [
+        coverage_entry(
+            "life-death-face-amount",
+            "身故保險金",
+            None,
+            "face_amount",
+            "依保險金額100%給付。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=common_conditions,
+        ),
+        coverage_entry(
+            "total-disability-face-amount",
+            f"{disability_term}保險金",
+            None,
+            "face_amount",
+            f"致成附表一所列{disability_term}程度之一者，依保險金額100%給付；給付後該被保險人保險效力終止。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=common_conditions,
+        ),
+        coverage_entry(
+            "hospital-room-daily-limit",
+            "每日病房費限額",
+            2_000,
+            "daily_limit",
+            "每日醫師診察費、護理費、病房費及膳食費限額為2,000元。",
+            source_ref,
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_day",
+            aggregation_rule="cumulative_cap",
+            conditions=[
+                *common_conditions,
+                "每次住院最高90日；同一傷害、疾病及其併發症再住院間隔不足90日者視為同一次住院。",
+            ],
+        ),
+        coverage_entry(
+            "hospital-surgery-fee-base",
+            "每次手術費基準額",
+            43_200,
+            "benefit_base",
+            "手術費最高保險金額按附表四手術補償百分比乘以43,200元計算。",
+            source_ref,
+            calculation_basis="table_multiplier",
+            amount_role="base",
+            limit_scope="per_surgery",
+            aggregation_rule="separate",
+            conditions=[
+                *common_conditions,
+                "手術費包含切開術費用、麻醉費、手術室及其設備使用費；每次住院多次手術時，各手術最高限額分別計算。",
+            ],
+            rate_min_percent=4,
+            rate_max_percent=220,
+        ),
+        coverage_entry(
+            "hospital-miscellaneous-limit",
+            "每次住院醫院雜費限額",
+            68_000,
+            "per_hospitalization_limit",
+            "醫院雜費包含醫藥、敷料、檢驗、心電圖、物理治療、X光/鐳/同位素治療、輸血、氧氣與救護車費等項目。",
+            source_ref,
+            calculation_basis="reimbursement_with_cap",
+            amount_role="limit",
+            limit_scope="per_hospitalization",
+            aggregation_rule="cumulative_cap",
+            conditions=[
+                *common_conditions,
+                "每次住院最高日數90日；須檢附醫療費用明細表及收據正本。",
+            ],
+        ),
+        *(
+            [
+                coverage_entry(
+                    "hospitalization-total-limit",
+                    "每次住院保險金限額",
+                    hospital_total_limit,
+                    "per_hospitalization_limit",
+                    f"每次住院保險金限額為新台幣{hospital_total_limit:,}元。",
+                    source_ref,
+                    calculation_basis="reimbursement_with_cap",
+                    amount_role="limit",
+                    limit_scope="per_hospitalization",
+                    aggregation_rule="cumulative_cap",
+                    conditions=[
+                        *common_conditions,
+                        "此限額只適用於條款保險金表列明每次住院保險金限額的版本。",
+                    ],
+                )
+            ]
+            if hospital_total_limit
+            else []
+        ),
+        coverage_entry(
+            "hospital-allowance-without-original-receipt",
+            "未提出正本收據住院津貼",
+            2_000,
+            "daily_total",
+            "無法提出收據正本申請理賠時，依其他申領文件所載住院天數每日給付2,000元。",
+            source_ref,
+            calculation_basis="per_day",
+            amount_role="payout",
+            limit_scope="per_day",
+            aggregation_rule="cumulative_cap",
+            conditions=[
+                *common_conditions,
+                "每次事故最長給付90天；此為無法提出正本收據時的替代給付。",
+            ],
+        ),
+    ]
+    return entries
+
+
+def parse_fubon_tzu_chi_marrow_group_life_medical_table(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_TZU_CHI_MARROW_PRODUCT_VERSIONS.get(product_id)
+    if (
+        not version
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != version["file_name"]
+        or document.get("page_count") not in {None, version["page_count"]}
+        or document.get("pages_parsed") not in {None, version["page_count"]}
+    ):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    total_disability_term = str(version.get("total_disability_term") or "完全殘廢")
+    required_signals = [
+        str(version.get("product_name") or "富邦人壽慈濟髓緣團體人壽暨住院醫療保險"),
+        str(
+            version.get("benefit_signal")
+            or f"身故保險金、{total_disability_term}保險金、住院醫療保險金"
+        ),
+        "被保險人於其在本契約的保障期間內發生保險事故以致死亡者",
+        "本公司按其保險金額給付「身故保險金」",
+        str(
+            version.get("hospital_benefit_signal")
+            or "本公司依據被保險人實際支出之住院醫療費用按附表三保險金表所載金額給付"
+        ),
+        "倘被保險人無法提出正本收據申請理賠",
+        "每日住院津貼為貳仟元",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    table_start = text.find(str(version.get("table_start_marker") or "附表三:"))
+    table_end = text.find(str(version.get("table_end_marker") or "附表四"), table_start + 1)
+    if table_start < 0 or table_end <= table_start:
+        return None
+    table_text = compact_table_text(text[table_start:table_end])
+    table_signals = [
+        "保險金表",
+        "每日病房費新台幣2000元",
+        "每次手術費基準額新台幣43200元",
+        "每次住院醫院雜費新台幣68000元",
+        "每次住院最高日數90日",
+    ]
+    if any(compact_table_text(signal) not in table_text for signal in table_signals):
+        return None
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": f"身故/{total_disability_term}保險金額",
+        "selection_guidance": "請輸入保險證或保險手冊所載保險金額；住院醫療限額為條款附表三固定金額。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "group_policy": True,
+            "hospital_room_daily_limit": 2_000,
+            "surgery_fee_base": 43_200,
+            "hospital_miscellaneous_limit": 68_000,
+            **(
+                {"hospital_total_limit": int(version["hospital_total_limit"])}
+                if version.get("hospital_total_limit")
+                else {}
+            ),
+            "hospital_days_limit": 90,
+            "alternative_daily_allowance": 2_000,
+            "same_condition_readmission_days": 90,
+            "surgery_percentage_table": True,
+            "total_disability_schedule_item_count": 7,
+        },
+        "coverage_entries": fubon_tzu_chi_marrow_entries(
+            total_disability_term,
+            int(version["hospital_total_limit"]) if version.get("hospital_total_limit") else None,
+        ),
+    }
+
+
+FUBON_CHANGANBAO_LIFE_SERVICE_PRODUCT_VERSIONS = {
+    "209131MZ1A01813A12Z10000000": {
+        "file_name": "209131MZ1A01813A12Z10000000-A.pdf",
+        "terms_revision": "105-original",
+        "terms_code": "XLN1051114",
+        "filing_signal": "105.08.23 金管保壽字第10502096850號函核准",
+        "supervision_wording": "mental-disability-or-cognitive-defect",
+    },
+    "209131MZ1A01823A12Z10000001": {
+        "file_name": "209131MZ1A01823A12Z10000001-A.pdf",
+        "terms_revision": "106-first-partial-revision",
+        "terms_code": "XLN1060407",
+        "filing_signal": "106.04.07 富壽商精字第1060000836號函備查",
+        "supervision_wording": "mental-disability-or-cognitive-defect",
+    },
+    "209131MZ1A01823A12Z10000002": {
+        "file_name": "209131MZ1A01823A12Z10000002-A.pdf",
+        "terms_revision": "107-second-partial-revision",
+        "terms_code": "XLN1070914",
+        "filing_signal": "107.09.14 依107.06.07金管保壽字第10704158370號函修正",
+        "supervision_wording": "adult-guardianship-not-revoked",
+    },
+}
+
+
+FUBON_CHANGANBAO_LIFE_SERVICE_PLAN_TIERS = [
+    {
+        "label": "方案一：21萬元，禮儀服務",
+        "amount": 210_000,
+        "details": "提供禮儀服務，詳附表一禮儀服務內容表。",
+    },
+    {
+        "label": "方案二：67萬元，台北福田妙國生命紀念館塔位",
+        "amount": 670_000,
+        "details": "禮儀服務加福田妙國6樓琉金一區典雅型個人骨灰位，層別3、5、6。",
+    },
+    {
+        "label": "方案三：63萬元，台北福田妙國生命紀念館塔位",
+        "amount": 630_000,
+        "details": "禮儀服務加福田妙國6樓琉金一區典雅型個人骨灰位，層別2、7、8。",
+    },
+    {
+        "label": "方案四：62.2萬元，台中寶山紀念墓園塔位",
+        "amount": 622_000,
+        "details": "禮儀服務加寶山紀念墓園2樓寶璽廳典雅型個人骨灰位，層別3、5、6、7、8、9。",
+    },
+    {
+        "label": "方案五：58.2萬元，台中寶山紀念墓園塔位",
+        "amount": 582_000,
+        "details": "禮儀服務加寶山紀念墓園2樓寶璽廳典雅型個人骨灰位，層別1、2、10、11、12。",
+    },
+    {
+        "label": "方案六：57.5萬元，嘉義嘉雲寶塔塔位",
+        "amount": 575_000,
+        "details": "禮儀服務加嘉雲寶塔7樓水鑽廳個人骨灰位或水鑽廳佛像區個人骨灰位，層別3、A、5、6。",
+    },
+    {
+        "label": "方案七：53.5萬元，嘉義嘉雲寶塔塔位",
+        "amount": 535_000,
+        "details": "禮儀服務加嘉雲寶塔7樓水鑽廳個人骨灰位或水鑽廳佛像區個人骨灰位，層別1、2、7、8。",
+    },
+]
+FUBON_CHANGANBAO_SERVICE_TABLE_SHA1 = "fa4565ec0fd21d79cb841d054c8976e25cc3cf31"
+
+
+def is_fubon_changanbao_life_service_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_CHANGANBAO_LIFE_SERVICE_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def fubon_changanbao_life_service_entries() -> list[dict[str, Any]]:
+    source_ref = "條款第二條、第十三條至第十六條及附表一，第 2-12 頁"
+    service_conditions = [
+        "被保險人於本契約有效且第三保單年度(含)以後身故，經受益人申請後提供生命禮葬服務。",
+        "被保險人身故時仍有欠繳保險費或未還款項、已辦理減額繳清或減少保險金額、遺體已另行安葬、或因失蹤受死亡宣告時，不提供生命禮葬服務，改依身故/喪葬費用保險金規則給付。",
+        "生命禮葬服務不得全部或部分折換為現金給付。",
+        "方案二至方案七無須另向特約機構繳交塔位永久管理費；塔位位置由請求履行者於服務時選定。",
+        *[tier["details"] for tier in FUBON_CHANGANBAO_LIFE_SERVICE_PLAN_TIERS],
+    ]
+    first_two_year_conditions = [
+        "第一至第二保單年度內身故時，身故保險金為年繳保險費總和、保單當年度末保單價值準備金、當年度保險金額三者最大值。",
+        "當年度保險金額為保險金額乘以條款第二條係數；第一保單年度0.2、第二保單年度0.4。",
+    ]
+    return [
+        coverage_entry(
+            "life-funeral-service-plan-table",
+            "生命禮葬服務適用方案",
+            210_000,
+            "face_amount",
+            "依保單首頁保險金額對應附表一方案與規格；此為實物給付項目，不是現金保險金。",
+            source_ref,
+            calculation_basis="tiered_or_stepped",
+            amount_role="reference",
+            limit_scope="per_policy",
+            amount_tiers=[
+                {"label": tier["label"], "amount": int(tier["amount"])}
+                for tier in FUBON_CHANGANBAO_LIFE_SERVICE_PLAN_TIERS
+            ],
+            conditions=service_conditions,
+        ),
+        coverage_entry(
+            "death-first-policy-year-annual-face-amount-reference",
+            "第一保單年度身故給付參考：當年度保險金額",
+            None,
+            "face_amount",
+            "第一保單年度當年度保險金額為保險金額20%；實際身故保險金仍須與年繳保險費總和、保單價值準備金比較取最大值。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="reference",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=20,
+            unit_key="face_amount",
+            conditions=first_two_year_conditions,
+        ),
+        coverage_entry(
+            "death-second-policy-year-annual-face-amount-reference",
+            "第二保單年度身故給付參考：當年度保險金額",
+            None,
+            "face_amount",
+            "第二保單年度當年度保險金額為保險金額40%；實際身故保險金仍須與年繳保險費總和、保單價值準備金比較取最大值。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="reference",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=40,
+            unit_key="face_amount",
+            conditions=first_two_year_conditions,
+        ),
+        coverage_entry(
+            "death-after-third-year-cash-benefit",
+            "第三保單年度後身故保險金或喪葬費用保險金",
+            None,
+            "face_amount",
+            "第三保單年度(含)以後身故，若符合生命禮葬服務不提供情形或特約機構無法提供服務，按保險金額100%給付身故保險金或喪葬費用保險金。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[
+                "給付後本契約效力終止。",
+                "喪葬費用保險金須受法定喪葬費用限額規定限制。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-age-110-benefit",
+            "祝壽保險金",
+            None,
+            "face_amount",
+            "被保險人於本契約有效且保險年齡屆滿一百一十歲仍生存時，按保險金額100%給付。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=["給付後本契約效力終止。", "給付生命禮葬服務、身故/喪葬費用保險金或祝壽保險金其中一項後，不再負各項保險給付責任。"],
+        ),
+        coverage_entry(
+            "service-unavailable-compensation",
+            "特約機構無法提供生命禮葬服務補償金",
+            5_000,
+            "per_event",
+            "特約機構無法提供生命禮葬服務期間，如第三保單年度(含)以後身故，除改給付身故/喪葬費用保險金外，另給付補償金5,000元。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="conditional_additive",
+            conditions=["限特約機構無法提供生命禮葬服務之期間。"],
+        ),
+    ]
+
+
+def parse_fubon_changanbao_life_service_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_changanbao_life_service_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_CHANGANBAO_LIFE_SERVICE_PRODUCT_VERSIONS[product_id]
+    if (
+        document.get("page_count") not in {None, 12}
+        or document.get("pages_parsed") not in {None, 12}
+    ):
+        return None
+
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "富邦人壽長安寶(實物給付型)終身壽險",
+        "給付項目:生命禮葬服務、身故保險金或喪葬費用保險金、祝壽保險金",
+        "生命禮葬服務之項目依投保時約定之保險金額,對應其適用之方案",
+        "被保險人於本契約有效且在第三保單年度(含)以後身故者",
+        "本公司不受理將生命禮葬服務方案內容之全部或部分折換為現金給付之申請",
+        "被保險人於本契約有效且在第一至第二保單年度內身故者",
+        "被保險人於本契約有效且保險年齡屆滿一百一十歲仍生存者",
+        str(version["terms_code"]),
+        str(version["filing_signal"]),
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    supervision_signal = (
+        "以受監護宣告尚未撤銷者為被保險人"
+        if version["supervision_wording"] == "adult-guardianship-not-revoked"
+        else "以精神障礙或其他心智缺陷,致不能辨識其行為或欠缺依其辨識而行為之能力者為被保險人"
+    )
+    if compact_table_text(supervision_signal) not in compact_text:
+        return None
+
+    table_start = text.find("附表一:生命禮葬服務適用方案及規格")
+    table_end = text.find("備註:", table_start + 1)
+    if table_start < 0 or table_end <= table_start:
+        return None
+    table = re.sub(r"\s+", " ", text[table_start:table_end]).strip()
+    if hashlib.sha1(table.encode("utf-8")).hexdigest() != FUBON_CHANGANBAO_SERVICE_TABLE_SHA1:
+        return None
+    table_text = compact_table_text(table)
+    table_signals = [
+        "21萬元方案一",
+        "67萬元方案二",
+        "63萬元方案三",
+        "62.2萬元方案四",
+        "58.2萬元方案五",
+        "57.5萬元方案六",
+        "53.5萬元方案七",
+        "塔位台北-福田妙國生命紀念館",
+        "塔位台中-寶山紀念墓園",
+        "塔位嘉義-嘉雲寶塔",
+        "禮儀服務詳如禮儀服務內容表",
+    ]
+    if any(compact_table_text(signal) not in table_text for signal in table_signals):
+        return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單首頁所載主契約保險金額；系統會對應生命禮葬服務方案，並換算身故/祝壽保險金參考值。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "terms_code": version["terms_code"],
+            "service_provider": "龍巖股份有限公司",
+            "service_plan_count": 7,
+            "service_table_sha1": FUBON_CHANGANBAO_SERVICE_TABLE_SHA1,
+            "funeral_service_from_policy_year": 3,
+            "cash_conversion_allowed": False,
+            "first_policy_year_face_amount_rate_percent": 20,
+            "second_policy_year_face_amount_rate_percent": 40,
+            "death_after_third_policy_year_face_amount_rate_percent": 100,
+            "maturity_age": 110,
+            "service_unavailable_compensation": 5_000,
+            "supervision_wording": version["supervision_wording"],
+        },
+        "coverage_entries": fubon_changanbao_life_service_entries(),
+    }
+
+
+FUBON_YONGAI_LIFE_SERVICE_PRODUCT_VERSIONS = {
+    "209131MZ1A02523A12Z10000000": {
+        "file_name": "209131MZ1A02523A12Z10000000-A.pdf",
+        "terms_revision": "108-original",
+        "terms_code": "XMB1080701",
+        "filing_signal": "108.07.01 富壽商精字第1080001578號函備查",
+        "revision_date": "none",
+        "revision_number": "none",
+        "revision_basis": "original-filing",
+    },
+    "209131MZ1A02523A12Z10000002": {
+        "file_name": "209131MZ1A02523A12Z10000002-A.pdf",
+        "terms_revision": "109-second-partial-revision",
+        "terms_code": "XMB1090901",
+        "filing_signal": "108.07.01 富壽商精字第 1080001578 號函備查",
+        "revision_signal": "109.09.01 依 109.07.08 金管保壽字第 1090423012 號函修正",
+        "revision_date": "109-09-01",
+        "revision_number": "金管保壽字第1090423012號",
+        "revision_basis": "109-07-08-regulatory-amendment",
+    },
+}
+
+
+def is_fubon_yongai_life_service_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_YONGAI_LIFE_SERVICE_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def fubon_yongai_life_service_entries() -> list[dict[str, Any]]:
+    source_ref = "條款第二條、第十三條至第十六條及附表一，第 2-13 頁"
+    service_conditions = [
+        "被保險人於本契約有效且第三保單年度(含)以後身故，經受益人申請後提供生命禮葬服務。",
+        "生命禮葬服務以臺灣本島為限，不包含金門、馬祖、澎湖及其他離島地區。",
+        "生命禮葬服務不得全部或部分折換為現金給付。",
+        "被保險人身故時仍有欠繳保險費或未還款項、已辦理減額繳清保險或減少保險金額、遺體已另行安葬、或因失蹤受死亡宣告時，不提供生命禮葬服務，改依身故/喪葬費用保險金規則給付。",
+    ]
+    first_two_year_conditions = [
+        "第一至第二保單年度內身故時，身故保險金為年繳保險費總和、保單當年度末保單價值準備金、當年度保險金額三者最大值。",
+        "當年度保險金額為保險金額乘以條款第二條係數；第一保單年度0.2、第二保單年度0.4。",
+    ]
+    return [
+        coverage_entry(
+            "life-funeral-service",
+            "生命禮葬服務",
+            None,
+            "face_amount",
+            "第三保單年度(含)以後身故且符合條款條件時，依保險金額對應附表一禮儀服務內容表提供生命禮葬服務；此為實物給付，不是現金保險金。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="reference",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=service_conditions,
+        ),
+        coverage_entry(
+            "death-first-two-policy-years-greater-of",
+            "第一至第二保單年度身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "第一至第二保單年度內身故時，按年繳保險費總和、身故時保單當年度末保單價值準備金、身故時當年度保險金額三者取其大給付；需保單保費、保單價值準備金與保險金額才能精算。",
+            source_ref,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            conditions=first_two_year_conditions,
+        ),
+        coverage_entry(
+            "death-first-policy-year-annual-face-amount-reference",
+            "第一保單年度身故給付參考：當年度保險金額",
+            None,
+            "face_amount",
+            "第一保單年度當年度保險金額為保險金額20%；實際身故保險金仍須與年繳保險費總和、保單價值準備金比較取最大值。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="reference",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=20,
+            unit_key="face_amount",
+            conditions=first_two_year_conditions,
+        ),
+        coverage_entry(
+            "death-second-policy-year-annual-face-amount-reference",
+            "第二保單年度身故給付參考：當年度保險金額",
+            None,
+            "face_amount",
+            "第二保單年度當年度保險金額為保險金額40%；實際身故保險金仍須與年繳保險費總和、保單價值準備金比較取最大值。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="reference",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=40,
+            unit_key="face_amount",
+            conditions=first_two_year_conditions,
+        ),
+        coverage_entry(
+            "death-after-third-year-service-exception",
+            "第三保單年度後身故保險金或喪葬費用保險金",
+            None,
+            "face_amount",
+            "第三保單年度(含)以後身故，若符合生命禮葬服務不提供情形或特約機構無法提供服務，按保險金額100%給付身故保險金或喪葬費用保險金。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[
+                "給付後本契約效力終止。",
+                "喪葬費用保險金須受法定喪葬費用限額規定限制。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-age-110-benefit",
+            "祝壽保險金",
+            None,
+            "face_amount",
+            "被保險人於本契約有效且保險年齡屆滿一百一十歲仍生存時，按保險金額100%給付。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[
+                "給付後本契約效力終止。",
+                "給付生命禮葬服務、身故/喪葬費用保險金或祝壽保險金其中一項後，不再負各項保險給付責任。",
+            ],
+        ),
+        coverage_entry(
+            "service-unavailable-compensation",
+            "特約機構無法提供生命禮葬服務補償金",
+            5_000,
+            "per_event",
+            "特約機構無法提供生命禮葬服務期間，如第三保單年度(含)以後身故，除改給付身故/喪葬費用保險金外，另給付補償金5,000元。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="conditional_additive",
+            conditions=["限特約機構無法提供生命禮葬服務之期間。"],
+        ),
+        coverage_entry(
+            "service-shortfall-price-difference-compensation",
+            "禮儀服務規格不足補償",
+            None,
+            "policy_recorded_limit",
+            "若特約機構實際提供內容未達附表一規格，就差額以現金補足，並按該差額10%給付補償金；實際金額需依特約機構價格差額確認。",
+            source_ref,
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_event",
+            rate_percent=110,
+            conditions=["限特約機構實際提供內容未達條款附表一規格時。"],
+        ),
+    ]
+
+
+def parse_fubon_yongai_life_service_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_fubon_yongai_life_service_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = FUBON_YONGAI_LIFE_SERVICE_PRODUCT_VERSIONS[product_id]
+    if (
+        document.get("page_count") not in {None, 13}
+        or document.get("pages_parsed") not in {None, 13}
+    ):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "富邦人壽詠愛(實物給付型)終身壽險",
+        "給付項目:生命禮葬服務、身故保險金或喪葬費用保險金、祝壽保險金",
+        "生命禮葬服務之項目依投保時約定之保險金額,對應其適用之方案",
+        "生命禮葬服務中之「禮儀服務」,以臺灣本島為限",
+        "特約機構」:係指龍巖股份有限公司",
+        "被保險人於本契約有效且在第三保單年度(含)以後身故者",
+        "補償金新臺幣伍仟元",
+        "本公司不受理將生命禮葬服務方案內容之全部或部分折換為現金給付之申請",
+        "被保險人於本契約有效且在第一至第二保單年度內身故者",
+        "按下列三者之最大值給付身故保險金",
+        "身故時之保單當年度末的保單價值準備金",
+        "身故時之當年度保險金額",
+        "當年度保險金額」:係指保險金額乘以下表之係數後所得之數額:保單年度係數10.220.4",
+        "被保險人於本契約有效且保險年齡屆滿一百一十歲仍生存者",
+        "本公司依第十三條至第十五條約定給付其中一項保險給付者,不再負各項保險給付之責",
+        "附表二:保險單借款上限表",
+        str(version["terms_code"]),
+        str(version["filing_signal"]),
+    ]
+    revision_signal = version.get("revision_signal")
+    if revision_signal:
+        required_signals.append(str(revision_signal))
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單面頁保險金額；生命禮葬服務依保險金額對應方案，第一至第二保單年度身故取大值仍需保費與保單價值準備金。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "fubon_code": version["terms_code"],
+            "filing_date": "108-07-01",
+            "filing_number": "富壽商精字第1080001578號",
+            "revision_date": version["revision_date"],
+            "revision_number": version["revision_number"],
+            "revision_basis": version["revision_basis"],
+            "service_provider": "龍巖股份有限公司",
+            "life_service_from_policy_year": 3,
+            "service_scope_taiwan_main_island": True,
+            "life_service_not_cash_convertible": True,
+            "first_policy_year_annual_face_amount_rate_percent": 20,
+            "second_policy_year_annual_face_amount_rate_percent": 40,
+            "death_after_third_year_cash_rate_percent": 100,
+            "maturity_age": 110,
+            "maturity_benefit_rate_percent": 100,
+            "service_unavailable_compensation": 5_000,
+            "service_shortfall_compensation_rate_percent": 110,
+            "non_participating_policy": True,
+            "policy_loan_table_available": True,
+        },
+        "coverage_entries": fubon_yongai_life_service_entries(),
+    }
+
+
+TAIWAN_FUNERAL_SERVICE_RIDER_PRODUCT_VERSIONS: dict[str, dict[str, Any]] = {
+    "202131RZ2A81523A12Z10000000": {
+        "file_name": "202131RZ2A81523A12Z10000000-A.pdf",
+        "terms_revision": "original",
+        "service_amount": 210_000,
+    },
+    "202131RZ2A81523A12Z10000001": {
+        "file_name": "202131RZ2A81523A12Z10000001-A.pdf",
+        "terms_revision": "first-partial-revision",
+        "service_amount": 210_000,
+    },
+    "202131RZ2A81523A12Z10000002": {
+        "file_name": "202131RZ2A81523A12Z10000002-A.pdf",
+        "terms_revision": "second-partial-revision",
+        "service_amount": 210_000,
+    },
+    "202131RZ2A81523A12Z10000003": {
+        "file_name": "202131RZ2A81523A12Z10000003-A.pdf",
+        "terms_revision": "third-partial-revision",
+        "service_amount": 240_000,
+    },
+    "202131RZ2A81523A12Z10000004": {
+        "file_name": "202131RZ2A81523A12Z10000004-A.pdf",
+        "terms_revision": "fourth-partial-revision",
+        "service_amount": 240_000,
+    },
+    "202131RZ2A81523A12Z10000005": {
+        "file_name": "202131RZ2A81523A12Z10000005-A.pdf",
+        "terms_revision": "fifth-partial-revision",
+        "service_amount": 240_000,
+    },
+}
+
+
+def is_taiwan_funeral_service_rider_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_FUNERAL_SERVICE_RIDER_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def taiwan_funeral_service_rider_entries(service_amount: int) -> list[dict[str, Any]]:
+    source_ref = "條款第二條、第五條、第十三條至第十六條及附表，第 2-11 頁"
+    service_conditions = [
+        "第四保單年度(含)以後身故，原則提供附表禮殯實物給付內容。",
+        "可於中式火化喪葬服務或西式火化喪葬服務擇一辦理。",
+        "本公司不受理將禮殯實物給付內容全部或一部改為現金給付；依本條提供之內容終身以一次為限。",
+        "內容重點含臨終諮詢、遺體接運、設立靈堂、入殮、治喪協調、奠禮準備、發引、火化封罐、後續關懷等，細項依附表及實物給付說明書。",
+        "合作廠商為龍巖股份有限公司，服務範圍及跨縣市費用依附表備註及官方公告。",
+        "已由他人提供服務、減額繳清、欠繳保費或保單借款未償還、失蹤死亡宣告等情形，不提供實物給付，改依身故/喪葬費用保險金規則。",
+    ]
+    death_exception_conditions = [
+        "第四保單年度(含)以後身故且符合第十三條第一項但書時，按身故日保險金額給付。",
+        "不可歸責於公司致無法提供禮殯實物給付內容時，得按保險金額改以現金給付。",
+        "以受監護宣告尚未撤銷者為被保險人時，須併入法定喪葬費用保險金限額計算。",
+    ]
+    return [
+        coverage_entry(
+            "funeral-service-benefit",
+            "禮殯實物給付",
+            service_amount,
+            "policy_recorded_limit",
+            "此為實物服務給付，不是可自由領取的現金保險金；附表固定列明本版本保險金額。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="reference",
+            limit_scope="per_policy",
+            conditions=service_conditions,
+        ),
+        coverage_entry(
+            "death-first-three-policy-years",
+            "第一至第三保單年度身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "第一至第三保單年度內身故，按當年度保險金額給付；條款定義當年度保險金額為年繳應繳保險費總和的一點零六倍。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            rate_percent=106,
+            unit_key="annual_premium_total",
+            conditions=[
+                "實際金額需依保單首頁與繳費方式確認年繳應繳保險費總和。",
+                "以受監護宣告尚未撤銷者為被保險人時，身故保險金變更為喪葬費用保險金，並受法定限額限制。",
+            ],
+        ),
+        coverage_entry(
+            "death-after-fourth-policy-year-service-exception",
+            "第四保單年度後身故現金給付",
+            service_amount,
+            "policy_recorded_limit",
+            "第四保單年度(含)以後身故，若符合條款所列不提供禮殯實物給付情形，按保險金額給付身故保險金或喪葬費用保險金。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            conditions=death_exception_conditions,
+        ),
+        coverage_entry(
+            "service-unavailable-company-fault-cash-benefit",
+            "可歸責公司無法提供服務現金給付",
+            service_amount * 11 // 10,
+            "policy_recorded_limit",
+            "若因可歸責於公司之事由致無法提供禮殯實物給付內容，公司得改提供不低於原等級之其他服務，或按保險金額一點一倍改以現金給付。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            conditions=[
+                "此為取代禮殯實物給付責任的選項，不是與實物給付同時加總。",
+                "是否改提供其他不低於原等級之服務或現金，依實際事故與公司處理方式確認。",
+            ],
+        ),
+        coverage_entry(
+            "accidental-death-before-85",
+            "八十五歲前意外身故保險金或喪葬費用保險金",
+            100_000,
+            "policy_recorded_limit",
+            "被保險人於保險年齡屆滿八十五歲前，因意外傷害事故一百八十日內死亡，除第十三條或第十四條給付外，另按傷害險部分保險金額給付。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="conditional_additive",
+            conditions=[
+                "傷害險部分保險金額為新臺幣十萬元。",
+                "超過一百八十日死亡者，受益人需證明死亡與意外傷害事故具有因果關係。",
+                "辦理減額繳清保險時，依減額繳清保險金額與原保險金額比例等比例減少。",
+                "以受監護宣告尚未撤銷者為被保險人時，意外身故保險金變更為喪葬費用保險金並併入限額計算。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-age-111-benefit",
+            "祝壽保險金",
+            service_amount,
+            "policy_recorded_limit",
+            "被保險人於附約有效且保險年齡到達一百十一歲之保單週年日仍生存時，按當時保險金額給付祝壽保險金。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_policy",
+            conditions=["給付祝壽保險金後，本附約效力即行終止。"],
+        ),
+    ]
+
+
+def parse_taiwan_funeral_service_rider_fixed(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_funeral_service_rider_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_FUNERAL_SERVICE_RIDER_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "台灣人壽",
+        "終身保險附約(實物給付型)",
+        "【保險範圍】",
+        "禮殯實物給付",
+        "中式火化喪葬服務",
+        "西式火化喪葬服務",
+        "合作廠商為龍巖股份有限公司",
+        "年繳應繳保險費總和的一點零六倍",
+        "傷害險部分保險金額",
+        "保險年齡到達一百十一歲",
+        "本公司不受理將禮殯實物給付內容之全部或一部改為現金給付",
+        "0800-099-098",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    amounts = {
+        int(value.replace(",", ""))
+        for value in re.findall(r"保險金額為新臺幣\s*([\d,]+)\s*元", text)
+    }
+    if amounts != {int(version["service_amount"])}:
+        return None
+    if "【完全失能保險金" in text or "完全失能保險金的給付" in text:
+        return None
+    if "【禮殯實物給付】第十三條" not in compact_text:
+        return None
+    if "【身故保險金或喪葬費用保險金的給付】第十四條" not in compact_text:
+        return None
+    if "【意外身故保險金或喪葬費用保險金的給付】第十五條" not in compact_text:
+        return None
+    if "【祝壽保險金的給付】第十六條" not in compact_text:
+        return None
+
+    service_amount = int(version["service_amount"])
+    return {
+        "selection_type": "fixed",
+        "input_mode": "fixed",
+        "selection_source": "terms",
+        "selection_label": "固定保險金額",
+        "selection_guidance": "本附約條款附表已固定列明禮殯實物給付保險金額，無須輸入單位數或計畫別；請用保單名稱與版本確認為 21 萬或 24 萬版本。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "service_provider": "龍巖股份有限公司",
+            "service_option_count": 2,
+            "service_amount": service_amount,
+            "funeral_service_from_policy_year": 4,
+            "cash_conversion_allowed": False,
+            "non_attributable_unavailable_cash_rate_percent": 100,
+            "attributable_unavailable_cash_rate_percent": 110,
+            "first_three_policy_year_death_premium_multiplier": 1.06,
+            "accidental_death_amount": 100_000,
+            "accidental_death_max_age": 85,
+            "accident_claim_days": 180,
+            "maturity_age": 111,
+            "funeral_benefit_limit_rule": True,
+            "fixed_terms_amount": True,
+        },
+        "coverage_entries": taiwan_funeral_service_rider_entries(service_amount),
+    }
+
+
+TAIWAN_LONGZAITIAN_FUNERAL_SERVICE_RIDER_PRODUCT_VERSIONS: dict[
+    str, dict[str, Any]
+] = {
+    "202131RZ1A73023A12Z10000000": {
+        "file_name": "202131RZ1A73023A12Z10000000-A.pdf",
+        "product_name": "台灣人壽龍在天終身壽險附約(實物給付型)",
+        "terms_revision": "108-original",
+        "filing_date": "108-03-15",
+        "filing_number": "台壽字第1082320024號函備查",
+        "service_amount": 210_000,
+    }
+}
+
+
+def is_taiwan_longzaitian_funeral_service_rider_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LONGZAITIAN_FUNERAL_SERVICE_RIDER_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def taiwan_longzaitian_funeral_service_rider_entries(
+    service_amount: int,
+) -> list[dict[str, Any]]:
+    source_ref = "第十三條禮殯實物給付、第十四條身故保險金、第十五條祝壽保險金及附表"
+    service_conditions = [
+        "第四保單年度(含)以後身故時，提供附表中式火化喪葬服務或西式火化喪葬服務擇一辦理。",
+        "禮殯實物給付區域以台灣本島為限，不包含金門、馬祖、澎湖及其他離島地區。",
+        "本項禮殯實物給付終身以乙次為限，且服務對象以被保險人本人為限。",
+        "第三保單年度(含)以前身故者僅給付現金，無禮殯實物給付責任。",
+    ]
+    death_exception_conditions = [
+        "第四保單年度(含)以後身故，但受益人已委請他人提供禮殯服務、辦理減額繳清、有欠繳保險費或未還款項、或因失蹤宣告死亡時，改給付身故保險金或喪葬費用保險金。",
+        "訂立本附約時受監護宣告尚未撤銷者，禮殯實物給付及身故保險金應併入喪葬費用保險金限額計算。",
+    ]
+    return [
+        coverage_entry(
+            "funeral-service-benefit",
+            "禮殯實物給付",
+            service_amount,
+            "policy_recorded_limit",
+            "第四保單年度(含)以後身故時，依附表提供中式或西式火化喪葬服務，保險金額為固定約定金額。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="choose_one",
+            conditions=service_conditions,
+        ),
+        coverage_entry(
+            "death-first-three-policy-years",
+            "第一至第三保單年度身故現金給付",
+            None,
+            "policy_recorded_limit",
+            "第一至第三保單年度內身故時，按身故日之年繳應繳保險費總和的一點零六倍給付。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            rate_percent=106,
+            unit_key="annual_premium_total",
+            conditions=[
+                "本期間內僅給付現金，無禮殯實物給付責任。",
+                "年繳應繳保險費總和依第二條定義計算。",
+            ],
+        ),
+        coverage_entry(
+            "death-after-fourth-policy-year-service-exception",
+            "第四保單年度後身故改現金給付",
+            service_amount,
+            "policy_recorded_limit",
+            "第四保單年度(含)以後身故且符合第十三條第一項但書時，按身故日保險金額給付身故保險金或喪葬費用保險金。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            conditions=death_exception_conditions,
+        ),
+        coverage_entry(
+            "non-attributable-funeral-service-unavailable-cash",
+            "不可歸責於公司無法提供服務時改現金",
+            service_amount,
+            "policy_recorded_limit",
+            "若因不可歸責於保險公司之事由致無法提供禮殯實物給付內容，得按保險金額改以現金給付。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            conditions=[
+                "本項現金給付取代禮殯實物給付責任。",
+                f"固定保險金額為新臺幣 {service_amount:,} 元。",
+            ],
+        ),
+        coverage_entry(
+            "company-fault-funeral-service-unavailable-cash",
+            "可歸責於公司無法提供服務時改現金",
+            service_amount * 11 // 10,
+            "policy_recorded_limit",
+            "若因可歸責於保險公司之事由致無法提供禮殯實物給付內容，得改提供不低於原等級之其他內容，或按保險金額一點一倍改以現金給付。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            conditions=[
+                f"固定保險金額新臺幣 {service_amount:,} 元的一點一倍為新臺幣 {service_amount * 11 // 10:,} 元。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-age-111-benefit",
+            "祝壽保險金",
+            service_amount,
+            "policy_recorded_limit",
+            "被保險人於保險年齡到達一百十一歲之保單週年日仍生存時，按保險金額給付祝壽保險金。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_policy",
+            conditions=["給付祝壽保險金後，本附約效力即行終止。"],
+        ),
+        coverage_entry(
+            "reduced-paid-up-excludes-funeral-service",
+            "減額繳清後無禮殯實物給付",
+            None,
+            "policy_recorded_limit",
+            "要保人變更為減額繳清保險後，本附約保險範圍除無禮殯實物給付外，其餘與原附約同。",
+            "第二十二條減額繳清保險",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            conditions=["減額繳清後保險金額以減額繳清保險金額為準。"],
+        ),
+    ]
+
+
+def parse_taiwan_longzaitian_funeral_service_rider_fixed(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_longzaitian_funeral_service_rider_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LONGZAITIAN_FUNERAL_SERVICE_RIDER_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        version["product_name"],
+        "台壽字第1082320024號函備查",
+        "主要給付項目",
+        "禮殯實物給付",
+        "身故保險金或喪葬費用保險金",
+        "祝壽保險金",
+        "被保險人於本附約有效期間第四保單年度(含)以後身故者",
+        "第一至第三保單年度內身故者",
+        "年繳應繳保險費總和的一點零六倍",
+        "第四保單年度(含)以後身故並符合第十三條第一項但書者",
+        "保險年齡到達一百十一歲之保單週年日仍生存",
+        "保險金額為新臺幣210,000元",
+        "中式火化喪葬服務",
+        "西式火化喪葬服務",
+        "0800-099-098",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    forbidden_signals = [
+        "意外身故保險金",
+        "豁免保險費的給付",
+        "第一級至第六級",
+    ]
+    if any(compact_table_text(signal) in compact_text for signal in forbidden_signals):
+        return None
+    amounts = {
+        int(value.replace(",", ""))
+        for value in re.findall(r"保險金額為新臺幣\s*([\d,]+)\s*元", text)
+    }
+    service_amount = int(version["service_amount"])
+    if amounts != {service_amount}:
+        return None
+    return {
+        "selection_type": "fixed",
+        "input_mode": "fixed",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "本附約為固定金額禮殯實物給付型，條款附表載明保險金額為新臺幣210,000元；使用者不需選擇計劃或單位。",
+        "version_characteristics": {
+            "product_family": "taiwan-longzaitian-funeral-service-rider",
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "service_provider": "龍巖股份有限公司",
+            "service_option_count": 2,
+            "service_amount": service_amount,
+            "funeral_service_from_policy_year": 4,
+            "service_scope_taiwan_main_island": True,
+            "service_lifetime_limit_times": 1,
+            "cash_conversion_allowed": False,
+            "non_attributable_unavailable_cash_rate_percent": 100,
+            "attributable_unavailable_cash_rate_percent": 110,
+            "first_three_policy_year_death_premium_multiplier": 1.06,
+            "maturity_age": 111,
+            "maturity_benefit_amount": service_amount,
+            "funeral_benefit_limit_rule": True,
+            "reduced_paid_up_excludes_funeral_service": True,
+            "fixed_terms_amount": True,
+            "non_participating_policy": True,
+        },
+        "coverage_entries": taiwan_longzaitian_funeral_service_rider_entries(
+            service_amount
+        ),
+    }
+
+
+TAIWAN_LONGAI_FUNERAL_SERVICE_WHOLE_LIFE_PRODUCT_VERSIONS: dict[
+    str, dict[str, Any]
+] = {
+    "202131MZ2A40B23A12Z10000000": {
+        "file_name": "202131MZ2A40B23A12Z10000000-A.pdf",
+        "product_name": "台灣人壽龍愛一生終身保險(實物給付型)",
+        "terms_revision": "115-original",
+        "filing_date": "115-03-31",
+        "filing_number": "台壽字第1152320048號",
+        "page_count": 16,
+        "face_amount": 240_000,
+        "funeral_service_amount": 240_000,
+        "accidental_death_amount": 100_000,
+    }
+}
+
+
+def is_taiwan_longai_funeral_service_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LONGAI_FUNERAL_SERVICE_WHOLE_LIFE_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+        and document.get("page_count") in {None, version["page_count"]}
+        and document.get("pages_parsed") in {None, version["page_count"]}
+    )
+
+
+def taiwan_longai_funeral_service_whole_life_entries(
+    *,
+    face_amount: int,
+    funeral_service_amount: int,
+    accidental_death_amount: int,
+) -> list[dict[str, Any]]:
+    source_ref = "保單條款第二條、第五條、第十三條至第十七條及附表一"
+    funeral_conditions = [
+        "被保險人於本契約有效期間第三保單年度(含)以後身故時，提供附表一中式火化喪葬服務或西式火化喪葬服務擇一辦理。",
+        "禮殯實物給付區域以台灣本島為限，不包含金門、馬祖、澎湖及其他離島地區。",
+        "服務合作廠商為龍巖股份有限公司；受益人申領時需通知合作廠商，合作廠商接獲通知後 24 小時內開始提供。",
+        "本項實物給付終身以一次為限，且公司不受理將全部或一部禮殯實物給付改為現金給付的申請。",
+    ]
+    death_exception_conditions = [
+        "第三保單年度(含)以後身故，但受益人已委請他人提供禮殯內容、減額繳清、有欠繳保費或未償還保單借款、或因失蹤經法院宣告死亡時，不提供禮殯實物給付，改依第十四條給付現金。",
+        "訂立契約時以受監護宣告尚未撤銷者為被保險人時，依喪葬費用保險金限額與多張保單合計規則處理。",
+    ]
+    return [
+        coverage_entry(
+            "funeral-service-benefit",
+            "禮殯實物給付",
+            funeral_service_amount,
+            "policy_recorded_limit",
+            "依附表一提供中式火化喪葬服務或西式火化喪葬服務，條款固定保險金額為新臺幣 240,000 元。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="choose_one",
+            conditions=funeral_conditions,
+        ),
+        coverage_entry(
+            "death-first-two-policy-years",
+            "前二保單年度身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於前二保單年度內身故時，按身故日之當年度保險金額給付；當年度保險金額為年繳應繳保險費總和的 1.06 倍。",
+            "保單條款第二條及第十四條",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            rate_percent=106,
+            unit_key="annual_premium_total",
+            conditions=[
+                "本契約第二條明定當年度保險金額為年繳應繳保險費總和的 1.06 倍。",
+                "被保險人於第二保單年度(含)以前身故者，公司僅給付現金，無禮殯實物給付責任。",
+                "喪葬費用保險金仍受主管機關限額與多張保單合計規則限制。",
+            ],
+        ),
+        coverage_entry(
+            "death-after-third-policy-year-service-exception",
+            "第三保單年度後身故改現金給付",
+            face_amount,
+            "policy_recorded_limit",
+            "第三保單年度(含)以後身故且符合第十三條但書情形時，不提供禮殯實物給付，改按身故日保險金額給付身故保險金或喪葬費用保險金。",
+            "保單條款第十三條及第十四條",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            conditions=death_exception_conditions,
+        ),
+        coverage_entry(
+            "non-attributable-funeral-service-unavailable-cash",
+            "非可歸責公司無法提供禮殯實物之現金給付",
+            face_amount,
+            "policy_recorded_limit",
+            "若因不可歸責於公司之事由致無法提供禮殯實物給付內容，公司得按保險金額改以現金給付，取代禮殯實物給付責任。",
+            "保單條款第十三條",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            conditions=["本項與禮殯實物給付互斥，用於取代無法提供的禮殯實物給付責任。"],
+        ),
+        coverage_entry(
+            "company-fault-funeral-service-unavailable-cash",
+            "可歸責公司無法提供禮殯實物之現金給付",
+            funeral_service_amount * 11 // 10,
+            "policy_recorded_limit",
+            "若因可歸責於公司之事由致無法提供禮殯實物給付內容，公司得改提供不低於原等級之其他內容，或按保險金額 1.1 倍改以現金給付。",
+            "保單條款第十三條",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            conditions=[
+                f"固定保險金額為新臺幣 {funeral_service_amount:,} 元，1.1 倍為新臺幣 {funeral_service_amount * 11 // 10:,} 元。",
+            ],
+        ),
+        coverage_entry(
+            "accidental-death-before-85",
+            "意外身故保險金或喪葬費用保險金",
+            accidental_death_amount,
+            "policy_recorded_limit",
+            "被保險人於保險年齡 85 歲屆滿前遭受意外傷害事故，並自事故發生日起一百八十日以內死亡時，除第十三條或第十四條給付外，另按傷害險部分保險金額給付。",
+            "保單條款第二條及第十五條",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="conditional_additive",
+            conditions=[
+                "傷害險部分保險金額固定為新臺幣 100,000 元；若已辦理減額繳清，依減額繳清保險金額與原保險金額比例等比例減少。",
+                "事故需為非由疾病引起之外來突發事故，且原則上須於事故發生日起一百八十日以內死亡。",
+                "訂立契約時以受監護宣告尚未撤銷者為被保險人時，意外身故保險金變更為喪葬費用保險金並依第十四條處理。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            face_amount,
+            "policy_recorded_limit",
+            "被保險人於保險年齡到達 111 歲之保單週年日仍生存時，按保險年齡 110 歲屆滿之保險金額給付，給付後契約效力終止。",
+            "保單條款第十六條",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_policy",
+            conditions=[
+                "條款保險金額固定為新臺幣 240,000 元；若辦理減額繳清，保險金額以減額繳清保險金額為準。",
+            ],
+        ),
+        coverage_entry(
+            "premium-waiver",
+            "豁免保險費",
+            None,
+            "policy_recorded_limit",
+            "被保險人於本契約有效且繳費期間內，因疾病或意外傷害事故致成附表二第一級至第六級失能程度之一者，自失能診斷確定日翌日起免繳本契約未到期保險費。",
+            "保單條款第十七條及附表二",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            conditions=[
+                "豁免保費後契約繼續有效，但不退還當期已繳保險費之未滿期保險費。",
+                "豁免後公司不再受理本契約減額繳清保險之變更申請，且非經被保險人同意，要保人不得終止本契約。",
+            ],
+        ),
+    ]
+
+
+def parse_taiwan_longai_funeral_service_whole_life_fixed(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_longai_funeral_service_whole_life_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LONGAI_FUNERAL_SERVICE_WHOLE_LIFE_PRODUCT_VERSIONS[
+        product_id
+    ]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        version["product_name"],
+        "主要給付項目",
+        "禮殯實物給付",
+        "身故保險金或喪葬費用保險金",
+        "意外身故保險金或喪葬費用保險金",
+        "祝壽保險金",
+        "豁免保險費",
+        "中華民國115年3月31日",
+        "台壽字第1152320048號函備查",
+        "本保險禮殯實物給付之區域以台灣本島為限",
+        "該金額為新臺幣24萬元",
+        "傷害險部分保險金額",
+        "新臺幣10萬元",
+        "當年度保險金額",
+        "年繳應繳保險費總和的1.06倍",
+        "第三保單年度(含)以後身故",
+        "按保險金額的1.1倍改以現金給付",
+        "本公司不受理將禮殯實物給付內容之全部或一部改為現金給付之申請",
+        "保險年齡85歲屆滿前",
+        "一百八十日以內死亡",
+        "保險年齡到達111歲",
+        "保險年齡110歲屆滿之保險金額",
+        "第一級至第六級失能程度",
+        "附表一:禮殯實物給付內容",
+        "中式火化喪葬服務",
+        "西式火化喪葬服務",
+        "龍巖股份有限公司",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    forbidden_signals = [
+        "殯葬實物給付內容",
+        "骨灰塔位",
+        "保險金額對應投保方案",
+    ]
+    if any(compact_table_text(signal) in compact_text for signal in forbidden_signals):
+        return None
+
+    face_amount = int(version["face_amount"])
+    funeral_service_amount = int(version["funeral_service_amount"])
+    accidental_death_amount = int(version["accidental_death_amount"])
+    return {
+        "selection_type": "fixed",
+        "input_mode": "fixed",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "本條款固定保險金額為新臺幣 240,000 元，傷害險部分保險金額為新臺幣 100,000 元；若保單已辦理減額繳清，實際金額需以保單面頁減額繳清後金額確認。",
+        "version_characteristics": {
+            "product_family": "taiwan-longai-funeral-service-whole-life",
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "currency": "TWD",
+            "fixed_face_amount": face_amount,
+            "annual_insured_amount_formula": "annual_premium_total_times_1_06",
+            "service_provider": "龍巖股份有限公司",
+            "service_option_count": 2,
+            "funeral_service_amount": funeral_service_amount,
+            "funeral_service_from_policy_year": 3,
+            "service_scope_taiwan_main_island": True,
+            "service_lifetime_limit_times": 1,
+            "cash_conversion_allowed": False,
+            "non_attributable_unavailable_cash_rate_percent": 100,
+            "attributable_unavailable_cash_rate_percent": 110,
+            "first_two_policy_year_death_premium_multiplier": 1.06,
+            "death_after_third_policy_year_cash_amount": face_amount,
+            "accidental_death_amount": accidental_death_amount,
+            "accidental_death_max_age": 85,
+            "accident_claim_days": 180,
+            "maturity_age": 111,
+            "maturity_benefit_amount": face_amount,
+            "premium_waiver_available": True,
+            "premium_waiver_disability_grade_min": 1,
+            "premium_waiver_disability_grade_max": 6,
+            "funeral_benefit_limit_rule": True,
+            "reduced_paid_up_excludes_funeral_service": True,
+            "fixed_terms_amount": True,
+            "non_participating_policy": True,
+        },
+        "coverage_entries": taiwan_longai_funeral_service_whole_life_entries(
+            face_amount=face_amount,
+            funeral_service_amount=funeral_service_amount,
+            accidental_death_amount=accidental_death_amount,
+        ),
+    }
+
+
+TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_PRODUCT_VERSIONS: dict[str, dict[str, Any]] = {
+    "202131MZ1A58423A12Z10000005": {
+        "file_name": "202131MZ1A58423A12Z10000005-A.pdf",
+        "terms_revision": "fifth-partial-revision",
+        "funeral_service_amount": 210_000,
+    },
+    "202131MZ1A58423A12Z10000006": {
+        "file_name": "202131MZ1A58423A12Z10000006-A.pdf",
+        "terms_revision": "sixth-partial-revision",
+        "funeral_service_amount": 210_000,
+    },
+    "202131MZ1A58423A12Z10000008": {
+        "file_name": "202131MZ1A58423A12Z10000008-A.pdf",
+        "terms_revision": "eighth-partial-revision",
+        "funeral_service_amount": 210_000,
+    },
+    "202131MZ1A58423A12Z10000009": {
+        "file_name": "202131MZ1A58423A12Z10000009-A.pdf",
+        "terms_revision": "ninth-partial-revision",
+        "funeral_service_amount": 210_000,
+    },
+    "202131MZ1A58423A12Z10000010": {
+        "file_name": "202131MZ1A58423A12Z10000010-A.pdf",
+        "terms_revision": "tenth-partial-revision",
+        "funeral_service_amount": 240_000,
+    },
+    "202131MZ1A58423A12Z10000011": {
+        "file_name": "202131MZ1A58423A12Z10000011-A.pdf",
+        "terms_revision": "eleventh-partial-revision",
+        "funeral_service_amount": 240_000,
+    },
+}
+
+TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_PRODUCT_VERSIONS: dict[str, dict[str, Any]] = {
+    "202131MZ1A58413A12Z10000000": {
+        "file_name": "202131MZ1A58413A12Z10000000-A.pdf",
+        "terms_revision": "original",
+        "funeral_service_amount": 193_200,
+    },
+    "202131MZ1A58423A12Z10000001": {
+        "file_name": "202131MZ1A58423A12Z10000001-A.pdf",
+        "terms_revision": "first-partial-revision",
+        "funeral_service_amount": 193_200,
+    },
+    "202131MZ1A58423A12Z10000002": {
+        "file_name": "202131MZ1A58423A12Z10000002-A.pdf",
+        "terms_revision": "second-partial-revision",
+        "funeral_service_amount": 193_200,
+    },
+    "202131MZ1A58423A12Z10000003": {
+        "file_name": "202131MZ1A58423A12Z10000003-A.pdf",
+        "terms_revision": "third-partial-revision",
+        "funeral_service_amount": 193_200,
+    },
+}
+
+TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_PLAN_PRODUCT_VERSIONS: dict[
+    str, dict[str, Any]
+] = {
+    "202131MZ1A62623A12Z10000000": {
+        "file_name": "202131MZ1A62623A12Z10000000-A.pdf",
+        "terms_revision": "original",
+        "filing_date": "106.10.02",
+        "filing_number": "台壽字第1062321004號函備查",
+        "revision_date": None,
+        "revision_basis": None,
+        "supervision_wording": "mental-disorder",
+    },
+    "202131MZ1A62623A12Z10000001": {
+        "file_name": "202131MZ1A62623A12Z10000001-A.pdf",
+        "terms_revision": "first-regulatory-revision",
+        "filing_date": "106.10.02",
+        "filing_number": "台壽字第1062321004號函備查",
+        "revision_date": "107.09.14",
+        "revision_basis": "依107年6月7日金管保壽字第10704158370號函修正",
+        "supervision_wording": "guardianship",
+    },
+}
+
+TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_TOWER_AMOUNT_PAIRS = [
+    (823_000, 913_000),
+    (526_000, 580_000),
+    (383_000, 419_000),
+    (337_000, 373_000),
+    (296_000, 332_000),
+    (177_000, 195_000),
+    (151_000, 169_000),
+    (136_000, 154_000),
+    (131_000, 149_000),
+]
+
+TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_TOWER_AMOUNTS = [
+    (1, 1_064_000),
+    (2, 952_000),
+    (3, 459_000),
+    (4, 414_000),
+    (5, 437_000),
+    (6, 392_000),
+    (7, 373_000),
+    (8, 333_000),
+    (9, 183_000),
+    (10, 163_000),
+]
+
+TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_PLAN_LABELS = [
+    "一",
+    "二",
+    "三",
+    "四",
+    "五",
+    "六",
+    "七",
+    "八",
+    "九",
+    "十",
+    "十一",
+]
+
+TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_PLAN_LABELS = [
+    "一",
+    "二",
+    "三",
+    "四",
+    "五",
+    "六",
+    "七",
+    "八",
+    "九",
+    "十",
+    "十一",
+    "十二",
+    "十三",
+    "十四",
+    "十五",
+    "十六",
+    "十七",
+    "十八",
+    "十九",
+]
+
+TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_PLAN_AMOUNTS = [
+    210_000,
+    1_218_000,
+    1_118_000,
+    848_000,
+    788_000,
+    670_000,
+    630_000,
+    622_000,
+    582_000,
+    575_000,
+    535_000,
+    425_000,
+    405_000,
+    396_000,
+    376_000,
+    380_000,
+    360_000,
+    375_000,
+    355_000,
+]
+
+
+def is_taiwan_funeral_service_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def is_taiwan_funeral_service_whole_life_early_plan_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_PLAN_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def is_taiwan_funeral_service_whole_life_early_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def taiwan_funeral_service_whole_life_plan_specs(
+    funeral_service_amount: int,
+) -> list[dict[str, Any]]:
+    specs = [
+        {
+            "value": "plan-1",
+            "label": "方案一：殯葬服務",
+            "plan_label": "方案一",
+            "amount": funeral_service_amount,
+            "funeral_service_amount": funeral_service_amount,
+            "tower_number": None,
+            "tower_amount": 0,
+        }
+    ]
+    for index, (tower_number, tower_amount) in enumerate(
+        TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_TOWER_AMOUNTS,
+        start=2,
+    ):
+        specs.append(
+            {
+                "value": f"plan-{index}",
+                "label": f"方案{TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_PLAN_LABELS[index - 1]}：殯葬服務 + 塔位 {tower_number}",
+                "plan_label": f"方案{TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_PLAN_LABELS[index - 1]}",
+                "amount": funeral_service_amount + tower_amount,
+                "funeral_service_amount": funeral_service_amount,
+                "tower_number": tower_number,
+                "tower_amount": tower_amount,
+            }
+        )
+    return specs
+
+
+def taiwan_funeral_service_whole_life_table_amounts(
+    text: str,
+) -> dict[str, int]:
+    table_start = text.rfind("附表三")
+    if table_start < 0:
+        return {}
+    table_end = text.find("【中式火化喪葬服務】", table_start)
+    if table_end <= table_start:
+        return {}
+    table = text[table_start:table_end]
+    amounts: dict[str, int] = {}
+    for label in TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_PLAN_LABELS:
+        match = re.search(
+            rf"方案{label}\s*▓殯葬服務(?:\s*▓骨灰塔位之塔位\s*\d+)?\s*([0-9]+(?:\.[0-9]+)?)\s*萬",
+            table,
+        )
+        if not match:
+            return {}
+        amounts[f"方案{label}"] = int(round(float(match.group(1)) * 10_000))
+    return amounts
+
+
+def taiwan_funeral_service_whole_life_early_plan_amounts(
+    text: str,
+) -> dict[str, int]:
+    table = compact_table_text(text)
+    table_start = table.find(
+        compact_table_text("附表一:保險金額對應投保方案之殯葬實物給付內容")
+    )
+    if table_start < 0:
+        return {}
+    table_end = table.find(compact_table_text("第 8 頁"), table_start)
+    if table_end <= table_start:
+        table_end = table.find(
+            compact_table_text("附表二：【中式火化喪葬服務】"),
+            table_start,
+        )
+    if table_end <= table_start:
+        return {}
+    table = table[table_start:table_end]
+    amounts: dict[str, int] = {}
+    for label in TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_PLAN_LABELS:
+        match = re.search(rf"([0-9]+(?:\.[0-9]+)?)萬方案{label}", table)
+        if not match:
+            return {}
+        amounts[f"方案{label}"] = int(round(float(match.group(1)) * 10_000))
+    return amounts
+
+
+def taiwan_funeral_service_whole_life_entries_for_plan(
+    plan: dict[str, Any],
+    *,
+    plan_description: str = "第三保單年度起，依投保方案提供殯葬服務，方案二至方案十一另含指定骨灰塔位。",
+    plan_selection_condition: str = "殯葬服務於事故發生時指定中式或西式火化喪葬服務擇一辦理；骨灰塔位依投保時指定方案辦理。",
+    disability_term: str = "完全失能",
+    waiver_term: str = "失能",
+) -> list[dict[str, Any]]:
+    plan_amount = int(plan["amount"])
+    funeral_service_amount = int(plan["funeral_service_amount"])
+    tower_amount = int(plan["tower_amount"])
+    source_ref = "保單條款第十三條至第十七條、第二十三條及附表三"
+    plan_condition = (
+        f"{plan['plan_label']}約定價格為新臺幣 {plan_amount:,} 元；"
+        f"殯葬服務價格為新臺幣 {funeral_service_amount:,} 元"
+        + (
+            f"，另含骨灰塔位 {plan['tower_number']}，塔位價格為新臺幣 {tower_amount:,} 元。"
+            if tower_amount
+            else "。"
+        )
+    )
+    entries = [
+        coverage_entry(
+            "funeral-service-or-bone-tower-plan-benefit",
+            "殯葬實物給付",
+            plan_amount,
+            "policy_recorded_limit",
+            plan_description,
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="choose_one",
+            conditions=[
+                plan_condition,
+                f"被保險人第三保單年度含以後身故、{disability_term}，或保險年齡到達 111 歲仍生存時適用。",
+                plan_selection_condition,
+                "本項實物給付終身以一次為限。",
+            ],
+        ),
+        coverage_entry(
+            "death-first-two-policy-years",
+            "第一至第二保單年度身故保險金",
+            None,
+            "policy_recorded_limit",
+            "第一及第二保單年度身故時，按保險金額、保單價值準備金及保費總和三者取最大值給付。",
+            source_ref,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="face_amount_or_reserve_or_premium_total",
+            conditions=[
+                "此期間僅給付現金，無殯葬實物給付責任。",
+                "若被保險人為受監護宣告尚未撤銷者，身故給付改為喪葬費用保險金並受法定上限限制。",
+            ],
+        ),
+        coverage_entry(
+            "death-after-third-policy-year-cash-balance",
+            "第三保單年度後身故現金餘額",
+            None,
+            "policy_recorded_limit",
+            "第三保單年度起身故時，先以保險金額、保單價值準備金及保費總和三者取最大值，再扣除本方案殯葬實物給付約定價格後給付餘額。",
+            source_ref,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="face_amount_or_reserve_or_premium_total_minus_plan_price",
+            conditions=[
+                plan_condition,
+                "本現金餘額與殯葬實物給付一併構成第三保單年度後的身故給付架構。",
+            ],
+        ),
+        coverage_entry(
+            "death-cash-conversion-exception",
+            "身故實物給付改領現金",
+            plan_amount,
+            "policy_recorded_limit",
+            "被保險人身故給付殯葬實物給付時，若符合條款第二十三條指定情形，受益人可改領本方案約定價格之現金。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            conditions=[
+                plan_condition,
+                "受益人證明已委請他人提供殯葬服務或購置骨灰塔位。",
+                "受益人或被保險人已遷離投保時住所地之縣市。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-first-two-policy-years",
+            f"第一至第二保單年度{disability_term}保險金",
+            None,
+            "policy_recorded_limit",
+            f"第一及第二保單年度{disability_term}時，按保險金額、保單價值準備金及保費總和三者取最大值給付。",
+            source_ref,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="face_amount_or_reserve_or_premium_total",
+            conditions=[f"同時致成兩項以上{disability_term}程度時，僅給付一項{disability_term}保險金。"],
+        ),
+        coverage_entry(
+            "total-disability-after-third-policy-year-cash-balance",
+            f"第三保單年度後{disability_term}現金餘額",
+            None,
+            "policy_recorded_limit",
+            f"第三保單年度起{disability_term}時，先以保險金額、保單價值準備金及保費總和三者取最大值，再扣除本方案殯葬實物給付約定價格後給付餘額。",
+            source_ref,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="face_amount_or_reserve_or_premium_total_minus_plan_price",
+            conditions=[
+                plan_condition,
+                f"{disability_term}或 111 歲祝壽情境下，被保險人可選擇按本方案約定價格改領現金。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-age-111-cash-balance",
+            "111 歲祝壽保險金現金餘額",
+            None,
+            "policy_recorded_limit",
+            "保險年齡到達 111 歲仍生存時，先以保險金額、保單價值準備金及保費總和三者取最大值，再扣除本方案殯葬實物給付約定價格後給付餘額。",
+            source_ref,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="face_amount_or_reserve_or_premium_total_minus_plan_price",
+            conditions=[
+                plan_condition,
+                "111 歲祝壽情境下，被保險人可選擇按本方案約定價格改領現金。",
+            ],
+        ),
+        coverage_entry(
+            "non-attributable-unavailable-cash",
+            "非可歸責於公司無法提供實物時改領現金",
+            plan_amount,
+            "policy_recorded_limit",
+            "若因不可歸責於保險公司之事由無法提供殯葬服務或骨灰塔位，得按本方案約定價格改以現金取代實物給付責任。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            conditions=[plan_condition],
+        ),
+        coverage_entry(
+            "company-fault-funeral-service-unavailable-cash",
+            "可歸責於公司無法提供殯葬服務時改領現金",
+            funeral_service_amount * 11 // 10,
+            "policy_recorded_limit",
+            "若因可歸責於保險公司之事由無法提供殯葬服務，按殯葬服務約定價格 1.1 倍改以現金給付。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            conditions=[
+                f"殯葬服務價格為新臺幣 {funeral_service_amount:,} 元，1.1 倍為新臺幣 {funeral_service_amount * 11 // 10:,} 元。",
+            ],
+        ),
+        coverage_entry(
+            "premium-waiver-disability-grade-two-to-six",
+            f"第二至第六級{waiver_term}豁免保險費",
+            None,
+            "policy_recorded_limit",
+            f"繳費期間內因疾病或意外傷害事故致成附表二第二級至第六級{waiver_term}程度之一，自診斷確定日翌日起免繳本契約未到期保險費。",
+            source_ref,
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            conditions=["豁免後契約繼續有效，但不退還當期已繳保險費之未滿期保險費。"],
+        ),
+    ]
+    if tower_amount:
+        entries.append(
+            coverage_entry(
+                "company-fault-bone-tower-unavailable-cash",
+                "可歸責於公司無法提供骨灰塔位時改領現金",
+                tower_amount * 11 // 10,
+                "policy_recorded_limit",
+                "若因可歸責於保險公司之事由無法提供指定層別骨灰塔位，得改提供不低於原等級之其他骨灰塔位，或按塔位約定價格 1.1 倍改以現金給付。",
+                source_ref,
+                calculation_basis="fixed_amount",
+                amount_role="payout",
+                limit_scope="per_event",
+                aggregation_rule="choose_one",
+                conditions=[
+                    f"骨灰塔位 {plan['tower_number']} 價格為新臺幣 {tower_amount:,} 元，1.1 倍為新臺幣 {tower_amount * 11 // 10:,} 元。",
+                ],
+            )
+        )
+    return entries
+
+
+def taiwan_funeral_service_whole_life_early_plan_specs() -> list[dict[str, Any]]:
+    specs: list[dict[str, Any]] = []
+    for index, (label, amount) in enumerate(
+        zip(
+            TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_PLAN_LABELS,
+            TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_PLAN_AMOUNTS,
+            strict=True,
+        ),
+        start=1,
+    ):
+        tower_number = None if index == 1 else index - 1
+        specs.append(
+            {
+                "value": f"plan-{index}",
+                "label": (
+                    f"方案{label}：殯葬服務"
+                    if tower_number is None
+                    else f"方案{label}：殯葬服務 + 塔位 {tower_number}"
+                ),
+                "plan_label": f"方案{label}",
+                "amount": amount,
+                "funeral_service_amount": 210_000,
+                "tower_number": tower_number,
+                "tower_amount": 0 if tower_number is None else amount - 210_000,
+            }
+        )
+    return specs
+
+
+def taiwan_funeral_service_whole_life_early_plan_entries_for_plan(
+    plan: dict[str, Any],
+) -> list[dict[str, Any]]:
+    plan_amount = int(plan["amount"])
+    source_ref = "保單條款第十三條至第十五條、第二十二條、第二十三條及附表一"
+    plan_condition = (
+        f"{plan['plan_label']}保險金額為新臺幣 {plan_amount:,} 元；"
+        + (
+            "提供殯葬服務。"
+            if plan["tower_number"] is None
+            else f"提供殯葬服務及骨灰塔位 {plan['tower_number']}。"
+        )
+    )
+    return [
+        coverage_entry(
+            "funeral-service-or-bone-tower-plan-benefit",
+            "殯葬實物給付",
+            plan_amount,
+            "policy_recorded_limit",
+            "第三保單年度起身故時，依保險金額對應投保方案提供殯葬服務；方案二至方案十九另含指定骨灰塔位。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="choose_one",
+            conditions=[
+                plan_condition,
+                "殯葬服務於事故發生時，指定中式火化喪葬服務或西式火化喪葬服務擇一辦理。",
+                "本保險殯葬實物給付區域以台灣本島為限，不包含金門、馬祖、澎湖及其他離島地區。",
+                "本項實物給付終身以一次為限。",
+            ],
+        ),
+        coverage_entry(
+            "death-first-policy-year",
+            "第一保單年度身故保險金或喪葬費用保險金",
+            plan_amount * 20 // 100,
+            "policy_recorded_limit",
+            "第一保單年度內身故，按身故日保險金額 20% 與保單價值準備金二者取較大值給付。",
+            source_ref,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=20,
+            unit_key="face_amount_or_policy_reserve",
+            conditions=[
+                "此期間僅給付現金，無殯葬實物給付責任。",
+                "實際給付仍須與身故日保單價值準備金比較後取較大值。",
+            ],
+        ),
+        coverage_entry(
+            "death-second-policy-year",
+            "第二保單年度身故保險金或喪葬費用保險金",
+            plan_amount * 40 // 100,
+            "policy_recorded_limit",
+            "第二保單年度內身故，按身故日保險金額 40% 與保單價值準備金二者取較大值給付。",
+            source_ref,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=40,
+            unit_key="face_amount_or_policy_reserve",
+            conditions=[
+                "此期間僅給付現金，無殯葬實物給付責任。",
+                "實際給付仍須與身故日保單價值準備金比較後取較大值。",
+            ],
+        ),
+        coverage_entry(
+            "death-after-third-policy-year-service-exception",
+            "第三保單年度後身故實物給付改現金",
+            plan_amount,
+            "policy_recorded_limit",
+            "第三保單年度起身故且符合條款所列不提供殯葬實物給付情形時，改按身故日保險金額給付身故保險金或喪葬費用保險金。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            conditions=[
+                plan_condition,
+                "例外情形包含已委請他人提供內容、減少保險金額、減額繳清、欠繳保費或借款未清償、失蹤死亡宣告等。",
+                "喪葬費用保險金另受條款所定法定限額規則限制。",
+            ],
+        ),
+        coverage_entry(
+            "non-attributable-unavailable-cash",
+            "不可歸責公司無法提供實物時改領現金",
+            plan_amount,
+            "policy_recorded_limit",
+            "若因不可歸責於保險公司之事由致無法提供殯葬實物給付內容，得按保險金額改以現金取代實物給付責任。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            conditions=[plan_condition],
+        ),
+        coverage_entry(
+            "company-fault-unavailable-cash",
+            "可歸責公司無法提供實物時改領現金",
+            plan_amount * 11 // 10,
+            "policy_recorded_limit",
+            "若因可歸責於保險公司之事由致無法提供殯葬實物給付內容，得改提供不低於原等級之其他內容，或按保險金額 1.1 倍改以現金給付。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            conditions=[
+                f"{plan['plan_label']}保險金額為新臺幣 {plan_amount:,} 元，1.1 倍為新臺幣 {plan_amount * 11 // 10:,} 元。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-age-111-benefit",
+            "祝壽保險金",
+            plan_amount,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間且保險年齡到達 111 歲之保單週年日仍生存時，按保險金額給付祝壽保險金。",
+            source_ref,
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_policy",
+            conditions=["給付祝壽保險金後，本契約效力即行終止。"],
+        ),
+    ]
+
+
+def parse_taiwan_funeral_service_whole_life_early_plan(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_funeral_service_whole_life_early_plan_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_PLAN_PRODUCT_VERSIONS[
+        product_id
+    ]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "台灣人壽龍長壽終身壽險(實物給付型)",
+        "殯葬實物給付",
+        "第三保單年度",
+        "身故保險金或喪葬費用保險金",
+        "第一保單年度身故者,按身故日之保險金額的百分之二十與保單價值準備金二者取其較大值給付",
+        "第二保單年度身故者,按身故日之保險金額的百分之四十與保單價值準備金二者取其較大值給付",
+        "保險年齡到達一百十一歲",
+        "附表一:保險金額對應投保方案之殯葬實物給付內容",
+        "中式火化喪葬服務",
+        "西式火化喪葬服務",
+        "骨灰塔位",
+        "龍巖",
+        "0800-099-098",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    if "完全失能" in text or "完全殘廢" in text or "第二級至第六級" in text:
+        return None
+    expected_amounts = {
+        f"方案{label}": amount
+        for label, amount in zip(
+            TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_PLAN_LABELS,
+            TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_PLAN_AMOUNTS,
+            strict=True,
+        )
+    }
+    if taiwan_funeral_service_whole_life_early_plan_amounts(text) != expected_amounts:
+        return None
+    specs = taiwan_funeral_service_whole_life_early_plan_specs()
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "保險金額對應投保方案",
+        "selection_guidance": "請依保單面頁或投保文件選擇方案一至方案十九；選定方案後，保障金額依條款附表一保險金額呈現。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "revision_date": version["revision_date"],
+            "revision_basis": version["revision_basis"],
+            "service_provider": "龍巖股份有限公司",
+            "service_plan_count": 19,
+            "funeral_service_amount": 210_000,
+            "tower_plan_count": 18,
+            "funeral_service_from_policy_year": 3,
+            "cash_conversion_allowed": False,
+            "non_attributable_unavailable_cash_rate_percent": 100,
+            "attributable_unavailable_cash_rate_percent": 110,
+            "first_policy_year_face_amount_rate_percent": 20,
+            "second_policy_year_face_amount_rate_percent": 40,
+            "maturity_age": 111,
+            "plan_price_includes_funeral_service": True,
+            "service_scope_taiwan_main_island": True,
+            "service_plan_amounts_fixed_from_table": True,
+            "death_cash_uses_policy_reserve_floor": True,
+            "funeral_benefit_limit_rule": True,
+            "supervision_wording": version["supervision_wording"],
+        },
+        "plan_options": [
+            {
+                "value": spec["value"],
+                "label": spec["label"],
+                "coverage_entries": taiwan_funeral_service_whole_life_early_plan_entries_for_plan(
+                    spec
+                ),
+            }
+            for spec in specs
+        ],
+    }
+
+
+def taiwan_funeral_service_whole_life_early_tower_options(
+    text: str,
+    funeral_service_amount: int,
+) -> list[dict[str, Any]]:
+    table_start = text.rfind("【骨灰塔位】")
+    if table_start < 0:
+        return []
+    table = compact_table_text(text[table_start:])
+    if "高低層別中層別" not in table or "約定價格約定價格" not in table:
+        return []
+
+    row_starts = [
+        match.start()
+        for match in re.finditer(r"(豪華個人位|典雅個人位|標準個人位)", table)
+    ]
+    if len(row_starts) != len(TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_TOWER_AMOUNT_PAIRS):
+        return []
+
+    rows: list[dict[str, Any]] = []
+    for index, start in enumerate(row_starts):
+        end = row_starts[index + 1] if index + 1 < len(row_starts) else len(table)
+        segment = table[start:end]
+        grade_match = re.match(r"(豪華個人位|典雅個人位|標準個人位)", segment)
+        name_match = re.search(r"(?:--|—|-)([^-—]+?)第", segment)
+        amount_matches = [int(value) for value in re.findall(r"(\d{3,6})元", segment)]
+        if not grade_match or not name_match or len(amount_matches) < 2:
+            return []
+        rows.append(
+            {
+                "grade": grade_match.group(1),
+                "name": name_match.group(1),
+                "low_high_amount": amount_matches[-2],
+                "middle_amount": amount_matches[-1],
+            }
+        )
+
+    if [
+        (row["low_high_amount"], row["middle_amount"])
+        for row in rows
+    ] != TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_TOWER_AMOUNT_PAIRS:
+        return []
+
+    options: list[dict[str, Any]] = []
+    for index, row in enumerate(rows, start=1):
+        for layer_key, layer_label, tower_amount in (
+            ("low-high", "高低層別", row["low_high_amount"]),
+            ("middle", "中層別", row["middle_amount"]),
+        ):
+            label = f"{row['grade']} {row['name']} {layer_label}"
+            options.append(
+                {
+                    "value": f"tower-{index}-{layer_key}",
+                    "label": label,
+                    "plan_label": label,
+                    "amount": funeral_service_amount + tower_amount,
+                    "funeral_service_amount": funeral_service_amount,
+                    "tower_number": f"{index}-{layer_label}",
+                    "tower_amount": tower_amount,
+                    "tower_grade": row["grade"],
+                    "tower_name": row["name"],
+                    "tower_layer": layer_label,
+                }
+            )
+    return options
+
+
+def parse_taiwan_funeral_service_whole_life_early_tower_plan(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_funeral_service_whole_life_early_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_EARLY_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "殯葬實物給付",
+        "第三保單年度",
+        "保險年齡到達一百十一歲",
+        "附表三",
+        "殯葬實物給付內容",
+        "中式火化喪葬服務",
+        "西式火化喪葬服務",
+        "骨灰塔位",
+        "龍巖",
+        "完全殘廢",
+        "第二級至第六級殘廢",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+
+    funeral_service_amount = int(version["funeral_service_amount"])
+    service_amounts = {
+        int(value.replace(",", ""))
+        for value in re.findall(r"約定價格為新臺幣\s*([\d,]+)\s*元", text)
+    }
+    if service_amounts != {funeral_service_amount}:
+        return None
+
+    options = taiwan_funeral_service_whole_life_early_tower_options(
+        text,
+        funeral_service_amount,
+    )
+    if len(options) != 18:
+        return None
+
+    premium_total_wording = (
+        "annual_premium_total"
+        if "年繳應繳保險費總和" in text
+        else "premium_total"
+    )
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "骨灰塔位指定選項",
+        "selection_guidance": "請依保單面頁或投保文件選擇投保時指定的骨灰塔位標的與層別；殯葬服務於事故發生時中式或西式擇一辦理。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "service_provider": "龍巖股份有限公司",
+            "funeral_service_option_count": 2,
+            "funeral_service_amount": funeral_service_amount,
+            "tower_table_row_count": 9,
+            "tower_option_count": 18,
+            "tower_table_revision": "early-two-layer",
+            "funeral_service_from_policy_year": 3,
+            "cash_conversion_allowed_for_disability_or_maturity": True,
+            "cash_conversion_allowed_for_death_exceptions": True,
+            "non_attributable_unavailable_cash_rate_percent": 100,
+            "attributable_unavailable_cash_rate_percent": 110,
+            "maturity_age": 111,
+            "premium_waiver_available": True,
+            "premium_waiver_disability_grade_min": 2,
+            "premium_waiver_disability_grade_max": 6,
+            "plan_price_includes_funeral_service": True,
+            "plan_price_deducted_from_life_cash_benefits": True,
+            "service_scope_taiwan_main_island": True,
+            "service_plan_amounts_fixed_from_table": True,
+            "premium_total_wording": premium_total_wording,
+            "disability_terminology": "完全殘廢",
+        },
+        "plan_options": [
+            {
+                "value": option["value"],
+                "label": option["label"],
+                "coverage_entries": taiwan_funeral_service_whole_life_entries_for_plan(
+                    option,
+                    plan_description="第三保單年度起，提供殯葬服務乙次及投保時指定之骨灰塔位乙座。",
+                    plan_selection_condition="殯葬服務於事故發生時指定中式或西式火化喪葬服務擇一辦理；骨灰塔位依投保時指定標的與層別辦理。",
+                    disability_term="完全殘廢",
+                    waiver_term="殘廢",
+                ),
+            }
+            for option in options
+        ],
+    }
+
+
+def parse_taiwan_funeral_service_whole_life_plan(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_funeral_service_whole_life_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_FUNERAL_SERVICE_WHOLE_LIFE_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "殯葬實物給付",
+        "第三保單年度",
+        "保險年齡到達一百十一歲",
+        "附表三：殯葬實物給付內容",
+        "中式火化喪葬服務",
+        "西式火化喪葬服務",
+        "骨灰塔位",
+        "龍巖",
+        "第二級至第六級失能",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    funeral_service_amount = int(version["funeral_service_amount"])
+    specs = taiwan_funeral_service_whole_life_plan_specs(funeral_service_amount)
+    expected_table_amounts = {
+        spec["plan_label"]: int(spec["amount"])
+        for spec in specs
+    }
+    if taiwan_funeral_service_whole_life_table_amounts(text) != expected_table_amounts:
+        return None
+    service_amount_signal = f"約定價格為新臺幣 {funeral_service_amount:,} 元"
+    if service_amount_signal not in text:
+        return None
+    premium_total_wording = (
+        "annual_premium_total"
+        if "年繳應繳保險費總和" in text
+        else "premium_total"
+    )
+    return {
+        "selection_type": "plan",
+        "input_mode": "plan",
+        "selection_source": "terms",
+        "selection_label": "殯葬實物給付方案",
+        "selection_guidance": "請依保單面頁或投保文件選擇方案一至方案十一；選定方案後，保障金額依條款附表三約定價格呈現。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "service_provider": "龍巖股份有限公司",
+            "service_plan_count": 11,
+            "funeral_service_amount": funeral_service_amount,
+            "tower_plan_count": 10,
+            "funeral_service_from_policy_year": 3,
+            "cash_conversion_allowed_for_disability_or_maturity": True,
+            "cash_conversion_allowed_for_death_exceptions": True,
+            "non_attributable_unavailable_cash_rate_percent": 100,
+            "attributable_unavailable_cash_rate_percent": 110,
+            "maturity_age": 111,
+            "premium_waiver_available": True,
+            "premium_waiver_disability_grade_min": 2,
+            "premium_waiver_disability_grade_max": 6,
+            "plan_price_includes_funeral_service": True,
+            "plan_price_deducted_from_life_cash_benefits": True,
+            "service_scope_taiwan_main_island": True,
+            "service_plan_amounts_fixed_from_table": True,
+            "premium_total_wording": premium_total_wording,
+        },
+        "plan_options": [
+            {
+                "value": spec["value"],
+                "label": spec["label"],
+                "coverage_entries": taiwan_funeral_service_whole_life_entries_for_plan(spec),
+            }
+            for spec in specs
+        ],
+    }
+
+
+TAIWAN_YIBAO_3XIANG_MEDICAL_WHOLE_LIFE_PRODUCT_VERSIONS = {
+    "202191MZ1B83123A11Z10000000": {
+        "terms_revision": "original",
+        "filing_date": "2020-06-15",
+        "filing_number": "台壽字第 1092320097 號函備查",
+    },
+    "202191MZ1B83123A11Z10000001": {
+        "terms_revision": "first-regulatory-revision",
+        "filing_date": "2020-06-15",
+        "filing_number": "台壽字第 1092320097 號函備查",
+        "revision_date": "2020-09-01",
+        "revision_basis": "依 109 年 7 月 8 日金管保壽字第 1090423012 號函修正",
+    },
+    "202191MZ1B83123A11Z10000002": {
+        "terms_revision": "second-company-revision",
+        "filing_date": "2020-06-15",
+        "filing_number": "台壽字第 1092320097 號函備查",
+        "revision_date": "2021-07-01",
+        "revision_basis": "台壽字第 1102320050 號函備查修正",
+    },
+    "202191MZ1B83123A11Z10000003": {
+        "terms_revision": "third-regulatory-revision",
+        "filing_date": "2020-06-15",
+        "filing_number": "台壽字第 1092320097 號函備查",
+        "revision_date": "2023-02-09",
+        "revision_basis": "依 111 年 12 月 8 日金管保壽字第 1110152342 號函修正",
+    },
+}
+
+
+def is_taiwan_yibao_3xiang_medical_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_YIBAO_3XIANG_MEDICAL_WHOLE_LIFE_PRODUCT_VERSIONS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def taiwan_yibao_3xiang_medical_entries() -> list[dict[str, Any]]:
+    return [
+        coverage_entry(
+            "initial-cancer-benefit",
+            "初期癌症保險金",
+            None,
+            "policy_recorded_limit",
+            "初次罹患條款約定癌症(初期)時，按診斷確定日之保險金額的 5 倍給付。",
+            "保單條款第十三條，初期癌症保險金的給付",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="lifetime",
+            multiplier=5,
+            unit_key="insurance_amount",
+            conditions=["癌症等待期間 90 日", "同時或先後罹患二項以上癌症(初期)時僅給付一項", "申領以一次為限"],
+        ),
+        coverage_entry(
+            "mild-cancer-benefit",
+            "輕度癌症保險金",
+            None,
+            "policy_recorded_limit",
+            "初次罹患條款約定癌症(輕度)時，按診斷確定日之保險金額的 20 倍給付。",
+            "保單條款第十四條，輕度癌症保險金的給付",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="lifetime",
+            multiplier=20,
+            unit_key="insurance_amount",
+            conditions=["癌症等待期間 90 日", "同時或先後罹患二項以上癌症(輕度)時僅給付一項", "申領以一次為限"],
+        ),
+        coverage_entry(
+            "severe-cancer-benefit",
+            "重度癌症保險金",
+            None,
+            "policy_recorded_limit",
+            "初次罹患條款約定癌症(重度)時，按診斷確定日之保險金額的 100 倍給付。",
+            "保單條款第十五條，重度癌症保險金的給付",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="lifetime",
+            multiplier=100,
+            unit_key="insurance_amount",
+            conditions=["癌症等待期間 90 日", "同時或先後罹患二項以上癌症(重度)時僅給付一項", "申領以一次為限"],
+        ),
+        coverage_entry(
+            "hospital-daily-benefit",
+            "住院日額保險金",
+            None,
+            "policy_recorded_limit",
+            "因條款約定疾病或傷害住院診療時，按保險金額乘以實際住院日數給付。",
+            "保單條款第十六條，住院日額保險金的給付",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="per_day",
+            multiplier=1,
+            unit_key="insurance_amount",
+            conditions=["疾病等待期間 30 日", "同一保單年度同一次住院最高給付實際住院日數 365 日"],
+        ),
+        coverage_entry(
+            "hospital-care-benefit",
+            "住院照護保險金",
+            None,
+            "policy_recorded_limit",
+            "因條款約定疾病或傷害住院診療時，按保險金額的三分之二乘以實際住院日數給付。",
+            "保單條款第十七條，住院照護保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_day",
+            rate_percent=66.6667,
+            unit_key="insurance_amount",
+            conditions=["疾病等待期間 30 日", "同一保單年度同一次住院最高給付實際住院日數 365 日"],
+        ),
+        coverage_entry(
+            "inpatient-surgery-specific-treatment-benefit",
+            "住院手術暨特定處置醫療保險金",
+            None,
+            "policy_recorded_limit",
+            "住院期間接受附表一手術或附表二特定處置治療時，按保險金額的 5 倍給付。",
+            "保單條款第十八條，住院手術暨特定處置醫療保險金的給付",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="per_event",
+            multiplier=5,
+            unit_key="insurance_amount",
+            conditions=[
+                "疾病等待期間 30 日",
+                "同一次住院手術或特定處置同一治療位置接受兩項以上時僅給付一次",
+                "同一項手術或特定處置同一治療位置於同一保單年度內住院或門診接受二次以上時僅給付一次",
+                "不同手術或特定處置位置接受兩項以上時分別給付",
+                "非附表項目仍需符合全民健康保險醫療服務給付項目及支付標準所列手術，且不得屬除外項目",
+            ],
+        ),
+        coverage_entry(
+            "outpatient-surgery-specific-treatment-benefit",
+            "門診手術暨特定處置醫療保險金",
+            None,
+            "policy_recorded_limit",
+            "於醫院或診所門診期間接受附表一手術或附表二特定處置治療時，按保險金額給付。",
+            "保單條款第十九條，門診手術暨特定處置醫療保險金的給付",
+            calculation_basis="table_multiplier",
+            amount_role="payout",
+            limit_scope="per_event",
+            multiplier=1,
+            unit_key="insurance_amount",
+            conditions=[
+                "疾病等待期間 30 日",
+                "同一次門診手術或特定處置同一治療位置接受兩項以上時僅給付一次",
+                "同一項手術或特定處置同一治療位置於同一保單年度內住院或門診接受二次以上時僅給付一次",
+                "不同手術或特定處置位置接受兩項以上時分別給付",
+                "非附表項目仍需符合全民健康保險醫療服務給付項目及支付標準所列手術，且不得屬除外項目",
+            ],
+        ),
+        coverage_entry(
+            "no-hospital-claim-bonus",
+            "未住院無理賠回饋保險金",
+            None,
+            "policy_recorded_limit",
+            "每一保單年度末未曾因當年度保險事故申領住院日額、住院照護、住院手術暨特定處置保險金，且仍生存時，按年繳應繳保險費總和的 1.2% 給付。",
+            "保單條款第二十條，未住院無理賠回饋保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="annual",
+            rate_percent=1.2,
+            unit_key="annual_premium_total",
+            conditions=["自第一保單年度起", "無理賠紀錄期間屆滿且被保險人仍生存", "不符條件時要保人或應得之人須返還已給付金額"],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人身故時，按身故日之壽險部分保險金額與保單價值準備金二者取最大值給付；受監護宣告尚未撤銷者改為喪葬費用保險金。",
+            "保單條款第二十一條，身故保險金或喪葬費用保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="life_part_insured_amount",
+            conditions=["需保單壽險部分保險金額及保單價值準備金", "喪葬費用保險金受主管機關限額與多張保單合計規則限制"],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡到達 111 歲之保單週年日仍生存時，按保險年齡 110 歲屆滿之年繳應繳保險費總和給付。",
+            "保單條款第二十二條，祝壽保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="annual_premium_total_at_age_110",
+            conditions=["給付後契約效力終止"],
+        ),
+        coverage_entry(
+            "premium-waiver",
+            "豁免保險費",
+            None,
+            "policy_recorded_limit",
+            "繳費期間內因疾病或傷害致成附表三第一級至第六級失能程度之一者，自診斷確定日翌日起免繳未到期保險費。",
+            "保單條款第二十三條，豁免保險費",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            conditions=["疾病等待期間 30 日", "附表三第一級至第六級失能程度", "豁免後不再受理減額繳清保險金額變更申請"],
+        ),
+        coverage_entry(
+            "premium-refund-with-interest-under-age-16",
+            "所繳保險費並加計利息的退還",
+            None,
+            "policy_recorded_limit",
+            "被保險人於保險年齡 16 歲前身故時，退還所繳保險費並加計年利率 1.75% 複利至身故日之利息。",
+            "保單條款第二十四條，所繳保險費並加計利息的退還",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="paid_premium_with_1_75_percent_compound_interest",
+            conditions=["不適用第二十一條身故保險金或喪葬費用保險金約定", "所繳保險費以保險費率表所載金額為基礎，除保險金額變更另有約定外"],
+        ),
+        coverage_entry(
+            "medical-benefit-lifetime-cap",
+            "醫療保險金給付總額上限",
+            25_000_000,
+            "policy_total",
+            "契約有效期間內，第十六條至第十九條各項保險金給付總額上限為新臺幣 2,500 萬元。",
+            "保單條款第三十二條，保險金給付總額之上限",
+            calculation_basis="fixed_amount",
+            amount_role="limit",
+            limit_scope="lifetime",
+            aggregation_rule="cumulative_cap",
+            conditions=["適用住院日額、住院照護、住院手術暨特定處置、門診手術暨特定處置醫療保險金", "辦理減額繳清保險時，累計已申領金額與上限依減少比例同時縮小", "累計給付達上限時契約效力終止"],
+        ),
+    ]
+
+
+def parse_taiwan_yibao_3xiang_medical_whole_life_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_yibao_3xiang_medical_whole_life_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_YIBAO_3XIANG_MEDICAL_WHOLE_LIFE_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = [
+        "台灣人壽益保3享醫療終身保險",
+        "初期癌症保險金",
+        "輕度癌症保險金",
+        "重度癌症保險金",
+        "住院日額保險金",
+        "住院照護保險金",
+        "住院手術暨特定處置醫療保險金",
+        "門診手術暨特定處置醫療保險金",
+        "未住院無理賠回饋保險金",
+        "身故保險金或喪葬費用保險金",
+        "祝壽保險金",
+        "豁免保險費",
+        "所繳保險費並加計利息",
+        "保險金給付總額之上限",
+        "新臺幣2,500萬元",
+    ]
+    if any(signal not in dense_text for signal in required_signals):
+        return None
+    formula_signals = [
+        "保險金額的5倍",
+        "保險金額的20倍",
+        "保險金額的100倍",
+        "保險金額乘以其實際住院日數",
+        "保險金額的三分之二",
+        "年繳應繳保險費總和的1.2%",
+        "壽險部分保險金額",
+        "保單價值準備金",
+        "年利率1.75%",
+    ]
+    if any(signal not in dense_text for signal in formula_signals):
+        return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單面頁所載保險金額；住院、癌症、手術及特定處置給付多以保險金額倍數計算，身故、祝壽與無理賠回饋仍需搭配壽險部分保險金額、保單價值準備金或年繳應繳保險費總和確認。",
+        "version_characteristics": {
+            "product_family": "taiwan-yibao-3xiang-medical-whole-life",
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "revision_date": version.get("revision_date"),
+            "revision_basis": version.get("revision_basis"),
+            "disease_waiting_days": 30,
+            "cancer_waiting_days": 90,
+            "initial_cancer_multiplier": 5,
+            "mild_cancer_multiplier": 20,
+            "severe_cancer_multiplier": 100,
+            "hospital_daily_multiplier": 1,
+            "hospital_care_fraction": "2/3",
+            "inpatient_surgery_specific_treatment_multiplier": 5,
+            "outpatient_surgery_specific_treatment_multiplier": 1,
+            "no_hospital_claim_bonus_rate_percent": 1.2,
+            "premium_refund_interest_rate_percent": 1.75,
+            "maturity_age": 111,
+            "premium_waiver_disability_levels": "1-6",
+            "medical_lifetime_cap_amount": 25_000_000,
+            "medical_lifetime_cap_currency": "TWD",
+            "surgery_table_required": True,
+            "specific_treatment_table_required": True,
+            "policy_face_amount_required": True,
+            "life_part_insured_amount_required_for_death": True,
+            "policy_reserve_required_for_death": True,
+            "annual_premium_total_required": True,
+            "health_surrender_value_available": False,
+        },
+        "coverage_entries": taiwan_yibao_3xiang_medical_entries(),
+    }
+
+
+TAIWAN_YIXIANG_HEALTH_MEDICAL_WHOLE_LIFE_PRODUCT_VERSIONS = {
+    "202191MZ1B89723A11Z10000000": {
+        "terms_revision": "original",
+        "filing_date": "2021-10-29",
+        "filing_number": "台壽字第 1102320138 號函備查",
+    },
+    "202191MZ1B89723A11Z10000001": {
+        "terms_revision": "first-regulatory-revision",
+        "filing_date": "2021-10-29",
+        "filing_number": "台壽字第 1102320138 號函備查",
+        "revision_date": "2023-02-09",
+        "revision_basis": "依 111 年 12 月 8 日金管保壽字第 1110152342 號函修正",
+    },
+}
+
+
+def is_taiwan_yixiang_health_medical_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_YIXIANG_HEALTH_MEDICAL_WHOLE_LIFE_PRODUCT_VERSIONS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def taiwan_yixiang_health_medical_entries() -> list[dict[str, Any]]:
+    return [
+        coverage_entry(
+            "initial-cancer-benefit",
+            "初期癌症保險金",
+            25_000,
+            "policy_recorded_limit",
+            "初次罹患條款約定癌症(初期)時，按診斷確定日之保險金額 5,000 元的 5 倍給付。",
+            "保單條款第十三條，初期癌症保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="lifetime",
+            multiplier=5,
+            unit_key="fixed_policy_face_amount",
+            conditions=["癌症等待期間 90 日", "同時或先後罹患二項以上癌症(初期)時僅給付一項", "申領以一次為限"],
+        ),
+        coverage_entry(
+            "mild-cancer-benefit",
+            "輕度癌症保險金",
+            50_000,
+            "policy_recorded_limit",
+            "初次罹患條款約定癌症(輕度)時，按診斷確定日之保險金額 5,000 元的 10 倍給付。",
+            "保單條款第十四條，輕度癌症保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="lifetime",
+            multiplier=10,
+            unit_key="fixed_policy_face_amount",
+            conditions=[
+                "癌症等待期間 90 日",
+                "同時或先後罹患二項以上癌症(輕度)時僅給付一項",
+                "同時診斷初期及輕度癌症時僅給付輕度癌症保險金",
+                "申領以一次為限",
+            ],
+        ),
+        coverage_entry(
+            "severe-cancer-benefit",
+            "重度癌症保險金",
+            250_000,
+            "policy_recorded_limit",
+            "初次罹患條款約定癌症(重度)時，按診斷確定日之保險金額 5,000 元的 50 倍給付。",
+            "保單條款第十五條，重度癌症保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="lifetime",
+            multiplier=50,
+            unit_key="fixed_policy_face_amount",
+            conditions=[
+                "癌症等待期間 90 日",
+                "同時或先後罹患二項以上癌症(重度)時僅給付一項",
+                "同時診斷初期、輕度及重度癌症時僅給付重度癌症保險金",
+                "申領以一次為限",
+            ],
+        ),
+        coverage_entry(
+            "hospital-daily-benefit",
+            "住院日額保險金",
+            5_000,
+            "policy_recorded_limit",
+            "因條款約定疾病或傷害住院診療時，按保險金額 5,000 元乘以實際住院日數給付。",
+            "保單條款第十六條，住院日額保險金的給付",
+            calculation_basis="per_day",
+            amount_role="payout",
+            limit_scope="per_day",
+            multiplier=1,
+            unit_key="fixed_policy_face_amount",
+            conditions=["疾病等待期間 30 日", "同一保單年度同一次住院最高給付實際住院日數 365 日"],
+        ),
+        coverage_entry(
+            "special-room-daily-benefit",
+            "特別病房日額保險金",
+            5_000,
+            "policy_recorded_limit",
+            "進住特別病房住院診療時，除住院日額外，另按實際進住特別病房日數乘以保險金額 5,000 元給付。",
+            "保單條款第十七條，特別病房日額保險金的給付",
+            calculation_basis="per_day",
+            amount_role="payout",
+            limit_scope="per_day",
+            multiplier=1,
+            unit_key="fixed_policy_face_amount",
+            conditions=[
+                "疾病等待期間 30 日",
+                "特別病房包含加護病房、燒燙傷病房、隔離病房及安寧病房",
+                "同一保單年度同一次住院最高給付實際進住特別病房日數 365 日",
+            ],
+        ),
+        coverage_entry(
+            "inpatient-surgery-specific-treatment-benefit",
+            "住院手術暨特定處置醫療保險金",
+            25_000,
+            "policy_recorded_limit",
+            "住院期間接受附表一手術或附表二特定處置治療時，按保險金額 5,000 元的 5 倍給付。",
+            "保單條款第十八條，住院手術暨特定處置醫療保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            multiplier=5,
+            unit_key="fixed_policy_face_amount",
+            conditions=[
+                "疾病等待期間 30 日",
+                "同一次住院手術或特定處置同一治療位置接受兩項以上時僅給付一次",
+                "同一項手術或特定處置同一治療位置於同一保單年度內住院或門診接受二次以上時僅給付一次",
+                "不同手術或特定處置位置接受兩項以上時分別給付",
+                "非附表項目仍需符合全民健康保險醫療服務給付項目及支付標準所列手術，且不得屬除外項目",
+            ],
+        ),
+        coverage_entry(
+            "outpatient-surgery-specific-treatment-benefit",
+            "門診手術暨特定處置醫療保險金",
+            5_000,
+            "policy_recorded_limit",
+            "於醫院或診所門診期間接受附表一手術或附表二特定處置治療時，按保險金額 5,000 元給付。",
+            "保單條款第十九條，門診手術暨特定處置醫療保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            multiplier=1,
+            unit_key="fixed_policy_face_amount",
+            conditions=[
+                "疾病等待期間 30 日",
+                "同一次門診手術或特定處置同一治療位置接受兩項以上時僅給付一次",
+                "同一項手術或特定處置同一治療位置於同一保單年度內住院或門診接受二次以上時僅給付一次",
+                "不同手術或特定處置位置接受兩項以上時分別給付",
+                "非附表項目仍需符合全民健康保險醫療服務給付項目及支付標準所列手術，且不得屬除外項目",
+            ],
+        ),
+        coverage_entry(
+            "no-hospital-claim-bonus",
+            "未住院無理賠回饋保險金",
+            None,
+            "policy_recorded_limit",
+            "每一保單年度末未曾因當年度保險事故申領第十六條至第十八條保險金且仍生存時，按年繳應繳保險費總和的 1.4% 給付。",
+            "保單條款第二十條，未住院無理賠回饋保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="annual",
+            rate_percent=1.4,
+            unit_key="annual_premium_total",
+            conditions=["自第一保單年度起", "無理賠紀錄期間屆滿且被保險人仍生存", "不符條件時要保人或應得之人須返還已給付金額"],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡 16 歲(含)以後身故時，按身故日之壽險部分保險金額(即年繳應繳保險費總和)與保單價值準備金二者取最大值給付。",
+            "保單條款第二十一條，身故保險金或喪葬費用保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_premium_total",
+            conditions=["需年繳應繳保險費總和及保單價值準備金", "喪葬費用保險金受主管機關限額與多張保單合計規則限制"],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡到達 111 歲之保單週年日仍生存時，按保險年齡 110 歲屆滿之年繳應繳保險費總和給付。",
+            "保單條款第二十二條，祝壽保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="annual_premium_total_at_age_110",
+            conditions=["給付後契約效力終止"],
+        ),
+        coverage_entry(
+            "premium-waiver",
+            "豁免保險費",
+            None,
+            "policy_recorded_limit",
+            "繳費期間內因疾病或傷害致成附表三第一級至第六級失能程度之一者，自診斷確定日翌日起免繳未到期保險費。",
+            "保單條款第二十三條，豁免保險費",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            conditions=["疾病等待期間 30 日", "附表三第一級至第六級失能程度", "豁免後不再受理減額繳清保險金額變更申請"],
+        ),
+        coverage_entry(
+            "annual-premium-total-refund-under-age-16",
+            "退還年繳應繳保險費總和",
+            None,
+            "policy_recorded_limit",
+            "被保險人於保險年齡 16 歲(不含)以前身故時，退還年繳應繳保險費總和予要保人。",
+            "保單條款第二十四條，退還年繳應繳保險費總和",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="annual_premium_total",
+            conditions=["不適用第二十一條身故保險金或喪葬費用保險金約定"],
+        ),
+        coverage_entry(
+            "medical-benefit-lifetime-cap",
+            "醫療保險金給付總額上限",
+            25_000_000,
+            "policy_total",
+            "契約有效期間內，第十六條至第十九條各項保險金給付總額上限為新臺幣 2,500 萬元。",
+            "保單條款第三十二條，保險金給付總額之上限",
+            calculation_basis="fixed_amount",
+            amount_role="limit",
+            limit_scope="lifetime",
+            aggregation_rule="cumulative_cap",
+            conditions=["適用住院日額、特別病房日額、住院手術暨特定處置、門診手術暨特定處置醫療保險金", "辦理減額繳清保險時，累計已申領金額與上限依減少比例同時縮小", "累計給付達上限時契約效力終止"],
+        ),
+    ]
+
+
+def parse_taiwan_yixiang_health_medical_whole_life_fixed(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_yixiang_health_medical_whole_life_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_YIXIANG_HEALTH_MEDICAL_WHOLE_LIFE_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = [
+        "台灣人壽益享健康醫療終身保險",
+        "該金額為新臺幣5,000元",
+        "初期癌症保險金",
+        "輕度癌症保險金",
+        "重度癌症保險金",
+        "住院日額保險金",
+        "特別病房日額保險金",
+        "住院手術暨特定處置醫療保險金",
+        "門診手術暨特定處置醫療保險金",
+        "未住院無理賠回饋保險金",
+        "身故保險金或喪葬費用保險金",
+        "祝壽保險金",
+        "豁免保險費",
+        "退還年繳應繳保險費總和",
+        "保險金給付總額之上限",
+    ]
+    if any(signal not in dense_text for signal in required_signals):
+        return None
+    formula_signals = [
+        "保險金額的5倍",
+        "保險金額的10倍",
+        "保險金額的50倍",
+        "保險金額乘以其實際住院日數",
+        "實際進住特別病房日數」乘以保險金額",
+        "保險金額的5倍給付住院手術",
+        "按保險金額給付門診手術",
+        "年繳應繳保險費總和的1.4%",
+        "給付總額上限為新臺幣2,500萬元",
+    ]
+    if any(signal not in dense_text for signal in formula_signals):
+        return None
+
+    return {
+        "selection_type": "fixed",
+        "input_mode": "fixed",
+        "selection_source": "terms",
+        "selection_label": "固定保險金額 5,000 元",
+        "selection_guidance": "本條款定義保險金額為新臺幣 5,000 元；加入此險種即可套用已整理之癌症、住院、特別病房、手術及醫療總上限。身故、祝壽與退費仍需保單年繳應繳保險費總和與保單價值準備金確認。",
+        "version_characteristics": {
+            "product_family": "taiwan-yixiang-health-medical-whole-life",
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "revision_date": version.get("revision_date"),
+            "revision_basis": version.get("revision_basis"),
+            "fixed_policy_face_amount": 5_000,
+            "fixed_policy_face_amount_currency": "TWD",
+            "disease_waiting_days": 30,
+            "newborn_metabolic_disease_waiting_exception": True,
+            "cancer_waiting_days": 90,
+            "initial_cancer_multiplier": 5,
+            "mild_cancer_multiplier": 10,
+            "severe_cancer_multiplier": 50,
+            "hospital_daily_amount": 5_000,
+            "hospital_daily_days_limit": 365,
+            "special_room_daily_amount": 5_000,
+            "special_room_days_limit": 365,
+            "inpatient_surgery_specific_treatment_amount": 25_000,
+            "outpatient_surgery_specific_treatment_amount": 5_000,
+            "no_hospital_claim_bonus_rate_percent": 1.4,
+            "no_hospital_claim_bonus_articles": "articles_16_to_18",
+            "premium_refund_under_age_16_formula": "annual_premium_total",
+            "premium_refund_interest_available": False,
+            "maturity_age": 111,
+            "premium_waiver_disability_levels": "1-6",
+            "medical_lifetime_cap_amount": 25_000_000,
+            "medical_lifetime_cap_currency": "TWD",
+            "surgery_table_required": True,
+            "specific_treatment_table_required": True,
+            "policy_face_amount_required": False,
+            "life_part_insured_amount_required_for_death": True,
+            "policy_reserve_required_for_death": True,
+            "annual_premium_total_required": True,
+            "health_surrender_value_available": False,
+        },
+        "coverage_entries": taiwan_yixiang_health_medical_entries(),
+    }
+
+
+TAIWAN_LEHUO_HEALTH_MEDICAL_WHOLE_LIFE_PRODUCT_VERSIONS = {
+    "202191MZ1B89823A11Z10000000": {
+        "terms_revision": "original",
+        "filing_date": "2021-10-29",
+        "filing_number": "台壽字第 1102320137 號函備查",
+    },
+    "202191MZ1B89823A11Z10000001": {
+        "terms_revision": "first-regulatory-revision",
+        "filing_date": "2021-10-29",
+        "filing_number": "台壽字第 1102320137 號函備查",
+        "revision_date": "2023-02-09",
+        "revision_basis": "依 111 年 12 月 8 日金管保壽字第 1110152342 號函修正",
+    },
+}
+
+
+def is_taiwan_lehuo_health_medical_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_LEHUO_HEALTH_MEDICAL_WHOLE_LIFE_PRODUCT_VERSIONS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def taiwan_lehuo_health_medical_entries() -> list[dict[str, Any]]:
+    return [
+        coverage_entry(
+            "initial-cancer-benefit",
+            "初期癌症保險金",
+            25_000,
+            "policy_recorded_limit",
+            "初次罹患條款約定癌症(初期)時，按診斷確定日之保險金額 5,000 元的 5 倍給付。",
+            "保單條款第十三條，初期癌症保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="lifetime",
+            multiplier=5,
+            unit_key="fixed_policy_face_amount",
+            conditions=["癌症等待期間 90 日", "同時或先後罹患二項以上癌症(初期)時僅給付一項", "申領以一次為限"],
+        ),
+        coverage_entry(
+            "mild-cancer-benefit",
+            "輕度癌症保險金",
+            100_000,
+            "policy_recorded_limit",
+            "初次罹患條款約定癌症(輕度)時，按診斷確定日之保險金額 5,000 元的 20 倍給付。",
+            "保單條款第十四條，輕度癌症保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="lifetime",
+            multiplier=20,
+            unit_key="fixed_policy_face_amount",
+            conditions=[
+                "癌症等待期間 90 日",
+                "同時或先後罹患二項以上癌症(輕度)時僅給付一項",
+                "同時診斷初期及輕度癌症時僅給付輕度癌症保險金",
+                "申領以一次為限",
+            ],
+        ),
+        coverage_entry(
+            "severe-cancer-benefit",
+            "重度癌症保險金",
+            500_000,
+            "policy_recorded_limit",
+            "初次罹患條款約定癌症(重度)時，按診斷確定日之保險金額 5,000 元的 100 倍給付。",
+            "保單條款第十五條，重度癌症保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="lifetime",
+            multiplier=100,
+            unit_key="fixed_policy_face_amount",
+            conditions=[
+                "癌症等待期間 90 日",
+                "同時或先後罹患二項以上癌症(重度)時僅給付一項",
+                "同時診斷初期、輕度及重度癌症時僅給付重度癌症保險金",
+                "申領以一次為限",
+            ],
+        ),
+        coverage_entry(
+            "specific-disease-benefit",
+            "特定傷病保險金",
+            500_000,
+            "policy_recorded_limit",
+            "初次罹患條款約定特定傷病時，按診斷確定日之保險金額 5,000 元的 100 倍給付。",
+            "保單條款第十六條，特定傷病保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="lifetime",
+            multiplier=100,
+            unit_key="fixed_policy_face_amount",
+            conditions=[
+                "疾病等待期間 30 日；意外傷害事故所致者不受等待期間限制",
+                "同時或先後罹患二項特定傷病時僅給付一項",
+                "申領以一次為限",
+            ],
+        ),
+        coverage_entry(
+            "hospital-daily-benefit",
+            "住院日額保險金",
+            5_000,
+            "policy_recorded_limit",
+            "因條款約定疾病或傷害住院診療時，按保險金額 5,000 元乘以實際住院日數給付。",
+            "保單條款第十七條，住院日額保險金的給付",
+            calculation_basis="per_day",
+            amount_role="payout",
+            limit_scope="per_day",
+            multiplier=1,
+            unit_key="fixed_policy_face_amount",
+            conditions=["疾病等待期間 30 日", "同一保單年度同一次住院最高給付實際住院日數 365 日"],
+        ),
+        coverage_entry(
+            "special-room-daily-benefit",
+            "特別病房日額保險金",
+            5_000,
+            "policy_recorded_limit",
+            "進住特別病房住院診療時，除住院日額外，另按實際進住特別病房日數乘以保險金額 5,000 元給付。",
+            "保單條款第十八條，特別病房日額保險金的給付",
+            calculation_basis="per_day",
+            amount_role="payout",
+            limit_scope="per_day",
+            multiplier=1,
+            unit_key="fixed_policy_face_amount",
+            conditions=[
+                "疾病等待期間 30 日",
+                "特別病房包含加護病房、燒燙傷病房、隔離病房及安寧病房",
+                "同一保單年度同一次住院最高給付實際進住特別病房日數 365 日",
+            ],
+        ),
+        coverage_entry(
+            "inpatient-surgery-specific-treatment-benefit",
+            "住院手術暨特定處置醫療保險金",
+            25_000,
+            "policy_recorded_limit",
+            "住院期間接受附表一手術或附表二特定處置治療時，按保險金額 5,000 元的 5 倍給付。",
+            "保單條款第十九條，住院手術暨特定處置醫療保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            multiplier=5,
+            unit_key="fixed_policy_face_amount",
+            conditions=[
+                "疾病等待期間 30 日",
+                "同一次住院手術或特定處置同一治療位置接受兩項以上時僅給付一次",
+                "同一項手術或特定處置同一治療位置於同一保單年度內住院或門診接受二次以上時僅給付一次",
+                "不同手術或特定處置位置接受兩項以上時分別給付",
+                "非附表項目仍需符合全民健康保險醫療服務給付項目及支付標準所列手術，且不得屬除外項目",
+            ],
+        ),
+        coverage_entry(
+            "outpatient-surgery-specific-treatment-benefit",
+            "門診手術暨特定處置醫療保險金",
+            5_000,
+            "policy_recorded_limit",
+            "於醫院或診所門診期間接受附表一手術或附表二特定處置治療時，按保險金額 5,000 元給付。",
+            "保單條款第二十條，門診手術暨特定處置醫療保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            multiplier=1,
+            unit_key="fixed_policy_face_amount",
+            conditions=[
+                "疾病等待期間 30 日",
+                "同一次門診手術或特定處置同一治療位置接受兩項以上時僅給付一次",
+                "同一項手術或特定處置同一治療位置於同一保單年度內住院或門診接受二次以上時僅給付一次",
+                "不同手術或特定處置位置接受兩項以上時分別給付",
+                "非附表項目仍需符合全民健康保險醫療服務給付項目及支付標準所列手術，且不得屬除外項目",
+            ],
+        ),
+        coverage_entry(
+            "artificial-lens-device-benefit",
+            "人工水晶體醫材購置補助保險金",
+            50_000,
+            "policy_recorded_limit",
+            "因疾病或傷害需接受人工水晶體植入且已實際於醫院接受植入者，每次植入每眼按保險金額 5,000 元的 10 倍給付。",
+            "保單條款第二十一條，人工水晶體醫材購置補助保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            multiplier=10,
+            unit_key="fixed_policy_face_amount",
+            conditions=["疾病等待期間 30 日", "每次植入每眼給付"],
+        ),
+        coverage_entry(
+            "artificial-hip-device-benefit",
+            "人工髖關節醫材購置補助保險金",
+            50_000,
+            "policy_recorded_limit",
+            "因疾病或傷害需接受人工髖關節置換且已實際於醫院接受置換者，每次置換每側關節按保險金額 5,000 元的 10 倍給付。",
+            "保單條款第二十二條，人工髖關節醫材購置補助保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            multiplier=10,
+            unit_key="fixed_policy_face_amount",
+            conditions=["疾病等待期間 30 日", "每次置換每側關節給付"],
+        ),
+        coverage_entry(
+            "artificial-knee-device-benefit",
+            "人工膝關節醫材購置補助保險金",
+            50_000,
+            "policy_recorded_limit",
+            "因疾病或傷害需接受人工膝關節置換且已實際於醫院接受置換者，每次置換每側關節按保險金額 5,000 元的 10 倍給付。",
+            "保單條款第二十三條，人工膝關節醫材購置補助保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            multiplier=10,
+            unit_key="fixed_policy_face_amount",
+            conditions=["疾病等待期間 30 日", "每次置換每側關節給付"],
+        ),
+        coverage_entry(
+            "cardiovascular-stent-device-benefit",
+            "心臟血管支架醫材購置補助保險金",
+            50_000,
+            "policy_recorded_limit",
+            "因疾病或傷害需置放心臟血管支架且已實際於醫院置放者，每次支架置放按保險金額 5,000 元的 10 倍給付。",
+            "保單條款第二十四條，心臟血管支架醫材購置補助保險金的給付",
+            calculation_basis="fixed_amount",
+            amount_role="payout",
+            limit_scope="per_event",
+            multiplier=10,
+            unit_key="fixed_policy_face_amount",
+            conditions=["疾病等待期間 30 日", "同一次支架置放處置中同時置放二支以上心臟血管支架時僅給付一次"],
+        ),
+        coverage_entry(
+            "no-hospital-claim-bonus",
+            "未住院無理賠回饋保險金",
+            None,
+            "policy_recorded_limit",
+            "每一保單年度末未曾因當年度保險事故申領第十七條至第十九條保險金且仍生存時，按年繳應繳保險費總和的 1.1% 給付。",
+            "保單條款第二十五條，未住院無理賠回饋保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="annual",
+            rate_percent=1.1,
+            unit_key="annual_premium_total",
+            conditions=["自第一保單年度起", "無理賠紀錄期間屆滿且被保險人仍生存", "不符條件時要保人或應得之人須返還已給付金額"],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡 16 歲(含)以後身故時，按身故日之壽險部分保險金額(即年繳應繳保險費總和)與保單價值準備金二者取最大值給付。",
+            "保單條款第二十六條，身故保險金或喪葬費用保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_premium_total",
+            conditions=["需年繳應繳保險費總和及保單價值準備金", "喪葬費用保險金受主管機關限額與多張保單合計規則限制"],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡到達 111 歲之保單週年日仍生存時，按保險年齡 110 歲屆滿之年繳應繳保險費總和給付。",
+            "保單條款第二十七條，祝壽保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="annual_premium_total_at_age_110",
+            conditions=["給付後契約效力終止"],
+        ),
+        coverage_entry(
+            "premium-waiver",
+            "豁免保險費",
+            None,
+            "policy_recorded_limit",
+            "繳費期間內初次罹患條款約定特定傷病，或因疾病或傷害致成附表三第一級至第六級失能程度之一者，自診斷確定日翌日起免繳未到期保險費。",
+            "保單條款第二十八條，豁免保險費",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            conditions=["疾病等待期間 30 日", "特定傷病或附表三第一級至第六級失能程度", "豁免後不再受理減額繳清保險金額變更申請"],
+        ),
+        coverage_entry(
+            "annual-premium-total-refund-under-age-16",
+            "退還年繳應繳保險費總和",
+            None,
+            "policy_recorded_limit",
+            "被保險人於保險年齡 16 歲(不含)以前身故時，退還年繳應繳保險費總和予要保人。",
+            "保單條款第二十九條，退還年繳應繳保險費總和",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=100,
+            unit_key="annual_premium_total",
+            conditions=["不適用第二十六條身故保險金或喪葬費用保險金約定"],
+        ),
+        coverage_entry(
+            "medical-benefit-lifetime-cap",
+            "醫療保險金給付總額上限",
+            25_000_000,
+            "policy_total",
+            "契約有效期間內，第十七條至第二十條各項保險金給付總額上限為新臺幣 2,500 萬元。",
+            "保單條款第三十七條，保險金給付總額之上限",
+            calculation_basis="fixed_amount",
+            amount_role="limit",
+            limit_scope="lifetime",
+            aggregation_rule="cumulative_cap",
+            conditions=["適用住院日額、特別病房日額、住院手術暨特定處置、門診手術暨特定處置醫療保險金", "辦理減額繳清保險時，累計已申領金額與上限依減少比例同時縮小", "累計給付達上限時契約效力終止"],
+        ),
+    ]
+
+
+def parse_taiwan_lehuo_health_medical_whole_life_fixed(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_lehuo_health_medical_whole_life_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LEHUO_HEALTH_MEDICAL_WHOLE_LIFE_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    dense_text = re.sub(r"\s+", "", text)
+    required_signals = [
+        "台灣人壽樂活健康醫療終身保險",
+        "該金額為新臺幣5,000元",
+        "初期癌症保險金",
+        "輕度癌症保險金",
+        "重度癌症保險金",
+        "特定傷病保險金",
+        "住院日額保險金",
+        "特別病房日額保險金",
+        "住院手術暨特定處置醫療保險金",
+        "門診手術暨特定處置醫療保險金",
+        "人工水晶體醫材購置補助保險金",
+        "人工髖關節醫材購置補助保險金",
+        "人工膝關節醫材購置補助保險金",
+        "心臟血管支架醫材購置補助保險金",
+        "未住院無理賠回饋保險金",
+        "身故保險金或喪葬費用保險金",
+        "祝壽保險金",
+        "豁免保險費",
+        "退還年繳應繳保險費總和",
+        "保險金給付總額之上限",
+    ]
+    if any(signal not in dense_text for signal in required_signals):
+        return None
+    formula_signals = [
+        "保險金額的5倍",
+        "保險金額的20倍",
+        "保險金額的100倍",
+        "保險金額乘以其實際住院日數",
+        "實際進住特別病房日數」乘以保險金額",
+        "保險金額的5倍給付住院手術",
+        "按保險金額給付門診手術",
+        "保險金額的10倍",
+        "年繳應繳保險費總和的1.1%",
+        "給付總額上限為新臺幣2,500萬元",
+    ]
+    if any(signal not in dense_text for signal in formula_signals):
+        return None
+
+    return {
+        "selection_type": "fixed",
+        "input_mode": "fixed",
+        "selection_source": "terms",
+        "selection_label": "固定保險金額 5,000 元",
+        "selection_guidance": "本條款定義保險金額為新臺幣 5,000 元；加入此險種即可套用已整理之癌症、特定傷病、住院、特別病房、手術、醫材補助及醫療總上限。身故、祝壽與退費仍需保單年繳應繳保險費總和與保單價值準備金確認。",
+        "version_characteristics": {
+            "product_family": "taiwan-lehuo-health-medical-whole-life",
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "revision_date": version.get("revision_date"),
+            "revision_basis": version.get("revision_basis"),
+            "fixed_policy_face_amount": 5_000,
+            "fixed_policy_face_amount_currency": "TWD",
+            "disease_waiting_days": 30,
+            "newborn_metabolic_disease_waiting_exception": True,
+            "cancer_waiting_days": 90,
+            "initial_cancer_multiplier": 5,
+            "mild_cancer_multiplier": 20,
+            "severe_cancer_multiplier": 100,
+            "specific_disease_multiplier": 100,
+            "hospital_daily_amount": 5_000,
+            "hospital_daily_days_limit": 365,
+            "special_room_daily_amount": 5_000,
+            "special_room_days_limit": 365,
+            "inpatient_surgery_specific_treatment_amount": 25_000,
+            "outpatient_surgery_specific_treatment_amount": 5_000,
+            "medical_device_amount": 50_000,
+            "medical_device_multiplier": 10,
+            "no_hospital_claim_bonus_rate_percent": 1.1,
+            "no_hospital_claim_bonus_articles": "articles_17_to_19",
+            "premium_refund_under_age_16_formula": "annual_premium_total",
+            "premium_refund_interest_available": False,
+            "maturity_age": 111,
+            "premium_waiver_triggers": "specific_disease_or_disability_levels_1_to_6",
+            "premium_waiver_disability_levels": "1-6",
+            "medical_lifetime_cap_amount": 25_000_000,
+            "medical_lifetime_cap_currency": "TWD",
+            "surgery_table_required": True,
+            "specific_treatment_table_required": True,
+            "policy_face_amount_required": False,
+            "life_part_insured_amount_required_for_death": True,
+            "policy_reserve_required_for_death": True,
+            "annual_premium_total_required": True,
+            "health_surrender_value_available": False,
+        },
+        "coverage_entries": taiwan_lehuo_health_medical_entries(),
+    }
+
+
+TAIWAN_LIFE_INTEREST_RATE_WHOLE_LIFE_PRODUCT_IDS = {
+    "202131MA1A08A23J11Z10000000",
+    "202131MA1A08A23J11Z10000001",
+    "202131MA1A11A23B11Z10000000",
+    "202131MA1A11A23B11Z10000001",
+    "202131MA1A11B23B11Z10000000",
+    "202131MA1A16A23A11Z10000000",
+    "202131MA1A16A23A11Z10000001",
+    "202131MA1A35A23B11Z10000000",
+    "202131MA1A35A23B11Z10000001",
+    "202131MA1A42A23B11Z10000000",
+    "202131MA1A42A23B11Z10000001",
+    "202131MA1A44A23B11Z10000000",
+    "202131MA1A44A23B11Z10000001",
+    "202131MA1A45A23B11Z10000000",
+    "202131MA1A45A23B11Z10000001",
+    "202131MA1A47A23B11Z10000000",
+    "202131MA1A47A23B11Z10000001",
+    "202131MA1A48A23A11Z10000000",
+    "202131MA1A48A23A11Z10000001",
+    "202131MA1A49A23A11Z10000000",
+    "202131MA1A49A23A11Z10000001",
+    "202131MA1A49A23A11Z10000002",
+    "202131MA1A50A23B11Z10000000",
+    "202131MA1A51A23B11Z10000000",
+    "202131MA1A53B23B11Z10000000",
+    "202131MA1A57A23A11Z10000000",
+    "202131MA1A63A23B11Z10000000",
+    "202131MA1A69A23B11Z10000000",
+    "202131MA1A81623B11Z10000000",
+    "202131MA1A81723A11Z10000000",
+    "202131MA1A81723A11Z10000001",
+    "202131MA1A81723A11Z10000002",
+    "202131MA1A81723A11Z10000003",
+    "202131MA1A82123B11Z10000000",
+    "202131MA1A82223B11Z10000000",
+    "202131MA1A82323B11Z10000000",
+    "202131MA1A86723B11Z10000000",
+    "202131MA1A86723B11Z10000001",
+    "202131MA1A87723B11Z10000000",
+    "202131MA1A87723B11Z10000001",
+    "202131MA1A88223B11Z10000000",
+    "202131MA1A88223B11Z10000001",
+    "202131MA1A88423B11Z10000000",
+    "202131MA1A88423B11Z10000001",
+    "202131MA1A88923B11Z10000000",
+    "202131MA1A90923B11Z10000000",
+    "202131MA1A91923B11Z10000001",
+    "202131MA1A91923B11Z10000002",
+    "202131MA1A92123B11Z10000000",
+    "202131MA1A92A23B11Z10000000",
+    "202131MA1A93923B11Z10000000",
+    "202131MA1A94623B11Z10000000",
+    "202131MA1A95323B11Z10000000",
+    "202131MA1A95323B11Z10000001",
+    "202131MA1A95323B11Z10000002",
+    "202131MA1A95623B11Z10000000",
+    "202131MA1A95623B11Z10000001",
+    "202131MA1A95823B11Z10000000",
+    "202131MA1A95823B11Z10000001",
+    "202131MA1A97223B11Z10000000",
+    "202131MA1A97223B11Z10000001",
+    "202131MA1A97623B11Z10000000",
+    "202131MA1A97623B11Z10000001",
+    "202131MA1A97623B11Z10000002",
+    "202131MA1A98823B11Z10000000",
+    "202131MA1A98823B11Z10000001",
+    "202131MA1A98823B11Z10000002",
+    "202131MA1A99123B11Z10000000",
+    "202131MA1A99123B11Z10000001",
+    "202131MA1A99223B11Z10000000",
+    "202131MA1A99223B11Z10000001",
+    "202131MA1A99223B11Z10000002",
+    "202131MA1A99423B11Z10000000",
+    "202131MA1A99423B11Z10000001",
+    "202131MA1A99523A11Z10000000",
+    "202131MA1A99523A11Z10000001",
+    "202131MA2A23A23A11Z10000000",
+    "202131MA2A92023A11Z10000000",
+    "202131MA2A92023A11Z10000001",
+    "202131MA2A92023A11Z10000002",
+    "202131MA2A96923A11Z10000000",
+    "202131MA2A99323A11Z10000000",
+    "202131MA2A99323A11Z10000001",
+    "202131MA4B94423B11Z10000000",
+    "202131MA9B91923B11Z10000000",
+}
+
+TAIWAN_FENGFU_MEILI_USD_INTEREST_WHOLE_LIFE_PRODUCT_VERSIONS = {
+    "202131MA9B91023B11Z10000000": {
+        "file_name": "202131MA9B91023B11Z10000000-A.pdf",
+        "product_name": "台灣人壽豐富美利美元利率變動型終身壽險",
+        "terms_revision": "110-original",
+        "filing_date": "110-12-03",
+        "filing_number": "台壽字第1102320155號函備查",
+        "currency": "USD",
+        "expected_interest_rate_percent": 1.75,
+        "page_count": 14,
+    },
+}
+
+TAIWAN_LIFE_INTEREST_RATE_ACCIDENT_WHOLE_LIFE_PRODUCT_VERSIONS = {
+    "202131MA2A87923A11Z10000000": {
+        "terms_revision": "original",
+        "product_family": "chuan-cheng-fu-man",
+        "filing_date": "2021-07-01",
+        "filing_number": "台壽字第1102320052號",
+        "revision_filing_date": None,
+        "revision_filing_number": None,
+        "age_16_value_sharing_special_rule": True,
+        "accidental_death_min_age_16_wording": True,
+        "minor_death_under_15_funeral_benefit_rule": True,
+    },
+    "202131MA2A87923A11Z10000001": {
+        "terms_revision": "first-partial-revision",
+        "product_family": "chuan-cheng-fu-man",
+        "filing_date": "2021-07-01",
+        "filing_number": "台壽字第1102320052號",
+        "revision_filing_date": "2021-12-01",
+        "revision_filing_number": "台壽字第1102320180號",
+        "age_16_value_sharing_special_rule": False,
+        "accidental_death_min_age_16_wording": False,
+        "minor_death_under_15_funeral_benefit_rule": False,
+    },
+    "202131MA2A88623A11Z10000000": {
+        "terms_revision": "original",
+        "product_family": "chuan-cheng-fu-li",
+        "filing_date": "2021-08-03",
+        "filing_number": "台壽字第1102320099號",
+        "revision_filing_date": None,
+        "revision_filing_number": None,
+        "age_16_value_sharing_special_rule": True,
+        "accidental_death_min_age_16_wording": True,
+        "minor_death_under_15_funeral_benefit_rule": True,
+    },
+    "202131MA2A88623A11Z10000001": {
+        "terms_revision": "first-partial-revision",
+        "product_family": "chuan-cheng-fu-li",
+        "filing_date": "2021-08-03",
+        "filing_number": "台壽字第1102320099號",
+        "revision_filing_date": "2021-12-01",
+        "revision_filing_number": "台壽字第1102320181號",
+        "age_16_value_sharing_special_rule": False,
+        "accidental_death_min_age_16_wording": False,
+        "minor_death_under_15_funeral_benefit_rule": False,
+    },
+    "202131MA2A88623A11Z10000002": {
+        "terms_revision": "second-partial-revision",
+        "product_family": "chuan-cheng-fu-li",
+        "filing_date": "2021-08-03",
+        "filing_number": "台壽字第1102320099號",
+        "revision_filing_date": "2021-12-01",
+        "revision_filing_number": "台壽字第1102320181號",
+        "age_16_value_sharing_special_rule": False,
+        "accidental_death_min_age_16_wording": False,
+        "minor_death_under_15_funeral_benefit_rule": False,
+    },
+}
+
+TAIWAN_LIFE_CHUANSHI_FULI_WHOLE_LIFE_PRODUCT_VERSIONS = {
+    "202131MA2A81823A11Z10000000": {
+        "terms_revision": "original",
+        "filing_date": "2020-07-01",
+        "filing_number": "台壽字第1092320109號",
+        "revision_filing_date": "none",
+        "revision_filing_number": "none",
+        "revision_basis": "none",
+        "age_16_value_sharing_special_rule": False,
+        "accidental_death_min_age_16_wording": False,
+        "minor_death_under_15_funeral_benefit_rule": False,
+    },
+    "202131MA2A81823A11Z10000001": {
+        "terms_revision": "first-partial-revision",
+        "filing_date": "2020-07-01",
+        "filing_number": "台壽字第1092320109號",
+        "revision_filing_date": "2021-07-01",
+        "revision_filing_number": "台壽字第1102320067號",
+        "revision_basis": "company-filing",
+        "age_16_value_sharing_special_rule": True,
+        "accidental_death_min_age_16_wording": True,
+        "minor_death_under_15_funeral_benefit_rule": True,
+    },
+    "202131MA2A81823A11Z10000002": {
+        "terms_revision": "second-partial-revision",
+        "filing_date": "2020-07-01",
+        "filing_number": "台壽字第1092320109號",
+        "revision_filing_date": "2021-12-01",
+        "revision_filing_number": "台壽字第1102320178號",
+        "revision_basis": "company-filing",
+        "age_16_value_sharing_special_rule": False,
+        "accidental_death_min_age_16_wording": False,
+        "minor_death_under_15_funeral_benefit_rule": False,
+    },
+    "202131MA2A81823A11Z10000003": {
+        "terms_revision": "third-regulatory-revision",
+        "filing_date": "2020-07-01",
+        "filing_number": "台壽字第1092320109號",
+        "revision_filing_date": "2023-02-09",
+        "revision_filing_number": "none",
+        "revision_basis": "依111年12月8日金管保壽字第1110152342號函修正",
+        "age_16_value_sharing_special_rule": False,
+        "accidental_death_min_age_16_wording": False,
+        "minor_death_under_15_funeral_benefit_rule": False,
+    },
+}
+
+TAIWAN_LIFE_INTEREST_RATE_SURVIVAL_WHOLE_LIFE_PRODUCT_IDS = {
+    "202131MA1A01A23B11Z10000000",
+    "202131MA1A01A23B11Z10000001",
+    "202131MA1A03B23B11Z10000000",
+    "202131MA1A05A23B11Z10000000",
+    "202131MA1A05A23B11Z10000001",
+    "202131MA1A22A23B11Z10000000",
+    "202131MA1A22A23B11Z10000001",
+    "202131MA1A24A23B11Z10000000",
+    "202131MA1A24A23B11Z10000001",
+    "202131MA1A58B23B11Z10000000",
+    "202131MA1A68A23B11Z10000000",
+    "202131MA1A75A23B11E10000000",
+    "202131MA1A82923B11Z10000000",
+    "202131MA1A83023B11Z10000000",
+    "202131MA1A84523B11Z10000000",
+    "202131MA1A84523B11Z10000001",
+    "202131MA1A84923B11Z10000000",
+    "202131MA1A85023B11Z10000000",
+    "202131MA1A87423B11Z10000000",
+    "202131MA1A87823B11Z10000000",
+    "202131MA1A88723B11Z10000000",
+    "202131MA1A88823B11Z10000000",
+    "202131MA1A89023B11Z10000000",
+    "202131MA1A89123B11Z10000000",
+    "202131MA1A90A23B11Z10000000",
+    "202131MA1A91023B11Z10000001",
+    "202131MA1A91823B11Z10000000",
+    "202131MA1A94523B11Z10000000",
+    "202131MA1A97323B11Z10000000",
+    "202131MA1A97323B11Z10000001",
+    "202131MA1A97423B11Z10000000",
+    "202131MA1A97423B11Z10000001",
+    "202131MA1A97423B11Z10000002",
+    "202131MA1A97923B11Z10000000",
+    "202131MA1A97923B11Z10000001",
+    "202131MA1A98123A11Z10000000",
+    "202131MA1A98123A11Z10000001",
+    "202131MA1A98223A11Z10000000",
+    "202131MA1A98223A11Z10000001",
+    "202131MA1A94023B11Z10000000",
+    "202131MA1A94023B11Z10000001",
+    "202131MA1A94223B11Z10000000",
+    "202131MA1A97023B11Z10000000",
+    "202131MA1A97023B11Z10000001",
+    "202131MA1A99A23B11Z10000000",
+}
+
+TAIWAN_LIFE_INTEREST_RATE_RETURN_WHOLE_LIFE_PRODUCT_IDS = {
+    "202121MA2G92223A11Z10000000",
+    "202121MA2A15A23A11Z10000000",
+    "202121MA2A15A23A11Z10000001",
+    "202121MA2A97123A11Z10000000",
+    "202121MA2A97123A11Z10000002",
+    "202121MA1A56A23B11Z10000000",
+    "202121MA1A32A23B11Z10000000",
+    "202121MA1A70A23A11Z10000000",
+    "202121MA1A74A23B11Z10000000",
+    "202121MA1A91223B11Z10000000",
+    "202121MA1A91223B11Z10000001",
+    "202121MA1A91223B11Z10000002",
+    "202121MA1A91323B11Z10000000",
+    "202121MA1A92323B11Z10000000",
+    "202121MA1A92323B11Z10000001",
+    "202121MA1A92323B11Z10000002",
+    "202121MA1A92823A11Z10000000",
+    "202121MA1A92823A11Z10000001",
+    "202121MA1A92823A11Z10000002",
+    "202121MA1A95423B11Z10000000",
+    "202121MA1A95423B11Z10000001",
+    "202121MA1A95523B11Z10000000",
+    "202121MA1A95523B11Z10000001",
+    "202121MA1A96823B11Z10000000",
+    "202121MA1A96823B11Z10000001",
+    "202121MA1A96823B11Z10000002",
+}
+
+TAIWAN_LIFE_INTEREST_RATE_ENDOWMENT_PRODUCT_IDS = {
+    "202121MA1A34A22D11Z10000000",
+    "202121MA1A43A22B11Z10000000",
+    "202121MA1A88A22A11Z10000000",
+}
+
+TAIWAN_LIFE_INTEREST_RATE_SPECIFIC_DISEASE_WHOLE_LIFE_PRODUCT_IDS = {
+    "202131MA5B28A23B11Z10000000",
+    "202131MA5B28A23B11Z10000001",
+}
+
+TAIWAN_LIFE_INTEREST_RATE_SPECIFIC_DISEASE_SURVIVAL_WHOLE_LIFE_PRODUCT_VERSIONS = {
+    "202131MA5B29A23B11Z10000000": {
+        "terms_revision": "original",
+        "specific_disease_rate_percent": 5,
+    },
+    "202131MA5B29A23B11Z10000001": {
+        "terms_revision": "114-regulatory-revision",
+        "specific_disease_rate_percent": 5,
+    },
+}
+
+TAIWAN_LIFE_USD_ENDOWMENT_PRODUCT_IDS = {
+    "202121MZ1A30B22B11Z10000000",
+    "202121MZ1A77A22B11Z10000000",
+    "202121MZ1A77A22B11Z10000001",
+}
+
+TAIWAN_LIFE_PLATINUM_ACCOUNT_ENDOWMENT_PRODUCT_VERSIONS = {
+    "202121M21AYI001": {
+        "product_code": "YI0",
+        "terms_revision": "original",
+        "page_count": 11,
+        "filing_number": "98 年 05 月 20 日 98 台壽投商字第 00015 號",
+        "revision_basis": None,
+        "death_entry_id": "death-benefit",
+        "death_entry_name": "身故保險金",
+        "funeral_benefit_limit_rule": False,
+    },
+    "202121M21AYI103": {
+        "product_code": "YI1",
+        "terms_revision": "third-partial-revision",
+        "page_count": 12,
+        "filing_number": "98 年 05 月 20 日 98 台壽投商字第 00015 號",
+        "revision_basis": "99 年 11 月 03 日依 99 年 09 月 01 日金管保品字第 09902527791 號令修正",
+        "death_entry_id": "death-or-funeral-benefit",
+        "death_entry_name": "身故保險金或喪葬費用保險金",
+        "funeral_benefit_limit_rule": True,
+    },
+}
+
+TAIWAN_LIFE_FIXED_RETURN_WHOLE_LIFE_PRODUCT_VERSIONS = {
+    "202121MZ1A02A23A11Z10000000": {
+        "product_family": "taiwan-yiliqi-fixed-return-whole-life",
+        "terms_revision": "original",
+        "filing_date": "2023-07-31",
+        "filing_number": "台壽字第 1122320117 號函備查",
+        "revision_date": None,
+        "revision_basis": None,
+        "survival_benefit_formula": "1_04_to_6_24_step_schedule_on_previous_basic_face_amount",
+        "survival_rate_min_percent": 1.04,
+        "survival_rate_max_percent": 6.24,
+        "monthly_survival_benefit_available": False,
+        "survival_conditions": [
+            "第 1-5 保單週年日依序 1.04%、2.08%、3.12%、4.16%、5.20%。",
+            "第 6 保單週年日及其以後 6.24%。",
+        ],
+    },
+    "202121MZ1A02A23A11Z10000001": {
+        "product_family": "taiwan-yiliqi-fixed-return-whole-life",
+        "terms_revision": "first-regulatory-revision",
+        "filing_date": "2023-07-31",
+        "filing_number": "台壽字第 1122320117 號函備查",
+        "revision_date": "2025-01-01",
+        "revision_basis": "依 113 年 9 月 23 日金管保壽字第 1130427324 號函修正",
+        "survival_benefit_formula": "1_04_to_6_24_step_schedule_on_previous_basic_face_amount",
+        "survival_rate_min_percent": 1.04,
+        "survival_rate_max_percent": 6.24,
+        "monthly_survival_benefit_available": False,
+        "survival_conditions": [
+            "第 1-5 保單週年日依序 1.04%、2.08%、3.12%、4.16%、5.20%。",
+            "第 6 保單週年日及其以後 6.24%。",
+        ],
+    },
+    "202121MZ1A53A23A11Z10000000": {
+        "product_family": "taiwan-jinduobei-fixed-return-whole-life",
+        "terms_revision": "original",
+        "filing_date": "2024-12-16",
+        "filing_number": "台壽字第 1132322003 號函備查",
+        "revision_date": None,
+        "revision_basis": None,
+        "survival_benefit_formula": "0_98_to_5_88_step_schedule_on_previous_basic_face_amount_with_monthly_option",
+        "survival_rate_min_percent": 0.98,
+        "survival_rate_max_percent": 5.88,
+        "monthly_survival_benefit_available": True,
+        "survival_conditions": [
+            "年給付型第 1-5 保單週年日依序 0.98%、1.96%、2.94%、3.92%、4.90%。",
+            "年給付型第 6 保單週年日及其以後 5.88%。",
+            "月給付型將年給付型生存保險金依本契約預定利率換算為每月給付金額。",
+            "未選擇給付方式時，依年給付型生存保險金給付。",
+        ],
+    },
+}
+
+TAIWAN_LIFE_PARTICIPATING_WHOLE_LIFE_PRODUCT_IDS = {
+    "202131MZ1A09B23B11Z10000000",
+    "202131MZ1A09B23B11Z10000001",
+    "202131MZ1A17B23B11Z10000000",
+    "202131MZ1A18B23B11Z10000000",
+    "202131MZ1A21B23B11Z10000000",
+    "202131MZ1A23B23B11Z10000000",
+    "202131MZ1A67A23B11Z10000000",
+    "202131MZ1A67A23B11Z10000001",
+    "202131MZ1A83A23A11Z10000000",
+    "202131MZ1A83A23A11Z10000001",
+}
+
+TAIWAN_LIFE_PARTICIPATING_RETURN_WHOLE_LIFE_PRODUCT_IDS = {
+    "202121MZ1A81A23A11Z10000000",
+    "202121MZ1A81A23A11Z10000001",
+}
+
+
+TAIWAN_LIFE_TERM_LIFE_PRODUCT_VERSIONS = {
+    "202131MZ1A29B22A11Z10000000": {
+        "product_name": "台灣人壽福氣成家定期壽險",
+        "terms_revision": "roc-115-03-09",
+        "filing_number": "1152320011",
+        "currency": "TWD",
+        "product_form": "level_term_life",
+        "selection_label": "基本保險金額",
+        "annual_insured_amount_formula": "basic_face_amount_times_appendix_2_coefficient",
+        "annual_insured_amount_schedule": "level_1_0_by_policy_duration",
+        "death_benefit_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "total_disability_benefit_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "premium_total_required": True,
+        "installment_min_annual_payment": 36_000,
+        "installment_min_annual_payment_currency": "TWD",
+        "payment_period_required": True,
+        "insurance_period_required": True,
+        "foreign_currency_policy": False,
+        "exchange_rate_risk_disclosure": False,
+        "page_count": 9,
+    },
+    "202131RZ1A86022B11Z10000000": {
+        "product_name": "台灣人壽無憂美元遞減型定期壽險附約",
+        "terms_revision": "roc-110-03-22",
+        "filing_number": "1102320001",
+        "currency": "USD",
+        "product_form": "usd_decreasing_term_life_rider",
+        "selection_label": "保險金額",
+        "annual_insured_amount_formula": "face_amount_times_appendix_2_coefficient",
+        "annual_insured_amount_schedule": "age_and_term_decreasing_coefficient_table",
+        "death_benefit_formula": "annual_insured_amount",
+        "total_disability_benefit_formula": "annual_insured_amount",
+        "premium_total_required": False,
+        "installment_min_annual_payment": 1_200,
+        "installment_min_annual_payment_currency": "USD",
+        "payment_period_required": True,
+        "insurance_period_required": True,
+        "foreign_currency_policy": True,
+        "exchange_rate_risk_disclosure": True,
+        "page_count": 10,
+    },
+}
+
+
+TAIWAN_LIFE_SIMPLE_TERM_LIFE_PRODUCT_VERSIONS = {
+    "202131MZ1A98A22A11Z10000000": {
+        "product_name": "台灣人壽吉安心定期壽險",
+        "terms_revision": "roc-114-08-08",
+        "filing_number": "1142320086",
+        "currency": "TWD",
+        "product_form": "simple_level_term_life",
+        "selection_label": "保險金額",
+        "death_benefit_formula": "face_amount_plus_prorated_unearned_premium",
+        "total_disability_benefit_formula": "face_amount_plus_prorated_unearned_premium",
+        "renewal_mechanism": False,
+        "expiry_conversion_right_available": True,
+        "surrender_value_available": True,
+        "page_count": 7,
+    },
+}
+
+
+TAIWAN_LIFE_USD_NO_DISABILITY_PRODUCT_VERSIONS = {
+    "202131MZ1A43B23B11Z10000000": {
+        "product_name": "台灣人壽美紅富利美元分紅終身壽險",
+        "terms_revision": "roc-115-01-19",
+        "filing_number": "1152320001",
+        "currency": "USD",
+        "product_form": "participating_usd_whole_life_no_disability",
+        "participating_policy": True,
+        "policy_period_years": None,
+        "maturity_label": "祝壽保險金",
+        "maturity_heading": "【祝壽保險金的給付】",
+        "maturity_age": 111,
+        "maturity_reference_age": 110,
+        "annual_insured_amount_formula": "first_five_policy_years_paid_premium_total_times_1_01_then_face_amount_times_appendix_1",
+        "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_ratio_paid_premium_total_1_01",
+        "maturity_benefit_formula": "greater_of_annual_insured_amount_at_age_110_paid_premium_total_1_01",
+        "premium_multiplier": 1.01,
+        "policy_dividend_available": True,
+        "terminal_policy_dividend_available": True,
+        "terminal_policy_dividend_start_policy_year": 4,
+        "required_signals": [
+            "台灣人壽美紅富利美元分紅終身壽險",
+            "台壽字第 1152320001 號函備查",
+            "本保險為分紅保險單",
+            "身故保險金或喪葬費用保險金",
+            "祝壽保險金",
+            "保險單紅利的計算及給付",
+            "應繳保險費總和的 1.01 倍",
+        ],
+        "page_count": 8,
+    },
+    "202121MZ1A57B22B11Z10000000": {
+        "product_name": "台灣人壽多美好美元養老保險",
+        "terms_revision": "roc-115-04-30",
+        "filing_number": "1152320075",
+        "currency": "USD",
+        "product_form": "usd_10_year_endowment_no_disability",
+        "participating_policy": False,
+        "policy_period_years": 10,
+        "maturity_label": "滿期保險金",
+        "maturity_heading": "【滿期保險金的給付】",
+        "maturity_age": None,
+        "maturity_reference_age": None,
+        "annual_insured_amount_formula": "face_amount_times_appendix_1_coefficient",
+        "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_ratio_paid_premium_total",
+        "maturity_benefit_formula": "annual_insured_amount_at_policy_maturity",
+        "premium_multiplier": 1.0,
+        "policy_dividend_available": False,
+        "terminal_policy_dividend_available": False,
+        "terminal_policy_dividend_start_policy_year": None,
+        "required_signals": [
+            "台灣人壽多美好美元養老保險",
+            "台壽字第 1152320075 號函備查",
+            "本保險為不分紅保險單",
+            "保險期間為 10 年",
+            "身故保險金或喪葬費用保險金",
+            "滿期保險金",
+        ],
+        "page_count": 7,
+    },
+}
+
+
+TAIWAN_LIFE_LONG_TERM_CARE_WHOLE_LIFE_PRODUCT_VERSIONS = {
+    "202191MZ6G84423A11Z10000000": {
+        "product_name": "台灣人壽愛家寶終身保險",
+        "terms_title": "台灣人壽愛家寶終身保險",
+        "terms_revision": "roc-109-11-30",
+        "filing_number": "1092320180",
+    },
+    "202191MZ6G84423A11Z10000001": {
+        "product_name": "台灣人壽新愛家寶終身保險(第1次部分變更)",
+        "terms_title": "台灣人壽新愛家寶終身保險",
+        "terms_revision": "roc-110-07-01-first-revision",
+        "filing_number": "1102320053",
+    },
+}
+
+
+def is_taiwan_interest_rate_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_LIFE_INTEREST_RATE_WHOLE_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def is_taiwan_fengfu_meili_usd_interest_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_FENGFU_MEILI_USD_INTEREST_WHOLE_LIFE_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+        and document.get("page_count") in {None, version["page_count"]}
+        and document.get("pages_parsed") in {None, version["page_count"]}
+    )
+
+
+def is_taiwan_interest_rate_accident_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_LIFE_INTEREST_RATE_ACCIDENT_WHOLE_LIFE_PRODUCT_VERSIONS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def is_taiwan_chuanshi_fuli_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_LIFE_CHUANSHI_FULI_WHOLE_LIFE_PRODUCT_VERSIONS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def is_taiwan_interest_rate_survival_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_LIFE_INTEREST_RATE_SURVIVAL_WHOLE_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def is_taiwan_interest_rate_return_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_LIFE_INTEREST_RATE_RETURN_WHOLE_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def is_taiwan_interest_rate_endowment_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_LIFE_INTEREST_RATE_ENDOWMENT_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def is_taiwan_interest_rate_specific_disease_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_LIFE_INTEREST_RATE_SPECIFIC_DISEASE_WHOLE_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def is_taiwan_interest_rate_specific_disease_survival_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id
+        in TAIWAN_LIFE_INTEREST_RATE_SPECIFIC_DISEASE_SURVIVAL_WHOLE_LIFE_PRODUCT_VERSIONS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def is_taiwan_usd_endowment_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_LIFE_USD_ENDOWMENT_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def is_taiwan_platinum_account_endowment_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LIFE_PLATINUM_ACCOUNT_ENDOWMENT_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+        and document.get("page_count") in {None, version["page_count"]}
+        and document.get("pages_parsed") in {None, version["page_count"]}
+    )
+
+
+def is_taiwan_fixed_return_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_LIFE_FIXED_RETURN_WHOLE_LIFE_PRODUCT_VERSIONS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def is_taiwan_participating_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_LIFE_PARTICIPATING_WHOLE_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def is_taiwan_participating_return_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_LIFE_PARTICIPATING_RETURN_WHOLE_LIFE_PRODUCT_IDS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+        and document.get("page_count") in {None, 11}
+        and document.get("pages_parsed") in {None, 11}
+    )
+
+
+def is_taiwan_term_life_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LIFE_TERM_LIFE_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+        and document.get("page_count") in {None, version["page_count"]}
+        and document.get("pages_parsed") in {None, version["page_count"]}
+    )
+
+
+def is_taiwan_simple_term_life_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LIFE_SIMPLE_TERM_LIFE_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+        and document.get("page_count") in {None, version["page_count"]}
+        and document.get("pages_parsed") in {None, version["page_count"]}
+    )
+
+
+def is_taiwan_usd_no_disability_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LIFE_USD_NO_DISABILITY_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+        and document.get("page_count") in {None, version["page_count"]}
+        and document.get("pages_parsed") in {None, version["page_count"]}
+    )
+
+
+def is_taiwan_long_term_care_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in TAIWAN_LIFE_LONG_TERM_CARE_WHOLE_LIFE_PRODUCT_VERSIONS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+        and document.get("page_count") in {None, 10}
+        and document.get("pages_parsed") in {None, 10}
+    )
+
+
+def taiwan_interest_rate_title(text: str) -> str:
+    match = re.search(
+        r"台灣人壽[^\s【】]+?利率變動型(?:增額)?終身壽險",
+        text,
+    )
+    return match.group(0) if match else "台灣人壽利率變動型終身壽險"
+
+
+def taiwan_interest_rate_currency(text: str) -> str:
+    if "人民幣計價" in text:
+        return "CNY"
+    if "美元計價" in text:
+        return "USD"
+    if "澳幣計價" in text:
+        return "AUD"
+    return "TWD"
+
+
+def taiwan_interest_rate_expected_rate(text: str) -> float | None:
+    match = re.search(r"預定利率\s*\(?\s*(?:年利率)?\s*([\d.]+)\s*%\s*\)?", text)
+    return float(match.group(1)) if match else None
+
+
+def taiwan_interest_rate_revision(text: str) -> str:
+    if "113 年 9 月 23 日金管保壽字第 1130427324 號函修正" in text:
+        return "114-regulatory-revision"
+    if "金管保壽字" in text and "函修正" in text:
+        return "regulatory-revision"
+    return "original"
+
+
+def taiwan_interest_rate_annual_formula(compact_text: str) -> str:
+    if (
+        compact_table_text("繳費期間為六年期者") in compact_text
+        and compact_table_text("於前五保單年度內,係指年繳應繳保險費總和的1.06倍")
+        in compact_text
+        and compact_table_text("繳費期間為十年期者") in compact_text
+        and compact_table_text("於前七保單年度內,係指年繳應繳保險費總和的1.06倍")
+        in compact_text
+        and compact_table_text("繳費期間為二十年期者") in compact_text
+        and compact_table_text("於前九保單年度內,係指年繳應繳保險費總和的1.06倍")
+        in compact_text
+    ):
+        return "premium_period_6_10_20_front_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient"
+    if (
+        compact_table_text("於第一至第五保單年度,係指應繳保險費總和的1.02倍")
+        in compact_text
+    ):
+        return "first_five_policy_years_premium_total_times_1_02_then_face_plus_accumulated_times_coefficient"
+    if (
+        compact_table_text("繳費期間為六年期者") in compact_text
+        and compact_table_text("於前五保單年度內,係指年繳應繳保險費總和的1.06倍")
+        in compact_text
+    ):
+        return "single_premium_face_plus_accumulated_or_six_year_first_five_106"
+    if (
+        compact_table_text("於前五保單年度內,係指年繳應繳保險費總和的1.06倍")
+        in compact_text
+    ):
+        if compact_table_text("當年度保險金額係數所得之值") in compact_text:
+            return "first_five_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient"
+        return "first_five_policy_years_premium_total_times_1_06_then_face_plus_accumulated"
+    if compact_table_text("於前五保單年度內,係指年繳應繳保險費總和的1.1倍") in compact_text:
+        return "first_five_policy_years_premium_total_times_1_1_then_face_plus_accumulated_times_coefficient"
+    if compact_table_text("於第一保單年度內,係指年繳應繳保險費總和") in compact_text:
+        return "first_policy_year_premium_total_then_face_plus_accumulated"
+    if compact_table_text("於前二保單年度內,係指應繳保險費總和") in compact_text:
+        return "first_two_policy_years_premium_total_then_face_plus_accumulated_times_coefficient"
+    if (
+        compact_table_text("於繳費期間內,係指年繳應繳保險費總和") in compact_text
+        and compact_table_text("於繳費期滿後,係指基本保險金額與累計增加保險金額二者加總之值")
+        in compact_text
+        and compact_table_text("當年度保險金額係數所得之值") in compact_text
+    ):
+        return "premium_period_premium_total_then_face_plus_accumulated_times_coefficient"
+    if (
+        compact_table_text("繳費期間為二年期者") in compact_text
+        and compact_table_text("繳費期間為六年期者") in compact_text
+        and compact_table_text("於前二保單年度內,係指年繳應繳保險費總和")
+        in compact_text
+        and compact_table_text("於前五保單年度內,係指年繳應繳保險費總和")
+        in compact_text
+        and compact_table_text("當年度保險金額係數所得之值") in compact_text
+    ):
+        return "payment_period_2_6_front_years_premium_total_then_face_plus_accumulated_times_coefficient"
+    if compact_table_text("於前二保單年度內,係指年繳應繳保險費總和") in compact_text:
+        return "first_two_policy_years_premium_total_then_face_plus_accumulated"
+    if (
+        compact_table_text("繳費期間為二年期者") in compact_text
+        and compact_table_text("第一保單年度內,係指年繳應繳保險費總和的1.06倍")
+        in compact_text
+    ):
+        return "single_premium_face_plus_accumulated_or_two_year_first_year_106"
+    if compact_table_text("於第一至第三保單年度,係指應繳保險費總和") in compact_text:
+        return "first_three_policy_years_premium_total_then_face_plus_accumulated_times_coefficient"
+    if compact_table_text("於前三保單年度內,係指應繳保險費總和") in compact_text:
+        return "first_three_policy_years_premium_total_then_face_plus_accumulated_times_coefficient"
+    if compact_table_text("於前三保單年度內,係指年繳應繳保險費總和的1.06倍") in compact_text:
+        return "first_three_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient"
+    if compact_table_text("於前三保單年度內,係指年繳應繳保險費總和的1.1倍") in compact_text:
+        if compact_table_text("當年度保險金額係數所得之值") in compact_text:
+            return "first_three_policy_years_premium_total_times_1_1_then_face_plus_accumulated_times_coefficient"
+        return "first_three_policy_years_premium_total_times_1_1_then_face_plus_accumulated"
+    if (
+        compact_table_text("當年度保險金額」:係指基本保險金額與累計增加保險金額二者加總之值")
+        in compact_text
+    ):
+        if compact_table_text("當年度保險金額係數所得之值") in compact_text:
+            return "face_amount_plus_accumulated_paid_up_additions_times_coefficient"
+        return "face_amount_plus_accumulated_paid_up_additions"
+    return "formula_in_terms"
+
+
+def taiwan_interest_article(text: str, heading: str, next_headings: list[str]) -> str:
+    start = text.find(heading)
+    if start < 0:
+        return ""
+    candidates = [text.find(next_heading, start + 1) for next_heading in next_headings]
+    candidates = [candidate for candidate in candidates if candidate > start]
+    end = min(candidates) if candidates else start + 1600
+    return text[start:end]
+
+
+def taiwan_interest_article_ref(article_text: str, fallback: str) -> str:
+    match = re.search(r"第\s*([一二三四五六七八九十百\d]+)\s*條", article_text)
+    if match:
+        return f"保單條款第{match.group(1)}條，{fallback}"
+    return f"保單條款「{fallback}」"
+
+
+def taiwan_interest_premium_multiplier(article_text: str) -> float | None:
+    if "1.1 倍" in article_text or "1.1倍" in article_text:
+        return 1.1
+    if "1.06 倍" in article_text or "1.06倍" in article_text:
+        return 1.06
+    if "1.03 倍" in article_text or "1.03倍" in article_text:
+        return 1.03
+    if "1.02 倍" in article_text or "1.02倍" in article_text:
+        return 1.02
+    if "應繳保險費總和" in article_text or "年繳應繳保險費總和" in article_text:
+        return 1.0
+    return None
+
+
+def taiwan_interest_reserve_component(article_text: str) -> str:
+    if (
+        "保單價值準備金乘以保單價值準備金比率" in article_text
+        or "保單價值準備金乘以附表" in article_text
+    ):
+        return "policy_reserve_times_policy_reserve_ratio"
+    if "保單價值準備金" in article_text:
+        return "policy_reserve"
+    return "none"
+
+
+def taiwan_interest_maturity_formula(article_text: str) -> str:
+    if "當年度保險金額係數" in article_text or "該保單年度係數" in article_text:
+        return "annual_insured_amount_times_coefficient_table"
+    if "取其最大值" in article_text and ("1.1 倍" in article_text or "1.1倍" in article_text):
+        return "greater_of_annual_insured_amount_and_premium_total_times_1_1"
+    if "取其最大值" in article_text and ("1.06 倍" in article_text or "1.06倍" in article_text):
+        return "greater_of_annual_insured_amount_and_premium_total_times_1_06"
+    if "取其最大值" in article_text:
+        return "greater_of_annual_insured_amount_and_premium_total"
+    if "當年度保險金額" in article_text:
+        return "annual_insured_amount"
+    return "formula_in_terms"
+
+
+def taiwan_interest_formula_conditions(
+    *,
+    annual_formula: str,
+    reserve_component: str,
+    premium_multiplier: float | None,
+) -> list[str]:
+    conditions = [
+        "當年度保險金額依條款名詞定義計算，通常需要保單面頁基本保險金額與累計增加保險金額。",
+        f"當年度保險金額公式類型: {annual_formula}。",
+    ]
+    if reserve_component == "policy_reserve_times_policy_reserve_ratio":
+        conditions.append("取大值公式包含保單價值準備金乘以條款附表所列保單價值準備金比率。")
+    elif reserve_component == "policy_reserve":
+        conditions.append("公式包含保單價值準備金，需以保單當年度資料確認。")
+    if premium_multiplier:
+        if premium_multiplier == 1:
+            conditions.append("取大值公式包含應繳或年繳應繳保險費總和。")
+        else:
+            conditions.append(f"取大值公式包含應繳或年繳應繳保險費總和的 {premium_multiplier:g} 倍。")
+    return conditions
+
+
+def taiwan_interest_rate_whole_life_entries(
+    *,
+    annual_formula: str,
+    death_article: str,
+    disability_article: str,
+    maturity_article: str,
+    installment_available: bool,
+    premium_waiver_available: bool,
+) -> list[dict[str, Any]]:
+    death_reserve = taiwan_interest_reserve_component(death_article)
+    death_premium_multiplier = taiwan_interest_premium_multiplier(death_article)
+    disability_reserve = taiwan_interest_reserve_component(disability_article)
+    disability_premium_multiplier = taiwan_interest_premium_multiplier(disability_article)
+    maturity_formula = taiwan_interest_maturity_formula(maturity_article)
+    source_ref_bonus = "保單條款增值回饋分享金定義及給付條款"
+    entries = [
+        coverage_entry(
+            "value-sharing-bonus",
+            "增值回饋分享金",
+            None,
+            "policy_recorded_limit",
+            "依宣告利率與預定利率差額乘以前一保單年度末保單價值準備金計算；宣告利率低於預定利率時該年度無給付。",
+            source_ref_bonus,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="annual",
+            conditions=[
+                "給付方式可依要保人選擇購買增額繳清保險金額、現金給付或儲存生息；部分條款限制現金給付須於第六保單年度屆滿後。",
+                "實際金額需保單當年度宣告利率、預定利率及前一保單年度末保單價值準備金。",
+            ],
+        )
+    ]
+
+    death_is_greater_of = "取其最大值" in death_article
+    entries.append(
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            (
+                "身故時依當年度保險金額、保單價值準備金相關值及保費總和取最大值。"
+                if death_is_greater_of
+                else "身故時按身故日之當年度保險金額給付。"
+            ),
+            taiwan_interest_article_ref(death_article, "身故保險金或喪葬費用保險金的給付"),
+            calculation_basis="greater_of" if death_is_greater_of else "percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest" if death_is_greater_of else "separate",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                *taiwan_interest_formula_conditions(
+                    annual_formula=annual_formula,
+                    reserve_component=death_reserve,
+                    premium_multiplier=death_premium_multiplier,
+                ),
+                "未滿 15 足歲或受監護宣告尚未撤銷者，身故給付依條款可能變更為喪葬費用保險金並受法定上限限制。",
+            ],
+        )
+    )
+
+    disability_is_greater_of = "取其最大值" in disability_article
+    entries.append(
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            (
+                "完全失能時依當年度保險金額、保單價值準備金相關值及保費總和取最大值。"
+                if disability_is_greater_of
+                else "完全失能時按診斷確定日之當年度保險金額給付。"
+            ),
+            taiwan_interest_article_ref(disability_article, "完全失能保險金的給付"),
+            calculation_basis="greater_of" if disability_is_greater_of else "percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest" if disability_is_greater_of else "separate",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                *taiwan_interest_formula_conditions(
+                    annual_formula=annual_formula,
+                    reserve_component=disability_reserve,
+                    premium_multiplier=disability_premium_multiplier,
+                ),
+                "被保險人同時符合兩種以上完全失能程度時，條款約定僅給付一次完全失能保險金。",
+            ],
+        )
+    )
+
+    if maturity_formula.startswith("greater_of"):
+        maturity_calculation_basis = "greater_of"
+        maturity_aggregation_rule = "highest"
+        maturity_rate_percent: int | None = 100
+    elif maturity_formula == "annual_insured_amount":
+        maturity_calculation_basis = "percentage_of_base"
+        maturity_aggregation_rule = "separate"
+        maturity_rate_percent = 100
+    else:
+        maturity_calculation_basis = "unknown"
+        maturity_aggregation_rule = "unknown"
+        maturity_rate_percent = None
+    entries.append(
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡到達 111 歲之保單週年日仍生存時，依條款所列公式給付後契約效力終止。",
+            taiwan_interest_article_ref(maturity_article, "祝壽保險金的給付"),
+            calculation_basis=maturity_calculation_basis,
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule=maturity_aggregation_rule,
+            rate_percent=maturity_rate_percent,
+            unit_key="annual_insured_amount",
+            conditions=[
+                f"祝壽公式類型: {maturity_formula}。",
+                "若條款使用當年度保險金額係數，需另依條款附表係數與保單年度資料確認實際金額。",
+            ],
+        )
+    )
+
+    if premium_waiver_available:
+        entries.append(
+            coverage_entry(
+                "premium-waiver",
+                "豁免保險費",
+                None,
+                "policy_recorded_limit",
+                "符合條款所列失能程度時，得豁免本契約未到期保險費；此為保費義務免除，非固定給付金額。",
+                "保單條款豁免保險費條款",
+                calculation_basis="unknown",
+                amount_role="reference",
+                limit_scope="per_policy",
+                conditions=["是否適用與失能等級、繳費期間及條款版本有關，需依保單條款確認。"],
+            )
+        )
+    if installment_available:
+        entries.append(
+            coverage_entry(
+                "installment-periodic-benefit",
+                "分期定期保險金給付",
+                None,
+                "policy_recorded_limit",
+                "要保人指定分期給付時，身故或完全失能保險金可依條款換算為分期定期保險金。",
+                "保單條款分期定期保險金給付條款",
+                calculation_basis="unknown",
+                amount_role="reference",
+                limit_scope="per_policy",
+                conditions=["分期金額取決於指定保險金、給付期間及分期定期保險金預定利率。"],
+            )
+        )
+    return entries
+
+
+def taiwan_interest_rate_statutory_infectious_entry(
+    statutory_article: str,
+) -> dict[str, Any] | None:
+    if not statutory_article:
+        return None
+    compact_article = compact_table_text(statutory_article)
+    if (
+        "第一保單年度內" not in compact_article
+        or "保險金額的1%給付法定傳染病慰問保險金" not in compact_article
+        or "申領法定傳染病慰問保險金以一次為限" not in compact_article
+    ):
+        return None
+    return coverage_entry(
+        "statutory-infectious-comfort-benefit",
+        "法定傳染病慰問保險金",
+        None,
+        "face_amount",
+        "第一保單年度內經醫院醫師診斷確定罹患法定傳染病時，按診斷確定日保險金額 1% 給付。",
+        taiwan_interest_article_ref(
+            statutory_article,
+            "法定傳染病慰問保險金的給付",
+        ),
+        calculation_basis="percentage_of_base",
+        amount_role="payout",
+        limit_scope="per_policy",
+        aggregation_rule="separate",
+        rate_percent=1,
+        unit_key="face_amount",
+        conditions=[
+            "限本契約有效期間且第一保單年度內確診。",
+            "被保險人於本契約有效期間內申領以一次為限。",
+            "法定傳染病依條款第二條定義，須符合中央衛生主管機關依傳染病防治法公告之名稱。",
+        ],
+    )
+
+
+def taiwan_fengfu_meili_usd_interest_entries(
+    *,
+    bonus_article: str,
+    annual_formula: str,
+    death_article: str,
+    maturity_article: str,
+    waiver_article: str,
+    installment_article: str,
+) -> list[dict[str, Any]]:
+    death_reserve = taiwan_interest_reserve_component(death_article)
+    death_premium_multiplier = taiwan_interest_premium_multiplier(death_article)
+    maturity_formula = taiwan_interest_maturity_formula(maturity_article)
+    return [
+        coverage_entry(
+            "value-sharing-bonus",
+            "增值回饋分享金",
+            None,
+            "policy_recorded_limit",
+            "每一保單年度屆滿後，依宣告利率減去預定利率的差值計算增值回饋分享金，可購買增額繳清、現金給付或儲存生息。",
+            taiwan_interest_article_ref(bonus_article, "增值回饋分享金"),
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="annual",
+            conditions=[
+                "宣告利率低於本契約預定利率 1.75% 時，該保單年度無增值回饋分享金。",
+                "第六保單年度屆滿前，增值回饋分享金限以購買增額繳清保險金額辦理。",
+                "被保險人保險年齡到達 16 歲前，增值回饋分享金於繳費期間採抵繳保險費方式辦理。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人身故時，按當年度保險金額、保單價值準備金乘以保單價值準備金比率、年繳應繳保險費總和 1.06 倍三者取最大值給付。",
+            taiwan_interest_article_ref(
+                death_article,
+                "身故保險金或喪葬費用保險金",
+            ),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                *taiwan_interest_formula_conditions(
+                    annual_formula=annual_formula,
+                    reserve_component=death_reserve,
+                    premium_multiplier=death_premium_multiplier,
+                ),
+                "未滿 15 足歲或受監護宣告尚未撤銷者，死亡給付依條款轉為喪葬費用保險金並受主管機關額度限制。",
+                "本公司給付身故保險金或喪葬費用保險金後，本契約效力即行終止。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡到達 111 歲保單週年日仍生存時，按保險年齡 110 歲屆滿之當年度保險金額與年繳應繳保險費總和 1.06 倍取最大值給付。",
+            taiwan_interest_article_ref(maturity_article, "祝壽保險金"),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                f"祝壽金公式: {maturity_formula}。",
+                "給付祝壽保險金後，本契約效力即行終止。",
+            ],
+        ),
+        coverage_entry(
+            "premium-waiver",
+            "豁免保險費",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效且繳費期間內，因疾病或意外傷害事故致成附表一第一級至第九級失能程度之一者，免繳本契約未到期保險費。",
+            taiwan_interest_article_ref(waiver_article, "豁免保險費"),
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            conditions=[
+                "豁免範圍為本契約，不含其他附約。",
+                "自失能診斷確定日翌日起免繳未到期保險費，本契約繼續有效。",
+                "豁免後不再受理減額繳清保險及展期定期保險變更申請。",
+            ],
+        ),
+        coverage_entry(
+            "installment-periodic-benefit",
+            "分期定期保險金給付",
+            None,
+            "policy_recorded_limit",
+            "身故保險金可依指定保險金、分期定期保險金給付期間及預定利率換算每年年初應給付金額。",
+            taiwan_interest_article_ref(installment_article, "分期定期保險金給付"),
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            conditions=[
+                "給付期間依要保書約定，最短五年，最長三十年。",
+                "每年給付金額低於美元 1,200 元時，本公司將一次給付指定保險金。",
+            ],
+        ),
+    ]
+
+
+def parse_taiwan_fengfu_meili_usd_interest_whole_life(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_fengfu_meili_usd_interest_whole_life_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_FENGFU_MEILI_USD_INTEREST_WHOLE_LIFE_PRODUCT_VERSIONS[
+        product_id
+    ]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        version["product_name"],
+        "台壽字第1102320155號函備查",
+        "主要給付項目",
+        "增值回饋分享金",
+        "身故保險金或喪葬費用保險金",
+        "祝壽保險金",
+        "豁免保險費",
+        "法定傳染病慰問保險金",
+        "預定利率(1.75%)",
+        "於前三保單年度內，係指年繳應繳保險費總和的1.06倍",
+        "於第四保單年度(含)後，係指基本保險金額與累計增加保險金額二者加總之值，乘以附表二所列之當年度保險金額係數",
+        "身故日之保單價值準備金乘以保單價值準備金比率所得之金額",
+        "身故日之年繳應繳保險費總和的1.06倍",
+        "保險年齡110歲屆滿之年繳應繳保險費總和的1.06倍",
+        "第一級至第九級失能程度之一者",
+        "診斷確定日之保險金額的1%給付法定傳染病慰問保險金",
+        "被保險人於本契約有效期間內申領法定傳染病慰問保險金以一次為限",
+        "附表二：當年度保險金額係數表",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    if compact_table_text("完全失能保險金") in compact_text:
+        return None
+    annual_formula = taiwan_interest_rate_annual_formula(compact_text)
+    if (
+        annual_formula
+        != "first_three_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient"
+    ):
+        return None
+    if taiwan_interest_rate_currency(text) != version["currency"]:
+        return None
+    if taiwan_interest_rate_expected_rate(text) != version["expected_interest_rate_percent"]:
+        return None
+
+    death_article = taiwan_interest_article(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【祝壽保險金的給付】"],
+    )
+    bonus_article = taiwan_interest_article(
+        text,
+        "【增值回饋分享金的給付及通知】",
+        ["【保險事故的通知與保險金的申請時間】"],
+    )
+    maturity_article = taiwan_interest_article(
+        text,
+        "【祝壽保險金的給付】",
+        ["【豁免保險費】"],
+    )
+    waiver_article = taiwan_interest_article(
+        text,
+        "【豁免保險費】",
+        ["【法定傳染病慰問保險金的給付】"],
+    )
+    statutory_article = taiwan_interest_article(
+        text,
+        "【法定傳染病慰問保險金的給付】",
+        ["【分期定期保險金給付】"],
+    )
+    installment_article = taiwan_interest_article(
+        text,
+        "【分期定期保險金給付】",
+        ["【分期定期保險金給付約定之變更、終止及其限制】"],
+    )
+    if not all(
+        [
+            death_article,
+            bonus_article,
+            maturity_article,
+            waiver_article,
+            statutory_article,
+            installment_article,
+        ]
+    ):
+        return None
+    if taiwan_interest_premium_multiplier(death_article) != 1.06:
+        return None
+    if taiwan_interest_reserve_component(death_article) != (
+        "policy_reserve_times_policy_reserve_ratio"
+    ):
+        return None
+    if (
+        taiwan_interest_maturity_formula(maturity_article)
+        != "greater_of_annual_insured_amount_and_premium_total_times_1_06"
+    ):
+        return None
+    statutory_entry = taiwan_interest_rate_statutory_infectious_entry(
+        statutory_article
+    )
+    if statutory_entry is None:
+        return None
+    coverage_entries = taiwan_fengfu_meili_usd_interest_entries(
+        bonus_article=bonus_article,
+        annual_formula=annual_formula,
+        death_article=death_article,
+        maturity_article=maturity_article,
+        waiver_article=waiver_article,
+        installment_article=installment_article,
+    )
+    coverage_entries.insert(4, statutory_entry)
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單面頁所載基本保險金額。本商品為美元計價利率變動型終身壽險，身故、祝壽及法定傳染病慰問金皆需依基本保險金額、累計增加保險金額、保單價值準備金與年繳應繳保險費總和計算。",
+        "version_characteristics": {
+            "product_family": "taiwan-fengfu-meili-usd-interest-whole-life",
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "currency": version["currency"],
+            "expected_interest_rate_percent": version[
+                "expected_interest_rate_percent"
+            ],
+            "value_sharing_bonus": True,
+            "annual_insured_amount_formula": annual_formula,
+            "death_benefit_formula": (
+                "greater_of_annual_insured_amount_reserve_and_premium_total"
+            ),
+            "total_disability_benefit_available": False,
+            "maturity_benefit_formula": (
+                "greater_of_annual_insured_amount_and_premium_total_times_1_06"
+            ),
+            "reserve_component": "policy_reserve_times_policy_reserve_ratio",
+            "premium_component": "premium_total_times_1_06",
+            "premium_multiplier": 1.06,
+            "maturity_age": 111,
+            "installment_benefit_available": True,
+            "premium_waiver_available": True,
+            "premium_waiver_disability_grade_min": 1,
+            "premium_waiver_disability_grade_max": 9,
+            "statutory_infectious_comfort_benefit": True,
+            "statutory_infectious_rate_percent": 1,
+            "statutory_infectious_policy_year_limit": 1,
+            "statutory_infectious_limit_times": 1,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "premium_total_required": True,
+            "policy_reserve_ratio_required": True,
+            "accumulated_paid_up_additions_required": True,
+            "coefficient_table_required": True,
+            "foreign_currency_policy": True,
+            "funeral_benefit_limit_rule": True,
+            "health_surrender_value_available": False,
+            "health_unpaid_premium_refund_available": False,
+        },
+        "coverage_entries": coverage_entries,
+    }
+
+
+def parse_taiwan_interest_rate_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_interest_rate_whole_life_strict_source(document):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "台灣人壽",
+        "利率變動型",
+        "終身壽險",
+        "主要給付項目",
+        "增值回饋分享金",
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "祝壽保險金",
+        "基本保險金額",
+        "累計增加保險金額",
+        "當年度保險金額",
+        "宣告利率",
+        "預定利率",
+        "【身故保險金或喪葬費用保險金的給付】",
+        "【完全失能保險金的給付】",
+        "【祝壽保險金的給付】",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    annual_formula = taiwan_interest_rate_annual_formula(compact_text)
+    if annual_formula == "formula_in_terms":
+        return None
+
+    death_article = taiwan_interest_article(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【完全失能保險金的給付】"],
+    )
+    disability_article = taiwan_interest_article(
+        text,
+        "【完全失能保險金的給付】",
+        ["【祝壽保險金的給付】"],
+    )
+    maturity_article = taiwan_interest_article(
+        text,
+        "【祝壽保險金的給付】",
+        [
+            "【法定傳染病慰問保險金的給付】",
+            "【分期定期保險金給付】",
+            "【豁免保險費】",
+            "【除外責任】",
+        ],
+    )
+    if not death_article or not disability_article or not maturity_article:
+        return None
+    statutory_infectious_present = "法定傳染病慰問保險金" in text
+    statutory_article = taiwan_interest_article(
+        text,
+        "【法定傳染病慰問保險金的給付】",
+        ["【分期定期保險金給付】", "【豁免保險費】", "【除外責任】"],
+    )
+    statutory_entry = (
+        taiwan_interest_rate_statutory_infectious_entry(statutory_article)
+        if statutory_infectious_present
+        else None
+    )
+    if statutory_infectious_present and statutory_entry is None:
+        return None
+
+    death_reserve = taiwan_interest_reserve_component(death_article)
+    death_premium_multiplier = taiwan_interest_premium_multiplier(death_article)
+    maturity_formula = taiwan_interest_maturity_formula(maturity_article)
+    premium_waiver_available = "【豁免保險費】" in text
+    installment_available = "【分期定期保險金給付】" in text
+    policy_reserve_ratio_required = death_reserve == "policy_reserve_times_policy_reserve_ratio"
+    premium_total_required = death_premium_multiplier is not None
+    coefficient_table_required = "當年度保險金額係數" in text or "該保單年度係數" in text
+
+    version_characteristics = {
+        "terms_revision": taiwan_interest_rate_revision(text),
+        "currency": taiwan_interest_rate_currency(text),
+        "expected_interest_rate_percent": taiwan_interest_rate_expected_rate(text),
+        "value_sharing_bonus": True,
+        "annual_insured_amount_formula": annual_formula,
+        "death_benefit_formula": (
+            "greater_of_annual_insured_amount_reserve_and_premium_total"
+            if "取其最大值" in death_article
+            else "annual_insured_amount"
+        ),
+        "total_disability_benefit_formula": (
+            "greater_of_annual_insured_amount_reserve_and_premium_total"
+            if "取其最大值" in disability_article
+            else "annual_insured_amount"
+        ),
+        "maturity_benefit_formula": maturity_formula,
+        "reserve_component": death_reserve,
+        "premium_component": (
+            "premium_total_times_1_1"
+            if death_premium_multiplier == 1.1
+            else
+            "premium_total_times_1_06"
+            if death_premium_multiplier == 1.06
+            else "premium_total_times_1_03"
+            if death_premium_multiplier == 1.03
+            else "premium_total_times_1_02"
+            if death_premium_multiplier == 1.02
+            else "premium_total"
+            if death_premium_multiplier == 1.0
+            else "none"
+        ),
+        "premium_multiplier": death_premium_multiplier,
+        "maturity_age": 111,
+        "installment_benefit_available": installment_available,
+        "premium_waiver_available": premium_waiver_available,
+        "policy_face_amount_required": True,
+        "policy_reserve_required": True,
+        "premium_total_required": premium_total_required,
+        "policy_reserve_ratio_required": policy_reserve_ratio_required,
+        "accumulated_paid_up_additions_required": True,
+        "coefficient_table_required": coefficient_table_required,
+        "foreign_currency_policy": taiwan_interest_rate_currency(text) in {"CNY", "USD"},
+        "funeral_benefit_limit_rule": True,
+    }
+    coverage_entries = taiwan_interest_rate_whole_life_entries(
+        annual_formula=annual_formula,
+        death_article=death_article,
+        disability_article=disability_article,
+        maturity_article=maturity_article,
+        installment_available=installment_available,
+        premium_waiver_available=premium_waiver_available,
+    )
+    if statutory_entry is not None:
+        version_characteristics.update(
+            {
+                "statutory_infectious_comfort_benefit": True,
+                "statutory_infectious_rate_percent": 1,
+                "statutory_infectious_policy_year_limit": 1,
+                "statutory_infectious_limit_times": 1,
+            }
+        )
+        installment_index = next(
+            (
+                index
+                for index, entry in enumerate(coverage_entries)
+                if entry["id"] == "installment-periodic-benefit"
+            ),
+            len(coverage_entries),
+        )
+        coverage_entries.insert(installment_index, statutory_entry)
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單面頁所載基本保險金額；實際身故、完全失能與祝壽金額仍需依保單當年度累計增加保險金額、保單價值準備金、保費總和或附表係數確認。",
+        "version_characteristics": version_characteristics,
+        "coverage_entries": coverage_entries,
+    }
+
+
+TAIWAN_YAOZUAN_CHUANSHI_USD_WHOLE_LIFE_CANCER_HEALTH_PRODUCT_VERSIONS = {
+    "202131MA9B12B23B11Z10000000": {
+        "file_name": "202131MA9B12B23B11Z10000000-A.pdf",
+        "product_name": "台灣人壽耀鑽傳世美元利率變動型終身保險",
+        "terms_revision": "114-original",
+        "filing_date": "114-12-24",
+        "filing_number": "台壽字第1142320109號",
+        "currency": "USD",
+        "expected_interest_rate_percent": 2.5,
+        "payment_period_options": [10, 12],
+        "page_count": 21,
+    },
+}
+
+
+TAIWAN_LEHUO_MEILI_USD_WHOLE_LIFE_CANCER_HEALTH_PRODUCT_VERSIONS = {
+    "202131MA9B91A23B11Z10000000": {
+        "file_name": "202131MA9B91A23B11Z10000000-A.pdf",
+        "product_name": "台灣人壽樂活美利美元利率變動型終身壽險",
+        "terms_revision": "114-original",
+        "filing_date": "114-06-27",
+        "filing_number": "台壽字第1142320067號",
+        "currency": "USD",
+        "expected_interest_rate_percent": 2.5,
+        "page_count": 20,
+    },
+}
+
+
+def is_taiwan_yaozuan_chuanshi_usd_whole_life_cancer_health_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_YAOZUAN_CHUANSHI_USD_WHOLE_LIFE_CANCER_HEALTH_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+        and document.get("page_count") in {None, version["page_count"]}
+        and document.get("pages_parsed") in {None, 20, version["page_count"]}
+    )
+
+
+def is_taiwan_lehuo_meili_usd_whole_life_cancer_health_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LEHUO_MEILI_USD_WHOLE_LIFE_CANCER_HEALTH_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+        and document.get("page_count") in {None, version["page_count"]}
+        and document.get("pages_parsed") in {None, version["page_count"]}
+    )
+
+
+def taiwan_yaozuan_chuanshi_usd_cancer_health_entries(
+    *,
+    annual_formula: str,
+    death_article: str,
+    disability_article: str,
+    special_article: str,
+    robotic_article: str,
+    maturity_article: str,
+) -> list[dict[str, Any]]:
+    base_entries = taiwan_interest_rate_whole_life_entries(
+        annual_formula=annual_formula,
+        death_article=death_article,
+        disability_article=disability_article,
+        maturity_article=maturity_article,
+        installment_available=True,
+        premium_waiver_available=False,
+    )
+    special_conditions = [
+        "限本契約有效且繳費期間內，經醫院醫師診斷確定初次罹患條款約定癌症後接受條款約定特別治療。",
+        "特別治療包含癌症(重度)標靶藥物治療、癌症(重度)特定粒子精準放射治療、實體癌症第四期自體免疫細胞治療、白血病造血幹細胞移植及惡性淋巴瘤造血幹細胞移植。",
+        "本項給付以一次為限；同時接受二項以上特別治療時仍僅給付一次。",
+        "計算基礎為首次接受特別治療日當時之基本保險金額乘以附表二所列當年度保險金額係數所得之值。",
+        "癌症等待期間為契約生效日起持續有效90日；復效時依條款另行起算等待期間。",
+    ]
+    robotic_conditions = [
+        "限本契約有效且繳費期間內，初次罹患條款約定癌症後依專科醫師指示於醫院實際接受符合條款定義之癌症特定機械手臂微創切除手術治療。",
+        "癌症特定機械手臂微創切除手術以附表六所列醫療器材輔助系統為準，條款列有達文西機械輔助手術系統等項目。",
+        "本項給付以一次為限。",
+        "癌症等待期間為契約生效日起持續有效90日；復效時依條款另行起算等待期間。",
+    ]
+    health_entries = [
+        coverage_entry(
+            "special-treatment-benefit",
+            "特別治療保險金",
+            None,
+            "policy_recorded_limit",
+            "首次接受條款約定特別治療時，按基本保險金額乘以附表二當年度保險金額係數後的50%給付。",
+            taiwan_interest_article_ref(special_article, "特別治療保險金的給付"),
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="choose_one",
+            rate_percent=50,
+            unit_key="basic_face_amount_times_annual_insured_amount_coefficient",
+            conditions=special_conditions,
+        ),
+        coverage_entry(
+            "cancer-robotic-surgery-benefit",
+            "癌症特定機械手臂微創切除手術醫療保險金",
+            None,
+            "face_amount",
+            "符合條款約定之癌症特定機械手臂微創切除手術治療時，按基本保險金額的2.5%給付。",
+            taiwan_interest_article_ref(
+                robotic_article,
+                "癌症特定機械手臂微創切除手術醫療保險金的給付",
+            ),
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=2.5,
+            unit_key="face_amount",
+            conditions=robotic_conditions,
+        ),
+    ]
+    return [*base_entries[:3], *health_entries, *base_entries[3:]]
+
+
+def taiwan_lehuo_meili_usd_cancer_health_entries(
+    *,
+    annual_formula: str,
+    death_article: str,
+    disability_article: str,
+    special_article: str,
+    maturity_article: str,
+) -> list[dict[str, Any]]:
+    base_entries = taiwan_interest_rate_whole_life_entries(
+        annual_formula=annual_formula,
+        death_article=death_article,
+        disability_article=disability_article,
+        maturity_article=maturity_article,
+        installment_available=True,
+        premium_waiver_available=False,
+    )
+    terminal_choose_one_condition = (
+        "若同時或先後符合特別治療、祝壽、身故/喪葬費用或完全失能給付條件，條款第二十條約定僅給付其中一項保險金。"
+    )
+    for entry in base_entries:
+        if entry["id"] in {
+            "death-or-funeral-benefit",
+            "total-disability-benefit",
+            "maturity-benefit",
+        }:
+            entry.setdefault("conditions", []).append(terminal_choose_one_condition)
+            entry["aggregation_rule"] = "choose_one"
+
+    special_conditions = [
+        "限本契約有效且繳費期間內，經醫院醫師診斷確定初次罹患條款約定癌症後接受條款約定特別治療。",
+        "特別治療包含癌症(重度)標靶藥物治療、癌症(重度)特定粒子精準放射治療、實體癌症第四期自體免疫細胞治療、白血病造血幹細胞移植及惡性淋巴瘤造血幹細胞移植。",
+        "本項給付以一次為限；同時或先後接受二項以上特別治療時仍僅給付一項特別治療保險金。",
+        "給付後本契約效力即行終止。",
+        "癌症等待期間為契約生效日起持續有效90日；復效時依條款另行起算等待期間。",
+        terminal_choose_one_condition,
+    ]
+    special_entry = coverage_entry(
+        "special-treatment-benefit",
+        "特別治療保險金",
+        None,
+        "policy_recorded_limit",
+        "首次接受條款約定特別治療時，依當年度保險金額、保單價值準備金乘以保單價值準備金比率、年繳應繳保險費總和 1.06 倍三款取最大值給付。",
+        taiwan_interest_article_ref(special_article, "特別治療保險金的給付"),
+        calculation_basis="greater_of",
+        amount_role="payout",
+        limit_scope="per_policy",
+        aggregation_rule="choose_one",
+        rate_percent=100,
+        unit_key="annual_insured_amount",
+        conditions=[
+            *taiwan_interest_formula_conditions(
+                annual_formula=annual_formula,
+                reserve_component=taiwan_interest_reserve_component(special_article),
+                premium_multiplier=taiwan_interest_premium_multiplier(special_article),
+            ),
+            *special_conditions,
+        ],
+    )
+    return [*base_entries[:3], special_entry, *base_entries[3:]]
+
+
+def parse_taiwan_yaozuan_chuanshi_usd_whole_life_cancer_health(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_yaozuan_chuanshi_usd_whole_life_cancer_health_strict_source(
+        document
+    ):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_YAOZUAN_CHUANSHI_USD_WHOLE_LIFE_CANCER_HEALTH_PRODUCT_VERSIONS[
+        product_id
+    ]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "台灣人壽耀鑽傳世美元利率變動型終身保險",
+        "台壽字第1142320109號函備查",
+        "主要給付項目",
+        "增值回饋分享金",
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "特別治療保險金",
+        "癌症特定機械手臂微創切除手術醫療保險金",
+        "本保險「癌症」之等待期間",
+        "持續有效90日之期間",
+        "健康險部分無解約金",
+        "年繳應繳保險費總和的1.06倍",
+        "保單價值準備金比率",
+        "基本保險金額乘以附表二所列之當年度保險金額係數所得之值的50%",
+        "基本保險金額的2.5%",
+        "達文西機械輔助手術系統",
+        "保險年齡到達111歲",
+        "【特別治療保險金的給付】",
+        "【癌症特定機械手臂微創切除手術醫療保險金的給付】",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+
+    annual_formula = taiwan_interest_rate_annual_formula(compact_text)
+    if annual_formula != "face_amount_plus_accumulated_paid_up_additions_times_coefficient":
+        return None
+    death_article = taiwan_interest_article(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【完全失能保險金的給付】"],
+    )
+    disability_article = taiwan_interest_article(
+        text,
+        "【完全失能保險金的給付】",
+        [
+            "【特別治療保險金的給付】",
+            "【癌症特定機械手臂微創切除手術醫療保險金的給付】",
+            "【祝壽保險金的給付】",
+        ],
+    )
+    special_article = taiwan_interest_article(
+        text,
+        "【特別治療保險金的給付】",
+        ["【癌症特定機械手臂微創切除手術醫療保險金的給付】"],
+    )
+    robotic_article = taiwan_interest_article(
+        text,
+        "【癌症特定機械手臂微創切除手術醫療保險金的給付】",
+        ["【祝壽保險金的給付】"],
+    )
+    maturity_article = taiwan_interest_article(
+        text,
+        "【祝壽保險金的給付】",
+        ["【分期定期保險金給付】", "【除外責任】"],
+    )
+    if not all(
+        [
+            death_article,
+            disability_article,
+            special_article,
+            robotic_article,
+            maturity_article,
+        ]
+    ):
+        return None
+    if (
+        taiwan_interest_premium_multiplier(death_article) != 1.06
+        or taiwan_interest_premium_multiplier(disability_article) != 1.06
+        or taiwan_interest_maturity_formula(maturity_article)
+        != "greater_of_annual_insured_amount_and_premium_total_times_1_06"
+    ):
+        return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單面頁所載基本保險金額；身故、完全失能、祝壽與特別治療仍需依保單年度、累計增加保險金額、保單價值準備金、年繳應繳保險費總和及附表二係數確認。",
+        "version_characteristics": {
+            "product_family": "taiwan-yaozuan-chuanshi-usd-whole-life-cancer-health",
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "currency": version["currency"],
+            "expected_interest_rate_percent": version[
+                "expected_interest_rate_percent"
+            ],
+            "value_sharing_bonus": True,
+            "payment_period_options": version["payment_period_options"],
+            "cancer_waiting_days": 90,
+            "special_treatment_rate_percent": 50,
+            "robotic_surgery_rate_percent": 2.5,
+            "special_treatment_lifetime_limit_times": 1,
+            "robotic_surgery_lifetime_limit_times": 1,
+            "special_treatment_item_count": 5,
+            "robotic_surgery_system_table_required": True,
+            "robotic_surgery_system_count": 2,
+            "annual_insured_amount_formula": annual_formula,
+            "death_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total",
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total",
+            "maturity_benefit_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+            "reserve_component": "policy_reserve_times_policy_reserve_ratio",
+            "premium_component": "premium_total_times_1_06",
+            "premium_multiplier": 1.06,
+            "maturity_age": 111,
+            "installment_benefit_available": True,
+            "premium_waiver_available": False,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "premium_total_required": True,
+            "policy_reserve_ratio_required": True,
+            "accumulated_paid_up_additions_required": True,
+            "coefficient_table_required": True,
+            "foreign_currency_policy": True,
+            "funeral_benefit_limit_rule": True,
+            "health_surrender_value_available": False,
+            "health_unpaid_premium_refund_available": False,
+        },
+        "coverage_entries": taiwan_yaozuan_chuanshi_usd_cancer_health_entries(
+            annual_formula=annual_formula,
+            death_article=death_article,
+            disability_article=disability_article,
+            special_article=special_article,
+            robotic_article=robotic_article,
+            maturity_article=maturity_article,
+        ),
+    }
+
+
+def parse_taiwan_lehuo_meili_usd_whole_life_cancer_health(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_lehuo_meili_usd_whole_life_cancer_health_strict_source(
+        document
+    ):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LEHUO_MEILI_USD_WHOLE_LIFE_CANCER_HEALTH_PRODUCT_VERSIONS[
+        product_id
+    ]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        version["product_name"],
+        "台壽字第1142320067號函備查",
+        "主要給付項目",
+        "增值回饋分享金",
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "特別治療保險金",
+        "祝壽保險金",
+        "本保險「癌症」之等待期間",
+        "持續有效90日之期間",
+        "健康險未給付部分無解約金",
+        "年繳應繳保險費總和的1.06倍",
+        "保單價值準備金比率",
+        "特別治療保險金」最多以給付一次為限",
+        "同時或先後符合「特別治療保險金」、「祝壽保險金」、「身故保險金或喪葬費用保險金」或「完全失能保險金」之給付條件者",
+        "本公司僅給付其中一項保險金",
+        "保險年齡到達111歲",
+        "【特別治療保險金的給付】",
+        "【保險給付的限制】",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    if "癌症特定機械手臂微創切除手術醫療保險金" in text:
+        return None
+
+    annual_formula = taiwan_interest_rate_annual_formula(compact_text)
+    if annual_formula != "face_amount_plus_accumulated_paid_up_additions_times_coefficient":
+        return None
+    death_article = taiwan_interest_article(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【完全失能保險金的給付】"],
+    )
+    disability_article = taiwan_interest_article(
+        text,
+        "【完全失能保險金的給付】",
+        ["【特別治療保險金的給付】"],
+    )
+    special_article = taiwan_interest_article(
+        text,
+        "【特別治療保險金的給付】",
+        ["【祝壽保險金的給付】"],
+    )
+    maturity_article = taiwan_interest_article(
+        text,
+        "【祝壽保險金的給付】",
+        ["【保險給付的限制】", "【分期定期保險金給付】", "【除外責任】"],
+    )
+    if not all([death_article, disability_article, special_article, maturity_article]):
+        return None
+    if (
+        taiwan_interest_premium_multiplier(death_article) != 1.06
+        or taiwan_interest_premium_multiplier(disability_article) != 1.06
+        or taiwan_interest_premium_multiplier(special_article) != 1.06
+        or taiwan_interest_maturity_formula(maturity_article)
+        != "greater_of_annual_insured_amount_and_premium_total_times_1_06"
+        or taiwan_interest_reserve_component(special_article)
+        != "policy_reserve_times_policy_reserve_ratio"
+    ):
+        return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單面頁所載基本保險金額；身故、完全失能、特別治療與祝壽金額仍需依保單年度、累計增加保險金額、保單價值準備金、年繳應繳保險費總和及附表二/三係數確認。",
+        "version_characteristics": {
+            "product_family": "taiwan-lehuo-meili-usd-whole-life-cancer-health",
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "currency": version["currency"],
+            "expected_interest_rate_percent": version[
+                "expected_interest_rate_percent"
+            ],
+            "value_sharing_bonus": True,
+            "cancer_waiting_days": 90,
+            "special_treatment_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total_times_1_06",
+            "special_treatment_lifetime_limit_times": 1,
+            "special_treatment_item_count": 5,
+            "special_treatment_payment_period_only": True,
+            "terminal_benefits_choose_one_rule": True,
+            "annual_insured_amount_formula": annual_formula,
+            "death_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total",
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total",
+            "maturity_benefit_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+            "reserve_component": "policy_reserve_times_policy_reserve_ratio",
+            "premium_component": "premium_total_times_1_06",
+            "premium_multiplier": 1.06,
+            "maturity_age": 111,
+            "installment_benefit_available": True,
+            "premium_waiver_available": False,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "premium_total_required": True,
+            "policy_reserve_ratio_required": True,
+            "accumulated_paid_up_additions_required": True,
+            "coefficient_table_required": True,
+            "foreign_currency_policy": True,
+            "funeral_benefit_limit_rule": True,
+            "health_surrender_value_available": False,
+            "health_unpaid_premium_refund_available": False,
+        },
+        "coverage_entries": taiwan_lehuo_meili_usd_cancer_health_entries(
+            annual_formula=annual_formula,
+            death_article=death_article,
+            disability_article=disability_article,
+            special_article=special_article,
+            maturity_article=maturity_article,
+        ),
+    }
+
+
+def taiwan_interest_rate_accident_expected_rate(text: str) -> float | None:
+    match = re.search(r"本契約預定利率\(?\s*([\d.]+)\s*%\s*\)?", text)
+    return float(match.group(1)) if match else None
+
+
+def taiwan_interest_rate_accident_value_sharing_conditions(
+    version: dict[str, Any],
+) -> list[str]:
+    conditions = [
+        "每一保單週年日按前一保單年度始日當月宣告利率減本契約預定利率 1.85%，乘以前一保單年度末保單價值準備金；宣告利率低於預定利率時該年度無增值回饋分享金。",
+        "給付方式可選購買增額繳清保險金額、現金給付或儲存生息；未選擇時視為購買增額繳清保險金額，且第六保單年度屆滿前限以購買增額繳清保險金額辦理。",
+    ]
+    if version["age_16_value_sharing_special_rule"]:
+        conditions.extend(
+            [
+                "原始版另約定被保險人保險年齡到達 16 歲前，增值回饋分享金於繳費期間採抵繳保險費辦理。",
+                "若繳費期間已屆滿而無法抵繳，則按宣告利率年複利儲存至保險年齡到達 16 歲時，一次計算增額繳清保險金額。",
+            ]
+        )
+    return conditions
+
+
+def taiwan_interest_rate_accident_whole_life_entries(
+    version: dict[str, Any],
+) -> list[dict[str, Any]]:
+    annual_amount_conditions = [
+        "當年度保險金額為基本保險金額與累計增加保險金額二者加總之值。",
+        "年繳應繳保險費總和於繳費期間內按當年度保險金額對照表定標準體年繳應繳保險費，乘以事故發生當時保單年度數；繳費期滿後乘以繳費期間。",
+    ]
+    funeral_conditions = []
+    if version["minor_death_under_15_funeral_benefit_rule"]:
+        funeral_conditions.append(
+            "原始版含未滿 15 足歲未成年人死亡給付限制，滿 15 足歲前身故時身故保險金變更為喪葬費用保險金。"
+        )
+    funeral_conditions.append(
+        "受監護宣告尚未撤銷者，身故保險金或意外傷害身故保險金變更為喪葬費用保險金，並受喪葬費用限額規則拘束。"
+    )
+
+    accident_conditions = [
+        "被保險人於契約有效期間內遭受意外傷害事故，且自事故發生日起 180 日以內死亡時，除身故保險金外另給付。",
+        "若超過 180 日死亡，受益人能證明死亡與意外傷害事故具有因果關係時仍適用。",
+        "意外傷害身故保險金按身故日之當年度保險金額給付。",
+    ]
+    if version["accidental_death_min_age_16_wording"]:
+        accident_conditions.insert(
+            0,
+            "原始版明定保險年齡未滿 16 歲身故者，無意外傷害身故保險金條款之適用。",
+        )
+
+    return [
+        coverage_entry(
+            "value-sharing-bonus",
+            "增值回饋分享金",
+            None,
+            "policy_recorded_limit",
+            "依宣告利率與本契約預定利率差額計算，可轉增額繳清、現金給付或儲存生息。",
+            "條款第十條 增值回饋分享金的給付及通知",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="annual",
+            aggregation_rule="separate",
+            conditions=taiwan_interest_rate_accident_value_sharing_conditions(version),
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "身故時按身故日當年度保險金額與身故日年繳應繳保險費總和二款取最大值給付。",
+            "條款第十三條 身故保險金或喪葬費用保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[*annual_amount_conditions, *funeral_conditions],
+        ),
+        coverage_entry(
+            "injury-rider-surrender-value-refund-on-non-accident-death",
+            "未符合意外身故條件時退還傷害險部分解約金",
+            None,
+            "policy_recorded_limit",
+            "被保險人身故致契約終止且未符合意外傷害身故給付條件時，依身故日之傷害險部分解約金退還要保人。",
+            "條款第十三條 身故保險金或喪葬費用保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="separate",
+            conditions=[
+                "僅於身故導致契約終止且未符合第十四條意外傷害身故保險金約定時適用。",
+                "金額依身故日傷害險部分解約金計算，需回到保單解約金資料確認。",
+            ],
+        ),
+        coverage_entry(
+            "accidental-death-additional-benefit",
+            "意外傷害身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "符合意外傷害身故條件時，除身故保險金外，另按身故日當年度保險金額給付。",
+            "條款第十四條 意外傷害身故保險金或喪葬費用保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="conditional_additive",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[*accident_conditions, *funeral_conditions],
+        ),
+        coverage_entry(
+            "maturity-age-111-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "保險年齡到達 111 歲之保單週年日仍生存時，按 110 歲屆滿之當年度保險金額與年繳應繳保險費總和二款取最大值給付。",
+            "條款第十五條 祝壽保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                "被保險人於契約有效期間且保險年齡到達 111 歲之保單週年日仍生存時給付。",
+                "比較基準使用保險年齡 110 歲屆滿之當年度保險金額與保險年齡 110 歲屆滿之年繳應繳保險費總和。",
+            ],
+        ),
+        coverage_entry(
+            "premium-waiver-disability-grade-one-to-six",
+            "第一級至第六級失能豁免保險費",
+            None,
+            "policy_recorded_limit",
+            "繳費期間內因疾病或意外傷害事故致成附表第一級至第六級失能之一者，自診斷確定日翌日起免繳本契約未到期保險費。",
+            "條款第十六條 豁免保險費",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            conditions=[
+                "限本契約有效且繳費期間內發生。",
+                "豁免範圍不含其他附約，且不退還當期已繳保險費之未滿期保險費。",
+            ],
+        ),
+        coverage_entry(
+            "installment-periodic-benefit",
+            "分期定期保險金給付",
+            None,
+            "policy_recorded_limit",
+            "可將指定保險金依分期給付期間與分期定期保險金預定利率換算為每年年初給付金額。",
+            "條款第十七條 分期定期保險金給付",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            conditions=[
+                "指定保險金由身故保險金或意外傷害身故保險金各受益人得受領金額乘以要保書或批註約定比例而來。",
+                "分期定期保險金給付期間最短 5 年、最長 30 年。",
+                "分期定期保險金預定利率以分期定期給付開始日本公司公告於網站之利率為準。",
+            ],
+        ),
+        coverage_entry(
+            "installment-low-annual-payment-lump-sum",
+            "分期金額過低時一次給付",
+            None,
+            "policy_recorded_limit",
+            "每年給付之分期定期保險金低於新臺幣 36,000 元者，公司將一次給付指定保險金予受益人，分期定期給付約定終止。",
+            "條款第十八條 分期定期保險金給付約定之變更、終止及其限制",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            conditions=[
+                "適用於每年分期定期保險金低於新臺幣 36,000 元時。",
+                "一次給付指定保險金後，分期定期給付之約定即行終止。",
+            ],
+        ),
+    ]
+
+
+def parse_taiwan_interest_rate_accident_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_interest_rate_accident_whole_life_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LIFE_INTEREST_RATE_ACCIDENT_WHOLE_LIFE_PRODUCT_VERSIONS[
+        product_id
+    ]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "利率變動型終身壽險",
+        "增值回饋分享金",
+        "身故保險金或喪葬費用保險金",
+        "意外傷害身故保險金或喪葬費用保險金",
+        "祝壽保險金",
+        "豁免保險費",
+        "分期定期保險金給付",
+        "當年度保險金額",
+        "年繳應繳保險費總和",
+        "第一級至第六級失能",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    if taiwan_interest_rate_accident_expected_rate(text) != 1.85:
+        return None
+
+    age_16_special_in_source = any(
+        compact_table_text(signal) in compact_text
+        for signal in [
+            "被保險人保險年齡到達16歲前",
+            "被保險人保險年齡達16歲前",
+        ]
+    )
+    accident_age_16_in_source = (
+        compact_table_text("保險年齡未滿16歲身故者，無本條之適用")
+        in compact_text
+    )
+    minor_death_rule_in_source = (
+        compact_table_text("未滿15足歲之未成年人") in compact_text
+    )
+    if (
+        age_16_special_in_source != version["age_16_value_sharing_special_rule"]
+        or accident_age_16_in_source
+        != version["accidental_death_min_age_16_wording"]
+        or minor_death_rule_in_source
+        != version["minor_death_under_15_funeral_benefit_rule"]
+    ):
+        return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單面頁所載基本保險金額；當年度保險金額會依基本保險金額加計累計增加保險金額，死亡、意外身故與祝壽給付仍需依保單年度、宣告利率、保費總和及分期指定比例確認。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "product_family": version["product_family"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "revision_filing_date": version["revision_filing_date"] or "none",
+            "revision_filing_number": version["revision_filing_number"] or "none",
+            "currency": "TWD",
+            "expected_interest_rate_percent": 1.85,
+            "value_sharing_bonus": True,
+            "age_16_value_sharing_special_rule": version[
+                "age_16_value_sharing_special_rule"
+            ],
+            "annual_insured_amount_formula": "face_amount_plus_accumulated_paid_up_additions",
+            "death_benefit_formula": "greater_of_annual_insured_amount_and_annual_premium_total",
+            "accidental_death_benefit_formula": "death_benefit_plus_annual_insured_amount",
+            "accidental_death_min_age_16_wording": version[
+                "accidental_death_min_age_16_wording"
+            ],
+            "maturity_benefit_formula": "greater_of_annual_insured_amount_and_annual_premium_total_at_age_110",
+            "maturity_age": 111,
+            "installment_benefit_available": True,
+            "installment_period_min_years": 5,
+            "installment_period_max_years": 30,
+            "installment_interest_rate_source": "company_announced_rate_on_start_date",
+            "minimum_annual_installment_amount": 36_000,
+            "premium_waiver_available": True,
+            "premium_waiver_disability_grade_min": 1,
+            "premium_waiver_disability_grade_max": 6,
+            "accident_claim_days": 180,
+            "minor_death_under_15_funeral_benefit_rule": version[
+                "minor_death_under_15_funeral_benefit_rule"
+            ],
+            "guardianship_funeral_benefit_rule": True,
+            "funeral_benefit_limit_rule": True,
+            "policy_face_amount_required": True,
+            "accumulated_paid_up_additions_required": True,
+            "premium_total_required": True,
+            "specified_insurance_amount_required_for_installment": True,
+        },
+        "coverage_entries": taiwan_interest_rate_accident_whole_life_entries(
+            version
+        ),
+    }
+
+
+def taiwan_chuanshi_fuli_reserve_ratio_schedule() -> list[dict[str, Any]]:
+    return [
+        {"age_range": "16-30", "rate_percent": 190},
+        {"age_range": "31-40", "rate_percent": 160},
+        {"age_range": "41-50", "rate_percent": 140},
+        {"age_range": "51-60", "rate_percent": 120},
+        {"age_range": "61-70", "rate_percent": 110},
+        {"age_range": "71-90", "rate_percent": 102},
+        {"age_range": "91+", "rate_percent": 100},
+    ]
+
+
+def taiwan_chuanshi_fuli_value_sharing_conditions(
+    version: dict[str, Any],
+) -> list[str]:
+    conditions = [
+        "每一保單週年日按前一保單年度始日當月宣告利率減本契約預定利率，乘以前一保單年度末保單價值準備金；宣告利率低於預定利率時該年度無增值回饋分享金。",
+        "本契約預定利率依繳費期間不同：二年期繳費者為 0.75%，六年期繳費者為 1.50%。",
+        "給付方式可選購買增額繳清保險金額、現金給付或儲存生息；未選擇時視為購買增額繳清保險金額，且第六保單年度屆滿前限以購買增額繳清保險金額辦理。",
+        "儲存生息之增值回饋分享金於被保險人身故、完全失能或契約終止時，由公司主動一併給付。",
+    ]
+    if version["age_16_value_sharing_special_rule"]:
+        conditions.extend(
+            [
+                "本版本另約定被保險人保險年齡到達 16 歲前，增值回饋分享金於繳費期間採抵繳保險費辦理。",
+                "若繳費期間已屆滿而無法抵繳，則按宣告利率年複利儲存至保險年齡到達 16 歲時，一次計算增額繳清保險金額。",
+            ]
+        )
+    return conditions
+
+
+def taiwan_chuanshi_fuli_whole_life_entries(
+    version: dict[str, Any],
+) -> list[dict[str, Any]]:
+    annual_amount_conditions = [
+        "當年度保險金額依繳費期間與保單年度計算：二年期前二保單年度、六年期前五保單年度以年繳應繳保險費總和的 1.02 倍計；之後以基本保險金額與累計增加保險金額加總後乘以附表三當年度保險金額係數計。",
+        "年繳應繳保險費總和以基本保險金額與累計增加保險金額加總值對照表定標準體年繳應繳保險費，再依事故發生當時保單年度數或繳費期間計算。",
+        "保單價值準備金比率依保險年齡分段，16-30 歲為 190%，31-40 歲為 160%，41-50 歲為 140%，51-60 歲為 120%，61-70 歲為 110%，71-90 歲為 102%，91 歲以上為 100%。",
+    ]
+    funeral_conditions = []
+    if version["minor_death_under_15_funeral_benefit_rule"]:
+        funeral_conditions.append(
+            "本版本含未滿 15 足歲未成年人死亡給付限制，滿 15 足歲前身故時身故保險金變更為喪葬費用保險金。"
+        )
+    funeral_conditions.append(
+        "受監護宣告尚未撤銷者，身故保險金或意外傷害身故保險金變更為喪葬費用保險金，並受喪葬費用限額規則拘束。"
+    )
+
+    accident_conditions = [
+        "被保險人於契約有效期間內遭受意外傷害事故，且自事故發生日起 180 日以內死亡時，除身故保險金外另給付。",
+        "若超過 180 日死亡，受益人能證明死亡與意外傷害事故具有因果關係時仍適用。",
+        "意外傷害身故保險金以身故日基本保險金額與累計增加保險金額加總，乘以附表三當年度保險金額係數後的 50% 給付。",
+    ]
+    if version["accidental_death_min_age_16_wording"]:
+        accident_conditions.insert(
+            0,
+            "本版本明定保險年齡未滿 16 歲身故者，無意外傷害身故保險金條款之適用。",
+        )
+
+    total_disability_conditions = [
+        *annual_amount_conditions,
+        "被保險人於契約有效期間內致成附表一所列完全失能程度之一時適用；同時有二種以上完全失能程度時僅給付一次完全失能保險金。",
+    ]
+
+    return [
+        coverage_entry(
+            "value-sharing-bonus",
+            "增值回饋分享金",
+            None,
+            "policy_recorded_limit",
+            "依宣告利率與本契約預定利率差額計算，可轉增額繳清、現金給付或儲存生息。",
+            "條款第十條 增值回饋分享金的給付及通知",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="annual",
+            aggregation_rule="separate",
+            conditions=taiwan_chuanshi_fuli_value_sharing_conditions(version),
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "身故時按當年度保險金額、保單價值準備金乘以保單價值準備金比率、年繳應繳保險費總和 1.02 倍三款取最大值給付。",
+            "條款第十三條 身故保險金或喪葬費用保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            multiplier=1.02,
+            unit_key="annual_insured_amount_or_reserve_or_premium_total",
+            conditions=[*annual_amount_conditions, *funeral_conditions],
+        ),
+        coverage_entry(
+            "injury-rider-surrender-value-refund-on-non-accident-death",
+            "未符合意外身故條件時退還傷害險部分解約金",
+            None,
+            "policy_recorded_limit",
+            "被保險人身故致契約終止且未符合意外傷害身故給付條件時，依身故日之傷害險部分解約金退還要保人。",
+            "條款第十三條 身故保險金或喪葬費用保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="separate",
+            conditions=[
+                "僅於身故導致契約終止且未符合第十四條意外傷害身故保險金約定時適用。",
+                "金額依身故日傷害險部分解約金計算，需回到保單解約金資料確認。",
+            ],
+        ),
+        coverage_entry(
+            "accidental-death-additional-benefit",
+            "意外傷害身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "符合意外傷害身故條件時，除身故保險金外，另按係數後基礎的 50% 給付。",
+            "條款第十四條 意外傷害身故保險金或喪葬費用保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="conditional_additive",
+            rate_percent=50,
+            unit_key="face_amount_plus_accumulated_times_coefficient",
+            conditions=[*accident_conditions, *funeral_conditions],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            "完全失能時按當年度保險金額、保單價值準備金乘以保單價值準備金比率、年繳應繳保險費總和 1.02 倍三款取最大值給付。",
+            "條款第十五條 完全失能保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            multiplier=1.02,
+            unit_key="annual_insured_amount_or_reserve_or_premium_total",
+            conditions=total_disability_conditions,
+        ),
+        coverage_entry(
+            "total-disability-injury-rider-surrender-value-refund",
+            "完全失能時退還傷害險部分解約金",
+            None,
+            "policy_recorded_limit",
+            "給付完全失能保險金後契約效力終止，另依完全失能診斷確定日之傷害險部分解約金退還要保人。",
+            "條款第十五條 完全失能保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="separate",
+            conditions=[
+                "需已符合附表一完全失能程度之一並給付完全失能保險金。",
+                "金額依完全失能診斷確定日傷害險部分解約金計算，需回到保單解約金資料確認。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-living-assistance-benefit",
+            "完全失能生活扶助保險金",
+            None,
+            "policy_recorded_limit",
+            "完全失能後，自診斷確定日後次一保單週年日起至保險年齡 111 歲保單週年日止，每一保單週年日仍生存時給付係數後基礎的 10%，最高 10 次。",
+            "條款第十六條 完全失能生活扶助保險金的給付",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="annual",
+            aggregation_rule="cumulative_cap",
+            rate_percent=10,
+            unit_key="face_amount_plus_accumulated_times_coefficient",
+            conditions=[
+                "須先致成附表一所列完全失能程度之一，且於各保單週年日仍生存。",
+                "給付期間自完全失能診斷確定日後次一保單週年日含起，至保險年齡到達 111 歲之保單週年日止。",
+                "最高給付次數以 10 次為限，且不因本契約效力終止而影響本項給付。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-age-111-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "保險年齡到達 111 歲之保單週年日仍生存時，按 110 歲屆滿之當年度保險金額與年繳應繳保險費總和 1.02 倍二款取最大值給付。",
+            "條款第十七條 祝壽保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            multiplier=1.02,
+            unit_key="annual_insured_amount_or_premium_total",
+            conditions=[
+                "被保險人於契約有效期間且保險年齡到達 111 歲之保單週年日仍生存時給付。",
+                "比較基準使用保險年齡 110 歲屆滿之當年度保險金額與年繳應繳保險費總和的 1.02 倍。",
+            ],
+        ),
+        coverage_entry(
+            "premium-waiver-disability-grade-two-to-six",
+            "第二級至第六級失能豁免保險費",
+            None,
+            "policy_recorded_limit",
+            "繳費期間內因疾病或意外傷害事故致成附表二第二級至第六級失能之一者，自診斷確定日翌日起免繳本契約未到期保險費。",
+            "條款第十八條 豁免保險費",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            conditions=[
+                "限本契約有效且繳費期間內發生。",
+                "豁免範圍不含其他附約，且不退還當期已繳保險費之未滿期保險費。",
+            ],
+        ),
+        coverage_entry(
+            "installment-periodic-benefit",
+            "分期定期保險金給付",
+            None,
+            "policy_recorded_limit",
+            "可將身故、意外傷害身故或完全失能保險金中的指定保險金，依分期期間與分期定期保險金預定利率換算為每年年初給付金額。",
+            "條款第十九條 分期定期保險金給付",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            conditions=[
+                "指定保險金由身故保險金、意外傷害身故保險金或完全失能保險金可受領金額，乘以要保書或批註約定比例而來。",
+                "分期定期保險金給付期間最短 5 年、最長 30 年。",
+                "分期定期保險金預定利率以分期定期給付開始日本公司公告於網站之利率為準。",
+            ],
+        ),
+        coverage_entry(
+            "installment-low-annual-payment-lump-sum",
+            "分期金額過低時一次給付",
+            None,
+            "policy_recorded_limit",
+            "每年給付之分期定期保險金低於新臺幣 36,000 元者，公司將一次給付指定保險金予受益人，分期定期給付約定終止。",
+            "條款第二十條 分期定期保險金給付約定之變更、終止及其限制",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            conditions=[
+                "適用於每年分期定期保險金低於新臺幣 36,000 元時。",
+                "一次給付指定保險金後，分期定期給付之約定即行終止。",
+            ],
+        ),
+    ]
+
+
+def parse_taiwan_chuanshi_fuli_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_chuanshi_fuli_whole_life_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LIFE_CHUANSHI_FULI_WHOLE_LIFE_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "傳世富利利率變動型終身壽險",
+        "增值回饋分享金",
+        "身故保險金或喪葬費用保險金",
+        "意外傷害身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "完全失能生活扶助保險金",
+        "祝壽保險金",
+        "豁免保險費",
+        "分期定期保險金給付",
+        "保單價值準備金比率",
+        "二年期繳費者為0.75%；六年期繳費者為1.50%",
+        "年繳應繳保險費總和的1.02倍",
+        "當年度保險金額係數所得之值的50%",
+        "所得之值的10%給付完全失能生活扶助保險金",
+        "第二級至第六級失能",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+
+    age_16_special_in_source = any(
+        compact_table_text(signal) in compact_text
+        for signal in [
+            "被保險人保險年齡到達16歲前",
+            "被保險人保險年齡達16歲前",
+        ]
+    )
+    accident_age_16_in_source = (
+        compact_table_text("保險年齡未滿16歲身故者，無本條之適用")
+        in compact_text
+    )
+    minor_death_rule_in_source = (
+        compact_table_text("未滿15足歲之未成年人") in compact_text
+    )
+    if (
+        age_16_special_in_source != version["age_16_value_sharing_special_rule"]
+        or accident_age_16_in_source
+        != version["accidental_death_min_age_16_wording"]
+        or minor_death_rule_in_source
+        != version["minor_death_under_15_funeral_benefit_rule"]
+    ):
+        return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單面頁所載基本保險金額；本商品還需要繳費期間、保單年度、累計增加保險金額、附表三當年度保險金額係數、保單價值準備金與指定分期比例，才能換算實際保障金額。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "revision_filing_date": version["revision_filing_date"],
+            "revision_filing_number": version["revision_filing_number"],
+            "revision_basis": version["revision_basis"],
+            "currency": "TWD",
+            "expected_interest_rate_schedule": {
+                "two_year_payment_period_percent": 0.75,
+                "six_year_payment_period_percent": 1.50,
+            },
+            "value_sharing_bonus": True,
+            "age_16_value_sharing_special_rule": version[
+                "age_16_value_sharing_special_rule"
+            ],
+            "payment_period_options": [2, 6],
+            "annual_insured_amount_formula": "two_year_first_two_or_six_year_first_five_premium_total_times_1_02_then_face_plus_accumulated_times_coefficient",
+            "death_benefit_formula": "greater_of_annual_insured_amount_reserve_ratio_and_premium_total_times_1_02",
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_reserve_ratio_and_premium_total_times_1_02",
+            "accidental_death_benefit_formula": "face_amount_plus_accumulated_times_coefficient_50_percent_additional",
+            "accidental_death_rate_percent": 50,
+            "accidental_death_min_age_16_wording": version[
+                "accidental_death_min_age_16_wording"
+            ],
+            "total_disability_living_assistance_formula": "face_amount_plus_accumulated_times_coefficient_10_percent_annually",
+            "total_disability_living_assistance_rate_percent": 10,
+            "total_disability_living_assistance_max_payments": 10,
+            "maturity_benefit_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_02_at_age_110",
+            "maturity_age": 111,
+            "installment_benefit_available": True,
+            "installment_period_min_years": 5,
+            "installment_period_max_years": 30,
+            "installment_interest_rate_source": "company_announced_rate_on_start_date",
+            "minimum_annual_installment_amount": 36_000,
+            "premium_waiver_available": True,
+            "premium_waiver_disability_grade_min": 2,
+            "premium_waiver_disability_grade_max": 6,
+            "accident_claim_days": 180,
+            "minor_death_under_15_funeral_benefit_rule": version[
+                "minor_death_under_15_funeral_benefit_rule"
+            ],
+            "guardianship_funeral_benefit_rule": True,
+            "funeral_benefit_limit_rule": True,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "policy_reserve_ratio_required": True,
+            "policy_reserve_ratio_schedule": taiwan_chuanshi_fuli_reserve_ratio_schedule(),
+            "premium_total_required": True,
+            "premium_multiplier": 1.02,
+            "accumulated_paid_up_additions_required": True,
+            "coefficient_table_required": True,
+            "specified_insurance_amount_required_for_installment": True,
+        },
+        "coverage_entries": taiwan_chuanshi_fuli_whole_life_entries(version),
+    }
+
+
+def taiwan_interest_premium_component(multiplier: float | None) -> str:
+    if multiplier == 1.1:
+        return "premium_total_times_1_1"
+    if multiplier == 1.06:
+        return "premium_total_times_1_06"
+    if multiplier == 1.03:
+        return "premium_total_times_1_03"
+    if multiplier == 1.02:
+        return "premium_total_times_1_02"
+    if multiplier == 1.0:
+        return "premium_total"
+    return "none"
+
+
+def taiwan_interest_premium_waiver_conditions(article_text: str) -> list[str]:
+    conditions = ["是否適用需依失能等級、診斷日、繳費期間及條款版本確認。"]
+    compact = taiwan_return_compact(article_text)
+    if "第一級至第六級失能" in compact:
+        conditions.append(
+            "被保險人於繳費期間內致成第一級至第六級失能程度之一者，自診斷確定日翌日起免繳未到期保險費。"
+        )
+    elif "第一級至第九級失能" in compact:
+        conditions.append(
+            "被保險人於繳費期間內致成第一級至第九級失能程度之一者，自診斷確定日翌日起免繳未到期保險費。"
+        )
+    if "不退還當期已繳保險費之未滿期保險費" in compact:
+        conditions.append("當期已繳保險費的未滿期保險費不退還。")
+    if "減額繳清保險" in compact and "展期定期保險" in compact:
+        conditions.append("豁免後不再受理減額繳清保險及展期定期保險變更申請。")
+    return conditions
+
+
+def taiwan_interest_installment_conditions(article_text: str) -> list[str]:
+    conditions = ["分期金額取決於指定保險金、給付期間及分期定期保險金預定利率。"]
+    compact = taiwan_return_compact(article_text)
+    if "最短為五年" in compact and "最長為三十年" in compact:
+        conditions.append("分期定期保險金給付期間最短 5 年、最長 30 年。")
+    if "每一週年日或每一週月日" in compact or "給付週期" in compact:
+        conditions.append("可依約定給付週期按年或按月給付。")
+    if "每年給付之分期定期保險金低於美元1,200元" in compact:
+        conditions.append("每年給付金額低於美元 1,200 元時，改一次給付指定保險金。")
+    if "每期給付之分期定期保險金低於下列金額" in compact:
+        conditions.append(
+            "每期分期金低於按年美元 1,200 元或按月美元 200 元時，改一次給付指定保險金。"
+        )
+    if "不得變更或終止本契約" in compact and "不得以保險契約為質" in compact:
+        conditions.append("分期定期保險金給付期間內不得變更或終止契約，且不得以契約借款。")
+    return conditions
+
+
+def taiwan_interest_rate_survival_whole_life_entries(
+    *,
+    annual_formula: str,
+    death_article: str,
+    maturity_article: str,
+    terminal_article: str,
+    premium_waiver_article: str,
+    installment_article: str,
+    installment_available: bool,
+    premium_waiver_available: bool,
+) -> list[dict[str, Any]]:
+    death_reserve = taiwan_interest_reserve_component(death_article)
+    death_premium_multiplier = taiwan_interest_premium_multiplier(death_article)
+    maturity_premium_multiplier = taiwan_interest_premium_multiplier(maturity_article)
+    maturity_formula = taiwan_interest_maturity_formula(maturity_article)
+    entries = [
+        coverage_entry(
+            "value-sharing-bonus",
+            "增值回饋分享金",
+            None,
+            "policy_recorded_limit",
+            "依宣告利率與預定利率差額乘以前一保單年度末保單價值準備金計算；宣告利率低於預定利率時該年度無給付。",
+            "保單條款增值回饋分享金定義及給付條款",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="annual",
+            conditions=[
+                "給付方式可依要保人選擇購買增額繳清保險金額、現金給付或儲存生息；部分條款限制現金給付須於第六保單年度屆滿後。",
+                "實際金額需保單當年度宣告利率、預定利率及前一保單年度末保單價值準備金。",
+            ],
+        )
+    ]
+    death_is_greater_of = "取其最大值" in death_article
+    entries.append(
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "身故時按條款所列當年度保險金額、保單價值準備金及保費總和等項目取最大值；未滿 15 足歲或受監護宣告者改依喪葬費用限制。",
+            taiwan_interest_article_ref(death_article, "身故保險金或喪葬費用保險金的給付"),
+            calculation_basis="greater_of" if death_is_greater_of else "percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest" if death_is_greater_of else "separate",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                *taiwan_interest_formula_conditions(
+                    annual_formula=annual_formula,
+                    reserve_component=death_reserve,
+                    premium_multiplier=death_premium_multiplier,
+                ),
+                "喪葬費用保險金仍受主管機關限額與多張保單合計規則限制。",
+            ],
+        )
+    )
+    if maturity_formula.startswith("greater_of"):
+        maturity_calculation_basis = "greater_of"
+        maturity_aggregation_rule = "highest"
+        maturity_rate_percent: int | None = 100
+    else:
+        maturity_calculation_basis = "percentage_of_base"
+        maturity_aggregation_rule = "separate"
+        maturity_rate_percent = 100
+    entries.append(
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於保險年齡到達 111 歲之保單週年日仍生存時給付，給付後契約效力終止。",
+            taiwan_interest_article_ref(maturity_article, "祝壽保險金的給付"),
+            calculation_basis=maturity_calculation_basis,
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule=maturity_aggregation_rule,
+            rate_percent=maturity_rate_percent,
+            unit_key="annual_insured_amount",
+            conditions=[
+                f"祝壽金公式: {maturity_formula}。",
+                *taiwan_interest_formula_conditions(
+                    annual_formula=annual_formula,
+                    reserve_component="none",
+                    premium_multiplier=maturity_premium_multiplier,
+                ),
+            ],
+        )
+    )
+    if premium_waiver_available:
+        entries.append(
+            coverage_entry(
+                "premium-waiver",
+                "豁免保險費",
+                None,
+                "policy_recorded_limit",
+                "被保險人於契約有效且繳費期間內符合條款所列失能程度時，免繳未到期保險費。",
+                taiwan_interest_article_ref(premium_waiver_article, "豁免保險費"),
+                calculation_basis="unknown",
+                amount_role="reference",
+                limit_scope="per_policy",
+                conditions=taiwan_interest_premium_waiver_conditions(
+                    premium_waiver_article
+                ),
+            )
+        )
+    if installment_available:
+        entries.append(
+            coverage_entry(
+                "installment-periodic-benefit",
+                "分期定期保險金給付",
+                None,
+                "policy_recorded_limit",
+                "要保人指定分期給付時，身故保險金可依指定保險金、給付期間與分期定期保險金預定利率換算。",
+                taiwan_interest_article_ref(
+                    installment_article, "分期定期保險金給付"
+                ),
+                calculation_basis="unknown",
+                amount_role="reference",
+                limit_scope="per_policy",
+                conditions=taiwan_interest_installment_conditions(installment_article),
+            )
+        )
+    if terminal_article:
+        terminal_cap_condition = (
+            "最高以申請當時身故或喪葬費用保險金的 50% 或 100 萬美元較小者為限。"
+            if "100萬美元" in taiwan_return_compact(terminal_article)
+            or "100 萬美元" in terminal_article
+            else "最高以申請當時身故或喪葬費用保險金的 50% 或新臺幣 3,000 萬元較小者為限。"
+        )
+        entries.append(
+            coverage_entry(
+                "terminal-illness-advance-benefit",
+                "生命末期提前給付保險金",
+                None,
+                "policy_recorded_limit",
+                "繳費期滿後且符合生命末期狀態時，可申請提前給付身故或喪葬費用保險金的一部分；給付後基本保險金額與相關價值按比例減少。",
+                taiwan_interest_article_ref(
+                    terminal_article,
+                    "生命末期提前給付保險金的給付",
+                ),
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_policy",
+                aggregation_rule="separate",
+                rate_percent=50,
+                unit_key="death_or_funeral_benefit",
+                conditions=[
+                    terminal_cap_condition,
+                    "需繳費期滿後且經公司審查同意，並扣除六個月利息、保單借款本息及欠繳或墊繳保險費本息。",
+                    "已變更為減額繳清保險或展期定期保險時不得申請。",
+                ],
+            )
+        )
+    return entries
+
+
+def parse_taiwan_interest_rate_survival_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_interest_rate_survival_whole_life_strict_source(document):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "台灣人壽",
+        "利率變動型",
+        "終身壽險",
+        "主要給付項目",
+        "增值回饋分享金",
+        "身故保險金或喪葬費用保險金",
+        "祝壽保險金",
+        "基本保險金額",
+        "累計增加保險金額",
+        "當年度保險金額",
+        "宣告利率",
+        "預定利率",
+        "【身故保險金或喪葬費用保險金的給付】",
+        "【祝壽保險金的給付】",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    if "【完全失能保險金的給付】" in text:
+        return None
+    annual_formula = taiwan_interest_rate_annual_formula(compact_text)
+    if annual_formula == "formula_in_terms":
+        return None
+    death_article = taiwan_interest_article(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【祝壽保險金的給付】"],
+    )
+    maturity_article = taiwan_interest_article(
+        text,
+        "【祝壽保險金的給付】",
+        ["【分期定期保險金給付】", "【豁免保險費】", "【除外責任】"],
+    )
+    terminal_article = taiwan_interest_article(
+        text,
+        "【生命末期提前給付保險金的給付】",
+        [
+            "【分期定期保險金給付】",
+            "【分期定期保險金給付約定之變更",
+            "【豁免保險費】",
+            "【除外責任】",
+        ],
+    )
+    definition_article = taiwan_interest_article(
+        text,
+        "【名詞定義】",
+        ["【貨幣單位與匯率風險】"],
+    )
+    premium_waiver_article = taiwan_interest_article(
+        text,
+        "【豁免保險費】",
+        ["【生命末期提前給付保險金的給付】", "【分期定期保險金給付】", "【除外責任】"],
+    )
+    installment_article = "\n".join(
+        part
+        for part in [
+            definition_article,
+            taiwan_interest_article(
+                text,
+                "【分期定期保險金給付】",
+                [
+                    "【分期定期保險金給付約定之變更",
+                    "【分期定期保險金受益人死亡",
+                    "【身故保險金或喪葬費用保險金的申領】",
+                    "【除外責任】",
+                ],
+            ),
+            taiwan_interest_article(
+                text,
+                "【分期定期保險金給付約定之變更",
+                [
+                    "【分期定期保險金受益人死亡",
+                    "【身故保險金或喪葬費用保險金的申領】",
+                    "【除外責任】",
+                ],
+            ),
+        ]
+        if part
+    )
+    if not death_article or not maturity_article:
+        return None
+    death_reserve = taiwan_interest_reserve_component(death_article)
+    death_premium_multiplier = taiwan_interest_premium_multiplier(death_article)
+    maturity_formula = taiwan_interest_maturity_formula(maturity_article)
+    premium_waiver_available = "【豁免保險費】" in text
+    installment_available = "【分期定期保險金給付】" in text
+    policy_reserve_ratio_required = death_reserve == "policy_reserve_times_policy_reserve_ratio"
+    premium_total_required = death_premium_multiplier is not None
+    coefficient_table_required = "當年度保險金額係數" in text or "該保單年度係數" in text
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單面頁所載基本保險金額；實際身故與祝壽金額仍需依保單當年度累計增加保險金額、保單價值準備金、保費總和或附表係數確認。",
+        "version_characteristics": {
+            "terms_revision": taiwan_interest_rate_revision(text),
+            "currency": taiwan_interest_rate_currency(text),
+            "expected_interest_rate_percent": taiwan_interest_rate_expected_rate(text),
+            "value_sharing_bonus": True,
+            "annual_insured_amount_formula": annual_formula,
+            "death_benefit_formula": (
+                "greater_of_annual_insured_amount_reserve_and_premium_total"
+                if "取其最大值" in death_article
+                else "annual_insured_amount"
+            ),
+            "total_disability_benefit_formula": "not_applicable",
+            "maturity_benefit_formula": maturity_formula,
+            "reserve_component": death_reserve,
+            "premium_component": taiwan_interest_premium_component(death_premium_multiplier),
+            "premium_multiplier": death_premium_multiplier,
+            "maturity_age": 111,
+            "installment_benefit_available": installment_available,
+            "premium_waiver_available": premium_waiver_available,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "premium_total_required": premium_total_required,
+            "policy_reserve_ratio_required": policy_reserve_ratio_required,
+            "accumulated_paid_up_additions_required": True,
+            "coefficient_table_required": coefficient_table_required,
+            "foreign_currency_policy": taiwan_interest_rate_currency(text) in {"CNY", "USD"},
+            "funeral_benefit_limit_rule": True,
+        },
+        "coverage_entries": taiwan_interest_rate_survival_whole_life_entries(
+            annual_formula=annual_formula,
+            death_article=death_article,
+            maturity_article=maturity_article,
+            terminal_article=terminal_article,
+            premium_waiver_article=premium_waiver_article,
+            installment_article=installment_article,
+            installment_available=installment_available,
+            premium_waiver_available=premium_waiver_available,
+        ),
+    }
+
+
+def taiwan_participating_filing_info(text: str) -> tuple[str, str]:
+    match = re.search(
+        r"中華民國\s*(\d{2,3})\s*年\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日\s*"
+        r"台壽字第\s*(\d+)\s*號",
+        text,
+    )
+    if not match:
+        return ("original", "")
+    roc_year, month, day, filing_number = match.groups()
+    return (f"roc-{int(roc_year):03d}-{int(month):02d}-{int(day):02d}", filing_number)
+
+
+def taiwan_participating_number(value: str) -> int | None:
+    if value.isdigit():
+        return int(value)
+    numbers = {
+        "一": 1,
+        "二": 2,
+        "三": 3,
+        "四": 4,
+        "五": 5,
+        "六": 6,
+        "七": 7,
+        "八": 8,
+        "九": 9,
+        "十": 10,
+    }
+    if value in numbers:
+        return numbers[value]
+    if value.startswith("十") and len(value) == 2 and value[1] in numbers:
+        return 10 + numbers[value[1]]
+    if value.endswith("十") and value[0] in numbers:
+        return numbers[value[0]] * 10
+    if "十" in value:
+        left, right = value.split("十", 1)
+        if left in numbers and right in numbers:
+            return numbers[left] * 10 + numbers[right]
+    return None
+
+
+def taiwan_participating_dividend_start_year(text: str) -> int | None:
+    compact = taiwan_return_compact(text)
+    patterns = [
+        r"屆滿第([一二三四五六七八九十\d]+)保單年度起",
+        r"於第([一二三四五六七八九十\d]+)保單年度[（(]?含[）)]?後",
+        r"第([一二三四五六七八九十\d]+)保單年度起",
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, compact)
+        if match:
+            return taiwan_participating_number(match.group(1))
+    return None
+
+
+def taiwan_participating_whole_life_entries(
+    *,
+    annual_formula: str,
+    policy_dividend_article: str,
+    death_article: str,
+    disability_article: str,
+    maturity_article: str,
+    maturity_formula: str,
+    dividend_start_year: int | None,
+    installment_available: bool,
+) -> list[dict[str, Any]]:
+    death_reserve = taiwan_interest_reserve_component(death_article)
+    death_premium_multiplier = taiwan_interest_premium_multiplier(death_article)
+    disability_reserve = taiwan_interest_reserve_component(disability_article)
+    disability_premium_multiplier = taiwan_interest_premium_multiplier(disability_article)
+    maturity_premium_multiplier = taiwan_interest_premium_multiplier(maturity_article)
+    dividend_conditions = [
+        "保險單紅利非保證給付，本公司不保證給付金額。",
+        "年度保單紅利依公司公告適用紅利，以繳清保險方式增加保險金額。",
+        "分期定期給付開始日後本契約改為不分紅保單，不再給付保險單紅利。",
+    ]
+    if dividend_start_year:
+        dividend_conditions[1] = (
+            f"年度保單紅利自第 {dividend_start_year} 保單年度起依公司公告適用紅利，"
+            "以繳清保險方式增加保險金額。"
+        )
+    entries = [
+        coverage_entry(
+            "policy-dividend",
+            "保險單紅利",
+            None,
+            "policy_recorded_limit",
+            "分紅保險單紅利非保證給付；年度保單紅利以繳清保險方式增加保險金額，終期保單紅利依條款於身故、完全失能、解約、減少基本保額或祝壽時給付。",
+            taiwan_interest_article_ref(
+                policy_dividend_article,
+                "保險單紅利的計算及給付",
+            ),
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="annual",
+            aggregation_rule="separate",
+            conditions=dividend_conditions,
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "身故時按當年度保險金額、保單價值準備金比率及已繳保費總和等項目取最大值給付；未滿 15 足歲或受監護宣告者適用喪葬費用限制。",
+            taiwan_interest_article_ref(death_article, "身故保險金或喪葬費用保險金的給付"),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                *taiwan_interest_formula_conditions(
+                    annual_formula=annual_formula,
+                    reserve_component=death_reserve,
+                    premium_multiplier=death_premium_multiplier,
+                ),
+                "喪葬費用保險金仍受主管機關限額與多張保單合計規則限制。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            "致成條款附表完全失能程度之一時，按當年度保險金額、保單價值準備金比率及已繳保費總和等項目取最大值給付。",
+            taiwan_interest_article_ref(disability_article, "完全失能保險金的給付"),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=taiwan_interest_formula_conditions(
+                annual_formula=annual_formula,
+                reserve_component=disability_reserve,
+                premium_multiplier=disability_premium_multiplier,
+            ),
+        ),
+    ]
+    if maturity_formula == "annual_insured_amount":
+        maturity_calculation_basis = "percentage_of_base"
+        maturity_aggregation_rule = "separate"
+    else:
+        maturity_calculation_basis = "greater_of"
+        maturity_aggregation_rule = "highest"
+    entries.append(
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於保險年齡到達 111 歲之保單週年日仍生存時，依條款祝壽公式給付後契約效力終止。",
+            taiwan_interest_article_ref(maturity_article, "祝壽保險金的給付"),
+            calculation_basis=maturity_calculation_basis,
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule=maturity_aggregation_rule,
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                f"祝壽金公式: {maturity_formula}。",
+                *taiwan_interest_formula_conditions(
+                    annual_formula=annual_formula,
+                    reserve_component="none",
+                    premium_multiplier=maturity_premium_multiplier,
+                ),
+            ],
+        )
+    )
+    if installment_available:
+        entries.append(
+            coverage_entry(
+                "installment-periodic-benefit",
+                "分期定期保險金",
+                None,
+                "policy_recorded_limit",
+                "身故或完全失能保險金得依約定指定比例改為分期定期給付。",
+                "保單條款，分期定期保險金給付",
+                calculation_basis="unknown",
+                amount_role="reference",
+                limit_scope="per_policy",
+                conditions=[
+                    "指定保險金依受益人比例、分期定期保險金預定利率與給付期間換算。",
+                    "每年給付金額低於條款門檻時，改一次給付指定保險金。",
+                ],
+            )
+        )
+    return entries
+
+
+def parse_taiwan_participating_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_participating_whole_life_strict_source(document):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "台灣人壽",
+        "分紅終身壽險",
+        "分紅保險單",
+        "保險單紅利部分非本保險單之保證給付項目",
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "祝壽保險金",
+        "保險單紅利",
+        "分期定期保險金",
+        "基本保險金額",
+        "累計增加保險金額",
+        "當年度保險金額",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    if "增值回饋分享金" in text:
+        return None
+
+    annual_formula = taiwan_interest_rate_annual_formula(compact_text)
+    if annual_formula == "formula_in_terms":
+        return None
+
+    policy_dividend_article = taiwan_interest_article(
+        text,
+        "【保險單紅利的計算及給付】",
+        ["【投保年齡", "【受益人", "【變更住所", "附表一"],
+    )
+    death_article = taiwan_interest_article(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【完全失能保險金的給付】"],
+    )
+    disability_article = taiwan_interest_article(
+        text,
+        "【完全失能保險金的給付】",
+        ["【祝壽保險金的給付】"],
+    )
+    maturity_article = taiwan_interest_article(
+        text,
+        "【祝壽保險金的給付】",
+        ["【分期定期保險金給付】", "【分期定期保險金給付約定之變更"],
+    )
+    if not all(
+        [
+            policy_dividend_article,
+            death_article,
+            disability_article,
+            maturity_article,
+        ]
+    ):
+        return None
+
+    death_reserve = taiwan_interest_reserve_component(death_article)
+    death_premium_multiplier = taiwan_interest_premium_multiplier(death_article)
+    maturity_formula = taiwan_interest_maturity_formula(maturity_article)
+    if maturity_formula == "formula_in_terms":
+        return None
+    filing_date, filing_number = taiwan_participating_filing_info(text)
+    dividend_start_year = taiwan_participating_dividend_start_year(
+        policy_dividend_article
+    )
+    currency = taiwan_interest_rate_currency(text)
+    installment_available = "【分期定期保險金給付】" in text
+    coefficient_table_required = (
+        "當年度保險金額係數" in text
+        or "該保單年度係數" in text
+        or "coefficient" in annual_formula
+        or maturity_formula == "annual_insured_amount_times_coefficient_table"
+    )
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單面頁所載基本保險金額；實際身故、完全失能與祝壽金額仍需依保單當年度累計增加保險金額、保單價值準備金、已繳保費總和或條款附表係數確認。",
+        "version_characteristics": {
+            "terms_revision": filing_date,
+            "filing_number": filing_number,
+            "currency": currency,
+            "participating_policy": True,
+            "policy_dividend_available": True,
+            "policy_dividend_guaranteed": False,
+            "annual_policy_dividend_start_year": dividend_start_year,
+            "terminal_policy_dividend_available": True,
+            "annual_insured_amount_formula": annual_formula,
+            "death_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total",
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total",
+            "maturity_benefit_formula": maturity_formula,
+            "reserve_component": death_reserve,
+            "premium_component": taiwan_interest_premium_component(
+                death_premium_multiplier
+            ),
+            "premium_multiplier": death_premium_multiplier,
+            "maturity_age": 111,
+            "installment_benefit_available": installment_available,
+            "premium_waiver_available": False,
+            "terminal_illness_advance_available": False,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "premium_total_required": death_premium_multiplier is not None,
+            "policy_reserve_ratio_required": death_reserve
+            == "policy_reserve_times_policy_reserve_ratio",
+            "accumulated_paid_up_additions_required": True,
+            "coefficient_table_required": coefficient_table_required,
+            "foreign_currency_policy": currency in {"CNY", "USD"},
+            "funeral_benefit_limit_rule": True,
+        },
+        "coverage_entries": taiwan_participating_whole_life_entries(
+            annual_formula=annual_formula,
+            policy_dividend_article=policy_dividend_article,
+            death_article=death_article,
+            disability_article=disability_article,
+            maturity_article=maturity_article,
+            maturity_formula=maturity_formula,
+            dividend_start_year=dividend_start_year,
+            installment_available=installment_available,
+        ),
+    }
+
+
+def taiwan_return_compact(text: str) -> str:
+    return re.sub(r"\s+", "", text)
+
+
+def taiwan_return_section(
+    text: str,
+    heading: str,
+    next_headings: list[str],
+    *,
+    fallback_length: int = 2000,
+) -> str:
+    start = text.find(heading)
+    if start < 0:
+        return ""
+    candidates = [text.find(next_heading, start + 1) for next_heading in next_headings]
+    candidates = [candidate for candidate in candidates if candidate > start]
+    end = min(candidates) if candidates else start + fallback_length
+    return text[start:end]
+
+
+def taiwan_return_article_ref(article_text: str, fallback: str) -> str:
+    match = re.search(r"第([一二三四五六七八九十百\d]+)條", article_text)
+    if match:
+        return f"保單條款第{match.group(1)}條，{fallback}"
+    return f"保單條款，{fallback}"
+
+
+def taiwan_return_terms_revision(text: str) -> str:
+    if "金管保壽字" in text and "修正" in text:
+        return "regulatory-revision"
+    return "original"
+
+
+def taiwan_return_currency(text: str) -> str:
+    opening = text[:3000]
+    if "人民幣" in opening:
+        return "CNY"
+    if "美元" in opening or "外幣保險單" in opening:
+        return "USD"
+    return "TWD"
+
+
+def taiwan_return_expected_rate_info(text: str) -> tuple[float | None, str]:
+    match = re.search(r"預定利率[（(]\s*([^）)]+)", text)
+    if not match:
+        return None, "not_found"
+    schedule = compact_whitespace(match.group(1))
+    rates = [float(value) for value in re.findall(r"(\d+(?:\.\d+)?)\s*%", schedule)]
+    return (rates[0] if rates else None), schedule
+
+
+def taiwan_return_premium_multiplier(article_text: str) -> float | None:
+    compact = taiwan_return_compact(article_text)
+    if "1.01倍" in compact:
+        return 1.01
+    if "1.04倍" in compact:
+        return 1.04
+    if "1.06倍" in compact:
+        return 1.06
+    return None
+
+
+def taiwan_return_premium_component(article_text: str) -> str:
+    compact = taiwan_return_compact(article_text)
+    multiplier = taiwan_return_premium_multiplier(article_text)
+    if multiplier is None:
+        return "none"
+    multiplier_key = str(multiplier).replace(".", "_")
+    if "保險金額乘以附表二" in compact:
+        return f"premium_total_times_{multiplier_key}_minus_face_amount_times_coefficient"
+    if "表定標準體年繳應繳保險費" in compact and "附表二" in compact:
+        return (
+            f"premium_total_times_{multiplier_key}"
+            "_minus_standard_premium_table_times_coefficient"
+        )
+    if "扣除" in compact and "附表二" in compact:
+        return (
+            f"premium_total_times_{multiplier_key}"
+            "_minus_face_plus_accumulated_times_coefficient"
+        )
+    return f"premium_total_times_{multiplier_key}"
+
+
+def taiwan_return_reserve_component(article_text: str) -> str:
+    if "保單價值準備金乘以保單價值準備金比率" in article_text:
+        return "policy_reserve_times_policy_reserve_ratio"
+    if "保單價值準備金" in article_text:
+        return "policy_reserve"
+    return "none"
+
+
+def taiwan_return_annual_formula(annual_compact: str) -> str:
+    if "基本保險金額與累計增加保險金額二者加總之值的3.6%" in annual_compact:
+        return "face_plus_accumulated_paid_up_additions_times_3_6_percent"
+    if (
+        "於繳費期間內" in annual_compact
+        and "1.04倍" in annual_compact
+        and "保險金額乘以附表二" in annual_compact
+        and "於繳費期滿後" in annual_compact
+    ):
+        return "premium_period_premium_total_times_1_04_minus_face_amount_coeff_then_face_amount"
+    if (
+        "於繳費期間內" in annual_compact
+        and "1.06倍" in annual_compact
+        and "於繳費期滿後" in annual_compact
+    ):
+        return (
+            "premium_period_premium_total_times_1_06_minus_coeff"
+            "_then_face_plus_accumulated"
+        )
+    if (
+        "於前二保單年度內" in annual_compact
+        and "1.01倍" in annual_compact
+        and "1.7倍" in annual_compact
+    ):
+        return (
+            "first_two_policy_years_premium_total_times_1_01_minus_coeff"
+            "_then_face_plus_accumulated_times_1_7"
+        )
+    if (
+        "於前二保單年度內" in annual_compact
+        and "1.06倍" in annual_compact
+        and "1.6倍" in annual_compact
+    ):
+        return (
+            "first_two_policy_years_premium_total_times_1_06_minus_coeff"
+            "_then_face_plus_accumulated_times_1_6"
+        )
+    if (
+        "於前五保單年度內" in annual_compact
+        and "附表三所列之當年度保險金額係數" in annual_compact
+    ):
+        return (
+            "first_five_policy_years_premium_total_times_1_06_minus_coeff"
+            "_then_face_plus_accumulated_times_annual_factor_table"
+        )
+    if (
+        "於前五保單年度內" in annual_compact
+        and "1.6倍" in annual_compact
+    ):
+        return (
+            "first_five_policy_years_premium_total_times_1_06_minus_coeff"
+            "_then_face_plus_accumulated_times_1_6"
+        )
+    if (
+        "於前五保單年度內" in annual_compact
+        and "第六保單年度" in annual_compact
+    ):
+        return (
+            "first_five_policy_years_premium_total_times_1_06_minus_coeff"
+            "_then_face_plus_accumulated"
+        )
+    if "係指基本保險金額與累計增加保險金額二者加總之值" in annual_compact:
+        return "face_plus_accumulated_paid_up_additions"
+    return "formula_in_terms"
+
+
+def taiwan_return_survival_formula(survival_compact: str) -> tuple[
+    str,
+    str,
+    float,
+    float,
+    bool,
+    list[str],
+]:
+    if "第一保單週年日1.32%" in survival_compact:
+        return (
+            "1_32_1_61_1_05_1_25_step_schedule_on_previous_face_amount",
+            "previous_policy_year_face_amount",
+            1.05,
+            1.61,
+            False,
+            [
+                "第 1 保單週年日 1.32%。",
+                "第 2 保單週年日 1.61%。",
+                "第 3-5 保單週年日 1.05%。",
+                "第 6 保單週年日及其以後 1.25%。",
+            ],
+        )
+    if "2年期4年期" in survival_compact and "第三保單週年日12%" in survival_compact:
+        return (
+            "2_or_4_year_step_schedule_on_previous_face_plus_accumulated",
+            "previous_policy_year_face_plus_accumulated",
+            6.0,
+            12.0,
+            False,
+            [
+                "2 年期：第 3-5 保單週年日 12%，第 6 保單週年日以後 6%。",
+                "4 年期：第 5 保單週年日 10%，第 6 保單週年日以後 6%。",
+            ],
+        )
+    if "第一保單週年日1.50%" in survival_compact:
+        return (
+            "1_50_3_00_1_77_step_schedule_on_previous_face_plus_accumulated",
+            "previous_policy_year_face_plus_accumulated",
+            1.5,
+            3.0,
+            False,
+            [
+                "第 1 保單週年日 1.50%。",
+                "第 2-5 保單週年日 3.00%。",
+                "第 6 保單週年日以後 1.77%。",
+            ],
+        )
+    if "3年期6年期10年期" in survival_compact and "乘以8.4%" in survival_compact:
+        return (
+            "3_6_10_year_schedule_with_monthly_8_4_percent_option",
+            "previous_policy_year_face_plus_accumulated",
+            4.0,
+            8.0,
+            True,
+            [
+                "3 年期：第 4-5 保單週年日 8%，第 6 保單週年日以後 4%。",
+                "6 年期：第 7 保單週年日以後 4%。",
+                "10 年期：第 11 保單週年日以後 4%。",
+                "月給付型為年給付型生存保險金乘以 8.4%。",
+            ],
+        )
+    if "第一保單週年日2%" in survival_compact:
+        return (
+            "2_4_1_4_step_schedule_on_previous_face_plus_accumulated",
+            "previous_policy_year_face_plus_accumulated",
+            1.4,
+            4.0,
+            False,
+            [
+                "第 1 保單週年日 2%。",
+                "第 2-5 保單週年日 4%。",
+                "第 6 保單週年日以後 1.4%。",
+            ],
+        )
+    if "第一保單週年日0.21%" in survival_compact:
+        return (
+            "0_21_to_1_5_long_step_schedule_on_previous_face_plus_accumulated",
+            "previous_policy_year_face_plus_accumulated",
+            0.21,
+            1.5,
+            False,
+            [
+                "第 1-5 保單週年日依序 0.21%、0.42%、0.63%、0.84%、1.05%。",
+                "第 6-34 保單週年日 1.2%。",
+                "第 35 保單週年日以後 1.5%。",
+            ],
+        )
+    if "值的1.5%" in survival_compact:
+        return (
+            "post_premium_period_1_5_percent_on_previous_face_plus_accumulated",
+            "previous_policy_year_face_plus_accumulated",
+            1.5,
+            1.5,
+            False,
+            ["繳費期間屆滿後，每屆保單週年日給付 1.5%。"],
+        )
+    if "第一保單週年日0.25%" in survival_compact:
+        return (
+            "0_25_to_1_5_step_schedule_on_previous_face_plus_accumulated",
+            "previous_policy_year_face_plus_accumulated",
+            0.25,
+            1.5,
+            False,
+            [
+                "第 1-5 保單週年日依序 0.25%、0.50%、0.75%、1.00%、1.25%。",
+                "第 6 保單週年日以後 1.50%。",
+            ],
+        )
+    if "第一保單週年日2.06%" in survival_compact:
+        return (
+            "2_06_4_12_1_05_step_schedule_on_previous_face_plus_accumulated",
+            "previous_policy_year_face_plus_accumulated",
+            1.05,
+            4.12,
+            False,
+            [
+                "第 1 保單週年日 2.06%。",
+                "第 2-5 保單週年日 4.12%。",
+                "第 6 保單週年日以後 1.05%。",
+            ],
+        )
+    if "第一保單週年日1.43%" in survival_compact:
+        return (
+            "1_43_2_86_0_92_step_schedule_on_previous_face_plus_accumulated",
+            "previous_policy_year_face_plus_accumulated",
+            0.92,
+            2.86,
+            False,
+            [
+                "第 1 保單週年日 1.43%。",
+                "第 2-5 保單週年日 2.86%。",
+                "第 6 保單週年日以後 0.92%。",
+            ],
+        )
+    if (
+        "第一保單週年日1.0%" in survival_compact
+        and "第二保單週年日至第五保單週年日2.0%" in survival_compact
+        and "第六保單週年日及其以後1.0%" in survival_compact
+    ):
+        return (
+            "1_2_1_step_schedule_on_previous_face_plus_accumulated",
+            "previous_policy_year_face_plus_accumulated",
+            1.0,
+            2.0,
+            False,
+            [
+                "第 1 保單週年日 1.0%。",
+                "第 2-5 保單週年日 2.0%。",
+                "第 6 保單週年日及其以後 1.0%。",
+            ],
+        )
+    if "第一保單週年日1.30%" in survival_compact:
+        return (
+            "1_30_2_60_0_85_step_schedule_on_previous_face_plus_accumulated",
+            "previous_policy_year_face_plus_accumulated",
+            0.85,
+            2.60,
+            False,
+            [
+                "第 1 保單週年日 1.30%。",
+                "第 2-5 保單週年日 2.60%。",
+                "第 6 保單週年日以後 0.85%。",
+            ],
+        )
+    if "第一保單週年日0.62%" in survival_compact:
+        return (
+            "0_62_to_1_9_step_schedule_on_previous_face_plus_accumulated",
+            "previous_policy_year_face_plus_accumulated",
+            0.62,
+            3.1,
+            False,
+            [
+                "第 1-5 保單週年日依序 0.62%、1.24%、1.86%、2.48%、3.10%。",
+                "第 6 保單週年日以後 1.90%。",
+            ],
+        )
+    if "第一保單週年日2.72%2.72%" in survival_compact:
+        return (
+            "2_or_4_year_premium_table_schedule_with_monthly_option",
+            "standard_annual_premium_for_previous_face_plus_accumulated",
+            2.3,
+            10.76,
+            True,
+            [
+                "年給付型按前一保單年度基本保額與累計增額所對應之表定標準體年繳保費，再乘以週年日係數。",
+                "2 年期係數：2.72%、5.40%、5.36%、5.30%、5.22%、第 6 保單週年日以後 2.30%。",
+                "4 年期係數：2.72%、5.44%、8.13%、10.76%、10.64%、第 6 保單週年日以後 6.40%。",
+                "月給付型依本契約預定利率換算為每月給付金額。",
+            ],
+        )
+    if (
+        "生存保險金給付開始日(含)起" in survival_compact
+        and "前一保單年度之當年度保險金額給付生存保險金" in survival_compact
+        and "保險年齡到達99歲" in survival_compact
+    ):
+        return (
+            "selected_survival_age_previous_annual_insured_amount_to_age_99",
+            "previous_policy_year_annual_insured_amount",
+            100.0,
+            100.0,
+            False,
+            [
+                "自保單約定之生存保險金給付開始日(含)起，每屆保單週年日仍生存時，按前一保單年度當年度保險金額給付。",
+                "最高給付至被保險人保險年齡到達 99 歲之保單週年日止。",
+                "當年度保險金額為基本保險金額與累計增加保險金額二者加總之值的 3.6%。",
+            ],
+        )
+    return ("formula_in_terms", "unknown", 0.0, 0.0, False, [])
+
+
+def taiwan_return_maturity_formula(maturity_compact: str) -> tuple[str, str, float | None]:
+    if (
+        "保險年齡到達100歲之保單週年日仍生存時" in maturity_compact
+        and "保險年齡99歲屆滿之基本保險金額與累計增加保險金額二者加總之值的1.6倍"
+        in maturity_compact
+    ):
+        return (
+            "age_99_face_plus_accumulated_paid_up_additions_times_1_6",
+            "fixed_1_6x",
+            1.6,
+        )
+    if (
+        "保險年齡到達100歲" in maturity_compact
+        and "99歲屆滿之保險金" in maturity_compact
+        and "額給付祝壽保險金" in maturity_compact
+    ):
+        return ("age_99_face_amount", "none", None)
+    if (
+        "按下列二款取其最大值" not in maturity_compact
+        and "當年度保險金額" in maturity_compact
+        and "給付祝壽保險金" in maturity_compact
+    ):
+        return ("annual_insured_amount", "none", None)
+    if "按保險年齡99歲屆滿之當年度保險金額，給付祝壽保險金" in maturity_compact:
+        return ("annual_insured_amount", "none", None)
+    if "乘以按下表對應之倍數" in maturity_compact:
+        return (
+            "greater_of_annual_insured_amount_by_payment_period_multiplier_and_premium_component",
+            "payment_period_3_6_10_years_multiplier_5_6_7",
+            5.0,
+        )
+    if "當年度保險金額的5倍" in maturity_compact:
+        return (
+            "greater_of_annual_insured_amount_times_5_and_premium_component",
+            "fixed_5x",
+            5.0,
+        )
+    if "按下列二款取其最大值" in maturity_compact:
+        return (
+            "greater_of_annual_insured_amount_and_premium_component",
+            "none",
+            None,
+        )
+    return ("formula_in_terms", "unknown", None)
+
+
+def taiwan_return_mass_transit_accidental_death_rate(
+    accident_article: str,
+) -> float | None:
+    compact = taiwan_return_compact(accident_article)
+    match = re.search(
+        r"基本保險金額與累計增加保險金額二者加總之值[，,]?(?:的|乘以)(\d+(?:\.\d+)?)%[，,]?給付",
+        compact,
+    )
+    if not match:
+        return None
+    return float(match.group(1))
+
+
+def taiwan_return_specific_cancer_rate(
+    cancer_article: str,
+    full_text: str = "",
+) -> float | None:
+    compact = taiwan_return_compact(cancer_article)
+    full_compact = taiwan_return_compact(full_text)
+    if "特定部位癌症保險金的給付" not in cancer_article:
+        return None
+    if "申領特定部位癌症保險金以一次為限" not in compact:
+        return None
+    has_waiting_period = (
+        "特定部位癌症" in full_compact
+        and "等待期間" in full_compact
+        and "九十日" in full_compact
+        and "第九十一日" in full_compact
+    )
+    if not has_waiting_period:
+        return None
+    match = re.search(
+        r"按(?:癌症)?診斷確定日之基本保險金額的(\d+(?:\.\d+)?)%[，,]?給付",
+        compact,
+    )
+    if not match:
+        return None
+    rate = float(match.group(1))
+    if rate != 1.0:
+        return None
+    return rate
+
+
+def taiwan_return_formula_conditions(
+    *,
+    annual_formula: str,
+    reserve_component: str,
+    premium_component: str,
+) -> list[str]:
+    conditions = [
+        f"當年度保險金額公式：{annual_formula}。",
+        "實際金額須依保單面頁基本保險金額、累計增加保險金額、事故當時保單年度與條款附表係數計算。",
+    ]
+    if reserve_component == "policy_reserve_times_policy_reserve_ratio":
+        conditions.append("取大項目含保單價值準備金乘以保單價值準備金比率。")
+    if premium_component != "none":
+        conditions.append(f"取大項目含保費相關公式：{premium_component}。")
+    return conditions
+
+
+def taiwan_interest_rate_return_whole_life_entries(
+    *,
+    annual_formula: str,
+    survival_formula: str,
+    survival_basis: str,
+    survival_rate_min: float,
+    survival_rate_max: float,
+    survival_conditions: list[str],
+    death_article: str,
+    mass_transit_accidental_death_article: str,
+    mass_transit_accidental_death_rate_percent: float | None,
+    specific_cancer_article: str,
+    specific_cancer_rate_percent: float | None,
+    disability_article: str,
+    maturity_article: str,
+    maturity_formula: str,
+    maturity_multiplier_formula: str,
+    maturity_multiplier: float | None,
+    installment_available: bool,
+) -> list[dict[str, Any]]:
+    death_reserve = taiwan_return_reserve_component(death_article)
+    death_premium_component = taiwan_return_premium_component(death_article)
+    disability_reserve = taiwan_return_reserve_component(disability_article)
+    disability_premium_component = taiwan_return_premium_component(disability_article)
+    maturity_premium_component = taiwan_return_premium_component(maturity_article)
+    entries = [
+        coverage_entry(
+            "value-sharing-bonus",
+            "增值回饋分享金",
+            None,
+            "policy_recorded_limit",
+            "每一保單年度屆滿後，依宣告利率與預定利率差額及條款約定計算，可購買增額繳清、現金給付或儲存生息。",
+            "保單條款，增值回饋分享金的給付及通知",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="annual",
+            conditions=[
+                "宣告利率低於預定利率時，該保單年度無增值回饋分享金。",
+                "被保險人保險年齡 16 歲前另有抵繳保費或儲存生息規則。",
+            ],
+        ),
+        coverage_entry(
+            "survival-benefit",
+            "生存保險金",
+            None,
+            (
+                "policy_recorded_limit"
+                if survival_basis
+                in {
+                    "standard_annual_premium_for_previous_face_plus_accumulated",
+                    "previous_policy_year_annual_insured_amount",
+                }
+                else "face_amount"
+            ),
+            (
+                "被保險人自生存保險金給付開始日起，每屆保單週年日仍生存時，按前一保單年度之當年度保險金額給付。"
+                if survival_formula
+                == "selected_survival_age_previous_annual_insured_amount_to_age_99"
+                else "被保險人於有效期間內每屆保單週年日仍生存時，依條款週年日係數給付。"
+            ),
+            taiwan_return_article_ref(survival_conditions[0], "生存保險金的給付"),
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="annual",
+            aggregation_rule="separate",
+            rate_min_percent=survival_rate_min,
+            rate_max_percent=survival_rate_max,
+            unit_key=survival_basis,
+            conditions=[
+                f"生存金公式：{survival_formula}。",
+                "最高給付至被保險人保險年齡到達 99 歲之保單週年日止。",
+                *survival_conditions,
+            ],
+        ),
+    ]
+    entries.append(
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "身故時按當年度保險金額、保單價值準備金比率及保費相關公式三者取最大值給付。",
+            taiwan_return_article_ref(death_article, "身故保險金或喪葬費用保險金的給付"),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                *taiwan_return_formula_conditions(
+                    annual_formula=annual_formula,
+                    reserve_component=death_reserve,
+                    premium_component=death_premium_component,
+                ),
+                "未滿 15 足歲或受監護宣告者適用條款喪葬費用保險金限制。",
+            ],
+        )
+    )
+    if mass_transit_accidental_death_rate_percent is not None:
+        entries.append(
+            coverage_entry(
+                "mass-transit-accidental-death-or-funeral-additional",
+                "大眾運輸工具意外傷害身故保險金或喪葬費用保險金",
+                None,
+                "face_amount",
+                "保險年齡達 85 歲前，遭受大眾運輸工具意外傷害事故並於 180 日內死亡時，除一般身故給付外另按基本保險金額與累計增加保險金額加總值的條款比例給付。",
+                taiwan_return_article_ref(
+                    mass_transit_accidental_death_article,
+                    "大眾運輸工具意外傷害身故保險金或喪葬費用保險金的給付",
+                ),
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_event",
+                aggregation_rule="conditional_additive",
+                rate_percent=mass_transit_accidental_death_rate_percent,
+                unit_key="face_plus_accumulated_paid_up_additions",
+                conditions=[
+                    "須為第二條定義之大眾運輸工具意外傷害事故。",
+                    "原則上須自事故發生日起一百八十日以內死亡；超過者須證明與該事故具因果關係。",
+                    "訂約時受監護宣告尚未撤銷者，本項變更為喪葬費用保險金並依身故喪葬費用限制處理。",
+                ],
+            )
+        )
+    entries.append(
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            "致成附表完全失能程度之一時，按當年度保險金額、保單價值準備金比率及保費相關公式三者取最大值給付。",
+            taiwan_return_article_ref(disability_article, "完全失能保險金的給付"),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=taiwan_return_formula_conditions(
+                annual_formula=annual_formula,
+                reserve_component=disability_reserve,
+                premium_component=disability_premium_component,
+            ),
+        )
+    )
+    if specific_cancer_rate_percent is not None:
+        entries.append(
+            coverage_entry(
+                "specific-site-cancer-benefit",
+                "特定部位癌症保險金",
+                None,
+                "face_amount",
+                "被保險人於契約生效日起持續有效第九十一日以後，初次罹患條款附表所列特定部位癌症者，按診斷確定日基本保險金額的 1% 給付，每一保單限一次。",
+                taiwan_return_article_ref(
+                    specific_cancer_article,
+                    "特定部位癌症保險金的給付",
+                ),
+                calculation_basis="percentage_of_base",
+                amount_role="payout",
+                limit_scope="per_policy",
+                aggregation_rule="separate",
+                rate_percent=specific_cancer_rate_percent,
+                unit_key="basic_face_amount",
+                conditions=[
+                    "須自契約生效日起持續有效第九十一日以後初次罹患特定部位癌症。",
+                    "特定部位癌症以條款附表三所列 ICD 代碼及分類為準。",
+                    "申領特定部位癌症保險金以一次為限。",
+                ],
+            )
+        )
+    if maturity_formula == "annual_insured_amount":
+        maturity_calculation_basis = "percentage_of_base"
+        maturity_aggregation_rule = "separate"
+    else:
+        maturity_calculation_basis = "greater_of"
+        maturity_aggregation_rule = "highest"
+    entries.append(
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡到達 100 歲之保單週年日仍生存時，依條款祝壽公式給付後契約終止。",
+            taiwan_return_article_ref(maturity_article, "祝壽保險金的給付"),
+            calculation_basis=maturity_calculation_basis,
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule=maturity_aggregation_rule,
+            rate_percent=100,
+            multiplier=maturity_multiplier,
+            unit_key="annual_insured_amount",
+            conditions=[
+                f"祝壽公式：{maturity_formula}。",
+                f"祝壽倍率：{maturity_multiplier_formula}。",
+                *taiwan_return_formula_conditions(
+                    annual_formula=annual_formula,
+                    reserve_component="none",
+                    premium_component=maturity_premium_component,
+                ),
+            ],
+        )
+    )
+    if installment_available:
+        entries.append(
+            coverage_entry(
+                "installment-periodic-benefit",
+                "分期定期保險金",
+                None,
+                "policy_recorded_limit",
+                "身故或完全失能保險金得依約定指定比例改為分期定期給付。",
+                "保單條款，分期定期保險金給付",
+                calculation_basis="unknown",
+                amount_role="reference",
+                limit_scope="per_policy",
+                conditions=[
+                    "指定保險金依受益人比例、分期定期保險金預定利率與給付期間換算。",
+                    "每年給付金額低於條款門檻時，改一次給付指定保險金。",
+                ],
+            )
+        )
+    return entries
+
+
+def taiwan_participating_return_terms_revision(text: str) -> str:
+    if "114 年 12 月 17 日金管保壽字第 11404321761 號令修正" in text:
+        return "roc-115-01-01-regulatory-revision"
+    filing_date, _ = taiwan_participating_filing_info(text)
+    return filing_date
+
+
+def taiwan_participating_return_whole_life_entries(
+    *,
+    annual_formula: str,
+    survival_article: str,
+    survival_formula: str,
+    survival_basis: str,
+    survival_rate_min: float,
+    survival_rate_max: float,
+    survival_conditions: list[str],
+    policy_dividend_article: str,
+    annual_policy_dividend_start_year: int | None,
+    terminal_policy_dividend_start_year: int | None,
+    death_article: str,
+    disability_article: str,
+    maturity_article: str,
+    maturity_formula: str,
+    installment_available: bool,
+) -> list[dict[str, Any]]:
+    death_reserve = taiwan_return_reserve_component(death_article)
+    death_premium_component = taiwan_return_premium_component(death_article)
+    disability_reserve = taiwan_return_reserve_component(disability_article)
+    disability_premium_component = taiwan_return_premium_component(disability_article)
+    dividend_conditions = [
+        "保險單紅利非保證給付，本公司不保證給付金額。",
+        "年度保單紅利可依要保人選擇現金給付或儲存生息。",
+        "分期定期給付開始日後本契約改為不分紅保單，不再給付保險單紅利。",
+    ]
+    if annual_policy_dividend_start_year:
+        dividend_conditions[1] = (
+            f"年度保單紅利自屆滿第 {annual_policy_dividend_start_year} 保單年度起，"
+            "依條款及公司公告方式給付。"
+        )
+    if terminal_policy_dividend_start_year:
+        dividend_conditions.append(
+            f"終期保單紅利自第 {terminal_policy_dividend_start_year} 保單年度含以後，於身故、完全失能、解約、減少保額或祝壽等情形給付。"
+        )
+
+    entries = [
+        coverage_entry(
+            "policy-dividend",
+            "保險單紅利",
+            None,
+            "policy_recorded_limit",
+            "分紅保險單紅利非保證給付；年度紅利與終期紅利依條款附表四分紅公式及公司公告結果計算。",
+            taiwan_return_article_ref(policy_dividend_article, "保險單紅利的計算及給付"),
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="annual",
+            aggregation_rule="separate",
+            conditions=dividend_conditions,
+        ),
+        coverage_entry(
+            "survival-benefit",
+            "生存保險金",
+            None,
+            "face_amount",
+            "被保險人於有效期間內每屆保單週年日仍生存時，按前一保單年度保險金額乘以週年日係數給付。",
+            taiwan_return_article_ref(survival_article, "生存保險金的給付"),
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="annual",
+            aggregation_rule="separate",
+            rate_min_percent=survival_rate_min,
+            rate_max_percent=survival_rate_max,
+            unit_key=survival_basis,
+            conditions=[
+                f"生存金公式：{survival_formula}。",
+                "最高給付至被保險人保險年齡到達 99 歲之保單週年日止。",
+                *survival_conditions,
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "身故時按當年度保險金額、保單價值準備金比率及保費扣係數公式取最大值給付。",
+            taiwan_return_article_ref(death_article, "身故保險金或喪葬費用保險金的給付"),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                *taiwan_return_formula_conditions(
+                    annual_formula=annual_formula,
+                    reserve_component=death_reserve,
+                    premium_component=death_premium_component,
+                ),
+                "未滿 15 足歲或受監護宣告者適用條款喪葬費用保險金限制。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            "致成附表完全失能程度之一時，按當年度保險金額、保單價值準備金比率及保費扣係數公式取最大值給付。",
+            taiwan_return_article_ref(disability_article, "完全失能保險金的給付"),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=taiwan_return_formula_conditions(
+                annual_formula=annual_formula,
+                reserve_component=disability_reserve,
+                premium_component=disability_premium_component,
+            ),
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "face_amount",
+            "被保險人保險年齡到達 100 歲之保單週年日仍生存時，按保險年齡 99 歲屆滿之保險金額給付。",
+            taiwan_return_article_ref(maturity_article, "祝壽保險金的給付"),
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="face_amount_at_age_99",
+            conditions=[
+                f"祝壽公式：{maturity_formula}。",
+                "給付祝壽保險金後，本契約效力即行終止。",
+            ],
+        ),
+    ]
+    if installment_available:
+        entries.append(
+            coverage_entry(
+                "installment-periodic-benefit",
+                "分期定期保險金",
+                None,
+                "policy_recorded_limit",
+                "身故或完全失能保險金得依約定指定比例改為分期定期給付。",
+                "保單條款，分期定期保險金給付",
+                calculation_basis="unknown",
+                amount_role="reference",
+                limit_scope="per_policy",
+                conditions=[
+                    "指定保險金依受益人比例、分期定期保險金預定利率與給付期間換算。",
+                    "每年給付金額低於條款門檻時，改一次給付指定保險金。",
+                ],
+            )
+        )
+    return entries
+
+
+def parse_taiwan_participating_return_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_participating_return_whole_life_strict_source(document):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "台灣人壽吉享紅分紅終身還本保險",
+        "分紅終身還本保險",
+        "分紅保險單",
+        "保險單紅利部分非本保險單之保證給付項目",
+        "生存保險金",
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "祝壽保險金",
+        "保險單紅利",
+        "分期定期保險金",
+        "保險金額",
+        "當年度保險金額",
+        "【生存保險金的給付】",
+        "【保險單紅利的計算及給付】",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    if "利率變動型" in text or "增值回饋分享金" in text:
+        return None
+
+    annual_article = taiwan_return_section(
+        text,
+        "「當年度保險金額」",
+        ["五、", "六、"],
+        fallback_length=900,
+    )
+    survival_article = taiwan_return_section(
+        text,
+        "【生存保險金的給付】",
+        ["【身故保險金或喪葬費用保險金的給付】"],
+    )
+    death_article = taiwan_return_section(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【完全失能保險金的給付】"],
+    )
+    disability_article = taiwan_return_section(
+        text,
+        "【完全失能保險金的給付】",
+        ["【祝壽保險金的給付】"],
+    )
+    maturity_article = taiwan_return_section(
+        text,
+        "【祝壽保險金的給付】",
+        ["【分期定期保險金給付】"],
+    )
+    policy_dividend_article = taiwan_return_section(
+        text,
+        "【保險單紅利的計算及給付】",
+        ["【投保年齡", "附表一"],
+        fallback_length=2400,
+    )
+    if not all(
+        [
+            annual_article,
+            survival_article,
+            death_article,
+            disability_article,
+            maturity_article,
+            policy_dividend_article,
+        ]
+    ):
+        return None
+
+    annual_formula = taiwan_return_annual_formula(taiwan_return_compact(annual_article))
+    if annual_formula == "formula_in_terms":
+        return None
+    (
+        survival_formula,
+        survival_basis,
+        survival_rate_min,
+        survival_rate_max,
+        monthly_survival_benefit_available,
+        survival_conditions,
+    ) = taiwan_return_survival_formula(taiwan_return_compact(survival_article))
+    if survival_formula == "formula_in_terms":
+        return None
+    maturity_formula, maturity_multiplier_formula, maturity_multiplier = (
+        taiwan_return_maturity_formula(taiwan_return_compact(maturity_article))
+    )
+    if maturity_formula == "formula_in_terms":
+        return None
+
+    filing_date, filing_number = taiwan_participating_filing_info(text)
+    death_reserve = taiwan_return_reserve_component(death_article)
+    death_premium_multiplier = taiwan_return_premium_multiplier(death_article)
+    premium_component = taiwan_return_premium_component(death_article)
+    annual_policy_dividend_start_year = taiwan_participating_dividend_start_year(
+        policy_dividend_article
+    )
+    terminal_policy_dividend_start_year = (
+        6
+        if "終期保單紅利" in policy_dividend_article
+        and "第六保單年度" in policy_dividend_article
+        else None
+    )
+    installment_available = "【分期定期保險金給付】" in text
+    coefficient_table_required = "附表二" in text or "附表三" in text
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單面頁所載本契約保險金額；生存、身故、完全失能與祝壽金額仍需依繳費年期、保單年度、保單價值準備金、保費總和及條款附表係數確認。",
+        "version_characteristics": {
+            "terms_revision": taiwan_participating_return_terms_revision(text),
+            "filing_number": filing_number,
+            "currency": taiwan_return_currency(text),
+            "participating_policy": True,
+            "policy_dividend_available": True,
+            "policy_dividend_guaranteed": False,
+            "annual_policy_dividend_start_year": annual_policy_dividend_start_year,
+            "terminal_policy_dividend_available": True,
+            "terminal_policy_dividend_start_year": terminal_policy_dividend_start_year,
+            "annual_insured_amount_formula": annual_formula,
+            "survival_benefit_formula": survival_formula,
+            "survival_benefit_basis": survival_basis,
+            "survival_rate_min_percent": survival_rate_min,
+            "survival_rate_max_percent": survival_rate_max,
+            "monthly_survival_benefit_available": monthly_survival_benefit_available,
+            "death_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_component",
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_component",
+            "maturity_benefit_formula": maturity_formula,
+            "maturity_multiplier_formula": maturity_multiplier_formula,
+            "reserve_component": death_reserve,
+            "premium_component": premium_component,
+            "premium_multiplier": death_premium_multiplier,
+            "maturity_age": 100,
+            "installment_benefit_available": installment_available,
+            "premium_waiver_available": False,
+            "terminal_illness_advance_available": False,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "premium_total_required": True,
+            "policy_reserve_ratio_required": death_reserve
+            == "policy_reserve_times_policy_reserve_ratio",
+            "accumulated_paid_up_additions_required": False,
+            "coefficient_table_required": coefficient_table_required,
+            "payment_period_required": True,
+            "foreign_currency_policy": False,
+            "funeral_benefit_limit_rule": True,
+        },
+        "coverage_entries": taiwan_participating_return_whole_life_entries(
+            annual_formula=annual_formula,
+            survival_article=survival_article,
+            survival_formula=survival_formula,
+            survival_basis=survival_basis,
+            survival_rate_min=survival_rate_min,
+            survival_rate_max=survival_rate_max,
+            survival_conditions=survival_conditions,
+            policy_dividend_article=policy_dividend_article,
+            annual_policy_dividend_start_year=annual_policy_dividend_start_year,
+            terminal_policy_dividend_start_year=terminal_policy_dividend_start_year,
+            death_article=death_article,
+            disability_article=disability_article,
+            maturity_article=maturity_article,
+            maturity_formula=maturity_formula,
+            installment_available=installment_available,
+        ),
+    }
+
+
+def taiwan_term_life_entries(
+    *,
+    version: dict[str, Any],
+    death_article: str,
+    disability_article: str,
+    installment_article: str,
+) -> list[dict[str, Any]]:
+    is_greater_of = version["death_benefit_formula"].startswith("greater_of")
+    death_conditions = [
+        f"當年度保險金額公式：{version['annual_insured_amount_formula']}。",
+        f"係數表型態：{version['annual_insured_amount_schedule']}。",
+        "實際金額須依保單面頁保險金額、事故當時保單年度或保險年齡、保險期間與條款附表二係數確認。",
+        "未滿 15 足歲或受監護宣告者適用條款喪葬費用保險金限制。",
+    ]
+    disability_conditions = [
+        f"當年度保險金額公式：{version['annual_insured_amount_formula']}。",
+        f"係數表型態：{version['annual_insured_amount_schedule']}。",
+        "實際金額須依保單面頁保險金額、事故當時保單年度或保險年齡、保險期間與條款附表二係數確認。",
+        "被保險人同時符合二種以上完全失能程度時，條款約定僅給付一次完全失能保險金。",
+    ]
+    if is_greater_of:
+        death_conditions.insert(1, "身故保險金為當年度保險金額與應繳保險費總和二者取大。")
+        disability_conditions.insert(1, "完全失能保險金為當年度保險金額與應繳保險費總和二者取大。")
+    if version["foreign_currency_policy"]:
+        death_conditions.extend(
+            [
+                "本附約各項給付與收付以美元計價。",
+                "喪葬費用保險金須按臺灣銀行後一營業日美元即期買入匯率換算等值新臺幣後適用主管機關額度上限。",
+            ]
+        )
+        disability_conditions.append("本附約各項給付與收付以美元計價。")
+
+    calculation_basis = "greater_of" if is_greater_of else "percentage_of_base"
+    aggregation_rule = "highest" if is_greater_of else "separate"
+    entries = [
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            (
+                "被保險人身故時，按條款列示之當年度保險金額與應繳保險費總和取大給付。"
+                if is_greater_of
+                else "被保險人身故時，按身故日之當年度保險金額給付。"
+            ),
+            taiwan_return_article_ref(death_article, "身故保險金或喪葬費用保險金的給付"),
+            calculation_basis=calculation_basis,
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule=aggregation_rule,
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=death_conditions,
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            (
+                "致成附表完全失能程度之一時，按條款列示之當年度保險金額與應繳保險費總和取大給付。"
+                if is_greater_of
+                else "致成附表完全失能程度之一時，按完全失能診斷確定日之當年度保險金額給付。"
+            ),
+            taiwan_return_article_ref(disability_article, "完全失能保險金的給付"),
+            calculation_basis=calculation_basis,
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule=aggregation_rule,
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=disability_conditions,
+        ),
+        coverage_entry(
+            "installment-periodic-benefit",
+            "分期定期保險金給付",
+            None,
+            "policy_recorded_limit",
+            "要保人指定分期方式時，身故或完全失能保險金中的指定保險金可依約定期間換算為每年年初給付。",
+            taiwan_return_article_ref(installment_article, "分期定期保險金給付"),
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            conditions=[
+                "分期定期保險金以指定保險金、約定給付期間與分期定期保險金預定利率換算。",
+                f"每年給付低於 {version['installment_min_annual_payment']:,} {version['installment_min_annual_payment_currency']} 時，條款約定改為一次給付指定保險金。",
+                "實際每期金額需依要保書或批註約定之指定比例與給付期間計算。",
+            ],
+        ),
+    ]
+    return entries
+
+
+def parse_taiwan_term_life_formula(document: dict[str, Any]) -> dict[str, Any] | None:
+    if not is_taiwan_term_life_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LIFE_TERM_LIFE_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        version["product_name"],
+        "主要給付項目",
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "分期定期保險金給付",
+        "當年度保險金額",
+        "附表二：當年度保險金額係數表",
+        "不分紅保險單",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    if product_id == "202131MZ1A29B22A11Z10000000" and (
+        "按下列二者取其最大值" not in text or "應繳保險費總和" not in text
+    ):
+        return None
+    if product_id == "202131RZ1A86022B11Z10000000" and (
+        "外幣保險單" not in text or "美元" not in text or "匯率風險" not in text
+    ):
+        return None
+
+    death_article = taiwan_return_section(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【完全失能保險金的給付】"],
+        fallback_length=2200,
+    )
+    disability_article = taiwan_return_section(
+        text,
+        "【完全失能保險金的給付】",
+        ["【分期定期保險金給付】"],
+        fallback_length=1200,
+    )
+    installment_article = taiwan_return_section(
+        text,
+        "【分期定期保險金給付】",
+        ["【分期定期保險金給付約定", "【身故保險金或喪葬費用保險金的申領】"],
+        fallback_length=1500,
+    )
+    if not death_article or not disability_article or not installment_article:
+        return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": version["selection_label"],
+        "selection_guidance": "請輸入保單面頁所載保險金額；身故與完全失能給付仍須依保單年度、保險年齡、保險期間與條款附表係數確認。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "filing_number": version["filing_number"],
+            "currency": version["currency"],
+            "product_form": version["product_form"],
+            "participating_policy": False,
+            "annual_insured_amount_formula": version["annual_insured_amount_formula"],
+            "annual_insured_amount_schedule": version["annual_insured_amount_schedule"],
+            "death_benefit_formula": version["death_benefit_formula"],
+            "total_disability_benefit_formula": version[
+                "total_disability_benefit_formula"
+            ],
+            "installment_benefit_available": True,
+            "premium_waiver_available": False,
+            "policy_face_amount_required": True,
+            "premium_total_required": version["premium_total_required"],
+            "coefficient_table_required": True,
+            "payment_period_required": version["payment_period_required"],
+            "insurance_period_required": version["insurance_period_required"],
+            "foreign_currency_policy": version["foreign_currency_policy"],
+            "exchange_rate_risk_disclosure": version["exchange_rate_risk_disclosure"],
+            "funeral_benefit_limit_rule": True,
+            "installment_min_annual_payment": version[
+                "installment_min_annual_payment"
+            ],
+            "installment_min_annual_payment_currency": version[
+                "installment_min_annual_payment_currency"
+            ],
+        },
+        "coverage_entries": taiwan_term_life_entries(
+            version=version,
+            death_article=death_article,
+            disability_article=disability_article,
+            installment_article=installment_article,
+        ),
+    }
+
+
+def taiwan_simple_term_life_entries(
+    *,
+    version: dict[str, Any],
+    death_article: str,
+    disability_article: str,
+    surrender_article: str,
+) -> list[dict[str, Any]]:
+    common_conditions = [
+        "本商品為不分紅定期壽險，不參加紅利分配。",
+        "本商品無續保機制；期滿更約權依條款另行辦理。",
+    ]
+    benefit_conditions = [
+        *common_conditions,
+        "給付公式包含事故當日保險金額，加上按日數比例計算之當期已繳付未到期保險費。",
+        "給付後契約效力終止。",
+    ]
+    return [
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "face_amount",
+            "身故時按保險金額與當期已繳付未到期保險費之和給付。",
+            taiwan_return_article_ref(death_article, "身故保險金或喪葬費用保險金的給付"),
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="conditional_additive",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[
+                *benefit_conditions,
+                "未滿 15 足歲或受監護宣告者適用喪葬費用保險金法定上限規則。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "face_amount",
+            "完全失能時按保險金額與當期已繳付未到期保險費之和給付。",
+            taiwan_return_article_ref(disability_article, "完全失能保險金的給付"),
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="conditional_additive",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[
+                *benefit_conditions,
+                "同時符合二種以上完全失能程度時，條款約定僅給付一次完全失能保險金。",
+            ],
+        ),
+        coverage_entry(
+            "surrender-value-reference",
+            "解約金參考",
+            None,
+            "policy_recorded_limit",
+            "要保人終止契約且符合保單價值準備金條件時，依保險單面頁歷年解約金額例表償付。",
+            taiwan_return_article_ref(surrender_article, "契約的終止與解約金"),
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            conditions=[
+                *common_conditions,
+                "實際解約金需依保險單面頁歷年解約金額例表確認。",
+            ],
+        ),
+    ]
+
+
+def parse_taiwan_simple_term_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_simple_term_life_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LIFE_SIMPLE_TERM_LIFE_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        version["product_name"],
+        "中華民國114年8月8日台壽字第1142320086號函備查",
+        "主要給付項目",
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "本保險為不分紅保險單",
+        "本保險無續保機制",
+        "期滿更約權",
+        "保險單面頁所載本保險契約之保險金額",
+        "身故日之保險金額",
+        "完全失能診斷確定日之保險金額",
+        "按日數比例計算當期已繳付未到期之保險費",
+        "本契約歷年解約金額例表如保險單面頁",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+
+    surrender_article = taiwan_return_section(
+        text,
+        "【契約的終止】",
+        ["【保險事故的通知與保險金的申請時間】"],
+        fallback_length=1800,
+    )
+    death_article = taiwan_return_section(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【完全失能保險金的給付】"],
+        fallback_length=2200,
+    )
+    disability_article = taiwan_return_section(
+        text,
+        "【完全失能保險金的給付】",
+        ["【身故保險金或喪葬費用保險金的申領】"],
+        fallback_length=1200,
+    )
+    if not death_article or not disability_article or not surrender_article:
+        return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": version["selection_label"],
+        "selection_guidance": "請輸入保單面頁所載保險金額；身故與完全失能另加計當期已繳付未到期保險費。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "filing_number": version["filing_number"],
+            "currency": version["currency"],
+            "product_form": version["product_form"],
+            "participating_policy": False,
+            "death_benefit_formula": version["death_benefit_formula"],
+            "total_disability_benefit_formula": version[
+                "total_disability_benefit_formula"
+            ],
+            "unearned_premium_refund_component": True,
+            "installment_benefit_available": False,
+            "premium_waiver_available": False,
+            "policy_face_amount_required": True,
+            "premium_total_required": False,
+            "coefficient_table_required": False,
+            "payment_period_required": False,
+            "insurance_period_required": True,
+            "foreign_currency_policy": False,
+            "exchange_rate_risk_disclosure": False,
+            "funeral_benefit_limit_rule": True,
+            "renewal_mechanism": version["renewal_mechanism"],
+            "expiry_conversion_right_available": version[
+                "expiry_conversion_right_available"
+            ],
+            "surrender_value_available": version["surrender_value_available"],
+        },
+        "coverage_entries": taiwan_simple_term_life_entries(
+            version=version,
+            death_article=death_article,
+            disability_article=disability_article,
+            surrender_article=surrender_article,
+        ),
+    }
+
+
+def taiwan_usd_no_disability_entries(
+    *,
+    version: dict[str, Any],
+    death_article: str,
+    maturity_article: str,
+    installment_article: str,
+    dividend_article: str,
+) -> list[dict[str, Any]]:
+    common_conditions = [
+        "本商品為美元計價，實際新臺幣價值會受匯率影響。",
+        "未滿 15 足歲或受監護宣告者，死亡給付依喪葬費用上限與退費規則辦理。",
+    ]
+    entries = [
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於契約有效期間身故時，按條款列示項目取最大值給付；需搭配當年度保險金額、保單價值準備金比率與應繳保費總和確認。",
+            taiwan_return_article_ref(
+                death_article,
+                "身故保險金或喪葬費用保險金的給付",
+            ),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            unit_key=version["death_benefit_formula"],
+            conditions=[
+                *common_conditions,
+                "給付後本契約效力即行終止；如有約定分期方式給付身故保險金，依分期定期給付條款辦理。",
+                "喪葬費用保險金需依主管機關喪葬費用額度上限與匯率換算規則辦理。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            version["maturity_label"],
+            None,
+            "policy_recorded_limit",
+            (
+                "被保險人達條款約定祝壽年齡仍生存時，按條款列示項目取最大值給付。"
+                if version["maturity_label"] == "祝壽保險金"
+                else "被保險人於保險期間屆滿仍生存且契約有效時，按當時之當年度保險金額給付。"
+            ),
+            taiwan_return_article_ref(
+                maturity_article,
+                f"{version['maturity_label']}的給付",
+            ),
+            calculation_basis=(
+                "greater_of"
+                if version["maturity_label"] == "祝壽保險金"
+                else "percentage_of_base"
+            ),
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule=(
+                "highest"
+                if version["maturity_label"] == "祝壽保險金"
+                else "separate"
+            ),
+            rate_percent=(
+                None if version["maturity_label"] == "祝壽保險金" else 100
+            ),
+            unit_key=version["maturity_benefit_formula"],
+            conditions=[
+                *common_conditions,
+                "給付後本契約效力即行終止。",
+                "實際當年度保險金額需依保單面頁、保單年度與附表係數確認。",
+            ],
+        ),
+        coverage_entry(
+            "installment-periodic-benefit",
+            "分期定期保險金給付",
+            None,
+            "policy_recorded_limit",
+            "要保人可約定將指定保險金依分期定期給付期間與分期定期保險金預定利率換算為每年年初給付金額。",
+            taiwan_return_article_ref(
+                installment_article,
+                "分期定期保險金給付",
+            ),
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="specified_insurance_amount_periodic_payout",
+            conditions=[
+                "每年給付之分期定期保險金低於美元 1,200 元時，條款約定改為一次給付指定保險金。",
+                "分期給付期間內，契約變更、終止與保單借款受條款限制。",
+            ],
+        ),
+    ]
+    if version["policy_dividend_available"]:
+        entries.append(
+            coverage_entry(
+                "terminal-policy-dividend-reference",
+                "終期保單紅利參考",
+                None,
+                "policy_recorded_limit",
+                "本商品為分紅保險單，保險單紅利非保證給付；第四保單年度含以後如有可分配紅利，依條款附表公式與事故型態給付。",
+                taiwan_return_article_ref(
+                    dividend_article,
+                    "保險單紅利的計算及給付",
+                ),
+                calculation_basis="unknown",
+                amount_role="reference",
+                limit_scope="per_policy",
+                aggregation_rule="separate",
+                unit_key="terminal_policy_dividend_formula",
+                conditions=[
+                    "紅利非保證給付項目，公司不保證給付金額。",
+                    "若身故保險金改以分期定期方式給付，自分期定期給付開始日起改為不分紅保單。",
+                ],
+            )
+        )
+    return entries
+
+
+def parse_taiwan_usd_no_disability_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_usd_no_disability_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LIFE_USD_NO_DISABILITY_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    if "完全失能保險金" in text:
+        return None
+    if any(
+        compact_table_text(signal) not in compact_text
+        for signal in version["required_signals"]
+    ):
+        return None
+
+    death_article = taiwan_return_section(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        [version["maturity_heading"]],
+        fallback_length=2600,
+    )
+    maturity_article = taiwan_return_section(
+        text,
+        version["maturity_heading"],
+        ["【分期定期保險金給付】"],
+        fallback_length=1200,
+    )
+    installment_article = taiwan_return_section(
+        text,
+        "【分期定期保險金給付】",
+        ["【分期定期保險金給付約定之變更、終止及其限制】"],
+        fallback_length=1500,
+    )
+    dividend_article = ""
+    if version["policy_dividend_available"]:
+        dividend_article = taiwan_return_section(
+            text,
+            "【保險單紅利的計算及給付】",
+            ["【投保年齡的計算及錯誤的處理】"],
+            fallback_length=1600,
+        )
+    if (
+        not death_article
+        or not maturity_article
+        or not installment_article
+        or (version["policy_dividend_available"] and not dividend_article)
+    ):
+        return None
+
+    characteristics = {
+        "terms_revision": version["terms_revision"],
+        "filing_number": version["filing_number"],
+        "currency": version["currency"],
+        "product_form": version["product_form"],
+        "participating_policy": version["participating_policy"],
+        "policy_period_years": version["policy_period_years"],
+        "maturity_label": version["maturity_label"],
+        "annual_insured_amount_formula": version["annual_insured_amount_formula"],
+        "death_benefit_formula": version["death_benefit_formula"],
+        "maturity_benefit_formula": version["maturity_benefit_formula"],
+        "premium_multiplier": version["premium_multiplier"],
+        "policy_dividend_available": version["policy_dividend_available"],
+        "terminal_policy_dividend_available": version[
+            "terminal_policy_dividend_available"
+        ],
+        "installment_benefit_available": True,
+        "installment_min_annual_payment": 1_200,
+        "installment_min_annual_payment_currency": "USD",
+        "policy_face_amount_required": True,
+        "policy_reserve_required": True,
+        "policy_reserve_ratio_required": True,
+        "premium_total_required": True,
+        "coefficient_table_required": True,
+        "foreign_currency_policy": True,
+        "exchange_rate_risk_disclosure": True,
+        "funeral_benefit_limit_rule": True,
+    }
+    if version["maturity_age"] is not None:
+        characteristics["maturity_age"] = version["maturity_age"]
+        characteristics["maturity_reference_age"] = version["maturity_reference_age"]
+    if version["terminal_policy_dividend_start_policy_year"] is not None:
+        characteristics["terminal_policy_dividend_start_policy_year"] = version[
+            "terminal_policy_dividend_start_policy_year"
+        ]
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單面頁所載基本保險金額；身故與祝壽/滿期金額仍需依當年度保險金額、保單價值準備金比率、應繳保險費總和與條款附表係數確認。",
+        "version_characteristics": characteristics,
+        "coverage_entries": taiwan_usd_no_disability_entries(
+            version=version,
+            death_article=death_article,
+            maturity_article=maturity_article,
+            installment_article=installment_article,
+            dividend_article=dividend_article,
+        ),
+    }
+
+
+def taiwan_long_term_care_whole_life_entries(
+    *,
+    long_term_care_article: str,
+    death_article: str,
+    accident_death_article: str,
+    disability_article: str,
+    maturity_article: str,
+    waiver_article: str,
+    installment_article: str,
+) -> list[dict[str, Any]]:
+    offset_condition = (
+        "第四保單年度含以後曾領取長期照顧保險金者，身故、完全失能或祝壽公式須扣除已領取之長期照顧保險金額。"
+    )
+    return [
+        coverage_entry(
+            "long-term-care-benefit",
+            "長期照顧保險金",
+            None,
+            "policy_recorded_limit",
+            "符合條款長期照顧狀態時給付；前三保單年度按年繳應繳保險費總和，第四保單年度起按保險金額 50%。",
+            taiwan_return_article_ref(long_term_care_article, "長期照顧保險金的給付"),
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            conditions=[
+                "長期照顧狀態包含生理功能障礙或認知功能障礙二類。",
+                "生理功能障礙須進食、移位、如廁、沐浴、平地行動、更衣等六項 ADLs 中持續三項含以上障礙達三個月以上；終身無法治癒者不受三個月限制。",
+                "認知功能障礙須持續失智狀態達三個月以上且臨床失智量表 CDR 達中度含以上。",
+                "前三保單年度：按診斷確定日之年繳應繳保險費總和給付。",
+                "第四保單年度含以後：按診斷確定日之保險金額 50% 給付。",
+                "本契約有效期間內以給付一次為限。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "身故時按當年度保險金額、保單價值準備金、年繳應繳保險費總和 1.06 倍等項目取最大值；第四保單年度起須扣除已領長照金。",
+            taiwan_return_article_ref(death_article, "身故保險金或喪葬費用保險金的給付"),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                "當年度保險金額公式：前三保單年度為年繳應繳保險費總和 1.06 倍，第四保單年度含以後為保險金額。",
+                "前三保單年度身故：當年度保險金額、保單價值準備金、年繳應繳保險費總和 1.06 倍三款取大。",
+                offset_condition,
+                "未滿 15 足歲或受監護宣告者適用條款喪葬費用保險金限制。",
+                "身故且未符合意外傷害身故給付時，條款另退還傷害險部分解約金。",
+            ],
+        ),
+        coverage_entry(
+            "accidental-death-additional-benefit",
+            "意外傷害身故保險金或喪葬費用保險金",
+            None,
+            "face_amount",
+            "遭受意外傷害事故並於 180 日內死亡者，除身故保險金外另按身故日之保險金額給付。",
+            taiwan_return_article_ref(accident_death_article, "意外傷害身故保險金或喪葬費用保險金的給付"),
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="conditional_additive",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[
+                "須為非由疾病引起之外來突發事故。",
+                "原則上須自意外傷害事故發生日起 180 日內死亡；超過 180 日者須證明死亡與事故有因果關係。",
+                "訂立契約時受監護宣告尚未撤銷者，意外傷害身故保險金變更為喪葬費用保險金。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            "致成附表完全失能程度之一時，按當年度保險金額、保單價值準備金、年繳應繳保險費總和 1.06 倍等項目取最大值；第四保單年度起須扣除已領長照金。",
+            taiwan_return_article_ref(disability_article, "完全失能保險金的給付"),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                "當年度保險金額公式：前三保單年度為年繳應繳保險費總和 1.06 倍，第四保單年度含以後為保險金額。",
+                "前三保單年度完全失能：當年度保險金額、保單價值準備金、年繳應繳保險費總和 1.06 倍三款取大。",
+                offset_condition,
+                "同時有附表一二種以上完全失能程度時僅給付一次。",
+                "完全失能給付後契約效力終止，條款另依傷害險部分解約金退還要保人。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "保險年齡到達 100 歲之保單週年日仍生存時，按年齡 99 歲屆滿之當年度保險金額與年繳應繳保險費總和 1.06 倍取大，並扣除已領長照金。",
+            taiwan_return_article_ref(maturity_article, "祝壽保險金的給付"),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                "須於保險年齡到達 100 歲之保單週年日仍生存。",
+                "按保險年齡 99 歲屆滿之當年度保險金額與年繳應繳保險費總和 1.06 倍二款取大。",
+                offset_condition,
+                "給付祝壽保險金後契約效力終止。",
+            ],
+        ),
+        coverage_entry(
+            "premium-waiver",
+            "豁免保險費",
+            None,
+            "policy_recorded_limit",
+            "繳費期間內符合長期照顧狀態時，自診斷確定日翌日起豁免未到期保險費。",
+            taiwan_return_article_ref(waiver_article, "豁免保險費"),
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            conditions=[
+                "須於契約有效且繳費期間內符合條款長期照顧狀態。",
+                "自診斷確定日翌日起免繳本契約不含其他附約未到期保險費。",
+                "不退還當期已繳保險費之未滿期保險費。",
+            ],
+        ),
+        coverage_entry(
+            "installment-periodic-benefit",
+            "分期定期保險金給付",
+            None,
+            "policy_recorded_limit",
+            "要保人指定分期方式時，身故、意外傷害身故或完全失能保險金中的指定保險金可依約定期間換算為每年年初給付。",
+            taiwan_return_article_ref(installment_article, "分期定期保險金給付"),
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            conditions=[
+                "指定保險金以受益人可受領保險金乘以要保書或批註約定比例計算。",
+                "分期定期保險金依指定保險金、約定給付期間與分期定期保險金預定利率換算。",
+                "給付期間最短五年、最長三十年。",
+            ],
+        ),
+    ]
+
+
+def parse_taiwan_long_term_care_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_long_term_care_whole_life_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LIFE_LONG_TERM_CARE_WHOLE_LIFE_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        version["terms_title"],
+        "長期照顧保險金",
+        "意外傷害身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "祝壽保險金",
+        "豁免保險費",
+        "前三保單年度內",
+        "年繳應繳保險費總和的1.06倍",
+        "保險年齡到達100歲",
+        "不分紅保險單",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+
+    long_term_care_article = taiwan_return_section(
+        text,
+        "【長期照顧保險金的給付】",
+        ["【身故保險金或喪葬費用保險金的給付】"],
+    )
+    death_article = taiwan_return_section(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【意外傷害身故保險金或喪葬費用保險金的給付】"],
+        fallback_length=3200,
+    )
+    accident_death_article = taiwan_return_section(
+        text,
+        "【意外傷害身故保險金或喪葬費用保險金的給付】",
+        ["【完全失能保險金的給付】"],
+    )
+    disability_article = taiwan_return_section(
+        text,
+        "【完全失能保險金的給付】",
+        ["【祝壽保險金的給付】"],
+        fallback_length=2600,
+    )
+    maturity_article = taiwan_return_section(
+        text,
+        "【祝壽保險金的給付】",
+        ["【豁免保險費】"],
+    )
+    waiver_article = taiwan_return_section(
+        text,
+        "【豁免保險費】",
+        ["【分期定期保險金給付】"],
+    )
+    installment_article = taiwan_return_section(
+        text,
+        "【分期定期保險金給付】",
+        ["【分期定期保險金給付約定", "【除外責任"],
+        fallback_length=1800,
+    )
+    if not all(
+        [
+            long_term_care_article,
+            death_article,
+            accident_death_article,
+            disability_article,
+            maturity_article,
+            waiver_article,
+            installment_article,
+        ]
+    ):
+        return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單面頁所載保險金額；長照、身故、完全失能與祝壽金額仍須依保單年度、年繳應繳保費總和、保單價值準備金與是否已領長期照顧保險金確認。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "filing_number": version["filing_number"],
+            "currency": "TWD",
+            "product_form": "long_term_care_whole_life",
+            "participating_policy": False,
+            "annual_insured_amount_formula": "first_3_years_annual_premium_total_times_1_06_then_face_amount",
+            "long_term_care_benefit_formula": "first_3_years_annual_premium_total_then_50_percent_face_amount",
+            "long_term_care_persistence_months": 3,
+            "long_term_care_adl_impairments_required": 3,
+            "long_term_care_cdr_min": 2,
+            "long_term_care_benefit_lifetime_limit": 1,
+            "death_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total_times_1_06_minus_ltc_after_year_4",
+            "accidental_death_benefit_formula": "additional_face_amount",
+            "accident_claim_days": 180,
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total_times_1_06_minus_ltc_after_year_4",
+            "maturity_benefit_formula": "age_99_greater_of_annual_insured_amount_and_premium_total_times_1_06_minus_ltc",
+            "premium_multiplier": 1.06,
+            "maturity_age": 100,
+            "installment_benefit_available": True,
+            "premium_waiver_available": True,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "premium_total_required": True,
+            "policy_reserve_ratio_required": False,
+            "coefficient_table_required": False,
+            "payment_period_required": True,
+            "long_term_care_claim_offset_required": True,
+            "foreign_currency_policy": False,
+            "funeral_benefit_limit_rule": True,
+        },
+        "coverage_entries": taiwan_long_term_care_whole_life_entries(
+            long_term_care_article=long_term_care_article,
+            death_article=death_article,
+            accident_death_article=accident_death_article,
+            disability_article=disability_article,
+            maturity_article=maturity_article,
+            waiver_article=waiver_article,
+            installment_article=installment_article,
+        ),
+    }
+
+
+def parse_taiwan_interest_rate_return_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_interest_rate_return_whole_life_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    text = normalize_terms_text(str(document.get("text") or ""))
+    required_signals = [
+        "利率變動型還本終身保險",
+        "當年度保險金額",
+        "增值回饋分享金",
+        "生存保險金",
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "祝壽保險金",
+        "分期定期保險金",
+        "基本保險金額",
+        "累計增加保險金額",
+        "預定利率",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+    if "豁免保險費" in text:
+        return None
+
+    annual_article = taiwan_return_section(
+        text,
+        "「當年度保險金額」",
+        ["六、", "七、"],
+        fallback_length=900,
+    )
+    survival_article = taiwan_return_section(
+        text,
+        "【生存保險金的給付】",
+        ["【身故保險金或喪葬費用保險金的給付】"],
+    )
+    death_article = taiwan_return_section(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        [
+            "【大眾運輸工具意外傷害身故保險金或喪葬費用保險金的給付】",
+            "【完全失能保險金的給付】",
+        ],
+    )
+    mass_transit_accidental_death_article = taiwan_return_section(
+        text,
+        "【大眾運輸工具意外傷害身故保險金或喪葬費用保險金的給付】",
+        ["【完全失能保險金的給付】"],
+    )
+    disability_article = taiwan_return_section(
+        text,
+        "【完全失能保險金的給付】",
+        ["【特定部位癌症保險金的給付】", "【祝壽保險金的給付】"],
+    )
+    specific_cancer_article = taiwan_return_section(
+        text,
+        "【特定部位癌症保險金的給付】",
+        ["【祝壽保險金的給付】"],
+    )
+    maturity_article = taiwan_return_section(
+        text,
+        "【祝壽保險金的給付】",
+        ["【分期定期保險金給付】", "【分期定期保險金給付約定之變更"],
+    )
+    if not all(
+        [
+            annual_article,
+            survival_article,
+            death_article,
+            disability_article,
+            maturity_article,
+        ]
+    ):
+        return None
+
+    annual_formula = taiwan_return_annual_formula(taiwan_return_compact(annual_article))
+    if (
+        product_id == "202121MA1A56A23B11Z10000000"
+        and annual_formula
+        != "face_plus_accumulated_paid_up_additions_times_3_6_percent"
+    ):
+        return None
+    if annual_formula == "formula_in_terms":
+        return None
+    (
+        survival_formula,
+        survival_basis,
+        survival_rate_min,
+        survival_rate_max,
+        monthly_survival_benefit_available,
+        survival_conditions,
+    ) = taiwan_return_survival_formula(taiwan_return_compact(survival_article))
+    if survival_formula == "formula_in_terms":
+        return None
+    if (
+        product_id == "202121MA1A56A23B11Z10000000"
+        and survival_formula
+        != "selected_survival_age_previous_annual_insured_amount_to_age_99"
+    ):
+        return None
+    maturity_formula, maturity_multiplier_formula, maturity_multiplier = (
+        taiwan_return_maturity_formula(taiwan_return_compact(maturity_article))
+    )
+    if maturity_formula == "formula_in_terms":
+        return None
+    if (
+        product_id == "202121MA1A56A23B11Z10000000"
+        and maturity_formula
+        != "age_99_face_plus_accumulated_paid_up_additions_times_1_6"
+    ):
+        return None
+
+    mass_transit_accidental_death_rate_percent = (
+        taiwan_return_mass_transit_accidental_death_rate(
+            mass_transit_accidental_death_article
+        )
+        if mass_transit_accidental_death_article
+        else None
+    )
+    if (
+        mass_transit_accidental_death_article
+        and mass_transit_accidental_death_rate_percent is None
+    ):
+        return None
+
+    specific_cancer_rate_percent = (
+        taiwan_return_specific_cancer_rate(specific_cancer_article, text)
+        if specific_cancer_article
+        else None
+    )
+    if specific_cancer_article and specific_cancer_rate_percent is None:
+        return None
+
+    expected_rate_percent, expected_rate_schedule = taiwan_return_expected_rate_info(text)
+    death_reserve = taiwan_return_reserve_component(death_article)
+    death_premium_multiplier = taiwan_return_premium_multiplier(death_article)
+    premium_component = taiwan_return_premium_component(death_article)
+    standard_premium_table_required = "standard_premium_table" in premium_component
+    coefficient_table_required = "附表二" in text or "附表三" in text
+    installment_available = "【分期定期保險金給付】" in text
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單面頁基本保險金額，並確認繳費年期、增額繳清累計金額、保單價值準備金與條款附表係數；生存金及祝壽金會依不同繳費年期或給付方式適用不同係數。",
+        "version_characteristics": {
+            "terms_revision": taiwan_return_terms_revision(text),
+            "currency": taiwan_return_currency(text),
+            "expected_interest_rate_percent": expected_rate_percent,
+            "expected_interest_rate_schedule": expected_rate_schedule,
+            "value_sharing_bonus": True,
+            "annual_insured_amount_formula": annual_formula,
+            "survival_benefit_formula": survival_formula,
+            "survival_benefit_basis": survival_basis,
+            "survival_rate_min_percent": survival_rate_min,
+            "survival_rate_max_percent": survival_rate_max,
+            "monthly_survival_benefit_available": monthly_survival_benefit_available,
+            "death_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_component",
+            "mass_transit_accidental_death_available": mass_transit_accidental_death_rate_percent
+            is not None,
+            "mass_transit_accidental_death_rate_percent": mass_transit_accidental_death_rate_percent,
+            "mass_transit_accidental_death_claim_age_limit": 85,
+            "accident_claim_days": 180
+            if mass_transit_accidental_death_rate_percent is not None
+            else None,
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_component",
+            "maturity_benefit_formula": maturity_formula,
+            "maturity_multiplier_formula": maturity_multiplier_formula,
+            "reserve_component": death_reserve,
+            "premium_component": premium_component,
+            "premium_multiplier": death_premium_multiplier,
+            "maturity_age": 100,
+            "installment_benefit_available": installment_available,
+            "premium_waiver_available": False,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "premium_total_required": True,
+            "policy_reserve_ratio_required": death_reserve
+            == "policy_reserve_times_policy_reserve_ratio",
+            "accumulated_paid_up_additions_required": True,
+            "coefficient_table_required": coefficient_table_required,
+            "standard_premium_table_required": standard_premium_table_required,
+            "payment_period_required": True,
+            "foreign_currency_policy": taiwan_return_currency(text) in {"CNY", "USD"},
+            **(
+                {
+                    "specific_cancer_benefit_available": True,
+                    "specific_cancer_rate_percent": specific_cancer_rate_percent,
+                    "specific_cancer_waiting_days": 90,
+                    "specific_cancer_lifetime_limit_times": 1,
+                    "specific_cancer_basis": "basic_face_amount",
+                }
+                if specific_cancer_rate_percent is not None
+                else {}
+            ),
+            "funeral_benefit_limit_rule": True,
+        },
+        "coverage_entries": taiwan_interest_rate_return_whole_life_entries(
+            annual_formula=annual_formula,
+            survival_formula=survival_formula,
+            survival_basis=survival_basis,
+            survival_rate_min=survival_rate_min,
+            survival_rate_max=survival_rate_max,
+            survival_conditions=survival_conditions,
+            death_article=death_article,
+            mass_transit_accidental_death_article=mass_transit_accidental_death_article,
+            mass_transit_accidental_death_rate_percent=mass_transit_accidental_death_rate_percent,
+            specific_cancer_article=specific_cancer_article,
+            specific_cancer_rate_percent=specific_cancer_rate_percent,
+            disability_article=disability_article,
+            maturity_article=maturity_article,
+            maturity_formula=maturity_formula,
+            maturity_multiplier_formula=maturity_multiplier_formula,
+            maturity_multiplier=maturity_multiplier,
+            installment_available=installment_available,
+        ),
+    }
+
+
+def taiwan_interest_rate_endowment_policy_period_years(text: str) -> int | None:
+    if "保險期間為七年" in text or "保險期間為 7 年" in text:
+        return 7
+    match = re.search(r"保險期間為\s*(\d+)\s*年", text)
+    return int(match.group(1)) if match else None
+
+
+def taiwan_interest_rate_endowment_premium_component(
+    multiplier: float | None,
+) -> str:
+    if multiplier is None:
+        return "none"
+    if multiplier == 1.1:
+        return "premium_total_times_1_1"
+    if multiplier == 1.06:
+        return "premium_total_times_1_06"
+    if multiplier == 1.03:
+        return "premium_total_times_1_03"
+    if multiplier == 1.02:
+        return "premium_total_times_1_02"
+    if multiplier == 1:
+        return "premium_total"
+    return "premium_total_formula_in_terms"
+
+
+def taiwan_interest_rate_endowment_entries(
+    *,
+    annual_formula: str,
+    death_article: str,
+    disability_article: str,
+    maturity_article: str,
+    installment_available: bool,
+) -> list[dict[str, Any]]:
+    entries = taiwan_interest_rate_whole_life_entries(
+        annual_formula=annual_formula,
+        death_article=death_article,
+        disability_article=disability_article,
+        maturity_article=maturity_article,
+        installment_available=installment_available,
+        premium_waiver_available=False,
+    )
+    maturity_formula = taiwan_interest_maturity_formula(maturity_article)
+    for entry in entries:
+        if entry["id"] == "maturity-benefit":
+            entry.update(
+                {
+                    "name": "滿期保險金",
+                    "note": "被保險人於保險期間屆滿時仍生存，按當時之當年度保險金額給付後契約效力終止。",
+                    "source_ref": taiwan_interest_article_ref(
+                        maturity_article, "滿期保險金的給付"
+                    ),
+                    "conditions": [
+                        f"滿期公式類型: {maturity_formula}。",
+                        "實際金額需依保單面頁基本保險金額、累計增加保險金額及條款附表或保單年度資料確認。",
+                    ],
+                }
+            )
+    return entries
+
+
+def parse_taiwan_interest_rate_endowment_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_interest_rate_endowment_strict_source(document):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    required_signals = [
+        "利率變動型養老保險",
+        "當年度保險金額",
+        "增值回饋分享金",
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "滿期保險金",
+        "分期定期保險金",
+        "基本保險金額",
+        "累計增加保險金額",
+        "預定利率",
+    ]
+    if any(signal not in text for signal in required_signals):
+        return None
+    if "生存保險金" in text or "祝壽保險金" in text or "豁免保險費" in text:
+        return None
+
+    annual_formula = taiwan_interest_rate_annual_formula(compact_table_text(text))
+    if annual_formula == "formula_in_terms":
+        return None
+
+    death_article = taiwan_interest_article(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【完全失能保險金的給付】"],
+    )
+    disability_article = taiwan_interest_article(
+        text,
+        "【完全失能保險金的給付】",
+        ["【滿期保險金的給付】"],
+    )
+    maturity_article = taiwan_interest_article(
+        text,
+        "【滿期保險金的給付】",
+        ["【分期定期保險金給付】", "【分期定期保險金給付約定之變更"],
+    )
+    if not death_article or not disability_article or not maturity_article:
+        return None
+
+    maturity_formula = taiwan_interest_maturity_formula(maturity_article)
+    if maturity_formula == "formula_in_terms":
+        return None
+    death_reserve = taiwan_interest_reserve_component(death_article)
+    death_premium_multiplier = taiwan_interest_premium_multiplier(death_article)
+    policy_period_years = taiwan_interest_rate_endowment_policy_period_years(text)
+    currency = taiwan_interest_rate_currency(text)
+    installment_available = "【分期定期保險金給付】" in text
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單面頁基本保險金額；身故、完全失能與滿期金額仍需搭配累計增加保險金額、保單價值準備金、保單價值準備金比率及應繳保險費總和確認。",
+        "version_characteristics": {
+            "terms_revision": taiwan_interest_rate_revision(text),
+            "currency": currency,
+            "expected_interest_rate_percent": taiwan_interest_rate_expected_rate(text),
+            "value_sharing_bonus": True,
+            "policy_period_years": policy_period_years,
+            "annual_insured_amount_formula": annual_formula,
+            "death_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total",
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total",
+            "maturity_benefit_formula": maturity_formula,
+            "reserve_component": death_reserve,
+            "premium_component": taiwan_interest_rate_endowment_premium_component(
+                death_premium_multiplier
+            ),
+            "premium_multiplier": death_premium_multiplier,
+            "installment_benefit_available": installment_available,
+            "premium_waiver_available": False,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "premium_total_required": death_premium_multiplier is not None,
+            "policy_reserve_ratio_required": death_reserve
+            == "policy_reserve_times_policy_reserve_ratio",
+            "accumulated_paid_up_additions_required": True,
+            "coefficient_table_required": "當年度保險金額係數" in text,
+            "payment_period_required": "繳費期間" in text,
+            "foreign_currency_policy": currency in {"AUD", "CNY", "USD"},
+            "funeral_benefit_limit_rule": True,
+            "minor_death_under_15_funeral_benefit_rule": True,
+        },
+        "coverage_entries": taiwan_interest_rate_endowment_entries(
+            annual_formula=annual_formula,
+            death_article=death_article,
+            disability_article=disability_article,
+            maturity_article=maturity_article,
+            installment_available=installment_available,
+        ),
+    }
+
+
+def taiwan_interest_rate_specific_disease_names(text: str) -> list[str]:
+    start = text.find("十六、「特定傷病」")
+    end = text.find("十七、「初次罹患」", start)
+    if start < 0 or end <= start:
+        return []
+    section = text[start:end]
+    names = [
+        match.group(1).strip()
+        for match in re.finditer(r"[（(][一二三四五六七八九十]+[）)]\s*([^:：]+)[：:]", section)
+    ]
+    expected = ["嚴重阿茲海默氏症", "嚴重巴金森氏症"]
+    return names if names == expected else []
+
+
+def taiwan_interest_rate_specific_disease_entries(
+    *,
+    annual_formula: str,
+    disease_names: list[str],
+    death_article: str,
+    disability_article: str,
+    specific_disease_article: str,
+    maturity_article: str,
+    installment_available: bool,
+) -> list[dict[str, Any]]:
+    entries = taiwan_interest_rate_whole_life_entries(
+        annual_formula=annual_formula,
+        death_article=death_article,
+        disability_article=disability_article,
+        maturity_article=maturity_article,
+        installment_available=installment_available,
+        premium_waiver_available=False,
+    )
+    specific_disease_entry = coverage_entry(
+        "specific-disease-benefit",
+        "特定傷病保險金",
+        None,
+        "policy_recorded_limit",
+        "初次罹患條款定義之特定傷病時，按診斷確定日之當年度保險金額、保單價值準備金比率所得金額及年繳應繳保險費總和 1.06 倍三者取最大值給付。",
+        taiwan_interest_article_ref(specific_disease_article, "特定傷病保險金的給付"),
+        calculation_basis="greater_of",
+        amount_role="payout",
+        limit_scope="per_policy",
+        aggregation_rule="highest",
+        rate_percent=100,
+        unit_key="annual_insured_amount",
+        conditions=[
+            f"特定傷病定義列示：{'、'.join(disease_names)}。",
+            "等待期間為契約生效日起持續有效 30 日；自第 31 日起或復效日起診斷確定初次罹患才符合條款定義。",
+            "因意外傷害事故所致者，不受前述等待期間限制。",
+            "同時或先後罹患二項以上特定傷病時，僅給付一項特定傷病保險金。",
+            "同時或先後符合完全失能保險金與特定傷病保險金給付條件時，僅給付其中一項。",
+            "給付特定傷病保險金後契約效力終止。",
+            f"當年度保險金額公式類型：{annual_formula}。",
+        ],
+    )
+    maturity_index = next(
+        (index for index, entry in enumerate(entries) if entry["id"] == "maturity-benefit"),
+        len(entries),
+    )
+    entries.insert(maturity_index, specific_disease_entry)
+    return entries
+
+
+def taiwan_interest_rate_specific_disease_survival_entries(
+    *,
+    annual_formula: str,
+    disease_names: list[str],
+    death_article: str,
+    specific_disease_article: str,
+    maturity_article: str,
+    installment_article: str,
+    installment_available: bool,
+    specific_disease_rate_percent: int,
+) -> list[dict[str, Any]]:
+    entries = taiwan_interest_rate_survival_whole_life_entries(
+        annual_formula=annual_formula,
+        death_article=death_article,
+        maturity_article=maturity_article,
+        terminal_article="",
+        premium_waiver_article="",
+        installment_article=installment_article,
+        installment_available=installment_available,
+        premium_waiver_available=False,
+    )
+    specific_disease_entry = coverage_entry(
+        "specific-disease-benefit",
+        "特定傷病保險金",
+        None,
+        "face_amount",
+        "初次罹患條款定義之特定傷病時，按診斷確定日當時之基本保險金額 5% 給付；本項以一次為限。",
+        taiwan_interest_article_ref(specific_disease_article, "特定傷病保險金的給付"),
+        calculation_basis="percentage_of_base",
+        amount_role="payout",
+        limit_scope="per_policy",
+        aggregation_rule="separate",
+        rate_percent=specific_disease_rate_percent,
+        unit_key="basic_face_amount",
+        conditions=[
+            f"特定傷病定義列示：{'、'.join(disease_names)}。",
+            "等待期間為契約生效日起持續有效 30 日；自第 31 日起或復效日起診斷確定初次罹患才符合條款定義。",
+            "因意外傷害事故所致者，不受前述等待期間限制。",
+            "被保險人同時或先後罹患二項以上特定傷病時，僅給付一項特定傷病保險金。",
+            "被保險人於契約有效期間內申領特定傷病保險金以一次為限。",
+        ],
+    )
+    maturity_index = next(
+        (index for index, entry in enumerate(entries) if entry["id"] == "maturity-benefit"),
+        len(entries),
+    )
+    entries.insert(maturity_index, specific_disease_entry)
+    return entries
+
+
+def parse_taiwan_interest_rate_specific_disease_survival_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_interest_rate_specific_disease_survival_whole_life_strict_source(
+        document
+    ):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = (
+        TAIWAN_LIFE_INTEREST_RATE_SPECIFIC_DISEASE_SURVIVAL_WHOLE_LIFE_PRODUCT_VERSIONS[
+            product_id
+        ]
+    )
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "台灣人壽美利保美元利率變動型終身壽險",
+        "主要給付項目",
+        "增值回饋分享金",
+        "身故保險金或喪葬費用保險金",
+        "特定傷病保險金",
+        "祝壽保險金",
+        "本公司所收付之款項均以美元計價",
+        "等待期間為本契約生效日起持續有效30日",
+        "預定利率(2.50%)",
+        "年繳應繳保險費總和的1.06倍",
+        "當年度保險金額係數",
+        "保單價值準備金比率",
+        "診斷確定日當時之基本保險金額的5%",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    if "【完全失能保險金的給付】" in text or "完全失能保險金" in text:
+        return None
+
+    disease_names = taiwan_interest_rate_specific_disease_names(text)
+    if disease_names != ["嚴重阿茲海默氏症", "嚴重巴金森氏症"]:
+        return None
+
+    annual_formula = taiwan_interest_rate_annual_formula(compact_text)
+    if (
+        annual_formula
+        != "first_three_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient"
+    ):
+        return None
+
+    death_article = taiwan_interest_article(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【特定傷病保險金的給付】"],
+    )
+    specific_disease_article = taiwan_interest_article(
+        text,
+        "【特定傷病保險金的給付】",
+        ["【祝壽保險金的給付】"],
+    )
+    maturity_article = taiwan_interest_article(
+        text,
+        "【祝壽保險金的給付】",
+        ["【分期定期保險金給付】", "【分期定期保險金給付約定之變更"],
+    )
+    definition_article = taiwan_interest_article(
+        text,
+        "【名詞定義】",
+        ["【貨幣單位與匯率風險】"],
+    )
+    installment_article = "\n".join(
+        part
+        for part in [
+            definition_article,
+            taiwan_interest_article(
+                text,
+                "【分期定期保險金給付】",
+                [
+                    "【分期定期保險金給付約定之變更",
+                    "【分期定期保險金受益人死亡",
+                    "【身故保險金或喪葬費用保險金的申領】",
+                    "【除外責任】",
+                ],
+            ),
+            taiwan_interest_article(
+                text,
+                "【分期定期保險金給付約定之變更",
+                [
+                    "【分期定期保險金受益人死亡",
+                    "【身故保險金或喪葬費用保險金的申領】",
+                    "【除外責任】",
+                ],
+            ),
+        ]
+        if part
+    )
+    if not death_article or not specific_disease_article or not maturity_article:
+        return None
+    if (
+        "取其最大值" not in death_article
+        or "保單價值準備金乘以保單價值準備金比率" not in death_article
+        or "年繳應繳保險費總和的 1.06 倍" not in death_article
+    ):
+        return None
+    if "基本保險金額的 5%" not in specific_disease_article:
+        return None
+
+    maturity_formula = taiwan_interest_maturity_formula(maturity_article)
+    if maturity_formula != "greater_of_annual_insured_amount_and_premium_total_times_1_06":
+        return None
+    death_premium_multiplier = taiwan_interest_premium_multiplier(death_article)
+    death_reserve = taiwan_interest_reserve_component(death_article)
+    installment_available = "【分期定期保險金給付】" in text
+    specific_disease_rate_percent = int(version["specific_disease_rate_percent"])
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單面頁所載基本保險金額；特定傷病保險金可按基本保險金額 5% 試算，身故與祝壽金額仍需依累計增加保險金額、保單價值準備金、保單價值準備金比率、年繳應繳保險費總和與附表係數確認。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "currency": "USD",
+            "expected_interest_rate_percent": taiwan_interest_rate_expected_rate(text),
+            "value_sharing_bonus": True,
+            "specific_disease_waiting_days": 30,
+            "specific_disease_names": disease_names,
+            "specific_disease_count": len(disease_names),
+            "specific_disease_benefit_formula": "basic_face_amount_times_5_percent",
+            "specific_disease_rate_percent": specific_disease_rate_percent,
+            "specific_disease_one_time_benefit": True,
+            "specific_disease_disability_exclusive": False,
+            "total_disability_benefit_available": False,
+            "annual_insured_amount_formula": annual_formula,
+            "death_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total",
+            "maturity_benefit_formula": maturity_formula,
+            "reserve_component": death_reserve,
+            "premium_component": taiwan_interest_rate_endowment_premium_component(
+                death_premium_multiplier
+            ),
+            "premium_multiplier": death_premium_multiplier,
+            "maturity_age": 111,
+            "installment_benefit_available": installment_available,
+            "installment_period_min_years": 5,
+            "installment_period_max_years": 30,
+            "minimum_annual_installment_amount": 1200,
+            "minimum_annual_installment_currency": "USD",
+            "premium_waiver_available": False,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "premium_total_required": True,
+            "policy_reserve_ratio_required": death_reserve
+            == "policy_reserve_times_policy_reserve_ratio",
+            "accumulated_paid_up_additions_required": True,
+            "coefficient_table_required": True,
+            "payment_period_required": True,
+            "foreign_currency_policy": True,
+            "funeral_benefit_limit_rule": True,
+            "minor_death_under_15_funeral_benefit_rule": True,
+        },
+        "coverage_entries": taiwan_interest_rate_specific_disease_survival_entries(
+            annual_formula=annual_formula,
+            disease_names=disease_names,
+            death_article=death_article,
+            specific_disease_article=specific_disease_article,
+            maturity_article=maturity_article,
+            installment_article=installment_article,
+            installment_available=installment_available,
+            specific_disease_rate_percent=specific_disease_rate_percent,
+        ),
+    }
+
+
+def parse_taiwan_interest_rate_specific_disease_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_interest_rate_specific_disease_whole_life_strict_source(document):
+        return None
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "智庫鑫美美元利率變動型終身保險",
+        "主要給付項目",
+        "增值回饋分享金",
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "特定傷病保險金",
+        "祝壽保險金",
+        "本公司所收付之款項均以美元計價",
+        "等待期間為本契約生效日起持續有效30日",
+        "預定利率(2.50%)",
+        "年繳應繳保險費總和的1.06倍",
+        "當年度保險金額係數",
+        "保單價值準備金比率",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+
+    disease_names = taiwan_interest_rate_specific_disease_names(text)
+    if disease_names != ["嚴重阿茲海默氏症", "嚴重巴金森氏症"]:
+        return None
+
+    annual_formula = taiwan_interest_rate_annual_formula(compact_text)
+    if (
+        annual_formula
+        != "first_five_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient"
+    ):
+        return None
+
+    death_article = taiwan_interest_article(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【完全失能保險金的給付】"],
+    )
+    disability_article = taiwan_interest_article(
+        text,
+        "【完全失能保險金的給付】",
+        ["【特定傷病保險金的給付】"],
+    )
+    specific_disease_article = taiwan_interest_article(
+        text,
+        "【特定傷病保險金的給付】",
+        ["【祝壽保險金的給付】"],
+    )
+    maturity_article = taiwan_interest_article(
+        text,
+        "【祝壽保險金的給付】",
+        ["【分期定期保險金給付】", "【分期定期保險金給付約定之變更"],
+    )
+    if (
+        not death_article
+        or not disability_article
+        or not specific_disease_article
+        or not maturity_article
+    ):
+        return None
+    for article in [death_article, disability_article, specific_disease_article]:
+        if (
+            "取其最大值" not in article
+            or "保單價值準備金乘以保單價值準備金比率" not in article
+            or "年繳應繳保險費總和的 1.06 倍" not in article
+        ):
+            return None
+
+    maturity_formula = taiwan_interest_maturity_formula(maturity_article)
+    if maturity_formula != "greater_of_annual_insured_amount_and_premium_total_times_1_06":
+        return None
+    death_premium_multiplier = taiwan_interest_premium_multiplier(death_article)
+    death_reserve = taiwan_interest_reserve_component(death_article)
+    installment_available = "【分期定期保險金給付】" in text
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單面頁所載基本保險金額；實際身故、完全失能、特定傷病與祝壽金額仍需依累計增加保險金額、保單價值準備金、保單價值準備金比率、年繳應繳保險費總和與附表係數確認。",
+        "version_characteristics": {
+            "terms_revision": taiwan_interest_rate_revision(text),
+            "currency": "USD",
+            "expected_interest_rate_percent": taiwan_interest_rate_expected_rate(text),
+            "value_sharing_bonus": True,
+            "specific_disease_waiting_days": 30,
+            "specific_disease_names": disease_names,
+            "specific_disease_count": len(disease_names),
+            "specific_disease_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total_times_1_06",
+            "specific_disease_one_time_benefit": True,
+            "specific_disease_disability_exclusive": True,
+            "annual_insured_amount_formula": annual_formula,
+            "death_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total",
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_reserve_and_premium_total",
+            "maturity_benefit_formula": maturity_formula,
+            "reserve_component": death_reserve,
+            "premium_component": taiwan_interest_rate_endowment_premium_component(
+                death_premium_multiplier
+            ),
+            "premium_multiplier": death_premium_multiplier,
+            "maturity_age": 111,
+            "installment_benefit_available": installment_available,
+            "installment_period_min_years": 5,
+            "installment_period_max_years": 30,
+            "minimum_annual_installment_amount": 1200,
+            "minimum_annual_installment_currency": "USD",
+            "premium_waiver_available": False,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "premium_total_required": True,
+            "policy_reserve_ratio_required": death_reserve
+            == "policy_reserve_times_policy_reserve_ratio",
+            "accumulated_paid_up_additions_required": True,
+            "coefficient_table_required": True,
+            "payment_period_required": True,
+            "foreign_currency_policy": True,
+            "funeral_benefit_limit_rule": True,
+            "minor_death_under_15_funeral_benefit_rule": True,
+        },
+        "coverage_entries": taiwan_interest_rate_specific_disease_entries(
+            annual_formula=annual_formula,
+            disease_names=disease_names,
+            death_article=death_article,
+            disability_article=disability_article,
+            specific_disease_article=specific_disease_article,
+            maturity_article=maturity_article,
+            installment_available=installment_available,
+        ),
+    }
+
+
+def taiwan_usd_endowment_title(text: str) -> str:
+    match = re.search(r"台灣人壽[^\s【】]+?美元養老保險", text)
+    return match.group(0) if match else "台灣人壽美元養老保險"
+
+
+def taiwan_usd_endowment_terms_revision(product_id: str) -> str:
+    if product_id == "202121MZ1A77A22B11Z10000001":
+        return "first-partial-revision"
+    return "original"
+
+
+def taiwan_usd_endowment_policy_period_years(text: str) -> int | None:
+    if "保險期間為七年" in text or "保險期間為 7 年" in text:
+        return 7
+    match = re.search(r"保險期間為\s*(\d+)\s*年", text)
+    return int(match.group(1)) if match else None
+
+
+def taiwan_usd_endowment_base_label(text: str) -> str | None:
+    if "「基本保險金額」" in text:
+        return "基本保險金額"
+    if "「保險金額」" in text:
+        return "保險金額"
+    return None
+
+
+def taiwan_usd_endowment_annual_formula(
+    *, base_label: str, compact_text: str
+) -> str | None:
+    if base_label == "基本保險金額":
+        required = [
+            "繳費期間為躉繳者,係指基本保險金額乘以附表二所列之當年度保險金額係數所得之值",
+            "繳費期間為2年期者",
+            "於第一保單年度內,係指應繳保險費總和",
+            "於第二保單年度(含)後,係指基本保險金額乘以附表二所列之當年度保險金額係數所得之值",
+        ]
+        if all(compact_table_text(signal) in compact_text for signal in required):
+            return (
+                "single_premium_face_amount_times_coefficient_or_"
+                "two_year_first_year_premium_total_then_face_amount_times_coefficient"
+            )
+        return None
+    if base_label == "保險金額":
+        if "當年度保險金額" in compact_text:
+            return None
+        return "face_amount"
+    return None
+
+
+def taiwan_usd_endowment_conditions(
+    *,
+    base_label: str,
+    formula: str,
+) -> list[str]:
+    conditions = [
+        f"保單面頁欄位：{base_label}。",
+        f"金額公式類型：{formula}。",
+        "身故與完全失能保險金按條款列示三款取其最大值。",
+        "取大項目包含保單價值準備金乘以保單價值準備金比率，以及應繳保險費總和。",
+    ]
+    if formula != "face_amount":
+        conditions.append("多美富版本需依繳費期間與附表二當年度保險金額係數換算當年度保險金額。")
+    return conditions
+
+
+def taiwan_usd_endowment_entries(
+    *,
+    base_label: str,
+    annual_formula: str,
+    death_article: str,
+    disability_article: str,
+    maturity_article: str,
+    installment_available: bool,
+) -> list[dict[str, Any]]:
+    unit_key = "annual_insured_amount" if annual_formula != "face_amount" else "face_amount"
+    display_basis = "當年度保險金額" if unit_key == "annual_insured_amount" else "保險金額"
+    conditions = taiwan_usd_endowment_conditions(
+        base_label=base_label,
+        formula=annual_formula,
+    )
+    entries = [
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            f"被保險人身故時，按身故日之{display_basis}、保單價值準備金比率所得金額及應繳保險費總和三者取最大值給付。",
+            taiwan_interest_article_ref(death_article, "身故保險金或喪葬費用保險金的給付"),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key=unit_key,
+            conditions=[
+                *conditions,
+                "未滿 15 足歲或受監護宣告尚未撤銷者，身故給付依條款可能變更為喪葬費用保險金並受法定上限限制。",
+                "若要保人指定分期給付，條款允許將身故保險金扣除指定保險金後的餘額一次給付。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            f"致成條款附表完全失能程度之一時，按診斷確定日之{display_basis}、保單價值準備金比率所得金額及應繳保險費總和三者取最大值給付。",
+            taiwan_interest_article_ref(disability_article, "完全失能保險金的給付"),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key=unit_key,
+            conditions=[
+                *conditions,
+                "被保險人同時符合兩種以上完全失能程度時，條款約定僅給付一次完全失能保險金。",
+                "給付完全失能保險金後契約效力終止；若指定分期方式，分期定期保險金給付不因契約終止受影響。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "policy_recorded_limit",
+            f"保險期間屆滿且被保險人仍生存時，按當時之{display_basis}給付後契約效力終止。",
+            taiwan_interest_article_ref(maturity_article, "滿期保險金的給付"),
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key=unit_key,
+            conditions=[
+                f"滿期公式類型：{'annual_insured_amount' if unit_key == 'annual_insured_amount' else 'face_amount'}。",
+                f"實際滿期金額需依保單面頁{base_label}及條款定義確認。",
+            ],
+        ),
+    ]
+    if installment_available:
+        entries.append(
+            coverage_entry(
+                "installment-periodic-benefit",
+                "分期定期保險金給付",
+                None,
+                "policy_recorded_limit",
+                "要保人指定分期給付時，身故或完全失能保險金可依條款換算為分期定期保險金。",
+                "保單條款分期定期保險金給付及其變更、終止限制條款",
+                calculation_basis="unknown",
+                amount_role="reference",
+                limit_scope="per_policy",
+                conditions=[
+                    "分期定期保險金給付期間最短 5 年、最長 30 年。",
+                    "每年給付之分期定期保險金低於美元 1,200 元時，改一次給付指定保險金。",
+                    "分期金額需依指定保險金、給付期間及分期定期保險金預定利率換算。",
+                ],
+            )
+        )
+    return entries
+
+
+def parse_taiwan_usd_endowment_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_usd_endowment_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "美元養老保險",
+        "本保險為不分紅保險單",
+        "本公司所收付之款項均以美元計價",
+        "主要給付項目",
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "滿期保險金",
+        "分期定期保險金",
+        "保單價值準備金比率",
+        "應繳保險費總和",
+        "美元1,200元",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    if (
+        "利率變動型" in text
+        or "增值回饋分享金" in text
+        or "生存保險金" in text
+        or "祝壽保險金" in text
+        or "豁免保險費" in text
+    ):
+        return None
+
+    base_label = taiwan_usd_endowment_base_label(text)
+    if base_label is None:
+        return None
+    annual_formula = taiwan_usd_endowment_annual_formula(
+        base_label=base_label,
+        compact_text=compact_text,
+    )
+    if annual_formula is None:
+        return None
+
+    death_article = taiwan_interest_article(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【完全失能保險金的給付】"],
+    )
+    disability_article = taiwan_interest_article(
+        text,
+        "【完全失能保險金的給付】",
+        ["【滿期保險金的給付】"],
+    )
+    maturity_article = taiwan_interest_article(
+        text,
+        "【滿期保險金的給付】",
+        ["【分期定期保險金給付】", "【分期定期保險金給付約定之變更"],
+    )
+    if not death_article or not disability_article or not maturity_article:
+        return None
+    if any(
+        signal not in death_article
+        for signal in ["取其最大值", "保單價值準備金乘以保單價值準備金比率", "應繳保險費總和"]
+    ):
+        return None
+    if any(
+        signal not in disability_article
+        for signal in ["取其最大值", "保單價值準備金乘以保單價值準備金比率", "應繳保險費總和"]
+    ):
+        return None
+
+    policy_period_years = taiwan_usd_endowment_policy_period_years(text)
+    installment_available = "【分期定期保險金給付】" in text
+    maturity_formula = (
+        "annual_insured_amount" if annual_formula != "face_amount" else "face_amount"
+    )
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": base_label,
+        "selection_guidance": (
+            f"請輸入保單面頁所載{base_label}；身故與完全失能需另依保單價值準備金、保單價值準備金比率及應繳保險費總和確認取大結果。"
+        ),
+        "version_characteristics": {
+            "terms_revision": taiwan_usd_endowment_terms_revision(product_id),
+            "currency": "USD",
+            "value_sharing_bonus": False,
+            "policy_period_years": policy_period_years,
+            "face_amount_label": base_label,
+            "annual_insured_amount_formula": annual_formula,
+            "death_benefit_formula": "greater_of_base_or_annual_amount_reserve_ratio_and_premium_total",
+            "total_disability_benefit_formula": "greater_of_base_or_annual_amount_reserve_ratio_and_premium_total",
+            "maturity_benefit_formula": maturity_formula,
+            "reserve_component": "policy_reserve_times_policy_reserve_ratio",
+            "premium_component": "premium_total",
+            "premium_multiplier": 1.0,
+            "installment_benefit_available": installment_available,
+            "installment_period_min_years": 5,
+            "installment_period_max_years": 30,
+            "minimum_annual_installment_amount": 1200,
+            "minimum_annual_installment_currency": "USD",
+            "premium_waiver_available": False,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "premium_total_required": True,
+            "policy_reserve_ratio_required": True,
+            "coefficient_table_required": annual_formula != "face_amount",
+            "payment_period_required": annual_formula != "face_amount",
+            "foreign_currency_policy": True,
+            "funeral_benefit_limit_rule": True,
+            "minor_death_under_15_funeral_benefit_rule": True,
+        },
+        "coverage_entries": taiwan_usd_endowment_entries(
+            base_label=base_label,
+            annual_formula=annual_formula,
+            death_article=death_article,
+            disability_article=disability_article,
+            maturity_article=maturity_article,
+            installment_available=installment_available,
+        ),
+    }
+
+
+def taiwan_platinum_account_entries(version: dict[str, Any]) -> list[dict[str, Any]]:
+    death_conditions = [
+        "身故給付取保險金額與身故當日保單價值準備金二者較高者。",
+        "給付時加計按日數比例計算之當月份已扣除未到期保險成本。",
+        "若事故日後曾依第二十一條申請減少保單價值準備金，給付時扣除該減少金額。",
+        "給付後契約效力即行終止。",
+    ]
+    if version["funeral_benefit_limit_rule"]:
+        death_conditions.extend(
+            [
+                "精神障礙或其他心智缺陷且不能辨識行為或欠缺辨識行為能力者，身故保險金變更為喪葬費用保險金。",
+                "民國九十九年二月三日(含)以後投保者，喪葬費用保險金受遺產稅喪葬費扣除額半數上限限制。",
+            ]
+        )
+
+    return [
+        coverage_entry(
+            "policy-value-reserve-reference",
+            "保單價值準備金參考",
+            None,
+            "policy_recorded_limit",
+            "保單價值準備金依條款第八條計算；滿期直接依保險期間屆滿當日保單價值準備金給付，身故與全殘亦需作為取大項目。",
+            "保單條款第二條及第八條，保單價值準備金定義及計算",
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_value_reserve",
+            conditions=[
+                "實際金額需由保單帳戶/保單價值準備金資料確認。",
+                "宣告利率不得為負值，並於公司網站公告。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於保險期間屆滿時生存且契約仍有效時，按保險期間屆滿當日計算之保單價值準備金給付。",
+            "保單條款第十二條，滿期保險金的給付",
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            unit_key="policy_value_reserve",
+            conditions=["給付後契約效力即行終止。"],
+        ),
+        coverage_entry(
+            version["death_entry_id"],
+            version["death_entry_name"],
+            None,
+            "policy_recorded_limit",
+            "被保險人於有效期間身故時，依保險金額與身故當日保單價值準備金二者較高者給付。",
+            "保單條款第十三條，身故保險金或喪葬費用保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            unit_key="insurance_amount_or_policy_value_reserve",
+            conditions=death_conditions,
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於有效期間內致成附表五全殘廢程度之一並經診斷確定者，依保險金額與診斷確定當日保單價值準備金二者較高者給付。",
+            "保單條款第十四條，全殘廢保險金的給付",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="choose_one",
+            unit_key="insurance_amount_or_policy_value_reserve",
+            conditions=[
+                "給付時加計按日數比例計算之當月份已扣除未到期保險成本。",
+                "若診斷確定日後曾依第二十一條申請減少保單價值準備金，給付時扣除該減少金額。",
+                "同時致成附表五所列兩項以上殘廢時，僅給付一項全殘廢保險金。",
+                "給付後契約效力即行終止。",
+            ],
+        ),
+    ]
+
+
+def parse_taiwan_platinum_account_endowment_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_platinum_account_endowment_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LIFE_PLATINUM_ACCOUNT_ENDOWMENT_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "台灣人壽白金存摺萬能養老保險",
+        f"({version['product_code']})",
+        "本保險為不分紅",
+        "不參加紅利分配,並無紅利給付項目",
+        "本契約所稱「保險金額」係指所繳約定保險費累計總額乘以一點一倍後所得之金額",
+        "本契約所稱「保單價值準備金」係指依第八條計算所得之金額",
+        "本契約所稱「淨危險保額」係指依保險金額扣除保單價值準備金後之金額",
+        "被保險人於本契約保險期間屆滿時生存且本契約仍屬有效時",
+        "本公司按保險期間屆滿當日計算之保單價值準備金給付滿期保險金",
+        "被保險人於本契約有效期間身故者,本公司依下列兩款方式計算所得金額之較高者給付身故保險金",
+        "一、保險金額。二、身故當日計算之保單價值準備金",
+        "被保險人於本契約有效期間內致成附表五「全殘廢項目表」中所列全殘廢程度之一",
+        "一、保險金額。二、診斷確定當日計算之保單價值準備金",
+    ]
+    if any(compact_table_text(signal) not in compact_text for signal in required_signals):
+        return None
+    if version["funeral_benefit_limit_rule"] and any(
+        compact_table_text(signal) not in compact_text
+        for signal in [
+            "其身故保險金,均變更為喪葬費用保險金",
+            "於民國九十九年二月三日(含)以後所投保之喪葬費用保險金額總和",
+        ]
+    ):
+        return None
+    if not version["funeral_benefit_limit_rule"] and "喪葬費用保險金" in text:
+        return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單目前保險金額；滿期與取大項目仍需另依保單價值準備金及當月未到期保險成本確認。",
+        "version_characteristics": {
+            "product_family": "taiwan-platinum-account-endowment",
+            "product_code": version["product_code"],
+            "terms_revision": version["terms_revision"],
+            "filing_number": version["filing_number"],
+            "revision_basis": version["revision_basis"],
+            "universal_policy": True,
+            "non_participating_policy": True,
+            "insurance_amount_formula": "scheduled_premium_total_times_1_1_adjusted_by_policy_value_reduction",
+            "policy_value_reserve_required": True,
+            "policy_value_reserve_formula_article": "article_8",
+            "maturity_benefit_formula": "policy_value_reserve_at_policy_maturity",
+            "death_benefit_formula": "greater_of_insurance_amount_and_policy_value_reserve_plus_unexpired_insurance_cost",
+            "total_disability_benefit_formula": "greater_of_insurance_amount_and_policy_value_reserve_plus_unexpired_insurance_cost",
+            "unexpired_insurance_cost_added": True,
+            "policy_value_reduction_offset_rule": True,
+            "funeral_benefit_limit_rule": version["funeral_benefit_limit_rule"],
+        },
+        "coverage_entries": taiwan_platinum_account_entries(version),
+    }
+
+
+TAIWAN_FIXED_RETURN_ANNUAL_FORMULA = (
+    "first_five_policy_years_premium_total_times_1_06_minus_face_amount_times_"
+    "coefficient_then_face_amount_times_3_6"
+)
+TAIWAN_FIXED_RETURN_PREMIUM_COMPONENT = (
+    "premium_total_times_1_06_minus_face_amount_times_coefficient"
+)
+
+
+def taiwan_fixed_return_formula_conditions() -> list[str]:
+    return [
+        f"當年度保險金額公式：{TAIWAN_FIXED_RETURN_ANNUAL_FORMULA}。",
+        "前五保單年度為年繳應繳保險費總和的 1.06 倍，扣除基本保險金額乘以附表二該保單年度係數。",
+        "第六保單年度(含)後為基本保險金額的 3.6 倍。",
+        "取大項目含保單價值準備金乘以保單價值準備金比率。",
+        f"取大項目含保費相關公式：{TAIWAN_FIXED_RETURN_PREMIUM_COMPONENT}。",
+    ]
+
+
+def taiwan_fixed_return_whole_life_entries(
+    version: dict[str, Any],
+    *,
+    survival_article: str,
+    death_article: str,
+    disability_article: str,
+    maturity_article: str,
+    installment_available: bool,
+) -> list[dict[str, Any]]:
+    entries = [
+        coverage_entry(
+            "survival-benefit",
+            "生存保險金",
+            None,
+            "face_amount",
+            "被保險人於有效期間內每屆保單週年日仍生存時，按前一保單年度基本保險金額乘以條款週年日係數給付。",
+            taiwan_return_article_ref(survival_article, "生存保險金的給付"),
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="annual",
+            aggregation_rule="separate",
+            rate_min_percent=version["survival_rate_min_percent"],
+            rate_max_percent=version["survival_rate_max_percent"],
+            unit_key="previous_policy_year_basic_face_amount",
+            conditions=[
+                f"生存金公式：{version['survival_benefit_formula']}。",
+                "最高給付至被保險人保險年齡到達 99 歲之保單週年日止。",
+                *version["survival_conditions"],
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "身故時按當年度保險金額、保單價值準備金比率及保費相關公式三者取最大值給付。",
+            taiwan_return_article_ref(death_article, "身故保險金或喪葬費用保險金的給付"),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                *taiwan_fixed_return_formula_conditions(),
+                "未滿 15 足歲或受監護宣告者適用條款喪葬費用保險金限制。",
+                "給付後契約效力終止；若指定分期方式，依分期定期保險金條款給付。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            "致成附表一完全失能程度之一時，按當年度保險金額、保單價值準備金比率及保費相關公式三者取最大值給付。",
+            taiwan_return_article_ref(disability_article, "完全失能保險金的給付"),
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                *taiwan_fixed_return_formula_conditions(),
+                "同時有附表一二種以上完全失能程度時，僅給付一次完全失能保險金。",
+                "給付後契約效力終止；若指定分期方式，依分期定期保險金條款給付。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡到達 100 歲之保單週年日仍生存時，按保險年齡 99 歲屆滿之當年度保險金額給付。",
+            taiwan_return_article_ref(maturity_article, "祝壽保險金的給付"),
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="age_99_annual_insured_amount",
+            conditions=["給付後契約效力終止。", *taiwan_fixed_return_formula_conditions()],
+        ),
+    ]
+    if installment_available:
+        entries.append(
+            coverage_entry(
+                "installment-periodic-benefit",
+                "分期定期保險金",
+                None,
+                "policy_recorded_limit",
+                "身故或完全失能保險金得依約定指定比例改為分期定期給付。",
+                "保單條款第十七條至第十八條，分期定期保險金給付",
+                calculation_basis="unknown",
+                amount_role="reference",
+                limit_scope="per_policy",
+                conditions=[
+                    "指定保險金依受益人比例、分期定期保險金預定利率與給付期間換算。",
+                    "分期定期保險金給付期間最短 5 年、最長 30 年。",
+                    "每年給付金額低於新臺幣 36,000 元時，改一次給付指定保險金。",
+                ],
+            )
+        )
+    return entries
+
+
+def parse_taiwan_fixed_return_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_fixed_return_whole_life_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_LIFE_FIXED_RETURN_WHOLE_LIFE_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = taiwan_return_compact(text)
+    required_signals = [
+        "台灣人壽",
+        "還本終身保險",
+        "生存保險金",
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "祝壽保險金",
+        "分期定期保險金",
+        "基本保險金額",
+        "當年度保險金額",
+        "年繳應繳保險費總和",
+        "保單價值準備金比率",
+        "附表二",
+        "附表三",
+        "本保險為不分紅保險單",
+    ]
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+    formula_signals = [
+        "於前五保單年度內",
+        "年繳應繳保險費總和的1.06倍",
+        "扣除基本保險金額乘以附表二所列該保單年度係數",
+        "第六保單年度",
+        "基本保險金額的3.6倍",
+        "按下列三款取其最大值",
+        "保單價值準備金乘以保單價值準備金比率",
+        "保險年齡到達100歲",
+        "保險年齡99歲屆滿之當年度保險金額",
+        "新臺幣36,000元",
+    ]
+    if any(signal not in compact_text for signal in formula_signals):
+        return None
+    survival_rate_signal = (
+        "第一保單週年日1.04%第二保單週年日2.08%"
+        if not version["monthly_survival_benefit_available"]
+        else "第一保單週年日0.98%第二保單週年日1.96%"
+    )
+    if survival_rate_signal not in compact_text:
+        return None
+
+    annual_article = taiwan_return_section(
+        text,
+        "「當年度保險金額」",
+        ["五、「年繳應繳保險費總和」", "五、"],
+        fallback_length=900,
+    )
+    survival_article = taiwan_return_section(
+        text,
+        "【生存保險金的給付】",
+        ["【身故保險金或喪葬費用保險金的給付】"],
+    )
+    death_article = taiwan_return_section(
+        text,
+        "【身故保險金或喪葬費用保險金的給付】",
+        ["【完全失能保險金的給付】"],
+    )
+    disability_article = taiwan_return_section(
+        text,
+        "【完全失能保險金的給付】",
+        ["【祝壽保險金的給付】"],
+    )
+    maturity_article = taiwan_return_section(
+        text,
+        "【祝壽保險金的給付】",
+        ["【分期定期保險金給付】", "【分期定期保險金給付約定之變更"],
+    )
+    if not all([annual_article, survival_article, death_article, disability_article, maturity_article]):
+        return None
+    if "基本保險金額的 3.6 倍" not in annual_article and "基本保險金額的3.6倍" not in taiwan_return_compact(annual_article):
+        return None
+    installment_available = "【分期定期保險金給付】" in text
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單面頁所載基本保險金額；實際身故、完全失能與祝壽金額仍需依保單年度、年繳應繳保險費總和、保單價值準備金與條款附表係數確認。",
+        "version_characteristics": {
+            "product_family": version["product_family"],
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "revision_date": version["revision_date"],
+            "revision_basis": version["revision_basis"],
+            "currency": "TWD",
+            "value_sharing_bonus": False,
+            "annual_insured_amount_formula": TAIWAN_FIXED_RETURN_ANNUAL_FORMULA,
+            "survival_benefit_formula": version["survival_benefit_formula"],
+            "survival_benefit_basis": "previous_policy_year_basic_face_amount",
+            "survival_rate_min_percent": version["survival_rate_min_percent"],
+            "survival_rate_max_percent": version["survival_rate_max_percent"],
+            "monthly_survival_benefit_available": version[
+                "monthly_survival_benefit_available"
+            ],
+            "death_benefit_formula": "greater_of_annual_insured_amount_reserve_ratio_and_premium_component",
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_reserve_ratio_and_premium_component",
+            "maturity_benefit_formula": "age_99_annual_insured_amount",
+            "reserve_component": "policy_reserve_times_policy_reserve_ratio",
+            "premium_component": TAIWAN_FIXED_RETURN_PREMIUM_COMPONENT,
+            "premium_multiplier": 1.06,
+            "post_fifth_policy_year_face_amount_multiplier": 3.6,
+            "maturity_age": 100,
+            "installment_benefit_available": installment_available,
+            "installment_period_min_years": 5,
+            "installment_period_max_years": 30,
+            "minimum_annual_installment_amount": 36_000,
+            "premium_waiver_available": False,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "premium_total_required": True,
+            "policy_reserve_ratio_required": True,
+            "coefficient_table_required": True,
+            "standard_premium_table_required": True,
+            "foreign_currency_policy": False,
+            "funeral_benefit_limit_rule": True,
+            "minor_death_under_15_funeral_benefit_rule": True,
+            "guardianship_funeral_benefit_rule": True,
+        },
+        "coverage_entries": taiwan_fixed_return_whole_life_entries(
+            version,
+            survival_article=survival_article,
+            death_article=death_article,
+            disability_article=disability_article,
+            maturity_article=maturity_article,
+            installment_available=installment_available,
+        ),
     }
 
 
@@ -25880,6 +44842,1921 @@ def parse_china_life_jinhaoyi_face_amount(
     }
 
 
+CHINA_LIFE_XINHAOYI_PRODUCT_VERSIONS = {
+    "205191M12A00100": {
+        "file_name": "205191M12A00100-A.pdf",
+        "terms_revision": "100-original",
+        "filing_signal": "備查日期及文號:100.01.01中壽商發字第1000101009號",
+        "revision_date": "none",
+        "revision_number": "none",
+        "nonaccident_injury_surrender_value_refund": False,
+    },
+    "205191M12A00101": {
+        "file_name": "205191M12A00101-A.pdf",
+        "terms_revision": "100-first-partial-revision",
+        "filing_signal": "備查日期及文號:100.03.28中壽商發字第1000328001號",
+        "revision_date": "100-03-28",
+        "revision_number": "中壽商發字第1000328001號",
+        "nonaccident_injury_surrender_value_refund": True,
+    },
+}
+
+
+def is_china_life_xinhaoyi_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LIFE_XINHAOYI_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def china_life_xinhaoyi_entries(
+    *, nonaccident_injury_surrender_value_refund: bool
+) -> list[dict[str, Any]]:
+    source_ref = "保單條款第二條、第十四條、附表一至三，第 2-18 頁"
+    premium_formula = (
+        "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；"
+        "特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。"
+    )
+    minor_conditions = [
+        "保險年齡未達十六歲時，意外傷害身故給付不適用；一般身故/全殘廢改依所繳保險費並加計利息規則處理。",
+        "所繳保險費加計利息以2.5%年利率按年複利計算。",
+    ]
+    accident_conditions = [
+        "限第二條定義之意外傷害事故。",
+        "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+        "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+    ]
+    traffic_conditions = [
+        *accident_conditions,
+        "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+    ]
+    aviation_conditions = [
+        *accident_conditions,
+        "限第二條定義之航空意外事故。",
+    ]
+    nonaccident_extra = (
+        ["第一部份變更條款另約定非意外身故或全殘廢時，除依約定給付外，另退還傷害險部份解約金予要保人。"]
+        if nonaccident_injury_surrender_value_refund
+        else []
+    )
+    return [
+        coverage_entry(
+            "general-death-premium-formula",
+            "一般身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "非意外傷害事故導致身故時，按合計已繳年繳化保險費乘以特定倍數給付；未滿十六歲另依所繳保險費並加計利息規則處理。",
+            source_ref,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_event",
+            conditions=[premium_formula, *minor_conditions, *nonaccident_extra],
+        ),
+        coverage_entry(
+            "general-total-disability-premium-formula",
+            "一般全殘廢保險金",
+            None,
+            "policy_recorded_limit",
+            "非意外傷害事故致成附表一七項全殘廢程度之一時，按合計已繳年繳化保險費乘以特定倍數給付；未滿十六歲另依所繳保險費並加計利息規則處理。",
+            source_ref,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_event",
+            conditions=[premium_formula, *minor_conditions, *nonaccident_extra],
+        ),
+        coverage_entry(
+            "accidental-death-face-amount",
+            "意外傷害身故保險金或喪葬費用保險金（保險金額部分）",
+            None,
+            "face_amount",
+            "意外傷害身故按保險金額100%給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=accident_conditions + [premium_formula],
+        ),
+        coverage_entry(
+            "land-water-traffic-accidental-death-face-amount",
+            "陸上或水上交通意外傷害身故保險金（保險金額部分）",
+            None,
+            "face_amount",
+            "陸上或水上交通意外傷害身故按保險金額3倍給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=300,
+            unit_key="face_amount",
+            conditions=traffic_conditions + [premium_formula],
+        ),
+        coverage_entry(
+            "aviation-accidental-death-face-amount",
+            "航空意外傷害身故保險金（保險金額部分）",
+            None,
+            "face_amount",
+            "航空意外傷害身故按保險金額5倍給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=500,
+            unit_key="face_amount",
+            conditions=aviation_conditions + [premium_formula],
+        ),
+        coverage_entry(
+            "accidental-total-disability-face-amount",
+            "意外傷害全殘廢保險金（保險金額部分）",
+            None,
+            "face_amount",
+            "意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額100%給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=accident_conditions + [premium_formula],
+        ),
+        coverage_entry(
+            "land-water-total-disability-face-amount",
+            "陸上或水上交通意外傷害全殘廢保險金（保險金額部分）",
+            None,
+            "face_amount",
+            "陸上或水上交通意外傷害致成附表一七項全殘廢程度之一者，按保險金額3倍給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=300,
+            unit_key="face_amount",
+            conditions=traffic_conditions + [premium_formula],
+        ),
+        coverage_entry(
+            "aviation-total-disability-face-amount",
+            "航空意外傷害全殘廢保險金（保險金額部分）",
+            None,
+            "face_amount",
+            "航空意外傷害致成附表一七項全殘廢程度之一者，按保險金額5倍給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="highest",
+            rate_percent=500,
+            unit_key="face_amount",
+            conditions=aviation_conditions + [premium_formula],
+        ),
+        coverage_entry(
+            "accidental-disability-rate-table",
+            "意外傷害殘廢保險金",
+            None,
+            "face_amount",
+            "致成附表二所列殘廢程度之一者，按保險金額乘以該表給付比例給付。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            rate_min_percent=5,
+            rate_max_percent=90,
+            unit_key="face_amount",
+            conditions=accident_conditions + ["每一保單年度各項殘廢給付比例累計最高以百分之一百為限。"],
+        ),
+        coverage_entry(
+            "land-water-disability-rate-table",
+            "陸上或水上交通意外傷害殘廢保險金",
+            None,
+            "face_amount",
+            "致成附表二所列殘廢程度之一者，按保險金額3倍乘以該表給付比例給付。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            rate_min_percent=15,
+            rate_max_percent=270,
+            unit_key="face_amount",
+            conditions=traffic_conditions + ["每一保單年度各項殘廢給付比例累計最高以百分之一百為限。"],
+        ),
+        coverage_entry(
+            "aviation-disability-rate-table",
+            "航空意外傷害殘廢保險金",
+            None,
+            "face_amount",
+            "致成附表二所列殘廢程度之一者，按保險金額5倍乘以該表給付比例給付。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            aggregation_rule="cumulative_cap",
+            rate_min_percent=25,
+            rate_max_percent=450,
+            unit_key="face_amount",
+            conditions=aviation_conditions + ["每一保單年度各項殘廢給付比例累計最高以百分之一百為限。"],
+        ),
+        coverage_entry(
+            "major-burn",
+            "重大燒燙傷保險金",
+            None,
+            "face_amount",
+            "遭受條款約定重大燒燙傷時，按診斷確定時保險金額的30%給付。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_event",
+            rate_percent=30,
+            unit_key="face_amount",
+            conditions=["須符合附表三所示重大燒燙傷。"],
+        ),
+        coverage_entry(
+            "survival-benefit-paid-premium-formula",
+            "生存保險金",
+            None,
+            "policy_recorded_limit",
+            "繳費期間屆滿時生存且契約仍有效，按合計已繳年繳化保險費50%給付。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=50,
+            conditions=["基礎為條款定義之合計已繳年繳化保險費。"],
+        ),
+        coverage_entry(
+            "maturity-age-91-benefit",
+            "滿期保險金",
+            None,
+            "policy_recorded_limit",
+            "保險年齡到達91歲之保單週年日仍生存且契約有效，按合計已繳年繳化保險費60%給付；給付後契約效力終止。",
+            source_ref,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            rate_percent=60,
+            conditions=["基礎為條款定義之合計已繳年繳化保險費。"],
+        ),
+    ]
+
+
+def parse_china_life_xinhaoyi_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LIFE_XINHAOYI_PRODUCT_VERSIONS.get(product_id)
+    if (
+        version is None
+        or document.get("document_type") != "policy_terms"
+        or str(document.get("file_name") or "") != version["file_name"]
+    ):
+        return None
+    if document.get("page_count") not in {None, 20}:
+        return None
+    text = str(document.get("text") or "")
+    compact_text = readable_terms_text(text)
+    required_signals = [
+        "中國人壽",
+        "鑫好意",
+        "身故保險金",
+        "全殘廢保險金",
+        "殘廢保險金",
+        "重大燒燙傷保險金",
+        "生存保險金",
+        "滿期保險金",
+        "特定倍數:繳費期間內為1.1,繳費期間屆滿後為0.6",
+        "按身故時本契約之「保險金額」的三倍",
+        "按身故時本契約之「保險金額」的五倍",
+        "給付比例(百分之三十)",
+        "本契約「合計已繳年繳化保險費」乘以百分之五十",
+        "本契約「合計已繳年繳化保險費」乘以百分之六十",
+        "保險年齡到達九十一歲",
+        str(version["filing_signal"]),
+    ]
+    if not readable_terms_has_all(compact_text, required_signals):
+        return None
+    disability_percentages = china_life_jinhaoyi_disability_percentages(text)
+    if (
+        len(disability_percentages) < 65
+        or min(disability_percentages) != 5
+        or max(disability_percentages) != 90
+    ):
+        return None
+    full_disability_signals = [
+        "附表一",
+        "殘廢程度表",
+        "所列七項全殘廢程度",
+    ]
+    if not readable_terms_has_all(compact_text, full_disability_signals):
+        return None
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單首頁所載本契約保險金額；系統會換算意外、交通、航空、全殘廢、殘廢與重大燒燙傷保額部分。一般身故/全殘、生存與滿期需另依保單年度及年繳化保險費確認。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "filing_date": "100-01-01",
+            "filing_number": "中壽商發字第1000101009號",
+            "revision_date": version["revision_date"],
+            "revision_number": version["revision_number"],
+            "special_multiplier_payment_period": 1.1,
+            "special_multiplier_after_payment_period": 0.6,
+            "paid_premium_interest_rate_percent": 2.5,
+            "accident_claim_days": 180,
+            "land_or_water_traffic_multiplier": 3,
+            "aviation_multiplier": 5,
+            "major_burn_rate_percent": 30,
+            "survival_rate_percent": 50,
+            "maturity_rate_percent": 60,
+            "maturity_age": 91,
+            "occupational_category_5_face_amount_rate_percent": 33,
+            "occupational_category_6_face_amount_rate_percent": 25,
+            "total_disability_schedule_item_count": 7,
+            "disability_schedule_item_count": 69,
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 90,
+            "disability_cumulative_cap_percent": 100,
+            "nonaccident_injury_surrender_value_refund": version[
+                "nonaccident_injury_surrender_value_refund"
+            ],
+        },
+        "coverage_entries": china_life_xinhaoyi_entries(
+            nonaccident_injury_surrender_value_refund=bool(
+                version["nonaccident_injury_surrender_value_refund"]
+            )
+        ),
+    }
+
+
+CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_WHOLE_LIFE_PRODUCT_VERSIONS = {
+    "205121MA1A01023B11Z10000000": {
+        "file_name": "205121MA1A01023B11Z10000000-A.pdf",
+        "product_name": "中國人壽美事如意外幣利率變動型終身保險(美元)",
+        "terms_revision": "meishi-usd-106-original",
+        "currency": "USD",
+        "currency_label": "美元",
+        "filing_date": "106.09.11",
+        "filing_number": "中壽商一字第1060911003號",
+        "payment_period_options": [4],
+        "payment_period_required": False,
+        "expected_interest_rate_percent": 2.25,
+        "survival_rate_percent": 2.2,
+        "annual_insured_amount_formula": "first_four_policy_years_basic_and_accumulated_premium_times_1_03_less_received_survival_then_face_amounts",
+        "death_premium_component_formula": "paid_annualized_premium_times_1_03_less_received_survival_total",
+        "total_disability_premium_component_formula": "paid_annualized_premium_times_1_03_less_received_survival_total",
+        "survival_benefit_formula": "standard_annual_premium_times_2_2_percent_times_elapsed_policy_years_during_payment_then_times_4_after_paid_up",
+        "premium_multiplier": 1.03,
+    },
+    "205121MA1A01123J11Z10000000": {
+        "file_name": "205121MA1A01123J11Z10000000-A.pdf",
+        "product_name": "中國人壽民旺如意外幣利率變動型終身保險(人民幣)",
+        "terms_revision": "minwang-cny-107-original",
+        "currency": "CNY",
+        "currency_label": "人民幣",
+        "filing_date": "107.04.16",
+        "filing_number": "中壽商一字第1070416003號",
+        "payment_period_options": [4, 6],
+        "payment_period_required": True,
+        "expected_interest_rate_percent": None,
+        "expected_interest_rate_by_payment_period_percent": {"4": 2.25, "6": 2.5},
+        "survival_rate_percent": 2,
+        "annual_insured_amount_formula": "during_payment_paid_annualized_premium_less_terminal_survival_total_then_face_amounts_after_paid_up",
+        "death_premium_component_formula": "paid_annualized_premium_less_terminal_survival_total",
+        "total_disability_premium_component_formula": "paid_annualized_premium_less_terminal_survival_total",
+        "survival_benefit_formula": "standard_annual_premium_times_2_percent_times_elapsed_policy_years_during_payment_then_times_payment_period_after_paid_up",
+        "premium_multiplier": None,
+    },
+}
+
+
+def is_china_life_foreign_currency_interest_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_WHOLE_LIFE_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+        and document.get("page_count") in {None, 12}
+        and document.get("pages_parsed") in {None, 12}
+    )
+
+
+def china_life_foreign_currency_interest_entries(
+    version: dict[str, Any],
+) -> list[dict[str, Any]]:
+    source_ref_bonus = "保單條款第十二條，增值回饋分享金的給付及通知"
+    source_ref_benefits = "保單條款第十五條，保險給付"
+    currency_label = version["currency_label"]
+    survival_rate = version["survival_rate_percent"]
+    premium_component = version["death_premium_component_formula"]
+    return [
+        coverage_entry(
+            "value-sharing-bonus",
+            "增值回饋分享金",
+            None,
+            "policy_recorded_limit",
+            "每一保單年度屆滿且被保險人仍生存時，依宣告利率高於預定利率的差值乘以期末保單價值準備金計算；可抵繳保費、增額繳清、現金給付或儲存生息。",
+            source_ref_bonus,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="annual",
+            conditions=[
+                "宣告利率低於預定利率時，以預定利率為準。",
+                "第七保單年度起可依條款現金給付或儲存生息；未選擇者依增額繳清方式增加保險金額。",
+                "被保險人保險年齡到達十六歲前另依條款特別處理。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "benefit_base",
+            "分別以身故當時基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金及已繳年繳化保險費相關餘額三者取較大值後加總給付。",
+            source_ref_benefits,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="greater_of_annual_insured_amount_policy_reserve_premium_component",
+            conditions=[
+                f"保單各項給付、保費收取與返還皆以{currency_label}為貨幣單位，另有匯率風險揭露。",
+                f"第三項保費基礎為 {premium_component}。",
+                "身故給付後契約效力終止；繳費期間內身故，當期已繳付未到期保費不退還。",
+                "喪葬費用保險金依條款及法定上限換算限制辦理。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "全殘廢保險金",
+            None,
+            "benefit_base",
+            "分別以全殘廢診斷確定時基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金及已繳年繳化保險費相關餘額三者取較大值後加總給付。",
+            source_ref_benefits,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="greater_of_annual_insured_amount_policy_reserve_premium_component",
+            conditions=[
+                "全殘廢程度須為附表一殘廢程度表所列七項之一。",
+                f"第三項保費基礎為 {version['total_disability_premium_component_formula']}。",
+                "全殘廢給付後契約效力終止；繳費期間內全殘廢，當期已繳付未到期保費不退還。",
+            ],
+        ),
+        coverage_entry(
+            "survival-benefit",
+            "生存保險金",
+            None,
+            "benefit_base",
+            f"被保險人每一保單週年日仍生存時，自第一保單週年日起至保險年齡到達一一○歲之保單週年日止，按基本保險金額及累計增加保險金額每萬元乘以表定年繳保險費的 {survival_rate:g}% 相關倍數加總給付。",
+            source_ref_benefits,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="annual",
+            aggregation_rule="separate",
+            rate_percent=survival_rate,
+            unit_key="standard_annual_premium_per_10000_face_amount",
+            conditions=[
+                version["survival_benefit_formula"],
+                "繳費期間內按已經過保單年度數計算；繳費期滿後按條款所列繳費年期或四倍計算。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡到達一一○歲之保單週年日且仍生存時，按基本保險金額及累計增加保險金額每萬元乘以附表二每萬元之祝壽保險金表後加總給付。",
+            source_ref_benefits,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            conditions=[
+                "祝壽保險金給付後契約效力終止。",
+                "每萬元之祝壽保險金須回保單條款附表二查表。",
+            ],
+        ),
+        coverage_entry(
+            "minor-premium-refund-with-interest",
+            "未滿十五足歲身故或十六歲前全殘廢退還所繳保險費並加計利息",
+            None,
+            "policy_recorded_limit",
+            "被保險人於特定未成年年齡條件下身故或十六歲前致成全殘廢時，改按條款退還或給付所繳保險費並加計利息。",
+            source_ref_benefits,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            conditions=[
+                "實際年齡未滿十五足歲身故，退還所繳保險費並加計利息予要保人或應得之人。",
+                "實際年齡滿十五足歲身故，按所繳保險費並加計利息給付身故保險金。",
+                "保險年齡到達十六歲前全殘廢，改按所繳保險費並加計利息給付全殘廢保險金。",
+            ],
+        ),
+    ]
+
+
+def parse_china_life_foreign_currency_interest_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_china_life_foreign_currency_interest_whole_life_strict_source(
+        document
+    ):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_WHOLE_LIFE_PRODUCT_VERSIONS[
+        product_id
+    ]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "外幣利率變動型終身保險",
+        "增值回饋分享金",
+        "宣告利率",
+        "匯率風險揭露",
+        "保險給付",
+        "身故保險金",
+        "全殘廢保險金",
+        "生存保險金",
+        "祝壽保險金",
+        "保險年齡到達一一○歲",
+        "每萬元之祝壽保險金表",
+        "退還所繳保險費",
+        f"以{version['currency_label']}為貨幣單位",
+    ]
+    product_specific_signals = (
+        [
+            "一點零三倍",
+            "已領取生存保險金總額",
+            "百分之二點二",
+            "年利率百分之二點二五",
+        ]
+        if version["currency"] == "USD"
+        else [
+            "期末生存保險金總額",
+            "百分之二",
+            "繳費期間為四年者年利率2.25%",
+            "繳費期間為六年者年利率2.50%",
+        ]
+    )
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+    if any(signal not in compact_text for signal in product_specific_signals):
+        return None
+    benefit_start = text.find("【保險給付】")
+    if benefit_start < 0:
+        return None
+    benefit_end_candidates = [
+        index
+        for index in [
+            text.find("【退還所繳保險費", benefit_start + 1),
+            text.find("【身故保險金或喪葬費用保險金的申領】", benefit_start + 1),
+        ]
+        if index > benefit_start
+    ]
+    benefit_article = text[
+        benefit_start : min(benefit_end_candidates) if benefit_end_candidates else benefit_start + 2600
+    ]
+    for signal in [
+        "下列三者之",
+        "當年度保險金額",
+        "保單價值準備金",
+        "已繳年繳化保險費",
+        "附表二",
+    ]:
+        if signal not in benefit_article:
+            return None
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單所載基本保險金額；身故、全殘廢、生存與祝壽給付仍需搭配累計增加保險金額、表定年繳保險費、保單價值準備金、生存金累計與條款附表二查表確認。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "currency": version["currency"],
+            "currency_label": version["currency_label"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "payment_period_options": version["payment_period_options"],
+            "payment_period_required": version["payment_period_required"],
+            "expected_interest_rate_percent": version["expected_interest_rate_percent"],
+            "expected_interest_rate_by_payment_period_percent": version.get(
+                "expected_interest_rate_by_payment_period_percent"
+            ),
+            "value_sharing_bonus": True,
+            "annual_insured_amount_formula": version[
+                "annual_insured_amount_formula"
+            ],
+            "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_and_premium_component",
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_and_premium_component",
+            "death_premium_component_formula": version[
+                "death_premium_component_formula"
+            ],
+            "total_disability_premium_component_formula": version[
+                "total_disability_premium_component_formula"
+            ],
+            "survival_benefit_formula": version["survival_benefit_formula"],
+            "survival_rate_percent": version["survival_rate_percent"],
+            "maturity_benefit_formula": "face_and_accumulated_amount_per_10000_times_maturity_table",
+            "maturity_age": 110,
+            "premium_multiplier": version["premium_multiplier"],
+            "policy_face_amount_required": True,
+            "accumulated_paid_up_additions_required": True,
+            "standard_annual_premium_required": True,
+            "policy_reserve_required": True,
+            "survival_benefit_total_required": True,
+            "maturity_table_required": True,
+            "foreign_currency_policy": True,
+            "exchange_rate_risk_disclosed": True,
+            "funeral_benefit_limit_rule": True,
+            "minor_death_or_disability_refund_rule": True,
+        },
+        "coverage_entries": china_life_foreign_currency_interest_entries(version),
+    }
+
+
+CHINA_LIFE_DAMEIWANG_USD_PERIODIC_WHOLE_LIFE_PRODUCT_VERSIONS = {
+    "205131MA1A05623B11Z10000000": {
+        "file_name": "205131MA1A05623B11Z10000000-A.pdf",
+        "product_name": "中國人壽達美旺美元利率變動型終身壽險－定期給付型",
+        "terms_revision": "dameiwang-usd-111-original",
+        "filing_date": "111.04.11",
+        "filing_number": "中壽商一字第1110411001號",
+        "revision_events": [],
+    },
+    "205131MA1A05623B11Z10000001": {
+        "file_name": "205131MA1A05623B11Z10000001-A.pdf",
+        "product_name": "中國人壽達美旺美元利率變動型終身壽險－定期給付型(第1次部分變更)",
+        "terms_revision": "dameiwang-usd-112-first-regulatory-revision",
+        "filing_date": "111.04.11",
+        "filing_number": "中壽商一字第1110411001號",
+        "revision_events": [
+            {
+                "date": "112.01.01",
+                "number": "金管保壽字第1110445485號",
+            }
+        ],
+    },
+    "205131MA1A05623B11Z10000002": {
+        "file_name": "205131MA1A05623B11Z10000002-A.pdf",
+        "product_name": "中國人壽達美旺美元利率變動型終身壽險－定期給付型(第2次部分變更)",
+        "terms_revision": "dameiwang-usd-112-second-regulatory-revision",
+        "filing_date": "111.04.11",
+        "filing_number": "中壽商一字第1110411001號",
+        "revision_events": [
+            {
+                "date": "112.01.01",
+                "number": "金管保壽字第1110445485號",
+            },
+            {
+                "date": "112.03.01",
+                "number": "金管保壽字第1110462568號",
+            },
+        ],
+    },
+}
+
+
+def is_china_life_dameiwang_usd_periodic_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LIFE_DAMEIWANG_USD_PERIODIC_WHOLE_LIFE_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+        and document.get("page_count") in {None, 15}
+        and document.get("pages_parsed") in {None, 15}
+    )
+
+
+def china_life_dameiwang_usd_periodic_whole_life_entries() -> list[dict[str, Any]]:
+    source_ref_bonus = "保單條款第二條及第十二條，增值回饋分享金"
+    source_ref_benefits = "保單條款第十五條，保險給付"
+    source_ref_installment = "保單條款第二條及第十六條，分期定期保險金給付"
+    return [
+        coverage_entry(
+            "value-sharing-bonus",
+            "增值回饋分享金",
+            None,
+            "policy_recorded_limit",
+            "每一保單年度屆滿且被保險人仍生存時，按宣告利率減預定利率 1% 的差值乘以期末保單價值準備金計算；宣告利率低於預定利率時以預定利率為準。",
+            source_ref_bonus,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="annual",
+            conditions=[
+                "實際金額須由保單年度、宣告利率、基本保險金額、累計增加保險金額與期末保單價值準備金確認。",
+                "給付方式依要保人選擇購買增額繳清、現金給付或儲存生息；未選擇時依條款預設方式辦理。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "身故時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費 1.03 倍三者取最大值後加總給付。",
+            source_ref_benefits,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="greater_of_annual_insured_amount_policy_reserve_premium_component",
+            conditions=[
+                "身故給付後契約效力終止；繳費期間內身故，當期已繳未到期保險費不退還。",
+                "未滿十五足歲或受監護宣告尚未撤銷者，死亡給付依條款改為喪葬費用保險金並受法定上限限制。",
+                "各項給付以美元為貨幣單位，另有匯率風險揭露；外幣與新臺幣契約間不得辦理契約轉換。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            "完全失能時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費 1.03 倍三者取最大值後加總給付。",
+            source_ref_benefits,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="greater_of_annual_insured_amount_policy_reserve_premium_component",
+            conditions=[
+                "完全失能程度須為附表一失能程度表所列七項之一。",
+                "完全失能給付後契約效力終止；繳費期間內完全失能，當期已繳未到期保險費不退還。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡到達 110 歲之保單週年日仍生存時，分別按基本保險金額與累計增加保險金額對應之當年度保險金額加總給付。",
+            source_ref_benefits,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                "祝壽保險金給付後契約效力終止。",
+                "當年度保險金額須依保單條款附表二與保單當年度資料確認。",
+            ],
+        ),
+        coverage_entry(
+            "terminal-illness-advance-benefit",
+            "生命末期提前給付保險金",
+            None,
+            "policy_recorded_limit",
+            "符合生命末期狀態時，可申請提前給付身故或喪葬費用保險金之一部或全部，最高以當年度身故或喪葬費用保險金 90% 或 100 萬美元之較小者為限。",
+            source_ref_benefits,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="lifetime",
+            aggregation_rule="choose_one",
+            rate_percent=90,
+            unit_key="death_or_funeral_benefit",
+            conditions=[
+                "生命末期係平均存活期在六個月以下；提前給付以一次為限。",
+                "給付金額最高以當年度身故或喪葬費用保險金的 90% 或 100 萬美元之較小者為限。",
+                "給付時需扣除六個月利息、相對應應繳保費現值、保險單借款本息及欠繳或墊繳保險費本息。",
+                "契約已變更為減額繳清或展期保險，或已領取生命末期提前給付者，不得申請。",
+            ],
+        ),
+        coverage_entry(
+            "installment-periodic-benefit",
+            "分期定期保險金",
+            None,
+            "policy_recorded_limit",
+            "要保人與本公司約定指定保險金後，可依五年、十年、十五年、二十年或二十五年期間換算為每年年初分期給付。",
+            source_ref_installment,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            conditions=[
+                "分期金額依分期定期保險金預定利率及指定保險金計算。",
+                "可適用於身故保險金與完全失能保險金的指定保險金部分，不含喪葬費用保險金。",
+            ],
+        ),
+    ]
+
+
+def parse_china_life_dameiwang_usd_periodic_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_china_life_dameiwang_usd_periodic_whole_life_strict_source(
+        document
+    ):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LIFE_DAMEIWANG_USD_PERIODIC_WHOLE_LIFE_PRODUCT_VERSIONS[
+        product_id
+    ]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = readable_terms_text(text)
+    required_signals = [
+        "達美旺美元利率變動型終身壽險",
+        version["filing_number"],
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "祝壽保險金",
+        "生命末期提前給付保險金",
+        "當年度保險金額",
+        "保單價值準備金",
+        "保價係數",
+        "已繳年繳化保險費",
+        "一點零三倍",
+        "百分之九十或一百萬美元之較小者",
+        "分期定期保險金給付期間",
+        "五年、十年、十五年、二十年及二十五年",
+        "以美元為貨幣單位",
+        "不得辦理契約轉換",
+    ]
+    required_signals.extend(
+        str(event["number"]) for event in version["revision_events"]
+    )
+    if not readable_terms_has_all(compact_text, required_signals):
+        return None
+    benefit_start = text.find("【保險給付】")
+    installment_start = text.find("【分期定期保險金給付】", benefit_start + 1)
+    if benefit_start < 0 or installment_start <= benefit_start:
+        return None
+    benefit_article = text[benefit_start:installment_start]
+    if not readable_terms_has_all(
+        readable_terms_text(benefit_article),
+        [
+            "下列三者之最大值",
+            "生命末期提前給付保險金",
+            "以一次為限",
+            "自保險金給付日起六個月",
+            "保險單借款本息",
+            "欠繳、墊繳保險費本息",
+        ],
+    ):
+        return None
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單所載基本保險金額；身故、完全失能與祝壽給付還需要累計增加保險金額、當年度保險金額、保單價值準備金、保價係數與已繳年繳化保險費資料確認。",
+        "version_characteristics": {
+            "product_family": "dameiwang-usd-periodic-whole-life",
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "revision_events": version["revision_events"],
+            "currency": "USD",
+            "currency_label": "美元",
+            "expected_interest_rate_percent": 1,
+            "value_sharing_bonus": True,
+            "value_sharing_bonus_basis": "declared_rate_minus_1_percent_times_terminal_policy_reserve",
+            "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_times_1_03",
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_times_1_03",
+            "maturity_benefit_formula": "annual_insured_amount_at_age_110",
+            "terminal_illness_advance_available": True,
+            "terminal_illness_advance_rate_percent": 90,
+            "terminal_illness_advance_cap_amount": 1_000_000,
+            "terminal_illness_advance_cap_currency": "USD",
+            "terminal_illness_survival_months_max": 6,
+            "terminal_illness_lifetime_limit_times": 1,
+            "terminal_illness_interest_deduction_months": 6,
+            "premium_multiplier": 1.03,
+            "reserve_component": "policy_reserve_times_value_coefficient",
+            "premium_component": "paid_annualized_premium_times_1_03",
+            "maturity_age": 110,
+            "installment_benefit_available": True,
+            "installment_period_options": [5, 10, 15, 20, 25],
+            "policy_face_amount_required": True,
+            "accumulated_paid_up_additions_required": True,
+            "annual_insured_amount_required": True,
+            "policy_reserve_required": True,
+            "value_coefficient_required": True,
+            "premium_total_required": True,
+            "foreign_currency_policy": True,
+            "exchange_rate_risk_disclosed": True,
+            "no_contract_conversion_from_twd": True,
+            "funeral_benefit_limit_rule": True,
+        },
+        "coverage_entries": china_life_dameiwang_usd_periodic_whole_life_entries(),
+    }
+
+
+CHINA_LIFE_MEILIFENG_USD_PERIODIC_WHOLE_LIFE_PRODUCT_VERSIONS = {
+    "205131MA4B02423B11Z10000000": {
+        "file_name": "205131MA4B02423B11Z10000000-A.pdf",
+        "product_name": "中國人壽美利豐美元利率變動型終身壽險－定期給付型",
+        "terms_revision": "meilifeng-usd-109-original",
+        "filing_date": "109.07.01",
+        "filing_number": "中壽商一字第1090701028號",
+        "revision_events": [],
+    },
+    "205131MA4B02423B11Z10000001": {
+        "file_name": "205131MA4B02423B11Z10000001-A.pdf",
+        "product_name": "中國人壽美利豐美元利率變動型終身壽險－定期給付型(第1次部分變更)",
+        "terms_revision": "meilifeng-usd-112-first-regulatory-revision",
+        "filing_date": "109.07.01",
+        "filing_number": "中壽商一字第1090701028號",
+        "revision_events": [
+            {
+                "date": "112.01.01",
+                "number": "金管保壽字第1110445485號",
+            }
+        ],
+    },
+    "205131MA4B02423B11Z10000002": {
+        "file_name": "205131MA4B02423B11Z10000002-A.pdf",
+        "product_name": "中國人壽美利豐美元利率變動型終身壽險－定期給付型(第2次部分變更)",
+        "terms_revision": "meilifeng-usd-112-second-regulatory-revision",
+        "filing_date": "109.07.01",
+        "filing_number": "中壽商一字第1090701028號",
+        "revision_events": [
+            {
+                "date": "112.01.01",
+                "number": "金管保壽字第1110445485號",
+            },
+            {
+                "date": "112.03.01",
+                "number": "金管保壽字第1110462568號",
+            },
+        ],
+    },
+}
+
+
+def is_china_life_meilifeng_usd_periodic_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LIFE_MEILIFENG_USD_PERIODIC_WHOLE_LIFE_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+        and document.get("page_count") in {None, 19}
+        and document.get("pages_parsed") in {None, 19}
+    )
+
+
+def china_life_meilifeng_usd_periodic_whole_life_entries() -> list[dict[str, Any]]:
+    source_ref_bonus = "保單條款第二條及第十二條，增值回饋分享金"
+    source_ref_benefits = "保單條款第十五條，保險給付"
+    source_ref_installment = "保單條款第二條、第十六條及第三十一條，分期定期保險金給付"
+    return [
+        coverage_entry(
+            "value-sharing-bonus",
+            "增值回饋分享金",
+            None,
+            "policy_recorded_limit",
+            "每一保單年度屆滿且被保險人仍生存時，按該年度期初宣告利率減預定利率的差值乘以期末保單價值準備金計算；可抵繳保費、購買增額繳清、現金給付或儲存生息。",
+            source_ref_bonus,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="annual",
+            conditions=[
+                "宣告利率低於預定利率時，以預定利率為準。",
+                "現金給付或儲存生息自第七保單年度起適用；現金給付低於 100 美元時依儲存生息辦理至達 100 美元或契約約定事由發生時給付。",
+                "被保險人保險年齡到達十六歲前，增值回饋分享金依條款特別處理。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "身故時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費三者取最大值後加總給付。",
+            source_ref_benefits,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="greater_of_annual_insured_amount_policy_reserve_premium_component",
+            conditions=[
+                "身故給付後契約效力終止；繳費期間內身故，當期已繳付未到期保險費不退還。",
+                "未滿十五足歲或受監護宣告尚未撤銷者，死亡給付依條款改為喪葬費用保險金並受法定上限限制。",
+                "各項給付、保費收取及其他款項收付皆以美元為貨幣單位，另有匯率風險揭露；外幣與新臺幣契約間不得辦理契約轉換。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            "完全失能時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費三者取最大值後加總給付。",
+            source_ref_benefits,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="greater_of_annual_insured_amount_policy_reserve_premium_component",
+            conditions=[
+                "完全失能程度須為附表一失能程度表所列七項之一。",
+                "完全失能給付後契約效力終止；繳費期間內完全失能，當期已繳付未到期保險費不退還。",
+            ],
+        ),
+        coverage_entry(
+            "premium-waiver-disability-grade-2-to-6",
+            "二至六級失能豁免保險費",
+            None,
+            "policy_recorded_limit",
+            "繳費期間內因疾病或傷害致成附表二二至六級失能程度之一，自診斷確定失能翌日起豁免基本保險金額對應之續期應繳保險費。",
+            source_ref_benefits,
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            conditions=[
+                "豁免範圍不含其他附約及附加條款。",
+                "當期已繳付未到期保險費不退還，契約繼續有效。",
+                "豁免保險費後，不得再辦理減額繳清保險或展期定期保險。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡到達 110 歲之保單週年日仍生存時，分別按基本保險金額與累計增加保險金額對應之當年度保險金額加總給付。",
+            source_ref_benefits,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="annual_insured_amount",
+            conditions=[
+                "祝壽保險金給付後契約效力終止。",
+                "當年度保險金額須依保單條款附表三與保單當年度資料確認。",
+            ],
+        ),
+        coverage_entry(
+            "installment-periodic-benefit",
+            "分期定期保險金",
+            None,
+            "policy_recorded_limit",
+            "要保人與公司約定指定保險金後，可依五年、十年、十五年、二十年或二十五年期間換算為每年年初分期給付。",
+            source_ref_installment,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            conditions=[
+                "分期金額依分期定期保險金預定利率及指定保險金計算。",
+                "可適用於身故保險金與完全失能保險金的指定保險金部分，不含喪葬費用保險金。",
+                "指定保險金低於 5,000 美元或每年給付之分期定期保險金低於 1,000 美元時，改為一次給付指定保險金。",
+            ],
+        ),
+    ]
+
+
+def parse_china_life_meilifeng_usd_periodic_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_china_life_meilifeng_usd_periodic_whole_life_strict_source(
+        document
+    ):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LIFE_MEILIFENG_USD_PERIODIC_WHOLE_LIFE_PRODUCT_VERSIONS[
+        product_id
+    ]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = readable_terms_text(text)
+    required_signals = [
+        "美利豐美元利率變動型終身壽險",
+        version["filing_number"],
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "二至六級失能豁免保險費",
+        "祝壽保險金",
+        "當年度保險金額",
+        "保單價值準備金",
+        "保價係數",
+        "已繳年繳化保險費",
+        "繳費期間為四年者,年利率1.50%",
+        "繳費期間為六年、十年或二十年者,年利率1.75%",
+        "分期定期保險金給付期間",
+        "五年、十年、十五年、二十年及二十五年",
+        "指定保險金低於五仟元",
+        "每年給付之分期定期保險金低於一仟元",
+        "以美元為貨幣單位",
+        "不得辦理契約轉換",
+    ]
+    required_signals.extend(
+        str(event["number"]) for event in version["revision_events"]
+    )
+    if not readable_terms_has_all(compact_text, required_signals):
+        return None
+    if "生命末期提前給付保險金" in compact_text:
+        return None
+    benefit_start = text.find("【保險給付】")
+    installment_start = text.find("【分期定期保險金給付】", benefit_start + 1)
+    if benefit_start < 0 or installment_start <= benefit_start:
+        return None
+    benefit_article = text[benefit_start:installment_start]
+    if not readable_terms_has_all(
+        readable_terms_text(benefit_article),
+        [
+            "下列三者之最大值",
+            "二至六級失能豁免保險費",
+            "診斷確定失能之翌日起",
+            "續期應繳付之各期保險費",
+            "不含其他附約及附加條款",
+            "保險年齡到達一一○歲",
+        ],
+    ):
+        return None
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單所載基本保險金額；身故、完全失能與祝壽給付還需要累計增加保險金額、當年度保險金額、保單價值準備金、保價係數與已繳年繳化保險費資料確認。",
+        "version_characteristics": {
+            "product_family": "meilifeng-usd-periodic-whole-life",
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "revision_events": version["revision_events"],
+            "currency": "USD",
+            "currency_label": "美元",
+            "expected_interest_rate_by_payment_period_percent": {
+                "4": 1.5,
+                "6": 1.75,
+                "10": 1.75,
+                "20": 1.75,
+            },
+            "value_sharing_bonus": True,
+            "value_sharing_bonus_basis": "declared_rate_minus_expected_interest_rate_times_terminal_policy_reserve",
+            "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium",
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium",
+            "maturity_benefit_formula": "annual_insured_amount_at_age_110",
+            "premium_waiver_available": True,
+            "premium_waiver_disability_grade_min": 2,
+            "premium_waiver_disability_grade_max": 6,
+            "reserve_component": "policy_reserve_times_value_coefficient",
+            "premium_component": "paid_annualized_premium",
+            "maturity_age": 110,
+            "installment_benefit_available": True,
+            "installment_period_options": [5, 10, 15, 20, 25],
+            "installment_minimum_specified_insurance_amount": 5_000,
+            "installment_minimum_annual_amount": 1_000,
+            "installment_minimum_currency": "USD",
+            "increase_face_amount_option_available": True,
+            "increase_face_amount_options_percent": [10, 15, 20],
+            "policy_face_amount_required": True,
+            "accumulated_paid_up_additions_required": True,
+            "annual_insured_amount_required": True,
+            "policy_reserve_required": True,
+            "value_coefficient_required": True,
+            "premium_total_required": True,
+            "standard_annual_premium_required": True,
+            "foreign_currency_policy": True,
+            "exchange_rate_risk_disclosed": True,
+            "no_contract_conversion_from_twd": True,
+            "funeral_benefit_limit_rule": True,
+        },
+        "coverage_entries": china_life_meilifeng_usd_periodic_whole_life_entries(),
+    }
+
+
+CHINA_LIFE_MEILEXIANGTUI_USD_SURVIVAL_WHOLE_LIFE_PRODUCT_VERSIONS = {
+    "205121MA4B01723B11Z10000000": {
+        "file_name": "205121MA4B01723B11Z10000000-A.pdf",
+        "product_name": "中國人壽美樂享退美元利率變動型終身保險－定期給付型",
+        "terms_revision": "meilexiangtui-usd-112-original",
+        "filing_date": "112.01.04",
+        "filing_number": "中壽商一字第1123000039號",
+        "revision_events": [],
+        "approval_date": None,
+        "approval_number": None,
+        "later_filing_date": None,
+        "later_filing_number": None,
+        "latest_company_name": "中國人壽",
+    },
+    "205121MA4B01723B11Z10000001": {
+        "file_name": "205121MA4B01723B11Z10000001-A.pdf",
+        "product_name": "中國人壽美樂享退美元利率變動型終身保險－定期給付型(第1次部分變更)",
+        "terms_revision": "meilexiangtui-usd-112-first-regulatory-revision",
+        "filing_date": "112.01.04",
+        "filing_number": "中壽商一字第1123000039號",
+        "revision_events": [
+            {
+                "date": "112.03.01",
+                "number": "金管保壽字第1110462568號",
+            }
+        ],
+        "approval_date": None,
+        "approval_number": None,
+        "later_filing_date": None,
+        "later_filing_number": None,
+        "latest_company_name": "中國人壽",
+    },
+    "205121MA4B01723B11Z10000002": {
+        "file_name": "205121MA4B01723B11Z10000002-A.pdf",
+        "product_name": "凱基人壽美樂享退美元利率變動型終身保險－定期給付型(第2次部分變更)",
+        "terms_revision": "meilexiangtui-usd-113-kgi-second-partial-revision",
+        "filing_date": "112.01.04",
+        "filing_number": "中壽商一字第1123000039號",
+        "revision_events": [
+            {
+                "date": "112.03.01",
+                "number": "金管保壽字第1110462568號",
+            }
+        ],
+        "approval_date": "112.08.14",
+        "approval_number": "金管保壽字第1120432605號",
+        "later_filing_date": "113.01.01",
+        "later_filing_number": "凱壽商一字第1133000002號",
+        "latest_company_name": "凱基人壽",
+    },
+}
+
+
+def is_china_life_meilexiangtui_usd_survival_whole_life_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LIFE_MEILEXIANGTUI_USD_SURVIVAL_WHOLE_LIFE_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+        and document.get("page_count") in {None, 18}
+        and document.get("pages_parsed") in {None, 18}
+    )
+
+
+def china_life_meilexiangtui_usd_survival_whole_life_entries() -> list[dict[str, Any]]:
+    source_ref_bonus = "保單條款第二條及第十二條，增值回饋分享金"
+    source_ref_benefits = "保單條款第十五條，保險給付"
+    source_ref_installment = "保單條款第二條及第十六條，分期定期保險金給付"
+    return [
+        coverage_entry(
+            "value-sharing-bonus",
+            "增值回饋分享金",
+            None,
+            "policy_recorded_limit",
+            "每一保單年度屆滿且被保險人仍生存時，按宣告利率減預定利率 2.25% 的差值乘以期末保單價值準備金計算；宣告利率低於預定利率時以預定利率為準。",
+            source_ref_bonus,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="annual",
+            conditions=[
+                "實際金額須由保單年度、宣告利率、基本保險金額、累計增加保險金額與期末保單價值準備金確認。",
+                "給付方式依要保人選擇購買增額繳清、現金給付或儲存生息；未選擇時依條款預設方式辦理。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "policy_recorded_limit",
+            "身故時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費扣除期末生存保險金總額後餘額三者取最大值後加總給付。",
+            source_ref_benefits,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="greater_of_annual_insured_amount_policy_reserve_premium_less_survival_total",
+            conditions=[
+                "身故給付後契約效力終止；繳費期間內身故，當期已繳未到期保險費不退還。",
+                "未滿十五足歲或受監護宣告尚未撤銷者，死亡給付依條款改為喪葬費用保險金並受法定上限限制。",
+                "各項給付以美元為貨幣單位，另有匯率風險揭露；外幣與新臺幣契約間不得辦理契約轉換。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "完全失能保險金",
+            None,
+            "policy_recorded_limit",
+            "完全失能時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費扣除期末生存保險金總額後餘額三者取最大值後加總給付。",
+            source_ref_benefits,
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="greater_of_annual_insured_amount_policy_reserve_premium_less_survival_total",
+            conditions=[
+                "完全失能程度須為附表一失能程度表所列七項之一。",
+                "完全失能給付後契約效力終止；繳費期間內完全失能，當期已繳未到期保險費不退還。",
+            ],
+        ),
+        coverage_entry(
+            "survival-benefit",
+            "生存保險金",
+            None,
+            "policy_recorded_limit",
+            "繳費期間屆滿後每一保單週年日仍生存時，按基本保險金額與累計增加保險金額每萬元分別乘以表定年繳保險費 1.85% 再乘以繳費期間後加總給付，至 110 歲保單週年日止。",
+            source_ref_benefits,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="annual",
+            aggregation_rule="separate",
+            rate_percent=1.85,
+            unit_key="standard_annual_premium_per_10000_face_amount_times_payment_period",
+            conditions=[
+                "生存金自繳費期間屆滿後開始給付。",
+                "實際金額需保單所載基本保險金額、累計增加保險金額、表定年繳保險費與繳費期間。",
+            ],
+        ),
+        coverage_entry(
+            "premium-waiver-disability-grade-2-to-6",
+            "二至六級失能豁免保險費",
+            None,
+            "policy_recorded_limit",
+            "繳費期間內因疾病或傷害致成附表二二至六級失能程度之一，自診斷確定翌日起豁免基本保險金額對應之續期應繳保險費。",
+            source_ref_benefits,
+            calculation_basis="unknown",
+            amount_role="reference",
+            limit_scope="per_policy",
+            conditions=[
+                "豁免範圍不含其他附約及附加條款；當期已繳未到期保險費不退還。",
+                "豁免後不得再辦理減額繳清保險或變更為展期定期保險。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "祝壽保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人保險年齡到達 110 歲之保單週年日仍生存時，按保險金額給付。",
+            source_ref_benefits,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="insurance_amount",
+            conditions=[
+                "保險金額為基本保險金額與累計增加保險金額二者加總。",
+                "祝壽保險金給付後契約效力終止。",
+            ],
+        ),
+        coverage_entry(
+            "installment-periodic-benefit",
+            "分期定期保險金",
+            None,
+            "policy_recorded_limit",
+            "要保人與本公司約定指定保險金後，可依五年、十年、十五年、二十年或二十五年期間換算為每年年初分期給付。",
+            source_ref_installment,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="per_policy",
+            conditions=[
+                "分期金額依分期定期保險金預定利率及指定保險金計算。",
+                "可適用於身故保險金與完全失能保險金的指定保險金部分，不含喪葬費用保險金。",
+            ],
+        ),
+    ]
+
+
+def parse_china_life_meilexiangtui_usd_survival_whole_life_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_china_life_meilexiangtui_usd_survival_whole_life_strict_source(
+        document
+    ):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LIFE_MEILEXIANGTUI_USD_SURVIVAL_WHOLE_LIFE_PRODUCT_VERSIONS[
+        product_id
+    ]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = readable_terms_text(text)
+    required_signals = [
+        "美樂享退美元利率變動型終身保險",
+        version["filing_number"],
+        "身故保險金或喪葬費用保險金",
+        "完全失能保險金",
+        "生存保險金",
+        "二至六級失能豁免保險費",
+        "祝壽保險金",
+        "期末生存保險金總額",
+        "年利率百分之二點二五",
+        "百分之一點八五",
+        "繳費期間",
+        "分期定期保險金給付期間",
+        "五年、十年、十五年、二十年及二十五年",
+        "以美元為貨幣單位",
+        "不得辦理契約轉換",
+    ]
+    required_signals.extend(
+        str(event["number"]) for event in version["revision_events"]
+    )
+    if version["approval_number"]:
+        required_signals.append(str(version["approval_number"]))
+    if version["later_filing_number"]:
+        required_signals.append(str(version["later_filing_number"]))
+    if not readable_terms_has_all(compact_text, required_signals):
+        return None
+    benefit_start = text.find("【保險給付】")
+    installment_start = text.find("【分期定期保險金給付】", benefit_start + 1)
+    if benefit_start < 0 or installment_start <= benefit_start:
+        return None
+    benefit_article = text[benefit_start:installment_start]
+    if not readable_terms_has_all(
+        readable_terms_text(benefit_article),
+        [
+            "下列三者之最大值",
+            "扣除期末生存保險金總額後之餘額",
+            "繳費期間屆滿後每一保單週年日",
+            "二至六級失能程度表",
+            "豁免本契約",
+            "續期應繳付之各期保險費",
+        ],
+    ):
+        return None
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "基本保險金額",
+        "selection_guidance": "請輸入保單所載基本保險金額；生存金需搭配表定年繳保險費與繳費期間，身故與完全失能給付還需要當年度保險金額、保單價值準備金、保價係數、已繳年繳化保險費與已領生存金總額確認。",
+        "version_characteristics": {
+            "product_family": "meilexiangtui-usd-survival-whole-life",
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "revision_events": version["revision_events"],
+            "approval_date": version["approval_date"],
+            "approval_number": version["approval_number"],
+            "later_filing_date": version["later_filing_date"],
+            "later_filing_number": version["later_filing_number"],
+            "latest_company_name": version["latest_company_name"],
+            "currency": "USD",
+            "currency_label": "美元",
+            "expected_interest_rate_percent": 2.25,
+            "value_sharing_bonus": True,
+            "value_sharing_bonus_basis": "declared_rate_minus_2_25_percent_times_terminal_policy_reserve",
+            "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_less_terminal_survival_total",
+            "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_less_terminal_survival_total",
+            "survival_benefit_formula": "standard_annual_premium_per_10000_face_amount_times_1_85_percent_times_payment_period_after_paid_up",
+            "survival_rate_percent": 1.85,
+            "maturity_benefit_formula": "insurance_amount_at_age_110",
+            "premium_waiver_available": True,
+            "premium_waiver_disability_grade_min": 2,
+            "premium_waiver_disability_grade_max": 6,
+            "reserve_component": "policy_reserve_times_value_coefficient",
+            "premium_component": "paid_annualized_premium_less_terminal_survival_total",
+            "maturity_age": 110,
+            "installment_benefit_available": True,
+            "installment_period_options": [5, 10, 15, 20, 25],
+            "policy_face_amount_required": True,
+            "accumulated_paid_up_additions_required": True,
+            "annual_insured_amount_required": True,
+            "policy_reserve_required": True,
+            "value_coefficient_required": True,
+            "premium_total_required": True,
+            "standard_annual_premium_required": True,
+            "terminal_survival_benefit_total_required": True,
+            "foreign_currency_policy": True,
+            "exchange_rate_risk_disclosed": True,
+            "no_contract_conversion_from_twd": True,
+            "funeral_benefit_limit_rule": True,
+        },
+        "coverage_entries": (
+            china_life_meilexiangtui_usd_survival_whole_life_entries()
+        ),
+    }
+
+
+CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_ENDOWMENT_PRODUCT_VERSIONS = {
+    "205121M21A00200": {
+        "file_name": "205121M21A00200-A.pdf",
+        "product_name": "中國人壽鴻美利外幣利率變動型養老保險(美元)",
+        "title_signal": "中國人壽鴻美利外幣利率變動型養老保險美元",
+        "terms_revision": "hongmeili-usd-101-original",
+        "currency": "USD",
+        "currency_label": "美元",
+        "filing_date": "101.01.16",
+        "filing_number": "中壽商發字第1010116002號",
+    },
+    "205121M21A00301": {
+        "file_name": "205121M21A00301-A.pdf",
+        "product_name": "中國人壽鴻澳利外幣利率變動型養老保險(澳幣)(第1次部份變更)",
+        "title_signal": "中國人壽鴻澳利外幣利率變動型養老保險澳幣",
+        "terms_revision": "hongaoli-aud-102-first-partial-revision",
+        "currency": "AUD",
+        "currency_label": "澳幣",
+        "filing_date": "102.01.01",
+        "filing_number": "中壽商一字第1020101007號",
+        "original_filing_date": "101.01.16",
+        "original_filing_number": "中壽商發字第1010116003號",
+    },
+}
+
+
+def is_china_life_foreign_currency_interest_endowment_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_ENDOWMENT_PRODUCT_VERSIONS.get(
+        product_id
+    )
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+        and document.get("page_count") in {None, 7}
+        and document.get("pages_parsed") in {None, 7}
+    )
+
+
+def china_life_foreign_currency_interest_endowment_entries(
+    version: dict[str, Any],
+) -> list[dict[str, Any]]:
+    source_ref_bonus = "保單條款第十條，增值回饋分享金的給付及通知"
+    source_ref_benefits = "保單條款第十三條，保險給付"
+    currency_label = version["currency_label"]
+    common_conditions = [
+        f"本契約各項給付、費用、保險費之收取或返還皆以{currency_label}為貨幣單位，另有匯率風險揭露。",
+        "實際保險金額以保險單所載本契約之保險金額及其變更後金額為準。",
+    ]
+    return [
+        coverage_entry(
+            "value-sharing-bonus",
+            "增值回饋分享金",
+            None,
+            "policy_recorded_limit",
+            "每一保單年度屆滿時，依該年度期初當月宣告利率減去預定利率 2.5% 的差值，乘以該年度期初保單價值準備金計算；可現金給付或儲存生息。",
+            source_ref_bonus,
+            calculation_basis="unknown",
+            amount_role="payout",
+            limit_scope="annual",
+            aggregation_rule="separate",
+            conditions=[
+                "宣告利率低於本契約預定利率 2.5% 時，以預定利率為準。",
+                "現金給付金額低於 100 元時，依儲存生息方式累積至高於 100 元之保單年度屆滿時給付。",
+                "儲存生息係按各該年度期初當月宣告利率以年複利方式累積，至請求、身故、全殘廢、保險期間屆滿或契約終止時一併給付。",
+            ],
+        ),
+        coverage_entry(
+            "death-or-funeral-benefit",
+            "身故保險金或喪葬費用保險金",
+            None,
+            "face_amount",
+            "被保險人於契約有效期間內身故時，按身故時之保險金額給付；依法改為喪葬費用保險金時，另受條款及法定上限限制。",
+            source_ref_benefits,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[
+                *common_conditions,
+                "給付後本契約效力終止。",
+                "本契約歷年身故保險金例表如保險單所載。",
+                "喪葬費用保險金按申領文件備齊日指定銀行前一營業日該外幣即期買入匯率平均值換算等值新台幣後，不得超過條款所定喪葬費用額度上限。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "全殘廢保險金",
+            None,
+            "face_amount",
+            "被保險人於契約有效期間內致成附表所列七項全殘廢程度之一時，按全殘廢診斷確定時之保險金額給付。",
+            source_ref_benefits,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="highest",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[
+                *common_conditions,
+                "全殘廢程度須符合附表殘廢程度表所列七項之一。",
+                "給付後本契約效力終止。",
+                "本契約歷年全殘廢保險金同保險單所載歷年身故保險金例表。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "face_amount",
+            "被保險人於本契約保險期間屆滿仍生存時，按保險金額給付滿期保險金。",
+            source_ref_benefits,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[
+                *common_conditions,
+                "滿期保險金給付後本契約效力終止。",
+            ],
+        ),
+        coverage_entry(
+            "minor-premium-refund-with-interest",
+            "未滿十五足歲身故或十六歲前全殘廢退還所繳保險費並加計利息",
+            None,
+            "policy_recorded_limit",
+            "被保險人於未成年特定年齡條件下身故或十六歲前致成全殘廢時，改按所繳保險費並加計利息退還或給付。",
+            source_ref_benefits,
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="premium_total",
+            conditions=[
+                "實際年齡未滿十五足歲身故，退還所繳保險費並加計利息予要保人或應得之人。",
+                "實際年齡滿十五足歲身故，按所繳保險費並加計利息給付身故保險金。",
+                "保險年齡到達十六歲之保單週年日前全殘廢，改按所繳保險費並加計利息給付全殘廢保險金。",
+                "所繳保險費係以保險費率表所載金額為基礎。",
+                "加計利息以前述金額為基礎，按 2.5% 年利率以年複利計算至身故或全殘廢診斷確定時。",
+            ],
+        ),
+    ]
+
+
+def parse_china_life_foreign_currency_interest_endowment_formula(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_china_life_foreign_currency_interest_endowment_strict_source(
+        document
+    ):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_ENDOWMENT_PRODUCT_VERSIONS[
+        product_id
+    ]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        version["title_signal"],
+        version["filing_number"],
+        "外幣利率變動型養老保險",
+        "增值回饋分享金",
+        "宣告利率",
+        "預定利率2.5%",
+        "匯率風險揭露",
+        "保險給付",
+        "身故保險金",
+        "全殘廢保險金",
+        "滿期保險金",
+        "退還所繳保險費",
+        "按身故時之",
+        "按全殘廢診斷確定時之",
+        "按「保險金額」給付「滿期保險金」",
+        "百分之二點五年利率",
+        f"以{version['currency_label']}為貨幣單位",
+    ]
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+    benefit_start = text.find("【保險給付】")
+    if benefit_start < 0:
+        return None
+    benefit_end = text.find("【滿期保險金的申領】", benefit_start + 1)
+    benefit_article = text[
+        benefit_start : benefit_end if benefit_end > benefit_start else benefit_start + 2400
+    ]
+    for signal in [
+        "本契約保險金的給付分為",
+        "按身故時之",
+        "按全殘廢診斷確定時之",
+        "保險期間屆滿仍生存",
+        "所繳保險費",
+        "百分之二點五年利率",
+    ]:
+        if signal not in benefit_article:
+            return None
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保單所載本契約之保險金額；身故、全殘廢與滿期給付均以保險金額為基礎，未成年身故或十六歲前全殘廢改依所繳保險費加計 2.5% 年複利處理。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "currency": version["currency"],
+            "currency_label": version["currency_label"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "original_filing_date": version.get("original_filing_date"),
+            "original_filing_number": version.get("original_filing_number"),
+            "expected_interest_rate_percent": 2.5,
+            "value_sharing_bonus": True,
+            "value_sharing_bonus_basis": "declared_rate_minus_2_5_percent_times_beginning_policy_reserve",
+            "death_benefit_formula": "face_amount",
+            "total_disability_benefit_formula": "face_amount",
+            "maturity_benefit_formula": "face_amount",
+            "premium_refund_interest_rate_percent": 2.5,
+            "policy_face_amount_required": True,
+            "policy_reserve_required": True,
+            "premium_total_required": True,
+            "foreign_currency_policy": True,
+            "exchange_rate_risk_disclosed": True,
+            "funeral_benefit_limit_rule": True,
+            "minor_death_or_disability_refund_rule": True,
+        },
+        "coverage_entries": china_life_foreign_currency_interest_endowment_entries(
+            version
+        ),
+    }
+
+
+CHINA_LIFE_GROUP_ENDOWMENT_PRODUCT_VERSIONS = {
+    "205127M11A00100": {
+        "terms_revision": "97-original",
+        "filing_date": "97.07.01",
+        "filing_number": "中壽商一字第 0970701019 號",
+        "revision_date": None,
+        "revision_basis": None,
+    },
+    "205127M11A00101": {
+        "terms_revision": "98-first-partial-revision",
+        "filing_date": "97.07.01",
+        "filing_number": "中壽商一字第 0970701019 號",
+        "revision_date": "98.08.01",
+        "revision_basis": "97 年 12 月 31 日依行政院金融監督管理委員會 97 年 11 月 19 日金管保一字第 09702508021 號令修正；98.08.01 中壽商發字第 0980801024 號備查",
+    },
+}
+
+
+def is_china_life_group_endowment_strict_source(document: dict[str, Any]) -> bool:
+    product_id = str(document.get("product_id") or "")
+    return (
+        product_id in CHINA_LIFE_GROUP_ENDOWMENT_PRODUCT_VERSIONS
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == f"{product_id}-A.pdf"
+    )
+
+
+def china_life_group_endowment_entries() -> list[dict[str, Any]]:
+    common_conditions = [
+        "本保險為團體保險單。",
+        "實際保險金額以保險證、保險手冊或被保險人名冊所載該被保險人之保險金額為準。",
+        "本保險為不分紅保險單，不參加紅利分配。",
+    ]
+    return [
+        coverage_entry(
+            "death-benefit",
+            "身故保險金",
+            None,
+            "face_amount",
+            "被保險人於本契約有效期間內死亡時，本公司按該被保險人之保險金額給付身故保險金。",
+            "保單條款第六條，保險給付與保險範圍；第十七條，失蹤處理",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[
+                *common_conditions,
+                "死亡或法院宣告死亡時依條款給付身故保險金。",
+                "給付後本契約對該被保險人的效力即行終止。",
+                "除外責任及受益權喪失情形依條款第二十一條及第二十二條辦理。",
+            ],
+        ),
+        coverage_entry(
+            "total-disability-benefit",
+            "全殘廢保險金",
+            None,
+            "face_amount",
+            "被保險人於本契約有效期間內致成附表所列全殘廢程度之一時，本公司按該被保險人之保險金額給付全殘廢保險金。",
+            "保單條款第六條，保險給付與保險範圍；第十九條，全殘廢保險金的申領；附表，全殘廢程度表",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[
+                *common_conditions,
+                "全殘廢須符合附表七項全殘廢程度之一。",
+                "本公司依條款給付全殘廢保險金後，該被保險人的保險效力即自動終止。",
+                "除外責任情形致全殘廢時，仍依第二十一條所列條件判斷是否給付。",
+            ],
+        ),
+        coverage_entry(
+            "maturity-benefit",
+            "滿期保險金",
+            None,
+            "face_amount",
+            "被保險人於本契約保險期間屆滿仍生存時，本公司按該被保險人之保險金額給付滿期保險金。",
+            "保單條款第六條，保險給付與保險範圍；第二十條，滿期保險金的申領",
+            calculation_basis="percentage_of_base",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="separate",
+            rate_percent=100,
+            unit_key="face_amount",
+            conditions=[
+                *common_conditions,
+                "保險期間為 6 年期或 10 年期，且同繳費期間。",
+                "滿期保險金給付後本契約對該被保險人效力即行終止。",
+            ],
+        ),
+    ]
+
+
+def parse_china_life_group_endowment_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_china_life_group_endowment_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = CHINA_LIFE_GROUP_ENDOWMENT_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    compact_text = compact_table_text(text)
+    required_signals = [
+        "中國人壽團體養老保險",
+        "身故保險金、全殘廢保險金、滿期保險金",
+        version["filing_number"].replace(" ", ""),
+        "本保險為團體保險單",
+        "無保險費的墊繳",
+        "不可辦理契約變更為減額繳清及展期定期保險",
+        "保險給付與保險範圍",
+        "被保險人於本契約有效期間內發生全殘廢或死亡時",
+        "本公司按該被保險人之保險金額給付身故保險金或全殘廢保險金",
+        "被保險人於本契約保險期間屆滿仍生存時",
+        "本公司按該被保險人之保險金額給付滿期保險金",
+        "全殘廢程度表",
+        "解約金表",
+    ]
+    if any(signal not in compact_text for signal in required_signals):
+        return None
+    if version.get("revision_basis") and "金管保一字第09702508021號令修正" not in compact_text:
+        return None
+    benefit_start = compact_text.find("保險給付與保險範圍")
+    benefit_end = compact_text.find("保險費的計算", benefit_start + 1)
+    benefit_article = compact_text[
+        benefit_start : benefit_end if benefit_end > benefit_start else benefit_start + 500
+    ]
+    for signal in [
+        "發生全殘廢或死亡時",
+        "保險金額給付身故保險金或全殘廢保險金",
+        "保險期間屆滿仍生存時",
+        "保險金額給付滿期保險金",
+    ]:
+        if signal not in benefit_article:
+            return None
+
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "每位被保險人保險金額",
+        "selection_guidance": "請輸入保險證、保險手冊或被保險人名冊所載該被保險人之保險金額；身故、全殘廢與滿期保險金均按該保險金額給付。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "filing_date": version["filing_date"],
+            "filing_number": version["filing_number"],
+            "revision_date": version.get("revision_date"),
+            "revision_basis": version.get("revision_basis"),
+            "product_family": "china-life-group-endowment",
+            "policy_type": "group_endowment",
+            "group_policy": True,
+            "payment_period_options": [6, 10],
+            "policy_period_same_as_payment_period": True,
+            "death_benefit_formula": "face_amount",
+            "total_disability_benefit_formula": "face_amount",
+            "maturity_benefit_formula": "face_amount",
+            "policy_face_amount_required": True,
+            "per_insured_face_amount_required": True,
+            "full_disability_table_item_count": 7,
+            "surrender_value_table_available": True,
+            "surrender_value_table_unit_amount": 10_000,
+            "no_premium_loan": True,
+            "no_reduced_paid_up_or_extended_term": True,
+            "non_participating_policy": True,
+        },
+        "coverage_entries": china_life_group_endowment_entries(),
+    }
+
+
 TAIWAN_QIANWAN_CHUXING_A_ACCIDENT_PRODUCT_VERSIONS = {
     "202211MZ2A89622A11Z10000000": {
         "file_name": "202211MZ2A89622A11Z10000000-A.pdf",
@@ -26139,14 +47016,420 @@ def parse_taiwan_qianwan_chuxing_a_accident_face_amount(
     }
 
 
+TAIWAN_QIANWAN_CHUXING_B_ENDOWMENT_PRODUCT_VERSIONS = {
+    "202121MZ2A89922A11Z10000000": {
+        "file_name": "202121MZ2A89922A11Z10000000-A.pdf",
+        "title": "台灣人壽千萬出行 B 型定期養老保險",
+        "terms_revision": "110-original",
+        "filing_signal": "中華民國 110 年 10 月 29 日台壽字第 1102320136 號函備查",
+        "revision_date": "none",
+        "revision_number": "none",
+        "revision_basis": "original-filing",
+    },
+    "202121MZ2A89922A11Z10000002": {
+        "file_name": "202121MZ2A89922A11Z10000002-A.pdf",
+        "title": "台灣人壽新千萬出行 B 型定期養老保險",
+        "terms_revision": "112-second-partial-revision",
+        "filing_signal": "中華民國 110 年 10 月 29 日台壽字第 1102320136 號函備查",
+        "revision_signal": "中華民國 112 年 3 月 1 日台壽字第 1122320056 號函備查修正",
+        "revision_date": "112-03-01",
+        "revision_number": "台壽字第1122320056號",
+        "revision_basis": "company-filing-amendment",
+    },
+}
+
+
+def is_taiwan_qianwan_chuxing_b_endowment_strict_source(
+    document: dict[str, Any],
+) -> bool:
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_QIANWAN_CHUXING_B_ENDOWMENT_PRODUCT_VERSIONS.get(product_id)
+    return (
+        version is not None
+        and document.get("document_type") == "policy_terms"
+        and str(document.get("file_name") or "") == version["file_name"]
+    )
+
+
+def taiwan_qianwan_chuxing_b_endowment_entries() -> list[dict[str, Any]]:
+    entries = taiwan_qianwan_chuxing_a_accident_entries()
+    entries.append(
+        coverage_entry(
+            "maturity-benefit-greater-of",
+            "滿期保險金",
+            None,
+            "policy_recorded_limit",
+            "被保險人於本契約有效期間且保險年齡 85 歲屆滿仍生存時，按保險年齡 85 歲屆滿之年繳應繳保險費總和 1.06 倍與保險年齡 85 歲屆滿之保單價值準備金二者取其大給付；需保單實際保費與保單價值準備金才能精算。",
+            "保單條款第十七條，第 5 頁",
+            calculation_basis="greater_of",
+            amount_role="payout",
+            limit_scope="per_policy",
+            aggregation_rule="choose_one",
+            rate_percent=106,
+            conditions=[
+                "限本契約有效期間且被保險人保險年齡 85 歲屆滿仍生存。",
+                "給付後本契約效力終止。",
+            ],
+        )
+    )
+    return entries
+
+
+def parse_taiwan_qianwan_chuxing_b_endowment_face_amount(
+    document: dict[str, Any],
+) -> dict[str, Any] | None:
+    if not is_taiwan_qianwan_chuxing_b_endowment_strict_source(document):
+        return None
+    product_id = str(document.get("product_id") or "")
+    version = TAIWAN_QIANWAN_CHUXING_B_ENDOWMENT_PRODUCT_VERSIONS[product_id]
+    text = normalize_terms_text(str(document.get("text") or ""))
+    required_signals = [
+        version["title"],
+        version["filing_signal"],
+        "一、「保險金額」:係指保險單面頁所載本契約之保險金額",
+        "本契約的保險期間自生效日起至被保險人保險年齡 85 歲屆滿時止",
+        "身故日之年繳應繳保險費總和的 1.06 倍",
+        "身故日之保單價值準備金",
+        "本公司另按保險金額的 20 倍給付",
+        "本公司另按保險金額的 10 倍給付",
+        "本公司另按保險金額的 5 倍給付",
+        "本公司另按保險金額給付",
+        "自意外傷害事故發生之日起一百八十日以內致成附表一所列失能程度之一",
+        "保險金額乘以附表一所列之給付比例計算",
+        "重大燒燙傷保險金以乙次為限",
+        "保險年齡 85 歲屆滿之年繳應繳保險費總和的 1.06 倍",
+        "保險年齡 85 歲屆滿之保單價值準備金",
+        "本公司依約定給付滿期保險金後,本契約效力即行終止",
+        "附表一: 失能程度與保險金給付表",
+        "附表二:重大燒燙傷程度表",
+        "T31.20-T31.99",
+    ]
+    revision_signal = version.get("revision_signal")
+    if revision_signal:
+        required_signals.append(str(revision_signal))
+    if any(signal not in text for signal in required_signals):
+        return None
+    if document.get("page_count") not in {None, 16}:
+        return None
+    try:
+        appendix_text = text[
+            text.index("附表一: 失能程度與保險金給付表"):
+            text.index("附表二:重大燒燙傷程度表")
+        ]
+    except ValueError:
+        return None
+    if len(set(re.findall(r"\b\d+-\d+-\d+\b", appendix_text))) != 80:
+        return None
+    return {
+        "selection_type": "face_amount",
+        "input_mode": "face_amount",
+        "selection_source": "terms",
+        "selection_label": "保險金額",
+        "selection_guidance": "請輸入保險單面頁所載本契約之保險金額；意外身故、意外失能與重大燒燙傷可依此換算，身故與滿期取大值仍需保單保費與保單價值準備金。",
+        "version_characteristics": {
+            "terms_revision": version["terms_revision"],
+            "filing_date": "110-10-29",
+            "filing_number": "台壽字第1102320136號",
+            "revision_date": version["revision_date"],
+            "revision_number": version["revision_number"],
+            "revision_basis": version["revision_basis"],
+            "maximum_coverage_age": 85,
+            "maturity_age": 85,
+            "death_benefit_premium_total_rate_percent": 106,
+            "maturity_benefit_premium_total_rate_percent": 106,
+            "accident_claim_days": 180,
+            "air_or_train_mass_transit_accidental_death_multiplier": 20,
+            "water_or_nontrain_land_mass_transit_accidental_death_multiplier": 10,
+            "automobile_passenger_accidental_death_multiplier": 5,
+            "other_accidental_death_multiplier": 1,
+            "major_burn_rate_percent": 20,
+            "major_burn_lifetime_limit_times": 1,
+            "disability_term": "失能",
+            "disability_schedule_item_count": 80,
+            "disability_rate_min_percent": 5,
+            "disability_rate_max_percent": 100,
+            "installment_death_benefit_available": True,
+        },
+        "coverage_entries": taiwan_qianwan_chuxing_b_endowment_entries(),
+    }
+
+
 PLAN_TABLE_PARSERS = [
+    (
+        "fubon-golden-guard-accident-health-plan-v1",
+        parse_fubon_golden_guard_accident_health_plan_table,
+    ),
+    (
+        "fubon-xinfu-life-accident-health-plan-v1",
+        parse_fubon_xinfu_life_accident_health_plan_table,
+    ),
+    (
+        "fubon-tzu-chi-marrow-group-life-medical-face-amount-v1",
+        parse_fubon_tzu_chi_marrow_group_life_medical_table,
+    ),
+    (
+        "fubon-changanbao-life-service-face-amount-v1",
+        parse_fubon_changanbao_life_service_face_amount,
+    ),
+    (
+        "fubon-yongai-life-service-face-amount-v1",
+        parse_fubon_yongai_life_service_face_amount,
+    ),
+    (
+        "taiwan-funeral-service-rider-fixed-v1",
+        parse_taiwan_funeral_service_rider_fixed,
+    ),
+    (
+        "taiwan-longzaitian-funeral-service-rider-fixed-v1",
+        parse_taiwan_longzaitian_funeral_service_rider_fixed,
+    ),
+    (
+        "taiwan-longai-funeral-service-whole-life-fixed-v1",
+        parse_taiwan_longai_funeral_service_whole_life_fixed,
+    ),
+    (
+        "taiwan-funeral-service-whole-life-early-tower-v1",
+        parse_taiwan_funeral_service_whole_life_early_tower_plan,
+    ),
+    (
+        "taiwan-funeral-service-whole-life-early-plan-v1",
+        parse_taiwan_funeral_service_whole_life_early_plan,
+    ),
+    (
+        "taiwan-funeral-service-whole-life-plan-v1",
+        parse_taiwan_funeral_service_whole_life_plan,
+    ),
+    (
+        "taiwan-yibao-3xiang-medical-whole-life-v1",
+        parse_taiwan_yibao_3xiang_medical_whole_life_face_amount,
+    ),
+    (
+        "taiwan-yixiang-health-medical-whole-life-fixed-v1",
+        parse_taiwan_yixiang_health_medical_whole_life_fixed,
+    ),
+    (
+        "taiwan-lehuo-health-medical-whole-life-fixed-v1",
+        parse_taiwan_lehuo_health_medical_whole_life_fixed,
+    ),
+    (
+        "taiwan-fixed-return-whole-life-formula-v1",
+        parse_taiwan_fixed_return_whole_life_formula,
+    ),
+    (
+        "taiwan-interest-rate-accident-whole-life-formula-v1",
+        parse_taiwan_interest_rate_accident_whole_life_formula,
+    ),
+    (
+        "taiwan-chuanshi-fuli-whole-life-formula-v1",
+        parse_taiwan_chuanshi_fuli_whole_life_formula,
+    ),
+    (
+        "taiwan-yaozuan-chuanshi-usd-whole-life-cancer-health-v1",
+        parse_taiwan_yaozuan_chuanshi_usd_whole_life_cancer_health,
+    ),
+    (
+        "taiwan-lehuo-meili-usd-whole-life-cancer-health-v1",
+        parse_taiwan_lehuo_meili_usd_whole_life_cancer_health,
+    ),
+    (
+        "taiwan-interest-rate-whole-life-formula-v1",
+        parse_taiwan_interest_rate_whole_life_formula,
+    ),
+    (
+        "taiwan-fengfu-meili-usd-interest-whole-life-v1",
+        parse_taiwan_fengfu_meili_usd_interest_whole_life,
+    ),
+    (
+        "taiwan-interest-rate-survival-whole-life-formula-v1",
+        parse_taiwan_interest_rate_survival_whole_life_formula,
+    ),
+    (
+        "taiwan-interest-rate-return-whole-life-formula-v1",
+        parse_taiwan_interest_rate_return_whole_life_formula,
+    ),
+    (
+        "taiwan-interest-rate-endowment-formula-v1",
+        parse_taiwan_interest_rate_endowment_formula,
+    ),
+    (
+        "yuanta-yuanman225-interest-endowment-formula-v1",
+        parse_yuanta_yuanman225_interest_endowment_formula,
+    ),
+    (
+        "yuanta-meinianduoli-usd-incremental-return-whole-life-formula-v1",
+        parse_yuanta_meinianduoli_usd_incremental_return_whole_life_formula,
+    ),
+    (
+        "investment-life-guaranteed-face-amount-formula-v1",
+        parse_investment_life_guaranteed_face_amount_formula,
+    ),
+    (
+        "variable-annuity-account-value-formula-v1",
+        parse_variable_annuity_account_value_formula,
+    ),
+    (
+        "kgi-china-legacy-investment-life-maturity-face-amount-v1",
+        parse_kgi_china_legacy_investment_life_maturity_face_amount,
+    ),
+    (
+        "taiwan-xinxiangle-investment-life-age111-value-bonus-v1",
+        parse_taiwan_xinxiangle_investment_life_age111_value_bonus,
+    ),
+    (
+        "taiwan-age111-variable-universal-life-v1",
+        parse_taiwan_age111_variable_universal_life,
+    ),
+    (
+        "taiwan-xinfumanzai-usd-variable-life-v1",
+        parse_taiwan_xinfumanzai_usd_variable_life,
+    ),
+    (
+        "taiwan-xinfu-life-maturity-guarantee-v1",
+        parse_taiwan_xinfu_life_maturity_guarantee,
+    ),
+    (
+        "taiwan-wudong-legacy-variable-universal-life-v1",
+        parse_taiwan_wudong_legacy_variable_universal_life,
+    ),
+    (
+        "taiwan-xindeyi-variable-universal-life-v1",
+        parse_taiwan_xindeyi_variable_universal_life,
+    ),
+    (
+        "taiwan-zhiduoxin-variable-universal-life-v1",
+        parse_taiwan_zhiduoxin_variable_universal_life,
+    ),
+    (
+        "taiwan-zhangwo-variable-universal-life-v1",
+        parse_taiwan_zhangwo_variable_universal_life,
+    ),
+    (
+        "china-xinchuang-variable-life-v1",
+        parse_china_xinchuang_variable_life,
+    ),
+    (
+        "china-legacy-investment-linked-life-v1",
+        parse_china_legacy_investment_linked_life,
+    ),
+    (
+        "fubon-xinxiangyouli-variable-life-v1",
+        parse_fubon_xinxiangyouli_variable_life,
+    ),
+    (
+        "hsingfu-legacy-variable-universal-life-v1",
+        parse_hsingfu_legacy_variable_universal_life,
+    ),
+    (
+        "global-ritai-financial-expert-variable-universal-life-v1",
+        parse_global_ritai_financial_expert_variable_universal_life,
+    ),
+    (
+        "global-ritai-financial-head-variable-universal-life-v1",
+        parse_global_ritai_financial_head_variable_universal_life,
+    ),
+    (
+        "prudential-shared-generations-variable-universal-life-v1",
+        parse_prudential_shared_generations_variable_universal_life,
+    ),
+    (
+        "prudential-chuangfu-variable-life-v1",
+        parse_prudential_chuangfu_variable_life,
+    ),
+    (
+        "prudential-youyou-legacy-investment-life-maturity-face-amount-v1",
+        parse_prudential_youyou_legacy_investment_life_maturity_face_amount,
+    ),
+    (
+        "legacy-investment-life-face-or-account-value-v1",
+        parse_legacy_investment_life_face_or_account_value,
+    ),
+    (
+        "fubon-legacy-investment-life-face-amount-v1",
+        parse_fubon_legacy_investment_life_face_amount,
+    ),
+    (
+        "prudential-legacy-investment-life-face-amount-v1",
+        parse_prudential_legacy_investment_life_face_amount,
+    ),
+    (
+        "taiwan-interest-rate-specific-disease-whole-life-formula-v1",
+        parse_taiwan_interest_rate_specific_disease_whole_life_formula,
+    ),
+    (
+        "taiwan-interest-rate-specific-disease-survival-whole-life-formula-v1",
+        parse_taiwan_interest_rate_specific_disease_survival_whole_life_formula,
+    ),
+    (
+        "taiwan-usd-endowment-formula-v1",
+        parse_taiwan_usd_endowment_formula,
+    ),
+    (
+        "taiwan-platinum-account-endowment-v1",
+        parse_taiwan_platinum_account_endowment_formula,
+    ),
+    (
+        "taiwan-participating-whole-life-formula-v1",
+        parse_taiwan_participating_whole_life_formula,
+    ),
+    (
+        "taiwan-participating-return-whole-life-formula-v1",
+        parse_taiwan_participating_return_whole_life_formula,
+    ),
+    (
+        "taiwan-term-life-formula-v1",
+        parse_taiwan_term_life_formula,
+    ),
+    (
+        "taiwan-simple-term-life-formula-v1",
+        parse_taiwan_simple_term_life_formula,
+    ),
+    (
+        "taiwan-usd-no-disability-formula-v1",
+        parse_taiwan_usd_no_disability_formula,
+    ),
+    (
+        "taiwan-long-term-care-whole-life-formula-v1",
+        parse_taiwan_long_term_care_whole_life_formula,
+    ),
     (
         "china-life-jinhaoyi-face-amount-v1",
         parse_china_life_jinhaoyi_face_amount,
     ),
     (
+        "china-life-xinhaoyi-face-amount-v1",
+        parse_china_life_xinhaoyi_face_amount,
+    ),
+    (
+        "china-life-dameiwang-usd-periodic-whole-life-formula-v1",
+        parse_china_life_dameiwang_usd_periodic_whole_life_formula,
+    ),
+    (
+        "china-life-meilifeng-usd-periodic-whole-life-formula-v1",
+        parse_china_life_meilifeng_usd_periodic_whole_life_formula,
+    ),
+    (
+        "china-life-meilexiangtui-usd-survival-whole-life-formula-v1",
+        parse_china_life_meilexiangtui_usd_survival_whole_life_formula,
+    ),
+    (
+        "china-life-foreign-currency-interest-whole-life-formula-v1",
+        parse_china_life_foreign_currency_interest_whole_life_formula,
+    ),
+    (
+        "china-life-foreign-currency-interest-endowment-formula-v1",
+        parse_china_life_foreign_currency_interest_endowment_formula,
+    ),
+    (
+        "china-life-group-endowment-face-amount-v1",
+        parse_china_life_group_endowment_face_amount,
+    ),
+    (
         "taiwan-qianwan-chuxing-a-accident-face-amount-v1",
         parse_taiwan_qianwan_chuxing_a_accident_face_amount,
+    ),
+    (
+        "taiwan-qianwan-chuxing-b-endowment-face-amount-v1",
+        parse_taiwan_qianwan_chuxing_b_endowment_face_amount,
     ),
     (
         "fubon-xianganbao-accident-medical-rider-face-amount-v1",
@@ -26187,6 +47470,14 @@ PLAN_TABLE_PARSERS = [
     (
         "fubon-new-shouhu-jinnang-late-accident-health-legacy-plan-v1",
         parse_fubon_new_shouhu_jinnang_late_accident_health_legacy_plan_table,
+    ),
+    (
+        "fubon-haozhouquan-accident-health-plan-v1",
+        parse_fubon_haozhouquan_accident_health_plan_table,
+    ),
+    (
+        "fubon-health-limit-up-accident-health-fixed-v1",
+        parse_fubon_health_limit_up_accident_health_fixed_schedule,
     ),
     (
         "fubon-comprehensive-accident-plan-v1",
@@ -26325,6 +47616,22 @@ PLAN_TABLE_PARSERS = [
         parse_yuanta_anxin100_critical_illness_face_amount,
     ),
     (
+        "yuanta-zhen-anxin-return-cancer-face-amount-v1",
+        parse_yuanta_zhen_anxin_return_cancer_face_amount,
+    ),
+    (
+        "yuanta-zhenai-baby-return-life-face-amount-v1",
+        parse_yuanta_zhenai_baby_return_life_face_amount,
+    ),
+    (
+        "hsingfu-fuyu-dwa-whole-life-face-amount-v1",
+        parse_hsingfu_fuyu_dwa_whole_life_face_amount,
+    ),
+    (
+        "hsingfu-platinum-endowment-face-amount-v1",
+        parse_hsingfu_platinum_endowment_face_amount,
+    ),
+    (
         "farglory-kangfu-medical-plan-v1",
         parse_farglory_kangfu_medical_plan_table,
     ),
@@ -26427,6 +47734,10 @@ PLAN_TABLE_PARSERS = [
     (
         "fubon-golden-health-whole-life-v1",
         parse_fubon_golden_health_whole_life_table,
+    ),
+    (
+        "fubon-golden-luck-universal-whole-life-formula-v1",
+        parse_fubon_golden_luck_universal_whole_life_formula,
     ),
     (
         "prudential-daily-hospital-96-plan-v1",
@@ -26557,16 +47868,20 @@ def complete_strict_source_document(
             or is_fubon_new_shouhu_jinnang_late_accident_health_strict_source(
                 document
             )
+            or is_fubon_haozhouquan_accident_health_strict_source(document)
+            or is_fubon_health_limit_up_accident_health_strict_source(document)
             or is_fubon_comprehensive_accident_strict_source(document)
             or is_fubon_new_million_heart_accident_health_strict_source(document)
             or is_fubon_million_heart_accident_health_strict_source(document)
             or is_fubon_million_new_life_accident_health_strict_source(document)
             or is_fubon_vision_life_accident_health_strict_source(document)
             or is_fubon_anxin_financial_life_strict_source(document)
+            or is_fubon_golden_guard_accident_health_strict_source(document)
             or is_fubon_anxin_456_accident_health_strict_source(document)
             or is_fubon_tiantian_anxin_500_strict_source(document)
             or is_fubon_legacy_plan_strict_source(document)
             or is_taiwan_qianwan_chuxing_a_accident_strict_source(document)
+            or is_taiwan_qianwan_chuxing_b_endowment_strict_source(document)
             or is_fubon_wanan_365_accident_strict_source(document)
             or is_fubon_family_gift_accident_health_strict_source(document)
             or is_fubon_statutory_infectious_strict_source(document)
@@ -26574,6 +47889,53 @@ def complete_strict_source_document(
             or is_yuanta_xiangyouxin_medical_strict_source(document)
             or is_yuanta_xiangan_medical_strict_source(document)
             or is_yuanta_anxin100_critical_illness_strict_source(document)
+            or is_yuanta_zhen_anxin_return_cancer_strict_source(document)
+            or is_yuanta_yuanman225_interest_endowment_strict_source(document)
+            or is_yuanta_meinianduoli_usd_incremental_return_whole_life_strict_source(
+                document
+            )
+            or is_investment_life_guaranteed_face_amount_strict_source(document)
+            or is_kgi_china_legacy_investment_life_strict_source(document)
+            or is_taiwan_xinxiangle_investment_life_strict_source(document)
+            or is_taiwan_age111_variable_universal_life_strict_source(document)
+            or is_taiwan_xinfumanzai_usd_variable_life_strict_source(document)
+            or is_taiwan_xinfu_life_maturity_guarantee_strict_source(document)
+            or is_taiwan_wudong_legacy_variable_universal_life_strict_source(
+                document
+            )
+            or is_taiwan_xindeyi_variable_universal_life_strict_source(
+                document
+            )
+            or is_taiwan_zhiduoxin_variable_universal_life_strict_source(
+                document
+            )
+            or is_taiwan_zhangwo_variable_universal_life_strict_source(
+                document
+            )
+            or is_china_xinchuang_variable_life_strict_source(document)
+            or is_china_legacy_investment_linked_life_strict_source(document)
+            or is_fubon_xinxiangyouli_variable_life_strict_source(document)
+            or is_hsingfu_legacy_variable_universal_life_strict_source(document)
+            or is_global_ritai_financial_expert_variable_universal_life_strict_source(
+                document
+            )
+            or is_global_ritai_financial_head_variable_universal_life_strict_source(
+                document
+            )
+            or is_prudential_shared_generations_variable_universal_life_strict_source(
+                document
+            )
+            or is_prudential_chuangfu_variable_life_strict_source(document)
+            or is_prudential_youyou_legacy_investment_life_strict_source(
+                document
+            )
+            or is_legacy_investment_life_face_or_account_value_strict_source(
+                document
+            )
+            or is_fubon_legacy_investment_life_strict_source(document)
+            or is_prudential_legacy_investment_life_strict_source(document)
+            or is_hsingfu_fuyu_dwa_whole_life_strict_source(document)
+            or is_hsingfu_platinum_endowment_strict_source(document)
             or is_yuanta_group_hospital_medical_strict_source(document)
             or is_yuanta_yuanqi_shizu_strict_source(document)
             or is_yuanta_health_life_early_strict_source(document)
@@ -26596,7 +47958,65 @@ def complete_strict_source_document(
             or is_prudential_daily_hospital_96_strict_source(document)
             or is_taiwan_fishermen_group_medical_strict_source(document)
             or is_fubon_golden_health_strict_source(document)
+            or is_fubon_golden_luck_universal_whole_life_strict_source(document)
             or is_fubon_golden_medical_device_strict_source(document)
+            or is_fubon_changanbao_life_service_strict_source(document)
+            or is_fubon_yongai_life_service_strict_source(document)
+            or is_taiwan_funeral_service_rider_strict_source(document)
+            or is_taiwan_longzaitian_funeral_service_rider_strict_source(document)
+            or is_taiwan_longai_funeral_service_whole_life_strict_source(document)
+            or is_taiwan_funeral_service_whole_life_early_strict_source(document)
+            or is_taiwan_funeral_service_whole_life_early_plan_strict_source(
+                document
+            )
+            or is_taiwan_funeral_service_whole_life_strict_source(document)
+            or is_taiwan_yixiang_health_medical_whole_life_strict_source(document)
+            or is_taiwan_lehuo_health_medical_whole_life_strict_source(document)
+            or is_taiwan_interest_rate_accident_whole_life_strict_source(document)
+            or is_taiwan_chuanshi_fuli_whole_life_strict_source(document)
+            or is_taiwan_yaozuan_chuanshi_usd_whole_life_cancer_health_strict_source(
+                document
+            )
+            or is_taiwan_lehuo_meili_usd_whole_life_cancer_health_strict_source(
+                document
+            )
+            or is_taiwan_interest_rate_whole_life_strict_source(document)
+            or is_taiwan_fengfu_meili_usd_interest_whole_life_strict_source(document)
+            or is_taiwan_interest_rate_survival_whole_life_strict_source(document)
+            or is_taiwan_interest_rate_return_whole_life_strict_source(document)
+            or is_taiwan_interest_rate_endowment_strict_source(document)
+            or is_taiwan_interest_rate_specific_disease_whole_life_strict_source(
+                document
+            )
+            or is_taiwan_interest_rate_specific_disease_survival_whole_life_strict_source(
+                document
+            )
+            or is_taiwan_usd_endowment_strict_source(document)
+            or is_taiwan_platinum_account_endowment_strict_source(document)
+            or is_taiwan_fixed_return_whole_life_strict_source(document)
+            or is_taiwan_participating_whole_life_strict_source(document)
+            or is_taiwan_participating_return_whole_life_strict_source(document)
+            or is_taiwan_term_life_strict_source(document)
+            or is_taiwan_simple_term_life_strict_source(document)
+            or is_taiwan_usd_no_disability_strict_source(document)
+            or is_taiwan_long_term_care_whole_life_strict_source(document)
+            or is_china_life_foreign_currency_interest_whole_life_strict_source(
+                document
+            )
+            or is_china_life_dameiwang_usd_periodic_whole_life_strict_source(
+                document
+            )
+            or is_china_life_meilifeng_usd_periodic_whole_life_strict_source(
+                document
+            )
+            or is_china_life_meilexiangtui_usd_survival_whole_life_strict_source(
+                document
+            )
+            or is_china_life_foreign_currency_interest_endowment_strict_source(
+                document
+            )
+            or is_china_life_group_endowment_strict_source(document)
+            or is_china_life_xinhaoyi_strict_source(document)
         )
         or not source_path.is_file()
     ):
@@ -26630,6 +48050,8 @@ def build_proposal_payload(
         product_id = str(document.get("product_id") or "")
         if not product_id:
             continue
+        if not document.get("batch_id"):
+            document = {**document, "batch_id": batch_id}
         file_name = str(document.get("file_name") or "")
         source_path = documents_dir / batch_id / product_id / file_name
         document = complete_strict_source_document(document, source_path)
@@ -26759,6 +48181,7 @@ def approved_schedules(
             **candidate["schedule"],
         }
         unchanged_review_fields = [
+            "extractor_version",
             *protected_fields,
             "reviewed_by",
             "reviewed_at",

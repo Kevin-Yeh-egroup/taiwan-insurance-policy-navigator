@@ -32,6 +32,7 @@ from extract_tii_plan_benefits import (
     parse_fubon_new_lohas_combined_plan_table,
     parse_fubon_golden_complete_combined_plan_table,
     parse_fubon_golden_health_whole_life_table,
+    parse_fubon_golden_luck_universal_whole_life_formula,
     parse_fubon_golden_medical_device_unit_table,
     parse_fubon_666_accident_health_plan_table,
     parse_fubon_family_gift_accident_health_plan_table,
@@ -43,22 +44,53 @@ from extract_tii_plan_benefits import (
     parse_fubon_lohas_combined_plan_table,
     parse_china_legacy_cancer_whole_life_unit_table,
     parse_china_life_jinhaoyi_face_amount,
+    parse_china_life_xinhaoyi_face_amount,
+    parse_china_life_dameiwang_usd_periodic_whole_life_formula,
+    parse_china_life_meilifeng_usd_periodic_whole_life_formula,
+    parse_china_life_meilexiangtui_usd_survival_whole_life_formula,
+    parse_china_life_foreign_currency_interest_endowment_formula,
+    parse_china_life_foreign_currency_interest_whole_life_formula,
+    parse_china_life_group_endowment_face_amount,
     parse_fubon_new_complete_combined_plan_table,
     parse_fubon_new_shouhu_jinnang_accident_health_plan_table,
     parse_fubon_new_shouhu_jinnang_late_accident_health_plan_table,
+    parse_fubon_haozhouquan_accident_health_plan_table,
+    parse_fubon_health_limit_up_accident_health_fixed_schedule,
     parse_fubon_comprehensive_accident_plan_table,
     parse_fubon_million_heart_accident_health_plan_table,
     parse_fubon_million_new_life_accident_health_plan_table,
     parse_fubon_new_million_heart_accident_health_plan_table,
+    parse_fubon_new_million_heart_accident_health_legacy_plan_table,
     parse_fubon_vision_life_accident_health_plan_table,
     parse_fubon_anxin_financial_life_accident_health_plan_table,
     parse_fubon_protect_combined_plan_table,
     parse_fubon_statutory_infectious_plan_table,
     parse_fubon_tiantian_anxin_500_accident_health_plan_table,
+    parse_fubon_changanbao_life_service_face_amount,
+    parse_fubon_yongai_life_service_face_amount,
+    parse_fubon_tzu_chi_marrow_group_life_medical_table,
     parse_fubon_wanan_365_accident_plan_table,
+    parse_fubon_golden_guard_accident_health_plan_table,
+    parse_fubon_xinfu_life_accident_health_plan_table,
+    parse_hsingfu_fuyu_dwa_whole_life_face_amount,
+    parse_hsingfu_platinum_endowment_face_amount,
+    parse_fubon_legacy_investment_life_face_amount,
+    parse_investment_life_guaranteed_face_amount_formula,
+    parse_variable_annuity_account_value_formula,
+    parse_kgi_china_legacy_investment_life_maturity_face_amount,
+    parse_legacy_investment_life_face_or_account_value,
+    TAIWAN_XINFUMANZAI_USD_VARIABLE_LIFE_REVISIONS,
+    parse_taiwan_age111_variable_universal_life,
+    parse_taiwan_xinfumanzai_usd_variable_life,
+    parse_taiwan_xinfu_life_maturity_guarantee,
+    parse_taiwan_xindeyi_variable_universal_life,
+    parse_taiwan_xinxiangle_investment_life_age111_value_bonus,
+    parse_taiwan_zhiduoxin_variable_universal_life,
     parse_farglory_kangfu_medical_plan_table,
     parse_global_e_road_peace_overseas_illness_face_amount,
     parse_global_nccu_student_group_fixed_schedule,
+    parse_global_ritai_financial_expert_variable_universal_life,
+    parse_global_ritai_financial_head_variable_universal_life,
     parse_group_inpatient_limit_unit_table,
     parse_group_plan_inpatient_limit_table,
     parse_group_cancer_fixed_unit_table,
@@ -76,6 +108,11 @@ from extract_tii_plan_benefits import (
     parse_prudential_fire_mass_transit_accident_face_amount,
     parse_prudential_china_fixed_hospital_medical_plan_table,
     parse_prudential_china_medical_endowment_plan_unit,
+    PRUDENTIAL_SHARED_GENERATIONS_VARIABLE_UNIVERSAL_LIFE_REVISIONS,
+    parse_prudential_chuangfu_variable_life,
+    parse_prudential_shared_generations_variable_universal_life,
+    parse_prudential_legacy_investment_life_face_amount,
+    parse_prudential_youyou_legacy_investment_life_maturity_face_amount,
     parse_ritai_dual_unit_inpatient_table,
     parse_plan_table_with_parser,
     parse_taiwan_fishermen_group_medical_plan_table,
@@ -83,16 +120,51 @@ from extract_tii_plan_benefits import (
     parse_taiwan_gold_group_inpatient_limit_plan_table,
     parse_taiwan_group_inpatient_limit_plan_table,
     parse_taiwan_shishizai_inpatient_plan_table,
+    parse_taiwan_chuanshi_fuli_whole_life_formula,
+    parse_taiwan_fixed_return_whole_life_formula,
+    parse_taiwan_interest_rate_accident_whole_life_formula,
+    parse_taiwan_yaozuan_chuanshi_usd_whole_life_cancer_health,
+    parse_taiwan_lehuo_meili_usd_whole_life_cancer_health,
+    parse_taiwan_wudong_legacy_variable_universal_life,
+    parse_taiwan_interest_rate_endowment_formula,
+    parse_taiwan_interest_rate_specific_disease_whole_life_formula,
+    parse_taiwan_interest_rate_specific_disease_survival_whole_life_formula,
+    parse_taiwan_usd_endowment_formula,
     parse_taiwan_qianwan_chuxing_a_accident_face_amount,
     parse_taiwan_group_long_term_care_service_face_amount,
     parse_taiwan_taipei_student_group_fixed_schedule,
+    parse_taiwan_interest_rate_return_whole_life_formula,
+    parse_taiwan_fengfu_meili_usd_interest_whole_life,
+    parse_taiwan_interest_rate_whole_life_formula,
+    parse_taiwan_interest_rate_survival_whole_life_formula,
+    parse_taiwan_funeral_service_rider_fixed,
+    parse_taiwan_longzaitian_funeral_service_rider_fixed,
+    parse_taiwan_longai_funeral_service_whole_life_fixed,
+    parse_taiwan_funeral_service_whole_life_early_tower_plan,
+    parse_taiwan_funeral_service_whole_life_early_plan,
+    parse_taiwan_funeral_service_whole_life_plan,
+    parse_taiwan_yibao_3xiang_medical_whole_life_face_amount,
+    parse_taiwan_yixiang_health_medical_whole_life_fixed,
+    parse_taiwan_lehuo_health_medical_whole_life_fixed,
+    parse_taiwan_participating_return_whole_life_formula,
+    parse_taiwan_participating_whole_life_formula,
+    parse_taiwan_platinum_account_endowment_formula,
+    parse_taiwan_simple_term_life_formula,
+    parse_taiwan_usd_no_disability_formula,
+    parse_taiwan_term_life_formula,
+    parse_taiwan_long_term_care_whole_life_formula,
     parse_taiwan_yiqijianzhi_specific_disease_face_amount,
+    parse_taiwan_qianwan_chuxing_b_endowment_face_amount,
     parse_three_plan_medical_table,
     parse_yuanta_new_accident_medical_rider_face_amount,
     parse_yuanta_personal_accident_rider_face_amount,
     parse_yuanta_funxinyou_accident_medical_addendum_limit,
     parse_yuanta_health_life_early_face_amount,
     parse_yuanta_anxin100_critical_illness_face_amount,
+    parse_yuanta_zhen_anxin_return_cancer_face_amount,
+    parse_yuanta_zhenai_baby_return_life_face_amount,
+    parse_yuanta_yuanman225_interest_endowment_formula,
+    parse_yuanta_meinianduoli_usd_incremental_return_whole_life_formula,
     parse_yuanta_yuanqi_shizu_hospital_medical_plan_table,
     parse_yuanta_group_hospital_medical_plan_table,
     parse_yuanta_new_account_medical_type_daily,
@@ -2027,7 +2099,6765 @@ def fubon_new_complete_document(product_id: str, suffix: str = "A") -> dict:
     )
 
 
-assert EXTRACTOR_VERSION == "tii-plan-benefits-v91"
+assert EXTRACTOR_VERSION == "tii-plan-benefits-v196"
+
+TII_LIFE_011_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-011"
+)
+TII_LIFE_017_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-017"
+)
+TII_LIFE_029_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-029"
+)
+TII_LIFE_053_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-053"
+)
+TII_LIFE_161_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-161"
+)
+TII_LIFE_167_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-167"
+)
+TII_VARIABLE_ANNUITY_ROOTS = {
+    "tii-life-012": Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-documents"
+    / "tii-life-012",
+    "tii-life-054": Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-documents"
+    / "tii-life-054",
+    "tii-life-168": Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-documents"
+    / "tii-life-168",
+}
+TII_LIFE_167_TEXT_FIXTURE = json.loads(
+    (
+        Path(__file__).resolve().parents[1]
+        / "work"
+        / "tii-document-text"
+        / "tii-life-167-text.json"
+    ).read_text(encoding="utf-8")
+)["documents"]
+
+
+def investment_life_document(batch_id: str, product_id: str, suffix: str = "A") -> dict:
+    roots = {
+        "tii-life-011": TII_LIFE_011_ROOT,
+        "tii-life-017": TII_LIFE_017_ROOT,
+        "tii-life-029": TII_LIFE_029_ROOT,
+        "tii-life-053": TII_LIFE_053_ROOT,
+        "tii-life-161": TII_LIFE_161_ROOT,
+        "tii-life-167": TII_LIFE_167_ROOT,
+    }
+    if batch_id == "tii-life-167":
+        file_name = f"{product_id}-{suffix}.pdf"
+        fixture = next(
+            document
+            for document in TII_LIFE_167_TEXT_FIXTURE
+            if document.get("product_id") == product_id
+            and document.get("file_name") == file_name
+        )
+        return {
+            "batch_id": batch_id,
+            "product_id": product_id,
+            "product_name": "投資型壽險測試保單",
+            "file_name": file_name,
+            "document_type": "policy_terms" if suffix == "A" else "product_summary",
+            "text": normalize_terms_text(str(fixture.get("text") or "")),
+        }
+    root = roots[batch_id]
+    file_name = f"{product_id}-{suffix}.pdf"
+    if batch_id == "tii-life-161" and product_id == "262141M31A00200":
+        file_name = f"262141M31A002-{suffix}.pdf"
+    if batch_id == "tii-life-161" and product_id == "262141M31A00300":
+        file_name = f"262141M31A003-{suffix}.pdf"
+    pdf_path = root / product_id / file_name
+    page_texts = [
+        page.extract_text() or "" for page in PdfReader(pdf_path, strict=False).pages
+    ]
+    return {
+        "batch_id": batch_id,
+        "product_id": product_id,
+        "product_name": "投資型壽險測試保單",
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+def variable_annuity_document(batch_id: str, product_id: str, suffix: str = "A") -> dict:
+    root = TII_VARIABLE_ANNUITY_ROOTS[batch_id]
+    file_name = f"{product_id}-{suffix}.pdf"
+    pdf_path = root / product_id / file_name
+    page_texts = [
+        page.extract_text() or "" for page in PdfReader(pdf_path, strict=False).pages
+    ]
+    return {
+        "batch_id": batch_id,
+        "product_id": product_id,
+        "product_name": "",
+        "file_name": pdf_path.name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+investment_life_expected = {
+    ("tii-life-011", "202131MV1A05B23A11Z90000000"): {
+        "company_group": "taiwan_life",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_111_policy_anniversary",
+        "maturity_formula": "net_amount_at_risk_plus_policy_account_value_at_age_111_policy_anniversary",
+        "maturity_interest": True,
+        "maturity_age": 111,
+        "net_risk_formula_type": "jia_wu",
+        "minor_death": False,
+        "minor_disability": False,
+    },
+    ("tii-life-011", "202131MV1A34923B11C90000010"): {
+        "company_group": "taiwan_life",
+        "currency_basis": "foreign_currency",
+        "maturity_trigger": "age_111_policy_anniversary",
+        "maturity_formula": "net_amount_at_risk_plus_policy_account_value_at_age_111_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 111,
+        "net_risk_formula_type": "jia_yi_bing_ding_minor_age_15",
+        "minor_death": True,
+        "minor_disability": True,
+    },
+    ("tii-life-011", "202131MV1A42423Z11C90000007"): {
+        "company_group": "taiwan_life",
+        "currency_basis": "foreign_currency",
+        "maturity_trigger": "age_111_policy_anniversary",
+        "maturity_formula": "net_amount_at_risk_plus_policy_account_value_at_age_111_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 111,
+        "net_risk_formula_type": "jia_yi_bing_ding_minor_age_15",
+        "minor_death": True,
+        "minor_disability": True,
+    },
+    ("tii-life-011", "202131MV1A42423Z11C90000008"): {
+        "company_group": "taiwan_life",
+        "currency_basis": "foreign_currency",
+        "maturity_trigger": "age_111_policy_anniversary",
+        "maturity_formula": "net_amount_at_risk_plus_policy_account_value_at_age_111_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 111,
+        "net_risk_formula_type": "jia_yi_bing_ding_minor_age_15",
+        "minor_death": True,
+        "minor_disability": True,
+    },
+    ("tii-life-011", "202131MV1A42423Z11C90000009"): {
+        "company_group": "taiwan_life",
+        "currency_basis": "foreign_currency",
+        "maturity_trigger": "age_111_policy_anniversary",
+        "maturity_formula": "net_amount_at_risk_plus_policy_account_value_at_age_111_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 111,
+        "net_risk_formula_type": "jia_yi_bing_ding_minor_age_15",
+        "minor_death": True,
+        "minor_disability": True,
+    },
+    ("tii-life-011", "202131MV1A69823A11C90000003"): {
+        "company_group": "taiwan_life",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_111_policy_anniversary",
+        "maturity_formula": "net_amount_at_risk_plus_policy_account_value_at_age_111_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 111,
+        "net_risk_formula_type": "jia_yi",
+        "minor_death": False,
+        "minor_disability": False,
+    },
+    ("tii-life-011", "202131MV1A79923A11Z90000002"): {
+        "company_group": "taiwan_life",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_111_policy_anniversary",
+        "maturity_formula": "net_amount_at_risk_plus_policy_account_value_at_age_111_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 111,
+        "net_risk_formula_type": "basic_amount_less_deduction_less_account_value",
+        "minor_death": False,
+        "minor_disability": False,
+    },
+    ("tii-life-011", "202131MV1A85A23B11Z90000000"): {
+        "company_group": "taiwan_life",
+        "currency_basis": "foreign_currency",
+        "maturity_trigger": "age_111_policy_anniversary",
+        "maturity_formula": "net_amount_at_risk_plus_policy_account_value_at_age_111_policy_anniversary",
+        "maturity_interest": True,
+        "maturity_age": 111,
+        "net_risk_formula_type": "jia_wu",
+        "minor_death": False,
+        "minor_disability": False,
+    },
+    ("tii-life-011", "202131MV1AUFL23A11C90000019"): {
+        "company_group": "taiwan_life",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_111_policy_anniversary",
+        "maturity_formula": "net_amount_at_risk_plus_policy_account_value_at_age_111_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 111,
+        "net_risk_formula_type": "jia_yi_bing_ding_minor_age_15",
+        "minor_death": True,
+        "minor_disability": True,
+    },
+    ("tii-life-017", "203131MU1A00123A11Z90000042"): {
+        "company_group": "prudential",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_99_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_99_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 99,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": False,
+        "minor_disability": False,
+    },
+    ("tii-life-017", "203131MV1A00123A11Z90000036"): {
+        "company_group": "prudential",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_99_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_99_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 99,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": True,
+        "minor_disability": False,
+    },
+    ("tii-life-017", "203131MV1A00323B11Z90000019"): {
+        "company_group": "prudential",
+        "currency_basis": "foreign_currency",
+        "maturity_trigger": "age_99_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_99_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 99,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": False,
+        "minor_disability": False,
+    },
+    ("tii-life-017", "203131MV1A03223Z11Z90000003"): {
+        "company_group": "prudential",
+        "currency_basis": "foreign_currency",
+        "maturity_trigger": "age_99_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_99_policy_anniversary",
+        "maturity_interest": True,
+        "maturity_age": 99,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": False,
+        "minor_disability": False,
+    },
+    ("tii-life-017", "203131MV1A03523A11Z90000000"): {
+        "company_group": "prudential",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_99_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_99_policy_anniversary",
+        "maturity_interest": True,
+        "maturity_age": 99,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": False,
+        "minor_disability": False,
+    },
+    ("tii-life-029", "205131MV1A03823A11C90000006"): {
+        "company_group": "kgi_china_life",
+        "currency_basis": "twd",
+        "maturity_trigger": "policy_maturity_date",
+        "maturity_formula": "net_amount_at_risk_plus_policy_account_value_at_policy_maturity_date",
+        "maturity_interest": True,
+        "maturity_age": None,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": False,
+        "minor_disability": False,
+    },
+    ("tii-life-017", "203131MV1A00323B11Z90000017"): {
+        "company_group": "prudential",
+        "currency_basis": "foreign_currency",
+        "maturity_trigger": "age_99_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_99_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 99,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": True,
+        "minor_disability": False,
+    },
+    ("tii-life-017", "203131MU1A00123A11Z90000037"): {
+        "company_group": "prudential",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_99_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_99_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 99,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": True,
+        "minor_disability": False,
+    },
+    ("tii-life-029", "205131MV1A00123A11C90000001"): {
+        "company_group": "kgi_china_life",
+        "currency_basis": "twd",
+        "maturity_trigger": "policy_maturity_date",
+        "maturity_formula": "policy_account_value_at_policy_maturity_date",
+        "maturity_interest": False,
+        "maturity_age": None,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": True,
+        "minor_disability": False,
+    },
+    ("tii-life-053", "209131MV1A00123A11Z90000010"): {
+        "company_group": "fubon_life",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_110_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_110_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 110,
+        "net_risk_formula_type": "jia_yi",
+        "minor_death": True,
+        "minor_disability": True,
+    },
+    ("tii-life-053", "209131MV1A00323Z11Z90000004"): {
+        "company_group": "fubon_life",
+        "currency_basis": "foreign_currency",
+        "maturity_trigger": "age_110_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_110_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 110,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": True,
+        "minor_disability": True,
+    },
+    ("tii-life-053", "209131MV1A02023A11C90000000"): {
+        "company_group": "fubon_life",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_110_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_110_policy_anniversary",
+        "maturity_interest": True,
+        "maturity_age": 110,
+        "net_risk_formula_type": "jia_yi",
+        "minor_death": True,
+        "minor_disability": False,
+    },
+    ("tii-life-053", "209131MV1A02123B11C90000000"): {
+        "company_group": "fubon_life",
+        "currency_basis": "foreign_currency",
+        "maturity_trigger": "age_110_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_110_policy_anniversary",
+        "maturity_interest": True,
+        "maturity_age": 110,
+        "net_risk_formula_type": "jia_yi",
+        "minor_death": True,
+        "minor_disability": False,
+    },
+    ("tii-life-053", "209131MV1A00723A11Z90000000"): {
+        "company_group": "fubon_life",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_110_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_110_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 110,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": True,
+        "minor_disability": True,
+    },
+    ("tii-life-053", "209131MV1A01823A11C90000000"): {
+        "company_group": "fubon_life",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_110_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_110_policy_anniversary",
+        "maturity_interest": True,
+        "maturity_age": 110,
+        "net_risk_formula_type": "jia_yi",
+        "minor_death": True,
+        "minor_disability": False,
+    },
+    ("tii-life-017", "203131MV1A02323A11Z90000003"): {
+        "company_group": "prudential",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_99_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_99_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 99,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": False,
+        "minor_disability": False,
+    },
+    ("tii-life-017", "203131MV1A02423B11Z90000000"): {
+        "company_group": "prudential",
+        "currency_basis": "foreign_currency",
+        "maturity_trigger": "age_99_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_99_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 99,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": True,
+        "minor_disability": False,
+    },
+    ("tii-life-167", "264131MV1AVLO23A11Z90000004"): {
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_96_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_96_policy_anniversary",
+        "maturity_interest": True,
+        "maturity_age": 96,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": False,
+        "minor_disability": False,
+    },
+    ("tii-life-167", "264131MV1AVLW23A11Z90000002"): {
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_100_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_100_policy_anniversary",
+        "maturity_interest": True,
+        "maturity_age": 100,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": False,
+        "minor_disability": False,
+    },
+    ("tii-life-167", "264131MV1AVLN23A11Z90000002"): {
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "maturity_trigger": "age_110_policy_anniversary",
+        "maturity_formula": "policy_account_value_at_age_110_policy_anniversary",
+        "maturity_interest": False,
+        "maturity_age": 110,
+        "net_risk_formula_type": "not_classified",
+        "minor_death": True,
+        "minor_disability": False,
+    },
+}
+for (batch_id, product_id), expected in investment_life_expected.items():
+    document = investment_life_document(batch_id, product_id)
+    schedule = parse_investment_life_guaranteed_face_amount_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "investment-life-guaranteed-face-amount-formula-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == "face_amount"
+    assert schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["product_family"] == (
+        "investment-linked-life-guaranteed-face-amount"
+    )
+    assert characteristics["company_group"] == expected["company_group"]
+    assert characteristics["currency_basis"] == expected["currency_basis"]
+    assert characteristics["maturity_trigger"] == expected["maturity_trigger"]
+    if expected["maturity_age"] is None:
+        assert "maturity_age" not in characteristics
+    else:
+        assert characteristics["maturity_age"] == expected["maturity_age"]
+    assert characteristics["maturity_benefit_formula"] == expected["maturity_formula"]
+    assert characteristics["maturity_interest_crediting"] == expected["maturity_interest"]
+    assert (
+        characteristics["net_amount_at_risk_formula_type"]
+        == expected["net_risk_formula_type"]
+    )
+    assert (
+        characteristics["minor_death_before_age_15_account_value_rule"]
+        == expected["minor_death"]
+    )
+    assert (
+        characteristics["minor_disability_before_age_15_account_value_rule"]
+        == expected["minor_disability"]
+    )
+    assert characteristics["death_benefit_formula"] == "policy_insurance_amount"
+    assert characteristics["total_disability_benefit_formula"] == "policy_insurance_amount"
+    assert characteristics["complete_disability_table_item_count"] == 7
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "maturity-benefit",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+    }
+    assert entries["death-or-funeral-benefit"]["rate_percent"] == 100
+    assert entries["death-or-funeral-benefit"]["unit_key"] == "policy_insurance_amount"
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+    assert entries["maturity-benefit"]["basis"] == "policy_recorded_limit"
+
+    source_path = (
+        {
+            "tii-life-011": TII_LIFE_011_ROOT,
+            "tii-life-017": TII_LIFE_017_ROOT,
+            "tii-life-029": TII_LIFE_029_ROOT,
+            "tii-life-053": TII_LIFE_053_ROOT,
+            "tii-life-167": TII_LIFE_167_ROOT,
+        }[batch_id]
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = indexed_document["text"].split("【祝壽保險金的申領】")[0]
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert (
+        parse_investment_life_guaranteed_face_amount_formula(completed_document)
+        == schedule
+    )
+    assert parse_investment_life_guaranteed_face_amount_formula(
+        investment_life_document(batch_id, product_id, "F")
+    ) is None
+    assert parse_investment_life_guaranteed_face_amount_formula(
+        {**document, "file_name": f"{product_id}-F.pdf"}
+    ) is None
+
+first_investment_life_document = investment_life_document(
+    "tii-life-017", "203131MU1A00123A11Z90000042"
+)
+assert parse_investment_life_guaranteed_face_amount_formula(
+    {**first_investment_life_document, "product_id": "203131MU1A00123A11Z90000041"}
+) is None
+assert parse_investment_life_guaranteed_face_amount_formula(
+    {
+        **first_investment_life_document,
+        "text": first_investment_life_document["text"].replace(
+            "按「保險金額」給付身故保險金",
+            "按「其他金額」給付身故保險金",
+            1,
+        ),
+    }
+) is None
+
+variable_annuity_expected = {
+    ("tii-life-012", "202421MU1A65413A11C90000000"): {
+        "company_group": "taiwan_life",
+        "currency_basis": "twd",
+        "death_code": "minimum-death-benefit-before-annuity-start",
+    },
+    ("tii-life-012", "202421MU1A65513B11C90000000"): {
+        "company_group": "taiwan_life",
+        "currency_basis": "foreign_currency",
+        "death_code": "minimum-death-benefit-before-annuity-start",
+    },
+    ("tii-life-012", "202421M31AZP003"): {
+        "company_group": "taiwan_life",
+        "currency_basis": "foreign_currency",
+        "death_code": "account-value-return-before-annuity-start",
+    },
+    ("tii-life-012", "202421M31AZS001"): {
+        "company_group": "taiwan_life",
+        "currency_basis": "foreign_currency",
+        "death_code": "account-value-return-before-annuity-start",
+    },
+    ("tii-life-054", "209421M31A00359"): {
+        "company_group": "fubon_life",
+        "currency_basis": "twd",
+        "death_code": "account-value-return-before-annuity-start",
+        "guarantee_period_options_years": [5, 10, 15, 20],
+    },
+    ("tii-life-054", "209421MV1A00223A11Z90000034"): {
+        "company_group": "fubon_life",
+        "currency_basis": "twd",
+        "death_code": "account-value-return-before-annuity-start",
+        "guarantee_period_options_years": [5, 10, 15, 20],
+    },
+    ("tii-life-168", "264421M31AEVA00"): {
+        "company_group": "global_life",
+        "currency_basis": "twd",
+        "death_code": "account-value-return-before-annuity-start",
+        "guarantee_period_options_years": [10],
+        "max_annuity_start_age": 80,
+        "max_annuity_payment_age": 110,
+        "full_account_value": True,
+    },
+}
+
+for (batch_id, product_id), expected in variable_annuity_expected.items():
+    document = variable_annuity_document(batch_id, product_id)
+    schedule = parse_variable_annuity_account_value_formula(document)
+    assert schedule is not None
+    assert schedule["selection_type"] == "account_value"
+    assert schedule["input_mode"] == "account_value"
+    assert schedule["selection_label"]
+    version = schedule["version_characteristics"]
+    assert version["product_family"] == (
+        "investment-linked-variable-annuity-account-value"
+    )
+    assert version["company_group"] == expected["company_group"]
+    assert version["currency_basis"] == expected["currency_basis"]
+    if "guarantee_period_options_years" in expected:
+        assert (
+            version["guarantee_period_options_years"]
+            == expected["guarantee_period_options_years"]
+        )
+    if "max_annuity_start_age" in expected:
+        assert version["max_annuity_start_age"] == expected["max_annuity_start_age"]
+    if "max_annuity_payment_age" in expected:
+        assert version["max_annuity_payment_age"] == expected["max_annuity_payment_age"]
+
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert "annuity-payment" in entries
+    assert entries["annuity-payment"]["basis"] == "policy_account_value"
+    assert (
+        entries["annuity-payment"]["calculation_basis"]
+        == "account_value_annuity_factor"
+    )
+    assert entries["annuity-payment"]["unit_key"] == "annuity_amount"
+    assert expected["death_code"] in entries
+    assert "unpaid-annuity-balance" in entries
+    if expected.get("full_account_value"):
+        assert "full-account-value-withdrawal-at-annuity-start" in entries
+
+    assert parse_variable_annuity_account_value_formula(
+        {**document, "file_name": f"{product_id}-F.pdf"}
+    ) is None
+
+
+kgi_china_legacy_investment_expected = {
+    "205141M31A53806": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": True,
+    },
+    "205141M31A53807": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": True,
+    },
+    "205141M31A53810": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": False,
+    },
+    "205141M31A53811": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": False,
+    },
+    "205141M31A53814": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": False,
+    },
+    "205141M31A53815": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+    },
+    "205141M31A54006": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": True,
+    },
+    "205141M31A54007": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "current_year_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": True,
+    },
+    "205141M31A54008": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "current_year_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": True,
+    },
+    "205141M31A54009": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "current_year_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": True,
+    },
+    "205141M31A54010": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "current_year_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": True,
+    },
+    "205141M31A54011": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "current_year_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": False,
+    },
+    "205141M31A54012": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "current_year_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": False,
+    },
+    "205141M31A54013": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "current_year_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": False,
+    },
+    "205141M31A54014": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "current_year_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": False,
+    },
+    "205141M31A54015": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "current_year_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": False,
+    },
+    "205141M31A54502": {
+        "formula": "greater_of_face_amount_plus_account_value_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+    },
+    "205141M31A54702": {
+        "formula": "greater_of_face_amount_plus_account_value_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+    },
+    "205141M31A54902": {
+        "formula": "greater_of_face_amount_plus_account_value_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A54100": {
+        "formula": "greater_of_face_amount_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": True,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A54101": {
+        "formula": "greater_of_face_amount_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": True,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A54110": {
+        "formula": "greater_of_face_amount_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A54200": {
+        "formula": "greater_of_face_amount_or_account_value_times_value_ratio",
+        "basis": "basic_premium_times_face_amount_ratio",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A54202": {
+        "formula": "greater_of_face_amount_or_account_value_times_value_ratio",
+        "basis": "basic_premium_times_face_amount_ratio",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A54203": {
+        "formula": "greater_of_face_amount_or_account_value_times_value_ratio",
+        "basis": "basic_premium_times_face_amount_ratio",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A54204": {
+        "formula": "greater_of_face_amount_or_account_value_times_value_ratio",
+        "basis": "basic_premium_times_face_amount_ratio",
+        "valuation_schedule_ref": "附表四",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A54402": {
+        "formula": "greater_of_face_amount_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A54403": {
+        "formula": "selectable_type_a_greater_of_basic_amount_or_account_value_times_value_ratio_type_b_greater_of_basic_amount_plus_account_value_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A54602": {
+        "formula": "greater_of_face_amount_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A54802": {
+        "formula": "greater_of_face_amount_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A55000": {
+        "formula": "greater_of_face_amount_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A55001": {
+        "formula": "greater_of_face_amount_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A55002": {
+        "formula": "greater_of_basic_amount_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A55100": {
+        "formula": "greater_of_face_amount_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "人民幣",
+    },
+    "205141M31A55200": {
+        "formula": "greater_of_face_amount_plus_account_value_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A55201": {
+        "formula": "greater_of_face_amount_plus_account_value_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205141M31A55202": {
+        "formula": "selectable_type_a_greater_of_basic_amount_or_account_value_times_value_ratio_type_b_greater_of_basic_amount_plus_account_value_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205131MV1A00123A11C90000000": {
+        "formula": "greater_of_basic_amount_or_policy_account_value",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205131MV1A00323A11C90000016": {
+        "formula": "face_amount_plus_policy_account_value",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205131MV1A00423A11C90000004": {
+        "formula": "selectable_type_a_greater_of_basic_amount_or_account_value_times_value_ratio_type_b_greater_of_basic_amount_plus_account_value_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205131MV1A00523A11C90000003": {
+        "formula": "greater_of_basic_amount_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205131MV1A00623A11C90000000": {
+        "formula": "selectable_type_a_greater_of_basic_amount_or_account_value_times_value_ratio_type_b_greater_of_basic_amount_plus_account_value_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205131MV1A00923A11C90000000": {
+        "formula": "greater_of_basic_amount_plus_account_value_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+    "205131MV1A01023A11C90000000": {
+        "formula": "greater_of_basic_amount_or_account_value_times_value_ratio",
+        "basis": "policy_insurance_amount",
+        "valuation_schedule_ref": "附表三",
+        "premium_waiver": False,
+        "currency_basis": "twd",
+        "payment_currency_label": "新台幣",
+    },
+}
+for product_id, expected in kgi_china_legacy_investment_expected.items():
+    document = investment_life_document("tii-life-029", product_id)
+    schedule = parse_kgi_china_legacy_investment_life_maturity_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "kgi-china-legacy-investment-life-maturity-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["product_family"] == (
+        "kgi-china-legacy-investment-linked-life-maturity-face-amount"
+    )
+    assert characteristics["company_group"] == "kgi_china_life"
+    assert characteristics["currency_basis"] == expected.get("currency_basis", "twd")
+    assert (
+        characteristics["payment_currency_label"]
+        == expected.get("payment_currency_label", "新台幣")
+    )
+    assert characteristics["death_total_disability_amount_formula"] == expected["formula"]
+    assert characteristics["insurance_amount_basis"] == expected["basis"]
+    assert characteristics["valuation_schedule_ref"] == expected["valuation_schedule_ref"]
+    assert characteristics["premium_waiver_available"] == expected["premium_waiver"]
+    assert characteristics["maturity_trigger"] == "age_99_policy_anniversary"
+    assert characteristics["maturity_age"] == 99
+    assert (
+        characteristics["maturity_benefit_formula"]
+        == "policy_account_value_at_age_99_policy_anniversary"
+    )
+    assert characteristics["death_benefit_formula"] == (
+        "death_total_disability_insurance_amount"
+    )
+    assert characteristics["total_disability_benefit_formula"] == (
+        "death_total_disability_insurance_amount"
+    )
+    assert characteristics["minor_death_before_age_15_account_value_rule"] is True
+    assert (
+        characteristics["minor_disability_before_age_15_account_value_rule"]
+        is True
+    )
+    assert characteristics["legacy_disability_wording"] is True
+    assert characteristics["disability_term"] == "殘廢"
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    expected_entries = {
+        "maturity-benefit",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+    }
+    if expected["premium_waiver"]:
+        expected_entries.add("disability-premium-waiver")
+        assert entries["disability-premium-waiver"]["calculation_basis"] == "waiver"
+    assert set(entries) == expected_entries
+    assert entries["maturity-benefit"]["unit_key"] == "policy_account_value"
+    assert entries["death-or-funeral-benefit"]["rate_percent"] == 100
+    assert (
+        entries["death-or-funeral-benefit"]["unit_key"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+
+    source_path = TII_LIFE_029_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert (
+        parse_kgi_china_legacy_investment_life_maturity_face_amount(completed_document)
+        == schedule
+    )
+    assert parse_kgi_china_legacy_investment_life_maturity_face_amount(
+        {
+            **document,
+            "document_type": "product_summary",
+            "file_name": f"{product_id}-F.pdf",
+        }
+    ) is None
+
+first_kgi_china_legacy_investment_document = investment_life_document(
+    "tii-life-029", "205141M31A53806"
+)
+assert parse_kgi_china_legacy_investment_life_maturity_face_amount(
+    {**first_kgi_china_legacy_investment_document, "product_id": "205141M31A53805"}
+) is None
+assert parse_kgi_china_legacy_investment_life_maturity_face_amount(
+    {
+        **first_kgi_china_legacy_investment_document,
+        "text": first_kgi_china_legacy_investment_document["text"].replace(
+            "滿期保險金的給付",
+            "其他保險金的給付",
+            1,
+        ),
+    }
+) is None
+
+taiwan_xinxiangle_product_id = "202131MV1AUFL23A11C90000018"
+taiwan_xinxiangle_document = investment_life_document(
+    "tii-life-011", taiwan_xinxiangle_product_id
+)
+taiwan_xinxiangle_schedule = (
+    parse_taiwan_xinxiangle_investment_life_age111_value_bonus(
+        taiwan_xinxiangle_document
+    )
+)
+assert taiwan_xinxiangle_schedule is not None
+taiwan_xinxiangle_integrated = parse_plan_table_with_parser(
+    taiwan_xinxiangle_document
+)
+assert taiwan_xinxiangle_integrated is not None
+assert (
+    taiwan_xinxiangle_integrated[0]
+    == "taiwan-xinxiangle-investment-life-age111-value-bonus-v1"
+)
+assert taiwan_xinxiangle_integrated[1] == taiwan_xinxiangle_schedule
+assert taiwan_xinxiangle_schedule["selection_type"] == "face_amount"
+assert taiwan_xinxiangle_schedule["input_mode"] == "face_amount"
+assert taiwan_xinxiangle_schedule["selection_label"] == "基本保額"
+taiwan_xinxiangle_characteristics = taiwan_xinxiangle_schedule[
+    "version_characteristics"
+]
+assert (
+    taiwan_xinxiangle_characteristics["product_family"]
+    == "taiwan-xinxiangle-investment-linked-life-age111-value-bonus"
+)
+assert taiwan_xinxiangle_characteristics["company_group"] == "taiwan_life"
+assert taiwan_xinxiangle_characteristics["insurance_type_required"] is True
+assert taiwan_xinxiangle_characteristics["insurance_type_options"] == [
+    "甲型",
+    "乙型",
+]
+assert (
+    taiwan_xinxiangle_characteristics["net_amount_at_risk_formula_type"]
+    == "type_a_basic_amount_less_account_value_nonnegative_type_b_basic_amount"
+)
+assert taiwan_xinxiangle_characteristics["maturity_age"] == 111
+assert (
+    taiwan_xinxiangle_characteristics["maturity_trigger"]
+    == "age_111_policy_anniversary"
+)
+assert (
+    taiwan_xinxiangle_characteristics["maturity_benefit_formula"]
+    == "policy_insurance_amount_at_age_111_policy_anniversary"
+)
+assert (
+    taiwan_xinxiangle_characteristics["survival_benefit_formula"]
+    == "policy_insurance_amount_at_age_111_policy_anniversary"
+)
+assert taiwan_xinxiangle_characteristics["policy_value_bonus_available"] is True
+assert taiwan_xinxiangle_characteristics["policy_value_bonus_rate_percent"] == 0.5
+assert taiwan_xinxiangle_characteristics["policy_value_bonus_frequency_years"] == 3
+assert (
+    taiwan_xinxiangle_characteristics["minor_death_before_age_15_account_value_rule"]
+    is True
+)
+assert (
+    taiwan_xinxiangle_characteristics[
+        "minor_disability_before_age_15_account_value_rule"
+    ]
+    is True
+)
+assert (
+    taiwan_xinxiangle_characteristics["complete_disability_schedule_ref"]
+    == "附表五"
+)
+taiwan_xinxiangle_entries = {
+    entry["id"]: entry for entry in taiwan_xinxiangle_schedule["coverage_entries"]
+}
+assert set(taiwan_xinxiangle_entries) == {
+    "survival-benefit",
+    "death-or-funeral-benefit",
+    "total-disability-benefit",
+    "policy-value-bonus",
+}
+assert taiwan_xinxiangle_entries["survival-benefit"]["rate_percent"] == 100
+assert (
+    taiwan_xinxiangle_entries["survival-benefit"]["unit_key"]
+    == "policy_insurance_amount"
+)
+assert taiwan_xinxiangle_entries["policy-value-bonus"]["rate_percent"] == 0.5
+assert (
+    taiwan_xinxiangle_entries["policy-value-bonus"]["unit_key"]
+    == "average_daily_policy_account_value"
+)
+taiwan_xinxiangle_source_path = (
+    TII_LIFE_011_ROOT
+    / taiwan_xinxiangle_product_id
+    / f"{taiwan_xinxiangle_product_id}-A.pdf"
+)
+taiwan_xinxiangle_indexed_document = {
+    key: value
+    for key, value in taiwan_xinxiangle_document.items()
+    if key not in {"page_count", "pages_parsed"}
+}
+taiwan_xinxiangle_indexed_document["text"] = ""
+taiwan_xinxiangle_completed_document = complete_strict_source_document(
+    taiwan_xinxiangle_indexed_document, taiwan_xinxiangle_source_path
+)
+assert (
+    parse_taiwan_xinxiangle_investment_life_age111_value_bonus(
+        taiwan_xinxiangle_completed_document
+    )
+    == taiwan_xinxiangle_schedule
+)
+assert (
+    parse_taiwan_xinxiangle_investment_life_age111_value_bonus(
+        investment_life_document("tii-life-011", taiwan_xinxiangle_product_id, "F")
+    )
+    is None
+)
+assert (
+    parse_taiwan_xinxiangle_investment_life_age111_value_bonus(
+        {**taiwan_xinxiangle_document, "product_id": "202131MV1AUFL23A11C90000017"}
+    )
+    is None
+)
+assert (
+    parse_taiwan_xinxiangle_investment_life_age111_value_bonus(
+        {
+            **taiwan_xinxiangle_document,
+            "text": taiwan_xinxiangle_document["text"].replace(
+                "每日保單帳戶價值之平均值的千分之五",
+                "每日保單帳戶價值之平均值",
+                1,
+            ),
+        }
+    )
+    is None
+)
+
+taiwan_age111_variable_universal_expected = {
+    "202131MV1A34923B11C90000009": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "美元",
+        "terms_revision": "第9次部分變更",
+        "insurance_type_options": ["甲型", "乙型", "丙型", "丁型"],
+        "entry_count": 3,
+        "policy_value_bonus_available": False,
+    },
+    "202131MV1A38223A11C90000006": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "terms_revision": "第6次部分變更",
+        "insurance_type_options": ["甲型", "乙型", "丙型", "丁型"],
+        "entry_count": 4,
+        "policy_value_bonus_available": True,
+        "policy_value_bonus_type": "fixed_rate",
+        "policy_value_bonus_rate_percent": 0.2,
+    },
+    "202131MV1A38623A11C90000006": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "terms_revision": "第6次部分變更",
+        "insurance_type_options": ["甲型", "乙型", "丙型", "丁型"],
+        "entry_count": 4,
+        "policy_value_bonus_available": True,
+        "policy_value_bonus_type": "appendix_five_schedule",
+        "policy_value_bonus_schedule_len": 6,
+    },
+    "202131MV1A62923J11Z90000000": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "人民幣",
+        "terms_revision": "原始版本",
+        "insurance_type_options": ["甲型", "乙型", "丙型", "丁型"],
+        "entry_count": 3,
+        "policy_value_bonus_available": False,
+    },
+    "202131MV1A66823Z11Z90000000": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "約定外幣",
+        "terms_revision": "原始版本",
+        "insurance_type_options": ["甲型", "乙型"],
+        "entry_count": 3,
+        "policy_value_bonus_available": False,
+    },
+}
+for product_id, expected in taiwan_age111_variable_universal_expected.items():
+    document = investment_life_document("tii-life-011", product_id)
+    schedule = parse_taiwan_age111_variable_universal_life(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-age111-variable-universal-life-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "基本保額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["product_family"] == "taiwan-age111-variable-universal-life"
+    assert characteristics["company_group"] == "taiwan_life"
+    assert characteristics["currency_basis"] == expected["currency_basis"]
+    assert characteristics["payment_currency_label"] == expected["payment_currency_label"]
+    assert characteristics["terms_revision"] == expected["terms_revision"]
+    assert characteristics["investment_linked_policy"] is True
+    assert characteristics["variable_universal_life_policy"] is True
+    assert (
+        characteristics["foreign_currency_policy"]
+        is (expected["currency_basis"] == "foreign_currency")
+    )
+    assert characteristics["insurance_type_required"] is True
+    assert (
+        characteristics["insurance_type_options"]
+        == expected["insurance_type_options"]
+    )
+    assert (
+        characteristics["insurance_amount_formula"]
+        == "net_amount_at_risk_plus_policy_account_value"
+    )
+    assert (
+        characteristics["death_total_disability_amount_formula"]
+        == "net_amount_at_risk_plus_policy_account_value"
+    )
+    assert characteristics["net_amount_at_risk_required"] is True
+    assert characteristics["insurance_deduction_amount_required"] is True
+    assert characteristics["maturity_age"] == 111
+    assert characteristics["maturity_trigger"] == "age_111_policy_anniversary"
+    assert characteristics["valuation_schedule_ref"] == "附表四"
+    assert characteristics["complete_disability_schedule_ref"] == "附表一"
+    assert characteristics["complete_disability_table_item_count"] == 7
+    assert (
+        characteristics["minor_death_before_age_15_account_value_rule"]
+        is True
+    )
+    assert (
+        characteristics["minor_disability_before_age_15_account_value_rule"]
+        is True
+    )
+    assert characteristics["policy_value_bonus_available"] is expected[
+        "policy_value_bonus_available"
+    ]
+    if expected["policy_value_bonus_available"]:
+        assert (
+            characteristics["policy_value_bonus_type"]
+            == expected["policy_value_bonus_type"]
+        )
+        if "policy_value_bonus_rate_percent" in expected:
+            assert (
+                characteristics["policy_value_bonus_rate_percent"]
+                == expected["policy_value_bonus_rate_percent"]
+            )
+        if "policy_value_bonus_schedule_len" in expected:
+            assert len(characteristics["policy_value_bonus_schedule"]) == expected[
+                "policy_value_bonus_schedule_len"
+            ]
+    else:
+        assert "policy_value_bonus_type" not in characteristics
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    expected_entries = {
+        "maturity-benefit",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+    }
+    if expected["policy_value_bonus_available"]:
+        expected_entries.add("policy-value-bonus")
+    assert set(entries) == expected_entries
+    assert len(entries) == expected["entry_count"]
+    assert entries["maturity-benefit"]["unit_key"] == (
+        "net_amount_at_risk_plus_policy_account_value"
+    )
+    assert entries["death-or-funeral-benefit"]["unit_key"] == "policy_insurance_amount"
+    assert entries["total-disability-benefit"]["unit_key"] == "policy_insurance_amount"
+    if "policy-value-bonus" in entries:
+        assert (
+            entries["policy-value-bonus"]["unit_key"]
+            == "average_daily_policy_account_value"
+        )
+
+    source_path = TII_LIFE_011_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value for key, value in document.items() if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert parse_taiwan_age111_variable_universal_life(completed_document) == schedule
+    assert (
+        parse_taiwan_age111_variable_universal_life(
+            investment_life_document("tii-life-011", product_id, "F")
+        )
+        is None
+    )
+    assert (
+        parse_taiwan_age111_variable_universal_life(
+            {**document, "product_id": "wrong-product"}
+        )
+        is None
+    )
+
+first_taiwan_age111_variable_universal_document = investment_life_document(
+    "tii-life-011", "202131MV1A34923B11C90000009"
+)
+assert (
+    parse_taiwan_age111_variable_universal_life(
+        {
+            **first_taiwan_age111_variable_universal_document,
+            "text": first_taiwan_age111_variable_universal_document["text"].replace(
+                "主要給付項目",
+                "主要項目",
+            ),
+        }
+    )
+    is None
+)
+
+taiwan_xinfumanzai_usd_variable_life_ids = [
+    "202131MV1A96022B11Z90000000",
+    "202131MV1A96022B11Z90000001",
+    "202131MV1A96022B11Z90000002",
+    "202131MV1A96022B11Z90000003",
+]
+for product_id in taiwan_xinfumanzai_usd_variable_life_ids:
+    document = investment_life_document("tii-life-011", product_id)
+    schedule = parse_taiwan_xinfumanzai_usd_variable_life(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-xinfumanzai-usd-variable-life-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "基本保額"
+    characteristics = schedule["version_characteristics"]
+    assert (
+        characteristics["product_family"]
+        == "taiwan-xinfumanzai-usd-variable-life"
+    )
+    assert characteristics["company_group"] == "taiwan_life"
+    assert characteristics["currency_basis"] == "foreign_currency"
+    assert characteristics["payment_currency_label"] == "美元"
+    assert (
+        characteristics["terms_revision"]
+        == TAIWAN_XINFUMANZAI_USD_VARIABLE_LIFE_REVISIONS[product_id][
+            "terms_revision"
+        ]
+    )
+    assert (
+        characteristics["filing_number"]
+        == TAIWAN_XINFUMANZAI_USD_VARIABLE_LIFE_REVISIONS[product_id][
+            "filing_number"
+        ]
+    )
+    assert characteristics["investment_linked_policy"] is True
+    assert characteristics["variable_life_policy"] is True
+    assert characteristics["single_premium_policy"] is True
+    assert characteristics["foreign_currency_policy"] is True
+    assert (
+        characteristics["insurance_amount_formula"]
+        == "basic_amount_plus_policy_account_value"
+    )
+    assert (
+        characteristics["death_total_disability_amount_formula"]
+        == "basic_amount_plus_policy_account_value"
+    )
+    assert characteristics["net_amount_at_risk_required"] is True
+    assert characteristics["net_amount_at_risk_formula_type"] == "basic_amount"
+    assert characteristics["basic_amount_required"] is True
+    assert (
+        characteristics["maturity_trigger"]
+        == "investment_target_operation_period_maturity"
+    )
+    assert (
+        characteristics["maturity_benefit_formula"]
+        == "appendix_six_investment_target_maturity_formula"
+    )
+    assert characteristics["maturity_interest_crediting"] is True
+    assert (
+        characteristics["maturity_interest_rate_source"]
+        == "specified_bank_usd_demand_deposit_rate_daily_simple_interest"
+    )
+    assert (
+        characteristics["maturity_reduced_by_partial_withdrawal_or_policy_loan_offset"]
+        is True
+    )
+    assert characteristics["reinstatement_excludes_maturity_benefit"] is True
+    assert characteristics["valuation_schedule_ref"] == "附表四"
+    assert characteristics["linked_investment_appendix"] == "附表六之一"
+    assert characteristics["linked_investment_type"] == "international_bond"
+    assert characteristics["unlinked_investment_appendices"] == [
+        "附表六之二",
+        "附表六之三",
+    ]
+    assert characteristics["account_value_return_on_time_bar"] is True
+    assert characteristics["guardianship_funeral_benefit_rule"] is True
+    assert characteristics["funeral_benefit_limit_rule"] is True
+    assert characteristics["funeral_benefit_excludes_account_value"] is True
+    assert characteristics["complete_disability_schedule_ref"] == "附表一"
+    assert characteristics["complete_disability_table_item_count"] == 7
+    assert characteristics["disability_term"] == "失能"
+    assert characteristics["total_disability_term"] == "完全失能"
+    assert characteristics["non_participating_policy"] is True
+    assert characteristics["policy_dividend_available"] is False
+
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "maturity-benefit",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+    }
+    assert entries["maturity-benefit"]["unit_key"] == (
+        "investment_target_maturity_formula"
+    )
+    assert entries["death-or-funeral-benefit"]["unit_key"] == "policy_insurance_amount"
+    assert entries["death-or-funeral-benefit"]["rate_percent"] == 100
+    assert entries["total-disability-benefit"]["unit_key"] == "policy_insurance_amount"
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+
+    source_path = TII_LIFE_011_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value for key, value in document.items() if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert parse_taiwan_xinfumanzai_usd_variable_life(completed_document) == schedule
+    assert (
+        parse_taiwan_xinfumanzai_usd_variable_life(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_taiwan_xinfumanzai_usd_variable_life(
+            {**document, "file_name": f"{product_id}-B.pdf"}
+        )
+        is None
+    )
+
+first_taiwan_xinfumanzai_usd_variable_life_document = investment_life_document(
+    "tii-life-011", "202131MV1A96022B11Z90000000"
+)
+assert "美元計價" in first_taiwan_xinfumanzai_usd_variable_life_document["text"]
+assert (
+    parse_taiwan_xinfumanzai_usd_variable_life(
+        {
+            **first_taiwan_xinfumanzai_usd_variable_life_document,
+            "text": first_taiwan_xinfumanzai_usd_variable_life_document[
+                "text"
+            ].replace("美元計價", ""),
+        }
+    )
+    is None
+)
+
+taiwan_xinfu_life_maturity_guarantee_expected = {
+    "202131MV1A59422A11Z90000001": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "terms_revision": "107-09-14-regulatory-revision",
+        "filing_number": "台壽字第1062330001號",
+        "foreign_currency_policy": False,
+    },
+    "202131MV1A59422A11Z90000002": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "terms_revision": "108-04-24-filing-revision",
+        "filing_number": "台壽字第1062330001號",
+        "foreign_currency_policy": False,
+    },
+    "202131MV1A59422A11Z90000003": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "terms_revision": "108-07-05-filing-revision",
+        "filing_number": "台壽字第1062330001號",
+        "foreign_currency_policy": False,
+    },
+    "202131MV1A59422A11Z90000004": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "terms_revision": "109-01-01-filing-revision",
+        "filing_number": "台壽字第1062330001號",
+        "foreign_currency_policy": False,
+    },
+    "202131MV1A59522B11Z90000001": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "美元",
+        "terms_revision": "107-09-14-regulatory-revision",
+        "filing_number": "台壽字第1062330002號",
+        "foreign_currency_policy": True,
+    },
+    "202131MV1A59522B11Z90000002": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "美元",
+        "terms_revision": "108-04-24-filing-revision",
+        "filing_number": "台壽字第1062330002號",
+        "foreign_currency_policy": True,
+    },
+    "202131MV1A59522B11Z90000003": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "美元",
+        "terms_revision": "108-07-05-filing-revision",
+        "filing_number": "台壽字第1062330002號",
+        "foreign_currency_policy": True,
+    },
+    "202131MV1A59522B11Z90000004": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "美元",
+        "terms_revision": "109-01-01-regulatory-revision",
+        "filing_number": "台壽字第1062330002號",
+        "foreign_currency_policy": True,
+    },
+}
+for product_id, expected in taiwan_xinfu_life_maturity_guarantee_expected.items():
+    document = investment_life_document("tii-life-011", product_id)
+    schedule = parse_taiwan_xinfu_life_maturity_guarantee(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-xinfu-life-maturity-guarantee-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "基本保額"
+    characteristics = schedule["version_characteristics"]
+    assert (
+        characteristics["product_family"]
+        == "taiwan-xinfu-life-investment-linked-life-maturity-guarantee"
+    )
+    assert characteristics["company_group"] == "taiwan_life"
+    assert characteristics["currency_basis"] == expected["currency_basis"]
+    assert (
+        characteristics["payment_currency_label"]
+        == expected["payment_currency_label"]
+    )
+    assert characteristics["terms_revision"] == expected["terms_revision"]
+    assert characteristics["filing_number"] == expected["filing_number"]
+    assert (
+        characteristics["foreign_currency_policy"]
+        is expected["foreign_currency_policy"]
+    )
+    assert characteristics["investment_linked_policy"] is True
+    assert characteristics["single_premium_policy"] is True
+    assert characteristics["insurance_amount_basis"] == (
+        "net_amount_at_risk_plus_policy_account_value"
+    )
+    assert characteristics["insurance_amount_formula"] == (
+        "net_amount_at_risk_plus_policy_account_value"
+    )
+    assert characteristics["net_amount_at_risk_required"] is True
+    assert characteristics["net_amount_at_risk_formula_type"] == "basic_amount"
+    assert characteristics["death_benefit_formula"] == "policy_insurance_amount"
+    assert (
+        characteristics["total_disability_benefit_formula"]
+        == "policy_insurance_amount"
+    )
+    assert (
+        characteristics["maturity_trigger"]
+        == "investment_target_operation_period_end"
+    )
+    assert characteristics["maturity_benefit_formula"] == (
+        "investment_target_formula_amount_or_policy_account_value_after_reinstatement"
+    )
+    assert (
+        characteristics["maturity_guaranteed_amount_formula_ref"]
+        == "附表六之一"
+    )
+    assert characteristics["maturity_income_amount_formula_ref"] == "附表六之二"
+    assert characteristics["policy_account_value_required"] is True
+    assert characteristics["investment_target_value_required"] is True
+    assert characteristics["valuation_schedule_ref"] == "附表四"
+    assert characteristics["funeral_benefit_limit_rule"] is True
+    assert characteristics["funeral_benefit_excludes_account_value"] is True
+    assert (
+        characteristics["minor_death_before_age_15_account_value_rule"]
+        is False
+    )
+    assert (
+        characteristics["minor_disability_before_age_15_account_value_rule"]
+        is False
+    )
+    assert characteristics["complete_disability_schedule_ref"] == "附表一"
+    assert characteristics["complete_disability_table_item_count"] == 7
+    assert characteristics["legacy_disability_wording"] is False
+    assert characteristics["disability_term"] == "失能"
+    assert characteristics["total_disability_term"] == "完全失能"
+    assert characteristics["non_participating_policy"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "maturity-guaranteed-amount",
+        "maturity-income-amount",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+    }
+    assert (
+        entries["maturity-guaranteed-amount"]["unit_key"]
+        == "appendix_6_1_formula_amount"
+    )
+    assert (
+        entries["maturity-income-amount"]["unit_key"]
+        == "appendix_6_2_formula_amount"
+    )
+    assert (
+        entries["death-or-funeral-benefit"]["unit_key"]
+        == "policy_insurance_amount"
+    )
+    assert entries["death-or-funeral-benefit"]["rate_percent"] == 100
+    assert entries["total-disability-benefit"]["unit_key"] == "policy_insurance_amount"
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+    assert "完全殘廢" not in " ".join(entry["name"] for entry in entries.values())
+
+    source_path = TII_LIFE_011_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert parse_taiwan_xinfu_life_maturity_guarantee(completed_document) == schedule
+    assert (
+        parse_taiwan_xinfu_life_maturity_guarantee(
+            investment_life_document("tii-life-011", product_id, "F")
+        )
+        is None
+    )
+
+first_taiwan_xinfu_life_document = investment_life_document(
+    "tii-life-011", "202131MV1A59422A11Z90000001"
+)
+assert (
+    parse_taiwan_xinfu_life_maturity_guarantee(
+        {**first_taiwan_xinfu_life_document, "product_id": "202131MV1A59422A11Z90000000"}
+    )
+    is None
+)
+assert (
+    parse_taiwan_xinfu_life_maturity_guarantee(
+        {
+            **first_taiwan_xinfu_life_document,
+            "text": first_taiwan_xinfu_life_document["text"].replace(
+                "滿期保證金額計算公式",
+                "滿期保證金額",
+                1,
+            ),
+        }
+    )
+    is None
+)
+
+taiwan_wudong_legacy_variable_universal_life_expected = {
+    "202191M31AZE002": "第2次部分變更",
+    "202191M31AZE003": "第3次部分變更",
+    "202191M31AZE004": "96-12-31-filing-revision",
+    "202191M31AZE005": "97-03-20-filing-revision",
+    "202191M31AZE006": "第6次部分變更",
+    "202191M31AZE007": "97-08-26-regulatory-revision",
+    "202191M31AZE008": "第8次部分變更",
+    "202191M31AZE009": "97-12-08-filing-revision",
+    "202191M31AZE010": "97-12-26-filing-revision",
+    "202191M31AZE011": "98-07-20-filing-revision",
+    "202191M31AZE012": "第12次部分變更",
+    "202191M31AZE014": "98-12-15-filing-revision",
+    "202191M31AZE015": "第15次部分變更",
+}
+for (
+    product_id,
+    terms_revision,
+) in taiwan_wudong_legacy_variable_universal_life_expected.items():
+    document = investment_life_document("tii-life-011", product_id)
+    schedule = parse_taiwan_wudong_legacy_variable_universal_life(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-wudong-legacy-variable-universal-life-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert (
+        characteristics["product_family"]
+        == "taiwan-wudong-legacy-variable-universal-life"
+    )
+    assert characteristics["company_group"] == "taiwan_life"
+    assert characteristics["currency_basis"] == "twd"
+    assert characteristics["payment_currency_label"] == "新台幣"
+    assert characteristics["terms_revision"] == terms_revision
+    assert characteristics["filing_number"] == "96台壽投商字第00064號"
+    assert characteristics["investment_linked_policy"] is True
+    assert characteristics["variable_universal_life_policy"] is True
+    assert characteristics["insurance_type_required"] is True
+    assert characteristics["insurance_type_options"] == ["甲型", "乙型"]
+    assert (
+        characteristics["insurance_amount_basis"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert (
+        characteristics["death_total_disability_amount_formula"]
+        == "contract_selected_formula_by_type_a_or_b"
+    )
+    assert characteristics["net_amount_at_risk_required"] is True
+    assert characteristics["net_amount_at_risk_formula_type"] == (
+        "death_total_disability_amount_less_account_value"
+    )
+    assert (
+        characteristics["terminal_illness_benefit_formula"]
+        == "50_percent_of_death_total_disability_insurance_amount"
+    )
+    assert characteristics["terminal_illness_rate_percent"] == 50
+    assert characteristics["terminal_illness_survival_months_max"] == 6
+    assert (
+        characteristics["terminal_illness_type_b_policy_value_multiplier_condition"]
+        is True
+    )
+    assert (
+        characteristics["maturity_benefit_formula"]
+        == "policy_account_value_at_age_110_policy_anniversary"
+    )
+    assert characteristics["maturity_trigger"] == "age_110_policy_anniversary"
+    assert characteristics["maturity_age"] == 110
+    assert characteristics["policy_account_value_required"] is True
+    assert characteristics["valuation_reference"] == (
+        "appendix_1_investment_target_unit_value_date"
+    )
+    assert characteristics["account_value_return_on_time_bar"] is True
+    assert characteristics["funeral_benefit_limit_rule"] is True
+    assert characteristics["funeral_benefit_excludes_account_value"] is True
+    assert characteristics["minor_death_before_age_14_account_value_rule"] is True
+    assert (
+        characteristics["minor_disability_before_age_14_account_value_rule"]
+        is False
+    )
+    assert characteristics["complete_disability_schedule_ref"] == "附件五"
+    assert characteristics["complete_disability_table_item_count"] == 7
+    assert characteristics["legacy_disability_wording"] is True
+    assert characteristics["disability_term"] == "殘廢"
+    assert characteristics["total_disability_term"] == "完全殘廢"
+    assert characteristics["policy_dividend_available"] is False
+    assert characteristics["non_participating_policy"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "survival-benefit",
+        "death-benefit",
+        "funeral-benefit",
+        "total-disability-benefit",
+        "terminal-illness-benefit",
+    }
+    assert entries["survival-benefit"]["unit_key"] == "policy_account_value"
+    assert entries["survival-benefit"]["rate_percent"] == 100
+    assert (
+        entries["death-benefit"]["unit_key"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert entries["death-benefit"]["rate_percent"] == 100
+    assert entries["funeral-benefit"]["unit_key"] == "net_amount_at_risk"
+    assert entries["funeral-benefit"]["rate_percent"] == 100
+    assert (
+        entries["total-disability-benefit"]["unit_key"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+    assert (
+        entries["terminal-illness-benefit"]["unit_key"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert entries["terminal-illness-benefit"]["rate_percent"] == 50
+
+    source_path = TII_LIFE_011_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert (
+        parse_taiwan_wudong_legacy_variable_universal_life(completed_document)
+        == schedule
+    )
+    assert (
+        parse_taiwan_wudong_legacy_variable_universal_life(
+            investment_life_document("tii-life-011", product_id, "F")
+        )
+        is None
+    )
+
+first_taiwan_wudong_document = investment_life_document(
+    "tii-life-011", "202191M31AZE004"
+)
+assert (
+    parse_taiwan_wudong_legacy_variable_universal_life(
+        {**first_taiwan_wudong_document, "product_id": "202191M31AZE003"}
+    )
+    is None
+)
+assert (
+    parse_taiwan_wudong_legacy_variable_universal_life(
+        {
+            **first_taiwan_wudong_document,
+            "text": first_taiwan_wudong_document["text"].replace(
+                "百分之五十給付生命末期保險金",
+                "給付生命末期保險金",
+                1,
+            ),
+        }
+    )
+    is None
+)
+
+taiwan_xindeyi_variable_universal_life_expected = {
+    "202191M31AZG002": "第2次部分變更",
+    "202191M31AZG003": "第3次部分變更",
+    "202191M31AZG004": "第4次部分變更",
+    "202191M31AZG005": "第5次部分變更",
+    "202191M31AZG006": "第6次部分變更",
+    "202191M31AZG007": "第7次部分變更",
+    "202191M31AZG008": "第8次部分變更",
+    "202191M31AZG009": "第9次部分變更",
+    "202191M31AZG010": "第10次部分變更",
+    "202191M31AZG011": "第11次部分變更",
+    "202191M31AZG012": "第12次部分變更",
+    "202191M31AZG013": "第13次部分變更",
+    "202191M31AZG014": "第14次部分變更",
+    "202191M31AZG015": "第15次部分變更",
+    "202191M31AZG016": "第16次部分變更",
+    "202191M31AZG017": "第17次部分變更",
+    "202191M31AZG018": "第18次部分變更",
+    "202191M31AZG019": "第19次部分變更",
+    "202191M31AZG020": "第20次部分變更",
+    "202191M31AZG021": "第21次部分變更",
+    "202191M31AZG022": "第22次部分變更",
+    "202191M31AZG023": "第23次部分變更",
+}
+for (
+    product_id,
+    terms_revision,
+) in taiwan_xindeyi_variable_universal_life_expected.items():
+    document = investment_life_document("tii-life-011", product_id)
+    schedule = parse_taiwan_xindeyi_variable_universal_life(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-xindeyi-variable-universal-life-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert (
+        characteristics["product_family"]
+        == "taiwan-xindeyi-variable-universal-life"
+    )
+    assert characteristics["company_group"] == "taiwan_life"
+    assert characteristics["currency_basis"] == "twd"
+    assert characteristics["payment_currency_label"] == "新台幣"
+    assert characteristics["terms_revision"] == terms_revision
+    assert characteristics["investment_linked_policy"] is True
+    assert characteristics["insurance_amount_basis"] == "policy_face_amount"
+    assert (
+        characteristics["death_total_disability_amount_formula"]
+        == "face_amount_plus_policy_account_value"
+    )
+    assert (
+        characteristics["death_benefit_formula"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert characteristics["funeral_benefit_formula"] == (
+        "policy_face_amount_subject_to_statutory_cap_plus_account_value_return"
+    )
+    assert (
+        characteristics["total_disability_benefit_formula"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert characteristics["maturity_trigger"] == "age_99_policy_anniversary"
+    assert characteristics["maturity_age"] == 99
+    assert characteristics["maturity_benefit_formula"] == (
+        "policy_account_value_at_age_99_policy_anniversary"
+    )
+    assert characteristics["policy_account_value_required"] is True
+    assert characteristics["face_amount_required"] is True
+    assert characteristics["valuation_schedule_ref"] == "附件四"
+    assert characteristics["funeral_benefit_limit_rule"] is True
+    assert characteristics["funeral_benefit_excludes_account_value"] is True
+    assert characteristics["minor_death_before_age_14_account_value_rule"] is True
+    assert (
+        characteristics["minor_disability_before_age_14_account_value_rule"]
+        is False
+    )
+    assert characteristics["complete_disability_schedule_ref"] == "附件五"
+    assert characteristics["complete_disability_table_item_count"] == 7
+    assert characteristics["legacy_disability_wording"] is True
+    assert characteristics["total_disability_term"] == "完全殘廢"
+    assert characteristics["policy_dividend_available"] is False
+    assert characteristics["non_participating_policy"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "maturity-benefit",
+        "death-benefit",
+        "funeral-benefit",
+        "total-disability-benefit",
+    }
+    assert entries["maturity-benefit"]["unit_key"] == "policy_account_value"
+    assert (
+        entries["death-benefit"]["unit_key"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert entries["death-benefit"]["rate_percent"] == 100
+    assert entries["funeral-benefit"]["unit_key"] == "policy_face_amount"
+    assert entries["funeral-benefit"]["rate_percent"] == 100
+    assert (
+        entries["total-disability-benefit"]["unit_key"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+
+    source_path = TII_LIFE_011_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert parse_taiwan_xindeyi_variable_universal_life(completed_document) == schedule
+    assert (
+        parse_taiwan_xindeyi_variable_universal_life(
+            investment_life_document("tii-life-011", product_id, "F")
+        )
+        is None
+    )
+
+first_taiwan_xindeyi_document = investment_life_document(
+    "tii-life-011", "202191M31AZG002"
+)
+assert (
+    parse_taiwan_xindeyi_variable_universal_life(
+        {**first_taiwan_xindeyi_document, "product_id": "202191M31AZG001"}
+    )
+    is None
+)
+assert (
+    parse_taiwan_xindeyi_variable_universal_life(
+        {
+            **first_taiwan_xindeyi_document,
+            "text": first_taiwan_xindeyi_document["text"].replace(
+                "保險金額與保單帳戶價值兩者之總和",
+                "保險金額",
+                1,
+            ),
+        }
+    )
+    is None
+)
+
+taiwan_zhiduoxin_variable_universal_life_expected = {
+    "202191M31AZQ000": (
+        "原始版本",
+        "face_amount_plus_policy_account_value",
+        "全殘廢",
+    ),
+    "202191M31AZQ001": (
+        "第1次部分變更",
+        "face_amount_plus_policy_account_value",
+        "全殘廢",
+    ),
+    "202191M31AZQ002": (
+        "第2次部分變更",
+        "face_amount_plus_policy_account_value",
+        "全殘廢",
+    ),
+    "202191M31AZQ003": (
+        "第3次部分變更",
+        "face_amount_plus_policy_account_value",
+        "全殘廢",
+    ),
+    "202191M31AZQ004": (
+        "第4次部分變更",
+        "face_amount_plus_policy_account_value",
+        "全殘廢",
+    ),
+    "202191M31AZQ005": (
+        "第5次部分變更",
+        "face_amount_plus_policy_account_value",
+        "全殘廢",
+    ),
+    "202191M31AZQ006": (
+        "第6次部分變更",
+        "net_amount_at_risk_plus_policy_account_value",
+        "完全殘廢",
+    ),
+    "202191MV1AZQ023A11C90000007": (
+        "第7次部分變更",
+        "net_amount_at_risk_plus_policy_account_value",
+        "完全殘廢",
+    ),
+    "202191MV1AZQ023A11C90000008": (
+        "第8次部分變更",
+        "net_amount_at_risk_plus_policy_account_value",
+        "完全殘廢",
+    ),
+}
+for (
+    product_id,
+    (
+        terms_revision,
+        death_total_disability_amount_formula,
+        total_disability_term,
+    ),
+) in taiwan_zhiduoxin_variable_universal_life_expected.items():
+    document = investment_life_document("tii-life-011", product_id)
+    schedule = parse_taiwan_zhiduoxin_variable_universal_life(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-zhiduoxin-variable-universal-life-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert (
+        characteristics["product_family"]
+        == "taiwan-zhiduoxin-variable-universal-life"
+    )
+    assert characteristics["company_group"] == "taiwan_life"
+    assert characteristics["currency_basis"] == "twd"
+    assert characteristics["payment_currency_label"] == "新台幣"
+    assert characteristics["terms_revision"] == terms_revision
+    assert (
+        characteristics["death_total_disability_amount_formula"]
+        == death_total_disability_amount_formula
+    )
+    assert characteristics["death_benefit_formula"] == (
+        "death_total_disability_insurance_amount_after_age_15"
+    )
+    assert characteristics["minor_death_account_value_return_formula"] == (
+        "policy_account_value_before_age_15"
+    )
+    assert characteristics["death_benefit_effective_age"] == 15
+    assert characteristics["minor_death_before_age_15_account_value_rule"] is True
+    assert (
+        characteristics["minor_disability_before_age_15_account_value_rule"]
+        is False
+    )
+    assert characteristics["mental_disability_funeral_benefit_rule"] is True
+    assert characteristics["maturity_trigger"] == "age_99_policy_anniversary"
+    assert characteristics["maturity_age"] == 99
+    assert characteristics["valuation_schedule_ref"] == "附件四"
+    assert characteristics["complete_disability_schedule_ref"] == "附件五"
+    assert characteristics["complete_disability_table_item_count"] == 7
+    assert characteristics["total_disability_term"] == total_disability_term
+    assert characteristics["policy_dividend_available"] is False
+    assert characteristics["non_participating_policy"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "maturity-benefit",
+        "death-benefit",
+        "minor-death-account-value-return",
+        "funeral-benefit",
+        "total-disability-benefit",
+    }
+    assert entries["maturity-benefit"]["unit_key"] == "policy_account_value"
+    assert (
+        entries["death-benefit"]["unit_key"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert entries["death-benefit"]["rate_percent"] == 100
+    assert (
+        entries["minor-death-account-value-return"]["unit_key"]
+        == "policy_account_value"
+    )
+    assert entries["funeral-benefit"]["unit_key"] == "policy_face_amount"
+    assert entries["funeral-benefit"]["rate_percent"] == 100
+    assert (
+        entries["total-disability-benefit"]["unit_key"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+
+    source_path = TII_LIFE_011_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert parse_taiwan_zhiduoxin_variable_universal_life(completed_document) == schedule
+    assert (
+        parse_taiwan_zhiduoxin_variable_universal_life(
+            investment_life_document("tii-life-011", product_id, "F")
+        )
+        is None
+    )
+
+first_taiwan_zhiduoxin_document = investment_life_document(
+    "tii-life-011", "202191M31AZQ000"
+)
+assert (
+    parse_taiwan_zhiduoxin_variable_universal_life(
+        {**first_taiwan_zhiduoxin_document, "product_id": "202191M31AZQ006"}
+    )
+    is None
+)
+assert (
+    parse_taiwan_zhiduoxin_variable_universal_life(
+        {
+            **first_taiwan_zhiduoxin_document,
+            "text": first_taiwan_zhiduoxin_document["text"].replace(
+                "滿十五足歲之日起發生效力",
+                "滿十五足歲",
+                1,
+            ),
+        }
+    )
+    is None
+)
+
+global_ritai_financial_expert_product_ids = [
+    "262141M31A00200",
+    "262141M31A00201",
+    "262141M31A00202",
+    "262141M31A00203",
+    "262141M31A00204",
+    "262141M31A00205",
+    "262141M31A00206",
+    "262141M31A00207",
+    "262141M31A00208",
+    "262141M31A00209",
+    "262141M31A00210",
+    "262141M31A00211",
+]
+global_ritai_formula = (
+    "selectable_type_a_greater_of_face_amount_or_policy_account_value_"
+    "type_b_face_amount_plus_policy_account_value"
+)
+for product_id in global_ritai_financial_expert_product_ids:
+    document = investment_life_document("tii-life-161", product_id)
+    schedule = parse_global_ritai_financial_expert_variable_universal_life(
+        document
+    )
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert (
+        integrated[0]
+        == "global-ritai-financial-expert-variable-universal-life-v1"
+    )
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert (
+        characteristics["product_family"]
+        == "global-ritai-financial-expert-variable-universal-life"
+    )
+    assert characteristics["company_group"] == "global_life"
+    assert characteristics["currency_basis"] == "twd"
+    assert characteristics["payment_currency_label"] == "新台幣"
+    assert characteristics["insurance_type_required"] is True
+    assert characteristics["insurance_type_options"] == ["A型", "B型"]
+    assert characteristics["insurance_amount_basis"] == "policy_face_amount"
+    assert (
+        characteristics["death_total_disability_amount_formula"]
+        == global_ritai_formula
+    )
+    assert characteristics["death_benefit_formula"] == (
+        "death_total_disability_insurance_amount"
+    )
+    assert characteristics["total_disability_benefit_formula"] == (
+        "death_total_disability_insurance_amount"
+    )
+    assert characteristics["maturity_trigger"] == "age_100_policy_anniversary"
+    assert characteristics["maturity_age"] == 100
+    assert characteristics["maturity_benefit_formula"] == (
+        "policy_account_value_at_age_100_policy_anniversary"
+    )
+    assert characteristics["risk_amount_required"] is True
+    assert characteristics["risk_amount_formula_type"] == (
+        "type_a_face_amount_less_account_value_nonnegative_type_b_face_amount"
+    )
+    assert characteristics["complete_disability_schedule_ref"] == "附表二"
+    assert characteristics["complete_disability_table_item_count"] == 7
+    assert characteristics["non_participating_policy"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "maturity-benefit",
+        "death-benefit",
+        "total-disability-benefit",
+    }
+    assert entries["maturity-benefit"]["unit_key"] == "policy_account_value"
+    assert (
+        entries["death-benefit"]["unit_key"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert entries["death-benefit"]["rate_percent"] == 100
+    assert (
+        entries["total-disability-benefit"]["unit_key"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+
+    source_file_name = (
+        "262141M31A002-A.pdf"
+        if product_id == "262141M31A00200"
+        else f"{product_id}-A.pdf"
+    )
+    source_path = TII_LIFE_161_ROOT / product_id / source_file_name
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert (
+        parse_global_ritai_financial_expert_variable_universal_life(
+            completed_document
+        )
+        == schedule
+    )
+    assert (
+        parse_global_ritai_financial_expert_variable_universal_life(
+            investment_life_document("tii-life-161", product_id, "F")
+        )
+        is None
+    )
+
+first_global_ritai_document = investment_life_document(
+    "tii-life-161", "262141M31A00200"
+)
+assert (
+    parse_global_ritai_financial_expert_variable_universal_life(
+        {**first_global_ritai_document, "product_id": "262141M31A00212"}
+    )
+    is None
+)
+assert (
+    parse_global_ritai_financial_expert_variable_universal_life(
+        {
+            **first_global_ritai_document,
+            "file_name": "262141M31A00200-A.pdf",
+        }
+    )
+    is None
+)
+assert (
+    parse_global_ritai_financial_expert_variable_universal_life(
+        {
+            **first_global_ritai_document,
+            "text": first_global_ritai_document["text"].replace(
+                "年齡達一百歲之保單週年日仍生存",
+                "年齡達一百歲之保單週年日",
+                1,
+            ),
+        }
+    )
+    is None
+)
+
+global_ritai_financial_head_product_ids = [
+    "262141M31A00300",
+    "262141M31A00301",
+    "262141M31A00302",
+    "262141M31A00303",
+    "262141M31A00304",
+    "262141M31A00305",
+]
+for product_id in global_ritai_financial_head_product_ids:
+    document = investment_life_document("tii-life-161", product_id)
+    schedule = parse_global_ritai_financial_head_variable_universal_life(
+        document
+    )
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert (
+        integrated[0]
+        == "global-ritai-financial-head-variable-universal-life-v1"
+    )
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    characteristics = schedule["version_characteristics"]
+    assert (
+        characteristics["product_family"]
+        == "global-ritai-financial-head-variable-universal-life"
+    )
+    assert characteristics["company_group"] == "global_life"
+    assert characteristics["currency_basis"] == "twd"
+    assert characteristics["insurance_type_required"] is True
+    assert characteristics["insurance_type_options"] == ["A型", "B型"]
+    assert characteristics["insurance_amount_basis"] == "policy_face_amount"
+    assert (
+        characteristics["death_total_disability_amount_formula"]
+        == global_ritai_formula
+    )
+    assert characteristics["maturity_trigger"] == "age_100_policy_anniversary"
+    assert characteristics["maturity_age"] == 100
+    assert characteristics["risk_amount_required"] is True
+    assert characteristics["funeral_benefit_limit_rule"] is True
+    assert characteristics["funeral_benefit_excludes_account_value"] is True
+    assert characteristics["minor_death_before_age_14_account_value_rule"] is True
+    assert (
+        characteristics["minor_disability_before_age_14_account_value_rule"]
+        is False
+    )
+    assert characteristics["complete_disability_table_item_count"] == 7
+    assert characteristics["non_participating_policy"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "maturity-benefit",
+        "death-benefit",
+        "total-disability-benefit",
+    }
+    assert entries["maturity-benefit"]["unit_key"] == "policy_account_value"
+    assert (
+        entries["death-benefit"]["unit_key"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert entries["death-benefit"]["rate_percent"] == 100
+    assert (
+        entries["total-disability-benefit"]["unit_key"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+
+    source_file_name = (
+        "262141M31A003-A.pdf"
+        if product_id == "262141M31A00300"
+        else f"{product_id}-A.pdf"
+    )
+    source_path = TII_LIFE_161_ROOT / product_id / source_file_name
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert (
+        parse_global_ritai_financial_head_variable_universal_life(
+            completed_document
+        )
+        == schedule
+    )
+    assert (
+        parse_global_ritai_financial_head_variable_universal_life(
+            investment_life_document("tii-life-161", product_id, "F")
+        )
+        is None
+    )
+
+first_global_ritai_head_document = investment_life_document(
+    "tii-life-161", "262141M31A00300"
+)
+assert (
+    parse_global_ritai_financial_head_variable_universal_life(
+        {**first_global_ritai_head_document, "product_id": "262141M31A00306"}
+    )
+    is None
+)
+assert (
+    parse_global_ritai_financial_head_variable_universal_life(
+        {
+            **first_global_ritai_head_document,
+            "file_name": "262141M31A00300-A.pdf",
+        }
+    )
+    is None
+)
+
+prudential_shared_generations_expected = {
+    "203131MV1A01123A11C90000000": "附表四",
+    "203131MV1A01123A11C90000001": "附表四",
+    "203131MV1A01123A11C90000002": "附表五",
+}
+for (
+    product_id,
+    complete_disability_schedule_ref,
+) in prudential_shared_generations_expected.items():
+    document = investment_life_document("tii-life-017", product_id)
+    schedule = parse_prudential_shared_generations_variable_universal_life(
+        document
+    )
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert (
+        integrated[0]
+        == "prudential-shared-generations-variable-universal-life-v1"
+    )
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "基本保額"
+    characteristics = schedule["version_characteristics"]
+    assert (
+        characteristics["product_family"]
+        == "prudential-shared-generations-variable-universal-life"
+    )
+    assert characteristics["company_group"] == "prudential"
+    assert characteristics["currency_basis"] == "twd"
+    assert characteristics["payment_currency_label"] == "新臺幣"
+    assert (
+        characteristics["terms_revision"]
+        == PRUDENTIAL_SHARED_GENERATIONS_VARIABLE_UNIVERSAL_LIFE_REVISIONS[
+            product_id
+        ]["terms_revision"]
+    )
+    assert (
+        characteristics["filing_number"]
+        == PRUDENTIAL_SHARED_GENERATIONS_VARIABLE_UNIVERSAL_LIFE_REVISIONS[
+            product_id
+        ]["filing_number"]
+    )
+    assert characteristics["investment_linked_policy"] is True
+    assert characteristics["variable_universal_life_policy"] is True
+    assert characteristics["dual_insured_policy"] is True
+    assert characteristics["primary_insured_role"] == "child"
+    assert characteristics["secondary_insured_role"] == "parent"
+    assert characteristics["insured_relationship_required"] == "parent_child"
+    assert characteristics["basic_amount_same_for_both_insured"] is True
+    assert characteristics["basic_amount_max_target_premium_multiple"] == 10
+    assert characteristics["primary_basic_amount_effective_age"] == 25
+    assert characteristics["secondary_coverage_before_primary_age"] == 25
+    assert characteristics["target_premium_single_payment"] is True
+    assert characteristics["excess_premium_allowed"] is True
+    assert characteristics["insurance_amount_basis"] == (
+        "dual_insured_age_25_tiered_formula"
+    )
+    assert characteristics["insurance_amount_formula"] == (
+        "basic_amount_plus_policy_account_value_after_primary_age_25"
+    )
+    assert characteristics["net_amount_at_risk_required"] is True
+    assert characteristics["net_amount_at_risk_formula_type"] == "basic_amount"
+    assert (
+        characteristics["primary_death_before_age_25_formula"]
+        == "policy_account_value_return"
+    )
+    assert (
+        characteristics["primary_death_after_age_25_formula"]
+        == "basic_amount_plus_policy_account_value"
+    )
+    assert (
+        characteristics["secondary_death_before_primary_age_25_formula"]
+        == "basic_amount"
+    )
+    assert (
+        characteristics["primary_total_disability_before_age_25_formula"]
+        == "policy_account_value_return"
+    )
+    assert (
+        characteristics["primary_total_disability_after_age_25_formula"]
+        == "basic_amount_plus_policy_account_value"
+    )
+    assert (
+        characteristics["secondary_total_disability_before_primary_age_25_formula"]
+        == "basic_amount"
+    )
+    assert characteristics["maturity_trigger"] == (
+        "primary_insured_age_99_policy_anniversary"
+    )
+    assert characteristics["maturity_age"] == 99
+    assert characteristics["maturity_benefit_formula"] == (
+        "policy_account_value_at_primary_insured_age_99_policy_anniversary"
+    )
+    assert characteristics["maturity_interest_crediting"] is False
+    assert characteristics["policy_account_value_required"] is True
+    assert characteristics["investment_target_value_required"] is True
+    assert characteristics["redemption_valuation_timing_required"] is True
+    assert characteristics["valuation_reference"] == "redemption_valuation_timing"
+    assert characteristics["insurance_cost_refund_after_event"] is True
+    assert characteristics["account_value_return_on_time_bar"] is True
+    assert characteristics["mental_disability_funeral_benefit_rule"] is True
+    assert characteristics["funeral_benefit_limit_rule"] is True
+    assert characteristics["funeral_benefit_excludes_account_value"] is True
+    assert (
+        characteristics["complete_disability_schedule_ref"]
+        == complete_disability_schedule_ref
+    )
+    assert characteristics["complete_disability_table_item_count"] == 7
+    assert characteristics["legacy_disability_wording"] is True
+    assert characteristics["disability_term"] == "殘廢"
+    assert characteristics["total_disability_term"] == "完全殘廢"
+    assert characteristics["non_participating_policy"] is True
+    assert characteristics["policy_dividend_available"] is False
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "survival-benefit",
+        "primary-death-before-age-25-account-value-return",
+        "primary-death-after-age-25-benefit",
+        "secondary-death-before-primary-age-25-benefit",
+        "funeral-benefit",
+        "primary-total-disability-before-age-25-account-value-return",
+        "primary-total-disability-after-age-25-benefit",
+        "secondary-total-disability-before-primary-age-25-benefit",
+    }
+    assert entries["survival-benefit"]["unit_key"] == "policy_account_value"
+    assert (
+        entries["primary-death-before-age-25-account-value-return"]["unit_key"]
+        == "policy_account_value"
+    )
+    assert entries["primary-death-after-age-25-benefit"]["unit_key"] == (
+        "basic_amount_plus_policy_account_value"
+    )
+    assert entries["primary-death-after-age-25-benefit"]["rate_percent"] == 100
+    assert entries["secondary-death-before-primary-age-25-benefit"][
+        "unit_key"
+    ] == "basic_amount"
+    assert (
+        entries["funeral-benefit"]["unit_key"]
+        == "statutory_funeral_cap_plus_account_value_return"
+    )
+    assert (
+        entries[
+            "primary-total-disability-before-age-25-account-value-return"
+        ]["unit_key"]
+        == "policy_account_value"
+    )
+    assert entries["primary-total-disability-after-age-25-benefit"][
+        "unit_key"
+    ] == "basic_amount_plus_policy_account_value"
+    assert (
+        entries["secondary-total-disability-before-primary-age-25-benefit"][
+            "unit_key"
+        ]
+        == "basic_amount"
+    )
+
+    source_path = TII_LIFE_017_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert (
+        parse_prudential_shared_generations_variable_universal_life(
+            completed_document
+        )
+        == schedule
+    )
+    assert (
+        parse_prudential_shared_generations_variable_universal_life(
+            investment_life_document("tii-life-017", product_id, "F")
+        )
+        is None
+    )
+
+first_prudential_shared_generations_document = investment_life_document(
+    "tii-life-017", "203131MV1A01123A11C90000000"
+)
+assert (
+    parse_prudential_shared_generations_variable_universal_life(
+        {**first_prudential_shared_generations_document, "product_id": "wrong"}
+    )
+    is None
+)
+assert (
+    parse_prudential_shared_generations_variable_universal_life(
+        {
+            **first_prudential_shared_generations_document,
+            "text": first_prudential_shared_generations_document[
+                "text"
+            ].replace("分為主被保險人及次被保險人", ""),
+        }
+    )
+    is None
+)
+
+prudential_chuangfu_expected = {
+    "203141M31A01200": "原始版本",
+    "203141M31A01201": "第1次部份變更",
+    "203141M31A01202": "第2次部份變更",
+    "203141M31A01203": "第3次部份變更",
+    "203141M31A01204": "第4次部份變更",
+    "203141M31A01205": "第5次部份變更",
+}
+for product_id, terms_revision in prudential_chuangfu_expected.items():
+    document = investment_life_document("tii-life-017", product_id)
+    schedule = parse_prudential_chuangfu_variable_life(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "prudential-chuangfu-variable-life-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["product_family"] == "prudential-chuangfu-variable-life"
+    assert characteristics["company_group"] == "prudential"
+    assert characteristics["currency_basis"] == "twd"
+    assert characteristics["payment_currency_label"] == "新臺幣"
+    assert characteristics["terms_revision"] == terms_revision
+    assert characteristics["insurance_amount_basis"] == (
+        "accumulated_premium_balance_times_coverage_premium_ratio"
+    )
+    assert characteristics["insurance_amount_formula"] == (
+        "accumulated_premium_balance_times_coverage_premium_ratio"
+    )
+    assert characteristics["death_total_disability_amount_formula"] == (
+        "greater_of_insurance_amount_or_policy_account_value"
+    )
+    assert characteristics["death_benefit_formula"] == (
+        "death_total_disability_insurance_amount"
+    )
+    assert characteristics["total_disability_benefit_formula"] == (
+        "death_total_disability_insurance_amount"
+    )
+    assert characteristics["maturity_trigger"] == "age_99_policy_anniversary"
+    assert characteristics["maturity_age"] == 99
+    assert characteristics["maturity_benefit_formula"] == (
+        "policy_account_value_at_age_99_policy_anniversary"
+    )
+    assert characteristics["policy_account_value_required"] is True
+    assert characteristics["accumulated_premium_balance_required"] is True
+    assert characteristics["coverage_premium_ratio_required"] is True
+    assert characteristics["risk_amount_formula_type"] == (
+        "insurance_amount_less_policy_account_value_nonnegative"
+    )
+    assert characteristics["funeral_benefit_limit_rule"] is True
+    assert characteristics["funeral_benefit_excludes_account_value"] is True
+    assert characteristics["complete_disability_schedule_ref"] == "附表五"
+    assert characteristics["complete_disability_table_item_count"] == 7
+    assert characteristics["legacy_disability_wording"] is True
+    assert characteristics["disability_term"] == "殘廢"
+    assert characteristics["total_disability_term"] == "完全殘廢"
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "maturity-benefit",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+    }
+    assert entries["maturity-benefit"]["name"] == "滿期保險金"
+    assert entries["maturity-benefit"]["unit_key"] == "policy_account_value"
+    assert (
+        entries["death-or-funeral-benefit"]["unit_key"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert entries["death-or-funeral-benefit"]["rate_percent"] == 100
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+    assert "完全失能" not in " ".join(entry["name"] for entry in entries.values())
+
+    source_path = TII_LIFE_017_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert parse_prudential_chuangfu_variable_life(completed_document) == schedule
+    assert (
+        parse_prudential_chuangfu_variable_life(
+            investment_life_document("tii-life-017", product_id, "F")
+        )
+        is None
+    )
+
+first_prudential_chuangfu_document = investment_life_document(
+    "tii-life-017", "203141M31A01200"
+)
+assert (
+    parse_prudential_chuangfu_variable_life(
+        {**first_prudential_chuangfu_document, "product_id": "203141M31A01206"}
+    )
+    is None
+)
+assert (
+    parse_prudential_chuangfu_variable_life(
+        {
+            **first_prudential_chuangfu_document,
+            "text": first_prudential_chuangfu_document["text"].replace(
+                "身故、完全殘廢保險金額」係指下列二者中金額較大者",
+                "身故、完全殘廢保險金額」係指其他金額",
+                1,
+            ),
+        }
+    )
+    is None
+)
+
+prudential_youyou_legacy_investment_expected = {
+    "203141M31A00516": {
+        "payment_currency_label": "新台幣",
+        "premium_waiver_schedule_ref": "附表四",
+    },
+    "203141M31A00517": {
+        "payment_currency_label": "新台幣",
+        "premium_waiver_schedule_ref": "附表四",
+    },
+    "203141M31A00518": {
+        "payment_currency_label": "新台幣",
+        "premium_waiver_schedule_ref": "附表四",
+    },
+    "203141M31A00519": {
+        "payment_currency_label": "新台幣",
+        "premium_waiver_schedule_ref": "附表四",
+    },
+    "203141M31A00520": {
+        "payment_currency_label": "新臺幣",
+        "premium_waiver_schedule_ref": "附表五",
+    },
+    "203141M31A00521": {
+        "payment_currency_label": "新臺幣",
+        "premium_waiver_schedule_ref": "附表五",
+    },
+    "203141M31A00522": {
+        "payment_currency_label": "新臺幣",
+        "premium_waiver_schedule_ref": "附表五",
+    },
+    "203141M31A00523": {
+        "payment_currency_label": "新臺幣",
+        "premium_waiver_schedule_ref": "附表五",
+    },
+    "203141M31A00524": {
+        "payment_currency_label": "新臺幣",
+        "premium_waiver_schedule_ref": "附表五",
+    },
+    "203141M31A00525": {
+        "payment_currency_label": "新臺幣",
+        "premium_waiver_schedule_ref": "附表五",
+    },
+    "203141M31A00526": {
+        "payment_currency_label": "新臺幣",
+        "premium_waiver_schedule_ref": "附表五",
+    },
+    "203141M31A00527": {
+        "payment_currency_label": "新臺幣",
+        "premium_waiver_schedule_ref": "附表五",
+    },
+    "203141M31A00528": {
+        "payment_currency_label": "新臺幣",
+        "premium_waiver_schedule_ref": "附表五",
+    },
+    "203141M31A00529": {
+        "payment_currency_label": "新臺幣",
+        "premium_waiver_schedule_ref": "附表五",
+    },
+}
+for product_id, expected in prudential_youyou_legacy_investment_expected.items():
+    document = investment_life_document("tii-life-017", product_id)
+    schedule = parse_prudential_youyou_legacy_investment_life_maturity_face_amount(
+        document
+    )
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert (
+        integrated[0]
+        == "prudential-youyou-legacy-investment-life-maturity-face-amount-v1"
+    )
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["product_family"] == (
+        "prudential-youyou-legacy-investment-linked-life-maturity-face-amount"
+    )
+    assert characteristics["company_group"] == "prudential"
+    assert characteristics["currency_basis"] == "twd"
+    assert (
+        characteristics["payment_currency_label"]
+        == expected["payment_currency_label"]
+    )
+    assert characteristics["insurance_amount_basis"] == (
+        "policy_basic_insurance_amount"
+    )
+    assert characteristics["death_total_disability_amount_formula"] == (
+        "face_amount_plus_policy_account_value"
+    )
+    assert characteristics["death_benefit_formula"] == (
+        "death_total_disability_insurance_amount"
+    )
+    assert characteristics["total_disability_benefit_formula"] == (
+        "death_total_disability_insurance_amount"
+    )
+    assert characteristics["maturity_trigger"] == "age_99_policy_anniversary"
+    assert characteristics["maturity_age"] == 99
+    assert characteristics["maturity_benefit_formula"] == (
+        "policy_account_value_at_age_99_policy_anniversary"
+    )
+    assert characteristics["policy_account_value_required"] is True
+    assert characteristics["risk_amount_required"] is False
+    assert characteristics["funeral_benefit_limit_rule"] is True
+    assert characteristics["funeral_benefit_excludes_account_value"] is True
+    assert characteristics["minor_death_before_age_15_account_value_rule"] is True
+    assert (
+        characteristics["minor_disability_before_age_15_account_value_rule"]
+        is True
+    )
+    assert characteristics["premium_waiver_available"] is True
+    assert characteristics["premium_waiver_disability_levels"] == "2-6"
+    assert (
+        characteristics["premium_waiver_schedule_ref"]
+        == expected["premium_waiver_schedule_ref"]
+    )
+    assert characteristics["premium_waiver_until"] == "age_65_policy_anniversary"
+    assert characteristics["legacy_disability_wording"] is True
+    assert characteristics["disability_term"] == "殘廢"
+    assert characteristics["total_disability_term"] == "完全殘廢"
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "maturity-benefit",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "disability-premium-waiver",
+    }
+    assert entries["maturity-benefit"]["unit_key"] == "policy_account_value"
+    assert (
+        entries["death-or-funeral-benefit"]["unit_key"]
+        == "death_total_disability_insurance_amount"
+    )
+    assert entries["death-or-funeral-benefit"]["rate_percent"] == 100
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+    assert (
+        entries["disability-premium-waiver"]["calculation_basis"]
+        == "waiver"
+    )
+    assert entries["disability-premium-waiver"]["amount_role"] == "premium_waiver"
+    assert (
+        expected["premium_waiver_schedule_ref"]
+        in " ".join(entries["disability-premium-waiver"]["conditions"])
+    )
+    assert "完全失能" not in " ".join(entry["name"] for entry in entries.values())
+
+    source_path = TII_LIFE_017_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert (
+        parse_prudential_youyou_legacy_investment_life_maturity_face_amount(
+            completed_document
+        )
+        == schedule
+    )
+    assert (
+        parse_prudential_youyou_legacy_investment_life_maturity_face_amount(
+            investment_life_document("tii-life-017", product_id, "F")
+        )
+        is None
+    )
+
+first_prudential_youyou_document = investment_life_document(
+    "tii-life-017", "203141M31A00516"
+)
+assert (
+    parse_prudential_youyou_legacy_investment_life_maturity_face_amount(
+        {**first_prudential_youyou_document, "product_id": "203141M31A00515"}
+    )
+    is None
+)
+assert (
+    parse_prudential_youyou_legacy_investment_life_maturity_face_amount(
+        {
+            **first_prudential_youyou_document,
+            "text": first_prudential_youyou_document["text"].replace(
+                "身故、完全殘廢保險金額」係指下列二者加總之值",
+                "身故、完全殘廢保險金額」係指其他金額",
+                1,
+            ),
+        }
+    )
+    is None
+)
+
+legacy_face_or_account_value_expected = {
+    ("tii-life-017", "203141M31A00210"): {
+        "company_group": "prudential",
+        "death_benefit_cap_rule": True,
+        "payment_currency_label": "新台幣",
+    },
+    ("tii-life-017", "203141M31A00211"): {
+        "company_group": "prudential",
+        "death_benefit_cap_rule": True,
+        "payment_currency_label": "新台幣",
+    },
+    **{
+        ("tii-life-017", f"203141M31A003{suffix:02d}"): {
+            "company_group": "prudential",
+            "death_benefit_cap_rule": False,
+            "payment_currency_label": "新台幣",
+        }
+        for suffix in range(19, 30)
+    },
+    ("tii-life-029", "205141M31A53605"): {
+        "company_group": "kgi_china_life",
+        "death_benefit_cap_rule": False,
+        "payment_currency_label": "新台幣",
+    },
+    ("tii-life-029", "205141M31A53606"): {
+        "company_group": "kgi_china_life",
+        "death_benefit_cap_rule": False,
+        "payment_currency_label": "新台幣",
+    },
+    ("tii-life-029", "205141M31A53607"): {
+        "company_group": "kgi_china_life",
+        "death_benefit_cap_rule": False,
+        "payment_currency_label": "新台幣",
+    },
+    ("tii-life-029", "205141M31A53608"): {
+        "company_group": "kgi_china_life",
+        "death_benefit_cap_rule": False,
+        "payment_currency_label": "新台幣",
+    },
+    ("tii-life-029", "205141M31A53609"): {
+        "company_group": "kgi_china_life",
+        "death_benefit_cap_rule": False,
+        "payment_currency_label": "新台幣",
+    },
+    ("tii-life-029", "205141M31A53610"): {
+        "company_group": "kgi_china_life",
+        "death_benefit_cap_rule": False,
+        "payment_currency_label": "新台幣",
+    },
+    ("tii-life-029", "205141M31A53611"): {
+        "company_group": "kgi_china_life",
+        "death_benefit_cap_rule": False,
+        "payment_currency_label": "新台幣",
+    },
+    ("tii-life-029", "205141M31A53705"): {
+        "company_group": "kgi_china_life",
+        "death_benefit_cap_rule": False,
+        "payment_currency_label": "新台幣",
+    },
+    ("tii-life-029", "205141M31A53706"): {
+        "company_group": "kgi_china_life",
+        "death_benefit_cap_rule": False,
+        "payment_currency_label": "新台幣",
+    },
+    ("tii-life-029", "205141M31A53707"): {
+        "company_group": "kgi_china_life",
+        "death_benefit_cap_rule": False,
+        "payment_currency_label": "新台幣",
+    },
+    ("tii-life-029", "205141M31A53708"): {
+        "company_group": "kgi_china_life",
+        "death_benefit_cap_rule": False,
+        "payment_currency_label": "新台幣",
+    },
+    ("tii-life-029", "205141M31A53709"): {
+        "company_group": "kgi_china_life",
+        "death_benefit_cap_rule": False,
+        "payment_currency_label": "新台幣",
+    },
+}
+legacy_face_or_account_value_roots = {
+    "tii-life-017": TII_LIFE_017_ROOT,
+    "tii-life-029": TII_LIFE_029_ROOT,
+}
+for (
+    batch_id,
+    product_id,
+), expected in legacy_face_or_account_value_expected.items():
+    document = investment_life_document(batch_id, product_id)
+    schedule = parse_legacy_investment_life_face_or_account_value(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "legacy-investment-life-face-or-account-value-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert (
+        characteristics["product_family"]
+        == "legacy-investment-linked-life-face-or-account-value"
+    )
+    assert characteristics["company_group"] == expected["company_group"]
+    assert characteristics["currency_basis"] == "twd"
+    assert characteristics["payment_currency_label"] == expected["payment_currency_label"]
+    assert (
+        characteristics["insurance_amount_basis"]
+        == "accumulated_premium_balance_times_face_amount_ratio"
+    )
+    assert characteristics["death_total_disability_amount_formula"] == (
+        "greater_of_face_amount_or_policy_account_value"
+    )
+    assert characteristics["death_benefit_cap_rule"] == expected[
+        "death_benefit_cap_rule"
+    ]
+    assert characteristics["maturity_trigger"] == "age_99_policy_anniversary"
+    assert characteristics["maturity_age"] == 99
+    assert characteristics["complete_disability_schedule_ref"] == "附表五"
+    assert characteristics["funeral_benefit_limit_rule"] is False
+    assert characteristics["minor_death_before_age_15_account_value_rule"] is False
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "maturity-benefit",
+        "death-benefit",
+        "total-disability-benefit",
+    }
+    assert entries["maturity-benefit"]["unit_key"] == "policy_account_value"
+    assert entries["death-benefit"]["unit_key"] == (
+        "death_total_disability_insurance_amount"
+    )
+    assert entries["death-benefit"]["rate_percent"] == 100
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+    assert "喪葬" not in " ".join(entry["name"] for entry in entries.values())
+
+    source_path = (
+        legacy_face_or_account_value_roots[batch_id]
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    indexed_document = {
+        key: value for key, value in document.items() if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert parse_legacy_investment_life_face_or_account_value(completed_document) == schedule
+    assert parse_legacy_investment_life_face_or_account_value(
+        {
+            **document,
+            "document_type": "product_summary",
+            "file_name": f"{product_id}-F.pdf",
+        }
+    ) is None
+
+first_face_or_account_value_document = investment_life_document(
+    "tii-life-017", "203141M31A00210"
+)
+assert parse_legacy_investment_life_face_or_account_value(
+    {**first_face_or_account_value_document, "product_id": "203141M31A00212"}
+) is None
+assert parse_legacy_investment_life_face_or_account_value(
+    {
+        **first_face_or_account_value_document,
+        "text": first_face_or_account_value_document["text"].replace(
+            "二者中金額較大者",
+            "二者中金額相同者",
+            1,
+        ),
+    }
+) is None
+
+fubon_legacy_investment_expected = {
+    "209131MV1A00123A11Z90000000": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+    },
+    "209131MV1A00123A11Z90000001": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+    },
+    "209131MV1A00123A11Z90000006": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+    },
+    "209131MV1A00123A11Z90000007": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+    },
+    "209131MV1A00123A11Z90000009": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+    },
+    "209131MV1A00223Z11Z90000000": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "外幣",
+    },
+    "209131MV1A00223Z11Z90000001": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "外幣",
+    },
+    "209131MV1A00223Z11Z90000002": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "外幣",
+    },
+    "209131MV1A00223Z11Z90000003": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "外幣",
+    },
+    "209131MV1A00223Z11Z90000004": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "外幣",
+    },
+    "209131MV1A00223Z11Z90000005": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "外幣",
+    },
+    "209131MV1A00223Z11Z90000006": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "外幣",
+    },
+    "209131MV1A00223Z11Z90000007": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "外幣",
+    },
+    "209131MV1A00223Z11Z90000008": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "外幣",
+    },
+    "209131MV1A00223Z11Z90000009": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "外幣",
+    },
+    "209131MV1A00323Z11Z90000000": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "外幣",
+    },
+    "209131MV1A00323Z11Z90000002": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "外幣",
+    },
+    "209131MV1A00523Z11Z90000001": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "外幣",
+    },
+    "209131MV1A00523Z11Z90000002": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "外幣",
+    },
+    "209131MV1A00623A11Z90000000": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+    },
+    "209131MV1A00623A11Z90000001": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+    },
+    "209131MV1A00623A11Z90000002": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+    },
+}
+for product_id, expected in fubon_legacy_investment_expected.items():
+    document = investment_life_document("tii-life-053", product_id)
+    schedule = parse_fubon_legacy_investment_life_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-legacy-investment-life-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["product_family"] == (
+        "fubon-legacy-investment-linked-life-face-amount"
+    )
+    assert characteristics["company_group"] == "fubon_life"
+    assert characteristics["currency_basis"] == expected["currency_basis"]
+    assert (
+        characteristics["payment_currency_label"]
+        == expected["payment_currency_label"]
+    )
+    assert characteristics["maturity_trigger"] == "age_110_policy_anniversary"
+    assert characteristics["maturity_age"] == 110
+    assert (
+        characteristics["maturity_benefit_formula"]
+        == "policy_account_value_at_age_110_policy_anniversary"
+    )
+    assert characteristics["insurance_amount_formula"] == (
+        "net_amount_at_risk_plus_policy_account_value"
+    )
+    assert characteristics["death_benefit_formula"] == "policy_insurance_amount"
+    assert characteristics["total_disability_benefit_formula"] == (
+        "policy_insurance_amount"
+    )
+    assert characteristics["net_amount_at_risk_formula_type"] == "jia_yi"
+    assert characteristics["basic_amount_formula_type"] == (
+        "basic_amount_by_selected_type"
+    )
+    assert characteristics["minor_death_before_age_15_account_value_rule"] is True
+    assert (
+        characteristics["minor_disability_before_age_15_account_value_rule"]
+        is True
+    )
+    assert characteristics["complete_disability_schedule_ref"] == "附表四"
+    assert characteristics["legacy_disability_wording"] is True
+    assert characteristics["disability_term"] == "殘廢"
+    assert characteristics["total_disability_term"] == "完全殘廢"
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "maturity-benefit",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+    }
+    assert entries["maturity-benefit"]["unit_key"] == "policy_account_value"
+    assert entries["death-or-funeral-benefit"]["rate_percent"] == 100
+    assert entries["death-or-funeral-benefit"]["unit_key"] == "policy_insurance_amount"
+    assert entries["total-disability-benefit"]["name"] == "完全殘廢保險金"
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+    assert "完全失能" not in " ".join(entry["name"] for entry in entries.values())
+
+    source_path = TII_LIFE_053_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert (
+        parse_fubon_legacy_investment_life_face_amount(completed_document)
+        == schedule
+    )
+    assert parse_fubon_legacy_investment_life_face_amount(
+        {
+            **document,
+            "document_type": "product_summary",
+            "file_name": f"{product_id}-F.pdf",
+        }
+    ) is None
+
+first_fubon_legacy_document = investment_life_document(
+    "tii-life-053", "209131MV1A00123A11Z90000001"
+)
+assert parse_fubon_legacy_investment_life_face_amount(
+    {**first_fubon_legacy_document, "product_id": "209131MV1A00123A11Z90000010"}
+) is None
+assert parse_fubon_legacy_investment_life_face_amount(
+    {
+        **first_fubon_legacy_document,
+        "text": first_fubon_legacy_document["text"].replace(
+            "按保險金額給付完全殘廢保險金",
+            "按其他金額給付完全殘廢保險金",
+            1,
+        ),
+    }
+) is None
+
+prudential_legacy_investment_expected = {
+    "203131MV1A00323B11Z90000015": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "美元",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表六",
+    },
+    "203131MV1A01023A11C90000000": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "target_premium_times_amount_factor",
+        "complete_disability_schedule_ref": "附表六",
+    },
+    "203131MV1A01523Z11Z90000000": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "本契約計價貨幣",
+        "basic_amount_formula_type": "target_premium_times_amount_factor",
+        "complete_disability_schedule_ref": "附表七",
+    },
+    "203131MV1A00623B11C90000008": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "美元",
+        "basic_amount_formula_type": "target_premium_times_two_with_account_value_ratio_adjustment",
+        "complete_disability_schedule_ref": "附表六",
+    },
+    "203141M31A01700": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "人民幣",
+        "basic_amount_formula_type": "target_premium_times_amount_factor",
+        "complete_disability_schedule_ref": "附表六",
+    },
+    "203141M31A00330": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表五",
+        "minor_disability_before_age_15": False,
+    },
+    "203131MV1A00123A11Z90000031": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表五",
+        "minor_disability_before_age_15": False,
+    },
+    "203131MV1A00123A11Z90000032": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表五",
+        "minor_disability_before_age_15": False,
+    },
+    "203131MV1A00123A11Z90000033": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表五",
+        "minor_death_before_age_15": False,
+        "minor_disability_before_age_15": False,
+    },
+    "203131MV1A00123A11Z90000034": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表六",
+        "minor_disability_before_age_15": False,
+    },
+    "203131MV1A00123A11Z90000035": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表六",
+        "minor_disability_before_age_15": False,
+    },
+    "203141M31A01206": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表五",
+        "minor_disability_before_age_15": False,
+    },
+    "203131MV1A00423A11Z90000007": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表五",
+        "minor_disability_before_age_15": False,
+    },
+    "203131MV1A00423A11Z90000008": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表五",
+        "minor_disability_before_age_15": False,
+    },
+    "203131MV1A00423A11Z90000009": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表五",
+        "minor_disability_before_age_15": False,
+    },
+    "203131MV1A00423A11Z90000010": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表五",
+        "minor_disability_before_age_15": False,
+    },
+    "203131MV1A00423A11Z90000011": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表六",
+        "minor_disability_before_age_15": False,
+    },
+    "203131MU1A00123A11Z90000031": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "policy_recorded_basic_amount",
+        "complete_disability_schedule_ref": "完全殘廢程度表",
+        "net_risk_formula_type": "basic_amount",
+    },
+    "203131MV1A00923A11Z90000001": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "policy_recorded_basic_amount",
+        "complete_disability_schedule_ref": "附表五",
+        "net_risk_formula_type": "basic_amount",
+    },
+    "203131MV1A01923A11Z90000000": {
+        "currency_basis": "twd",
+        "payment_currency_label": "新臺幣",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表五",
+        "net_risk_formula_type": "basic_amount_less_account_value_nonnegative",
+    },
+    "203131MV1A02023Z11Z90000000": {
+        "currency_basis": "foreign_currency",
+        "payment_currency_label": "本契約計價貨幣",
+        "basic_amount_formula_type": "accumulated_premium_balance_times_ratio",
+        "complete_disability_schedule_ref": "附表五",
+        "net_risk_formula_type": "basic_amount_less_account_value_nonnegative",
+    },
+}
+for product_id, expected in prudential_legacy_investment_expected.items():
+    document = investment_life_document("tii-life-017", product_id)
+    schedule = parse_prudential_legacy_investment_life_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "prudential-legacy-investment-life-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["product_family"] == (
+        "prudential-legacy-investment-linked-life-face-amount"
+    )
+    assert characteristics["company_group"] == "prudential"
+    assert characteristics["currency_basis"] == expected["currency_basis"]
+    assert (
+        characteristics["payment_currency_label"]
+        == expected["payment_currency_label"]
+    )
+    assert (
+        characteristics["basic_amount_formula_type"]
+        == expected["basic_amount_formula_type"]
+    )
+    assert characteristics["maturity_trigger"] == "age_99_policy_anniversary"
+    assert characteristics["maturity_age"] == 99
+    assert (
+        characteristics["maturity_benefit_formula"]
+        == "policy_account_value_at_age_99_policy_anniversary"
+    )
+    assert characteristics["insurance_amount_formula"] == (
+        "net_amount_at_risk_plus_policy_account_value"
+    )
+    assert characteristics["death_benefit_formula"] == "policy_insurance_amount"
+    assert characteristics["total_disability_benefit_formula"] == (
+        "policy_insurance_amount"
+    )
+    assert characteristics["net_amount_at_risk_formula_type"] == expected.get(
+        "net_risk_formula_type", "basic_amount_less_account_value_nonnegative"
+    )
+    assert characteristics["minor_death_before_age_15_account_value_rule"] is expected.get(
+        "minor_death_before_age_15", True
+    )
+    assert (
+        characteristics["minor_disability_before_age_15_account_value_rule"]
+        is expected.get("minor_disability_before_age_15", True)
+    )
+    assert characteristics["legacy_disability_wording"] is True
+    assert characteristics["disability_term"] == "殘廢"
+    assert characteristics["total_disability_term"] == "完全殘廢"
+    assert (
+        characteristics["complete_disability_schedule_ref"]
+        == expected["complete_disability_schedule_ref"]
+    )
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "maturity-benefit",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+    }
+    assert entries["maturity-benefit"]["unit_key"] == "policy_account_value"
+    assert entries["death-or-funeral-benefit"]["rate_percent"] == 100
+    assert entries["death-or-funeral-benefit"]["unit_key"] == "policy_insurance_amount"
+    assert entries["total-disability-benefit"]["name"] == "完全殘廢保險金"
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+    assert "完全失能" not in " ".join(entry["name"] for entry in entries.values())
+
+    source_path = TII_LIFE_017_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = ""
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert (
+        parse_prudential_legacy_investment_life_face_amount(completed_document)
+        == schedule
+    )
+    assert parse_prudential_legacy_investment_life_face_amount(
+        investment_life_document("tii-life-017", product_id, "F")
+    ) is None
+
+first_prudential_legacy_document = investment_life_document(
+    "tii-life-017", "203131MV1A00323B11Z90000015"
+)
+assert parse_prudential_legacy_investment_life_face_amount(
+    {**first_prudential_legacy_document, "product_id": "203131MV1A00323B11Z90000014"}
+) is None
+assert parse_prudential_legacy_investment_life_face_amount(
+    {
+        **first_prudential_legacy_document,
+        "text": first_prudential_legacy_document["text"].replace(
+            "按「保險金額」給付完全殘廢保險金",
+            "按「其他金額」給付完全殘廢保險金",
+            1,
+        ),
+    }
+) is None
+
+HSINGFU_FUYU_DWA_PRODUCT_ID = "215141M21A00102"
+HSINGFU_FUYU_DWA_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-075"
+)
+
+
+def hsingfu_fuyu_dwa_document(suffix: str = "A") -> dict:
+    file_name = "215141M21A00202-A.pdf" if suffix == "A" else f"{HSINGFU_FUYU_DWA_PRODUCT_ID}-{suffix}.pdf"
+    pdf_path = HSINGFU_FUYU_DWA_ROOT / HSINGFU_FUYU_DWA_PRODUCT_ID / file_name
+    page_texts = [page.extract_text() or "" for page in PdfReader(pdf_path, strict=False).pages]
+    return {
+        "batch_id": "tii-life-075",
+        "product_id": HSINGFU_FUYU_DWA_PRODUCT_ID,
+        "file_name": file_name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+hsingfu_fuyu_dwa_schedule = parse_hsingfu_fuyu_dwa_whole_life_face_amount(
+    hsingfu_fuyu_dwa_document()
+)
+assert hsingfu_fuyu_dwa_schedule is not None
+hsingfu_fuyu_dwa_integrated = parse_plan_table_with_parser(hsingfu_fuyu_dwa_document())
+assert hsingfu_fuyu_dwa_integrated is not None
+assert hsingfu_fuyu_dwa_integrated[0] == (
+    "hsingfu-fuyu-dwa-whole-life-face-amount-v1"
+)
+assert hsingfu_fuyu_dwa_integrated[1] == hsingfu_fuyu_dwa_schedule
+assert hsingfu_fuyu_dwa_schedule["selection_type"] == "face_amount"
+assert hsingfu_fuyu_dwa_schedule["selection_label"] == "保險金額"
+assert hsingfu_fuyu_dwa_schedule["version_characteristics"] == {
+    "product_family": "hsingfu-fuyu-dwa-whole-life",
+    "terms_revision": "second-partial-revision",
+    "source_file_id": "215141M21A00202",
+    "partial_change_filing_date": "95.10.02",
+    "planned_interest_rate_percent": 2.75,
+    "declared_rate_addition_available": True,
+    "declared_rate_frequency": "monthly",
+    "face_amount_formula": "before_age_15_policy_anniversary_basic_face_amount_then_basic_plus_cumulative_paid_up_addition",
+    "insurance_amount_age_15_switch": True,
+    "maturity_age": 110,
+    "death_benefit_rate_percent": 100,
+    "total_disability_benefit_rate_percent": 100,
+    "premium_waiver_disability_levels": "2-6",
+    "unexpired_premium_proration_included": True,
+    "funeral_benefit_limit_rule": True,
+    "non_participating_policy": True,
+    "paid_up_addition_reference_required": True,
+}
+hsingfu_fuyu_dwa_entries = {
+    entry["id"]: entry for entry in hsingfu_fuyu_dwa_schedule["coverage_entries"]
+}
+assert set(hsingfu_fuyu_dwa_entries) == {
+    "declared-rate-paid-up-addition",
+    "maturity-age-110",
+    "death-or-funeral-benefit",
+    "total-disability-benefit",
+    "disability-premium-waiver",
+}
+assert hsingfu_fuyu_dwa_entries["maturity-age-110"]["rate_percent"] == 100
+assert hsingfu_fuyu_dwa_entries["death-or-funeral-benefit"]["basis"] == "face_amount"
+assert hsingfu_fuyu_dwa_entries["total-disability-benefit"]["rate_percent"] == 100
+assert hsingfu_fuyu_dwa_entries["disability-premium-waiver"]["amount_role"] == "reference"
+assert hsingfu_fuyu_dwa_entries["declared-rate-paid-up-addition"]["unit_key"] == (
+    "declared_rate_paid_up_addition"
+)
+hsingfu_fuyu_dwa_source_path = (
+    HSINGFU_FUYU_DWA_ROOT / HSINGFU_FUYU_DWA_PRODUCT_ID / "215141M21A00202-A.pdf"
+)
+hsingfu_fuyu_dwa_indexed = {
+    key: value
+    for key, value in hsingfu_fuyu_dwa_document().items()
+    if key not in {"page_count", "pages_parsed"}
+}
+hsingfu_fuyu_dwa_indexed["text"] = hsingfu_fuyu_dwa_indexed["text"].split(
+    "【保險契約的構成】"
+)[0]
+hsingfu_fuyu_dwa_completed = complete_strict_source_document(
+    hsingfu_fuyu_dwa_indexed, hsingfu_fuyu_dwa_source_path
+)
+assert hsingfu_fuyu_dwa_completed["page_count"] == 19
+assert (
+    parse_hsingfu_fuyu_dwa_whole_life_face_amount(hsingfu_fuyu_dwa_completed)
+    == hsingfu_fuyu_dwa_schedule
+)
+assert parse_hsingfu_fuyu_dwa_whole_life_face_amount(
+    {**hsingfu_fuyu_dwa_document(), "product_id": "215141M21A00103"}
+) is None
+assert parse_hsingfu_fuyu_dwa_whole_life_face_amount(
+    {**hsingfu_fuyu_dwa_document(), "document_type": "product_summary"}
+) is None
+assert parse_hsingfu_fuyu_dwa_whole_life_face_amount(
+    {
+        **hsingfu_fuyu_dwa_document(),
+        "text": hsingfu_fuyu_dwa_document()["text"].replace(
+            "第二級至第六級殘廢程度之一者",
+            "第二級至第三級殘廢程度之一者",
+            1,
+        ),
+    }
+) is None
+
+HSINGFU_PLATINUM_ENDOWMENT_PRODUCT_ID = "215121M11A05608"
+
+
+def hsingfu_platinum_endowment_document(suffix: str = "A") -> dict:
+    file_name = f"{HSINGFU_PLATINUM_ENDOWMENT_PRODUCT_ID}-{suffix}.pdf"
+    pdf_path = HSINGFU_FUYU_DWA_ROOT / HSINGFU_PLATINUM_ENDOWMENT_PRODUCT_ID / file_name
+    page_texts = [
+        page.extract_text() or "" for page in PdfReader(pdf_path, strict=False).pages
+    ]
+    return {
+        "batch_id": "tii-life-075",
+        "product_id": HSINGFU_PLATINUM_ENDOWMENT_PRODUCT_ID,
+        "file_name": file_name,
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+hsingfu_platinum_schedule = parse_hsingfu_platinum_endowment_face_amount(
+    hsingfu_platinum_endowment_document()
+)
+assert hsingfu_platinum_schedule is not None
+hsingfu_platinum_integrated = parse_plan_table_with_parser(
+    hsingfu_platinum_endowment_document()
+)
+assert hsingfu_platinum_integrated is not None
+assert hsingfu_platinum_integrated[0] == (
+    "hsingfu-platinum-endowment-face-amount-v1"
+)
+assert hsingfu_platinum_integrated[1] == hsingfu_platinum_schedule
+assert hsingfu_platinum_schedule["selection_type"] == "face_amount"
+assert hsingfu_platinum_schedule["selection_label"] == "當年度保險金額"
+assert hsingfu_platinum_schedule["version_characteristics"] == {
+    "product_family": "hsingfu-platinum-endowment",
+    "terms_revision": "eighth-partial-revision",
+    "filing_number": "92.01.28 福算字第 0240 號",
+    "latest_revision_basis": "100.9.1 依 100.4.11 金管保品字第 10002523040 號函修正",
+    "annual_insured_amount_formula": "first_policy_year_policy_face_amount_then_annual_face_amount_step_accumulation",
+    "maturity_benefit_formula": "annual_insured_amount_at_policy_maturity",
+    "death_benefit_rate_percent": 100,
+    "total_disability_benefit_rate_percent": 100,
+    "funeral_benefit_limit_rule": True,
+    "non_participating_policy": True,
+    "annual_insured_amount_table_required": True,
+}
+hsingfu_platinum_entries = {
+    entry["id"]: entry for entry in hsingfu_platinum_schedule["coverage_entries"]
+}
+assert set(hsingfu_platinum_entries) == {
+    "annual-insured-amount-reference",
+    "maturity-benefit",
+    "death-or-funeral-benefit",
+    "total-disability-benefit",
+}
+assert hsingfu_platinum_entries["maturity-benefit"]["rate_percent"] == 100
+assert hsingfu_platinum_entries["death-or-funeral-benefit"]["unit_key"] == (
+    "annual_insured_amount"
+)
+assert hsingfu_platinum_entries["total-disability-benefit"]["aggregation_rule"] == (
+    "choose_one"
+)
+assert hsingfu_platinum_entries["annual-insured-amount-reference"]["amount_role"] == (
+    "reference"
+)
+hsingfu_platinum_source_path = (
+    HSINGFU_FUYU_DWA_ROOT
+    / HSINGFU_PLATINUM_ENDOWMENT_PRODUCT_ID
+    / "215121M11A05608-A.pdf"
+)
+hsingfu_platinum_indexed = {
+    key: value
+    for key, value in hsingfu_platinum_endowment_document().items()
+    if key not in {"page_count", "pages_parsed"}
+}
+hsingfu_platinum_indexed["text"] = hsingfu_platinum_indexed["text"].split(
+    "【保險契約的構成】"
+)[0]
+hsingfu_platinum_completed = complete_strict_source_document(
+    hsingfu_platinum_indexed, hsingfu_platinum_source_path
+)
+assert hsingfu_platinum_completed["page_count"] == 10
+assert (
+    parse_hsingfu_platinum_endowment_face_amount(hsingfu_platinum_completed)
+    == hsingfu_platinum_schedule
+)
+assert parse_hsingfu_platinum_endowment_face_amount(
+    {**hsingfu_platinum_endowment_document(), "product_id": "215121M11A05607"}
+) is None
+assert parse_hsingfu_platinum_endowment_face_amount(
+    {**hsingfu_platinum_endowment_document(), "document_type": "product_summary"}
+) is None
+assert parse_hsingfu_platinum_endowment_face_amount(
+    {
+        **hsingfu_platinum_endowment_document(),
+        "text": hsingfu_platinum_endowment_document()["text"].replace(
+            "第二保單年度起每年按保單保險金額每滿該一保單年度",
+            "第二保單年度起依另行約定調整",
+            1,
+        ),
+    }
+) is None
+
+TII_LIFE_009_TEXT_FIXTURE = json.loads(
+    (
+        Path(__file__).resolve().parents[1]
+        / "work"
+        / "tii-document-text"
+        / "tii-life-009-text.json"
+    ).read_text(encoding="utf-8")
+)["documents"]
+TII_LIFE_009_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-009"
+)
+
+
+def taiwan_interest_whole_life_document(product_id: str, suffix: str = "A") -> dict:
+    file_name = f"{product_id}-{suffix}.pdf"
+    return next(
+        document
+        for document in TII_LIFE_009_TEXT_FIXTURE
+        if document.get("product_id") == product_id
+        and document.get("file_name") == file_name
+    )
+
+
+taiwan_platinum_account_cases = {
+    "202121M21AYI001": {
+        "product_code": "YI0",
+        "terms_revision": "original",
+        "page_count": 11,
+        "death_entry_id": "death-benefit",
+        "death_entry_name": "身故保險金",
+        "funeral_benefit_limit_rule": False,
+    },
+    "202121M21AYI103": {
+        "product_code": "YI1",
+        "terms_revision": "third-partial-revision",
+        "page_count": 12,
+        "death_entry_id": "death-or-funeral-benefit",
+        "death_entry_name": "身故保險金或喪葬費用保險金",
+        "funeral_benefit_limit_rule": True,
+    },
+}
+for product_id, expected in taiwan_platinum_account_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_platinum_account_endowment_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-platinum-account-endowment-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["product_family"] == "taiwan-platinum-account-endowment"
+    assert characteristics["product_code"] == expected["product_code"]
+    assert characteristics["terms_revision"] == expected["terms_revision"]
+    assert characteristics["policy_value_reserve_required"] is True
+    assert characteristics["maturity_benefit_formula"] == (
+        "policy_value_reserve_at_policy_maturity"
+    )
+    assert characteristics["death_benefit_formula"] == (
+        "greater_of_insurance_amount_and_policy_value_reserve_plus_unexpired_insurance_cost"
+    )
+    assert characteristics["total_disability_benefit_formula"] == (
+        "greater_of_insurance_amount_and_policy_value_reserve_plus_unexpired_insurance_cost"
+    )
+    assert (
+        characteristics["funeral_benefit_limit_rule"]
+        is expected["funeral_benefit_limit_rule"]
+    )
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "policy-value-reserve-reference",
+        "maturity-benefit",
+        expected["death_entry_id"],
+        "total-disability-benefit",
+    }
+    assert entries[expected["death_entry_id"]]["name"] == expected["death_entry_name"]
+    assert entries[expected["death_entry_id"]]["calculation_basis"] == "greater_of"
+    assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["total-disability-benefit"]["aggregation_rule"] == "choose_one"
+    assert entries["maturity-benefit"]["unit_key"] == "policy_value_reserve"
+    assert entries["policy-value-reserve-reference"]["amount_role"] == "reference"
+    source_path = TII_LIFE_009_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed["text"] = indexed["text"].split("【保險契約的構成】")[0]
+    completed = complete_strict_source_document(indexed, source_path)
+    assert completed["page_count"] == expected["page_count"]
+    assert parse_taiwan_platinum_account_endowment_formula(completed) == schedule
+    assert (
+        parse_taiwan_platinum_account_endowment_formula(
+            {**document, "product_id": "202121M21AYI999"}
+        )
+        is None
+    )
+    assert (
+        parse_taiwan_platinum_account_endowment_formula(
+            {**taiwan_interest_whole_life_document(product_id, "F")}
+        )
+        is None
+    )
+
+
+taiwan_yibao_3xiang_cases = {
+    "202191MZ1B83123A11Z10000000": "original",
+    "202191MZ1B83123A11Z10000001": "first-regulatory-revision",
+    "202191MZ1B83123A11Z10000002": "second-company-revision",
+    "202191MZ1B83123A11Z10000003": "third-regulatory-revision",
+}
+for product_id, expected_revision in taiwan_yibao_3xiang_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_yibao_3xiang_medical_whole_life_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-yibao-3xiang-medical-whole-life-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["disease_waiting_days"] == 30
+    assert characteristics["cancer_waiting_days"] == 90
+    assert characteristics["initial_cancer_multiplier"] == 5
+    assert characteristics["mild_cancer_multiplier"] == 20
+    assert characteristics["severe_cancer_multiplier"] == 100
+    assert characteristics["hospital_care_fraction"] == "2/3"
+    assert characteristics["no_hospital_claim_bonus_rate_percent"] == 1.2
+    assert characteristics["premium_refund_interest_rate_percent"] == 1.75
+    assert characteristics["medical_lifetime_cap_amount"] == 25_000_000
+    assert characteristics["premium_waiver_disability_levels"] == "1-6"
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "initial-cancer-benefit",
+        "mild-cancer-benefit",
+        "severe-cancer-benefit",
+        "hospital-daily-benefit",
+        "hospital-care-benefit",
+        "inpatient-surgery-specific-treatment-benefit",
+        "outpatient-surgery-specific-treatment-benefit",
+        "no-hospital-claim-bonus",
+        "death-or-funeral-benefit",
+        "maturity-benefit",
+        "premium-waiver",
+        "premium-refund-with-interest-under-age-16",
+        "medical-benefit-lifetime-cap",
+    }
+    assert entries["initial-cancer-benefit"]["multiplier"] == 5
+    assert entries["mild-cancer-benefit"]["multiplier"] == 20
+    assert entries["severe-cancer-benefit"]["multiplier"] == 100
+    assert entries["hospital-daily-benefit"]["limit_scope"] == "per_day"
+    assert entries["hospital-daily-benefit"]["multiplier"] == 1
+    assert entries["hospital-care-benefit"]["rate_percent"] == 66.6667
+    assert entries["inpatient-surgery-specific-treatment-benefit"]["multiplier"] == 5
+    assert entries["outpatient-surgery-specific-treatment-benefit"]["multiplier"] == 1
+    assert entries["no-hospital-claim-bonus"]["rate_percent"] == 1.2
+    assert entries["no-hospital-claim-bonus"]["unit_key"] == "annual_premium_total"
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["maturity-benefit"]["unit_key"] == "annual_premium_total_at_age_110"
+    assert entries["premium-refund-with-interest-under-age-16"]["amount_role"] == "payout"
+    assert entries["medical-benefit-lifetime-cap"]["amount"] == 25_000_000
+    assert entries["medical-benefit-lifetime-cap"]["amount_role"] == "limit"
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+
+assert (
+    parse_taiwan_yibao_3xiang_medical_whole_life_face_amount(
+        taiwan_interest_whole_life_document("202191MZ1B83123A11Z10000000", "F")
+    )
+    is None
+)
+wrong_taiwan_yibao_document = {
+    **taiwan_interest_whole_life_document("202191MZ1B83123A11Z10000000"),
+    "product_id": "wrong-product",
+    "file_name": "wrong-product-A.pdf",
+}
+assert (
+    parse_taiwan_yibao_3xiang_medical_whole_life_face_amount(
+        wrong_taiwan_yibao_document
+    )
+    is None
+)
+
+
+taiwan_yixiang_health_medical_cases = {
+    "202191MZ1B89723A11Z10000000": "original",
+    "202191MZ1B89723A11Z10000001": "first-regulatory-revision",
+}
+for product_id, expected_revision in taiwan_yixiang_health_medical_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_yixiang_health_medical_whole_life_fixed(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-yixiang-health-medical-whole-life-fixed-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "fixed"
+    assert schedule["selection_label"] == "固定保險金額 5,000 元"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["product_family"] == "taiwan-yixiang-health-medical-whole-life"
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["fixed_policy_face_amount"] == 5_000
+    assert characteristics["disease_waiting_days"] == 30
+    assert characteristics["cancer_waiting_days"] == 90
+    assert characteristics["initial_cancer_multiplier"] == 5
+    assert characteristics["mild_cancer_multiplier"] == 10
+    assert characteristics["severe_cancer_multiplier"] == 50
+    assert characteristics["hospital_daily_amount"] == 5_000
+    assert characteristics["special_room_daily_amount"] == 5_000
+    assert characteristics["inpatient_surgery_specific_treatment_amount"] == 25_000
+    assert characteristics["outpatient_surgery_specific_treatment_amount"] == 5_000
+    assert characteristics["no_hospital_claim_bonus_rate_percent"] == 1.4
+    assert characteristics["premium_refund_interest_available"] is False
+    assert characteristics["medical_lifetime_cap_amount"] == 25_000_000
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "initial-cancer-benefit",
+        "mild-cancer-benefit",
+        "severe-cancer-benefit",
+        "hospital-daily-benefit",
+        "special-room-daily-benefit",
+        "inpatient-surgery-specific-treatment-benefit",
+        "outpatient-surgery-specific-treatment-benefit",
+        "no-hospital-claim-bonus",
+        "death-or-funeral-benefit",
+        "maturity-benefit",
+        "premium-waiver",
+        "annual-premium-total-refund-under-age-16",
+        "medical-benefit-lifetime-cap",
+    }
+    assert entries["initial-cancer-benefit"]["amount"] == 25_000
+    assert entries["mild-cancer-benefit"]["amount"] == 50_000
+    assert entries["severe-cancer-benefit"]["amount"] == 250_000
+    assert entries["hospital-daily-benefit"]["amount"] == 5_000
+    assert entries["hospital-daily-benefit"]["calculation_basis"] == "per_day"
+    assert entries["special-room-daily-benefit"]["amount"] == 5_000
+    assert entries["special-room-daily-benefit"]["limit_scope"] == "per_day"
+    assert entries["inpatient-surgery-specific-treatment-benefit"]["amount"] == 25_000
+    assert entries["outpatient-surgery-specific-treatment-benefit"]["amount"] == 5_000
+    assert entries["no-hospital-claim-bonus"]["rate_percent"] == 1.4
+    assert entries["no-hospital-claim-bonus"]["unit_key"] == "annual_premium_total"
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["maturity-benefit"]["unit_key"] == "annual_premium_total_at_age_110"
+    assert entries["annual-premium-total-refund-under-age-16"]["unit_key"] == "annual_premium_total"
+    assert entries["medical-benefit-lifetime-cap"]["amount"] == 25_000_000
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+    assert (
+        parse_taiwan_yixiang_health_medical_whole_life_fixed(
+            taiwan_interest_whole_life_document(product_id, "F")
+        )
+        is None
+    )
+
+    source_path = TII_LIFE_009_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = document["text"].split("第三條")[0]
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 29
+    assert parse_taiwan_yixiang_health_medical_whole_life_fixed(completed_document) == schedule
+
+wrong_taiwan_yixiang_document = {
+    **taiwan_interest_whole_life_document("202191MZ1B89723A11Z10000000"),
+    "product_id": "wrong-product",
+    "file_name": "wrong-product-A.pdf",
+}
+assert (
+    parse_taiwan_yixiang_health_medical_whole_life_fixed(
+        wrong_taiwan_yixiang_document
+    )
+    is None
+)
+
+
+taiwan_lehuo_health_medical_cases = {
+    "202191MZ1B89823A11Z10000000": "original",
+    "202191MZ1B89823A11Z10000001": "first-regulatory-revision",
+}
+for product_id, expected_revision in taiwan_lehuo_health_medical_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_lehuo_health_medical_whole_life_fixed(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-lehuo-health-medical-whole-life-fixed-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "fixed"
+    assert schedule["selection_label"] == "固定保險金額 5,000 元"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["product_family"] == "taiwan-lehuo-health-medical-whole-life"
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["fixed_policy_face_amount"] == 5_000
+    assert characteristics["disease_waiting_days"] == 30
+    assert characteristics["cancer_waiting_days"] == 90
+    assert characteristics["initial_cancer_multiplier"] == 5
+    assert characteristics["mild_cancer_multiplier"] == 20
+    assert characteristics["severe_cancer_multiplier"] == 100
+    assert characteristics["specific_disease_multiplier"] == 100
+    assert characteristics["hospital_daily_amount"] == 5_000
+    assert characteristics["special_room_daily_amount"] == 5_000
+    assert characteristics["inpatient_surgery_specific_treatment_amount"] == 25_000
+    assert characteristics["outpatient_surgery_specific_treatment_amount"] == 5_000
+    assert characteristics["medical_device_amount"] == 50_000
+    assert characteristics["no_hospital_claim_bonus_rate_percent"] == 1.1
+    assert characteristics["premium_waiver_triggers"] == "specific_disease_or_disability_levels_1_to_6"
+    assert characteristics["premium_refund_interest_available"] is False
+    assert characteristics["medical_lifetime_cap_amount"] == 25_000_000
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "initial-cancer-benefit",
+        "mild-cancer-benefit",
+        "severe-cancer-benefit",
+        "specific-disease-benefit",
+        "hospital-daily-benefit",
+        "special-room-daily-benefit",
+        "inpatient-surgery-specific-treatment-benefit",
+        "outpatient-surgery-specific-treatment-benefit",
+        "artificial-lens-device-benefit",
+        "artificial-hip-device-benefit",
+        "artificial-knee-device-benefit",
+        "cardiovascular-stent-device-benefit",
+        "no-hospital-claim-bonus",
+        "death-or-funeral-benefit",
+        "maturity-benefit",
+        "premium-waiver",
+        "annual-premium-total-refund-under-age-16",
+        "medical-benefit-lifetime-cap",
+    }
+    assert entries["initial-cancer-benefit"]["amount"] == 25_000
+    assert entries["mild-cancer-benefit"]["amount"] == 100_000
+    assert entries["severe-cancer-benefit"]["amount"] == 500_000
+    assert entries["specific-disease-benefit"]["amount"] == 500_000
+    assert entries["hospital-daily-benefit"]["amount"] == 5_000
+    assert entries["hospital-daily-benefit"]["calculation_basis"] == "per_day"
+    assert entries["special-room-daily-benefit"]["amount"] == 5_000
+    assert entries["inpatient-surgery-specific-treatment-benefit"]["amount"] == 25_000
+    assert entries["outpatient-surgery-specific-treatment-benefit"]["amount"] == 5_000
+    assert entries["artificial-lens-device-benefit"]["amount"] == 50_000
+    assert entries["artificial-hip-device-benefit"]["amount"] == 50_000
+    assert entries["artificial-knee-device-benefit"]["amount"] == 50_000
+    assert entries["cardiovascular-stent-device-benefit"]["amount"] == 50_000
+    assert entries["no-hospital-claim-bonus"]["rate_percent"] == 1.1
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["maturity-benefit"]["unit_key"] == "annual_premium_total_at_age_110"
+    assert entries["annual-premium-total-refund-under-age-16"]["unit_key"] == "annual_premium_total"
+    assert entries["medical-benefit-lifetime-cap"]["amount"] == 25_000_000
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+    assert (
+        parse_taiwan_lehuo_health_medical_whole_life_fixed(
+            taiwan_interest_whole_life_document(product_id, "F")
+        )
+        is None
+    )
+
+    source_path = TII_LIFE_009_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = document["text"].split("第三條")[0]
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 30
+    assert parse_taiwan_lehuo_health_medical_whole_life_fixed(completed_document) == schedule
+
+wrong_taiwan_lehuo_document = {
+    **taiwan_interest_whole_life_document("202191MZ1B89823A11Z10000000"),
+    "product_id": "wrong-product",
+    "file_name": "wrong-product-A.pdf",
+}
+assert (
+    parse_taiwan_lehuo_health_medical_whole_life_fixed(
+        wrong_taiwan_lehuo_document
+    )
+    is None
+)
+
+
+taiwan_fixed_return_cases = {
+    "202121MZ1A02A23A11Z10000000": {
+        "product_family": "taiwan-yiliqi-fixed-return-whole-life",
+        "terms_revision": "original",
+        "survival_min": 1.04,
+        "survival_max": 6.24,
+        "monthly": False,
+    },
+    "202121MZ1A02A23A11Z10000001": {
+        "product_family": "taiwan-yiliqi-fixed-return-whole-life",
+        "terms_revision": "first-regulatory-revision",
+        "survival_min": 1.04,
+        "survival_max": 6.24,
+        "monthly": False,
+    },
+    "202121MZ1A53A23A11Z10000000": {
+        "product_family": "taiwan-jinduobei-fixed-return-whole-life",
+        "terms_revision": "original",
+        "survival_min": 0.98,
+        "survival_max": 5.88,
+        "monthly": True,
+    },
+}
+for product_id, expected in taiwan_fixed_return_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_fixed_return_whole_life_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-fixed-return-whole-life-formula-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "基本保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["product_family"] == expected["product_family"]
+    assert characteristics["terms_revision"] == expected["terms_revision"]
+    assert characteristics["currency"] == "TWD"
+    assert characteristics["value_sharing_bonus"] is False
+    assert characteristics["premium_multiplier"] == 1.06
+    assert characteristics["post_fifth_policy_year_face_amount_multiplier"] == 3.6
+    assert characteristics["maturity_age"] == 100
+    assert characteristics["installment_benefit_available"] is True
+    assert characteristics["installment_period_min_years"] == 5
+    assert characteristics["installment_period_max_years"] == 30
+    assert characteristics["minimum_annual_installment_amount"] == 36_000
+    assert characteristics["survival_rate_min_percent"] == expected["survival_min"]
+    assert characteristics["survival_rate_max_percent"] == expected["survival_max"]
+    assert (
+        characteristics["monthly_survival_benefit_available"]
+        is expected["monthly"]
+    )
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "survival-benefit",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "maturity-benefit",
+        "installment-periodic-benefit",
+    }
+    assert entries["survival-benefit"]["calculation_basis"] == "percentage_of_base"
+    assert entries["survival-benefit"]["rate_min_percent"] == expected["survival_min"]
+    assert entries["survival-benefit"]["rate_max_percent"] == expected["survival_max"]
+    assert entries["survival-benefit"]["unit_key"] == "previous_policy_year_basic_face_amount"
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["death-or-funeral-benefit"]["aggregation_rule"] == "highest"
+    assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["total-disability-benefit"]["aggregation_rule"] == "highest"
+    assert entries["maturity-benefit"]["unit_key"] == "age_99_annual_insured_amount"
+    assert entries["installment-periodic-benefit"]["amount_role"] == "reference"
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+
+assert (
+    parse_taiwan_fixed_return_whole_life_formula(
+        taiwan_interest_whole_life_document("202121MZ1A02A23A11Z10000000", "F")
+    )
+    is None
+)
+wrong_taiwan_fixed_return_document = {
+    **taiwan_interest_whole_life_document("202121MZ1A02A23A11Z10000000"),
+    "product_id": "wrong-product",
+    "file_name": "wrong-product-A.pdf",
+}
+assert parse_taiwan_fixed_return_whole_life_formula(
+    wrong_taiwan_fixed_return_document
+) is None
+
+
+taiwan_interest_cases = {
+    "202131MA1A08A23J11Z10000000": {
+        "currency": "CNY",
+        "expected_rate": 1.50,
+        "annual_formula": "first_two_policy_years_premium_total_then_face_plus_accumulated",
+        "premium_component": "premium_total",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA1A11A23B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.50,
+        "annual_formula": "single_premium_face_plus_accumulated_or_two_year_first_year_106",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "annual_insured_amount_times_coefficient_table",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA1A82123B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.05,
+        "annual_formula": "face_amount_plus_accumulated_paid_up_additions",
+        "premium_component": "premium_total_times_1_03",
+        "maturity_formula": "annual_insured_amount_times_coefficient_table",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA1A88923B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "face_amount_plus_accumulated_paid_up_additions",
+        "premium_component": "none",
+        "maturity_formula": "annual_insured_amount",
+        "death_calculation": "percentage_of_base",
+        "premium_waiver": True,
+    },
+    "202131MA1A99523A11Z10000000": {
+        "currency": "TWD",
+        "expected_rate": 1.00,
+        "annual_formula": "first_three_policy_years_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA1A69A23B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "first_policy_year_premium_total_then_face_plus_accumulated",
+        "premium_component": "premium_total",
+        "maturity_formula": "annual_insured_amount_times_coefficient_table",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA1A81723A11Z10000000": {
+        "currency": "TWD",
+        "expected_rate": 0.75,
+        "annual_formula": "first_five_policy_years_premium_total_times_1_02_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total_times_1_02",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA1A82223B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.00,
+        "annual_formula": "premium_period_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "annual_insured_amount",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA1A88423B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.00,
+        "annual_formula": "premium_period_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "annual_insured_amount",
+        "death_calculation": "greater_of",
+        "premium_waiver": True,
+    },
+    "202131MA1A42A23B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "first_three_policy_years_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA1A44A23B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "first_three_policy_years_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA1A45A23B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": None,
+        "annual_formula": "first_five_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA1A45A23B11Z10000001": {
+        "currency": "USD",
+        "expected_rate": None,
+        "annual_formula": "first_five_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA1A47A23B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": None,
+        "annual_formula": "first_five_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA1A47A23B11Z10000001": {
+        "currency": "USD",
+        "expected_rate": None,
+        "annual_formula": "first_five_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA1A57A23A11Z10000000": {
+        "currency": "TWD",
+        "expected_rate": 1.25,
+        "annual_formula": "first_three_policy_years_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA4B94423B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.00,
+        "annual_formula": "premium_period_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "annual_insured_amount",
+        "death_calculation": "greater_of",
+        "premium_waiver": True,
+    },
+    "202131MA1A95823B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "face_amount_plus_accumulated_paid_up_additions_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+        "death_calculation": "greater_of",
+        "premium_waiver": True,
+    },
+    "202131MA1A99123B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.50,
+        "annual_formula": "first_three_policy_years_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA9B91923B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.00,
+        "annual_formula": "first_three_policy_years_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+        "statutory_infectious": True,
+    },
+    "202131MA2A23A23A11Z10000000": {
+        "currency": "TWD",
+        "expected_rate": 2.00,
+        "annual_formula": "first_three_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA2A92023A11Z10000000": {
+        "currency": "TWD",
+        "expected_rate": None,
+        "annual_formula": "payment_period_2_6_front_years_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA2A96923A11Z10000000": {
+        "currency": "TWD",
+        "expected_rate": 1.00,
+        "annual_formula": "first_two_policy_years_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+    "202131MA2A99323A11Z10000000": {
+        "currency": "TWD",
+        "expected_rate": 1.00,
+        "annual_formula": "first_two_policy_years_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "death_calculation": "greater_of",
+        "premium_waiver": False,
+    },
+}
+for product_id, expected in taiwan_interest_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_interest_rate_whole_life_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-interest-rate-whole-life-formula-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "基本保險金額"
+    assert "保單價值準備金" in schedule["selection_guidance"]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["currency"] == expected["currency"]
+    assert characteristics["expected_interest_rate_percent"] == expected["expected_rate"]
+    assert characteristics["annual_insured_amount_formula"] == expected["annual_formula"]
+    assert characteristics["premium_component"] == expected["premium_component"]
+    assert characteristics["maturity_benefit_formula"] == expected["maturity_formula"]
+    assert characteristics["maturity_age"] == 111
+    assert characteristics["value_sharing_bonus"] is True
+    assert characteristics["premium_waiver_available"] is expected["premium_waiver"]
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) >= {
+        "value-sharing-bonus",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "maturity-benefit",
+    }
+    assert (
+        entries["death-or-funeral-benefit"]["calculation_basis"]
+        == expected["death_calculation"]
+    )
+    assert entries["death-or-funeral-benefit"]["rate_percent"] == 100
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+    assert entries["value-sharing-bonus"]["calculation_basis"] == "unknown"
+    assert entries["value-sharing-bonus"]["basis"] == "policy_recorded_limit"
+    assert ("premium-waiver" in entries) is expected["premium_waiver"]
+    if expected.get("statutory_infectious"):
+        assert characteristics["statutory_infectious_comfort_benefit"] is True
+        assert characteristics["statutory_infectious_rate_percent"] == 1
+        assert characteristics["statutory_infectious_policy_year_limit"] == 1
+        assert characteristics["statutory_infectious_limit_times"] == 1
+        assert "statutory-infectious-comfort-benefit" in entries
+        infectious_entry = entries["statutory-infectious-comfort-benefit"]
+        assert infectious_entry["calculation_basis"] == "percentage_of_base"
+        assert infectious_entry["basis"] == "face_amount"
+        assert infectious_entry["rate_percent"] == 1
+        assert infectious_entry["limit_scope"] == "per_policy"
+    else:
+        assert "statutory_infectious_comfort_benefit" not in characteristics
+        assert "statutory-infectious-comfort-benefit" not in entries
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+
+assert parse_taiwan_interest_rate_whole_life_formula(
+    taiwan_interest_whole_life_document("202131MA1A08A23J11Z10000000", "F")
+) is None
+assert parse_taiwan_interest_rate_whole_life_formula(
+    taiwan_interest_whole_life_document("202131MA9B91923B11Z10000000", "F")
+) is None
+assert (
+    parse_taiwan_interest_rate_whole_life_formula(
+        {
+            **taiwan_interest_whole_life_document("202131MA9B91923B11Z10000000"),
+            "text": taiwan_interest_whole_life_document(
+                "202131MA9B91923B11Z10000000"
+            )["text"].replace(
+                "保險金額的 1%給付法定傳染病慰問保險金",
+                "保險金額的 2%給付法定傳染病慰問保險金",
+                1,
+            ),
+        }
+    )
+    is None
+)
+wrong_taiwan_interest_document = {
+    **taiwan_interest_whole_life_document("202131MA1A08A23J11Z10000000"),
+    "product_id": "wrong-product",
+    "file_name": "wrong-product-A.pdf",
+}
+assert parse_taiwan_interest_rate_whole_life_formula(
+    wrong_taiwan_interest_document
+) is None
+taiwan_interest_indexed = taiwan_interest_whole_life_document(
+    "202131MA1A08A23J11Z10000000"
+)
+taiwan_interest_completed = complete_strict_source_document(
+    {
+        **taiwan_interest_indexed,
+        "text": taiwan_interest_indexed["text"][:1500],
+    },
+    TII_LIFE_009_ROOT
+    / "202131MA1A08A23J11Z10000000"
+    / "202131MA1A08A23J11Z10000000-A.pdf",
+)
+assert taiwan_interest_completed["page_count"] == 10
+assert parse_taiwan_interest_rate_whole_life_formula(taiwan_interest_completed) is not None
+
+taiwan_fengfu_meili_product_id = "202131MA9B91023B11Z10000000"
+taiwan_fengfu_meili_indexed = taiwan_interest_whole_life_document(
+    taiwan_fengfu_meili_product_id
+)
+taiwan_fengfu_meili_completed = complete_strict_source_document(
+    taiwan_fengfu_meili_indexed,
+    TII_LIFE_009_ROOT
+    / taiwan_fengfu_meili_product_id
+    / f"{taiwan_fengfu_meili_product_id}-A.pdf",
+)
+assert taiwan_fengfu_meili_completed["page_count"] == 14
+taiwan_fengfu_meili_schedule = parse_taiwan_fengfu_meili_usd_interest_whole_life(
+    taiwan_fengfu_meili_completed
+)
+assert taiwan_fengfu_meili_schedule is not None
+integrated = parse_plan_table_with_parser(taiwan_fengfu_meili_completed)
+assert integrated is not None
+assert integrated[0] == "taiwan-fengfu-meili-usd-interest-whole-life-v1"
+assert integrated[1] == taiwan_fengfu_meili_schedule
+assert parse_taiwan_interest_rate_whole_life_formula(taiwan_fengfu_meili_completed) is None
+assert taiwan_fengfu_meili_schedule["selection_type"] == "face_amount"
+assert taiwan_fengfu_meili_schedule["selection_label"] == "基本保險金額"
+characteristics = taiwan_fengfu_meili_schedule["version_characteristics"]
+assert characteristics["product_family"] == "taiwan-fengfu-meili-usd-interest-whole-life"
+assert characteristics["terms_revision"] == "110-original"
+assert characteristics["filing_number"] == "台壽字第1102320155號函備查"
+assert characteristics["currency"] == "USD"
+assert characteristics["expected_interest_rate_percent"] == 1.75
+assert characteristics["annual_insured_amount_formula"] == (
+    "first_three_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient"
+)
+assert characteristics["death_benefit_formula"] == (
+    "greater_of_annual_insured_amount_reserve_and_premium_total"
+)
+assert characteristics["total_disability_benefit_available"] is False
+assert characteristics["maturity_benefit_formula"] == (
+    "greater_of_annual_insured_amount_and_premium_total_times_1_06"
+)
+assert characteristics["premium_component"] == "premium_total_times_1_06"
+assert characteristics["premium_multiplier"] == 1.06
+assert characteristics["maturity_age"] == 111
+assert characteristics["installment_benefit_available"] is True
+assert characteristics["premium_waiver_available"] is True
+assert characteristics["premium_waiver_disability_grade_min"] == 1
+assert characteristics["premium_waiver_disability_grade_max"] == 9
+assert characteristics["statutory_infectious_comfort_benefit"] is True
+assert characteristics["statutory_infectious_rate_percent"] == 1
+assert characteristics["statutory_infectious_policy_year_limit"] == 1
+assert characteristics["statutory_infectious_limit_times"] == 1
+entries = {
+    entry["id"]: entry
+    for entry in taiwan_fengfu_meili_schedule["coverage_entries"]
+}
+assert set(entries) == {
+    "value-sharing-bonus",
+    "death-or-funeral-benefit",
+    "maturity-benefit",
+    "premium-waiver",
+    "statutory-infectious-comfort-benefit",
+    "installment-periodic-benefit",
+}
+assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+assert entries["death-or-funeral-benefit"]["aggregation_rule"] == "highest"
+assert entries["maturity-benefit"]["calculation_basis"] == "greater_of"
+assert entries["maturity-benefit"]["aggregation_rule"] == "highest"
+assert entries["premium-waiver"]["calculation_basis"] == "unknown"
+assert entries["premium-waiver"]["amount_role"] == "reference"
+assert entries["statutory-infectious-comfort-benefit"]["basis"] == "face_amount"
+assert entries["statutory-infectious-comfort-benefit"]["rate_percent"] == 1
+assert entries["installment-periodic-benefit"]["amount_role"] == "reference"
+assert "total-disability-benefit" not in entries
+assert all(entry["source"] == "terms" for entry in entries.values())
+assert all(entry.get("conditions") for entry in entries.values())
+assert (
+    parse_taiwan_fengfu_meili_usd_interest_whole_life(
+        taiwan_interest_whole_life_document(taiwan_fengfu_meili_product_id, "F")
+    )
+    is None
+)
+assert (
+    parse_taiwan_fengfu_meili_usd_interest_whole_life(
+        {**taiwan_fengfu_meili_completed, "product_id": "wrong-product"}
+    )
+    is None
+)
+assert (
+    parse_taiwan_fengfu_meili_usd_interest_whole_life(
+        {
+            **taiwan_fengfu_meili_completed,
+            "text": taiwan_fengfu_meili_completed["text"].replace(
+                "保險金額的 1%給付法定傳染病慰問保險金",
+                "保險金額的 2%給付法定傳染病慰問保險金",
+            ),
+        }
+    )
+    is None
+)
+assert (
+    parse_taiwan_fengfu_meili_usd_interest_whole_life(
+        {
+            **taiwan_fengfu_meili_completed,
+            "text": taiwan_fengfu_meili_completed["text"] + "完全失能保險金",
+        }
+    )
+    is None
+)
+
+taiwan_yaozuan_chuanshi_product_id = "202131MA9B12B23B11Z10000000"
+taiwan_yaozuan_chuanshi_indexed = taiwan_interest_whole_life_document(
+    taiwan_yaozuan_chuanshi_product_id
+)
+taiwan_yaozuan_chuanshi_completed = complete_strict_source_document(
+    taiwan_yaozuan_chuanshi_indexed,
+    TII_LIFE_009_ROOT
+    / taiwan_yaozuan_chuanshi_product_id
+    / f"{taiwan_yaozuan_chuanshi_product_id}-A.pdf",
+)
+assert taiwan_yaozuan_chuanshi_completed["page_count"] == 21
+taiwan_yaozuan_chuanshi_schedule = (
+    parse_taiwan_yaozuan_chuanshi_usd_whole_life_cancer_health(
+        taiwan_yaozuan_chuanshi_completed
+    )
+)
+assert taiwan_yaozuan_chuanshi_schedule is not None
+integrated = parse_plan_table_with_parser(taiwan_yaozuan_chuanshi_completed)
+assert integrated is not None
+assert integrated[0] == "taiwan-yaozuan-chuanshi-usd-whole-life-cancer-health-v1"
+assert integrated[1] == taiwan_yaozuan_chuanshi_schedule
+assert parse_taiwan_interest_rate_whole_life_formula(taiwan_yaozuan_chuanshi_completed) is None
+assert taiwan_yaozuan_chuanshi_schedule["selection_type"] == "face_amount"
+assert taiwan_yaozuan_chuanshi_schedule["selection_label"] == "基本保險金額"
+characteristics = taiwan_yaozuan_chuanshi_schedule["version_characteristics"]
+assert characteristics["product_family"] == (
+    "taiwan-yaozuan-chuanshi-usd-whole-life-cancer-health"
+)
+assert characteristics["terms_revision"] == "114-original"
+assert characteristics["filing_number"] == "台壽字第1142320109號"
+assert characteristics["currency"] == "USD"
+assert characteristics["expected_interest_rate_percent"] == 2.5
+assert characteristics["payment_period_options"] == [10, 12]
+assert characteristics["cancer_waiting_days"] == 90
+assert characteristics["special_treatment_rate_percent"] == 50
+assert characteristics["robotic_surgery_rate_percent"] == 2.5
+assert characteristics["special_treatment_lifetime_limit_times"] == 1
+assert characteristics["robotic_surgery_lifetime_limit_times"] == 1
+assert characteristics["robotic_surgery_system_table_required"] is True
+assert characteristics["health_surrender_value_available"] is False
+assert characteristics["health_unpaid_premium_refund_available"] is False
+assert characteristics["annual_insured_amount_formula"] == (
+    "face_amount_plus_accumulated_paid_up_additions_times_coefficient"
+)
+assert characteristics["death_benefit_formula"] == (
+    "greater_of_annual_insured_amount_reserve_and_premium_total"
+)
+assert characteristics["total_disability_benefit_formula"] == (
+    "greater_of_annual_insured_amount_reserve_and_premium_total"
+)
+assert characteristics["maturity_benefit_formula"] == (
+    "greater_of_annual_insured_amount_and_premium_total_times_1_06"
+)
+assert characteristics["premium_component"] == "premium_total_times_1_06"
+assert characteristics["premium_multiplier"] == 1.06
+assert characteristics["maturity_age"] == 111
+entries = {
+    entry["id"]: entry
+    for entry in taiwan_yaozuan_chuanshi_schedule["coverage_entries"]
+}
+assert set(entries) == {
+    "value-sharing-bonus",
+    "death-or-funeral-benefit",
+    "total-disability-benefit",
+    "special-treatment-benefit",
+    "cancer-robotic-surgery-benefit",
+    "maturity-benefit",
+    "installment-periodic-benefit",
+}
+assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+assert entries["maturity-benefit"]["calculation_basis"] == "greater_of"
+assert entries["special-treatment-benefit"]["rate_percent"] == 50
+assert entries["special-treatment-benefit"]["unit_key"] == (
+    "basic_face_amount_times_annual_insured_amount_coefficient"
+)
+assert entries["cancer-robotic-surgery-benefit"]["basis"] == "face_amount"
+assert entries["cancer-robotic-surgery-benefit"]["rate_percent"] == 2.5
+assert all(entry["source"] == "terms" for entry in entries.values())
+assert (
+    parse_taiwan_yaozuan_chuanshi_usd_whole_life_cancer_health(
+        taiwan_interest_whole_life_document(taiwan_yaozuan_chuanshi_product_id, "F")
+    )
+    is None
+)
+assert (
+    parse_taiwan_yaozuan_chuanshi_usd_whole_life_cancer_health(
+        {**taiwan_yaozuan_chuanshi_completed, "product_id": "wrong-product"}
+    )
+    is None
+)
+
+taiwan_lehuo_meili_product_id = "202131MA9B91A23B11Z10000000"
+taiwan_lehuo_meili_indexed = taiwan_interest_whole_life_document(
+    taiwan_lehuo_meili_product_id
+)
+taiwan_lehuo_meili_completed = complete_strict_source_document(
+    taiwan_lehuo_meili_indexed,
+    TII_LIFE_009_ROOT
+    / taiwan_lehuo_meili_product_id
+    / f"{taiwan_lehuo_meili_product_id}-A.pdf",
+)
+assert taiwan_lehuo_meili_completed["page_count"] == 20
+taiwan_lehuo_meili_schedule = (
+    parse_taiwan_lehuo_meili_usd_whole_life_cancer_health(
+        taiwan_lehuo_meili_completed
+    )
+)
+assert taiwan_lehuo_meili_schedule is not None
+integrated = parse_plan_table_with_parser(taiwan_lehuo_meili_completed)
+assert integrated is not None
+assert integrated[0] == "taiwan-lehuo-meili-usd-whole-life-cancer-health-v1"
+assert integrated[1] == taiwan_lehuo_meili_schedule
+assert parse_taiwan_interest_rate_whole_life_formula(taiwan_lehuo_meili_completed) is None
+assert taiwan_lehuo_meili_schedule["selection_type"] == "face_amount"
+assert taiwan_lehuo_meili_schedule["selection_label"] == "基本保險金額"
+characteristics = taiwan_lehuo_meili_schedule["version_characteristics"]
+assert characteristics["product_family"] == (
+    "taiwan-lehuo-meili-usd-whole-life-cancer-health"
+)
+assert characteristics["terms_revision"] == "114-original"
+assert characteristics["filing_number"] == "台壽字第1142320067號"
+assert characteristics["currency"] == "USD"
+assert characteristics["expected_interest_rate_percent"] == 2.5
+assert characteristics["cancer_waiting_days"] == 90
+assert characteristics["special_treatment_benefit_formula"] == (
+    "greater_of_annual_insured_amount_reserve_and_premium_total_times_1_06"
+)
+assert characteristics["special_treatment_lifetime_limit_times"] == 1
+assert characteristics["special_treatment_item_count"] == 5
+assert characteristics["special_treatment_payment_period_only"] is True
+assert characteristics["terminal_benefits_choose_one_rule"] is True
+assert characteristics["annual_insured_amount_formula"] == (
+    "face_amount_plus_accumulated_paid_up_additions_times_coefficient"
+)
+assert characteristics["death_benefit_formula"] == (
+    "greater_of_annual_insured_amount_reserve_and_premium_total"
+)
+assert characteristics["total_disability_benefit_formula"] == (
+    "greater_of_annual_insured_amount_reserve_and_premium_total"
+)
+assert characteristics["maturity_benefit_formula"] == (
+    "greater_of_annual_insured_amount_and_premium_total_times_1_06"
+)
+assert characteristics["premium_component"] == "premium_total_times_1_06"
+assert characteristics["premium_multiplier"] == 1.06
+assert characteristics["maturity_age"] == 111
+entries = {
+    entry["id"]: entry
+    for entry in taiwan_lehuo_meili_schedule["coverage_entries"]
+}
+assert set(entries) == {
+    "value-sharing-bonus",
+    "death-or-funeral-benefit",
+    "total-disability-benefit",
+    "special-treatment-benefit",
+    "maturity-benefit",
+    "installment-periodic-benefit",
+}
+assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+assert entries["death-or-funeral-benefit"]["aggregation_rule"] == "choose_one"
+assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+assert entries["total-disability-benefit"]["aggregation_rule"] == "choose_one"
+assert entries["maturity-benefit"]["calculation_basis"] == "greater_of"
+assert entries["maturity-benefit"]["aggregation_rule"] == "choose_one"
+assert entries["special-treatment-benefit"]["calculation_basis"] == "greater_of"
+assert entries["special-treatment-benefit"]["aggregation_rule"] == "choose_one"
+assert entries["special-treatment-benefit"]["rate_percent"] == 100
+assert entries["special-treatment-benefit"]["unit_key"] == "annual_insured_amount"
+assert "90日" in " ".join(entries["special-treatment-benefit"]["conditions"])
+assert "僅給付其中一項" in " ".join(
+    entries["special-treatment-benefit"]["conditions"]
+)
+assert all(entry["source"] == "terms" for entry in entries.values())
+assert all(entry.get("conditions") for entry in entries.values())
+assert (
+    parse_taiwan_lehuo_meili_usd_whole_life_cancer_health(
+        taiwan_interest_whole_life_document(taiwan_lehuo_meili_product_id, "F")
+    )
+    is None
+)
+assert (
+    parse_taiwan_lehuo_meili_usd_whole_life_cancer_health(
+        {**taiwan_lehuo_meili_completed, "product_id": "wrong-product"}
+    )
+    is None
+)
+assert (
+    parse_taiwan_lehuo_meili_usd_whole_life_cancer_health(
+        {
+            **taiwan_lehuo_meili_completed,
+            "text": taiwan_lehuo_meili_completed["text"].replace(
+                "年繳應繳保險費總和的 1.06 倍",
+                "年繳應繳保險費總和的 1.10 倍",
+            ),
+        }
+    )
+    is None
+)
+assert (
+    parse_taiwan_lehuo_meili_usd_whole_life_cancer_health(
+        {
+            **taiwan_lehuo_meili_completed,
+            "text": taiwan_lehuo_meili_completed["text"]
+            + "癌症特定機械手臂微創切除手術醫療保險金",
+        }
+    )
+    is None
+)
+
+taiwan_longai_funeral_product_id = "202131MZ2A40B23A12Z10000000"
+taiwan_longai_funeral_indexed = taiwan_interest_whole_life_document(
+    taiwan_longai_funeral_product_id
+)
+taiwan_longai_funeral_completed = complete_strict_source_document(
+    taiwan_longai_funeral_indexed,
+    TII_LIFE_009_ROOT
+    / taiwan_longai_funeral_product_id
+    / f"{taiwan_longai_funeral_product_id}-A.pdf",
+)
+assert taiwan_longai_funeral_completed["page_count"] == 16
+taiwan_longai_funeral_schedule = (
+    parse_taiwan_longai_funeral_service_whole_life_fixed(
+        taiwan_longai_funeral_completed
+    )
+)
+assert taiwan_longai_funeral_schedule is not None
+integrated = parse_plan_table_with_parser(taiwan_longai_funeral_completed)
+assert integrated is not None
+assert integrated[0] == "taiwan-longai-funeral-service-whole-life-fixed-v1"
+assert integrated[1] == taiwan_longai_funeral_schedule
+assert parse_taiwan_interest_rate_whole_life_formula(taiwan_longai_funeral_completed) is None
+assert taiwan_longai_funeral_schedule["selection_type"] == "fixed"
+assert taiwan_longai_funeral_schedule["input_mode"] == "fixed"
+assert taiwan_longai_funeral_schedule["selection_label"] == "保險金額"
+characteristics = taiwan_longai_funeral_schedule["version_characteristics"]
+assert characteristics["product_family"] == "taiwan-longai-funeral-service-whole-life"
+assert characteristics["terms_revision"] == "115-original"
+assert characteristics["filing_number"] == "台壽字第1152320048號"
+assert characteristics["currency"] == "TWD"
+assert characteristics["fixed_face_amount"] == 240_000
+assert characteristics["annual_insured_amount_formula"] == (
+    "annual_premium_total_times_1_06"
+)
+assert characteristics["service_provider"] == "龍巖股份有限公司"
+assert characteristics["service_option_count"] == 2
+assert characteristics["funeral_service_amount"] == 240_000
+assert characteristics["funeral_service_from_policy_year"] == 3
+assert characteristics["service_lifetime_limit_times"] == 1
+assert characteristics["cash_conversion_allowed"] is False
+assert characteristics["non_attributable_unavailable_cash_rate_percent"] == 100
+assert characteristics["attributable_unavailable_cash_rate_percent"] == 110
+assert characteristics["first_two_policy_year_death_premium_multiplier"] == 1.06
+assert characteristics["death_after_third_policy_year_cash_amount"] == 240_000
+assert characteristics["accidental_death_amount"] == 100_000
+assert characteristics["accidental_death_max_age"] == 85
+assert characteristics["accident_claim_days"] == 180
+assert characteristics["maturity_age"] == 111
+assert characteristics["premium_waiver_available"] is True
+assert characteristics["premium_waiver_disability_grade_min"] == 1
+assert characteristics["premium_waiver_disability_grade_max"] == 6
+assert characteristics["funeral_benefit_limit_rule"] is True
+entries = {
+    entry["id"]: entry
+    for entry in taiwan_longai_funeral_schedule["coverage_entries"]
+}
+assert set(entries) == {
+    "funeral-service-benefit",
+    "death-first-two-policy-years",
+    "death-after-third-policy-year-service-exception",
+    "non-attributable-funeral-service-unavailable-cash",
+    "company-fault-funeral-service-unavailable-cash",
+    "accidental-death-before-85",
+    "maturity-benefit",
+    "premium-waiver",
+}
+assert entries["funeral-service-benefit"]["amount"] == 240_000
+assert entries["funeral-service-benefit"]["calculation_basis"] == "fixed_amount"
+assert entries["funeral-service-benefit"]["aggregation_rule"] == "choose_one"
+assert "台灣本島" in " ".join(entries["funeral-service-benefit"]["conditions"])
+assert entries["death-first-two-policy-years"]["rate_percent"] == 106
+assert entries["death-first-two-policy-years"]["unit_key"] == "annual_premium_total"
+assert entries["death-after-third-policy-year-service-exception"]["amount"] == 240_000
+assert entries["non-attributable-funeral-service-unavailable-cash"]["amount"] == 240_000
+assert entries["company-fault-funeral-service-unavailable-cash"]["amount"] == 264_000
+assert entries["accidental-death-before-85"]["amount"] == 100_000
+assert entries["accidental-death-before-85"]["aggregation_rule"] == "conditional_additive"
+assert entries["maturity-benefit"]["amount"] == 240_000
+assert entries["premium-waiver"]["calculation_basis"] == "unknown"
+assert all(entry["source"] == "terms" for entry in entries.values())
+assert all(entry.get("conditions") for entry in entries.values())
+assert (
+    parse_taiwan_longai_funeral_service_whole_life_fixed(
+        taiwan_interest_whole_life_document(taiwan_longai_funeral_product_id, "F")
+    )
+    is None
+)
+assert (
+    parse_taiwan_longai_funeral_service_whole_life_fixed(
+        {**taiwan_longai_funeral_completed, "product_id": "wrong-product"}
+    )
+    is None
+)
+assert (
+    parse_taiwan_longai_funeral_service_whole_life_fixed(
+        {
+            **taiwan_longai_funeral_completed,
+            "text": taiwan_longai_funeral_completed["text"].replace(
+                "新臺幣 24 萬元",
+                "新臺幣 25 萬元",
+            ),
+        }
+    )
+    is None
+)
+assert (
+    parse_taiwan_longai_funeral_service_whole_life_fixed(
+        {
+            **taiwan_longai_funeral_completed,
+            "text": taiwan_longai_funeral_completed["text"].replace(
+                "第三保單年度(含)以後身故",
+                "第四保單年度(含)以後身故",
+            ),
+        }
+    )
+    is None
+)
+
+taiwan_longzaitian_funeral_product_id = "202131RZ1A73023A12Z10000000"
+taiwan_longzaitian_funeral_indexed = taiwan_interest_whole_life_document(
+    taiwan_longzaitian_funeral_product_id
+)
+taiwan_longzaitian_funeral_completed = complete_strict_source_document(
+    taiwan_longzaitian_funeral_indexed,
+    TII_LIFE_009_ROOT
+    / taiwan_longzaitian_funeral_product_id
+    / f"{taiwan_longzaitian_funeral_product_id}-A.pdf",
+)
+assert taiwan_longzaitian_funeral_completed["page_count"] == 10
+taiwan_longzaitian_funeral_schedule = (
+    parse_taiwan_longzaitian_funeral_service_rider_fixed(
+        taiwan_longzaitian_funeral_completed
+    )
+)
+assert taiwan_longzaitian_funeral_schedule is not None
+integrated = parse_plan_table_with_parser(taiwan_longzaitian_funeral_completed)
+assert integrated is not None
+assert integrated[0] == "taiwan-longzaitian-funeral-service-rider-fixed-v1"
+assert integrated[1] == taiwan_longzaitian_funeral_schedule
+assert parse_taiwan_funeral_service_rider_fixed(taiwan_longzaitian_funeral_completed) is None
+assert parse_taiwan_interest_rate_whole_life_formula(taiwan_longzaitian_funeral_completed) is None
+assert taiwan_longzaitian_funeral_schedule["selection_type"] == "fixed"
+assert taiwan_longzaitian_funeral_schedule["input_mode"] == "fixed"
+characteristics = taiwan_longzaitian_funeral_schedule["version_characteristics"]
+assert characteristics["product_family"] == "taiwan-longzaitian-funeral-service-rider"
+assert characteristics["terms_revision"] == "108-original"
+assert characteristics["filing_date"] == "108-03-15"
+assert characteristics["service_option_count"] == 2
+assert characteristics["service_amount"] == 210_000
+assert characteristics["funeral_service_from_policy_year"] == 4
+assert characteristics["service_scope_taiwan_main_island"] is True
+assert characteristics["service_lifetime_limit_times"] == 1
+assert characteristics["cash_conversion_allowed"] is False
+assert characteristics["non_attributable_unavailable_cash_rate_percent"] == 100
+assert characteristics["attributable_unavailable_cash_rate_percent"] == 110
+assert characteristics["first_three_policy_year_death_premium_multiplier"] == 1.06
+assert characteristics["maturity_age"] == 111
+assert characteristics["maturity_benefit_amount"] == 210_000
+assert characteristics["funeral_benefit_limit_rule"] is True
+assert characteristics["reduced_paid_up_excludes_funeral_service"] is True
+assert characteristics["fixed_terms_amount"] is True
+assert characteristics["non_participating_policy"] is True
+assert "accidental_death_amount" not in characteristics
+assert "premium_waiver_available" not in characteristics
+entries = {
+    entry["id"]: entry
+    for entry in taiwan_longzaitian_funeral_schedule["coverage_entries"]
+}
+assert set(entries) == {
+    "funeral-service-benefit",
+    "death-first-three-policy-years",
+    "death-after-fourth-policy-year-service-exception",
+    "non-attributable-funeral-service-unavailable-cash",
+    "company-fault-funeral-service-unavailable-cash",
+    "maturity-age-111-benefit",
+    "reduced-paid-up-excludes-funeral-service",
+}
+assert entries["funeral-service-benefit"]["amount"] == 210_000
+assert entries["funeral-service-benefit"]["amount_role"] == "reference"
+assert entries["funeral-service-benefit"]["aggregation_rule"] == "choose_one"
+assert entries["death-first-three-policy-years"]["rate_percent"] == 106
+assert entries["death-first-three-policy-years"]["unit_key"] == "annual_premium_total"
+assert entries["death-after-fourth-policy-year-service-exception"]["amount"] == 210_000
+assert entries["non-attributable-funeral-service-unavailable-cash"]["amount"] == 210_000
+assert entries["company-fault-funeral-service-unavailable-cash"]["amount"] == 231_000
+assert entries["maturity-age-111-benefit"]["amount"] == 210_000
+assert entries["reduced-paid-up-excludes-funeral-service"].get("amount") is None
+assert entries["reduced-paid-up-excludes-funeral-service"]["amount_role"] == "reference"
+assert all(entry["source"] == "terms" for entry in entries.values())
+assert all(entry.get("conditions") for entry in entries.values())
+assert (
+    parse_taiwan_longzaitian_funeral_service_rider_fixed(
+        {**taiwan_longzaitian_funeral_completed, "file_name": "wrong-file.pdf"}
+    )
+    is None
+)
+assert (
+    parse_taiwan_longzaitian_funeral_service_rider_fixed(
+        {**taiwan_longzaitian_funeral_completed, "product_id": "wrong-product"}
+    )
+    is None
+)
+
+taiwan_interest_endowment_cases = {
+    "202121MA1A34A22D11Z10000000": {
+        "currency": "AUD",
+        "expected_rate": 2.00,
+        "policy_period_years": 7,
+        "annual_formula": "face_amount_plus_accumulated_paid_up_additions",
+        "foreign_currency": True,
+    },
+    "202121MA1A43A22B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.50,
+        "policy_period_years": 7,
+        "annual_formula": "face_amount_plus_accumulated_paid_up_additions",
+        "foreign_currency": True,
+    },
+    "202121MA1A88A22A11Z10000000": {
+        "currency": "TWD",
+        "expected_rate": 1.25,
+        "policy_period_years": 30,
+        "annual_formula": "first_two_policy_years_premium_total_then_face_plus_accumulated_times_coefficient",
+        "foreign_currency": False,
+    },
+}
+for product_id, expected in taiwan_interest_endowment_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_interest_rate_endowment_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-interest-rate-endowment-formula-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "基本保險金額"
+    assert "基本保險金額" in schedule["selection_guidance"]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["currency"] == expected["currency"]
+    assert characteristics["expected_interest_rate_percent"] == expected["expected_rate"]
+    assert characteristics["policy_period_years"] == expected["policy_period_years"]
+    assert characteristics["annual_insured_amount_formula"] == expected["annual_formula"]
+    assert characteristics["maturity_benefit_formula"] == "annual_insured_amount"
+    assert characteristics["value_sharing_bonus"] is True
+    assert characteristics["premium_waiver_available"] is False
+    assert characteristics["foreign_currency_policy"] is expected["foreign_currency"]
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) >= {
+        "value-sharing-bonus",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "maturity-benefit",
+        "installment-periodic-benefit",
+    }
+    assert entries["maturity-benefit"]["name"] == "滿期保險金"
+    assert entries["maturity-benefit"]["calculation_basis"] == "percentage_of_base"
+    assert "滿期公式類型" in entries["maturity-benefit"]["conditions"][0]
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+    assert all(entry["source"] == "terms" for entry in entries.values())
+
+assert parse_taiwan_interest_rate_endowment_formula(
+    taiwan_interest_whole_life_document("202121MA1A34A22D11Z10000000", "F")
+) is None
+
+taiwan_interest_specific_disease_cases = {
+    "202131MA5B28A23B11Z10000000": "original",
+    "202131MA5B28A23B11Z10000001": "114-regulatory-revision",
+}
+for product_id, expected_revision in taiwan_interest_specific_disease_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_interest_rate_specific_disease_whole_life_formula(
+        document
+    )
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-interest-rate-specific-disease-whole-life-formula-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "基本保險金額"
+    assert "特定傷病" in schedule["selection_guidance"]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["currency"] == "USD"
+    assert characteristics["expected_interest_rate_percent"] == 2.5
+    assert characteristics["value_sharing_bonus"] is True
+    assert characteristics["specific_disease_waiting_days"] == 30
+    assert characteristics["specific_disease_names"] == [
+        "嚴重阿茲海默氏症",
+        "嚴重巴金森氏症",
+    ]
+    assert characteristics["specific_disease_count"] == 2
+    assert characteristics["specific_disease_one_time_benefit"] is True
+    assert characteristics["specific_disease_disability_exclusive"] is True
+    assert characteristics["annual_insured_amount_formula"] == (
+        "first_five_policy_years_premium_total_times_1_06_then_"
+        "face_plus_accumulated_times_coefficient"
+    )
+    assert characteristics["specific_disease_benefit_formula"] == (
+        "greater_of_annual_insured_amount_reserve_and_premium_total_times_1_06"
+    )
+    assert characteristics["maturity_benefit_formula"] == (
+        "greater_of_annual_insured_amount_and_premium_total_times_1_06"
+    )
+    assert characteristics["premium_component"] == "premium_total_times_1_06"
+    assert characteristics["premium_multiplier"] == 1.06
+    assert characteristics["maturity_age"] == 111
+    assert characteristics["installment_benefit_available"] is True
+    assert characteristics["minimum_annual_installment_amount"] == 1200
+    assert characteristics["minimum_annual_installment_currency"] == "USD"
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) >= {
+        "value-sharing-bonus",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "specific-disease-benefit",
+        "maturity-benefit",
+        "installment-periodic-benefit",
+    }
+    assert entries["specific-disease-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["specific-disease-benefit"]["aggregation_rule"] == "highest"
+    assert "嚴重阿茲海默氏症" in entries["specific-disease-benefit"]["conditions"][0]
+    assert entries["maturity-benefit"]["calculation_basis"] == "greater_of"
+    assert all(entry["source"] == "terms" for entry in entries.values())
+
+assert parse_taiwan_interest_rate_specific_disease_whole_life_formula(
+    taiwan_interest_whole_life_document("202131MA5B28A23B11Z10000000", "F")
+) is None
+
+taiwan_interest_specific_disease_survival_cases = {
+    "202131MA5B29A23B11Z10000000": "original",
+    "202131MA5B29A23B11Z10000001": "114-regulatory-revision",
+}
+for product_id, expected_revision in taiwan_interest_specific_disease_survival_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_interest_rate_specific_disease_survival_whole_life_formula(
+        document
+    )
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert (
+        integrated[0]
+        == "taiwan-interest-rate-specific-disease-survival-whole-life-formula-v1"
+    )
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "基本保險金額"
+    assert "特定傷病保險金" in schedule["selection_guidance"]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["currency"] == "USD"
+    assert characteristics["expected_interest_rate_percent"] == 2.5
+    assert characteristics["specific_disease_benefit_formula"] == (
+        "basic_face_amount_times_5_percent"
+    )
+    assert characteristics["specific_disease_rate_percent"] == 5
+    assert characteristics["specific_disease_one_time_benefit"] is True
+    assert characteristics["specific_disease_disability_exclusive"] is False
+    assert characteristics["total_disability_benefit_available"] is False
+    assert characteristics["annual_insured_amount_formula"] == (
+        "first_three_policy_years_premium_total_times_1_06_then_"
+        "face_plus_accumulated_times_coefficient"
+    )
+    assert characteristics["maturity_benefit_formula"] == (
+        "greater_of_annual_insured_amount_and_premium_total_times_1_06"
+    )
+    assert characteristics["premium_component"] == "premium_total_times_1_06"
+    assert characteristics["premium_multiplier"] == 1.06
+    assert characteristics["minimum_annual_installment_amount"] == 1200
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert "total-disability-benefit" not in entries
+    assert set(entries) >= {
+        "value-sharing-bonus",
+        "death-or-funeral-benefit",
+        "specific-disease-benefit",
+        "maturity-benefit",
+        "installment-periodic-benefit",
+    }
+    specific_entry = entries["specific-disease-benefit"]
+    assert specific_entry["calculation_basis"] == "percentage_of_base"
+    assert specific_entry["basis"] == "face_amount"
+    assert specific_entry["rate_percent"] == 5
+    assert specific_entry["unit_key"] == "basic_face_amount"
+    assert "嚴重巴金森氏症" in specific_entry["conditions"][0]
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["maturity-benefit"]["calculation_basis"] == "greater_of"
+    assert all(entry["source"] == "terms" for entry in entries.values())
+
+assert parse_taiwan_interest_rate_specific_disease_survival_whole_life_formula(
+    taiwan_interest_whole_life_document("202131MA5B29A23B11Z10000000", "F")
+) is None
+
+taiwan_usd_endowment_cases = {
+    "202121MZ1A30B22B11Z10000000": {
+        "label": "基本保險金額",
+        "period": 10,
+        "formula": (
+            "single_premium_face_amount_times_coefficient_or_"
+            "two_year_first_year_premium_total_then_face_amount_times_coefficient"
+        ),
+        "maturity": "annual_insured_amount",
+        "revision": "original",
+        "coefficient_table_required": True,
+    },
+    "202121MZ1A77A22B11Z10000000": {
+        "label": "保險金額",
+        "period": 7,
+        "formula": "face_amount",
+        "maturity": "face_amount",
+        "revision": "original",
+        "coefficient_table_required": False,
+    },
+    "202121MZ1A77A22B11Z10000001": {
+        "label": "保險金額",
+        "period": 7,
+        "formula": "face_amount",
+        "maturity": "face_amount",
+        "revision": "first-partial-revision",
+        "coefficient_table_required": False,
+    },
+}
+for product_id, expected in taiwan_usd_endowment_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_usd_endowment_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-usd-endowment-formula-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == expected["label"]
+    assert expected["label"] in schedule["selection_guidance"]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["currency"] == "USD"
+    assert characteristics["value_sharing_bonus"] is False
+    assert characteristics["policy_period_years"] == expected["period"]
+    assert characteristics["face_amount_label"] == expected["label"]
+    assert characteristics["annual_insured_amount_formula"] == expected["formula"]
+    assert characteristics["maturity_benefit_formula"] == expected["maturity"]
+    assert characteristics["terms_revision"] == expected["revision"]
+    assert characteristics["premium_component"] == "premium_total"
+    assert characteristics["premium_multiplier"] == 1.0
+    assert characteristics["installment_benefit_available"] is True
+    assert characteristics["minimum_annual_installment_amount"] == 1200
+    assert characteristics["minimum_annual_installment_currency"] == "USD"
+    assert characteristics["coefficient_table_required"] is expected[
+        "coefficient_table_required"
+    ]
+    assert characteristics["payment_period_required"] is expected[
+        "coefficient_table_required"
+    ]
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "maturity-benefit",
+        "installment-periodic-benefit",
+    }
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["death-or-funeral-benefit"]["aggregation_rule"] == "highest"
+    assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["maturity-benefit"]["name"] == "滿期保險金"
+    assert entries["maturity-benefit"]["calculation_basis"] == "percentage_of_base"
+    assert all(entry["source"] == "terms" for entry in entries.values())
+
+assert parse_taiwan_usd_endowment_formula(
+    taiwan_interest_whole_life_document("202121MZ1A30B22B11Z10000000", "F")
+) is None
+
+taiwan_interest_accident_cases = {
+    "202131MA2A87923A11Z10000000": {
+        "product_family": "chuan-cheng-fu-man",
+        "terms_revision": "original",
+        "age_16_special": True,
+        "accident_age_16_wording": True,
+        "minor_death_rule": True,
+    },
+    "202131MA2A87923A11Z10000001": {
+        "product_family": "chuan-cheng-fu-man",
+        "terms_revision": "first-partial-revision",
+        "age_16_special": False,
+        "accident_age_16_wording": False,
+        "minor_death_rule": False,
+    },
+    "202131MA2A88623A11Z10000000": {
+        "product_family": "chuan-cheng-fu-li",
+        "terms_revision": "original",
+        "age_16_special": True,
+        "accident_age_16_wording": True,
+        "minor_death_rule": True,
+    },
+    "202131MA2A88623A11Z10000001": {
+        "product_family": "chuan-cheng-fu-li",
+        "terms_revision": "first-partial-revision",
+        "age_16_special": False,
+        "accident_age_16_wording": False,
+        "minor_death_rule": False,
+    },
+    "202131MA2A88623A11Z10000002": {
+        "product_family": "chuan-cheng-fu-li",
+        "terms_revision": "second-partial-revision",
+        "age_16_special": False,
+        "accident_age_16_wording": False,
+        "minor_death_rule": False,
+    },
+}
+for product_id, expected in taiwan_interest_accident_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_interest_rate_accident_whole_life_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-interest-rate-accident-whole-life-formula-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "基本保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["currency"] == "TWD"
+    assert characteristics["expected_interest_rate_percent"] == 1.85
+    assert characteristics["product_family"] == expected["product_family"]
+    assert characteristics["terms_revision"] == expected["terms_revision"]
+    assert (
+        characteristics["age_16_value_sharing_special_rule"]
+        is expected["age_16_special"]
+    )
+    assert (
+        characteristics["accidental_death_min_age_16_wording"]
+        is expected["accident_age_16_wording"]
+    )
+    assert (
+        characteristics["minor_death_under_15_funeral_benefit_rule"]
+        is expected["minor_death_rule"]
+    )
+    assert characteristics["annual_insured_amount_formula"] == (
+        "face_amount_plus_accumulated_paid_up_additions"
+    )
+    assert characteristics["death_benefit_formula"] == (
+        "greater_of_annual_insured_amount_and_annual_premium_total"
+    )
+    assert characteristics["accidental_death_benefit_formula"] == (
+        "death_benefit_plus_annual_insured_amount"
+    )
+    assert characteristics["maturity_benefit_formula"] == (
+        "greater_of_annual_insured_amount_and_annual_premium_total_at_age_110"
+    )
+    assert characteristics["installment_period_min_years"] == 5
+    assert characteristics["installment_period_max_years"] == 30
+    assert characteristics["minimum_annual_installment_amount"] == 36_000
+    assert characteristics["premium_waiver_disability_grade_min"] == 1
+    assert characteristics["premium_waiver_disability_grade_max"] == 6
+    assert characteristics["accident_claim_days"] == 180
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "value-sharing-bonus",
+        "death-or-funeral-benefit",
+        "injury-rider-surrender-value-refund-on-non-accident-death",
+        "accidental-death-additional-benefit",
+        "maturity-age-111-benefit",
+        "premium-waiver-disability-grade-one-to-six",
+        "installment-periodic-benefit",
+        "installment-low-annual-payment-lump-sum",
+    }
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["death-or-funeral-benefit"]["rate_percent"] == 100
+    assert (
+        entries["accidental-death-additional-benefit"]["aggregation_rule"]
+        == "conditional_additive"
+    )
+    assert entries["accidental-death-additional-benefit"]["rate_percent"] == 100
+    assert entries["maturity-age-111-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["premium-waiver-disability-grade-one-to-six"]["amount_role"] == (
+        "reference"
+    )
+    all_conditions = " ".join(
+        condition
+        for entry in entries.values()
+        for condition in entry.get("conditions", [])
+    )
+    assert ("保險年齡未滿 16 歲" in all_conditions) is expected[
+        "accident_age_16_wording"
+    ]
+    assert ("16 歲前，增值回饋分享金於繳費期間採抵繳" in all_conditions) is (
+        expected["age_16_special"]
+    )
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+
+assert parse_taiwan_interest_rate_accident_whole_life_formula(
+    taiwan_interest_whole_life_document("202131MA2A87923A11Z10000000", "F")
+) is None
+wrong_taiwan_interest_accident_document = {
+    **taiwan_interest_whole_life_document("202131MA2A87923A11Z10000000"),
+    "product_id": "wrong-product",
+    "file_name": "wrong-product-A.pdf",
+}
+assert parse_taiwan_interest_rate_accident_whole_life_formula(
+    wrong_taiwan_interest_accident_document
+) is None
+taiwan_interest_accident_indexed = taiwan_interest_whole_life_document(
+    "202131MA2A87923A11Z10000000"
+)
+taiwan_interest_accident_completed = complete_strict_source_document(
+    {
+        **taiwan_interest_accident_indexed,
+        "text": taiwan_interest_accident_indexed["text"][:1500],
+    },
+    TII_LIFE_009_ROOT
+    / "202131MA2A87923A11Z10000000"
+    / "202131MA2A87923A11Z10000000-A.pdf",
+)
+assert taiwan_interest_accident_completed["page_count"] == 12
+assert (
+    parse_taiwan_interest_rate_accident_whole_life_formula(
+        taiwan_interest_accident_completed
+    )
+    is not None
+)
+
+taiwan_chuanshi_fuli_cases = {
+    "202131MA2A81823A11Z10000000": {
+        "terms_revision": "original",
+        "age_16_special": False,
+        "accident_age_16_wording": False,
+        "minor_death_rule": False,
+    },
+    "202131MA2A81823A11Z10000001": {
+        "terms_revision": "first-partial-revision",
+        "age_16_special": True,
+        "accident_age_16_wording": True,
+        "minor_death_rule": True,
+    },
+    "202131MA2A81823A11Z10000002": {
+        "terms_revision": "second-partial-revision",
+        "age_16_special": False,
+        "accident_age_16_wording": False,
+        "minor_death_rule": False,
+    },
+    "202131MA2A81823A11Z10000003": {
+        "terms_revision": "third-regulatory-revision",
+        "age_16_special": False,
+        "accident_age_16_wording": False,
+        "minor_death_rule": False,
+    },
+}
+for product_id, expected in taiwan_chuanshi_fuli_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_chuanshi_fuli_whole_life_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-chuanshi-fuli-whole-life-formula-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "基本保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["currency"] == "TWD"
+    assert characteristics["terms_revision"] == expected["terms_revision"]
+    assert characteristics["expected_interest_rate_schedule"] == {
+        "two_year_payment_period_percent": 0.75,
+        "six_year_payment_period_percent": 1.50,
+    }
+    assert characteristics["payment_period_options"] == [2, 6]
+    assert (
+        characteristics["age_16_value_sharing_special_rule"]
+        is expected["age_16_special"]
+    )
+    assert (
+        characteristics["accidental_death_min_age_16_wording"]
+        is expected["accident_age_16_wording"]
+    )
+    assert (
+        characteristics["minor_death_under_15_funeral_benefit_rule"]
+        is expected["minor_death_rule"]
+    )
+    assert characteristics["annual_insured_amount_formula"] == (
+        "two_year_first_two_or_six_year_first_five_premium_total_times_1_02_then_face_plus_accumulated_times_coefficient"
+    )
+    assert characteristics["death_benefit_formula"] == (
+        "greater_of_annual_insured_amount_reserve_ratio_and_premium_total_times_1_02"
+    )
+    assert characteristics["total_disability_benefit_formula"] == (
+        "greater_of_annual_insured_amount_reserve_ratio_and_premium_total_times_1_02"
+    )
+    assert characteristics["accidental_death_rate_percent"] == 50
+    assert characteristics["total_disability_living_assistance_rate_percent"] == 10
+    assert characteristics["total_disability_living_assistance_max_payments"] == 10
+    assert characteristics["premium_waiver_disability_grade_min"] == 2
+    assert characteristics["premium_waiver_disability_grade_max"] == 6
+    assert characteristics["premium_multiplier"] == 1.02
+    assert characteristics["coefficient_table_required"] is True
+    assert len(characteristics["policy_reserve_ratio_schedule"]) == 7
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "value-sharing-bonus",
+        "death-or-funeral-benefit",
+        "injury-rider-surrender-value-refund-on-non-accident-death",
+        "accidental-death-additional-benefit",
+        "total-disability-benefit",
+        "total-disability-injury-rider-surrender-value-refund",
+        "total-disability-living-assistance-benefit",
+        "maturity-age-111-benefit",
+        "premium-waiver-disability-grade-two-to-six",
+        "installment-periodic-benefit",
+        "installment-low-annual-payment-lump-sum",
+    }
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["death-or-funeral-benefit"]["multiplier"] == 1.02
+    assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["total-disability-benefit"]["multiplier"] == 1.02
+    assert entries["accidental-death-additional-benefit"]["rate_percent"] == 50
+    assert (
+        entries["accidental-death-additional-benefit"]["aggregation_rule"]
+        == "conditional_additive"
+    )
+    assert entries["total-disability-living-assistance-benefit"]["rate_percent"] == 10
+    assert (
+        entries["total-disability-living-assistance-benefit"]["aggregation_rule"]
+        == "cumulative_cap"
+    )
+    assert entries["maturity-age-111-benefit"]["multiplier"] == 1.02
+    all_conditions = " ".join(
+        condition
+        for entry in entries.values()
+        for condition in entry.get("conditions", [])
+    )
+    assert ("保險年齡未滿 16 歲" in all_conditions) is expected[
+        "accident_age_16_wording"
+    ]
+    assert ("16 歲前，增值回饋分享金於繳費期間採抵繳" in all_conditions) is (
+        expected["age_16_special"]
+    )
+    assert "最高給付次數以 10 次為限" in all_conditions
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+
+assert parse_taiwan_chuanshi_fuli_whole_life_formula(
+    taiwan_interest_whole_life_document("202131MA2A81823A11Z10000000", "F")
+) is None
+wrong_taiwan_chuanshi_fuli_document = {
+    **taiwan_interest_whole_life_document("202131MA2A81823A11Z10000000"),
+    "product_id": "wrong-product",
+    "file_name": "wrong-product-A.pdf",
+}
+assert parse_taiwan_chuanshi_fuli_whole_life_formula(
+    wrong_taiwan_chuanshi_fuli_document
+) is None
+taiwan_chuanshi_fuli_indexed = taiwan_interest_whole_life_document(
+    "202131MA2A81823A11Z10000000"
+)
+taiwan_chuanshi_fuli_completed = complete_strict_source_document(
+    {
+        **taiwan_chuanshi_fuli_indexed,
+        "text": taiwan_chuanshi_fuli_indexed["text"][:1500],
+    },
+    TII_LIFE_009_ROOT
+    / "202131MA2A81823A11Z10000000"
+    / "202131MA2A81823A11Z10000000-A.pdf",
+)
+assert taiwan_chuanshi_fuli_completed["page_count"] == 14
+assert (
+    parse_taiwan_chuanshi_fuli_whole_life_formula(
+        taiwan_chuanshi_fuli_completed
+    )
+    is not None
+)
+
+taiwan_survival_interest_cases = {
+    "202131MA1A03B23B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "first_three_policy_years_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "premium_waiver": False,
+    },
+    "202131MA1A05A23B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 2.25,
+        "annual_formula": "face_amount_plus_accumulated_paid_up_additions_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+        "premium_waiver": True,
+    },
+    "202131MA1A22A23B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 2.50,
+        "annual_formula": "first_three_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+        "premium_waiver": True,
+        "death_calculation": "greater_of",
+        "maturity_calculation": "greater_of",
+    },
+    "202131MA1A22A23B11Z10000001": {
+        "currency": "USD",
+        "expected_rate": 2.50,
+        "annual_formula": "first_three_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+        "premium_waiver": True,
+        "death_calculation": "greater_of",
+        "maturity_calculation": "greater_of",
+    },
+    "202131MA1A58B23B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 2.50,
+        "annual_formula": "first_five_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+        "premium_waiver": True,
+        "waiver_condition": "第一級至第六級失能",
+        "installment_condition": "美元 1,200 元",
+    },
+    "202131MA1A90A23B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 2.50,
+        "annual_formula": "face_amount_plus_accumulated_paid_up_additions_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+        "premium_waiver": True,
+        "waiver_condition": "第一級至第六級失能",
+        "installment_condition": "美元 1,200 元",
+    },
+    "202131MA1A82923B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "first_three_policy_years_premium_total_times_1_1_then_face_plus_accumulated",
+        "premium_component": "premium_total_times_1_1",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_1",
+        "premium_waiver": True,
+    },
+    "202131MA1A91823B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 2.00,
+        "annual_formula": "face_amount_plus_accumulated_paid_up_additions",
+        "premium_component": "none",
+        "maturity_formula": "annual_insured_amount",
+        "premium_waiver": True,
+        "death_calculation": "percentage_of_base",
+        "maturity_calculation": "percentage_of_base",
+    },
+    "202131MA1A94023B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "premium_period_6_10_20_front_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+        "premium_waiver": True,
+    },
+    "202131MA1A94223B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "first_three_policy_years_premium_total_times_1_1_then_face_plus_accumulated",
+        "premium_component": "premium_total_times_1_1",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_1",
+        "premium_waiver": True,
+        "death_calculation": "greater_of",
+        "maturity_calculation": "greater_of",
+    },
+    "202131MA1A94523B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "face_amount_plus_accumulated_paid_up_additions_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+        "premium_waiver": True,
+        "waiver_condition": "第一級至第九級失能",
+        "installment_condition": "美元 200 元",
+    },
+}
+taiwan_survival_interest_additional_product_ids = [
+    "202131MA1A01A23B11Z10000000",
+    "202131MA1A01A23B11Z10000001",
+    "202131MA1A24A23B11Z10000000",
+    "202131MA1A24A23B11Z10000001",
+    "202131MA1A75A23B11E10000000",
+    "202131MA1A97323B11Z10000000",
+    "202131MA1A97323B11Z10000001",
+    "202131MA1A97423B11Z10000000",
+    "202131MA1A97423B11Z10000001",
+    "202131MA1A97423B11Z10000002",
+    "202131MA1A97923B11Z10000000",
+    "202131MA1A97923B11Z10000001",
+    "202131MA1A98123A11Z10000000",
+    "202131MA1A98123A11Z10000001",
+    "202131MA1A98223A11Z10000000",
+    "202131MA1A98223A11Z10000001",
+]
+for product_id, expected in taiwan_survival_interest_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_interest_rate_survival_whole_life_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-interest-rate-survival-whole-life-formula-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["currency"] == expected["currency"]
+    assert characteristics["expected_interest_rate_percent"] == expected["expected_rate"]
+    assert characteristics["annual_insured_amount_formula"] == expected["annual_formula"]
+    assert characteristics["premium_component"] == expected["premium_component"]
+    assert characteristics["maturity_benefit_formula"] == expected["maturity_formula"]
+    assert characteristics["total_disability_benefit_formula"] == "not_applicable"
+    assert characteristics["premium_waiver_available"] is expected["premium_waiver"]
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert "total-disability-benefit" not in entries
+    assert set(entries) >= {
+        "value-sharing-bonus",
+        "death-or-funeral-benefit",
+        "maturity-benefit",
+    }
+    assert ("premium-waiver" in entries) is expected["premium_waiver"]
+    if "waiver_condition" in expected:
+        assert expected["waiver_condition"] in " ".join(
+            entries["premium-waiver"]["conditions"]
+        )
+    if "installment_condition" in expected:
+        assert expected["installment_condition"] in " ".join(
+            entries["installment-periodic-benefit"]["conditions"]
+        )
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == expected.get(
+        "death_calculation", "greater_of"
+    )
+    assert entries["maturity-benefit"]["calculation_basis"] == expected.get(
+        "maturity_calculation", "greater_of"
+    )
+    assert all(entry["source"] == "terms" for entry in entries.values())
+
+for product_id in taiwan_survival_interest_additional_product_ids:
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_interest_rate_survival_whole_life_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-interest-rate-survival-whole-life-formula-v1"
+    assert integrated[1] == schedule
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["total_disability_benefit_formula"] == "not_applicable"
+    assert characteristics["premium_waiver_available"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert "total-disability-benefit" not in entries
+    assert set(entries) >= {
+        "value-sharing-bonus",
+        "death-or-funeral-benefit",
+        "maturity-benefit",
+        "premium-waiver",
+        "installment-periodic-benefit",
+        "terminal-illness-advance-benefit",
+    }
+    terminal_entry = entries["terminal-illness-advance-benefit"]
+    assert terminal_entry["calculation_basis"] == "percentage_of_base"
+    assert terminal_entry["rate_percent"] == 50
+    assert terminal_entry["unit_key"] == "death_or_funeral_benefit"
+
+assert parse_taiwan_interest_rate_survival_whole_life_formula(
+    taiwan_interest_whole_life_document("202131MA1A03B23B11Z10000000", "F")
+) is None
+
+taiwan_participating_product_ids = [
+    "202131MZ1A09B23B11Z10000000",
+    "202131MZ1A09B23B11Z10000001",
+    "202131MZ1A17B23B11Z10000000",
+    "202131MZ1A18B23B11Z10000000",
+    "202131MZ1A21B23B11Z10000000",
+    "202131MZ1A23B23B11Z10000000",
+    "202131MZ1A67A23B11Z10000000",
+    "202131MZ1A67A23B11Z10000001",
+    "202131MZ1A83A23A11Z10000000",
+    "202131MZ1A83A23A11Z10000001",
+]
+taiwan_participating_cases = {
+    "202131MZ1A09B23B11Z10000000": {
+        "currency": "USD",
+        "dividend_start": 6,
+        "annual_formula": "face_amount_plus_accumulated_paid_up_additions_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+    },
+    "202131MZ1A17B23B11Z10000000": {
+        "currency": "USD",
+        "dividend_start": 4,
+        "annual_formula": "first_five_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+    },
+    "202131MZ1A18B23B11Z10000000": {
+        "currency": "USD",
+        "dividend_start": 3,
+        "annual_formula": "first_two_policy_years_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+    },
+    "202131MZ1A21B23B11Z10000000": {
+        "currency": "USD",
+        "dividend_start": 3,
+        "annual_formula": "first_policy_year_premium_total_then_face_plus_accumulated",
+        "premium_component": "premium_total",
+        "maturity_formula": "annual_insured_amount_times_coefficient_table",
+    },
+    "202131MZ1A23B23B11Z10000000": {
+        "currency": "USD",
+        "dividend_start": 4,
+        "annual_formula": "first_five_policy_years_premium_total_times_1_06_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+    },
+    "202131MZ1A67A23B11Z10000000": {
+        "currency": "USD",
+        "dividend_start": 4,
+        "annual_formula": "face_amount_plus_accumulated_paid_up_additions_times_coefficient",
+        "premium_component": "premium_total_times_1_06",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total_times_1_06",
+    },
+    "202131MZ1A83A23A11Z10000000": {
+        "currency": "TWD",
+        "dividend_start": 3,
+        "annual_formula": "first_three_policy_years_premium_total_then_face_plus_accumulated_times_coefficient",
+        "premium_component": "premium_total",
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_total",
+    },
+}
+for product_id in taiwan_participating_product_ids:
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_participating_whole_life_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-participating-whole-life-formula-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "基本保險金額"
+    assert "保單價值準備金" in schedule["selection_guidance"]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["maturity_age"] == 111
+    assert characteristics["participating_policy"] is True
+    assert characteristics["policy_dividend_available"] is True
+    assert characteristics["policy_dividend_guaranteed"] is False
+    assert characteristics["terminal_policy_dividend_available"] is True
+    assert characteristics["premium_waiver_available"] is False
+    assert characteristics["terminal_illness_advance_available"] is False
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) >= {
+        "policy-dividend",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "maturity-benefit",
+        "installment-periodic-benefit",
+    }
+    assert "premium-waiver" not in entries
+    assert "terminal-illness-advance-benefit" not in entries
+    assert entries["policy-dividend"]["amount_role"] == "reference"
+    assert entries["policy-dividend"]["calculation_basis"] == "unknown"
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["death-or-funeral-benefit"]["rate_percent"] == 100
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+    if product_id in taiwan_participating_cases:
+        expected = taiwan_participating_cases[product_id]
+        assert characteristics["currency"] == expected["currency"]
+        assert (
+            characteristics["annual_policy_dividend_start_year"]
+            == expected["dividend_start"]
+        )
+        assert characteristics["annual_insured_amount_formula"] == expected["annual_formula"]
+        assert characteristics["premium_component"] == expected["premium_component"]
+        assert characteristics["maturity_benefit_formula"] == expected["maturity_formula"]
+
+assert parse_taiwan_participating_whole_life_formula(
+    taiwan_interest_whole_life_document("202131MZ1A09B23B11Z10000000", "F")
+) is None
+
+taiwan_participating_return_cases = {
+    "202121MZ1A81A23A11Z10000000": "roc-114-05-01",
+    "202121MZ1A81A23A11Z10000001": "roc-115-01-01-regulatory-revision",
+}
+for product_id, expected_revision in taiwan_participating_return_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_participating_return_whole_life_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-participating-return-whole-life-formula-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    assert "繳費年期" in schedule["selection_guidance"]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["currency"] == "TWD"
+    assert characteristics["participating_policy"] is True
+    assert characteristics["policy_dividend_available"] is True
+    assert characteristics["policy_dividend_guaranteed"] is False
+    assert characteristics["annual_policy_dividend_start_year"] == 2
+    assert characteristics["terminal_policy_dividend_available"] is True
+    assert characteristics["terminal_policy_dividend_start_year"] == 6
+    assert (
+        characteristics["annual_insured_amount_formula"]
+        == "premium_period_premium_total_times_1_04_minus_face_amount_coeff_then_face_amount"
+    )
+    assert (
+        characteristics["survival_benefit_formula"]
+        == "1_32_1_61_1_05_1_25_step_schedule_on_previous_face_amount"
+    )
+    assert characteristics["survival_rate_min_percent"] == 1.05
+    assert characteristics["survival_rate_max_percent"] == 1.61
+    assert characteristics["monthly_survival_benefit_available"] is False
+    assert (
+        characteristics["death_benefit_formula"]
+        == "greater_of_annual_insured_amount_reserve_and_premium_component"
+    )
+    assert (
+        characteristics["total_disability_benefit_formula"]
+        == "greater_of_annual_insured_amount_reserve_and_premium_component"
+    )
+    assert characteristics["maturity_benefit_formula"] == "age_99_face_amount"
+    assert (
+        characteristics["premium_component"]
+        == "premium_total_times_1_04_minus_face_amount_times_coefficient"
+    )
+    assert characteristics["premium_multiplier"] == 1.04
+    assert characteristics["maturity_age"] == 100
+    assert characteristics["installment_benefit_available"] is True
+    assert characteristics["premium_waiver_available"] is False
+    assert characteristics["terminal_illness_advance_available"] is False
+    assert characteristics["policy_face_amount_required"] is True
+    assert characteristics["premium_total_required"] is True
+    assert characteristics["coefficient_table_required"] is True
+    assert characteristics["payment_period_required"] is True
+    assert characteristics["foreign_currency_policy"] is False
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) >= {
+        "policy-dividend",
+        "survival-benefit",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "maturity-benefit",
+        "installment-periodic-benefit",
+    }
+    assert entries["policy-dividend"]["amount_role"] == "reference"
+    assert entries["survival-benefit"]["calculation_basis"] == "percentage_of_base"
+    assert entries["survival-benefit"]["rate_min_percent"] == 1.05
+    assert entries["survival-benefit"]["rate_max_percent"] == 1.61
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["maturity-benefit"]["unit_key"] == "face_amount_at_age_99"
+    assert entries["maturity-benefit"]["calculation_basis"] == "percentage_of_base"
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+
+assert parse_taiwan_participating_return_whole_life_formula(
+    taiwan_interest_whole_life_document("202121MZ1A81A23A11Z10000000", "F")
+) is None
+taiwan_participating_return_completed = complete_strict_source_document(
+    {
+        **taiwan_interest_whole_life_document("202121MZ1A81A23A11Z10000000"),
+        "text": taiwan_interest_whole_life_document(
+            "202121MZ1A81A23A11Z10000000"
+        )["text"][:1500],
+    },
+    TII_LIFE_009_ROOT
+    / "202121MZ1A81A23A11Z10000000"
+    / "202121MZ1A81A23A11Z10000000-A.pdf",
+)
+assert taiwan_participating_return_completed["page_count"] == 11
+assert (
+    parse_taiwan_participating_return_whole_life_formula(
+        taiwan_participating_return_completed
+    )
+    is not None
+)
+
+taiwan_term_life_cases = {
+    "202131MZ1A29B22A11Z10000000": {
+        "parser_id": "taiwan-term-life-formula-v1",
+        "selection_label": "基本保險金額",
+        "terms_revision": "roc-115-03-09",
+        "currency": "TWD",
+        "product_form": "level_term_life",
+        "annual_formula": "basic_face_amount_times_appendix_2_coefficient",
+        "annual_schedule": "level_1_0_by_policy_duration",
+        "death_formula": "greater_of_annual_insured_amount_and_premium_total",
+        "calculation_basis": "greater_of",
+        "premium_total_required": True,
+        "foreign_currency_policy": False,
+        "exchange_rate_risk_disclosure": False,
+        "installment_min_annual_payment": 36_000,
+        "installment_min_annual_payment_currency": "TWD",
+        "page_count": 9,
+    },
+    "202131RZ1A86022B11Z10000000": {
+        "parser_id": "taiwan-term-life-formula-v1",
+        "selection_label": "保險金額",
+        "terms_revision": "roc-110-03-22",
+        "currency": "USD",
+        "product_form": "usd_decreasing_term_life_rider",
+        "annual_formula": "face_amount_times_appendix_2_coefficient",
+        "annual_schedule": "age_and_term_decreasing_coefficient_table",
+        "death_formula": "annual_insured_amount",
+        "calculation_basis": "percentage_of_base",
+        "premium_total_required": False,
+        "foreign_currency_policy": True,
+        "exchange_rate_risk_disclosure": True,
+        "installment_min_annual_payment": 1_200,
+        "installment_min_annual_payment_currency": "USD",
+        "page_count": 10,
+    },
+}
+for product_id, expected in taiwan_term_life_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_term_life_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == expected["parser_id"]
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == expected["selection_label"]
+    assert "附表係數" in schedule["selection_guidance"]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected["terms_revision"]
+    assert characteristics["currency"] == expected["currency"]
+    assert characteristics["product_form"] == expected["product_form"]
+    assert characteristics["participating_policy"] is False
+    assert (
+        characteristics["annual_insured_amount_formula"]
+        == expected["annual_formula"]
+    )
+    assert (
+        characteristics["annual_insured_amount_schedule"]
+        == expected["annual_schedule"]
+    )
+    assert characteristics["death_benefit_formula"] == expected["death_formula"]
+    assert (
+        characteristics["total_disability_benefit_formula"]
+        == expected["death_formula"]
+    )
+    assert characteristics["installment_benefit_available"] is True
+    assert characteristics["premium_waiver_available"] is False
+    assert characteristics["policy_face_amount_required"] is True
+    assert (
+        characteristics["premium_total_required"]
+        is expected["premium_total_required"]
+    )
+    assert characteristics["coefficient_table_required"] is True
+    assert characteristics["payment_period_required"] is True
+    assert characteristics["insurance_period_required"] is True
+    assert (
+        characteristics["foreign_currency_policy"]
+        is expected["foreign_currency_policy"]
+    )
+    assert (
+        characteristics["exchange_rate_risk_disclosure"]
+        is expected["exchange_rate_risk_disclosure"]
+    )
+    assert characteristics["funeral_benefit_limit_rule"] is True
+    assert (
+        characteristics["installment_min_annual_payment"]
+        == expected["installment_min_annual_payment"]
+    )
+    assert (
+        characteristics["installment_min_annual_payment_currency"]
+        == expected["installment_min_annual_payment_currency"]
+    )
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "installment-periodic-benefit",
+    }
+    assert (
+        entries["death-or-funeral-benefit"]["calculation_basis"]
+        == expected["calculation_basis"]
+    )
+    assert (
+        entries["total-disability-benefit"]["calculation_basis"]
+        == expected["calculation_basis"]
+    )
+    assert entries["death-or-funeral-benefit"]["rate_percent"] == 100
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+    assert entries["installment-periodic-benefit"]["amount_role"] == "reference"
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+    completed = complete_strict_source_document(
+        {**document, "text": document["text"][:1500]},
+        TII_LIFE_009_ROOT / product_id / f"{product_id}-A.pdf",
+    )
+    assert completed["page_count"] == expected["page_count"]
+    assert parse_taiwan_term_life_formula(completed) is not None
+
+assert parse_taiwan_term_life_formula(
+    taiwan_interest_whole_life_document("202131MZ1A29B22A11Z10000000", "F")
+) is None
+
+taiwan_simple_term_life_document = taiwan_interest_whole_life_document(
+    "202131MZ1A98A22A11Z10000000"
+)
+taiwan_simple_term_life_schedule = parse_taiwan_simple_term_life_formula(
+    taiwan_simple_term_life_document
+)
+assert taiwan_simple_term_life_schedule is not None
+taiwan_simple_term_life_integrated = parse_plan_table_with_parser(
+    taiwan_simple_term_life_document
+)
+assert taiwan_simple_term_life_integrated is not None
+assert taiwan_simple_term_life_integrated[0] == "taiwan-simple-term-life-formula-v1"
+assert taiwan_simple_term_life_integrated[1] == taiwan_simple_term_life_schedule
+assert taiwan_simple_term_life_schedule["selection_label"] == "保險金額"
+taiwan_simple_term_life_characteristics = taiwan_simple_term_life_schedule[
+    "version_characteristics"
+]
+assert taiwan_simple_term_life_characteristics["terms_revision"] == "roc-114-08-08"
+assert taiwan_simple_term_life_characteristics["filing_number"] == "1142320086"
+assert taiwan_simple_term_life_characteristics["product_form"] == "simple_level_term_life"
+assert (
+    taiwan_simple_term_life_characteristics["death_benefit_formula"]
+    == "face_amount_plus_prorated_unearned_premium"
+)
+assert (
+    taiwan_simple_term_life_characteristics["total_disability_benefit_formula"]
+    == "face_amount_plus_prorated_unearned_premium"
+)
+assert taiwan_simple_term_life_characteristics["installment_benefit_available"] is False
+assert taiwan_simple_term_life_characteristics["coefficient_table_required"] is False
+assert taiwan_simple_term_life_characteristics["surrender_value_available"] is True
+taiwan_simple_term_life_entries = {
+    entry["id"]: entry for entry in taiwan_simple_term_life_schedule["coverage_entries"]
+}
+assert set(taiwan_simple_term_life_entries) == {
+    "death-or-funeral-benefit",
+    "total-disability-benefit",
+    "surrender-value-reference",
+}
+assert (
+    taiwan_simple_term_life_entries["death-or-funeral-benefit"]["calculation_basis"]
+    == "percentage_of_base"
+)
+assert (
+    taiwan_simple_term_life_entries["total-disability-benefit"]["calculation_basis"]
+    == "percentage_of_base"
+)
+assert (
+    taiwan_simple_term_life_entries["surrender-value-reference"]["amount_role"]
+    == "reference"
+)
+
+taiwan_usd_no_disability_cases = {
+    "202131MZ1A43B23B11Z10000000": {
+        "maturity_label": "祝壽保險金",
+        "participating_policy": True,
+        "policy_period_years": None,
+        "maturity_age": 111,
+        "entry_ids": {
+            "death-or-funeral-benefit",
+            "maturity-benefit",
+            "installment-periodic-benefit",
+            "terminal-policy-dividend-reference",
+        },
+        "death_formula": "greater_of_annual_insured_amount_policy_reserve_ratio_paid_premium_total_1_01",
+        "maturity_formula": "greater_of_annual_insured_amount_at_age_110_paid_premium_total_1_01",
+    },
+    "202121MZ1A57B22B11Z10000000": {
+        "maturity_label": "滿期保險金",
+        "participating_policy": False,
+        "policy_period_years": 10,
+        "maturity_age": None,
+        "entry_ids": {
+            "death-or-funeral-benefit",
+            "maturity-benefit",
+            "installment-periodic-benefit",
+        },
+        "death_formula": "greater_of_annual_insured_amount_policy_reserve_ratio_paid_premium_total",
+        "maturity_formula": "annual_insured_amount_at_policy_maturity",
+    },
+}
+for product_id, expected in taiwan_usd_no_disability_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_usd_no_disability_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-usd-no-disability-formula-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_label"] == "基本保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["currency"] == "USD"
+    assert characteristics["maturity_label"] == expected["maturity_label"]
+    assert characteristics["participating_policy"] is expected["participating_policy"]
+    assert characteristics["policy_period_years"] == expected["policy_period_years"]
+    if expected["maturity_age"] is None:
+        assert "maturity_age" not in characteristics
+    else:
+        assert characteristics["maturity_age"] == expected["maturity_age"]
+    assert characteristics["death_benefit_formula"] == expected["death_formula"]
+    assert characteristics["maturity_benefit_formula"] == expected["maturity_formula"]
+    assert characteristics["installment_min_annual_payment"] == 1_200
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == expected["entry_ids"]
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["maturity-benefit"]["name"] == expected["maturity_label"]
+    assert entries["installment-periodic-benefit"]["amount_role"] == "reference"
+    if expected["maturity_label"] == "滿期保險金":
+        assert entries["maturity-benefit"]["calculation_basis"] == "percentage_of_base"
+        assert entries["maturity-benefit"]["rate_percent"] == 100
+    else:
+        assert entries["maturity-benefit"]["calculation_basis"] == "greater_of"
+        assert entries["terminal-policy-dividend-reference"]["amount_role"] == "reference"
+
+taiwan_long_term_care_whole_life_cases = {
+    "202191MZ6G84423A11Z10000000": {
+        "terms_revision": "roc-109-11-30",
+        "filing_number": "1092320180",
+    },
+    "202191MZ6G84423A11Z10000001": {
+        "terms_revision": "roc-110-07-01-first-revision",
+        "filing_number": "1102320053",
+    },
+}
+for product_id, expected in taiwan_long_term_care_whole_life_cases.items():
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_long_term_care_whole_life_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-long-term-care-whole-life-formula-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    assert "長期照顧保險金" in schedule["selection_guidance"]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected["terms_revision"]
+    assert characteristics["filing_number"] == expected["filing_number"]
+    assert characteristics["currency"] == "TWD"
+    assert characteristics["product_form"] == "long_term_care_whole_life"
+    assert characteristics["participating_policy"] is False
+    assert (
+        characteristics["annual_insured_amount_formula"]
+        == "first_3_years_annual_premium_total_times_1_06_then_face_amount"
+    )
+    assert (
+        characteristics["long_term_care_benefit_formula"]
+        == "first_3_years_annual_premium_total_then_50_percent_face_amount"
+    )
+    assert characteristics["long_term_care_persistence_months"] == 3
+    assert characteristics["long_term_care_adl_impairments_required"] == 3
+    assert characteristics["long_term_care_cdr_min"] == 2
+    assert characteristics["long_term_care_benefit_lifetime_limit"] == 1
+    assert characteristics["accidental_death_benefit_formula"] == "additional_face_amount"
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["premium_multiplier"] == 1.06
+    assert characteristics["maturity_age"] == 100
+    assert characteristics["installment_benefit_available"] is True
+    assert characteristics["premium_waiver_available"] is True
+    assert characteristics["policy_face_amount_required"] is True
+    assert characteristics["policy_reserve_required"] is True
+    assert characteristics["premium_total_required"] is True
+    assert characteristics["policy_reserve_ratio_required"] is False
+    assert characteristics["coefficient_table_required"] is False
+    assert characteristics["payment_period_required"] is True
+    assert characteristics["long_term_care_claim_offset_required"] is True
+    assert characteristics["foreign_currency_policy"] is False
+    assert characteristics["funeral_benefit_limit_rule"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "long-term-care-benefit",
+        "death-or-funeral-benefit",
+        "accidental-death-additional-benefit",
+        "total-disability-benefit",
+        "maturity-benefit",
+        "premium-waiver",
+        "installment-periodic-benefit",
+    }
+    assert entries["long-term-care-benefit"]["calculation_basis"] == "unknown"
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["death-or-funeral-benefit"]["rate_percent"] == 100
+    assert (
+        entries["accidental-death-additional-benefit"]["calculation_basis"]
+        == "percentage_of_base"
+    )
+    assert entries["accidental-death-additional-benefit"]["rate_percent"] == 100
+    assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+    assert entries["maturity-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["maturity-benefit"]["rate_percent"] == 100
+    assert entries["premium-waiver"]["amount_role"] == "reference"
+    assert entries["installment-periodic-benefit"]["amount_role"] == "reference"
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+    completed = complete_strict_source_document(
+        {**document, "text": document["text"][:1500]},
+        TII_LIFE_009_ROOT / product_id / f"{product_id}-A.pdf",
+    )
+    assert completed["page_count"] == 10
+    assert parse_taiwan_long_term_care_whole_life_formula(completed) is not None
+
+assert parse_taiwan_long_term_care_whole_life_formula(
+    taiwan_interest_whole_life_document("202191MZ6G84423A11Z10000000", "F")
+) is None
+
+taiwan_return_interest_product_ids = [
+    "202121MA2G92223A11Z10000000",
+    "202121MA2A15A23A11Z10000000",
+    "202121MA2A15A23A11Z10000001",
+    "202121MA2A97123A11Z10000000",
+    "202121MA2A97123A11Z10000002",
+    "202121MA1A56A23B11Z10000000",
+    "202121MA1A32A23B11Z10000000",
+    "202121MA1A70A23A11Z10000000",
+    "202121MA1A74A23B11Z10000000",
+    "202121MA1A91223B11Z10000000",
+    "202121MA1A91223B11Z10000001",
+    "202121MA1A91223B11Z10000002",
+    "202121MA1A91323B11Z10000000",
+    "202121MA1A92323B11Z10000000",
+    "202121MA1A92323B11Z10000001",
+    "202121MA1A92323B11Z10000002",
+    "202121MA1A92823A11Z10000000",
+    "202121MA1A92823A11Z10000001",
+    "202121MA1A92823A11Z10000002",
+    "202121MA1A95423B11Z10000000",
+    "202121MA1A95423B11Z10000001",
+    "202121MA1A95523B11Z10000000",
+    "202121MA1A95523B11Z10000001",
+    "202121MA1A96823B11Z10000000",
+    "202121MA1A96823B11Z10000001",
+    "202121MA1A96823B11Z10000002",
+]
+taiwan_return_interest_cases = {
+    "202121MA2G92223A11Z10000000": {
+        "currency": "TWD",
+        "expected_rate": 0.75,
+        "annual_formula": "first_two_policy_years_premium_total_times_1_01_minus_coeff_then_face_plus_accumulated_times_1_7",
+        "survival_formula": "1_2_1_step_schedule_on_previous_face_plus_accumulated",
+        "survival_min": 1.0,
+        "survival_max": 2.0,
+        "monthly": False,
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_component",
+        "maturity_multiplier": "none",
+        "premium_component": "premium_total_times_1_01_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+        "mass_transit_rate": 50.0,
+        "specific_cancer_rate": 1.0,
+    },
+    "202121MA2A15A23A11Z10000000": {
+        "currency": "TWD",
+        "expected_rate": 1.00,
+        "annual_formula": "first_two_policy_years_premium_total_times_1_01_minus_coeff_then_face_plus_accumulated_times_1_7",
+        "survival_formula": "1_43_2_86_0_92_step_schedule_on_previous_face_plus_accumulated",
+        "survival_min": 0.92,
+        "survival_max": 2.86,
+        "monthly": False,
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_component",
+        "maturity_multiplier": "none",
+        "premium_component": "premium_total_times_1_01_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+        "mass_transit_rate": 25.0,
+    },
+    "202121MA2A15A23A11Z10000001": {
+        "currency": "TWD",
+        "expected_rate": 1.00,
+        "annual_formula": "first_two_policy_years_premium_total_times_1_01_minus_coeff_then_face_plus_accumulated_times_1_7",
+        "survival_formula": "1_43_2_86_0_92_step_schedule_on_previous_face_plus_accumulated",
+        "survival_min": 0.92,
+        "survival_max": 2.86,
+        "monthly": False,
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_component",
+        "maturity_multiplier": "none",
+        "premium_component": "premium_total_times_1_01_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+        "mass_transit_rate": 25.0,
+    },
+    "202121MA2A97123A11Z10000000": {
+        "currency": "TWD",
+        "expected_rate": 1.00,
+        "annual_formula": "first_two_policy_years_premium_total_times_1_01_minus_coeff_then_face_plus_accumulated_times_1_7",
+        "survival_formula": "1_30_2_60_0_85_step_schedule_on_previous_face_plus_accumulated",
+        "survival_min": 0.85,
+        "survival_max": 2.60,
+        "monthly": False,
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_component",
+        "maturity_multiplier": "none",
+        "premium_component": "premium_total_times_1_01_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+        "mass_transit_rate": 50.0,
+    },
+    "202121MA2A97123A11Z10000002": {
+        "currency": "TWD",
+        "expected_rate": 1.00,
+        "annual_formula": "first_two_policy_years_premium_total_times_1_01_minus_coeff_then_face_plus_accumulated_times_1_7",
+        "survival_formula": "1_30_2_60_0_85_step_schedule_on_previous_face_plus_accumulated",
+        "survival_min": 0.85,
+        "survival_max": 2.60,
+        "monthly": False,
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_component",
+        "maturity_multiplier": "none",
+        "premium_component": "premium_total_times_1_01_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+        "mass_transit_rate": 50.0,
+    },
+    "202121MA1A56A23B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 2.50,
+        "annual_formula": "face_plus_accumulated_paid_up_additions_times_3_6_percent",
+        "survival_formula": "selected_survival_age_previous_annual_insured_amount_to_age_99",
+        "survival_min": 100.0,
+        "survival_max": 100.0,
+        "monthly": False,
+        "maturity_formula": "age_99_face_plus_accumulated_paid_up_additions_times_1_6",
+        "maturity_multiplier": "fixed_1_6x",
+        "premium_component": "premium_total_times_1_06_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+    },
+    "202121MA1A32A23B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "premium_period_premium_total_times_1_06_minus_coeff_then_face_plus_accumulated",
+        "survival_formula": "2_or_4_year_step_schedule_on_previous_face_plus_accumulated",
+        "survival_min": 6.0,
+        "survival_max": 12.0,
+        "monthly": False,
+        "maturity_formula": "greater_of_annual_insured_amount_times_5_and_premium_component",
+        "maturity_multiplier": "fixed_5x",
+        "premium_component": "premium_total_times_1_06_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+    },
+    "202121MA1A70A23A11Z10000000": {
+        "currency": "TWD",
+        "expected_rate": 1.25,
+        "annual_formula": "first_two_policy_years_premium_total_times_1_01_minus_coeff_then_face_plus_accumulated_times_1_7",
+        "survival_formula": "1_50_3_00_1_77_step_schedule_on_previous_face_plus_accumulated",
+        "survival_min": 1.5,
+        "survival_max": 3.0,
+        "monthly": False,
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_component",
+        "maturity_multiplier": "none",
+        "premium_component": "premium_total_times_1_01_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+    },
+    "202121MA1A74A23B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "premium_period_premium_total_times_1_06_minus_coeff_then_face_plus_accumulated",
+        "survival_formula": "3_6_10_year_schedule_with_monthly_8_4_percent_option",
+        "survival_min": 4.0,
+        "survival_max": 8.0,
+        "monthly": True,
+        "maturity_formula": "greater_of_annual_insured_amount_by_payment_period_multiplier_and_premium_component",
+        "maturity_multiplier": "payment_period_3_6_10_years_multiplier_5_6_7",
+        "premium_component": "premium_total_times_1_06_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+    },
+    "202121MA1A91223B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.00,
+        "annual_formula": "first_two_policy_years_premium_total_times_1_06_minus_coeff_then_face_plus_accumulated_times_1_6",
+        "survival_formula": "2_4_1_4_step_schedule_on_previous_face_plus_accumulated",
+        "survival_min": 1.4,
+        "survival_max": 4.0,
+        "monthly": False,
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_component",
+        "maturity_multiplier": "none",
+        "premium_component": "premium_total_times_1_06_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+    },
+    "202121MA1A91323B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "first_five_policy_years_premium_total_times_1_06_minus_coeff_then_face_plus_accumulated",
+        "survival_formula": "0_21_to_1_5_long_step_schedule_on_previous_face_plus_accumulated",
+        "survival_min": 0.21,
+        "survival_max": 1.5,
+        "monthly": False,
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_component",
+        "maturity_multiplier": "none",
+        "premium_component": "premium_total_times_1_06_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+    },
+    "202121MA1A92323B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "first_five_policy_years_premium_total_times_1_06_minus_coeff_then_face_plus_accumulated",
+        "survival_formula": "post_premium_period_1_5_percent_on_previous_face_plus_accumulated",
+        "survival_min": 1.5,
+        "survival_max": 1.5,
+        "monthly": False,
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_component",
+        "maturity_multiplier": "none",
+        "premium_component": "premium_total_times_1_06_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+    },
+    "202121MA1A92823A11Z10000000": {
+        "currency": "TWD",
+        "expected_rate": 1.50,
+        "annual_formula": "first_five_policy_years_premium_total_times_1_06_minus_coeff_then_face_plus_accumulated_times_annual_factor_table",
+        "survival_formula": "0_25_to_1_5_step_schedule_on_previous_face_plus_accumulated",
+        "survival_min": 0.25,
+        "survival_max": 1.5,
+        "monthly": False,
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_component",
+        "maturity_multiplier": "none",
+        "premium_component": "premium_total_times_1_06_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+    },
+    "202121MA1A95423B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.00,
+        "annual_formula": "first_two_policy_years_premium_total_times_1_06_minus_coeff_then_face_plus_accumulated_times_1_6",
+        "survival_formula": "2_06_4_12_1_05_step_schedule_on_previous_face_plus_accumulated",
+        "survival_min": 1.05,
+        "survival_max": 4.12,
+        "monthly": False,
+        "maturity_formula": "greater_of_annual_insured_amount_and_premium_component",
+        "maturity_multiplier": "none",
+        "premium_component": "premium_total_times_1_06_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+    },
+    "202121MA1A95523B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.75,
+        "annual_formula": "first_five_policy_years_premium_total_times_1_06_minus_coeff_then_face_plus_accumulated_times_1_6",
+        "survival_formula": "0_62_to_1_9_step_schedule_on_previous_face_plus_accumulated",
+        "survival_min": 0.62,
+        "survival_max": 3.1,
+        "monthly": False,
+        "maturity_formula": "annual_insured_amount",
+        "maturity_multiplier": "none",
+        "premium_component": "premium_total_times_1_06_minus_face_plus_accumulated_times_coefficient",
+        "standard_premium_table": False,
+    },
+    "202121MA1A96823B11Z10000000": {
+        "currency": "USD",
+        "expected_rate": 1.50,
+        "annual_formula": "face_plus_accumulated_paid_up_additions",
+        "survival_formula": "2_or_4_year_premium_table_schedule_with_monthly_option",
+        "survival_min": 2.3,
+        "survival_max": 10.76,
+        "monthly": True,
+        "maturity_formula": "greater_of_annual_insured_amount_times_5_and_premium_component",
+        "maturity_multiplier": "fixed_5x",
+        "premium_component": "premium_total_times_1_06_minus_standard_premium_table_times_coefficient",
+        "standard_premium_table": True,
+    },
+}
+for product_id in taiwan_return_interest_product_ids:
+    document = taiwan_interest_whole_life_document(product_id)
+    schedule = parse_taiwan_interest_rate_return_whole_life_formula(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-interest-rate-return-whole-life-formula-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "基本保險金額"
+    assert "繳費年期" in schedule["selection_guidance"]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["maturity_age"] == 100
+    assert characteristics["value_sharing_bonus"] is True
+    assert characteristics["premium_waiver_available"] is False
+    assert characteristics["payment_period_required"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) >= {
+        "value-sharing-bonus",
+        "survival-benefit",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "maturity-benefit",
+        "installment-periodic-benefit",
+    }
+    assert entries["survival-benefit"]["calculation_basis"] == "percentage_of_base"
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    mass_transit_entry = entries.get(
+        "mass-transit-accidental-death-or-funeral-additional"
+    )
+    if characteristics["mass_transit_accidental_death_available"]:
+        assert mass_transit_entry is not None
+        assert mass_transit_entry["calculation_basis"] == "percentage_of_base"
+        assert mass_transit_entry["aggregation_rule"] == "conditional_additive"
+        assert (
+            mass_transit_entry["rate_percent"]
+            == characteristics["mass_transit_accidental_death_rate_percent"]
+        )
+        assert characteristics["mass_transit_accidental_death_claim_age_limit"] == 85
+        assert characteristics["accident_claim_days"] == 180
+    else:
+        assert mass_transit_entry is None
+    specific_cancer_entry = entries.get("specific-site-cancer-benefit")
+    if characteristics.get("specific_cancer_benefit_available"):
+        assert specific_cancer_entry is not None
+        assert specific_cancer_entry["calculation_basis"] == "percentage_of_base"
+        assert specific_cancer_entry["basis"] == "face_amount"
+        assert specific_cancer_entry["limit_scope"] == "per_policy"
+        assert (
+            specific_cancer_entry["rate_percent"]
+            == characteristics["specific_cancer_rate_percent"]
+        )
+        assert characteristics["specific_cancer_waiting_days"] == 90
+        assert characteristics["specific_cancer_lifetime_limit_times"] == 1
+        assert characteristics["specific_cancer_basis"] == "basic_face_amount"
+    else:
+        assert specific_cancer_entry is None
+    if product_id in taiwan_return_interest_cases:
+        expected = taiwan_return_interest_cases[product_id]
+        assert characteristics["currency"] == expected["currency"]
+        assert characteristics["expected_interest_rate_percent"] == expected["expected_rate"]
+        assert characteristics["annual_insured_amount_formula"] == expected["annual_formula"]
+        assert characteristics["survival_benefit_formula"] == expected["survival_formula"]
+        assert characteristics["survival_rate_min_percent"] == expected["survival_min"]
+        assert characteristics["survival_rate_max_percent"] == expected["survival_max"]
+        assert characteristics["monthly_survival_benefit_available"] is expected["monthly"]
+        assert characteristics["maturity_benefit_formula"] == expected["maturity_formula"]
+        assert characteristics["maturity_multiplier_formula"] == expected["maturity_multiplier"]
+        assert characteristics["premium_component"] == expected["premium_component"]
+        assert (
+            characteristics["standard_premium_table_required"]
+            is expected["standard_premium_table"]
+        )
+        if "mass_transit_rate" in expected:
+            assert (
+                characteristics["mass_transit_accidental_death_rate_percent"]
+                == expected["mass_transit_rate"]
+            )
+            assert mass_transit_entry is not None
+            assert mass_transit_entry["rate_percent"] == expected["mass_transit_rate"]
+        if "specific_cancer_rate" in expected:
+            assert (
+                characteristics["specific_cancer_rate_percent"]
+                == expected["specific_cancer_rate"]
+            )
+            assert specific_cancer_entry is not None
+            assert specific_cancer_entry["rate_percent"] == expected["specific_cancer_rate"]
+        assert (
+            entries["survival-benefit"]["rate_min_percent"]
+            == expected["survival_min"]
+        )
+        assert (
+            entries["survival-benefit"]["rate_max_percent"]
+            == expected["survival_max"]
+        )
+
+assert parse_taiwan_interest_rate_return_whole_life_formula(
+    taiwan_interest_whole_life_document("202121MA1A32A23B11Z10000000", "F")
+) is None
+taiwan_meixin_youtui_document = taiwan_interest_whole_life_document(
+    "202121MA1A56A23B11Z10000000"
+)
+taiwan_meixin_youtui_schedule = parse_taiwan_interest_rate_return_whole_life_formula(
+    taiwan_meixin_youtui_document
+)
+assert taiwan_meixin_youtui_schedule is not None
+taiwan_meixin_youtui_characteristics = taiwan_meixin_youtui_schedule[
+    "version_characteristics"
+]
+assert (
+    taiwan_meixin_youtui_characteristics["annual_insured_amount_formula"]
+    == "face_plus_accumulated_paid_up_additions_times_3_6_percent"
+)
+assert (
+    taiwan_meixin_youtui_characteristics["survival_benefit_formula"]
+    == "selected_survival_age_previous_annual_insured_amount_to_age_99"
+)
+assert (
+    taiwan_meixin_youtui_characteristics["maturity_benefit_formula"]
+    == "age_99_face_plus_accumulated_paid_up_additions_times_1_6"
+)
+assert (
+    taiwan_meixin_youtui_characteristics["premium_component"]
+    == "premium_total_times_1_06_minus_face_plus_accumulated_times_coefficient"
+)
+assert taiwan_meixin_youtui_characteristics["currency"] == "USD"
+assert taiwan_meixin_youtui_characteristics["expected_interest_rate_percent"] == 2.5
+assert taiwan_meixin_youtui_characteristics["mass_transit_accidental_death_available"] is False
+assert taiwan_meixin_youtui_characteristics["accident_claim_days"] is None
+taiwan_meixin_youtui_entries = {
+    entry["id"]: entry for entry in taiwan_meixin_youtui_schedule["coverage_entries"]
+}
+assert taiwan_meixin_youtui_entries["survival-benefit"]["unit_key"] == (
+    "previous_policy_year_annual_insured_amount"
+)
+assert taiwan_meixin_youtui_entries["survival-benefit"]["basis"] == (
+    "policy_recorded_limit"
+)
+assert taiwan_meixin_youtui_entries["survival-benefit"]["rate_min_percent"] == 100.0
+assert taiwan_meixin_youtui_entries["survival-benefit"]["rate_max_percent"] == 100.0
+assert taiwan_meixin_youtui_entries["maturity-benefit"]["multiplier"] == 1.6
+assert parse_taiwan_interest_rate_return_whole_life_formula(
+    taiwan_interest_whole_life_document("202121MA1A56A23B11Z10000000", "F")
+) is None
+assert parse_taiwan_interest_rate_return_whole_life_formula(
+    {**taiwan_meixin_youtui_document, "product_id": "202121MA1A56A23B11Z19999999"}
+) is None
+assert parse_taiwan_interest_rate_return_whole_life_formula(
+    {
+        **taiwan_meixin_youtui_document,
+        "text": taiwan_meixin_youtui_document["text"].replace("之值的 3.6%", "之值的 3.5%", 1),
+    }
+) is None
+assert parse_taiwan_interest_rate_return_whole_life_formula(
+    {
+        **taiwan_meixin_youtui_document,
+        "text": taiwan_meixin_youtui_document["text"].replace("之值的 1.6 倍", "之值的 1.5 倍", 1),
+    }
+) is None
+taiwan_meixin_youtui_completed = complete_strict_source_document(
+    {
+        **taiwan_meixin_youtui_document,
+        "text": taiwan_meixin_youtui_document["text"][:1500],
+    },
+    TII_LIFE_009_ROOT
+    / "202121MA1A56A23B11Z10000000"
+    / "202121MA1A56A23B11Z10000000-A.pdf",
+)
+assert taiwan_meixin_youtui_completed["page_count"] == 11
+assert (
+    parse_taiwan_interest_rate_return_whole_life_formula(
+        taiwan_meixin_youtui_completed
+    )
+    is not None
+)
+taiwan_return_completed = complete_strict_source_document(
+    {
+        **taiwan_interest_whole_life_document("202121MA1A32A23B11Z10000000"),
+        "text": taiwan_interest_whole_life_document(
+            "202121MA1A32A23B11Z10000000"
+        )["text"][:1500],
+    },
+    TII_LIFE_009_ROOT
+    / "202121MA1A32A23B11Z10000000"
+    / "202121MA1A32A23B11Z10000000-A.pdf",
+)
+assert taiwan_return_completed["page_count"] == 12
+assert (
+    parse_taiwan_interest_rate_return_whole_life_formula(taiwan_return_completed)
+    is not None
+)
+taiwan_return_mass_transit_completed = complete_strict_source_document(
+    {
+        **taiwan_interest_whole_life_document("202121MA2A15A23A11Z10000000"),
+        "text": taiwan_interest_whole_life_document(
+            "202121MA2A15A23A11Z10000000"
+        )["text"][:1500],
+    },
+    TII_LIFE_009_ROOT
+    / "202121MA2A15A23A11Z10000000"
+    / "202121MA2A15A23A11Z10000000-A.pdf",
+)
+assert taiwan_return_mass_transit_completed["page_count"] == 11
+assert (
+    parse_taiwan_interest_rate_return_whole_life_formula(
+        taiwan_return_mass_transit_completed
+    )
+    is not None
+)
+
 fubon_new_complete_schedules = {
     product_id: parse_fubon_new_complete_combined_plan_table(
         fubon_new_complete_document(product_id)
@@ -5480,7 +12310,7 @@ preserved_review = {
 preserved_record = {
     "product_id": "262321R11A00300",
     "status": "verified_reference",
-    "extractor_version": "tii-plan-benefits-v-old",
+    "extractor_version": EXTRACTOR_VERSION,
     **{key: preserved_candidate[key] for key in (
         "parser_id",
         "source_file",
@@ -5507,6 +12337,25 @@ _, preserved_records = approved_schedules(
 )
 assert preserved_records == [preserved_record]
 
+old_version_preserved_record = {
+    **preserved_record,
+    "extractor_version": "tii-plan-benefits-v-old",
+}
+_, upgraded_preserved_records = approved_schedules(
+    {
+        "batch_id": "tii-life-158",
+        "extractor_version": EXTRACTOR_VERSION,
+        "proposals": [{
+            "product_id": "262321R11A00300",
+            "status": "proposed",
+            "candidates": [preserved_candidate],
+        }],
+    },
+    {"batch_id": "tii-life-158", "reviews": [preserved_review]},
+    [old_version_preserved_record],
+)
+assert upgraded_preserved_records == [preserved_record]
+
 stale_candidate = {
     **preserved_candidate,
     "schedule_sha256": "new-unreviewed-schedule-sha",
@@ -5523,10 +12372,10 @@ stale_proposal_payload = {
 stale_schedules, stale_preserved_records = approved_schedules(
     stale_proposal_payload,
     {"batch_id": "tii-life-158", "reviews": [preserved_review]},
-    [preserved_record],
+    [old_version_preserved_record],
 )
 assert stale_schedules == {}
-assert stale_preserved_records == [preserved_record]
+assert stale_preserved_records == [old_version_preserved_record]
 
 try:
     approved_schedules(
@@ -6783,6 +13632,427 @@ assert yuanta_anxin100_completed["page_count"] == 15
 assert parse_yuanta_anxin100_critical_illness_face_amount(
     yuanta_anxin100_completed
 ) is not None
+
+
+YUANTA_ZHEN_ANXIN_RETURN_CANCER_PRODUCT_IDS = (
+    "261121MZ2GC2022A11Z10000004",
+    "261121MZ2GC2022A11Z10000005",
+)
+TII_LIFE_153_ROOT = Path("work/tii-documents/tii-life-153")
+TII_LIFE_153_TEXT_PATH = Path("work/tii-document-text/tii-life-153-text.json")
+
+
+def tii_life_153_document(product_id: str, suffix: str = "A") -> dict:
+    pdf_path = TII_LIFE_153_ROOT / product_id / f"{product_id}-{suffix}.pdf"
+    page_texts = [page.extract_text() or "" for page in PdfReader(pdf_path).pages]
+    return {
+        "batch_id": "tii-life-153",
+        "product_id": product_id,
+        "product_name": "元大人壽真安心保本防癌保險",
+        "file_name": f"{product_id}-{suffix}.pdf",
+        "document_type": "policy_terms" if suffix == "A" else "product_summary",
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+def tii_life_153_ocr_document(product_id: str, suffix: str = "A") -> dict:
+    document_type = "policy_terms" if suffix == "A" else "product_summary"
+    documents = json.loads(TII_LIFE_153_TEXT_PATH.read_text(encoding="utf-8"))[
+        "documents"
+    ]
+    document = next(
+        item
+        for item in documents
+        if item.get("product_id") == product_id
+        and item.get("document_type") == document_type
+    )
+    return {
+        **document,
+        "batch_id": "tii-life-153",
+        "text": normalize_terms_text(document["text"]),
+    }
+
+
+expected_zhen_anxin_revisions = {
+    "261121MZ2GC2022A11Z10000004": "fourth-partial-revision",
+    "261121MZ2GC2022A11Z10000005": "fifth-regulatory-revision",
+}
+for product_id in YUANTA_ZHEN_ANXIN_RETURN_CANCER_PRODUCT_IDS:
+    document = tii_life_153_document(product_id)
+    schedule = parse_yuanta_zhen_anxin_return_cancer_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "yuanta-zhen-anxin-return-cancer-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_zhen_anxin_revisions[product_id]
+    assert characteristics["cancer_waiting_days"] == 90
+    assert characteristics["premium_multiplier"] == 1.06
+    assert characteristics["accident_hospital_daily_rate_percent"] == 0.1
+    assert characteristics["fracture_unhospitalized_daily_rate_percent"] == 0.05
+    assert characteristics["low_invasive_cancer_rate_percent"] == 10
+    assert characteristics["initial_cancer_low_invasive_offset"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "death-or-funeral-benefit",
+        "accidental-death-benefit",
+        "mass-transit-accidental-death-benefit",
+        "total-disability-benefit",
+        "accidental-first-degree-disability-benefit",
+        "mass-transit-accidental-first-degree-disability-benefit",
+        "accidental-disability-benefit",
+        "accident-hospital-daily-benefit",
+        "fracture-unhospitalized-benefit",
+        "low-invasive-cancer-benefit",
+        "initial-cancer-benefit",
+        "maturity-benefit",
+    }
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["low-invasive-cancer-benefit"]["rate_percent"] == 10
+    assert entries["initial-cancer-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["maturity-benefit"]["unit_key"] == "annual_premium_total"
+    assert parse_yuanta_zhen_anxin_return_cancer_face_amount(
+        tii_life_153_document(product_id, "F")
+    ) is None
+
+    source_path = TII_LIFE_153_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = document["text"].split("第三條")[0]
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 8
+    assert parse_yuanta_zhen_anxin_return_cancer_face_amount(completed_document) == schedule
+
+assert parse_yuanta_zhen_anxin_return_cancer_face_amount(
+    {**tii_life_153_document(YUANTA_ZHEN_ANXIN_RETURN_CANCER_PRODUCT_IDS[0]), "product_id": "wrong-product"}
+) is None
+
+
+YUANTA_ZHENAI_BABY_RETURN_PRODUCT_ID = "261111M19GJB005"
+yuanta_zhenai_baby_document = tii_life_153_ocr_document(
+    YUANTA_ZHENAI_BABY_RETURN_PRODUCT_ID
+)
+yuanta_zhenai_baby_schedule = parse_yuanta_zhenai_baby_return_life_face_amount(
+    yuanta_zhenai_baby_document
+)
+assert yuanta_zhenai_baby_schedule is not None
+yuanta_zhenai_baby_integrated = parse_plan_table_with_parser(
+    yuanta_zhenai_baby_document
+)
+assert yuanta_zhenai_baby_integrated is not None
+assert yuanta_zhenai_baby_integrated[0] == (
+    "yuanta-zhenai-baby-return-life-face-amount-v1"
+)
+assert yuanta_zhenai_baby_integrated[1] == yuanta_zhenai_baby_schedule
+assert yuanta_zhenai_baby_schedule["selection_type"] == "face_amount"
+assert yuanta_zhenai_baby_schedule["input_mode"] == "face_amount"
+assert yuanta_zhenai_baby_schedule["selection_label"] == "保險金額"
+assert yuanta_zhenai_baby_schedule["version_characteristics"] == {
+    "product_family": "yuanta-zhenai-baby-return-life",
+    "terms_revision": "fifth-partial-revision",
+    "approval_filing_number": "金管保二字第09702091920號",
+    "company_name_change_filing_number": "金管保壽字第10302008450號",
+    "face_amount_required": True,
+    "multiple_insured_supported": True,
+    "unborn_child_policy": True,
+    "insurance_benefit_basis": "policy_face_amount",
+    "specific_major_disability_category_count": 18,
+    "specific_major_disability_rate_percent": 50,
+    "specific_major_disability_per_category_limit_times": 1,
+    "specific_major_disability_cumulative_cap_percent": 100,
+    "cerebral_palsy_rate_percent": 20,
+    "cerebral_palsy_lifetime_limit_times": 1,
+    "major_burn_rate_percent": 20,
+    "accident_claim_days": 180,
+    "major_burn_definition_body_surface_percent": 20,
+    "survival_benefit_start_policy_anniversary": 7,
+    "survival_benefit_end_policy_anniversary": 12,
+    "survival_benefit_payment_count": 6,
+    "survival_benefit_formula": "annual_premium_calculated_by_current_face_amount",
+    "survival_benefit_single_survivor_limit": True,
+    "death_refund_formula": "paid_premium_calculated_by_face_amount_at_death",
+    "fetal_condition_known_exclusion": True,
+    "non_participating_policy": True,
+}
+yuanta_zhenai_baby_entries = {
+    entry["id"]: entry
+    for entry in yuanta_zhenai_baby_schedule["coverage_entries"]
+}
+assert set(yuanta_zhenai_baby_entries) == {
+    "specific-major-disability-benefit",
+    "cerebral-palsy-benefit",
+    "major-burn-benefit",
+    "survival-benefit",
+    "all-insured-death-premium-refund",
+}
+assert (
+    yuanta_zhenai_baby_entries["specific-major-disability-benefit"]["rate_percent"]
+    == 50
+)
+assert yuanta_zhenai_baby_entries["cerebral-palsy-benefit"]["rate_percent"] == 20
+assert yuanta_zhenai_baby_entries["major-burn-benefit"]["rate_percent"] == 20
+assert yuanta_zhenai_baby_entries["survival-benefit"]["unit_key"] == (
+    "annual_premium_by_current_face_amount"
+)
+assert (
+    yuanta_zhenai_baby_entries["all-insured-death-premium-refund"][
+        "calculation_basis"
+    ]
+    == "unknown"
+)
+assert parse_yuanta_zhenai_baby_return_life_face_amount(
+    tii_life_153_ocr_document(YUANTA_ZHENAI_BABY_RETURN_PRODUCT_ID, "F")
+) is None
+assert parse_yuanta_zhenai_baby_return_life_face_amount(
+    {**yuanta_zhenai_baby_document, "product_id": "261111M12G00104"}
+) is None
+assert parse_yuanta_zhenai_baby_return_life_face_amount(
+    {**yuanta_zhenai_baby_document, "page_count": 14, "pages_parsed": 14}
+) is None
+assert parse_yuanta_zhenai_baby_return_life_face_amount(
+    {
+        **yuanta_zhenai_baby_document,
+        "text": yuanta_zhenai_baby_document["text"].replace(
+            "每一類給付以一次為限",
+            "每一類給付以二次為限",
+            1,
+        ),
+    }
+) is None
+
+
+YUANTA_YUANMAN225_PRODUCT_ID = "261121MA1AYE022A11Z10000002"
+yuanta_yuanman225_document = tii_life_153_document(YUANTA_YUANMAN225_PRODUCT_ID)
+yuanta_yuanman225_schedule = parse_yuanta_yuanman225_interest_endowment_formula(
+    yuanta_yuanman225_document
+)
+assert yuanta_yuanman225_schedule is not None
+yuanta_yuanman225_integrated = parse_plan_table_with_parser(
+    yuanta_yuanman225_document
+)
+assert yuanta_yuanman225_integrated is not None
+assert yuanta_yuanman225_integrated[0] == (
+    "yuanta-yuanman225-interest-endowment-formula-v1"
+)
+assert yuanta_yuanman225_integrated[1] == yuanta_yuanman225_schedule
+assert yuanta_yuanman225_schedule["selection_type"] == "face_amount"
+assert yuanta_yuanman225_schedule["input_mode"] == "face_amount"
+assert yuanta_yuanman225_schedule["selection_label"] == "當年度保險金額"
+assert yuanta_yuanman225_schedule["version_characteristics"] == {
+    "product_family": "yuanta-yuanman225-interest-endowment",
+    "terms_revision": "second-partial-revision",
+    "filing_date": "104.05.18",
+    "filing_number": "元壽字第10400661號",
+    "regulatory_revision_date": "104.08.04",
+    "regulatory_revision_number": "金管保壽字第10402049830號",
+    "policy_period_years": 25,
+    "expected_interest_rate_percent": 1.5,
+    "declared_rate_frequency": "monthly",
+    "value_sharing_bonus_available": True,
+    "value_sharing_formula": "positive_difference_between_declared_rate_and_expected_rate_times_policy_reserve",
+    "annual_insured_amount_formula": "face_amount_plus_cumulative_paid_up_addition",
+    "death_benefit_formula": "greater_of_policy_reserve_or_annual_premium_total_times_1_01",
+    "total_disability_benefit_formula": "greater_of_policy_reserve_or_annual_premium_total_times_1_01",
+    "maturity_benefit_formula": "annual_insured_amount_times_1_6_on_25th_policy_anniversary",
+    "maturity_policy_anniversary": 25,
+    "maturity_multiplier": 1.6,
+    "premium_multiplier": 1.01,
+    "policy_reserve_required": True,
+    "annual_premium_total_required": True,
+    "accumulated_paid_up_additions_required": True,
+    "stored_interest_before_age_16": True,
+    "minor_death_refund_rule": True,
+    "funeral_benefit_limit_rule": True,
+    "full_disability_table_item_count": 7,
+    "non_participating_policy": True,
+}
+yuanta_yuanman225_entries = {
+    entry["id"]: entry
+    for entry in yuanta_yuanman225_schedule["coverage_entries"]
+}
+assert set(yuanta_yuanman225_entries) == {
+    "value-sharing-paid-up-addition",
+    "death-or-funeral-benefit",
+    "total-disability-benefit",
+    "maturity-benefit",
+}
+assert yuanta_yuanman225_entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+assert yuanta_yuanman225_entries["total-disability-benefit"]["unit_key"] == (
+    "greater_of_policy_reserve_premium_total_1_01"
+)
+assert yuanta_yuanman225_entries["maturity-benefit"]["rate_percent"] == 160
+assert yuanta_yuanman225_entries["value-sharing-paid-up-addition"]["amount_role"] == (
+    "reference"
+)
+yuanta_yuanman225_source_path = (
+    TII_LIFE_153_ROOT
+    / YUANTA_YUANMAN225_PRODUCT_ID
+    / f"{YUANTA_YUANMAN225_PRODUCT_ID}-A.pdf"
+)
+yuanta_yuanman225_indexed = {
+    key: value
+    for key, value in yuanta_yuanman225_document.items()
+    if key not in {"page_count", "pages_parsed"}
+}
+yuanta_yuanman225_indexed["text"] = yuanta_yuanman225_indexed["text"].split(
+    "第一條"
+)[0]
+yuanta_yuanman225_completed = complete_strict_source_document(
+    yuanta_yuanman225_indexed, yuanta_yuanman225_source_path
+)
+assert yuanta_yuanman225_completed["page_count"] == 3
+assert (
+    parse_yuanta_yuanman225_interest_endowment_formula(yuanta_yuanman225_completed)
+    == yuanta_yuanman225_schedule
+)
+assert parse_yuanta_yuanman225_interest_endowment_formula(
+    {**yuanta_yuanman225_document, "product_id": "261121MA1AYE022A11Z10000001"}
+) is None
+assert parse_yuanta_yuanman225_interest_endowment_formula(
+    tii_life_153_document(YUANTA_YUANMAN225_PRODUCT_ID, "F")
+) is None
+assert parse_yuanta_yuanman225_interest_endowment_formula(
+    {**yuanta_yuanman225_document, "page_count": 2, "pages_parsed": 2}
+) is None
+assert parse_yuanta_yuanman225_interest_endowment_formula(
+    {
+        **yuanta_yuanman225_document,
+        "text": yuanta_yuanman225_document["text"].replace(
+            "一點零一倍",
+            "一點零二倍",
+        ),
+    }
+) is None
+
+
+YUANTA_MEINIANDUOLI_USD_PRODUCTS = {
+    "261121MA1AFU023B11Z10000000": {
+        "terms_revision": "original",
+        "disability_term": "殘廢",
+        "page_count": 5,
+        "has_article_2_definition": False,
+    },
+    "261121MA1AFU023B11Z10000001": {
+        "terms_revision": "first-partial-revision",
+        "disability_term": "失能",
+        "page_count": 5,
+        "has_article_2_definition": False,
+    },
+    "261121MA1AFU023B11Z10000002": {
+        "terms_revision": "second-partial-revision",
+        "disability_term": "失能",
+        "page_count": 5,
+        "has_article_2_definition": False,
+    },
+    "261121MA1AFU023B11Z10000003": {
+        "terms_revision": "third-partial-revision",
+        "disability_term": "失能",
+        "page_count": 5,
+        "has_article_2_definition": True,
+    },
+    "261121MA1AFU023B11Z10000004": {
+        "terms_revision": "fourth-partial-revision",
+        "disability_term": "失能",
+        "page_count": 6,
+        "has_article_2_definition": True,
+    },
+}
+for product_id, expected in YUANTA_MEINIANDUOLI_USD_PRODUCTS.items():
+    document = tii_life_153_document(product_id)
+    schedule = parse_yuanta_meinianduoli_usd_incremental_return_whole_life_formula(
+        document
+    )
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == (
+        "yuanta-meinianduoli-usd-incremental-return-whole-life-formula-v1"
+    )
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == "face_amount"
+    assert schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["product_family"] == (
+        "yuanta-meinianduoli-usd-incremental-return-whole-life"
+    )
+    assert characteristics["terms_revision"] == expected["terms_revision"]
+    assert characteristics["currency"] == "USD"
+    assert characteristics["expected_interest_rate_percent"] == 2.5
+    assert characteristics["premium_multiplier"] == 1.06
+    assert characteristics["survival_benefit_during_payment_rate_percent"] == 1.8
+    assert characteristics["survival_benefit_after_paid_up_annual_rate_percent"] == 15
+    assert characteristics["maturity_age"] == 111
+    assert characteristics["disability_term"] == expected["disability_term"]
+    assert characteristics["foreign_currency_policy"] is True
+    assert characteristics["minor_death_refund_rule"] is True
+    assert characteristics.get("benefit_amount_definition_in_article_2", False) == (
+        expected["has_article_2_definition"]
+    )
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "value-sharing-bonus",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "survival-benefit-during-payment",
+        "survival-benefit-after-paid-up",
+        "maturity-benefit",
+    }
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["total-disability-benefit"]["multiplier"] == 1.06
+    assert entries["survival-benefit-during-payment"]["rate_percent"] == 1.8
+    assert entries["survival-benefit-after-paid-up"]["rate_percent"] == 15
+    assert entries["maturity-benefit"]["rate_percent"] == 100
+    assert entries["value-sharing-bonus"]["amount_role"] == "reference"
+
+    source_path = TII_LIFE_153_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = indexed_document["text"].split("第十六條")[0]
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected["page_count"]
+    assert (
+        parse_yuanta_meinianduoli_usd_incremental_return_whole_life_formula(
+            completed_document
+        )
+        == schedule
+    )
+    assert parse_yuanta_meinianduoli_usd_incremental_return_whole_life_formula(
+        tii_life_153_document(product_id, "F")
+    ) is None
+    assert parse_yuanta_meinianduoli_usd_incremental_return_whole_life_formula(
+        {**document, "page_count": expected["page_count"] + 1}
+    ) is None
+    assert parse_yuanta_meinianduoli_usd_incremental_return_whole_life_formula(
+        {**document, "file_name": f"{product_id}-F.pdf"}
+    ) is None
+
+first_meinianduoli_document = tii_life_153_document(
+    "261121MA1AFU023B11Z10000000"
+)
+assert parse_yuanta_meinianduoli_usd_incremental_return_whole_life_formula(
+    {**first_meinianduoli_document, "product_id": "261121MA1AFU023B11Z10000001"}
+) is None
+assert parse_yuanta_meinianduoli_usd_incremental_return_whole_life_formula(
+    {
+        **first_meinianduoli_document,
+        "text": first_meinianduoli_document["text"].replace(
+            "預定利率 (2.5%)",
+            "預定利率 (9.9%)",
+            1,
+        ),
+    }
+) is None
 
 
 yuanta_xiangyouxin_expected = {
@@ -9611,7 +16881,7 @@ for (
     document = new_shouhu_jinnang_document(product_id)
     assert document["page_count"] == document["pages_parsed"] == expected_pages
     assert expected_fubon_code in document["text"]
-    assert "富邦人壽新放百萬心傷害暨健康一年定期保險" in document["text"]
+    assert "新放百萬心" in document["text"]
     assert "本契約保障內容分八個計畫別" in document["text"]
     assert "日間留院" in document["text"]
     schedule = parse_fubon_new_million_heart_accident_health_plan_table(document)
@@ -11645,6 +18915,189 @@ for product_id, (
     )
 
 
+TAIWAN_QIANWAN_CHUXING_B_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-009"
+)
+TAIWAN_QIANWAN_CHUXING_B_PRODUCTS = {
+    "202121MZ2A89922A11Z10000000": (
+        "台灣人壽千萬出行 B 型定期養老保險",
+        "110-original",
+        "none",
+        "none",
+        "original-filing",
+        "",
+    ),
+    "202121MZ2A89922A11Z10000002": (
+        "台灣人壽新千萬出行 B 型定期養老保險",
+        "112-second-partial-revision",
+        "112-03-01",
+        "台壽字第1122320056號",
+        "company-filing-amendment",
+        "中華民國 112 年 3 月 1 日台壽字第 1122320056 號函備查修正",
+    ),
+}
+
+
+def taiwan_qianwan_chuxing_b_document(
+    product_id: str,
+    suffix: str = "A",
+    *,
+    document_type: str = "policy_terms",
+) -> dict:
+    pdf_path = (
+        TAIWAN_QIANWAN_CHUXING_B_ROOT
+        / product_id
+        / f"{product_id}-{suffix}.pdf"
+    )
+    reader = PdfReader(pdf_path, strict=False)
+    page_texts = [page.extract_text() or "" for page in reader.pages]
+    return {
+        "product_id": product_id,
+        "file_name": pdf_path.name,
+        "document_type": document_type,
+        "page_count": len(page_texts),
+        "pages_parsed": len(page_texts),
+        "text": normalize_terms_text("\n".join(page_texts)),
+    }
+
+
+for product_id, (
+    expected_title,
+    expected_revision,
+    expected_revision_date,
+    expected_revision_number,
+    expected_revision_basis,
+    expected_revision_signal,
+) in TAIWAN_QIANWAN_CHUXING_B_PRODUCTS.items():
+    document = taiwan_qianwan_chuxing_b_document(product_id)
+    assert document["page_count"] == document["pages_parsed"] == 16
+    assert expected_title in document["text"]
+    assert "台壽字第 1102320136 號函備查" in document["text"]
+    if expected_revision_signal:
+        assert expected_revision_signal in document["text"]
+    schedule = parse_taiwan_qianwan_chuxing_b_endowment_face_amount(document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-qianwan-chuxing-b-endowment-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "保險金額"
+    assert "滿期取大值" in schedule["selection_guidance"]
+    assert schedule["version_characteristics"] == {
+        "terms_revision": expected_revision,
+        "filing_date": "110-10-29",
+        "filing_number": "台壽字第1102320136號",
+        "revision_date": expected_revision_date,
+        "revision_number": expected_revision_number,
+        "revision_basis": expected_revision_basis,
+        "maximum_coverage_age": 85,
+        "maturity_age": 85,
+        "death_benefit_premium_total_rate_percent": 106,
+        "maturity_benefit_premium_total_rate_percent": 106,
+        "accident_claim_days": 180,
+        "air_or_train_mass_transit_accidental_death_multiplier": 20,
+        "water_or_nontrain_land_mass_transit_accidental_death_multiplier": 10,
+        "automobile_passenger_accidental_death_multiplier": 5,
+        "other_accidental_death_multiplier": 1,
+        "major_burn_rate_percent": 20,
+        "major_burn_lifetime_limit_times": 1,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "installment_death_benefit_available": True,
+    }
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "death-or-funeral-greater-of",
+        "air-or-train-mass-transit-accidental-death",
+        "water-or-nontrain-land-mass-transit-accidental-death",
+        "automobile-passenger-accidental-death",
+        "other-accidental-death",
+        "accidental-disability",
+        "major-burn",
+        "maturity-benefit-greater-of",
+    }
+    assert entries["death-or-funeral-greater-of"]["calculation_basis"] == "greater_of"
+    assert entries["death-or-funeral-greater-of"]["rate_percent"] == 106
+    assert entries["death-or-funeral-greater-of"]["basis"] == "policy_recorded_limit"
+    assert entries["maturity-benefit-greater-of"]["calculation_basis"] == "greater_of"
+    assert entries["maturity-benefit-greater-of"]["rate_percent"] == 106
+    assert entries["maturity-benefit-greater-of"]["basis"] == "policy_recorded_limit"
+    assert entries["maturity-benefit-greater-of"]["limit_scope"] == "per_policy"
+    assert "amount" not in entries["maturity-benefit-greater-of"]
+    assert (
+        entries["air-or-train-mass-transit-accidental-death"]["multiplier"]
+        == 20
+    )
+    assert (
+        entries["water-or-nontrain-land-mass-transit-accidental-death"][
+            "multiplier"
+        ]
+        == 10
+    )
+    assert entries["automobile-passenger-accidental-death"]["multiplier"] == 5
+    assert entries["other-accidental-death"]["multiplier"] == 1
+    assert entries["accidental-disability"]["rate_min_percent"] == 5
+    assert entries["accidental-disability"]["rate_max_percent"] == 100
+    assert entries["major-burn"]["rate_percent"] == 20
+    assert entries["major-burn"]["limit_scope"] == "lifetime"
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+
+    source_path = (
+        TAIWAN_QIANWAN_CHUXING_B_ROOT / product_id / f"{product_id}-A.pdf"
+    )
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:2]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == 16
+    assert (
+        parse_taiwan_qianwan_chuxing_b_endowment_face_amount(completed_document)
+        == schedule
+    )
+    assert (
+        parse_taiwan_qianwan_chuxing_b_endowment_face_amount(
+            taiwan_qianwan_chuxing_b_document(product_id, "F")
+        )
+        is None
+    )
+    assert (
+        parse_taiwan_qianwan_chuxing_b_endowment_face_amount(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_taiwan_qianwan_chuxing_b_endowment_face_amount(
+            {**document, "page_count": 15}
+        )
+        is None
+    )
+    assert (
+        parse_taiwan_qianwan_chuxing_b_endowment_face_amount(
+            {
+                **document,
+                "text": document["text"].replace(
+                    "保險年齡 85 歲屆滿之年繳應繳保險費總和的 1.06 倍",
+                    "保險年齡 85 歲屆滿之年繳應繳保險費總和的 1.10 倍",
+                    1,
+                ),
+            }
+        )
+        is None
+    )
+
+
 FUBON_ANXIN_FINANCIAL_LIFE_ROOT = (
     Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-049"
 )
@@ -12077,6 +19530,1267 @@ for product_id, expected_parser_id in fubon_legacy_expected_parsers.items():
     assert schedule["plan_options"]
 
 
+FUBON_TRADITIONAL_LIFE_TEXT = (
+    Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-document-text"
+    / "tii-life-051-text.json"
+)
+fubon_traditional_life_documents = json.loads(
+    FUBON_TRADITIONAL_LIFE_TEXT.read_text(encoding="utf-8")
+)["documents"]
+FUBON_HAOZHOUQUAN_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-051"
+)
+FUBON_HAOZHOUQUAN_PRODUCTS = {
+    "209191M12G00200": ("102-original", 17, "殘廢", 75),
+    "209191M19G00101": ("103-first-revision", 17, "殘廢", 75),
+    "209131MZ9G00121A11Z10000002": ("104-second-revision", 18, "殘廢", 79),
+    "209131MZ9G00121A11Z10000003": ("105-third-revision", 18, "殘廢", 79),
+    "209131MZ9G00121A11Z10000004": ("107-fourth-revision", 18, "失能", 79),
+    "209131MZ9G00121A11Z10000006": ("109-sixth-revision", 18, "失能", 80),
+    "209131MZ9G00121A11Z10000007": ("111-seventh-revision", 18, "失能", 80),
+}
+
+FUBON_GOLDEN_LUCK_UNIVERSAL_PRODUCT_ID = "209131MB1A00323A11Z10000005"
+fubon_golden_luck_universal_document = next(
+    item
+    for item in fubon_traditional_life_documents
+    if item["product_id"] == FUBON_GOLDEN_LUCK_UNIVERSAL_PRODUCT_ID
+    and item["document_type"] == "policy_terms"
+)
+fubon_golden_luck_universal_schedule = (
+    parse_fubon_golden_luck_universal_whole_life_formula(
+        fubon_golden_luck_universal_document
+    )
+)
+assert fubon_golden_luck_universal_schedule is not None
+fubon_golden_luck_universal_integrated = parse_plan_table_with_parser(
+    fubon_golden_luck_universal_document
+)
+assert fubon_golden_luck_universal_integrated is not None
+assert fubon_golden_luck_universal_integrated[0] == (
+    "fubon-golden-luck-universal-whole-life-formula-v1"
+)
+assert fubon_golden_luck_universal_integrated[1] == (
+    fubon_golden_luck_universal_schedule
+)
+assert fubon_golden_luck_universal_schedule["selection_type"] == "face_amount"
+assert fubon_golden_luck_universal_schedule["input_mode"] == "face_amount"
+assert fubon_golden_luck_universal_schedule["selection_label"] == "保險金額"
+assert fubon_golden_luck_universal_schedule["version_characteristics"] == {
+    "product_family": "fubon-golden-luck-universal-whole-life",
+    "terms_revision": "fifth-partial-revision",
+    "fubon_code": "UWA21100701",
+    "product_code": "UWA2",
+    "filing_date": "106.02.24",
+    "filing_number": "富壽商精字第1050004386號",
+    "revision_events": [
+        "107.09.14-金管保壽字第10704158370號",
+        "109.01.01-金管保壽字第10804904941號",
+        "109.01.01-金管保壽字第10804933330號",
+        "109.07.01-富壽商精字第1090002112號",
+        "109.09.01-富壽商精字第1090003802號",
+        "110.07.01-富壽商精字第1100001193號",
+    ],
+    "universal_life_policy": True,
+    "non_participating_policy": True,
+    "declared_rate_frequency": "annual_policy_year_declared_month",
+    "declared_rate_non_negative": True,
+    "policy_value_reserve_formula": "premiums_minus_premium_fee_minus_monthly_insurance_cost_minus_reductions_plus_declared_rate_daily_simple_interest",
+    "insurance_cost_deduction_frequency": "monthly",
+    "premium_fee_table_required": True,
+    "surrender_charge_table_required": True,
+    "death_benefit_formula": "greater_of_face_amount_policy_reserve_paid_premium_total",
+    "total_disability_benefit_formula": "greater_of_face_amount_policy_reserve_paid_premium_total",
+    "maturity_benefit_formula": "greater_of_face_amount_policy_reserve_paid_premium_total",
+    "maturity_age": 110,
+    "policy_face_amount_required": True,
+    "policy_reserve_required": True,
+    "paid_premium_total_required": True,
+    "basic_premium_supported": True,
+    "flexible_additional_premium_supported": True,
+    "premium_payment_ratio_schedule_required": True,
+    "installment_benefit_available": True,
+    "installment_period_options": [10, 20],
+    "installment_interest_rate_source": "company_announced_rate_on_installment_start_date",
+    "minimum_specified_insurance_amount": 200_000,
+    "minimum_annual_installment_amount": 20_000,
+    "guardianship_funeral_benefit_rule": True,
+    "funeral_benefit_limit_rule": True,
+    "disability_schedule_item_count": 7,
+}
+fubon_golden_luck_universal_entries = {
+    entry["id"]: entry
+    for entry in fubon_golden_luck_universal_schedule["coverage_entries"]
+}
+assert set(fubon_golden_luck_universal_entries) == {
+    "policy-value-reserve-reference",
+    "death-or-funeral-benefit",
+    "total-disability-benefit",
+    "installment-periodic-benefit",
+    "maturity-benefit",
+}
+assert fubon_golden_luck_universal_entries["death-or-funeral-benefit"][
+    "calculation_basis"
+] == "greater_of"
+assert fubon_golden_luck_universal_entries["total-disability-benefit"][
+    "unit_key"
+] == "greater_of_face_amount_policy_reserve_paid_premium_total"
+assert fubon_golden_luck_universal_entries["installment-periodic-benefit"][
+    "amount_role"
+] == "reference"
+assert fubon_golden_luck_universal_entries["maturity-benefit"]["rate_percent"] == 100
+fubon_golden_luck_universal_source_path = (
+    FUBON_HAOZHOUQUAN_ROOT
+    / FUBON_GOLDEN_LUCK_UNIVERSAL_PRODUCT_ID
+    / f"{FUBON_GOLDEN_LUCK_UNIVERSAL_PRODUCT_ID}-A.pdf"
+)
+fubon_golden_luck_universal_indexed = {
+    key: value
+    for key, value in fubon_golden_luck_universal_document.items()
+    if key not in {"page_count", "pages_parsed"}
+}
+fubon_golden_luck_universal_indexed["text"] = (
+    fubon_golden_luck_universal_indexed["text"].split("【保險契約的構成】")[0]
+)
+fubon_golden_luck_universal_completed = complete_strict_source_document(
+    fubon_golden_luck_universal_indexed,
+    fubon_golden_luck_universal_source_path,
+)
+assert fubon_golden_luck_universal_completed["page_count"] == 10
+assert (
+    parse_fubon_golden_luck_universal_whole_life_formula(
+        fubon_golden_luck_universal_completed
+    )
+    == fubon_golden_luck_universal_schedule
+)
+assert parse_fubon_golden_luck_universal_whole_life_formula(
+    {**fubon_golden_luck_universal_document, "product_id": "209131MB1A00323A11Z10000004"}
+) is None
+assert parse_fubon_golden_luck_universal_whole_life_formula(
+    {**fubon_golden_luck_universal_document, "document_type": "product_summary"}
+) is None
+assert parse_fubon_golden_luck_universal_whole_life_formula(
+    {**fubon_golden_luck_universal_document, "page_count": 9, "pages_parsed": 9}
+) is None
+assert parse_fubon_golden_luck_universal_whole_life_formula(
+    {
+        **fubon_golden_luck_universal_document,
+        "text": fubon_golden_luck_universal_document["text"].replace(
+            "三者之最大值",
+            "二者之最大值",
+        ),
+    }
+) is None
+
+FUBON_HEALTH_LIMIT_UP_PRODUCTS = {
+    "209191M12G00400": ("103-original", 16, 30, "殘廢", 75),
+    "209191MZ2G00221A11Z10000001": ("104-first-revision", 17, 30, "殘廢", 79),
+    "209191MZ2G00221A11Z10000002": ("107-second-revision", 17, 0, "殘廢", 79),
+    "209191MZ2G00221A11Z10000004": ("108-fourth-revision", 17, 0, "失能", 79),
+    "209191MZ2G00221A11Z10000005": ("109-fifth-revision", 17, 0, "失能", 79),
+}
+FUBON_NEW_MILLION_HEART_LEGACY_PRODUCTS = {
+    "209191M12G00300": ("102-original", 21, "FBD1020712", 75),
+    "209191M11G00101": ("103-first-revision", 21, "FBD1030501", 75),
+}
+ANTAI_TRADITIONAL_LIFE_TEXT = (
+    Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-document-text"
+    / "tii-life-117-text.json"
+)
+antai_traditional_life_documents = json.loads(
+    ANTAI_TRADITIONAL_LIFE_TEXT.read_text(encoding="utf-8")
+)["documents"]
+
+for (
+    product_id,
+    (
+        expected_revision,
+        expected_pages,
+        expected_disability_term,
+        expected_disability_items,
+    ),
+) in FUBON_HAOZHOUQUAN_PRODUCTS.items():
+    document = next(
+        item
+        for item in fubon_traditional_life_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    schedule = parse_fubon_haozhouquan_accident_health_plan_table(document)
+    assert schedule is not None
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["plan_count"] == 3
+    assert characteristics["non_guaranteed_renewal"] is True
+    assert characteristics["maximum_renewal_age"] == 65
+    assert characteristics["general_hospital_days_limit"] == 90
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["disability_term"] == expected_disability_term
+    assert characteristics["disability_schedule_item_count"] == expected_disability_items
+    assert characteristics["disability_rate_min_percent"] == 5
+    assert characteristics["disability_rate_max_percent"] == 100
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+    ]
+    plans = {plan["value"]: plan for plan in schedule["plan_options"]}
+    assert set(plans) == {"plan-1", "plan-2", "plan-3"}
+    assert all(len(plan["coverage_entries"]) == 7 for plan in schedule["plan_options"])
+
+    plan_1_entries = {
+        entry["id"]: entry for entry in plans["plan-1"]["coverage_entries"]
+    }
+    plan_2_entries = {
+        entry["id"]: entry for entry in plans["plan-2"]["coverage_entries"]
+    }
+    plan_3_entries = {
+        entry["id"]: entry for entry in plans["plan-3"]["coverage_entries"]
+    }
+    assert plan_1_entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_2_entries["life-death-or-funeral"]["amount"] == 2_000_000
+    assert plan_3_entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert (
+        plan_1_entries["total-disability"]["name"]
+        == f"完全{expected_disability_term}保險金"
+    )
+    assert plan_2_entries["mass-transit-accidental-death-additional"]["amount"] == 6_000_000
+    assert (
+        plan_2_entries["mass-transit-accidental-disability-additional"][
+            "amount_tiers"
+        ][0]["amount"]
+        == 6_000_000
+    )
+    assert (
+        plan_2_entries["general-accidental-disability"]["amount_tiers"][-1]
+        == {"label": "第11級 5%", "amount": 100_000}
+    )
+    assert plan_1_entries["general-hospital-daily"]["amount"] == 1_000
+    assert plan_2_entries["general-hospital-daily"]["amount"] == 2_000
+    assert plan_3_entries["general-hospital-daily"]["amount"] == 2_000
+    assert all(entry["source"] == "terms" for entry in plan_1_entries.values())
+    assert all(entry.get("conditions") for entry in plan_1_entries.values())
+
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-haozhouquan-accident-health-plan-v1"
+    assert integrated[1] == schedule
+
+    source_path = FUBON_HAOZHOUQUAN_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert parse_fubon_haozhouquan_accident_health_plan_table(completed_document) == schedule
+    assert (
+        parse_fubon_haozhouquan_accident_health_plan_table(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_haozhouquan_accident_health_plan_table(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_haozhouquan_accident_health_plan_table(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_haozhouquan_accident_health_plan_table(
+            {
+                **document,
+                "text": document["text"].replace(
+                    "2,000 元/日",
+                    "3,000 元/日",
+                ),
+            }
+        )
+        is None
+    )
+
+for (
+    product_id,
+    (
+        expected_revision,
+        expected_pages,
+        expected_cancer_waiting_days,
+        expected_disability_term,
+        expected_disability_items,
+    ),
+) in FUBON_HEALTH_LIMIT_UP_PRODUCTS.items():
+    document = next(
+        item
+        for item in fubon_traditional_life_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    schedule = parse_fubon_health_limit_up_accident_health_fixed_schedule(document)
+    assert schedule is not None
+    assert schedule["selection_type"] == schedule["input_mode"] == "fixed"
+    assert schedule["selection_label"] == "附表一固定保險金額"
+    assert "unit_fields" not in schedule
+    assert "plan_options" not in schedule
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["fixed_terms_amount"] is True
+    assert characteristics["non_guaranteed_renewal"] is True
+    assert characteristics["maximum_renewal_age"] == 65
+    assert characteristics["cancer_waiting_days"] == expected_cancer_waiting_days
+    assert characteristics["general_hospital_days_limit"] == 90
+    assert characteristics["icu_days_limit"] == 30
+    assert characteristics["burn_center_hospital_days_limit"] == 30
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["disability_term"] == expected_disability_term
+    assert characteristics["disability_schedule_item_count"] == expected_disability_items
+    assert characteristics["disability_rate_min_percent"] == 5
+    assert characteristics["disability_rate_max_percent"] == 90
+    assert characteristics["short_term_rate_table"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert len(entries) == 9
+    assert entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert entries["total-disability"]["amount"] == 1_000_000
+    assert entries["disease-or-accidental-disability"]["amount"] == 1_000_000
+    assert entries["disease-or-accidental-disability"]["amount_tiers"][0] == {
+        "label": "第2級 90%",
+        "amount": 900_000,
+    }
+    assert entries["disease-or-accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 50_000,
+    }
+    assert entries["general-hospital-daily"]["amount"] == 1_500
+    assert entries["icu-hospital-daily"]["amount"] == 3_000
+    assert entries["burn-center-hospital-daily"]["amount"] == 4_500
+    assert entries["cancer-surgery"]["amount"] == 30_000
+    assert entries["cancer-hospital-daily"]["amount"] == 1_000
+    assert entries["cancer-radiation-daily"]["amount"] == 1_000
+    assert all(entry["source"] == "terms" for entry in entries.values())
+    assert all(entry.get("conditions") for entry in entries.values())
+
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-health-limit-up-accident-health-fixed-v1"
+    assert integrated[1] == schedule
+
+    source_path = FUBON_HAOZHOUQUAN_ROOT / product_id / f"{product_id}-A.pdf"
+    indexed_document = {
+        key: value
+        for key, value in document.items()
+        if key not in {"page_count", "pages_parsed"}
+    }
+    indexed_document["text"] = normalize_terms_text(
+        "\n".join(
+            (page.extract_text() or "") for page in PdfReader(source_path).pages[:3]
+        )
+    )
+    completed_document = complete_strict_source_document(indexed_document, source_path)
+    assert completed_document["page_count"] == expected_pages
+    assert (
+        parse_fubon_health_limit_up_accident_health_fixed_schedule(completed_document)
+        == schedule
+    )
+    assert (
+        parse_fubon_health_limit_up_accident_health_fixed_schedule(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_health_limit_up_accident_health_fixed_schedule(
+            {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_health_limit_up_accident_health_fixed_schedule(
+            {**document, "page_count": expected_pages - 1}
+        )
+        is None
+    )
+    assert (
+        parse_fubon_health_limit_up_accident_health_fixed_schedule(
+            {
+                **document,
+                "text": document["text"].replace("1,500 元/日", "1,600 元/日"),
+            }
+        )
+        is None
+    )
+
+for (
+    product_id,
+    (
+        expected_revision,
+        expected_pages,
+        expected_fubon_code,
+        expected_disability_items,
+    ),
+) in FUBON_NEW_MILLION_HEART_LEGACY_PRODUCTS.items():
+    document = next(
+        item
+        for item in fubon_traditional_life_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    assert expected_fubon_code in document["text"]
+    assert "新放百萬心" in document["text"]
+    schedule = parse_fubon_new_million_heart_accident_health_legacy_plan_table(document)
+    assert schedule is not None
+    assert parse_fubon_new_million_heart_accident_health_plan_table(document) is None
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-new-million-heart-accident-health-legacy-plan-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "投保計畫"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["plan_count"] == 8
+    assert characteristics["non_guaranteed_renewal"] is True
+    assert characteristics["maximum_renewal_age"] == 60
+    assert characteristics["day_hospital_explicit"] is True
+    assert characteristics["same_hospital_readmission_days"] == 14
+    assert characteristics["general_hospital_days_limit"] == 90
+    assert characteristics["accident_claim_days"] == 180
+    assert characteristics["major_burn_rate_percent"] == 10
+    assert characteristics["major_burn_survival_days"] == 15
+    assert characteristics["major_burn_lifetime_limit_times"] == 1
+    assert characteristics["disability_term"] == "殘廢"
+    assert characteristics["disability_schedule_item_count"] == expected_disability_items
+    assert characteristics["legacy_readable_validation"] is True
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+        "計畫四",
+        "計畫五",
+        "計畫六",
+        "計畫七",
+        "計畫八",
+    ]
+    assert all(len(plan["coverage_entries"]) == 15 for plan in schedule["plan_options"])
+    plan_1_entries = {
+        entry["id"]: entry for entry in schedule["plan_options"][0]["coverage_entries"]
+    }
+    assert plan_1_entries["total-disability"]["name"] == "完全殘廢保險金"
+    assert (
+        plan_1_entries["general-accidental-disability"]["name"]
+        == "一般意外殘廢保險金"
+    )
+    assert plan_1_entries["hospital-daily"]["amount"] == 1_000
+    assert plan_1_entries["fracture-unhospitalized-medical"]["amount"] == 500
+
+for (
+    product_id,
+    expected_revision,
+    expected_disability_count,
+    expected_accident_daily,
+    expected_fracture_reference,
+) in (
+    ("209191M12G00100", "102-second-revision", 75, 1_000, 500),
+    ("209191M12G00101", "102-first-revision", 75, 1_000, 500),
+    ("209191MZ2G00121A11Z10000003", "104-third-revision", 79, 1_000, 500),
+    ("209191MZ2G00121A11Z10000004", "105-fourth-revision", 79, 1_000, 500),
+    ("209191MZ2G00121A11Z10000005", "107-fifth-revision", 79, 1_000, 500),
+    ("209191MZ2G00121A11Z10000006", "109-sixth-revision", 79, 1_000, 500),
+    ("209191MZ9G00121A11Z10000001", "110-first-revision", 79, 1_005, 1_005),
+    ("209191MZ9G00121A11Z10000002", "110-second-revision", 79, 1_005, 1_005),
+    ("209191MZ9G00121A11Z10000003", "110-third-revision", 79, 1_005, 1_005),
+):
+    document = next(
+        item
+        for item in fubon_traditional_life_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    schedule = parse_fubon_xinfu_life_accident_health_plan_table(document)
+    assert schedule is not None
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["version_characteristics"]["terms_revision"] == expected_revision
+    assert schedule["version_characteristics"]["disability_schedule_item_count"] == expected_disability_count
+    expected_total_disability_term = (
+        "完全失能"
+        if product_id
+        in {
+            "209191MZ2G00121A11Z10000005",
+            "209191MZ2G00121A11Z10000006",
+        }
+        else "完全殘廢"
+    )
+    expected_disability_term = (
+        "失能"
+        if product_id
+        in {
+            "209191MZ2G00121A11Z10000005",
+            "209191MZ2G00121A11Z10000006",
+        }
+        else "殘廢"
+    )
+    assert (
+        schedule["version_characteristics"]["total_disability_term"]
+        == expected_total_disability_term
+    )
+    assert schedule["version_characteristics"]["disability_term"] == expected_disability_term
+    assert [plan["label"] for plan in schedule["plan_options"]] == [
+        "計畫一",
+        "計畫二",
+        "計畫三",
+    ]
+    assert all(len(plan["coverage_entries"]) == 28 for plan in schedule["plan_options"])
+    plans = {plan["value"]: plan for plan in schedule["plan_options"]}
+    plan_1_entries = {
+        entry["id"]: entry for entry in plans["plan-1"]["coverage_entries"]
+    }
+    plan_3_entries = {
+        entry["id"]: entry for entry in plans["plan-3"]["coverage_entries"]
+    }
+    assert plan_1_entries["life-death-or-funeral"]["amount"] == 500_000
+    assert (
+        plan_1_entries["total-disability"]["name"]
+        == f"{expected_total_disability_term}保險金"
+    )
+    assert (
+        plan_1_entries["general-accidental-disability"]["name"]
+        == f"一般意外{expected_disability_term}保險金"
+    )
+    assert plan_1_entries["cancer-surgery"]["amount"] == 10_000
+    assert plan_1_entries["accident-hospital-daily"]["amount"] == expected_accident_daily
+    assert plan_1_entries["accident-icu-hospital-daily"]["amount"] == expected_accident_daily
+    assert plan_1_entries["fracture-unhospitalized-medical"]["amount"] == expected_fracture_reference
+    assert plan_1_entries["general-accidental-disability"]["amount_tiers"][-1] == {
+        "label": "第11級 5%",
+        "amount": 50_000,
+    }
+    assert plan_3_entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_3_entries["cancer-death"]["amount"] == 300_000
+    assert plan_3_entries["air-transit-accidental-death-additional"]["amount"] == 4_000_000
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-xinfu-life-accident-health-plan-v1"
+
+FUBON_GOLDEN_GUARD_PRODUCTS = (
+    ("209131MZ9G00521A11Z10000000", "108-original", "MGB21080304"),
+    ("209131MZ9G00521A11Z10000001", "109-first-revision", "MGB21090101"),
+)
+fubon_golden_guard_schedules = {}
+for product_id, expected_revision, expected_code in FUBON_GOLDEN_GUARD_PRODUCTS:
+    document = next(
+        item
+        for item in fubon_traditional_life_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    assert expected_code in normalize_terms_text(document["text"])
+    schedule = parse_fubon_golden_guard_accident_health_plan_table(document)
+    assert schedule is not None
+    fubon_golden_guard_schedules[product_id] = schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "投保計畫別"
+    assert [plan["label"] for plan in schedule["plan_options"]] == ["計畫一", "計畫二"]
+    assert [len(plan["coverage_entries"]) for plan in schedule["plan_options"]] == [20, 20]
+    characteristics = schedule["version_characteristics"]
+    assert characteristics == {
+        "terms_revision": expected_revision,
+        "plan_count": 2,
+        "guaranteed_renewal": True,
+        "maximum_renewal_age": 75,
+        "cancer_waiting_days": 30,
+        "cancer_classification": "2018-three-tier",
+        "cancer_discharge_recovery_days_limit": 21,
+        "cancer_radiation_days_limit_per_policy_year": 60,
+        "cancer_chemotherapy_days_limit_per_policy_year": 60,
+        "accident_claim_days": 180,
+        "major_burn_survival_days": 15,
+        "disability_term": "失能",
+        "disability_schedule_item_count": 80,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 100,
+        "short_term_rate_table": True,
+    }
+    plans = {plan["value"]: plan for plan in schedule["plan_options"]}
+    plan_1_entries = {
+        entry["id"]: entry for entry in plans["plan-1"]["coverage_entries"]
+    }
+    plan_2_entries = {
+        entry["id"]: entry for entry in plans["plan-2"]["coverage_entries"]
+    }
+    assert plan_1_entries["life-death-or-funeral"]["amount"] == 500_000
+    assert plan_2_entries["life-death-or-funeral"]["amount"] == 1_000_000
+    assert plan_1_entries["one-to-three-disability"]["amount_tiers"] == [
+        {"label": "第1級 100%", "amount": 500_000},
+        {"label": "第2級 90%", "amount": 450_000},
+        {"label": "第3級 80%", "amount": 400_000},
+    ]
+    assert plan_2_entries["one-to-three-disability"]["amount_tiers"] == [
+        {"label": "第1級 100%", "amount": 1_000_000},
+        {"label": "第2級 90%", "amount": 900_000},
+        {"label": "第3級 80%", "amount": 800_000},
+    ]
+    assert plan_2_entries["general-accidental-death"]["amount"] == 1_000_000
+    assert (
+        plan_2_entries["air-transit-accidental-death-additional"]["amount"]
+        == 2_000_000
+    )
+    assert plan_2_entries["major-burn"]["amount"] == 400_000
+    assert plan_2_entries["cancer-surgery"]["amount"] == 30_000
+    assert plan_2_entries["cancer-hospital-daily"]["amount"] == 1_000
+    assert plan_2_entries["cancer-discharge-recovery-daily"]["limit_scope"] == "per_day"
+    assert plan_2_entries["cancer-radiation-daily"]["amount"] == 1_000
+    assert plan_2_entries["cancer-chemotherapy-daily"]["amount"] == 1_000
+    assert (
+        plan_2_entries["general-accidental-disability"]["amount_tiers"][-1]
+        == {"label": "第11級 5%", "amount": 50_000}
+    )
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-golden-guard-accident-health-plan-v1"
+
+    source_path = FUBON_HAOZHOUQUAN_ROOT / product_id / f"{product_id}-A.pdf"
+    completed_document = complete_strict_source_document(document, source_path)
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 20
+    assert parse_fubon_golden_guard_accident_health_plan_table(completed_document) == (
+        schedule
+    )
+
+fubon_golden_guard_summary = next(
+    item
+    for item in fubon_traditional_life_documents
+    if item["product_id"] == "209131MZ9G00521A11Z10000001"
+    and item["document_type"] == "product_summary"
+)
+assert parse_fubon_golden_guard_accident_health_plan_table(fubon_golden_guard_summary) is None
+assert parse_plan_table_with_parser(fubon_golden_guard_summary) is None
+fubon_golden_guard_revision = next(
+    item
+    for item in fubon_traditional_life_documents
+    if item["product_id"] == "209131MZ9G00521A11Z10000001"
+    and item["document_type"] == "policy_terms"
+)
+assert parse_fubon_golden_guard_accident_health_plan_table(
+    {**fubon_golden_guard_revision, "product_id": "209131MZ9G00521A11Z10000002"}
+) is None
+assert parse_fubon_golden_guard_accident_health_plan_table(
+    {
+        **fubon_golden_guard_revision,
+        "file_name": "209131MZ9G00521A11Z10000001-F.pdf",
+    }
+) is None
+guard_text = normalize_terms_text(fubon_golden_guard_revision["text"])
+assert "身故保險金或喪葬費用保險金 50 萬 100 萬" in guard_text
+assert "重大燒燙傷保險金 40 萬" in guard_text
+assert parse_fubon_golden_guard_accident_health_plan_table(
+    {
+        **fubon_golden_guard_revision,
+        "text": guard_text.replace(
+            "身故保險金或喪葬費用保險金 50 萬 100 萬",
+            "身故保險金或喪葬費用保險金 60 萬 100 萬",
+            1,
+        ),
+    }
+) is None
+assert parse_fubon_golden_guard_accident_health_plan_table(
+    {
+        **fubon_golden_guard_revision,
+        "text": guard_text.replace("重大燒燙傷保險金 40 萬", "重大燒燙傷保險金 45 萬", 1),
+    }
+) is None
+
+for product_id, expected_revision, expected_total_disability_term, expected_hospital_total_limit in (
+    ("252197M12B00100", "83-original", "完全殘廢", 450_000),
+    ("252197M12B00201", "95-first-revision", "完全殘廢", 450_000),
+    ("209197M12B00105", "99-fifth-revision", "完全殘廢", None),
+    ("209197M12B00106", "100-sixth-revision", "完全殘廢", None),
+    ("209193M11B00107", "101-seventh-revision", "完全殘廢", None),
+    ("209197M12B00107", "101-seventh-revision", "完全殘廢", None),
+    ("209193MZ1B00121A11Z10000008", "eighth-revision", "完全失能", None),
+    ("209193MZ1B00121A11Z10000009", "ninth-revision", "完全失能", None),
+    ("209193MZ1B00121A11Z10000010", "tenth-revision", "完全失能", None),
+    ("209193MZ1B00121A11Z10000011", "eleventh-revision", "完全失能", None),
+    ("209193MZ1B00121A11Z10000012", "twelfth-revision", "完全失能", None),
+    ("209193MZ1B00121A11Z10000013", "thirteenth-revision", "完全失能", None),
+    ("252197M12B00202", "100-second-revision", "完全殘廢", None),
+    ("252197M12B00203", "101-third-revision", "完全殘廢", None),
+):
+    document = next(
+        item
+        for item in fubon_traditional_life_documents + antai_traditional_life_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    schedule = parse_fubon_tzu_chi_marrow_group_life_medical_table(document)
+    assert schedule is not None
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == f"身故/{expected_total_disability_term}保險金額"
+    assert schedule["version_characteristics"]["terms_revision"] == expected_revision
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    expected_entry_count = 7 if expected_hospital_total_limit else 6
+    assert len(entries) == len(schedule["coverage_entries"]) == expected_entry_count
+    assert entries["life-death-face-amount"]["rate_percent"] == 100
+    assert entries["life-death-face-amount"]["unit_key"] == "face_amount"
+    assert (
+        entries["total-disability-face-amount"]["name"]
+        == f"{expected_total_disability_term}保險金"
+    )
+    assert entries["hospital-room-daily-limit"]["amount"] == 2_000
+    assert entries["hospital-surgery-fee-base"]["amount"] == 43_200
+    assert entries["hospital-surgery-fee-base"]["rate_max_percent"] == 220
+    assert entries["hospital-miscellaneous-limit"]["amount"] == 68_000
+    if expected_hospital_total_limit:
+        assert (
+            schedule["version_characteristics"]["hospital_total_limit"]
+            == expected_hospital_total_limit
+        )
+        assert entries["hospitalization-total-limit"]["amount"] == expected_hospital_total_limit
+    else:
+        assert "hospital_total_limit" not in schedule["version_characteristics"]
+        assert "hospitalization-total-limit" not in entries
+    assert entries["hospital-allowance-without-original-receipt"]["amount"] == 2_000
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-tzu-chi-marrow-group-life-medical-face-amount-v1"
+
+
+for product_id, expected_revision, expected_supervision_wording in (
+    (
+        "209131MZ1A01813A12Z10000000",
+        "105-original",
+        "mental-disability-or-cognitive-defect",
+    ),
+    (
+        "209131MZ1A01823A12Z10000001",
+        "106-first-partial-revision",
+        "mental-disability-or-cognitive-defect",
+    ),
+    (
+        "209131MZ1A01823A12Z10000002",
+        "107-second-partial-revision",
+        "adult-guardianship-not-revoked",
+    ),
+):
+    document = next(
+        item
+        for item in fubon_traditional_life_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    schedule = parse_fubon_changanbao_life_service_face_amount(document)
+    assert schedule is not None
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    version = schedule["version_characteristics"]
+    assert version["terms_revision"] == expected_revision
+    assert version["service_plan_count"] == 7
+    assert version["service_unavailable_compensation"] == 5_000
+    assert version["supervision_wording"] == expected_supervision_wording
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert len(entries) == len(schedule["coverage_entries"]) == 6
+    service_entry = entries["life-funeral-service-plan-table"]
+    assert service_entry["amount"] == 210_000
+    assert service_entry["calculation_basis"] == "tiered_or_stepped"
+    assert [tier["amount"] for tier in service_entry["amount_tiers"]] == [
+        210_000,
+        670_000,
+        630_000,
+        622_000,
+        582_000,
+        575_000,
+        535_000,
+    ]
+    assert "福田妙國" in service_entry["amount_tiers"][1]["label"]
+    assert entries["death-first-policy-year-annual-face-amount-reference"]["rate_percent"] == 20
+    assert entries["death-second-policy-year-annual-face-amount-reference"]["rate_percent"] == 40
+    assert entries["death-after-third-year-cash-benefit"]["rate_percent"] == 100
+    assert entries["maturity-age-110-benefit"]["rate_percent"] == 100
+    assert entries["service-unavailable-compensation"]["amount"] == 5_000
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-changanbao-life-service-face-amount-v1"
+    assert (
+        parse_fubon_changanbao_life_service_face_amount(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+
+
+for product_id, expected_revision, expected_code, expected_revision_number in (
+    (
+        "209131MZ1A02523A12Z10000000",
+        "108-original",
+        "XMB1080701",
+        "none",
+    ),
+    (
+        "209131MZ1A02523A12Z10000002",
+        "109-second-partial-revision",
+        "XMB1090901",
+        "金管保壽字第1090423012號",
+    ),
+):
+    document = next(
+        item
+        for item in fubon_traditional_life_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    schedule = parse_fubon_yongai_life_service_face_amount(document)
+    assert schedule is not None
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    version = schedule["version_characteristics"]
+    assert version["terms_revision"] == expected_revision
+    assert version["fubon_code"] == expected_code
+    assert version["revision_number"] == expected_revision_number
+    assert version["service_provider"] == "龍巖股份有限公司"
+    assert version["life_service_from_policy_year"] == 3
+    assert version["service_scope_taiwan_main_island"] is True
+    assert version["life_service_not_cash_convertible"] is True
+    assert version["service_unavailable_compensation"] == 5_000
+    assert version["service_shortfall_compensation_rate_percent"] == 110
+    assert version["maturity_age"] == 110
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert len(entries) == len(schedule["coverage_entries"]) == 8
+    assert entries["life-funeral-service"]["rate_percent"] == 100
+    assert entries["life-funeral-service"]["amount_role"] == "reference"
+    assert entries["death-first-two-policy-years-greater-of"]["calculation_basis"] == "greater_of"
+    assert entries["death-first-policy-year-annual-face-amount-reference"]["rate_percent"] == 20
+    assert entries["death-second-policy-year-annual-face-amount-reference"]["rate_percent"] == 40
+    assert entries["death-after-third-year-service-exception"]["rate_percent"] == 100
+    assert entries["maturity-age-110-benefit"]["rate_percent"] == 100
+    assert entries["service-unavailable-compensation"]["amount"] == 5_000
+    assert entries["service-shortfall-price-difference-compensation"]["rate_percent"] == 110
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "fubon-yongai-life-service-face-amount-v1"
+    assert (
+        parse_fubon_yongai_life_service_face_amount(
+            {**document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+
+
+for product_id, expected_revision, expected_service_amount in (
+    ("202131RZ2A81523A12Z10000000", "original", 210_000),
+    ("202131RZ2A81523A12Z10000001", "first-partial-revision", 210_000),
+    ("202131RZ2A81523A12Z10000002", "second-partial-revision", 210_000),
+    ("202131RZ2A81523A12Z10000003", "third-partial-revision", 240_000),
+    ("202131RZ2A81523A12Z10000004", "fourth-partial-revision", 240_000),
+    ("202131RZ2A81523A12Z10000005", "fifth-partial-revision", 240_000),
+):
+    document = next(
+        item
+        for item in TII_LIFE_009_TEXT_FIXTURE
+        if item["product_id"] == product_id
+        and item["document_type"] == "policy_terms"
+    )
+    schedule = parse_taiwan_funeral_service_rider_fixed(document)
+    assert schedule is not None
+    assert schedule["selection_type"] == schedule["input_mode"] == "fixed"
+    version = schedule["version_characteristics"]
+    assert version["terms_revision"] == expected_revision
+    assert version["service_provider"] == "龍巖股份有限公司"
+    assert version["service_option_count"] == 2
+    assert version["service_amount"] == expected_service_amount
+    assert version["funeral_service_from_policy_year"] == 4
+    assert version["cash_conversion_allowed"] is False
+    assert version["non_attributable_unavailable_cash_rate_percent"] == 100
+    assert version["attributable_unavailable_cash_rate_percent"] == 110
+    assert version["first_three_policy_year_death_premium_multiplier"] == 1.06
+    assert version["accidental_death_amount"] == 100_000
+    assert version["accidental_death_max_age"] == 85
+    assert version["accident_claim_days"] == 180
+    assert version["maturity_age"] == 111
+    assert version["funeral_benefit_limit_rule"] is True
+    assert version["fixed_terms_amount"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert len(entries) == len(schedule["coverage_entries"]) == 6
+    assert entries["funeral-service-benefit"]["amount"] == expected_service_amount
+    assert entries["funeral-service-benefit"]["amount_role"] == "reference"
+    assert entries["funeral-service-benefit"]["calculation_basis"] == "fixed_amount"
+    assert entries["death-first-three-policy-years"]["rate_percent"] == 106
+    assert (
+        entries["death-first-three-policy-years"]["unit_key"]
+        == "annual_premium_total"
+    )
+    assert (
+        entries["death-after-fourth-policy-year-service-exception"]["amount"]
+        == expected_service_amount
+    )
+    assert (
+        entries["service-unavailable-company-fault-cash-benefit"]["amount"]
+        == expected_service_amount * 11 // 10
+    )
+    assert entries["accidental-death-before-85"]["amount"] == 100_000
+    assert (
+        entries["accidental-death-before-85"]["aggregation_rule"]
+        == "conditional_additive"
+    )
+    assert entries["maturity-age-111-benefit"]["amount"] == expected_service_amount
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-funeral-service-rider-fixed-v1"
+    assert (
+        parse_taiwan_funeral_service_rider_fixed(
+            {
+                **document,
+                "file_name": f"{product_id}-F.pdf",
+                "document_type": "product_summary",
+            }
+        )
+        is None
+    )
+
+
+for product_id, expected_revision, expected_supervision in (
+    ("202131MZ1A62623A12Z10000000", "original", "mental-disorder"),
+    (
+        "202131MZ1A62623A12Z10000001",
+        "first-regulatory-revision",
+        "guardianship",
+    ),
+):
+    document = next(
+        item
+        for item in TII_LIFE_009_TEXT_FIXTURE
+        if item["product_id"] == product_id
+        and item["document_type"] == "policy_terms"
+    )
+    schedule = parse_taiwan_funeral_service_whole_life_early_plan(document)
+    assert schedule is not None
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "保險金額對應投保方案"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["service_provider"] == "龍巖股份有限公司"
+    assert characteristics["service_plan_count"] == 19
+    assert characteristics["funeral_service_amount"] == 210_000
+    assert characteristics["tower_plan_count"] == 18
+    assert characteristics["funeral_service_from_policy_year"] == 3
+    assert characteristics["cash_conversion_allowed"] is False
+    assert characteristics["non_attributable_unavailable_cash_rate_percent"] == 100
+    assert characteristics["attributable_unavailable_cash_rate_percent"] == 110
+    assert characteristics["first_policy_year_face_amount_rate_percent"] == 20
+    assert characteristics["second_policy_year_face_amount_rate_percent"] == 40
+    assert characteristics["maturity_age"] == 111
+    assert characteristics["plan_price_includes_funeral_service"] is True
+    assert characteristics["service_scope_taiwan_main_island"] is True
+    assert characteristics["service_plan_amounts_fixed_from_table"] is True
+    assert characteristics["death_cash_uses_policy_reserve_floor"] is True
+    assert characteristics["funeral_benefit_limit_rule"] is True
+    assert characteristics["supervision_wording"] == expected_supervision
+    plans = schedule["plan_options"]
+    assert len(plans) == 19
+    assert plans[0]["value"] == "plan-1"
+    assert plans[0]["label"] == "方案一：殯葬服務"
+    assert plans[1]["label"] == "方案二：殯葬服務 + 塔位 1"
+    assert plans[-1]["label"] == "方案十九：殯葬服務 + 塔位 18"
+    assert [plan["coverage_entries"][0]["amount"] for plan in plans] == [
+        210_000,
+        1_218_000,
+        1_118_000,
+        848_000,
+        788_000,
+        670_000,
+        630_000,
+        622_000,
+        582_000,
+        575_000,
+        535_000,
+        425_000,
+        405_000,
+        396_000,
+        376_000,
+        380_000,
+        360_000,
+        375_000,
+        355_000,
+    ]
+    plan_one_entries = {entry["id"]: entry for entry in plans[0]["coverage_entries"]}
+    assert len(plan_one_entries) == len(plans[0]["coverage_entries"]) == 7
+    assert (
+        plan_one_entries["funeral-service-or-bone-tower-plan-benefit"]["amount"]
+        == 210_000
+    )
+    assert plan_one_entries["death-first-policy-year"]["amount"] == 42_000
+    assert plan_one_entries["death-first-policy-year"]["rate_percent"] == 20
+    assert (
+        plan_one_entries["death-first-policy-year"]["calculation_basis"]
+        == "greater_of"
+    )
+    assert (
+        plan_one_entries["death-first-policy-year"]["unit_key"]
+        == "face_amount_or_policy_reserve"
+    )
+    assert plan_one_entries["death-second-policy-year"]["amount"] == 84_000
+    assert plan_one_entries["death-second-policy-year"]["rate_percent"] == 40
+    assert (
+        plan_one_entries["death-after-third-policy-year-service-exception"][
+            "amount"
+        ]
+        == 210_000
+    )
+    assert plan_one_entries["non-attributable-unavailable-cash"]["amount"] == 210_000
+    assert plan_one_entries["company-fault-unavailable-cash"]["amount"] == 231_000
+    assert plan_one_entries["maturity-age-111-benefit"]["amount"] == 210_000
+    plan_two_entries = {entry["id"]: entry for entry in plans[1]["coverage_entries"]}
+    assert plan_two_entries["death-first-policy-year"]["amount"] == 243_600
+    assert plan_two_entries["death-second-policy-year"]["amount"] == 487_200
+    assert plan_two_entries["company-fault-unavailable-cash"]["amount"] == 1_339_800
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-funeral-service-whole-life-early-plan-v1"
+    assert (
+        parse_taiwan_funeral_service_whole_life_early_plan(
+            {
+                **document,
+                "file_name": f"{product_id}-F.pdf",
+                "document_type": "product_summary",
+            }
+        )
+        is None
+    )
+    assert (
+        parse_taiwan_funeral_service_whole_life_early_plan(
+            {**document, "product_id": "not-this-product"}
+        )
+        is None
+    )
+
+
+for product_id, expected_revision in (
+    ("202131MZ1A58413A12Z10000000", "original"),
+    ("202131MZ1A58423A12Z10000001", "first-partial-revision"),
+    ("202131MZ1A58423A12Z10000002", "second-partial-revision"),
+    ("202131MZ1A58423A12Z10000003", "third-partial-revision"),
+):
+    document = next(
+        item
+        for item in TII_LIFE_009_TEXT_FIXTURE
+        if item["product_id"] == product_id
+        and item["document_type"] == "policy_terms"
+    )
+    schedule = parse_taiwan_funeral_service_whole_life_early_tower_plan(document)
+    assert schedule is not None
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    assert schedule["selection_label"] == "骨灰塔位指定選項"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["service_provider"] == "龍巖股份有限公司"
+    assert characteristics["funeral_service_option_count"] == 2
+    assert characteristics["funeral_service_amount"] == 193_200
+    assert characteristics["tower_table_row_count"] == 9
+    assert characteristics["tower_option_count"] == 18
+    assert characteristics["tower_table_revision"] == "early-two-layer"
+    assert characteristics["funeral_service_from_policy_year"] == 3
+    assert characteristics["cash_conversion_allowed_for_disability_or_maturity"] is True
+    assert characteristics["cash_conversion_allowed_for_death_exceptions"] is True
+    assert characteristics["non_attributable_unavailable_cash_rate_percent"] == 100
+    assert characteristics["attributable_unavailable_cash_rate_percent"] == 110
+    assert characteristics["maturity_age"] == 111
+    assert characteristics["premium_waiver_available"] is True
+    assert characteristics["premium_waiver_disability_grade_min"] == 2
+    assert characteristics["premium_waiver_disability_grade_max"] == 6
+    assert characteristics["plan_price_includes_funeral_service"] is True
+    assert characteristics["plan_price_deducted_from_life_cash_benefits"] is True
+    assert characteristics["service_scope_taiwan_main_island"] is True
+    assert characteristics["service_plan_amounts_fixed_from_table"] is True
+    assert characteristics["premium_total_wording"] == "premium_total"
+    assert characteristics["disability_terminology"] == "完全殘廢"
+    plans = schedule["plan_options"]
+    assert len(plans) == 18
+    assert plans[0]["value"] == "tower-1-low-high"
+    assert plans[0]["label"].endswith("高低層別")
+    assert plans[1]["value"] == "tower-1-middle"
+    assert plans[1]["label"].endswith("中層別")
+    assert plans[-1]["value"] == "tower-9-middle"
+    assert [plan["coverage_entries"][0]["amount"] for plan in plans] == [
+        1_016_200,
+        1_106_200,
+        719_200,
+        773_200,
+        576_200,
+        612_200,
+        530_200,
+        566_200,
+        489_200,
+        525_200,
+        370_200,
+        388_200,
+        344_200,
+        362_200,
+        329_200,
+        347_200,
+        324_200,
+        342_200,
+    ]
+    entries = {entry["id"]: entry for entry in plans[0]["coverage_entries"]}
+    assert len(entries) == len(plans[0]["coverage_entries"]) == 11
+    assert entries["funeral-service-or-bone-tower-plan-benefit"]["amount"] == 1_016_200
+    assert (
+        entries["death-after-third-policy-year-cash-balance"]["unit_key"]
+        == "face_amount_or_reserve_or_premium_total_minus_plan_price"
+    )
+    assert entries["death-cash-conversion-exception"]["amount"] == 1_016_200
+    assert (
+        entries["total-disability-first-two-policy-years"]["name"]
+        == "第一至第二保單年度完全殘廢保險金"
+    )
+    assert "完全失能" not in entries["total-disability-first-two-policy-years"]["name"]
+    assert (
+        entries["premium-waiver-disability-grade-two-to-six"]["name"]
+        == "第二至第六級殘廢豁免保險費"
+    )
+    assert (
+        entries["company-fault-funeral-service-unavailable-cash"]["amount"]
+        == 212_520
+    )
+    assert entries["company-fault-bone-tower-unavailable-cash"]["amount"] == 905_300
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-funeral-service-whole-life-early-tower-v1"
+    assert (
+        parse_taiwan_funeral_service_whole_life_early_tower_plan(
+            {
+                **document,
+                "file_name": f"{product_id}-F.pdf",
+                "document_type": "product_summary",
+            }
+        )
+        is None
+    )
+
+
+for product_id, expected_revision, expected_service_amount, expected_premium_wording in (
+    ("202131MZ1A58423A12Z10000005", "fifth-partial-revision", 210_000, "premium_total"),
+    ("202131MZ1A58423A12Z10000006", "sixth-partial-revision", 210_000, "annual_premium_total"),
+    ("202131MZ1A58423A12Z10000008", "eighth-partial-revision", 210_000, "annual_premium_total"),
+    ("202131MZ1A58423A12Z10000009", "ninth-partial-revision", 210_000, "annual_premium_total"),
+    ("202131MZ1A58423A12Z10000010", "tenth-partial-revision", 240_000, "annual_premium_total"),
+    ("202131MZ1A58423A12Z10000011", "eleventh-partial-revision", 240_000, "annual_premium_total"),
+):
+    document = next(
+        item
+        for item in TII_LIFE_009_TEXT_FIXTURE
+        if item["product_id"] == product_id
+        and item["document_type"] == "policy_terms"
+    )
+    schedule = parse_taiwan_funeral_service_whole_life_plan(document)
+    assert schedule is not None
+    assert schedule["selection_type"] == schedule["input_mode"] == "plan"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["service_provider"] == "龍巖股份有限公司"
+    assert characteristics["service_plan_count"] == 11
+    assert characteristics["funeral_service_amount"] == expected_service_amount
+    assert characteristics["tower_plan_count"] == 10
+    assert characteristics["funeral_service_from_policy_year"] == 3
+    assert characteristics["cash_conversion_allowed_for_disability_or_maturity"] is True
+    assert characteristics["cash_conversion_allowed_for_death_exceptions"] is True
+    assert characteristics["non_attributable_unavailable_cash_rate_percent"] == 100
+    assert characteristics["attributable_unavailable_cash_rate_percent"] == 110
+    assert characteristics["maturity_age"] == 111
+    assert characteristics["premium_waiver_available"] is True
+    assert characteristics["premium_waiver_disability_grade_min"] == 2
+    assert characteristics["premium_waiver_disability_grade_max"] == 6
+    assert characteristics["plan_price_includes_funeral_service"] is True
+    assert characteristics["plan_price_deducted_from_life_cash_benefits"] is True
+    assert characteristics["service_scope_taiwan_main_island"] is True
+    assert characteristics["service_plan_amounts_fixed_from_table"] is True
+    assert characteristics["premium_total_wording"] == expected_premium_wording
+    plans = schedule["plan_options"]
+    assert len(plans) == 11
+    assert plans[0]["value"] == "plan-1"
+    assert plans[0]["label"] == "方案一：殯葬服務"
+    assert plans[0]["coverage_entries"][0]["amount"] == expected_service_amount
+    assert [plan["coverage_entries"][0]["amount"] for plan in plans] == (
+        [
+            210_000,
+            1_274_000,
+            1_162_000,
+            669_000,
+            624_000,
+            647_000,
+            602_000,
+            583_000,
+            543_000,
+            393_000,
+            373_000,
+        ]
+        if expected_service_amount == 210_000
+        else [
+            240_000,
+            1_304_000,
+            1_192_000,
+            699_000,
+            654_000,
+            677_000,
+            632_000,
+            613_000,
+            573_000,
+            423_000,
+            403_000,
+        ]
+    )
+    plan_one_entries = {entry["id"]: entry for entry in plans[0]["coverage_entries"]}
+    assert len(plan_one_entries) == len(plans[0]["coverage_entries"]) == 10
+    assert (
+        plan_one_entries["funeral-service-or-bone-tower-plan-benefit"]["amount_role"]
+        == "reference"
+    )
+    assert (
+        plan_one_entries["death-first-two-policy-years"]["calculation_basis"]
+        == "greater_of"
+    )
+    assert (
+        plan_one_entries["death-after-third-policy-year-cash-balance"]["unit_key"]
+        == "face_amount_or_reserve_or_premium_total_minus_plan_price"
+    )
+    assert (
+        plan_one_entries["death-cash-conversion-exception"]["amount"]
+        == expected_service_amount
+    )
+    assert (
+        plan_one_entries["company-fault-funeral-service-unavailable-cash"]["amount"]
+        == expected_service_amount * 11 // 10
+    )
+    assert (
+        plan_one_entries["premium-waiver-disability-grade-two-to-six"][
+            "calculation_basis"
+        ]
+        == "unknown"
+    )
+    plan_two_entries = {entry["id"]: entry for entry in plans[1]["coverage_entries"]}
+    assert len(plan_two_entries) == len(plans[1]["coverage_entries"]) == 11
+    assert (
+        plan_two_entries["company-fault-bone-tower-unavailable-cash"]["amount"]
+        == 1_064_000 * 11 // 10
+    )
+    integrated = parse_plan_table_with_parser(document)
+    assert integrated is not None
+    assert integrated[0] == "taiwan-funeral-service-whole-life-plan-v1"
+    assert (
+        parse_taiwan_funeral_service_whole_life_plan(
+            {
+                **document,
+                "file_name": f"{product_id}-F.pdf",
+                "document_type": "product_summary",
+            }
+        )
+        is None
+    )
+
+
 CHINA_LIFE_JINHAOYI_TEXT = (
     Path(__file__).resolve().parents[1]
     / "work"
@@ -12112,6 +20826,559 @@ for product_id in (
     assert (
         parse_china_life_jinhaoyi_face_amount(
             {**document, "document_type": "product_summary"}
+        )
+        is None
+    )
+
+
+CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_WHOLE_LIFE_TEXT = (
+    Path(__file__).resolve().parents[1]
+    / "work"
+    / "tii-document-text"
+    / "tii-life-027-text.json"
+)
+CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_WHOLE_LIFE_ROOT = (
+    Path(__file__).resolve().parents[1] / "work" / "tii-documents" / "tii-life-027"
+)
+china_life_foreign_currency_interest_documents = json.loads(
+    CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_WHOLE_LIFE_TEXT.read_text(encoding="utf-8")
+)["documents"]
+china_life_xinhaoyi_expected = {
+    "205191M12A00100": ("100-original", False, "none"),
+    "205191M12A00101": (
+        "100-first-partial-revision",
+        True,
+        "中壽商發字第1000328001號",
+    ),
+}
+for product_id, (
+    expected_revision,
+    expected_injury_surrender_refund,
+    expected_revision_number,
+) in china_life_xinhaoyi_expected.items():
+    document = next(
+        item
+        for item in china_life_foreign_currency_interest_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    source_path = (
+        CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_WHOLE_LIFE_ROOT
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    completed_document = complete_strict_source_document(document, source_path)
+    schedule = parse_china_life_xinhaoyi_face_amount(completed_document)
+    assert schedule is not None
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    version = schedule["version_characteristics"]
+    assert version["terms_revision"] == expected_revision
+    assert version["revision_number"] == expected_revision_number
+    assert version["special_multiplier_payment_period"] == 1.1
+    assert version["special_multiplier_after_payment_period"] == 0.6
+    assert version["paid_premium_interest_rate_percent"] == 2.5
+    assert version["land_or_water_traffic_multiplier"] == 3
+    assert version["aviation_multiplier"] == 5
+    assert version["survival_rate_percent"] == 50
+    assert version["maturity_rate_percent"] == 60
+    assert version["maturity_age"] == 91
+    assert (
+        version["nonaccident_injury_surrender_value_refund"]
+        is expected_injury_surrender_refund
+    )
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert len(entries) == len(schedule["coverage_entries"]) == 14
+    assert entries["land-water-traffic-accidental-death-face-amount"]["rate_percent"] == 300
+    assert entries["aviation-accidental-death-face-amount"]["rate_percent"] == 500
+    assert entries["land-water-total-disability-face-amount"]["rate_percent"] == 300
+    assert entries["aviation-total-disability-face-amount"]["rate_percent"] == 500
+    assert entries["land-water-disability-rate-table"]["rate_min_percent"] == 15
+    assert entries["land-water-disability-rate-table"]["rate_max_percent"] == 270
+    assert entries["aviation-disability-rate-table"]["rate_min_percent"] == 25
+    assert entries["aviation-disability-rate-table"]["rate_max_percent"] == 450
+    assert entries["major-burn"]["rate_percent"] == 30
+    assert entries["survival-benefit-paid-premium-formula"]["rate_percent"] == 50
+    assert entries["maturity-age-91-benefit"]["rate_percent"] == 60
+    integrated = parse_plan_table_with_parser(completed_document)
+    assert integrated is not None
+    assert integrated[0] == "china-life-xinhaoyi-face-amount-v1"
+    assert (
+        parse_china_life_xinhaoyi_face_amount(
+            {**completed_document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_china_life_xinhaoyi_face_amount(
+            {**completed_document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+
+china_life_foreign_currency_interest_expected = {
+    "205121MA1A01023B11Z10000000": ("meishi-usd-106-original", "USD", [4], 2.2),
+    "205121MA1A01123J11Z10000000": ("minwang-cny-107-original", "CNY", [4, 6], 2),
+}
+for product_id, (
+    expected_revision,
+    expected_currency,
+    expected_payment_periods,
+    expected_survival_rate,
+) in china_life_foreign_currency_interest_expected.items():
+    document = next(
+        item
+        for item in china_life_foreign_currency_interest_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    source_path = (
+        CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_WHOLE_LIFE_ROOT
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    completed_document = complete_strict_source_document(document, source_path)
+    schedule = parse_china_life_foreign_currency_interest_whole_life_formula(
+        completed_document
+    )
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(completed_document)
+    assert integrated is not None
+    assert (
+        integrated[0]
+        == "china-life-foreign-currency-interest-whole-life-formula-v1"
+    )
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["currency"] == expected_currency
+    assert characteristics["payment_period_options"] == expected_payment_periods
+    assert characteristics["survival_rate_percent"] == expected_survival_rate
+    assert characteristics["maturity_age"] == 110
+    assert characteristics["foreign_currency_policy"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "value-sharing-bonus",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "survival-benefit",
+        "maturity-benefit",
+        "minor-premium-refund-with-interest",
+    }
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["survival-benefit"]["rate_percent"] == expected_survival_rate
+    assert entries["maturity-benefit"]["calculation_basis"] == "unknown"
+    assert (
+        parse_china_life_foreign_currency_interest_whole_life_formula(
+            {**completed_document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_china_life_foreign_currency_interest_whole_life_formula(
+            {**completed_document, "product_id": "wrong-product"}
+        )
+        is None
+    )
+
+
+china_life_dameiwang_expected = {
+    "205131MA1A05623B11Z10000000": ("dameiwang-usd-111-original", 0),
+    "205131MA1A05623B11Z10000001": (
+        "dameiwang-usd-112-first-regulatory-revision",
+        1,
+    ),
+    "205131MA1A05623B11Z10000002": (
+        "dameiwang-usd-112-second-regulatory-revision",
+        2,
+    ),
+}
+for product_id, (expected_revision, expected_revision_count) in (
+    china_life_dameiwang_expected.items()
+):
+    document = next(
+        item
+        for item in china_life_foreign_currency_interest_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    source_path = (
+        CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_WHOLE_LIFE_ROOT
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    completed_document = complete_strict_source_document(document, source_path)
+    schedule = parse_china_life_dameiwang_usd_periodic_whole_life_formula(
+        completed_document
+    )
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(completed_document)
+    assert integrated is not None
+    assert (
+        integrated[0]
+        == "china-life-dameiwang-usd-periodic-whole-life-formula-v1"
+    )
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert len(characteristics["revision_events"]) == expected_revision_count
+    assert characteristics["expected_interest_rate_percent"] == 1
+    assert characteristics["premium_multiplier"] == 1.03
+    assert characteristics["terminal_illness_advance_available"] is True
+    assert characteristics["terminal_illness_advance_rate_percent"] == 90
+    assert characteristics["terminal_illness_advance_cap_amount"] == 1_000_000
+    assert characteristics["installment_period_options"] == [5, 10, 15, 20, 25]
+    assert characteristics["maturity_age"] == 110
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "value-sharing-bonus",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "maturity-benefit",
+        "terminal-illness-advance-benefit",
+        "installment-periodic-benefit",
+    }
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["maturity-benefit"]["rate_percent"] == 100
+    assert entries["terminal-illness-advance-benefit"]["rate_percent"] == 90
+    assert (
+        "100 萬美元"
+        in " ".join(entries["terminal-illness-advance-benefit"]["conditions"])
+    )
+    assert (
+        parse_china_life_dameiwang_usd_periodic_whole_life_formula(
+            {**completed_document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_china_life_dameiwang_usd_periodic_whole_life_formula(
+            {**completed_document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+
+
+china_life_meilifeng_expected = {
+    "205131MA4B02423B11Z10000000": ("meilifeng-usd-109-original", 0),
+    "205131MA4B02423B11Z10000001": (
+        "meilifeng-usd-112-first-regulatory-revision",
+        1,
+    ),
+    "205131MA4B02423B11Z10000002": (
+        "meilifeng-usd-112-second-regulatory-revision",
+        2,
+    ),
+}
+for product_id, (expected_revision, expected_revision_count) in (
+    china_life_meilifeng_expected.items()
+):
+    document = next(
+        item
+        for item in china_life_foreign_currency_interest_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    source_path = (
+        CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_WHOLE_LIFE_ROOT
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    completed_document = complete_strict_source_document(document, source_path)
+    schedule = parse_china_life_meilifeng_usd_periodic_whole_life_formula(
+        completed_document
+    )
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(completed_document)
+    assert integrated is not None
+    assert (
+        integrated[0]
+        == "china-life-meilifeng-usd-periodic-whole-life-formula-v1"
+    )
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert len(characteristics["revision_events"]) == expected_revision_count
+    assert characteristics["expected_interest_rate_by_payment_period_percent"] == {
+        "4": 1.5,
+        "6": 1.75,
+        "10": 1.75,
+        "20": 1.75,
+    }
+    assert characteristics["premium_waiver_available"] is True
+    assert characteristics["premium_waiver_disability_grade_min"] == 2
+    assert characteristics["premium_waiver_disability_grade_max"] == 6
+    assert characteristics["installment_period_options"] == [5, 10, 15, 20, 25]
+    assert characteristics["installment_minimum_specified_insurance_amount"] == 5_000
+    assert characteristics["installment_minimum_annual_amount"] == 1_000
+    assert characteristics["maturity_age"] == 110
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "value-sharing-bonus",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "premium-waiver-disability-grade-2-to-6",
+        "maturity-benefit",
+        "installment-periodic-benefit",
+    }
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+    assert (
+        entries["premium-waiver-disability-grade-2-to-6"]["calculation_basis"]
+        == "unknown"
+    )
+    assert entries["maturity-benefit"]["rate_percent"] == 100
+    assert (
+        "5,000 美元"
+        in " ".join(entries["installment-periodic-benefit"]["conditions"])
+    )
+    assert (
+        parse_china_life_meilifeng_usd_periodic_whole_life_formula(
+            {**completed_document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_china_life_meilifeng_usd_periodic_whole_life_formula(
+            {**completed_document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+
+
+china_life_meilexiangtui_expected = {
+    "205121MA4B01723B11Z10000000": (
+        "meilexiangtui-usd-112-original",
+        "中國人壽",
+        None,
+    ),
+    "205121MA4B01723B11Z10000001": (
+        "meilexiangtui-usd-112-first-regulatory-revision",
+        "中國人壽",
+        None,
+    ),
+    "205121MA4B01723B11Z10000002": (
+        "meilexiangtui-usd-113-kgi-second-partial-revision",
+        "凱基人壽",
+        "金管保壽字第1120432605號",
+    ),
+}
+for product_id, (expected_revision, expected_company, expected_approval) in (
+    china_life_meilexiangtui_expected.items()
+):
+    document = next(
+        item
+        for item in china_life_foreign_currency_interest_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    source_path = (
+        CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_WHOLE_LIFE_ROOT
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    completed_document = complete_strict_source_document(document, source_path)
+    schedule = parse_china_life_meilexiangtui_usd_survival_whole_life_formula(
+        completed_document
+    )
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(completed_document)
+    assert integrated is not None
+    assert (
+        integrated[0]
+        == "china-life-meilexiangtui-usd-survival-whole-life-formula-v1"
+    )
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["latest_company_name"] == expected_company
+    assert characteristics["approval_number"] == expected_approval
+    assert characteristics["expected_interest_rate_percent"] == 2.25
+    assert characteristics["survival_rate_percent"] == 1.85
+    assert characteristics["premium_waiver_available"] is True
+    assert characteristics["premium_waiver_disability_grade_min"] == 2
+    assert characteristics["premium_waiver_disability_grade_max"] == 6
+    assert characteristics["installment_period_options"] == [5, 10, 15, 20, 25]
+    assert characteristics["maturity_age"] == 110
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "value-sharing-bonus",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "survival-benefit",
+        "premium-waiver-disability-grade-2-to-6",
+        "maturity-benefit",
+        "installment-periodic-benefit",
+    }
+    assert entries["death-or-funeral-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["total-disability-benefit"]["calculation_basis"] == "greater_of"
+    assert entries["survival-benefit"]["rate_percent"] == 1.85
+    assert (
+        entries["premium-waiver-disability-grade-2-to-6"]["calculation_basis"]
+        == "unknown"
+    )
+    assert entries["maturity-benefit"]["rate_percent"] == 100
+    assert (
+        parse_china_life_meilexiangtui_usd_survival_whole_life_formula(
+            {**completed_document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_china_life_meilexiangtui_usd_survival_whole_life_formula(
+            {**completed_document, "file_name": "wrong-file-A.pdf"}
+        )
+        is None
+    )
+
+
+china_life_foreign_currency_interest_endowment_expected = {
+    "205121M21A00200": (
+        "hongmeili-usd-101-original",
+        "USD",
+        "美元",
+        "中壽商發字第1010116002號",
+    ),
+    "205121M21A00301": (
+        "hongaoli-aud-102-first-partial-revision",
+        "AUD",
+        "澳幣",
+        "中壽商一字第1020101007號",
+    ),
+}
+for product_id, (
+    expected_revision,
+    expected_currency,
+    expected_currency_label,
+    expected_filing_number,
+) in china_life_foreign_currency_interest_endowment_expected.items():
+    document = next(
+        item
+        for item in china_life_foreign_currency_interest_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    source_path = (
+        CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_WHOLE_LIFE_ROOT
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    completed_document = complete_strict_source_document(document, source_path)
+    schedule = parse_china_life_foreign_currency_interest_endowment_formula(
+        completed_document
+    )
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(completed_document)
+    assert integrated is not None
+    assert (
+        integrated[0]
+        == "china-life-foreign-currency-interest-endowment-formula-v1"
+    )
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["currency"] == expected_currency
+    assert characteristics["currency_label"] == expected_currency_label
+    assert characteristics["filing_number"] == expected_filing_number
+    assert characteristics["expected_interest_rate_percent"] == 2.5
+    assert characteristics["maturity_benefit_formula"] == "face_amount"
+    assert characteristics["foreign_currency_policy"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "value-sharing-bonus",
+        "death-or-funeral-benefit",
+        "total-disability-benefit",
+        "maturity-benefit",
+        "minor-premium-refund-with-interest",
+    }
+    assert entries["death-or-funeral-benefit"]["rate_percent"] == 100
+    assert entries["death-or-funeral-benefit"]["basis"] == "face_amount"
+    assert entries["total-disability-benefit"]["rate_percent"] == 100
+    assert entries["maturity-benefit"]["rate_percent"] == 100
+    assert (
+        entries["minor-premium-refund-with-interest"]["calculation_basis"]
+        == "percentage_of_base"
+    )
+    assert (
+        "2.5% 年利率"
+        in " ".join(entries["minor-premium-refund-with-interest"]["conditions"])
+    )
+    assert (
+        parse_china_life_foreign_currency_interest_endowment_formula(
+            {**completed_document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_china_life_foreign_currency_interest_endowment_formula(
+            {**completed_document, "product_id": "wrong-product"}
+        )
+        is None
+    )
+
+
+china_life_group_endowment_expected = {
+    "205127M11A00100": ("97-original", None),
+    "205127M11A00101": ("98-first-partial-revision", "98.08.01"),
+}
+for product_id, (expected_revision, expected_revision_date) in (
+    china_life_group_endowment_expected.items()
+):
+    document = next(
+        item
+        for item in china_life_foreign_currency_interest_documents
+        if item["product_id"] == product_id and item["document_type"] == "policy_terms"
+    )
+    source_path = (
+        CHINA_LIFE_FOREIGN_CURRENCY_INTEREST_WHOLE_LIFE_ROOT
+        / product_id
+        / f"{product_id}-A.pdf"
+    )
+    completed_document = complete_strict_source_document(document, source_path)
+    schedule = parse_china_life_group_endowment_face_amount(completed_document)
+    assert schedule is not None
+    integrated = parse_plan_table_with_parser(completed_document)
+    assert integrated is not None
+    assert integrated[0] == "china-life-group-endowment-face-amount-v1"
+    assert integrated[1] == schedule
+    assert schedule["selection_type"] == schedule["input_mode"] == "face_amount"
+    assert schedule["selection_label"] == "每位被保險人保險金額"
+    characteristics = schedule["version_characteristics"]
+    assert characteristics["terms_revision"] == expected_revision
+    assert characteristics["revision_date"] == expected_revision_date
+    assert characteristics["product_family"] == "china-life-group-endowment"
+    assert characteristics["group_policy"] is True
+    assert characteristics["payment_period_options"] == [6, 10]
+    assert characteristics["death_benefit_formula"] == "face_amount"
+    assert characteristics["total_disability_benefit_formula"] == "face_amount"
+    assert characteristics["maturity_benefit_formula"] == "face_amount"
+    assert characteristics["full_disability_table_item_count"] == 7
+    assert characteristics["surrender_value_table_available"] is True
+    assert characteristics["surrender_value_table_unit_amount"] == 10_000
+    assert characteristics["no_premium_loan"] is True
+    assert characteristics["non_participating_policy"] is True
+    entries = {entry["id"]: entry for entry in schedule["coverage_entries"]}
+    assert set(entries) == {
+        "death-benefit",
+        "total-disability-benefit",
+        "maturity-benefit",
+    }
+    assert all(entry["basis"] == "face_amount" for entry in entries.values())
+    assert all(entry["rate_percent"] == 100 for entry in entries.values())
+    assert all(entry["unit_key"] == "face_amount" for entry in entries.values())
+    assert entries["death-benefit"]["limit_scope"] == "per_policy"
+    assert entries["total-disability-benefit"]["limit_scope"] == "per_policy"
+    assert entries["maturity-benefit"]["limit_scope"] == "per_policy"
+    assert completed_document["page_count"] == completed_document["pages_parsed"] == 10
+    assert (
+        parse_china_life_group_endowment_face_amount(
+            {**completed_document, "document_type": "product_summary"}
+        )
+        is None
+    )
+    assert (
+        parse_china_life_group_endowment_face_amount(
+            {**completed_document, "product_id": "wrong-product"}
         )
         is None
     )

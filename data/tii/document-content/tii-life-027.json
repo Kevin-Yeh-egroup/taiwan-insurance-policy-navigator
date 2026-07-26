@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-29T16:03:43+08:00",
+  "generated_at": "2026-07-25T16:05:38+08:00",
   "summary": {
     "generated_at": "2026-06-29T16:03:43+08:00",
     "source": "local TII files downloaded through captcha session",
@@ -36787,6 +36787,135 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單所載本契約之保險金額；身故、全殘廢與滿期給付均以保險金額為基礎，未成年身故或十六歲前全殘廢改依所繳保險費加計 2.5% 年複利處理。",
+      "version_characteristics": {
+        "terms_revision": "hongmeili-usd-101-original",
+        "currency": "USD",
+        "currency_label": "美元",
+        "filing_date": "101.01.16",
+        "filing_number": "中壽商發字第1010116002號",
+        "original_filing_date": null,
+        "original_filing_number": null,
+        "expected_interest_rate_percent": 2.5,
+        "value_sharing_bonus": true,
+        "value_sharing_bonus_basis": "declared_rate_minus_2_5_percent_times_beginning_policy_reserve",
+        "death_benefit_formula": "face_amount",
+        "total_disability_benefit_formula": "face_amount",
+        "maturity_benefit_formula": "face_amount",
+        "premium_refund_interest_rate_percent": 2.5,
+        "policy_face_amount_required": true,
+        "policy_reserve_required": true,
+        "premium_total_required": true,
+        "foreign_currency_policy": true,
+        "exchange_rate_risk_disclosed": true,
+        "funeral_benefit_limit_rule": true,
+        "minor_death_or_disability_refund_rule": true
+      },
+      "coverage_entries": [
+        {
+          "id": "value-sharing-bonus",
+          "name": "增值回饋分享金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保單年度屆滿時，依該年度期初當月宣告利率減去預定利率 2.5% 的差值，乘以該年度期初保單價值準備金計算；可現金給付或儲存生息。",
+          "source_ref": "保單條款第十條，增值回饋分享金的給付及通知",
+          "conditions": [
+            "宣告利率低於本契約預定利率 2.5% 時，以預定利率為準。",
+            "現金給付金額低於 100 元時，依儲存生息方式累積至高於 100 元之保單年度屆滿時給付。",
+            "儲存生息係按各該年度期初當月宣告利率以年複利方式累積，至請求、身故、全殘廢、保險期間屆滿或契約終止時一併給付。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，按身故時之保險金額給付；依法改為喪葬費用保險金時，另受條款及法定上限限制。",
+          "source_ref": "保單條款第十三條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本契約各項給付、費用、保險費之收取或返還皆以美元為貨幣單位，另有匯率風險揭露。",
+            "實際保險金額以保險單所載本契約之保險金額及其變更後金額為準。",
+            "給付後本契約效力終止。",
+            "本契約歷年身故保險金例表如保險單所載。",
+            "喪葬費用保險金按申領文件備齊日指定銀行前一營業日該外幣即期買入匯率平均值換算等值新台幣後，不得超過條款所定喪葬費用額度上限。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內致成附表所列七項全殘廢程度之一時，按全殘廢診斷確定時之保險金額給付。",
+          "source_ref": "保單條款第十三條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本契約各項給付、費用、保險費之收取或返還皆以美元為貨幣單位，另有匯率風險揭露。",
+            "實際保險金額以保險單所載本契約之保險金額及其變更後金額為準。",
+            "全殘廢程度須符合附表殘廢程度表所列七項之一。",
+            "給付後本契約效力終止。",
+            "本契約歷年全殘廢保險金同保險單所載歷年身故保險金例表。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "滿期保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於本契約保險期間屆滿仍生存時，按保險金額給付滿期保險金。",
+          "source_ref": "保單條款第十三條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本契約各項給付、費用、保險費之收取或返還皆以美元為貨幣單位，另有匯率風險揭露。",
+            "實際保險金額以保險單所載本契約之保險金額及其變更後金額為準。",
+            "滿期保險金給付後本契約效力終止。"
+          ]
+        },
+        {
+          "id": "minor-premium-refund-with-interest",
+          "name": "未滿十五足歲身故或十六歲前全殘廢退還所繳保險費並加計利息",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於未成年特定年齡條件下身故或十六歲前致成全殘廢時，改按所繳保險費並加計利息退還或給付。",
+          "source_ref": "保單條款第十三條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "premium_total",
+          "conditions": [
+            "實際年齡未滿十五足歲身故，退還所繳保險費並加計利息予要保人或應得之人。",
+            "實際年齡滿十五足歲身故，按所繳保險費並加計利息給付身故保險金。",
+            "保險年齡到達十六歲之保單週年日前全殘廢，改按所繳保險費並加計利息給付全殘廢保險金。",
+            "所繳保險費係以保險費率表所載金額為基礎。",
+            "加計利息以前述金額為基礎，按 2.5% 年利率以年複利計算至身故或全殘廢診斷確定時。"
+          ]
+        }
       ]
     },
     {
@@ -37214,6 +37343,135 @@
           "text_char_count": 3865,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單所載本契約之保險金額；身故、全殘廢與滿期給付均以保險金額為基礎，未成年身故或十六歲前全殘廢改依所繳保險費加計 2.5% 年複利處理。",
+      "version_characteristics": {
+        "terms_revision": "hongaoli-aud-102-first-partial-revision",
+        "currency": "AUD",
+        "currency_label": "澳幣",
+        "filing_date": "102.01.01",
+        "filing_number": "中壽商一字第1020101007號",
+        "original_filing_date": "101.01.16",
+        "original_filing_number": "中壽商發字第1010116003號",
+        "expected_interest_rate_percent": 2.5,
+        "value_sharing_bonus": true,
+        "value_sharing_bonus_basis": "declared_rate_minus_2_5_percent_times_beginning_policy_reserve",
+        "death_benefit_formula": "face_amount",
+        "total_disability_benefit_formula": "face_amount",
+        "maturity_benefit_formula": "face_amount",
+        "premium_refund_interest_rate_percent": 2.5,
+        "policy_face_amount_required": true,
+        "policy_reserve_required": true,
+        "premium_total_required": true,
+        "foreign_currency_policy": true,
+        "exchange_rate_risk_disclosed": true,
+        "funeral_benefit_limit_rule": true,
+        "minor_death_or_disability_refund_rule": true
+      },
+      "coverage_entries": [
+        {
+          "id": "value-sharing-bonus",
+          "name": "增值回饋分享金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保單年度屆滿時，依該年度期初當月宣告利率減去預定利率 2.5% 的差值，乘以該年度期初保單價值準備金計算；可現金給付或儲存生息。",
+          "source_ref": "保單條款第十條，增值回饋分享金的給付及通知",
+          "conditions": [
+            "宣告利率低於本契約預定利率 2.5% 時，以預定利率為準。",
+            "現金給付金額低於 100 元時，依儲存生息方式累積至高於 100 元之保單年度屆滿時給付。",
+            "儲存生息係按各該年度期初當月宣告利率以年複利方式累積，至請求、身故、全殘廢、保險期間屆滿或契約終止時一併給付。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內身故時，按身故時之保險金額給付；依法改為喪葬費用保險金時，另受條款及法定上限限制。",
+          "source_ref": "保單條款第十三條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本契約各項給付、費用、保險費之收取或返還皆以澳幣為貨幣單位，另有匯率風險揭露。",
+            "實際保險金額以保險單所載本契約之保險金額及其變更後金額為準。",
+            "給付後本契約效力終止。",
+            "本契約歷年身故保險金例表如保險單所載。",
+            "喪葬費用保險金按申領文件備齊日指定銀行前一營業日該外幣即期買入匯率平均值換算等值新台幣後，不得超過條款所定喪葬費用額度上限。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "被保險人於契約有效期間內致成附表所列七項全殘廢程度之一時，按全殘廢診斷確定時之保險金額給付。",
+          "source_ref": "保單條款第十三條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本契約各項給付、費用、保險費之收取或返還皆以澳幣為貨幣單位，另有匯率風險揭露。",
+            "實際保險金額以保險單所載本契約之保險金額及其變更後金額為準。",
+            "全殘廢程度須符合附表殘廢程度表所列七項之一。",
+            "給付後本契約效力終止。",
+            "本契約歷年全殘廢保險金同保險單所載歷年身故保險金例表。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "滿期保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於本契約保險期間屆滿仍生存時，按保險金額給付滿期保險金。",
+          "source_ref": "保單條款第十三條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本契約各項給付、費用、保險費之收取或返還皆以澳幣為貨幣單位，另有匯率風險揭露。",
+            "實際保險金額以保險單所載本契約之保險金額及其變更後金額為準。",
+            "滿期保險金給付後本契約效力終止。"
+          ]
+        },
+        {
+          "id": "minor-premium-refund-with-interest",
+          "name": "未滿十五足歲身故或十六歲前全殘廢退還所繳保險費並加計利息",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於未成年特定年齡條件下身故或十六歲前致成全殘廢時，改按所繳保險費並加計利息退還或給付。",
+          "source_ref": "保單條款第十三條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "premium_total",
+          "conditions": [
+            "實際年齡未滿十五足歲身故，退還所繳保險費並加計利息予要保人或應得之人。",
+            "實際年齡滿十五足歲身故，按所繳保險費並加計利息給付身故保險金。",
+            "保險年齡到達十六歲之保單週年日前全殘廢，改按所繳保險費並加計利息給付全殘廢保險金。",
+            "所繳保險費係以保險費率表所載金額為基礎。",
+            "加計利息以前述金額為基礎，按 2.5% 年利率以年複利計算至身故或全殘廢診斷確定時。"
+          ]
         }
       ]
     },
@@ -41134,6 +41392,154 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單所載基本保險金額；身故、全殘廢、生存與祝壽給付仍需搭配累計增加保險金額、表定年繳保險費、保單價值準備金、生存金累計與條款附表二查表確認。",
+      "version_characteristics": {
+        "terms_revision": "meishi-usd-106-original",
+        "currency": "USD",
+        "currency_label": "美元",
+        "filing_date": "106.09.11",
+        "filing_number": "中壽商一字第1060911003號",
+        "payment_period_options": [
+          4
+        ],
+        "payment_period_required": false,
+        "expected_interest_rate_percent": 2.25,
+        "expected_interest_rate_by_payment_period_percent": null,
+        "value_sharing_bonus": true,
+        "annual_insured_amount_formula": "first_four_policy_years_basic_and_accumulated_premium_times_1_03_less_received_survival_then_face_amounts",
+        "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_and_premium_component",
+        "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_and_premium_component",
+        "death_premium_component_formula": "paid_annualized_premium_times_1_03_less_received_survival_total",
+        "total_disability_premium_component_formula": "paid_annualized_premium_times_1_03_less_received_survival_total",
+        "survival_benefit_formula": "standard_annual_premium_times_2_2_percent_times_elapsed_policy_years_during_payment_then_times_4_after_paid_up",
+        "survival_rate_percent": 2.2,
+        "maturity_benefit_formula": "face_and_accumulated_amount_per_10000_times_maturity_table",
+        "maturity_age": 110,
+        "premium_multiplier": 1.03,
+        "policy_face_amount_required": true,
+        "accumulated_paid_up_additions_required": true,
+        "standard_annual_premium_required": true,
+        "policy_reserve_required": true,
+        "survival_benefit_total_required": true,
+        "maturity_table_required": true,
+        "foreign_currency_policy": true,
+        "exchange_rate_risk_disclosed": true,
+        "funeral_benefit_limit_rule": true,
+        "minor_death_or_disability_refund_rule": true
+      },
+      "coverage_entries": [
+        {
+          "id": "value-sharing-bonus",
+          "name": "增值回饋分享金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保單年度屆滿且被保險人仍生存時，依宣告利率高於預定利率的差值乘以期末保單價值準備金計算；可抵繳保費、增額繳清、現金給付或儲存生息。",
+          "source_ref": "保單條款第十二條，增值回饋分享金的給付及通知",
+          "conditions": [
+            "宣告利率低於預定利率時，以預定利率為準。",
+            "第七保單年度起可依條款現金給付或儲存生息；未選擇者依增額繳清方式增加保險金額。",
+            "被保險人保險年齡到達十六歲前另依條款特別處理。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "分別以身故當時基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金及已繳年繳化保險費相關餘額三者取較大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "保單各項給付、保費收取與返還皆以美元為貨幣單位，另有匯率風險揭露。",
+            "第三項保費基礎為 paid_annualized_premium_times_1_03_less_received_survival_total。",
+            "身故給付後契約效力終止；繳費期間內身故，當期已繳付未到期保費不退還。",
+            "喪葬費用保險金依條款及法定上限換算限制辦理。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘廢保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "分別以全殘廢診斷確定時基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金及已繳年繳化保險費相關餘額三者取較大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "全殘廢程度須為附表一殘廢程度表所列七項之一。",
+            "第三項保費基礎為 paid_annualized_premium_times_1_03_less_received_survival_total。",
+            "全殘廢給付後契約效力終止；繳費期間內全殘廢，當期已繳付未到期保費不退還。"
+          ]
+        },
+        {
+          "id": "survival-benefit",
+          "name": "生存保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人每一保單週年日仍生存時，自第一保單週年日起至保險年齡到達一一○歲之保單週年日止，按基本保險金額及累計增加保險金額每萬元乘以表定年繳保險費的 2.2% 相關倍數加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 2.2,
+          "unit_key": "standard_annual_premium_per_10000_face_amount",
+          "conditions": [
+            "standard_annual_premium_times_2_2_percent_times_elapsed_policy_years_during_payment_then_times_4_after_paid_up",
+            "繳費期間內按已經過保單年度數計算；繳費期滿後按條款所列繳費年期或四倍計算。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人保險年齡到達一一○歲之保單週年日且仍生存時，按基本保險金額及累計增加保險金額每萬元乘以附表二每萬元之祝壽保險金表後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "conditions": [
+            "祝壽保險金給付後契約效力終止。",
+            "每萬元之祝壽保險金須回保單條款附表二查表。"
+          ]
+        },
+        {
+          "id": "minor-premium-refund-with-interest",
+          "name": "未滿十五足歲身故或十六歲前全殘廢退還所繳保險費並加計利息",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於特定未成年年齡條件下身故或十六歲前致成全殘廢時，改按條款退還或給付所繳保險費並加計利息。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "conditions": [
+            "實際年齡未滿十五足歲身故，退還所繳保險費並加計利息予要保人或應得之人。",
+            "實際年齡滿十五足歲身故，按所繳保險費並加計利息給付身故保險金。",
+            "保險年齡到達十六歲前全殘廢，改按所繳保險費並加計利息給付全殘廢保險金。"
+          ]
+        }
       ]
     },
     {
@@ -41375,6 +41781,158 @@
           "text_char_count": 7279,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單所載基本保險金額；身故、全殘廢、生存與祝壽給付仍需搭配累計增加保險金額、表定年繳保險費、保單價值準備金、生存金累計與條款附表二查表確認。",
+      "version_characteristics": {
+        "terms_revision": "minwang-cny-107-original",
+        "currency": "CNY",
+        "currency_label": "人民幣",
+        "filing_date": "107.04.16",
+        "filing_number": "中壽商一字第1070416003號",
+        "payment_period_options": [
+          4,
+          6
+        ],
+        "payment_period_required": true,
+        "expected_interest_rate_percent": null,
+        "expected_interest_rate_by_payment_period_percent": {
+          "4": 2.25,
+          "6": 2.5
+        },
+        "value_sharing_bonus": true,
+        "annual_insured_amount_formula": "during_payment_paid_annualized_premium_less_terminal_survival_total_then_face_amounts_after_paid_up",
+        "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_and_premium_component",
+        "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_and_premium_component",
+        "death_premium_component_formula": "paid_annualized_premium_less_terminal_survival_total",
+        "total_disability_premium_component_formula": "paid_annualized_premium_less_terminal_survival_total",
+        "survival_benefit_formula": "standard_annual_premium_times_2_percent_times_elapsed_policy_years_during_payment_then_times_payment_period_after_paid_up",
+        "survival_rate_percent": 2,
+        "maturity_benefit_formula": "face_and_accumulated_amount_per_10000_times_maturity_table",
+        "maturity_age": 110,
+        "premium_multiplier": null,
+        "policy_face_amount_required": true,
+        "accumulated_paid_up_additions_required": true,
+        "standard_annual_premium_required": true,
+        "policy_reserve_required": true,
+        "survival_benefit_total_required": true,
+        "maturity_table_required": true,
+        "foreign_currency_policy": true,
+        "exchange_rate_risk_disclosed": true,
+        "funeral_benefit_limit_rule": true,
+        "minor_death_or_disability_refund_rule": true
+      },
+      "coverage_entries": [
+        {
+          "id": "value-sharing-bonus",
+          "name": "增值回饋分享金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保單年度屆滿且被保險人仍生存時，依宣告利率高於預定利率的差值乘以期末保單價值準備金計算；可抵繳保費、增額繳清、現金給付或儲存生息。",
+          "source_ref": "保單條款第十二條，增值回饋分享金的給付及通知",
+          "conditions": [
+            "宣告利率低於預定利率時，以預定利率為準。",
+            "第七保單年度起可依條款現金給付或儲存生息；未選擇者依增額繳清方式增加保險金額。",
+            "被保險人保險年齡到達十六歲前另依條款特別處理。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "分別以身故當時基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金及已繳年繳化保險費相關餘額三者取較大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "保單各項給付、保費收取與返還皆以人民幣為貨幣單位，另有匯率風險揭露。",
+            "第三項保費基礎為 paid_annualized_premium_less_terminal_survival_total。",
+            "身故給付後契約效力終止；繳費期間內身故，當期已繳付未到期保費不退還。",
+            "喪葬費用保險金依條款及法定上限換算限制辦理。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘廢保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "分別以全殘廢診斷確定時基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金及已繳年繳化保險費相關餘額三者取較大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "全殘廢程度須為附表一殘廢程度表所列七項之一。",
+            "第三項保費基礎為 paid_annualized_premium_less_terminal_survival_total。",
+            "全殘廢給付後契約效力終止；繳費期間內全殘廢，當期已繳付未到期保費不退還。"
+          ]
+        },
+        {
+          "id": "survival-benefit",
+          "name": "生存保險金",
+          "basis": "benefit_base",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人每一保單週年日仍生存時，自第一保單週年日起至保險年齡到達一一○歲之保單週年日止，按基本保險金額及累計增加保險金額每萬元乘以表定年繳保險費的 2% 相關倍數加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 2,
+          "unit_key": "standard_annual_premium_per_10000_face_amount",
+          "conditions": [
+            "standard_annual_premium_times_2_percent_times_elapsed_policy_years_during_payment_then_times_payment_period_after_paid_up",
+            "繳費期間內按已經過保單年度數計算；繳費期滿後按條款所列繳費年期或四倍計算。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人保險年齡到達一一○歲之保單週年日且仍生存時，按基本保險金額及累計增加保險金額每萬元乘以附表二每萬元之祝壽保險金表後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "conditions": [
+            "祝壽保險金給付後契約效力終止。",
+            "每萬元之祝壽保險金須回保單條款附表二查表。"
+          ]
+        },
+        {
+          "id": "minor-premium-refund-with-interest",
+          "name": "未滿十五足歲身故或十六歲前全殘廢退還所繳保險費並加計利息",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於特定未成年年齡條件下身故或十六歲前致成全殘廢時，改按條款退還或給付所繳保險費並加計利息。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "conditions": [
+            "實際年齡未滿十五足歲身故，退還所繳保險費並加計利息予要保人或應得之人。",
+            "實際年齡滿十五足歲身故，按所繳保險費並加計利息給付身故保險金。",
+            "保險年齡到達十六歲前全殘廢，改按所繳保險費並加計利息給付全殘廢保險金。"
+          ]
         }
       ]
     },
@@ -62291,6 +62849,182 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單所載基本保險金額；生存金需搭配表定年繳保險費與繳費期間，身故與完全失能給付還需要當年度保險金額、保單價值準備金、保價係數、已繳年繳化保險費與已領生存金總額確認。",
+      "version_characteristics": {
+        "product_family": "meilexiangtui-usd-survival-whole-life",
+        "terms_revision": "meilexiangtui-usd-112-original",
+        "filing_date": "112.01.04",
+        "filing_number": "中壽商一字第1123000039號",
+        "revision_events": [],
+        "approval_date": null,
+        "approval_number": null,
+        "later_filing_date": null,
+        "later_filing_number": null,
+        "latest_company_name": "中國人壽",
+        "currency": "USD",
+        "currency_label": "美元",
+        "expected_interest_rate_percent": 2.25,
+        "value_sharing_bonus": true,
+        "value_sharing_bonus_basis": "declared_rate_minus_2_25_percent_times_terminal_policy_reserve",
+        "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_less_terminal_survival_total",
+        "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_less_terminal_survival_total",
+        "survival_benefit_formula": "standard_annual_premium_per_10000_face_amount_times_1_85_percent_times_payment_period_after_paid_up",
+        "survival_rate_percent": 1.85,
+        "maturity_benefit_formula": "insurance_amount_at_age_110",
+        "premium_waiver_available": true,
+        "premium_waiver_disability_grade_min": 2,
+        "premium_waiver_disability_grade_max": 6,
+        "reserve_component": "policy_reserve_times_value_coefficient",
+        "premium_component": "paid_annualized_premium_less_terminal_survival_total",
+        "maturity_age": 110,
+        "installment_benefit_available": true,
+        "installment_period_options": [
+          5,
+          10,
+          15,
+          20,
+          25
+        ],
+        "policy_face_amount_required": true,
+        "accumulated_paid_up_additions_required": true,
+        "annual_insured_amount_required": true,
+        "policy_reserve_required": true,
+        "value_coefficient_required": true,
+        "premium_total_required": true,
+        "standard_annual_premium_required": true,
+        "terminal_survival_benefit_total_required": true,
+        "foreign_currency_policy": true,
+        "exchange_rate_risk_disclosed": true,
+        "no_contract_conversion_from_twd": true,
+        "funeral_benefit_limit_rule": true
+      },
+      "coverage_entries": [
+        {
+          "id": "value-sharing-bonus",
+          "name": "增值回饋分享金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保單年度屆滿且被保險人仍生存時，按宣告利率減預定利率 2.25% 的差值乘以期末保單價值準備金計算；宣告利率低於預定利率時以預定利率為準。",
+          "source_ref": "保單條款第二條及第十二條，增值回饋分享金",
+          "conditions": [
+            "實際金額須由保單年度、宣告利率、基本保險金額、累計增加保險金額與期末保單價值準備金確認。",
+            "給付方式依要保人選擇購買增額繳清、現金給付或儲存生息；未選擇時依條款預設方式辦理。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "身故時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費扣除期末生存保險金總額後餘額三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_less_survival_total",
+          "conditions": [
+            "身故給付後契約效力終止；繳費期間內身故，當期已繳未到期保險費不退還。",
+            "未滿十五足歲或受監護宣告尚未撤銷者，死亡給付依條款改為喪葬費用保險金並受法定上限限制。",
+            "各項給付以美元為貨幣單位，另有匯率風險揭露；外幣與新臺幣契約間不得辦理契約轉換。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "完全失能時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費扣除期末生存保險金總額後餘額三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_less_survival_total",
+          "conditions": [
+            "完全失能程度須為附表一失能程度表所列七項之一。",
+            "完全失能給付後契約效力終止；繳費期間內完全失能，當期已繳未到期保險費不退還。"
+          ]
+        },
+        {
+          "id": "survival-benefit",
+          "name": "生存保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "繳費期間屆滿後每一保單週年日仍生存時，按基本保險金額與累計增加保險金額每萬元分別乘以表定年繳保險費 1.85% 再乘以繳費期間後加總給付，至 110 歲保單週年日止。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 1.85,
+          "unit_key": "standard_annual_premium_per_10000_face_amount_times_payment_period",
+          "conditions": [
+            "生存金自繳費期間屆滿後開始給付。",
+            "實際金額需保單所載基本保險金額、累計增加保險金額、表定年繳保險費與繳費期間。"
+          ]
+        },
+        {
+          "id": "premium-waiver-disability-grade-2-to-6",
+          "name": "二至六級失能豁免保險費",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "繳費期間內因疾病或傷害致成附表二二至六級失能程度之一，自診斷確定翌日起豁免基本保險金額對應之續期應繳保險費。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "conditions": [
+            "豁免範圍不含其他附約及附加條款；當期已繳未到期保險費不退還。",
+            "豁免後不得再辦理減額繳清保險或變更為展期定期保險。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人保險年齡到達 110 歲之保單週年日仍生存時，按保險金額給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "insurance_amount",
+          "conditions": [
+            "保險金額為基本保險金額與累計增加保險金額二者加總。",
+            "祝壽保險金給付後契約效力終止。"
+          ]
+        },
+        {
+          "id": "installment-periodic-benefit",
+          "name": "分期定期保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "要保人與本公司約定指定保險金後，可依五年、十年、十五年、二十年或二十五年期間換算為每年年初分期給付。",
+          "source_ref": "保單條款第二條及第十六條，分期定期保險金給付",
+          "conditions": [
+            "分期金額依分期定期保險金預定利率及指定保險金計算。",
+            "可適用於身故保險金與完全失能保險金的指定保險金部分，不含喪葬費用保險金。"
+          ]
+        }
       ]
     },
     {
@@ -62559,6 +63293,187 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單所載基本保險金額；生存金需搭配表定年繳保險費與繳費期間，身故與完全失能給付還需要當年度保險金額、保單價值準備金、保價係數、已繳年繳化保險費與已領生存金總額確認。",
+      "version_characteristics": {
+        "product_family": "meilexiangtui-usd-survival-whole-life",
+        "terms_revision": "meilexiangtui-usd-112-first-regulatory-revision",
+        "filing_date": "112.01.04",
+        "filing_number": "中壽商一字第1123000039號",
+        "revision_events": [
+          {
+            "date": "112.03.01",
+            "number": "金管保壽字第1110462568號"
+          }
+        ],
+        "approval_date": null,
+        "approval_number": null,
+        "later_filing_date": null,
+        "later_filing_number": null,
+        "latest_company_name": "中國人壽",
+        "currency": "USD",
+        "currency_label": "美元",
+        "expected_interest_rate_percent": 2.25,
+        "value_sharing_bonus": true,
+        "value_sharing_bonus_basis": "declared_rate_minus_2_25_percent_times_terminal_policy_reserve",
+        "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_less_terminal_survival_total",
+        "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_less_terminal_survival_total",
+        "survival_benefit_formula": "standard_annual_premium_per_10000_face_amount_times_1_85_percent_times_payment_period_after_paid_up",
+        "survival_rate_percent": 1.85,
+        "maturity_benefit_formula": "insurance_amount_at_age_110",
+        "premium_waiver_available": true,
+        "premium_waiver_disability_grade_min": 2,
+        "premium_waiver_disability_grade_max": 6,
+        "reserve_component": "policy_reserve_times_value_coefficient",
+        "premium_component": "paid_annualized_premium_less_terminal_survival_total",
+        "maturity_age": 110,
+        "installment_benefit_available": true,
+        "installment_period_options": [
+          5,
+          10,
+          15,
+          20,
+          25
+        ],
+        "policy_face_amount_required": true,
+        "accumulated_paid_up_additions_required": true,
+        "annual_insured_amount_required": true,
+        "policy_reserve_required": true,
+        "value_coefficient_required": true,
+        "premium_total_required": true,
+        "standard_annual_premium_required": true,
+        "terminal_survival_benefit_total_required": true,
+        "foreign_currency_policy": true,
+        "exchange_rate_risk_disclosed": true,
+        "no_contract_conversion_from_twd": true,
+        "funeral_benefit_limit_rule": true
+      },
+      "coverage_entries": [
+        {
+          "id": "value-sharing-bonus",
+          "name": "增值回饋分享金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保單年度屆滿且被保險人仍生存時，按宣告利率減預定利率 2.25% 的差值乘以期末保單價值準備金計算；宣告利率低於預定利率時以預定利率為準。",
+          "source_ref": "保單條款第二條及第十二條，增值回饋分享金",
+          "conditions": [
+            "實際金額須由保單年度、宣告利率、基本保險金額、累計增加保險金額與期末保單價值準備金確認。",
+            "給付方式依要保人選擇購買增額繳清、現金給付或儲存生息；未選擇時依條款預設方式辦理。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "身故時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費扣除期末生存保險金總額後餘額三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_less_survival_total",
+          "conditions": [
+            "身故給付後契約效力終止；繳費期間內身故，當期已繳未到期保險費不退還。",
+            "未滿十五足歲或受監護宣告尚未撤銷者，死亡給付依條款改為喪葬費用保險金並受法定上限限制。",
+            "各項給付以美元為貨幣單位，另有匯率風險揭露；外幣與新臺幣契約間不得辦理契約轉換。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "完全失能時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費扣除期末生存保險金總額後餘額三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_less_survival_total",
+          "conditions": [
+            "完全失能程度須為附表一失能程度表所列七項之一。",
+            "完全失能給付後契約效力終止；繳費期間內完全失能，當期已繳未到期保險費不退還。"
+          ]
+        },
+        {
+          "id": "survival-benefit",
+          "name": "生存保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "繳費期間屆滿後每一保單週年日仍生存時，按基本保險金額與累計增加保險金額每萬元分別乘以表定年繳保險費 1.85% 再乘以繳費期間後加總給付，至 110 歲保單週年日止。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 1.85,
+          "unit_key": "standard_annual_premium_per_10000_face_amount_times_payment_period",
+          "conditions": [
+            "生存金自繳費期間屆滿後開始給付。",
+            "實際金額需保單所載基本保險金額、累計增加保險金額、表定年繳保險費與繳費期間。"
+          ]
+        },
+        {
+          "id": "premium-waiver-disability-grade-2-to-6",
+          "name": "二至六級失能豁免保險費",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "繳費期間內因疾病或傷害致成附表二二至六級失能程度之一，自診斷確定翌日起豁免基本保險金額對應之續期應繳保險費。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "conditions": [
+            "豁免範圍不含其他附約及附加條款；當期已繳未到期保險費不退還。",
+            "豁免後不得再辦理減額繳清保險或變更為展期定期保險。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人保險年齡到達 110 歲之保單週年日仍生存時，按保險金額給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "insurance_amount",
+          "conditions": [
+            "保險金額為基本保險金額與累計增加保險金額二者加總。",
+            "祝壽保險金給付後契約效力終止。"
+          ]
+        },
+        {
+          "id": "installment-periodic-benefit",
+          "name": "分期定期保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "要保人與本公司約定指定保險金後，可依五年、十年、十五年、二十年或二十五年期間換算為每年年初分期給付。",
+          "source_ref": "保單條款第二條及第十六條，分期定期保險金給付",
+          "conditions": [
+            "分期金額依分期定期保險金預定利率及指定保險金計算。",
+            "可適用於身故保險金與完全失能保險金的指定保險金部分，不含喪葬費用保險金。"
+          ]
+        }
       ]
     },
     {
@@ -62826,6 +63741,187 @@
           "text_char_count": 6307,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單所載基本保險金額；生存金需搭配表定年繳保險費與繳費期間，身故與完全失能給付還需要當年度保險金額、保單價值準備金、保價係數、已繳年繳化保險費與已領生存金總額確認。",
+      "version_characteristics": {
+        "product_family": "meilexiangtui-usd-survival-whole-life",
+        "terms_revision": "meilexiangtui-usd-113-kgi-second-partial-revision",
+        "filing_date": "112.01.04",
+        "filing_number": "中壽商一字第1123000039號",
+        "revision_events": [
+          {
+            "date": "112.03.01",
+            "number": "金管保壽字第1110462568號"
+          }
+        ],
+        "approval_date": "112.08.14",
+        "approval_number": "金管保壽字第1120432605號",
+        "later_filing_date": "113.01.01",
+        "later_filing_number": "凱壽商一字第1133000002號",
+        "latest_company_name": "凱基人壽",
+        "currency": "USD",
+        "currency_label": "美元",
+        "expected_interest_rate_percent": 2.25,
+        "value_sharing_bonus": true,
+        "value_sharing_bonus_basis": "declared_rate_minus_2_25_percent_times_terminal_policy_reserve",
+        "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_less_terminal_survival_total",
+        "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_less_terminal_survival_total",
+        "survival_benefit_formula": "standard_annual_premium_per_10000_face_amount_times_1_85_percent_times_payment_period_after_paid_up",
+        "survival_rate_percent": 1.85,
+        "maturity_benefit_formula": "insurance_amount_at_age_110",
+        "premium_waiver_available": true,
+        "premium_waiver_disability_grade_min": 2,
+        "premium_waiver_disability_grade_max": 6,
+        "reserve_component": "policy_reserve_times_value_coefficient",
+        "premium_component": "paid_annualized_premium_less_terminal_survival_total",
+        "maturity_age": 110,
+        "installment_benefit_available": true,
+        "installment_period_options": [
+          5,
+          10,
+          15,
+          20,
+          25
+        ],
+        "policy_face_amount_required": true,
+        "accumulated_paid_up_additions_required": true,
+        "annual_insured_amount_required": true,
+        "policy_reserve_required": true,
+        "value_coefficient_required": true,
+        "premium_total_required": true,
+        "standard_annual_premium_required": true,
+        "terminal_survival_benefit_total_required": true,
+        "foreign_currency_policy": true,
+        "exchange_rate_risk_disclosed": true,
+        "no_contract_conversion_from_twd": true,
+        "funeral_benefit_limit_rule": true
+      },
+      "coverage_entries": [
+        {
+          "id": "value-sharing-bonus",
+          "name": "增值回饋分享金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保單年度屆滿且被保險人仍生存時，按宣告利率減預定利率 2.25% 的差值乘以期末保單價值準備金計算；宣告利率低於預定利率時以預定利率為準。",
+          "source_ref": "保單條款第二條及第十二條，增值回饋分享金",
+          "conditions": [
+            "實際金額須由保單年度、宣告利率、基本保險金額、累計增加保險金額與期末保單價值準備金確認。",
+            "給付方式依要保人選擇購買增額繳清、現金給付或儲存生息；未選擇時依條款預設方式辦理。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "身故時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費扣除期末生存保險金總額後餘額三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_less_survival_total",
+          "conditions": [
+            "身故給付後契約效力終止；繳費期間內身故，當期已繳未到期保險費不退還。",
+            "未滿十五足歲或受監護宣告尚未撤銷者，死亡給付依條款改為喪葬費用保險金並受法定上限限制。",
+            "各項給付以美元為貨幣單位，另有匯率風險揭露；外幣與新臺幣契約間不得辦理契約轉換。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "完全失能時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費扣除期末生存保險金總額後餘額三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_less_survival_total",
+          "conditions": [
+            "完全失能程度須為附表一失能程度表所列七項之一。",
+            "完全失能給付後契約效力終止；繳費期間內完全失能，當期已繳未到期保險費不退還。"
+          ]
+        },
+        {
+          "id": "survival-benefit",
+          "name": "生存保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "繳費期間屆滿後每一保單週年日仍生存時，按基本保險金額與累計增加保險金額每萬元分別乘以表定年繳保險費 1.85% 再乘以繳費期間後加總給付，至 110 歲保單週年日止。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 1.85,
+          "unit_key": "standard_annual_premium_per_10000_face_amount_times_payment_period",
+          "conditions": [
+            "生存金自繳費期間屆滿後開始給付。",
+            "實際金額需保單所載基本保險金額、累計增加保險金額、表定年繳保險費與繳費期間。"
+          ]
+        },
+        {
+          "id": "premium-waiver-disability-grade-2-to-6",
+          "name": "二至六級失能豁免保險費",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "繳費期間內因疾病或傷害致成附表二二至六級失能程度之一，自診斷確定翌日起豁免基本保險金額對應之續期應繳保險費。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "conditions": [
+            "豁免範圍不含其他附約及附加條款；當期已繳未到期保險費不退還。",
+            "豁免後不得再辦理減額繳清保險或變更為展期定期保險。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人保險年齡到達 110 歲之保單週年日仍生存時，按保險金額給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "insurance_amount",
+          "conditions": [
+            "保險金額為基本保險金額與累計增加保險金額二者加總。",
+            "祝壽保險金給付後契約效力終止。"
+          ]
+        },
+        {
+          "id": "installment-periodic-benefit",
+          "name": "分期定期保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "要保人與本公司約定指定保險金後，可依五年、十年、十五年、二十年或二十五年期間換算為每年年初分期給付。",
+          "source_ref": "保單條款第二條及第十六條，分期定期保險金給付",
+          "conditions": [
+            "分期金額依分期定期保險金預定利率及指定保險金計算。",
+            "可適用於身故保險金與完全失能保險金的指定保險金部分，不含喪葬費用保險金。"
+          ]
         }
       ]
     },
@@ -82421,6 +83517,104 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "每位被保險人保險金額",
+      "selection_guidance": "請輸入保險證、保險手冊或被保險人名冊所載該被保險人之保險金額；身故、全殘廢與滿期保險金均按該保險金額給付。",
+      "version_characteristics": {
+        "terms_revision": "97-original",
+        "filing_date": "97.07.01",
+        "filing_number": "中壽商一字第 0970701019 號",
+        "revision_date": null,
+        "revision_basis": null,
+        "product_family": "china-life-group-endowment",
+        "policy_type": "group_endowment",
+        "group_policy": true,
+        "payment_period_options": [
+          6,
+          10
+        ],
+        "policy_period_same_as_payment_period": true,
+        "death_benefit_formula": "face_amount",
+        "total_disability_benefit_formula": "face_amount",
+        "maturity_benefit_formula": "face_amount",
+        "policy_face_amount_required": true,
+        "per_insured_face_amount_required": true,
+        "full_disability_table_item_count": 7,
+        "surrender_value_table_available": true,
+        "surrender_value_table_unit_amount": 10000,
+        "no_premium_loan": true,
+        "no_reduced_paid_up_or_extended_term": true,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於本契約有效期間內死亡時，本公司按該被保險人之保險金額給付身故保險金。",
+          "source_ref": "保單條款第六條，保險給付與保險範圍；第十七條，失蹤處理",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本保險為團體保險單。",
+            "實際保險金額以保險證、保險手冊或被保險人名冊所載該被保險人之保險金額為準。",
+            "本保險為不分紅保險單，不參加紅利分配。",
+            "死亡或法院宣告死亡時依條款給付身故保險金。",
+            "給付後本契約對該被保險人的效力即行終止。",
+            "除外責任及受益權喪失情形依條款第二十一條及第二十二條辦理。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於本契約有效期間內致成附表所列全殘廢程度之一時，本公司按該被保險人之保險金額給付全殘廢保險金。",
+          "source_ref": "保單條款第六條，保險給付與保險範圍；第十九條，全殘廢保險金的申領；附表，全殘廢程度表",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本保險為團體保險單。",
+            "實際保險金額以保險證、保險手冊或被保險人名冊所載該被保險人之保險金額為準。",
+            "本保險為不分紅保險單，不參加紅利分配。",
+            "全殘廢須符合附表七項全殘廢程度之一。",
+            "本公司依條款給付全殘廢保險金後，該被保險人的保險效力即自動終止。",
+            "除外責任情形致全殘廢時，仍依第二十一條所列條件判斷是否給付。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "滿期保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於本契約保險期間屆滿仍生存時，本公司按該被保險人之保險金額給付滿期保險金。",
+          "source_ref": "保單條款第六條，保險給付與保險範圍；第二十條，滿期保險金的申領",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本保險為團體保險單。",
+            "實際保險金額以保險證、保險手冊或被保險人名冊所載該被保險人之保險金額為準。",
+            "本保險為不分紅保險單，不參加紅利分配。",
+            "保險期間為 6 年期或 10 年期，且同繳費期間。",
+            "滿期保險金給付後本契約對該被保險人效力即行終止。"
+          ]
+        }
       ]
     },
     {
@@ -82645,6 +83839,104 @@
           "text_char_count": 1445,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "每位被保險人保險金額",
+      "selection_guidance": "請輸入保險證、保險手冊或被保險人名冊所載該被保險人之保險金額；身故、全殘廢與滿期保險金均按該保險金額給付。",
+      "version_characteristics": {
+        "terms_revision": "98-first-partial-revision",
+        "filing_date": "97.07.01",
+        "filing_number": "中壽商一字第 0970701019 號",
+        "revision_date": "98.08.01",
+        "revision_basis": "97 年 12 月 31 日依行政院金融監督管理委員會 97 年 11 月 19 日金管保一字第 09702508021 號令修正；98.08.01 中壽商發字第 0980801024 號備查",
+        "product_family": "china-life-group-endowment",
+        "policy_type": "group_endowment",
+        "group_policy": true,
+        "payment_period_options": [
+          6,
+          10
+        ],
+        "policy_period_same_as_payment_period": true,
+        "death_benefit_formula": "face_amount",
+        "total_disability_benefit_formula": "face_amount",
+        "maturity_benefit_formula": "face_amount",
+        "policy_face_amount_required": true,
+        "per_insured_face_amount_required": true,
+        "full_disability_table_item_count": 7,
+        "surrender_value_table_available": true,
+        "surrender_value_table_unit_amount": 10000,
+        "no_premium_loan": true,
+        "no_reduced_paid_up_or_extended_term": true,
+        "non_participating_policy": true
+      },
+      "coverage_entries": [
+        {
+          "id": "death-benefit",
+          "name": "身故保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於本契約有效期間內死亡時，本公司按該被保險人之保險金額給付身故保險金。",
+          "source_ref": "保單條款第六條，保險給付與保險範圍；第十七條，失蹤處理",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本保險為團體保險單。",
+            "實際保險金額以保險證、保險手冊或被保險人名冊所載該被保險人之保險金額為準。",
+            "本保險為不分紅保險單，不參加紅利分配。",
+            "死亡或法院宣告死亡時依條款給付身故保險金。",
+            "給付後本契約對該被保險人的效力即行終止。",
+            "除外責任及受益權喪失情形依條款第二十一條及第二十二條辦理。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "全殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於本契約有效期間內致成附表所列全殘廢程度之一時，本公司按該被保險人之保險金額給付全殘廢保險金。",
+          "source_ref": "保單條款第六條，保險給付與保險範圍；第十九條，全殘廢保險金的申領；附表，全殘廢程度表",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本保險為團體保險單。",
+            "實際保險金額以保險證、保險手冊或被保險人名冊所載該被保險人之保險金額為準。",
+            "本保險為不分紅保險單，不參加紅利分配。",
+            "全殘廢須符合附表七項全殘廢程度之一。",
+            "本公司依條款給付全殘廢保險金後，該被保險人的保險效力即自動終止。",
+            "除外責任情形致全殘廢時，仍依第二十一條所列條件判斷是否給付。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "滿期保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人於本契約保險期間屆滿仍生存時，本公司按該被保險人之保險金額給付滿期保險金。",
+          "source_ref": "保單條款第六條，保險給付與保險範圍；第二十條，滿期保險金的申領",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "本保險為團體保險單。",
+            "實際保險金額以保險證、保險手冊或被保險人名冊所載該被保險人之保險金額為準。",
+            "本保險為不分紅保險單，不參加紅利分配。",
+            "保險期間為 6 年期或 10 年期，且同繳費期間。",
+            "滿期保險金給付後本契約對該被保險人效力即行終止。"
+          ]
         }
       ]
     },
@@ -110309,6 +111601,164 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單所載基本保險金額；身故、完全失能與祝壽給付還需要累計增加保險金額、當年度保險金額、保單價值準備金、保價係數與已繳年繳化保險費資料確認。",
+      "version_characteristics": {
+        "product_family": "dameiwang-usd-periodic-whole-life",
+        "terms_revision": "dameiwang-usd-111-original",
+        "filing_date": "111.04.11",
+        "filing_number": "中壽商一字第1110411001號",
+        "revision_events": [],
+        "currency": "USD",
+        "currency_label": "美元",
+        "expected_interest_rate_percent": 1,
+        "value_sharing_bonus": true,
+        "value_sharing_bonus_basis": "declared_rate_minus_1_percent_times_terminal_policy_reserve",
+        "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_times_1_03",
+        "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_times_1_03",
+        "maturity_benefit_formula": "annual_insured_amount_at_age_110",
+        "terminal_illness_advance_available": true,
+        "terminal_illness_advance_rate_percent": 90,
+        "terminal_illness_advance_cap_amount": 1000000,
+        "terminal_illness_advance_cap_currency": "USD",
+        "terminal_illness_survival_months_max": 6,
+        "terminal_illness_lifetime_limit_times": 1,
+        "terminal_illness_interest_deduction_months": 6,
+        "premium_multiplier": 1.03,
+        "reserve_component": "policy_reserve_times_value_coefficient",
+        "premium_component": "paid_annualized_premium_times_1_03",
+        "maturity_age": 110,
+        "installment_benefit_available": true,
+        "installment_period_options": [
+          5,
+          10,
+          15,
+          20,
+          25
+        ],
+        "policy_face_amount_required": true,
+        "accumulated_paid_up_additions_required": true,
+        "annual_insured_amount_required": true,
+        "policy_reserve_required": true,
+        "value_coefficient_required": true,
+        "premium_total_required": true,
+        "foreign_currency_policy": true,
+        "exchange_rate_risk_disclosed": true,
+        "no_contract_conversion_from_twd": true,
+        "funeral_benefit_limit_rule": true
+      },
+      "coverage_entries": [
+        {
+          "id": "value-sharing-bonus",
+          "name": "增值回饋分享金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保單年度屆滿且被保險人仍生存時，按宣告利率減預定利率 1% 的差值乘以期末保單價值準備金計算；宣告利率低於預定利率時以預定利率為準。",
+          "source_ref": "保單條款第二條及第十二條，增值回饋分享金",
+          "conditions": [
+            "實際金額須由保單年度、宣告利率、基本保險金額、累計增加保險金額與期末保單價值準備金確認。",
+            "給付方式依要保人選擇購買增額繳清、現金給付或儲存生息；未選擇時依條款預設方式辦理。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "身故時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費 1.03 倍三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "身故給付後契約效力終止；繳費期間內身故，當期已繳未到期保險費不退還。",
+            "未滿十五足歲或受監護宣告尚未撤銷者，死亡給付依條款改為喪葬費用保險金並受法定上限限制。",
+            "各項給付以美元為貨幣單位，另有匯率風險揭露；外幣與新臺幣契約間不得辦理契約轉換。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "完全失能時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費 1.03 倍三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "完全失能程度須為附表一失能程度表所列七項之一。",
+            "完全失能給付後契約效力終止；繳費期間內完全失能，當期已繳未到期保險費不退還。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人保險年齡到達 110 歲之保單週年日仍生存時，分別按基本保險金額與累計增加保險金額對應之當年度保險金額加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "annual_insured_amount",
+          "conditions": [
+            "祝壽保險金給付後契約效力終止。",
+            "當年度保險金額須依保單條款附表二與保單當年度資料確認。"
+          ]
+        },
+        {
+          "id": "terminal-illness-advance-benefit",
+          "name": "生命末期提前給付保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合生命末期狀態時，可申請提前給付身故或喪葬費用保險金之一部或全部，最高以當年度身故或喪葬費用保險金 90% 或 100 萬美元之較小者為限。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 90,
+          "unit_key": "death_or_funeral_benefit",
+          "conditions": [
+            "生命末期係平均存活期在六個月以下；提前給付以一次為限。",
+            "給付金額最高以當年度身故或喪葬費用保險金的 90% 或 100 萬美元之較小者為限。",
+            "給付時需扣除六個月利息、相對應應繳保費現值、保險單借款本息及欠繳或墊繳保險費本息。",
+            "契約已變更為減額繳清或展期保險，或已領取生命末期提前給付者，不得申請。"
+          ]
+        },
+        {
+          "id": "installment-periodic-benefit",
+          "name": "分期定期保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "要保人與本公司約定指定保險金後，可依五年、十年、十五年、二十年或二十五年期間換算為每年年初分期給付。",
+          "source_ref": "保單條款第二條及第十六條，分期定期保險金給付",
+          "conditions": [
+            "分期金額依分期定期保險金預定利率及指定保險金計算。",
+            "可適用於身故保險金與完全失能保險金的指定保險金部分，不含喪葬費用保險金。"
+          ]
+        }
       ]
     },
     {
@@ -110573,6 +112023,169 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單所載基本保險金額；身故、完全失能與祝壽給付還需要累計增加保險金額、當年度保險金額、保單價值準備金、保價係數與已繳年繳化保險費資料確認。",
+      "version_characteristics": {
+        "product_family": "dameiwang-usd-periodic-whole-life",
+        "terms_revision": "dameiwang-usd-112-first-regulatory-revision",
+        "filing_date": "111.04.11",
+        "filing_number": "中壽商一字第1110411001號",
+        "revision_events": [
+          {
+            "date": "112.01.01",
+            "number": "金管保壽字第1110445485號"
+          }
+        ],
+        "currency": "USD",
+        "currency_label": "美元",
+        "expected_interest_rate_percent": 1,
+        "value_sharing_bonus": true,
+        "value_sharing_bonus_basis": "declared_rate_minus_1_percent_times_terminal_policy_reserve",
+        "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_times_1_03",
+        "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_times_1_03",
+        "maturity_benefit_formula": "annual_insured_amount_at_age_110",
+        "terminal_illness_advance_available": true,
+        "terminal_illness_advance_rate_percent": 90,
+        "terminal_illness_advance_cap_amount": 1000000,
+        "terminal_illness_advance_cap_currency": "USD",
+        "terminal_illness_survival_months_max": 6,
+        "terminal_illness_lifetime_limit_times": 1,
+        "terminal_illness_interest_deduction_months": 6,
+        "premium_multiplier": 1.03,
+        "reserve_component": "policy_reserve_times_value_coefficient",
+        "premium_component": "paid_annualized_premium_times_1_03",
+        "maturity_age": 110,
+        "installment_benefit_available": true,
+        "installment_period_options": [
+          5,
+          10,
+          15,
+          20,
+          25
+        ],
+        "policy_face_amount_required": true,
+        "accumulated_paid_up_additions_required": true,
+        "annual_insured_amount_required": true,
+        "policy_reserve_required": true,
+        "value_coefficient_required": true,
+        "premium_total_required": true,
+        "foreign_currency_policy": true,
+        "exchange_rate_risk_disclosed": true,
+        "no_contract_conversion_from_twd": true,
+        "funeral_benefit_limit_rule": true
+      },
+      "coverage_entries": [
+        {
+          "id": "value-sharing-bonus",
+          "name": "增值回饋分享金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保單年度屆滿且被保險人仍生存時，按宣告利率減預定利率 1% 的差值乘以期末保單價值準備金計算；宣告利率低於預定利率時以預定利率為準。",
+          "source_ref": "保單條款第二條及第十二條，增值回饋分享金",
+          "conditions": [
+            "實際金額須由保單年度、宣告利率、基本保險金額、累計增加保險金額與期末保單價值準備金確認。",
+            "給付方式依要保人選擇購買增額繳清、現金給付或儲存生息；未選擇時依條款預設方式辦理。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "身故時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費 1.03 倍三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "身故給付後契約效力終止；繳費期間內身故，當期已繳未到期保險費不退還。",
+            "未滿十五足歲或受監護宣告尚未撤銷者，死亡給付依條款改為喪葬費用保險金並受法定上限限制。",
+            "各項給付以美元為貨幣單位，另有匯率風險揭露；外幣與新臺幣契約間不得辦理契約轉換。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "完全失能時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費 1.03 倍三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "完全失能程度須為附表一失能程度表所列七項之一。",
+            "完全失能給付後契約效力終止；繳費期間內完全失能，當期已繳未到期保險費不退還。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人保險年齡到達 110 歲之保單週年日仍生存時，分別按基本保險金額與累計增加保險金額對應之當年度保險金額加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "annual_insured_amount",
+          "conditions": [
+            "祝壽保險金給付後契約效力終止。",
+            "當年度保險金額須依保單條款附表二與保單當年度資料確認。"
+          ]
+        },
+        {
+          "id": "terminal-illness-advance-benefit",
+          "name": "生命末期提前給付保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合生命末期狀態時，可申請提前給付身故或喪葬費用保險金之一部或全部，最高以當年度身故或喪葬費用保險金 90% 或 100 萬美元之較小者為限。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 90,
+          "unit_key": "death_or_funeral_benefit",
+          "conditions": [
+            "生命末期係平均存活期在六個月以下；提前給付以一次為限。",
+            "給付金額最高以當年度身故或喪葬費用保險金的 90% 或 100 萬美元之較小者為限。",
+            "給付時需扣除六個月利息、相對應應繳保費現值、保險單借款本息及欠繳或墊繳保險費本息。",
+            "契約已變更為減額繳清或展期保險，或已領取生命末期提前給付者，不得申請。"
+          ]
+        },
+        {
+          "id": "installment-periodic-benefit",
+          "name": "分期定期保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "要保人與本公司約定指定保險金後，可依五年、十年、十五年、二十年或二十五年期間換算為每年年初分期給付。",
+          "source_ref": "保單條款第二條及第十六條，分期定期保險金給付",
+          "conditions": [
+            "分期金額依分期定期保險金預定利率及指定保險金計算。",
+            "可適用於身故保險金與完全失能保險金的指定保險金部分，不含喪葬費用保險金。"
+          ]
+        }
       ]
     },
     {
@@ -110836,6 +112449,173 @@
           "text_char_count": 6524,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單所載基本保險金額；身故、完全失能與祝壽給付還需要累計增加保險金額、當年度保險金額、保單價值準備金、保價係數與已繳年繳化保險費資料確認。",
+      "version_characteristics": {
+        "product_family": "dameiwang-usd-periodic-whole-life",
+        "terms_revision": "dameiwang-usd-112-second-regulatory-revision",
+        "filing_date": "111.04.11",
+        "filing_number": "中壽商一字第1110411001號",
+        "revision_events": [
+          {
+            "date": "112.01.01",
+            "number": "金管保壽字第1110445485號"
+          },
+          {
+            "date": "112.03.01",
+            "number": "金管保壽字第1110462568號"
+          }
+        ],
+        "currency": "USD",
+        "currency_label": "美元",
+        "expected_interest_rate_percent": 1,
+        "value_sharing_bonus": true,
+        "value_sharing_bonus_basis": "declared_rate_minus_1_percent_times_terminal_policy_reserve",
+        "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_times_1_03",
+        "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium_times_1_03",
+        "maturity_benefit_formula": "annual_insured_amount_at_age_110",
+        "terminal_illness_advance_available": true,
+        "terminal_illness_advance_rate_percent": 90,
+        "terminal_illness_advance_cap_amount": 1000000,
+        "terminal_illness_advance_cap_currency": "USD",
+        "terminal_illness_survival_months_max": 6,
+        "terminal_illness_lifetime_limit_times": 1,
+        "terminal_illness_interest_deduction_months": 6,
+        "premium_multiplier": 1.03,
+        "reserve_component": "policy_reserve_times_value_coefficient",
+        "premium_component": "paid_annualized_premium_times_1_03",
+        "maturity_age": 110,
+        "installment_benefit_available": true,
+        "installment_period_options": [
+          5,
+          10,
+          15,
+          20,
+          25
+        ],
+        "policy_face_amount_required": true,
+        "accumulated_paid_up_additions_required": true,
+        "annual_insured_amount_required": true,
+        "policy_reserve_required": true,
+        "value_coefficient_required": true,
+        "premium_total_required": true,
+        "foreign_currency_policy": true,
+        "exchange_rate_risk_disclosed": true,
+        "no_contract_conversion_from_twd": true,
+        "funeral_benefit_limit_rule": true
+      },
+      "coverage_entries": [
+        {
+          "id": "value-sharing-bonus",
+          "name": "增值回饋分享金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保單年度屆滿且被保險人仍生存時，按宣告利率減預定利率 1% 的差值乘以期末保單價值準備金計算；宣告利率低於預定利率時以預定利率為準。",
+          "source_ref": "保單條款第二條及第十二條，增值回饋分享金",
+          "conditions": [
+            "實際金額須由保單年度、宣告利率、基本保險金額、累計增加保險金額與期末保單價值準備金確認。",
+            "給付方式依要保人選擇購買增額繳清、現金給付或儲存生息；未選擇時依條款預設方式辦理。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "身故時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費 1.03 倍三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "身故給付後契約效力終止；繳費期間內身故，當期已繳未到期保險費不退還。",
+            "未滿十五足歲或受監護宣告尚未撤銷者，死亡給付依條款改為喪葬費用保險金並受法定上限限制。",
+            "各項給付以美元為貨幣單位，另有匯率風險揭露；外幣與新臺幣契約間不得辦理契約轉換。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "完全失能時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費 1.03 倍三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "完全失能程度須為附表一失能程度表所列七項之一。",
+            "完全失能給付後契約效力終止；繳費期間內完全失能，當期已繳未到期保險費不退還。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人保險年齡到達 110 歲之保單週年日仍生存時，分別按基本保險金額與累計增加保險金額對應之當年度保險金額加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "annual_insured_amount",
+          "conditions": [
+            "祝壽保險金給付後契約效力終止。",
+            "當年度保險金額須依保單條款附表二與保單當年度資料確認。"
+          ]
+        },
+        {
+          "id": "terminal-illness-advance-benefit",
+          "name": "生命末期提前給付保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "lifetime",
+          "aggregation_rule": "choose_one",
+          "source": "terms",
+          "note": "符合生命末期狀態時，可申請提前給付身故或喪葬費用保險金之一部或全部，最高以當年度身故或喪葬費用保險金 90% 或 100 萬美元之較小者為限。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 90,
+          "unit_key": "death_or_funeral_benefit",
+          "conditions": [
+            "生命末期係平均存活期在六個月以下；提前給付以一次為限。",
+            "給付金額最高以當年度身故或喪葬費用保險金的 90% 或 100 萬美元之較小者為限。",
+            "給付時需扣除六個月利息、相對應應繳保費現值、保險單借款本息及欠繳或墊繳保險費本息。",
+            "契約已變更為減額繳清或展期保險，或已領取生命末期提前給付者，不得申請。"
+          ]
+        },
+        {
+          "id": "installment-periodic-benefit",
+          "name": "分期定期保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "要保人與本公司約定指定保險金後，可依五年、十年、十五年、二十年或二十五年期間換算為每年年初分期給付。",
+          "source_ref": "保單條款第二條及第十六條，分期定期保險金給付",
+          "conditions": [
+            "分期金額依分期定期保險金預定利率及指定保險金計算。",
+            "可適用於身故保險金與完全失能保險金的指定保險金部分，不含喪葬費用保險金。"
+          ]
         }
       ]
     },
@@ -139630,6 +141410,173 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單所載基本保險金額；身故、完全失能與祝壽給付還需要累計增加保險金額、當年度保險金額、保單價值準備金、保價係數與已繳年繳化保險費資料確認。",
+      "version_characteristics": {
+        "product_family": "meilifeng-usd-periodic-whole-life",
+        "terms_revision": "meilifeng-usd-109-original",
+        "filing_date": "109.07.01",
+        "filing_number": "中壽商一字第1090701028號",
+        "revision_events": [],
+        "currency": "USD",
+        "currency_label": "美元",
+        "expected_interest_rate_by_payment_period_percent": {
+          "4": 1.5,
+          "6": 1.75,
+          "10": 1.75,
+          "20": 1.75
+        },
+        "value_sharing_bonus": true,
+        "value_sharing_bonus_basis": "declared_rate_minus_expected_interest_rate_times_terminal_policy_reserve",
+        "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium",
+        "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium",
+        "maturity_benefit_formula": "annual_insured_amount_at_age_110",
+        "premium_waiver_available": true,
+        "premium_waiver_disability_grade_min": 2,
+        "premium_waiver_disability_grade_max": 6,
+        "reserve_component": "policy_reserve_times_value_coefficient",
+        "premium_component": "paid_annualized_premium",
+        "maturity_age": 110,
+        "installment_benefit_available": true,
+        "installment_period_options": [
+          5,
+          10,
+          15,
+          20,
+          25
+        ],
+        "installment_minimum_specified_insurance_amount": 5000,
+        "installment_minimum_annual_amount": 1000,
+        "installment_minimum_currency": "USD",
+        "increase_face_amount_option_available": true,
+        "increase_face_amount_options_percent": [
+          10,
+          15,
+          20
+        ],
+        "policy_face_amount_required": true,
+        "accumulated_paid_up_additions_required": true,
+        "annual_insured_amount_required": true,
+        "policy_reserve_required": true,
+        "value_coefficient_required": true,
+        "premium_total_required": true,
+        "standard_annual_premium_required": true,
+        "foreign_currency_policy": true,
+        "exchange_rate_risk_disclosed": true,
+        "no_contract_conversion_from_twd": true,
+        "funeral_benefit_limit_rule": true
+      },
+      "coverage_entries": [
+        {
+          "id": "value-sharing-bonus",
+          "name": "增值回饋分享金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保單年度屆滿且被保險人仍生存時，按該年度期初宣告利率減預定利率的差值乘以期末保單價值準備金計算；可抵繳保費、購買增額繳清、現金給付或儲存生息。",
+          "source_ref": "保單條款第二條及第十二條，增值回饋分享金",
+          "conditions": [
+            "宣告利率低於預定利率時，以預定利率為準。",
+            "現金給付或儲存生息自第七保單年度起適用；現金給付低於 100 美元時依儲存生息辦理至達 100 美元或契約約定事由發生時給付。",
+            "被保險人保險年齡到達十六歲前，增值回饋分享金依條款特別處理。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "身故時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "身故給付後契約效力終止；繳費期間內身故，當期已繳付未到期保險費不退還。",
+            "未滿十五足歲或受監護宣告尚未撤銷者，死亡給付依條款改為喪葬費用保險金並受法定上限限制。",
+            "各項給付、保費收取及其他款項收付皆以美元為貨幣單位，另有匯率風險揭露；外幣與新臺幣契約間不得辦理契約轉換。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "完全失能時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "完全失能程度須為附表一失能程度表所列七項之一。",
+            "完全失能給付後契約效力終止；繳費期間內完全失能，當期已繳付未到期保險費不退還。"
+          ]
+        },
+        {
+          "id": "premium-waiver-disability-grade-2-to-6",
+          "name": "二至六級失能豁免保險費",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "繳費期間內因疾病或傷害致成附表二二至六級失能程度之一，自診斷確定失能翌日起豁免基本保險金額對應之續期應繳保險費。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "conditions": [
+            "豁免範圍不含其他附約及附加條款。",
+            "當期已繳付未到期保險費不退還，契約繼續有效。",
+            "豁免保險費後，不得再辦理減額繳清保險或展期定期保險。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人保險年齡到達 110 歲之保單週年日仍生存時，分別按基本保險金額與累計增加保險金額對應之當年度保險金額加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "annual_insured_amount",
+          "conditions": [
+            "祝壽保險金給付後契約效力終止。",
+            "當年度保險金額須依保單條款附表三與保單當年度資料確認。"
+          ]
+        },
+        {
+          "id": "installment-periodic-benefit",
+          "name": "分期定期保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "要保人與公司約定指定保險金後，可依五年、十年、十五年、二十年或二十五年期間換算為每年年初分期給付。",
+          "source_ref": "保單條款第二條、第十六條及第三十一條，分期定期保險金給付",
+          "conditions": [
+            "分期金額依分期定期保險金預定利率及指定保險金計算。",
+            "可適用於身故保險金與完全失能保險金的指定保險金部分，不含喪葬費用保險金。",
+            "指定保險金低於 5,000 美元或每年給付之分期定期保險金低於 1,000 美元時，改為一次給付指定保險金。"
+          ]
+        }
       ]
     },
     {
@@ -139900,6 +141847,178 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單所載基本保險金額；身故、完全失能與祝壽給付還需要累計增加保險金額、當年度保險金額、保單價值準備金、保價係數與已繳年繳化保險費資料確認。",
+      "version_characteristics": {
+        "product_family": "meilifeng-usd-periodic-whole-life",
+        "terms_revision": "meilifeng-usd-112-first-regulatory-revision",
+        "filing_date": "109.07.01",
+        "filing_number": "中壽商一字第1090701028號",
+        "revision_events": [
+          {
+            "date": "112.01.01",
+            "number": "金管保壽字第1110445485號"
+          }
+        ],
+        "currency": "USD",
+        "currency_label": "美元",
+        "expected_interest_rate_by_payment_period_percent": {
+          "4": 1.5,
+          "6": 1.75,
+          "10": 1.75,
+          "20": 1.75
+        },
+        "value_sharing_bonus": true,
+        "value_sharing_bonus_basis": "declared_rate_minus_expected_interest_rate_times_terminal_policy_reserve",
+        "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium",
+        "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium",
+        "maturity_benefit_formula": "annual_insured_amount_at_age_110",
+        "premium_waiver_available": true,
+        "premium_waiver_disability_grade_min": 2,
+        "premium_waiver_disability_grade_max": 6,
+        "reserve_component": "policy_reserve_times_value_coefficient",
+        "premium_component": "paid_annualized_premium",
+        "maturity_age": 110,
+        "installment_benefit_available": true,
+        "installment_period_options": [
+          5,
+          10,
+          15,
+          20,
+          25
+        ],
+        "installment_minimum_specified_insurance_amount": 5000,
+        "installment_minimum_annual_amount": 1000,
+        "installment_minimum_currency": "USD",
+        "increase_face_amount_option_available": true,
+        "increase_face_amount_options_percent": [
+          10,
+          15,
+          20
+        ],
+        "policy_face_amount_required": true,
+        "accumulated_paid_up_additions_required": true,
+        "annual_insured_amount_required": true,
+        "policy_reserve_required": true,
+        "value_coefficient_required": true,
+        "premium_total_required": true,
+        "standard_annual_premium_required": true,
+        "foreign_currency_policy": true,
+        "exchange_rate_risk_disclosed": true,
+        "no_contract_conversion_from_twd": true,
+        "funeral_benefit_limit_rule": true
+      },
+      "coverage_entries": [
+        {
+          "id": "value-sharing-bonus",
+          "name": "增值回饋分享金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保單年度屆滿且被保險人仍生存時，按該年度期初宣告利率減預定利率的差值乘以期末保單價值準備金計算；可抵繳保費、購買增額繳清、現金給付或儲存生息。",
+          "source_ref": "保單條款第二條及第十二條，增值回饋分享金",
+          "conditions": [
+            "宣告利率低於預定利率時，以預定利率為準。",
+            "現金給付或儲存生息自第七保單年度起適用；現金給付低於 100 美元時依儲存生息辦理至達 100 美元或契約約定事由發生時給付。",
+            "被保險人保險年齡到達十六歲前，增值回饋分享金依條款特別處理。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "身故時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "身故給付後契約效力終止；繳費期間內身故，當期已繳付未到期保險費不退還。",
+            "未滿十五足歲或受監護宣告尚未撤銷者，死亡給付依條款改為喪葬費用保險金並受法定上限限制。",
+            "各項給付、保費收取及其他款項收付皆以美元為貨幣單位，另有匯率風險揭露；外幣與新臺幣契約間不得辦理契約轉換。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "完全失能時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "完全失能程度須為附表一失能程度表所列七項之一。",
+            "完全失能給付後契約效力終止；繳費期間內完全失能，當期已繳付未到期保險費不退還。"
+          ]
+        },
+        {
+          "id": "premium-waiver-disability-grade-2-to-6",
+          "name": "二至六級失能豁免保險費",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "繳費期間內因疾病或傷害致成附表二二至六級失能程度之一，自診斷確定失能翌日起豁免基本保險金額對應之續期應繳保險費。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "conditions": [
+            "豁免範圍不含其他附約及附加條款。",
+            "當期已繳付未到期保險費不退還，契約繼續有效。",
+            "豁免保險費後，不得再辦理減額繳清保險或展期定期保險。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人保險年齡到達 110 歲之保單週年日仍生存時，分別按基本保險金額與累計增加保險金額對應之當年度保險金額加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "annual_insured_amount",
+          "conditions": [
+            "祝壽保險金給付後契約效力終止。",
+            "當年度保險金額須依保單條款附表三與保單當年度資料確認。"
+          ]
+        },
+        {
+          "id": "installment-periodic-benefit",
+          "name": "分期定期保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "要保人與公司約定指定保險金後，可依五年、十年、十五年、二十年或二十五年期間換算為每年年初分期給付。",
+          "source_ref": "保單條款第二條、第十六條及第三十一條，分期定期保險金給付",
+          "conditions": [
+            "分期金額依分期定期保險金預定利率及指定保險金計算。",
+            "可適用於身故保險金與完全失能保險金的指定保險金部分，不含喪葬費用保險金。",
+            "指定保險金低於 5,000 美元或每年給付之分期定期保險金低於 1,000 美元時，改為一次給付指定保險金。"
+          ]
+        }
       ]
     },
     {
@@ -140169,6 +142288,182 @@
           "text_char_count": 6058,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "基本保險金額",
+      "selection_guidance": "請輸入保單所載基本保險金額；身故、完全失能與祝壽給付還需要累計增加保險金額、當年度保險金額、保單價值準備金、保價係數與已繳年繳化保險費資料確認。",
+      "version_characteristics": {
+        "product_family": "meilifeng-usd-periodic-whole-life",
+        "terms_revision": "meilifeng-usd-112-second-regulatory-revision",
+        "filing_date": "109.07.01",
+        "filing_number": "中壽商一字第1090701028號",
+        "revision_events": [
+          {
+            "date": "112.01.01",
+            "number": "金管保壽字第1110445485號"
+          },
+          {
+            "date": "112.03.01",
+            "number": "金管保壽字第1110462568號"
+          }
+        ],
+        "currency": "USD",
+        "currency_label": "美元",
+        "expected_interest_rate_by_payment_period_percent": {
+          "4": 1.5,
+          "6": 1.75,
+          "10": 1.75,
+          "20": 1.75
+        },
+        "value_sharing_bonus": true,
+        "value_sharing_bonus_basis": "declared_rate_minus_expected_interest_rate_times_terminal_policy_reserve",
+        "death_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium",
+        "total_disability_benefit_formula": "greater_of_annual_insured_amount_policy_reserve_times_value_coefficient_and_paid_annualized_premium",
+        "maturity_benefit_formula": "annual_insured_amount_at_age_110",
+        "premium_waiver_available": true,
+        "premium_waiver_disability_grade_min": 2,
+        "premium_waiver_disability_grade_max": 6,
+        "reserve_component": "policy_reserve_times_value_coefficient",
+        "premium_component": "paid_annualized_premium",
+        "maturity_age": 110,
+        "installment_benefit_available": true,
+        "installment_period_options": [
+          5,
+          10,
+          15,
+          20,
+          25
+        ],
+        "installment_minimum_specified_insurance_amount": 5000,
+        "installment_minimum_annual_amount": 1000,
+        "installment_minimum_currency": "USD",
+        "increase_face_amount_option_available": true,
+        "increase_face_amount_options_percent": [
+          10,
+          15,
+          20
+        ],
+        "policy_face_amount_required": true,
+        "accumulated_paid_up_additions_required": true,
+        "annual_insured_amount_required": true,
+        "policy_reserve_required": true,
+        "value_coefficient_required": true,
+        "premium_total_required": true,
+        "standard_annual_premium_required": true,
+        "foreign_currency_policy": true,
+        "exchange_rate_risk_disclosed": true,
+        "no_contract_conversion_from_twd": true,
+        "funeral_benefit_limit_rule": true
+      },
+      "coverage_entries": [
+        {
+          "id": "value-sharing-bonus",
+          "name": "增值回饋分享金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "annual",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "每一保單年度屆滿且被保險人仍生存時，按該年度期初宣告利率減預定利率的差值乘以期末保單價值準備金計算；可抵繳保費、購買增額繳清、現金給付或儲存生息。",
+          "source_ref": "保單條款第二條及第十二條，增值回饋分享金",
+          "conditions": [
+            "宣告利率低於預定利率時，以預定利率為準。",
+            "現金給付或儲存生息自第七保單年度起適用；現金給付低於 100 美元時依儲存生息辦理至達 100 美元或契約約定事由發生時給付。",
+            "被保險人保險年齡到達十六歲前，增值回饋分享金依條款特別處理。"
+          ]
+        },
+        {
+          "id": "death-or-funeral-benefit",
+          "name": "身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "身故時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "身故給付後契約效力終止；繳費期間內身故，當期已繳付未到期保險費不退還。",
+            "未滿十五足歲或受監護宣告尚未撤銷者，死亡給付依條款改為喪葬費用保險金並受法定上限限制。",
+            "各項給付、保費收取及其他款項收付皆以美元為貨幣單位，另有匯率風險揭露；外幣與新臺幣契約間不得辦理契約轉換。"
+          ]
+        },
+        {
+          "id": "total-disability-benefit",
+          "name": "完全失能保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "greater_of",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "完全失能時分別以基本保險金額與累計增加保險金額對應的當年度保險金額、保單價值準備金乘以保價係數、已繳年繳化保險費三者取最大值後加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "greater_of_annual_insured_amount_policy_reserve_premium_component",
+          "conditions": [
+            "完全失能程度須為附表一失能程度表所列七項之一。",
+            "完全失能給付後契約效力終止；繳費期間內完全失能，當期已繳付未到期保險費不退還。"
+          ]
+        },
+        {
+          "id": "premium-waiver-disability-grade-2-to-6",
+          "name": "二至六級失能豁免保險費",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "reference",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "繳費期間內因疾病或傷害致成附表二二至六級失能程度之一，自診斷確定失能翌日起豁免基本保險金額對應之續期應繳保險費。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "conditions": [
+            "豁免範圍不含其他附約及附加條款。",
+            "當期已繳付未到期保險費不退還，契約繼續有效。",
+            "豁免保險費後，不得再辦理減額繳清保險或展期定期保險。"
+          ]
+        },
+        {
+          "id": "maturity-benefit",
+          "name": "祝壽保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "被保險人保險年齡到達 110 歲之保單週年日仍生存時，分別按基本保險金額與累計增加保險金額對應之當年度保險金額加總給付。",
+          "source_ref": "保單條款第十五條，保險給付",
+          "rate_percent": 100,
+          "unit_key": "annual_insured_amount",
+          "conditions": [
+            "祝壽保險金給付後契約效力終止。",
+            "當年度保險金額須依保單條款附表三與保單當年度資料確認。"
+          ]
+        },
+        {
+          "id": "installment-periodic-benefit",
+          "name": "分期定期保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "要保人與公司約定指定保險金後，可依五年、十年、十五年、二十年或二十五年期間換算為每年年初分期給付。",
+          "source_ref": "保單條款第二條、第十六條及第三十一條，分期定期保險金給付",
+          "conditions": [
+            "分期金額依分期定期保險金預定利率及指定保險金計算。",
+            "可適用於身故保險金與完全失能保險金的指定保險金部分，不含喪葬費用保險金。",
+            "指定保險金低於 5,000 美元或每年給付之分期定期保險金低於 1,000 美元時，改為一次給付指定保險金。"
+          ]
         }
       ]
     },
@@ -252643,6 +254938,310 @@
           "extraction_status": "extracted",
           "error": null
         }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單首頁所載本契約保險金額；系統會換算意外、交通、航空、全殘廢、殘廢與重大燒燙傷保額部分。一般身故/全殘、生存與滿期需另依保單年度及年繳化保險費確認。",
+      "version_characteristics": {
+        "terms_revision": "100-original",
+        "filing_date": "100-01-01",
+        "filing_number": "中壽商發字第1000101009號",
+        "revision_date": "none",
+        "revision_number": "none",
+        "special_multiplier_payment_period": 1.1,
+        "special_multiplier_after_payment_period": 0.6,
+        "paid_premium_interest_rate_percent": 2.5,
+        "accident_claim_days": 180,
+        "land_or_water_traffic_multiplier": 3,
+        "aviation_multiplier": 5,
+        "major_burn_rate_percent": 30,
+        "survival_rate_percent": 50,
+        "maturity_rate_percent": 60,
+        "maturity_age": 91,
+        "occupational_category_5_face_amount_rate_percent": 33,
+        "occupational_category_6_face_amount_rate_percent": 25,
+        "total_disability_schedule_item_count": 7,
+        "disability_schedule_item_count": 69,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 90,
+        "disability_cumulative_cap_percent": 100,
+        "nonaccident_injury_surrender_value_refund": false
+      },
+      "coverage_entries": [
+        {
+          "id": "general-death-premium-formula",
+          "name": "一般身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "非意外傷害事故導致身故時，按合計已繳年繳化保險費乘以特定倍數給付；未滿十六歲另依所繳保險費並加計利息規則處理。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "conditions": [
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。",
+            "保險年齡未達十六歲時，意外傷害身故給付不適用；一般身故/全殘廢改依所繳保險費並加計利息規則處理。",
+            "所繳保險費加計利息以2.5%年利率按年複利計算。"
+          ]
+        },
+        {
+          "id": "general-total-disability-premium-formula",
+          "name": "一般全殘廢保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "非意外傷害事故致成附表一七項全殘廢程度之一時，按合計已繳年繳化保險費乘以特定倍數給付；未滿十六歲另依所繳保險費並加計利息規則處理。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "conditions": [
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。",
+            "保險年齡未達十六歲時，意外傷害身故給付不適用；一般身故/全殘廢改依所繳保險費並加計利息規則處理。",
+            "所繳保險費加計利息以2.5%年利率按年複利計算。"
+          ]
+        },
+        {
+          "id": "accidental-death-face-amount",
+          "name": "意外傷害身故保險金或喪葬費用保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "意外傷害身故按保險金額100%給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。"
+          ]
+        },
+        {
+          "id": "land-water-traffic-accidental-death-face-amount",
+          "name": "陸上或水上交通意外傷害身故保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "陸上或水上交通意外傷害身故按保險金額3倍給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 300,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。"
+          ]
+        },
+        {
+          "id": "aviation-accidental-death-face-amount",
+          "name": "航空意外傷害身故保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "航空意外傷害身故按保險金額5倍給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 500,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "限第二條定義之航空意外事故。",
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。"
+          ]
+        },
+        {
+          "id": "accidental-total-disability-face-amount",
+          "name": "意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額100%給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。"
+          ]
+        },
+        {
+          "id": "land-water-total-disability-face-amount",
+          "name": "陸上或水上交通意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "陸上或水上交通意外傷害致成附表一七項全殘廢程度之一者，按保險金額3倍給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 300,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。"
+          ]
+        },
+        {
+          "id": "aviation-total-disability-face-amount",
+          "name": "航空意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "航空意外傷害致成附表一七項全殘廢程度之一者，按保險金額5倍給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 500,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "限第二條定義之航空意外事故。",
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。"
+          ]
+        },
+        {
+          "id": "accidental-disability-rate-table",
+          "name": "意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 5,
+          "rate_max_percent": 90,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "每一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "land-water-disability-rate-table",
+          "name": "陸上或水上交通意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額3倍乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 15,
+          "rate_max_percent": 270,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "每一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "aviation-disability-rate-table",
+          "name": "航空意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額5倍乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 25,
+          "rate_max_percent": 450,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "限第二條定義之航空意外事故。",
+            "每一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "遭受條款約定重大燒燙傷時，按診斷確定時保險金額的30%給付。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 30,
+          "unit_key": "face_amount",
+          "conditions": [
+            "須符合附表三所示重大燒燙傷。"
+          ]
+        },
+        {
+          "id": "survival-benefit-paid-premium-formula",
+          "name": "生存保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "繳費期間屆滿時生存且契約仍有效，按合計已繳年繳化保險費50%給付。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 50,
+          "conditions": [
+            "基礎為條款定義之合計已繳年繳化保險費。"
+          ]
+        },
+        {
+          "id": "maturity-age-91-benefit",
+          "name": "滿期保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "保險年齡到達91歲之保單週年日仍生存且契約有效，按合計已繳年繳化保險費60%給付；給付後契約效力終止。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 60,
+          "conditions": [
+            "基礎為條款定義之合計已繳年繳化保險費。"
+          ]
+        }
       ]
     },
     {
@@ -252910,6 +255509,312 @@
           "text_char_count": 6568,
           "extraction_status": "extracted",
           "error": null
+        }
+      ],
+      "selection_type": "face_amount",
+      "input_mode": "face_amount",
+      "selection_source": "terms",
+      "selection_label": "保險金額",
+      "selection_guidance": "請輸入保單首頁所載本契約保險金額；系統會換算意外、交通、航空、全殘廢、殘廢與重大燒燙傷保額部分。一般身故/全殘、生存與滿期需另依保單年度及年繳化保險費確認。",
+      "version_characteristics": {
+        "terms_revision": "100-first-partial-revision",
+        "filing_date": "100-01-01",
+        "filing_number": "中壽商發字第1000101009號",
+        "revision_date": "100-03-28",
+        "revision_number": "中壽商發字第1000328001號",
+        "special_multiplier_payment_period": 1.1,
+        "special_multiplier_after_payment_period": 0.6,
+        "paid_premium_interest_rate_percent": 2.5,
+        "accident_claim_days": 180,
+        "land_or_water_traffic_multiplier": 3,
+        "aviation_multiplier": 5,
+        "major_burn_rate_percent": 30,
+        "survival_rate_percent": 50,
+        "maturity_rate_percent": 60,
+        "maturity_age": 91,
+        "occupational_category_5_face_amount_rate_percent": 33,
+        "occupational_category_6_face_amount_rate_percent": 25,
+        "total_disability_schedule_item_count": 7,
+        "disability_schedule_item_count": 69,
+        "disability_rate_min_percent": 5,
+        "disability_rate_max_percent": 90,
+        "disability_cumulative_cap_percent": 100,
+        "nonaccident_injury_surrender_value_refund": true
+      },
+      "coverage_entries": [
+        {
+          "id": "general-death-premium-formula",
+          "name": "一般身故保險金或喪葬費用保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "非意外傷害事故導致身故時，按合計已繳年繳化保險費乘以特定倍數給付；未滿十六歲另依所繳保險費並加計利息規則處理。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "conditions": [
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。",
+            "保險年齡未達十六歲時，意外傷害身故給付不適用；一般身故/全殘廢改依所繳保險費並加計利息規則處理。",
+            "所繳保險費加計利息以2.5%年利率按年複利計算。",
+            "第一部份變更條款另約定非意外身故或全殘廢時，除依約定給付外，另退還傷害險部份解約金予要保人。"
+          ]
+        },
+        {
+          "id": "general-total-disability-premium-formula",
+          "name": "一般全殘廢保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "unknown",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "非意外傷害事故致成附表一七項全殘廢程度之一時，按合計已繳年繳化保險費乘以特定倍數給付；未滿十六歲另依所繳保險費並加計利息規則處理。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "conditions": [
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。",
+            "保險年齡未達十六歲時，意外傷害身故給付不適用；一般身故/全殘廢改依所繳保險費並加計利息規則處理。",
+            "所繳保險費加計利息以2.5%年利率按年複利計算。",
+            "第一部份變更條款另約定非意外身故或全殘廢時，除依約定給付外，另退還傷害險部份解約金予要保人。"
+          ]
+        },
+        {
+          "id": "accidental-death-face-amount",
+          "name": "意外傷害身故保險金或喪葬費用保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "意外傷害身故按保險金額100%給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。"
+          ]
+        },
+        {
+          "id": "land-water-traffic-accidental-death-face-amount",
+          "name": "陸上或水上交通意外傷害身故保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "陸上或水上交通意外傷害身故按保險金額3倍給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 300,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。"
+          ]
+        },
+        {
+          "id": "aviation-accidental-death-face-amount",
+          "name": "航空意外傷害身故保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "航空意外傷害身故按保險金額5倍給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 500,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "限第二條定義之航空意外事故。",
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。"
+          ]
+        },
+        {
+          "id": "accidental-total-disability-face-amount",
+          "name": "意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "意外傷害致成附表一所列七項全殘廢程度之一者，按保險金額100%給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 100,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。"
+          ]
+        },
+        {
+          "id": "land-water-total-disability-face-amount",
+          "name": "陸上或水上交通意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "陸上或水上交通意外傷害致成附表一七項全殘廢程度之一者，按保險金額3倍給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 300,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。"
+          ]
+        },
+        {
+          "id": "aviation-total-disability-face-amount",
+          "name": "航空意外傷害全殘廢保險金（保險金額部分）",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "highest",
+          "source": "terms",
+          "note": "航空意外傷害致成附表一七項全殘廢程度之一者，按保險金額5倍給付，並另加計特定倍數乘以合計已繳年繳化保險費。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 500,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "限第二條定義之航空意外事故。",
+            "一般身故、一般全殘廢、生存及滿期給付須依保單年度、年繳化保險費與繳費是否屆滿判斷；特定倍數為繳費期間內1.1，繳費期間屆滿後0.6。"
+          ]
+        },
+        {
+          "id": "accidental-disability-rate-table",
+          "name": "意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 5,
+          "rate_max_percent": 90,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "每一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "land-water-disability-rate-table",
+          "name": "陸上或水上交通意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額3倍乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 15,
+          "rate_max_percent": 270,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "限第二條定義之陸上交通意外事故或水上交通意外事故。",
+            "每一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "aviation-disability-rate-table",
+          "name": "航空意外傷害殘廢保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "cumulative_cap",
+          "source": "terms",
+          "note": "致成附表二所列殘廢程度之一者，按保險金額5倍乘以該表給付比例給付。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_min_percent": 25,
+          "rate_max_percent": 450,
+          "unit_key": "face_amount",
+          "conditions": [
+            "限第二條定義之意外傷害事故。",
+            "身故、全殘廢或殘廢原則上須自意外事故發生日起一百八十日以內發生；超過者須證明與該意外事故具因果關係。",
+            "職業變更為第五類或第六類時，條款約定保險金額可能依33%或25%折算。",
+            "限第二條定義之航空意外事故。",
+            "每一保單年度各項殘廢給付比例累計最高以百分之一百為限。"
+          ]
+        },
+        {
+          "id": "major-burn",
+          "name": "重大燒燙傷保險金",
+          "basis": "face_amount",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_event",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "遭受條款約定重大燒燙傷時，按診斷確定時保險金額的30%給付。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 30,
+          "unit_key": "face_amount",
+          "conditions": [
+            "須符合附表三所示重大燒燙傷。"
+          ]
+        },
+        {
+          "id": "survival-benefit-paid-premium-formula",
+          "name": "生存保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "繳費期間屆滿時生存且契約仍有效，按合計已繳年繳化保險費50%給付。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 50,
+          "conditions": [
+            "基礎為條款定義之合計已繳年繳化保險費。"
+          ]
+        },
+        {
+          "id": "maturity-age-91-benefit",
+          "name": "滿期保險金",
+          "basis": "policy_recorded_limit",
+          "calculation_basis": "percentage_of_base",
+          "amount_role": "payout",
+          "limit_scope": "per_policy",
+          "aggregation_rule": "separate",
+          "source": "terms",
+          "note": "保險年齡到達91歲之保單週年日仍生存且契約有效，按合計已繳年繳化保險費60%給付；給付後契約效力終止。",
+          "source_ref": "保單條款第二條、第十四條、附表一至三，第 2-18 頁",
+          "rate_percent": 60,
+          "conditions": [
+            "基礎為條款定義之合計已繳年繳化保險費。"
+          ]
         }
       ]
     },
