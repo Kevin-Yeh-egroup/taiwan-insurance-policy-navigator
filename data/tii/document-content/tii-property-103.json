@@ -1,0 +1,713 @@
+{
+  "generated_at": "2026-07-31T21:45:28+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:45:28+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-103",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 7,
+    "document_count": 7,
+    "extracted_document_count": 7,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 7,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 1,
+    "product_summary_document_count": 6,
+    "total_text_characters": 21222,
+    "focus_counts": [
+      {
+        "label": "特殊項目",
+        "count": 4
+      },
+      {
+        "label": "保障項目",
+        "count": 3
+      },
+      {
+        "label": "理賠申請",
+        "count": 3
+      },
+      {
+        "label": "重要定義",
+        "count": 2
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "豁免/附加條款",
+        "count": 2
+      },
+      {
+        "label": "失能/殘扶",
+        "count": 1
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 7
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "196131208014000000",
+      "company": "台灣區漁船產物保險合作社",
+      "insurance_category": "海上保險",
+      "product_name": "有限責任台灣區漁船產物保險合作社漁船船體險",
+      "sale_status": "未停售",
+      "sale_date": "070/03/16",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-103",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 4911,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險範圍。",
+          "terms": [
+            "保險範圍"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "196132207013010000-F.pdf",
+              "page": 1,
+              "term": "保險範圍",
+              "snippet": "...說明之事實時，不在此限。 \n第十八條 出險通知 \n被保漁船遭遇意外事故，不論是否屬於保險範圍內之損失，要保人\n或被保險人應立即以最迅速方式通知保險人。 \n未依前項約定為通知者，..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：限制、保險期間、自負額。",
+          "terms": [
+            "限制",
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "196132207013010000-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...3. 被保漁船發生全損，不論漁具獲救與否，本保險即行失效。 \n第七條 \n複保險之限制與通知 \n要保人與被保險人對於被保漁船，於同一保險利益，同一保險事\n故，與數個保險人..."
+            },
+            {
+              "document": "196132207013010000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...船級 \n1. 有船級者：被保漁船經中國驗船中心或保險人認可之驗船協會\n敘級者，於保險期間內應遵照中心或驗船協會之規定施行定\n期、特別及臨時檢查並維持該項船級。 \n2. 無船..."
+            },
+            {
+              "document": "196132207013010000-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...全\n損所發生之損害防止或救助費用時，應先依船價及漁獲物之比\n例核算各該分攤金額後扣除自負額，再就其餘額按船價與保險\n金額之比例攤賠，惟無論任何原因所發生對船體、機器、艤裝、..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：申請、通知。",
+          "terms": [
+            "申請",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "196132207013010000-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...船舶設備遇有損失者。 \n4. 適航性發生疑義者。 \n第二十條 索賠文件 \n被保險人申請賠款時，應提供漁船幹部之執業證書影本及有關機關\n簽證之海事報告書，或漁業主管機關查明..."
+            },
+            {
+              "document": "196132207013010000-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": ".... 被保漁船發生全損，不論漁具獲救與否，本保險即行失效。 \n第七條 \n複保險之限制與通知 \n要保人與被保險人對於被保漁船，於同一保險利益，同一保險事\n故，與數個保險人分別訂..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "196132207013010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 134531,
+          "page_count": 7,
+          "pages_parsed": 7,
+          "text_char_count": 4911,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "196132108000010000",
+      "company": "台灣區漁船產物保險合作社",
+      "insurance_category": "海上保險",
+      "product_name": "有限責任台灣區漁船產物保險合作社漁業漁船船員僱主責任險",
+      "sale_status": "未停售",
+      "sale_date": "100/11/15",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-103",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1560,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：殘廢。",
+          "terms": [
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "196132108000010001-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...或管\n理檢驗合格適 航之漁船，因從事漁撈作業發生意外事\n故，致船員死亡，失蹤或肢 體殘廢時，依法應由被保\n險人負賠償責任而受賠償請求時，由保險 人對被保險\n人負賠償責任。..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：定義。",
+          "terms": [
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "196132108000010001-F.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...628號 \n臺灣區漁船產物保險合作社 \n漁業漁船船員僱主責任保險條款 \n \n第一條：定義 本保險契約所稱漁業漁船，係指從事漁撈作\n業之漁船。 \n \n第二條：承保範圍 \n本保..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "196132108000010001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...漁船，係指從事漁撈作\n業之漁船。 \n \n第二條：承保範圍 \n本保險契約承保被保險人在保險期間內合法使用或管\n理檢驗合格適 航之漁船，因從事漁撈作業發生意外事\n故，致船員死亡，失..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：申請、通知。",
+          "terms": [
+            "申請",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "196132108000010001-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...章程規所致者。 \n第四條：每次航程效力 \n本保險契約所承保之船員意外事故責任，自漁船申請\n核定船員登船時起，至船員返港離船時或保險期間屆\n滿時止。 \n包括船員在其他港口因需..."
+            },
+            {
+              "document": "196132108000010001-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...險人應於開始\n\n\n--- page 3 ---\n\n附件A7 第3頁 \n \n營運前立即通知保險人補齊「保險期間最高賠償\n金額」之差額，並繳付差額保險費，以足額保障\n被保險人依..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "196132108000010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 95343,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 1560,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "196132207000030000",
+      "company": "台灣區漁船產物保險合作社",
+      "insurance_category": "海上保險",
+      "product_name": "有限責任台灣區漁船產物保險合作社-協會建造險",
+      "sale_status": "未停售",
+      "sale_date": "100/06/11",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-103",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1911,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：限制。",
+          "terms": [
+            "限制"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "196132207000030000-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...including Limited \n \n \n \n1987/7/20 協會港口險含限制航程 \n（限制船舶僅在港口內停泊或有必要的移動，並含特定航行範圍） \n \n \n承保範..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "196132207000030000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 143875,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 1911,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "196132207013010000",
+      "company": "台灣區漁船產物保險合作社",
+      "insurance_category": "海上保險",
+      "product_name": "有限責任台灣區漁船船體險- INSTITUTE WAR AND STRIKES CLAUSES HULL－TIME(協會船體兵險及罷工險附加條款)-除外地區列表",
+      "sale_status": "未停售",
+      "sale_date": "100/05/24",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-103",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 9825,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "196132207013010101-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...於本條\n款。 \n遇有違反拖曳或救助服務保證事項時，被保險人於知悉有該違反情事後立\n即通知保險人並同意加付保險費，則對於違反事項認為已經雙方同意。 \n三、扣留(DETAINM..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "196132207013010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 162727,
+          "page_count": 8,
+          "pages_parsed": 8,
+          "text_char_count": 9825,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "196132208013010000",
+      "company": "台灣區漁船產物保險合作社",
+      "insurance_category": "海上保險",
+      "product_name": "漁船船體險-協會擴大輻射汙染除外條款",
+      "sale_status": "未停售",
+      "sale_date": "101/11/12",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-103",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 805,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "196132208013010000-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 109183,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 805,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "196132507013020000",
+      "company": "台灣區漁船產物保險合作社",
+      "insurance_category": "海上保險",
+      "product_name": "有限責任台灣區漁船產物保險合作社漁船船體險-協會港口險含限制航程",
+      "sale_status": "未停售",
+      "sale_date": "100/06/01",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-103",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1720,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "196132507013020000-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...和救助費 \n\n\n--- page 2 ---\n\n用依法應負的賠償責任，伽以保險船舶的保險金額為限； \n(4)保險船舶遭受本條款責任範圍內的損失事故後引起的清除保險船舶殘骸的費..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：疾病。",
+          "terms": [
+            "疾病"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "196132507013020000-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...了改進 \n或更改設計所發生的任何費用； \n3、由於被保險人對僱用的職工的死亡、傷殘或疾病所應承擔的責任和費用； \n4、核反應、核輻射或放射性污染引起的損失或費用； \n5、由..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：除外責任、限制、保險期間。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "196132507013020000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...，本社對本款所列各項的責任或費用，按 保\n險金額和保險價靹的比例計算賠償． \n建造險除外責任 下列各項， \n本社不予負責： \n1、由於被保險人故意或非法行為所造成的損失； \n2..."
+            },
+            {
+              "document": "196132507013020000-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...金額為限； \n(5)在發生碰撞或其他事故後，被保險人在事先徵得本社書面同意後，為爭取限制 賠\n償責任所支付的訴訟費用；  \n(6)保險船舶的保險金額如佂於保險價靹，本社對本..."
+            },
+            {
+              "document": "196132507013020000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...介 \n1988 年 6 月 1 日協會建造險條款 \n本保險以英國法律與慣例為依據 \n保險期間 \n \n本保險在保險單列明的保險期間內從保險船舶建造開工之日起生效，直至保險船舶..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "196132507013020000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 144749,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1720,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "196132508014010000",
+      "company": "台灣區漁船產物保險合作社",
+      "insurance_category": "海上保險",
+      "product_name": "有限責任台灣區漁船產物保險合作社-漁船船舶保險附加火險特別約定附加條款",
+      "sale_status": "未停售",
+      "sale_date": "100/11/22",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-103",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 490,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "196132508014010300-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 98529,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 490,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

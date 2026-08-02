@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-21T17:00:27+08:00",
+  "generated_at": "2026-07-28T18:27:39+08:00",
   "batch_id": "tii-life-008",
   "record_count": 18,
   "records": [
     {
       "product_id": "202311RZ1A01B21A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v7",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "three-plan-medical-v1",
       "source_file": "202311RZ1A01B21A11Z10000000-A.pdf",
       "source_document_sha256": "3f1f90857041422b0a778165705f3d7764b3c549892bd9637a62eaccf1dc4c3f",
@@ -26,7 +26,6 @@
             {
               "id": "hospital-daily",
               "name": "住院日額保險金",
-              "amount": 1000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -34,12 +33,12 @@
               "aggregation_rule": "separate",
               "source": "terms",
               "note": "按實際住院日數給付，金額依所選計畫計算。",
-              "source_ref": "保單條款第十三條及附表一，第 7 頁"
+              "source_ref": "保單條款第十三條及附表一，第 7 頁",
+              "amount": 1000
             },
             {
               "id": "inpatient-medical-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 50000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -47,12 +46,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "住院醫療費用採實支實付並受本限額及年度總限額約束；未經全民健康保險給付時，依實際支付費用的 70% 給付。",
-              "source_ref": "保單條款第十四條、第十八條及附表一，第 7 頁"
+              "source_ref": "保單條款第十四條、第十八條及附表一，第 7 頁",
+              "amount": 50000
             },
             {
               "id": "outpatient-surgery-limit",
               "name": "門診手術費用保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -60,12 +59,12 @@
               "aggregation_rule": "choose_one",
               "source": "terms",
               "note": "門診手術費用採實支實付；若同時符合特定處置給付，兩者擇一給付。",
-              "source_ref": "保單條款第十五條、第二十條及附表一，第 7 頁"
+              "source_ref": "保單條款第十五條、第二十條及附表一，第 7 頁",
+              "amount": 30000
             },
             {
               "id": "special-procedure-limit",
               "name": "特定處置費用保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -73,12 +72,12 @@
               "aggregation_rule": "choose_one",
               "source": "terms",
               "note": "特定處置費用採實支實付；若同時符合門診手術給付，兩者擇一給付。",
-              "source_ref": "保單條款第十六條、第二十條及附表一，第 7 頁"
+              "source_ref": "保單條款第十六條、第二十條及附表一，第 7 頁",
+              "amount": 30000
             },
             {
               "id": "pre-post-outpatient",
               "name": "住院前後門診保險金",
-              "amount": 600,
               "basis": "per_event",
               "calculation_basis": "fixed_amount",
               "amount_role": "payout",
@@ -86,12 +85,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "依條款約定期間內的實際門診次數給付，每日最多一次。",
-              "source_ref": "保單條款第十七條及附表一，第 7 頁"
+              "source_ref": "保單條款第十七條及附表一，第 7 頁",
+              "amount": 600
             },
             {
               "id": "annual-medical-cap",
               "name": "每年保險金給付總限額",
-              "amount": 500000,
               "basis": "annual_limit",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -99,7 +98,8 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一保單年度累計給付達本限額後，不再給付其他醫療保險金。",
-              "source_ref": "保單條款第二十條及附表一，第 7 頁"
+              "source_ref": "保單條款第二十條及附表一，第 7 頁",
+              "amount": 500000
             }
           ]
         },
@@ -110,7 +110,6 @@
             {
               "id": "hospital-daily",
               "name": "住院日額保險金",
-              "amount": 2000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -118,12 +117,12 @@
               "aggregation_rule": "separate",
               "source": "terms",
               "note": "按實際住院日數給付，金額依所選計畫計算。",
-              "source_ref": "保單條款第十三條及附表一，第 7 頁"
+              "source_ref": "保單條款第十三條及附表一，第 7 頁",
+              "amount": 2000
             },
             {
               "id": "inpatient-medical-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -131,12 +130,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "住院醫療費用採實支實付並受本限額及年度總限額約束；未經全民健康保險給付時，依實際支付費用的 70% 給付。",
-              "source_ref": "保單條款第十四條、第十八條及附表一，第 7 頁"
+              "source_ref": "保單條款第十四條、第十八條及附表一，第 7 頁",
+              "amount": 100000
             },
             {
               "id": "outpatient-surgery-limit",
               "name": "門診手術費用保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -144,12 +143,12 @@
               "aggregation_rule": "choose_one",
               "source": "terms",
               "note": "門診手術費用採實支實付；若同時符合特定處置給付，兩者擇一給付。",
-              "source_ref": "保單條款第十五條、第二十條及附表一，第 7 頁"
+              "source_ref": "保單條款第十五條、第二十條及附表一，第 7 頁",
+              "amount": 30000
             },
             {
               "id": "special-procedure-limit",
               "name": "特定處置費用保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -157,12 +156,12 @@
               "aggregation_rule": "choose_one",
               "source": "terms",
               "note": "特定處置費用採實支實付；若同時符合門診手術給付，兩者擇一給付。",
-              "source_ref": "保單條款第十六條、第二十條及附表一，第 7 頁"
+              "source_ref": "保單條款第十六條、第二十條及附表一，第 7 頁",
+              "amount": 30000
             },
             {
               "id": "pre-post-outpatient",
               "name": "住院前後門診保險金",
-              "amount": 800,
               "basis": "per_event",
               "calculation_basis": "fixed_amount",
               "amount_role": "payout",
@@ -170,12 +169,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "依條款約定期間內的實際門診次數給付，每日最多一次。",
-              "source_ref": "保單條款第十七條及附表一，第 7 頁"
+              "source_ref": "保單條款第十七條及附表一，第 7 頁",
+              "amount": 800
             },
             {
               "id": "annual-medical-cap",
               "name": "每年保險金給付總限額",
-              "amount": 1000000,
               "basis": "annual_limit",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -183,7 +182,8 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一保單年度累計給付達本限額後，不再給付其他醫療保險金。",
-              "source_ref": "保單條款第二十條及附表一，第 7 頁"
+              "source_ref": "保單條款第二十條及附表一，第 7 頁",
+              "amount": 1000000
             }
           ]
         },
@@ -194,7 +194,6 @@
             {
               "id": "hospital-daily",
               "name": "住院日額保險金",
-              "amount": 3000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -202,12 +201,12 @@
               "aggregation_rule": "separate",
               "source": "terms",
               "note": "按實際住院日數給付，金額依所選計畫計算。",
-              "source_ref": "保單條款第十三條及附表一，第 7 頁"
+              "source_ref": "保單條款第十三條及附表一，第 7 頁",
+              "amount": 3000
             },
             {
               "id": "inpatient-medical-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 150000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -215,12 +214,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "住院醫療費用採實支實付並受本限額及年度總限額約束；未經全民健康保險給付時，依實際支付費用的 70% 給付。",
-              "source_ref": "保單條款第十四條、第十八條及附表一，第 7 頁"
+              "source_ref": "保單條款第十四條、第十八條及附表一，第 7 頁",
+              "amount": 150000
             },
             {
               "id": "outpatient-surgery-limit",
               "name": "門診手術費用保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -228,12 +227,12 @@
               "aggregation_rule": "choose_one",
               "source": "terms",
               "note": "門診手術費用採實支實付；若同時符合特定處置給付，兩者擇一給付。",
-              "source_ref": "保單條款第十五條、第二十條及附表一，第 7 頁"
+              "source_ref": "保單條款第十五條、第二十條及附表一，第 7 頁",
+              "amount": 30000
             },
             {
               "id": "special-procedure-limit",
               "name": "特定處置費用保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -241,12 +240,12 @@
               "aggregation_rule": "choose_one",
               "source": "terms",
               "note": "特定處置費用採實支實付；若同時符合門診手術給付，兩者擇一給付。",
-              "source_ref": "保單條款第十六條、第二十條及附表一，第 7 頁"
+              "source_ref": "保單條款第十六條、第二十條及附表一，第 7 頁",
+              "amount": 30000
             },
             {
               "id": "pre-post-outpatient",
               "name": "住院前後門診保險金",
-              "amount": 1000,
               "basis": "per_event",
               "calculation_basis": "fixed_amount",
               "amount_role": "payout",
@@ -254,12 +253,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "依條款約定期間內的實際門診次數給付，每日最多一次。",
-              "source_ref": "保單條款第十七條及附表一，第 7 頁"
+              "source_ref": "保單條款第十七條及附表一，第 7 頁",
+              "amount": 1000
             },
             {
               "id": "annual-medical-cap",
               "name": "每年保險金給付總限額",
-              "amount": 1500000,
               "basis": "annual_limit",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -267,7 +266,8 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一保單年度累計給付達本限額後，不再給付其他醫療保險金。",
-              "source_ref": "保單條款第二十條及附表一，第 7 頁"
+              "source_ref": "保單條款第二十條及附表一，第 7 頁",
+              "amount": 1500000
             }
           ]
         }
@@ -276,7 +276,7 @@
     {
       "product_id": "202313MZ1A71021A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v7",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "group-plan-inpatient-limit-v1",
       "source_file": "202313MZ1A71021A11Z10000000-A.pdf",
       "source_document_sha256": "36651ce99b6f74cb1aff76bcac9bee995141cf0511bd9863e2156b83e083d70c",
@@ -295,7 +295,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 60000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -303,12 +302,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 60000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 60000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -316,12 +315,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 60000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 600,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -330,6 +329,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 600,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -343,7 +343,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -351,12 +350,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 80000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -364,12 +363,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 80000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1200,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -378,6 +377,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 1200,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -391,7 +391,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -399,12 +398,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 100000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -412,12 +411,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 100000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -426,6 +425,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 1800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -439,7 +439,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 120000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -447,12 +446,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 120000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 120000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -460,12 +459,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 120000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 2400,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -474,6 +473,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 2400,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -487,7 +487,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 140000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -495,12 +494,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 140000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 140000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -508,12 +507,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 140000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 3000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -522,6 +521,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 3000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -535,7 +535,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 200000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -543,12 +542,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 200000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 200000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -556,12 +555,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 200000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 4800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -570,6 +569,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 4800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -583,7 +583,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -591,12 +590,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 30000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -604,12 +603,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 30000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 900,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -618,6 +617,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 900,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -631,7 +631,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 70000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -639,12 +638,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 70000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 70000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -652,12 +651,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 70000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -666,6 +665,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 1000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -679,7 +679,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 50000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -687,12 +686,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 50000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 50000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -700,12 +699,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 50000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 500,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -714,6 +713,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 500,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -727,7 +727,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -735,12 +734,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 80000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -748,12 +747,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 80000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -762,6 +761,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -775,7 +775,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -783,12 +782,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 100000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -796,12 +795,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 100000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -810,6 +809,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 1000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -821,7 +821,7 @@
     {
       "product_id": "202313MZ1A71021A11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v7",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "group-plan-inpatient-limit-v1",
       "source_file": "202313MZ1A71021A11Z10000001-A.pdf",
       "source_document_sha256": "8a2b44d371c11098b98bf3261d0206fc0e791f01a3f96add92a6c9ac87cba84d",
@@ -840,7 +840,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 60000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -848,12 +847,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 60000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 60000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -861,12 +860,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 60000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 600,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -875,6 +874,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 600,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -888,7 +888,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -896,12 +895,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 80000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -909,12 +908,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 80000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1200,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -923,6 +922,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 1200,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -936,7 +936,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -944,12 +943,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 100000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -957,12 +956,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 100000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -971,6 +970,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 1800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -984,7 +984,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 120000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -992,12 +991,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 120000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 120000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1005,12 +1004,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 120000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 2400,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1019,6 +1018,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 2400,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1032,7 +1032,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 140000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1040,12 +1039,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 140000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 140000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1053,12 +1052,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 140000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 3000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1067,6 +1066,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 3000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1080,7 +1080,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 200000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1088,12 +1087,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 200000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 200000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1101,12 +1100,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 200000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 4800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1115,6 +1114,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 4800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1128,7 +1128,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1136,12 +1135,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 30000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1149,12 +1148,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 30000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 900,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1163,6 +1162,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 900,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1176,7 +1176,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 70000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1184,12 +1183,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 70000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 70000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1197,12 +1196,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 70000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1211,6 +1210,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 1000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1224,7 +1224,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 50000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1232,12 +1231,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 50000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 50000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1245,12 +1244,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 50000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 500,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1259,6 +1258,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 500,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1272,7 +1272,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1280,12 +1279,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 80000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1293,12 +1292,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 80000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1307,6 +1306,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1320,7 +1320,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1328,12 +1327,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 100000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1341,12 +1340,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 100000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1355,6 +1354,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 1000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1366,7 +1366,7 @@
     {
       "product_id": "202313MZ1A71021A11Z10000002",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v7",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "group-plan-inpatient-limit-v1",
       "source_file": "202313MZ1A71021A11Z10000002-A.pdf",
       "source_document_sha256": "669f84b19a9fc0b92d9ff9f10d59d0c88315c5712e016aa6cda40cadf0614fff",
@@ -1385,7 +1385,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 60000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1393,12 +1392,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 60000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 60000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1406,12 +1405,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 60000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 600,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1420,6 +1419,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 600,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1433,7 +1433,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1441,12 +1440,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 80000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1454,12 +1453,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 80000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1200,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1468,6 +1467,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 1200,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1481,7 +1481,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1489,12 +1488,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 100000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1502,12 +1501,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 100000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1516,6 +1515,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 1800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1529,7 +1529,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 120000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1537,12 +1536,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 120000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 120000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1550,12 +1549,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 120000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 2400,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1564,6 +1563,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 2400,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1577,7 +1577,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 140000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1585,12 +1584,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 140000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 140000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1598,12 +1597,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 140000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 3000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1612,6 +1611,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 3000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1625,7 +1625,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 200000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1633,12 +1632,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 200000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 200000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1646,12 +1645,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 200000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 4800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1660,6 +1659,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 4800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1673,7 +1673,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1681,12 +1680,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 30000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1694,12 +1693,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 30000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 900,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1708,6 +1707,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 900,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1721,7 +1721,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 70000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1729,12 +1728,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 70000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 70000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1742,12 +1741,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 70000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1756,6 +1755,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 1000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1769,7 +1769,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 50000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1777,12 +1776,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 50000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 50000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1790,12 +1789,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 50000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 500,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1804,6 +1803,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 500,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1817,7 +1817,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1825,12 +1824,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 80000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1838,12 +1837,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 80000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1852,6 +1851,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1865,7 +1865,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1873,12 +1872,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 100000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1886,12 +1885,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 7 頁",
+              "amount": 100000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1900,6 +1899,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 7 頁",
+              "amount": 1000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1911,7 +1911,7 @@
     {
       "product_id": "202313MZ1A71021A11Z10000003",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v7",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "group-plan-inpatient-limit-v1",
       "source_file": "202313MZ1A71021A11Z10000003-A.pdf",
       "source_document_sha256": "a3199c1ed56869dea1a8b060d75afe472697c71098aca6fce66aebc2ea95633c",
@@ -1930,7 +1930,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 60000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1938,12 +1937,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 60000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 60000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1951,12 +1950,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 60000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 600,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -1965,6 +1964,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 600,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -1978,7 +1978,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1986,12 +1985,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 80000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -1999,12 +1998,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 80000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1200,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2013,6 +2012,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 1200,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2026,7 +2026,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2034,12 +2033,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 100000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2047,12 +2046,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 100000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2061,6 +2060,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 1800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2074,7 +2074,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 120000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2082,12 +2081,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 120000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 120000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2095,12 +2094,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 120000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 2400,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2109,6 +2108,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 2400,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2122,7 +2122,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 140000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2130,12 +2129,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 140000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 140000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2143,12 +2142,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 140000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 3000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2157,6 +2156,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 3000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2170,7 +2170,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 200000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2178,12 +2177,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 200000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 200000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2191,12 +2190,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 200000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 4800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2205,6 +2204,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 4800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2218,7 +2218,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2226,12 +2225,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 30000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2239,12 +2238,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 30000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 900,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2253,6 +2252,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 900,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2266,7 +2266,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 70000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2274,12 +2273,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 70000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 70000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2287,12 +2286,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 70000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2301,6 +2300,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 1000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2314,7 +2314,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 50000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2322,12 +2321,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 50000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 50000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2335,12 +2334,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 50000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 500,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2349,6 +2348,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 500,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2362,7 +2362,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2370,12 +2369,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 80000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2383,12 +2382,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 80000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2397,6 +2396,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2410,7 +2410,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2418,12 +2417,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 100000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2431,12 +2430,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 100000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2445,6 +2444,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 1000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2456,7 +2456,7 @@
     {
       "product_id": "202313MZ1A71021A11Z10000004",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v7",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "group-plan-inpatient-limit-v1",
       "source_file": "202313MZ1A71021A11Z10000004-A.pdf",
       "source_document_sha256": "59b5b5dab800db2a08c5a685cf0c3d4c683a66877736009921533272aebac622",
@@ -2475,7 +2475,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 60000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2483,12 +2482,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 60000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 60000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2496,12 +2495,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 60000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 600,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2510,6 +2509,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 600,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2523,7 +2523,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2531,12 +2530,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 80000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2544,12 +2543,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 80000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1200,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2558,6 +2557,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 1200,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2571,7 +2571,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2579,12 +2578,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 100000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2592,12 +2591,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 100000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2606,6 +2605,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 1800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2619,7 +2619,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 120000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2627,12 +2626,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 120000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 120000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2640,12 +2639,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 120000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 2400,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2654,6 +2653,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 2400,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2667,7 +2667,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 140000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2675,12 +2674,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 140000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 140000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2688,12 +2687,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 140000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 3000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2702,6 +2701,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 3000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2715,7 +2715,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 200000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2723,12 +2722,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 200000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 200000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2736,12 +2735,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 200000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 4800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2750,6 +2749,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 4800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2763,7 +2763,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2771,12 +2770,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 30000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 30000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2784,12 +2783,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 30000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 900,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2798,6 +2797,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 900,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2811,7 +2811,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 70000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2819,12 +2818,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 70000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 70000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2832,12 +2831,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 70000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2846,6 +2845,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 1000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2859,7 +2859,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 50000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2867,12 +2866,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 50000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 50000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2880,12 +2879,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 50000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 500,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2894,6 +2893,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 500,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2907,7 +2907,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2915,12 +2914,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 80000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 80000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2928,12 +2927,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 80000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 800,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2942,6 +2941,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 800,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -2955,7 +2955,6 @@
             {
               "id": "inpatient-medical-shared-limit",
               "name": "住院醫療費用保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2963,12 +2962,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "同一事故採實支實付，並與門診手術費用補償保險金共用本限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十七條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 100000
             },
             {
               "id": "outpatient-surgery-shared-limit",
               "name": "門診手術費用補償保險金限額",
-              "amount": 100000,
               "basis": "per_event",
               "calculation_basis": "reimbursement_with_cap",
               "amount_role": "limit",
@@ -2976,12 +2975,12 @@
               "aggregation_rule": "cumulative_cap",
               "source": "terms",
               "note": "門診手術採實支實付，並與住院醫療費用保險金共用同一事故限額；未經全民健康保險給付時，按實際支付費用的 100% 給付。",
-              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁"
+              "source_ref": "保單條款第十八條、第十九條、第二十三條及附表二，第 8 頁",
+              "amount": 100000
             },
             {
               "id": "hospital-daily-option",
               "name": "住院日額補償保險金",
-              "amount": 1000,
               "basis": "daily_total",
               "calculation_basis": "per_day",
               "amount_role": "payout",
@@ -2990,6 +2989,7 @@
               "source": "terms",
               "note": "按實際住院日數給付，同一次住院最高 31 日；選擇本項後，不得再申領同一次住院的住院醫療費用保險金。",
               "source_ref": "保單條款第二十條及附表二，第 8 頁",
+              "amount": 1000,
               "conditions": [
                 "同一次住院最高給付 31 日"
               ]
@@ -3001,7 +3001,7 @@
     {
       "product_id": "202313MZ1A96721A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v31",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-life-fishermen-group-medical-plan-v1",
       "source_file": "202313MZ1A96721A11Z10000000-A.pdf",
       "source_document_sha256": "d973f00332478df0c727bf622e59293a61174df40af4ed75e42710956a13f210",
@@ -3087,7 +3087,7 @@
     {
       "product_id": "202313MZ1A96721A11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v31",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-life-fishermen-group-medical-plan-v1",
       "source_file": "202313MZ1A96721A11Z10000001-A.pdf",
       "source_document_sha256": "7f60092190a8a8754c50d9def9284ffca08fe7f54c381ce050194ad3822a2985",
@@ -3173,7 +3173,7 @@
     {
       "product_id": "202363MZ1A84321A12Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v34",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-group-long-term-care-service-face-amount-v1",
       "source_file": "202363MZ1A84321A12Z10000000-A.pdf",
       "source_document_sha256": "f8bd887258993fc49b60f7866285f58cd61eba06b37b68cc5b3b91d1ba180568",
@@ -3377,7 +3377,7 @@
     {
       "product_id": "202363MZ1A84321A12Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v34",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-group-long-term-care-service-face-amount-v1",
       "source_file": "202363MZ1A84321A12Z10000001-A.pdf",
       "source_document_sha256": "9be59e53d630f3ffc72fdebe7f278d6494394643bc80d8340187353af919d3d8",
@@ -3581,7 +3581,7 @@
     {
       "product_id": "202391MZ1A41B22A11E10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v37",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-life-yiqijianzhi-specific-disease-face-amount-v1",
       "source_file": "202391MZ1A41B22A11E10000000-A.pdf",
       "source_document_sha256": "49a3cac52ba92a78fe5bef8e7d3e3b968c311362796c768ee4faff1627fe0ab5",
@@ -3704,7 +3704,7 @@
     {
       "product_id": "202391MZ1A41B22A11E10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v37",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-life-yiqijianzhi-specific-disease-face-amount-v1",
       "source_file": "202391MZ1A41B22A11E10000001-A.pdf",
       "source_document_sha256": "49a3cac52ba92a78fe5bef8e7d3e3b968c311362796c768ee4faff1627fe0ab5",
@@ -3827,7 +3827,7 @@
     {
       "product_id": "202313MZ1A32821A11Z10000013",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v42",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-life-group-inpatient-limit-plan-v1",
       "source_file": "202313MZ1A32821A11Z10000013-A.pdf",
       "source_document_sha256": "5a9d0343921712cf0d4553cbba93d66127dfe0b392c3ef60823a96b736e46e08",
@@ -4341,7 +4341,7 @@
     {
       "product_id": "202313MZ1A32821A11Z10000014",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v42",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-life-group-inpatient-limit-plan-v1",
       "source_file": "202313MZ1A32821A11Z10000014-A.pdf",
       "source_document_sha256": "73b2b9acc42c6d6aa77b56adbcb223c9d6b3e8b878a600788c277086efb23f35",
@@ -4855,7 +4855,7 @@
     {
       "product_id": "202321RZ1A13B21A11E10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v48",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-life-drug-anxin-cancer-precision-plan-v1",
       "source_file": "202321RZ1A13B21A11E10000000-A.pdf",
       "source_document_sha256": "24324aa11833b9be48f0d61dc4c5e0f8338baa198102e74930e8c133a0da9d05",
@@ -5010,7 +5010,7 @@
     {
       "product_id": "202316M12G78103",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v49",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-life-taipei-student-group-fixed-schedule-v1",
       "source_file": "202316M12G78103-A.pdf",
       "source_document_sha256": "f389c8b2a931178067e2e78c017b2d4585e3ca57ad6e2ab3863a3506abe9d6bf",
@@ -5379,7 +5379,7 @@
     {
       "product_id": "202313MZ1A31B21A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v51",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-life-gold-group-inpatient-limit-plan-v1",
       "source_file": "202313MZ1A31B21A11Z10000000-A.pdf",
       "source_document_sha256": "050aebbed34d51f4623e9b551df49991fc3ae490053bc0dcbfe22130730e3ec9",

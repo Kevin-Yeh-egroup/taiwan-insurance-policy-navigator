@@ -1,0 +1,6037 @@
+{
+  "generated_at": "2026-07-31T21:45:24+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:45:24+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-078",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 67,
+    "document_count": 67,
+    "extracted_document_count": 67,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 51,
+    "error_document_count": 0,
+    "pdf_document_count": 50,
+    "legacy_doc_document_count": 17,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 67,
+    "total_text_characters": 167632,
+    "focus_counts": [
+      {
+        "label": "特殊項目",
+        "count": 67
+      },
+      {
+        "label": "保障項目",
+        "count": 30
+      },
+      {
+        "label": "重要定義",
+        "count": 4
+      },
+      {
+        "label": "理賠申請",
+        "count": 2
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "豁免/附加條款",
+        "count": 52
+      },
+      {
+        "label": "意外險",
+        "count": 4
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 67
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "131121201013010101",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美商美國環球產物地層下陷、滑動或山崩保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1197,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131121201013010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...險附加條款(住宅火災保險適\n用)(住宅火災及地震基本保險適用)保險商品內容說明 \n(給付項目：財損保險金) \n91.04.29(91)產火字第029 號函核備 \n96 年7 月..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131121201013010101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...用，每一事故之補償限額每日最高為新台幣\n參仟元，但以六十日為限。 \n四、 不保事項或除外責任 \n本公司對於下列毀損或滅失，不負賠償責任： \n一、任何性質之附帶損失。 \n二、直接..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131121201013010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 95878,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1197,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131121201029010001",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美商美國環球產物住宅火災及地震基本保險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2287,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131121201029010001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...ge 1 ---\n\n \n1\n美國環球產物住宅火災及地震基本保險商品內容說明 \n(主要給付項目：財損保險金、第三人死亡保險金、第三人體傷保險金、第三人財損保險\n金) \n \n財政部..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131121201029010001-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...下陷、滑動、開裂、決口。 \n  (四)地震引起之海嘯、海潮高漲。 \n三、 不保事項或除外責任 \n1.住宅火災保險 \n不保之危險事故: \n(一)、地震、海嘯、地層滑動或下陷、山崩..."
+            },
+            {
+              "document": "131121201029010001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...機動車輛碰撞 \n(六)意外事故所致之煙燻 \n2.住宅第三人責任基本保險 \n本公司對於保險期間內保險標的物因火災、閃電雷擊、爆炸或意外事故所致之煙燻，致第\n三人遭受體傷、死亡或財..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131121201029010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 115645,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2287,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131121228005010101",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美商美國環球產物颱風及洪水保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1292,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131121228005010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...險附加條款(住宅火災保險適用)(住宅火災及\n地震基本保險適用)保險商品內容說明 \n(給付項目：財損保險金) \n91.04.29(91)產火字第029 號函核備 \n96 年7 月..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131121228005010101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...用，每一事故之補償限額每日最高為新台幣\n參仟元，但以六十日為限。 \n四、 不保事項或除外責任 \n本公司對於下列毀損或滅失，不負賠償責任： \n一、任何性質之附帶損失( Conse..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131121228005010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 98679,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1292,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131121229004010101",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美商美國環球產物住宅火災保險附加地震基本保險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1119,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131121229004010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...1 ---\n\n \n1\n美國環球產物住宅火災保險附加地震基本保險商品內容說明 \n(主要給付項目：財損保險金) \n財政部90.12.25 台財保字第0900710196 號函核准並..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131121229004010101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...每一住 \n     宅建築物，支付臨時住宿費用新台幣十八萬元整。 \n四、 不保事項或除外責任 \n本公司對下列各種危險事故所致住宅建築物之損失，不負賠償責任： \n一、各種放射線之..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131121229004010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 91420,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1119,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203002010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 791,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030020100-F.doc",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...之損失,本公司以該保險標的物承保危險事故發生時之實際價值為基礎賠付之。 保險標的物之保險金額低於承保危險事故發生時保險標的物之實際價值者,本公司僅按保險金額與該實際價值之比例..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030020100-F.doc",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保險單簡介 壹、適用對象:依商業火險基本危險費率使用性質代碼為B大類至U大類。 貳、保險期間:以一年為限。 參、一、承保標的物: 不動產:指建築物及營業裝修,但不包括土地。 動..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311222030020100-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 22016,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 791,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203002010101",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險電腦駭客特別不保事項附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 990,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131122203002010101-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "美國環球產物商業火災保險電腦駭客特別不保事項附加條款保單簡介 96 · 04 2 環產 ( 96 ) 字第 078 號備查 96..."
+            },
+            {
+              "document": "131122203002010101-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...具本公司所印製之要保書 , 經本公司同意承保及繳交保險費後 , 本保險始生效力 、 保險期間係指保單首頁所載之期間 。 但本契約提前終止者 , 則以終止生效日為保險期間之末日..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131122203002010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 260439,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 990,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203002010200",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險戰爭風險與恐怖主義特別不保事項附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/04/02",
+      "discontinued_date": "096/08/30",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 896,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131122203002010200-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "美國環球產物商業火災保險戰爭風險與恐怖主義特別不保事項附加條款保單簡介 96.04 , 02 環產 ( 96 ) 字第 079 號備查基於..."
+            },
+            {
+              "document": "131122203002010200-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...公司所印製之要保書 , 經本公司同意承保及繳交保險費後 , 本保險始生效力 。 、 保險期間係指保單首頁所載之期問 。 但本契約提前終止者 , 則以終止生效日為保險期間之末日..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131122203002010200-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 37546,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 896,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203002010201",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險戰爭風險與恐怖主義特別不保事項附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 932,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131122203002010201-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "美國環球產物商業火災保險戰爭風險與恐怖主義特別不保事項附加條款保單簡介 96 , 04 , 02 環產 ( 96 ) 字第 079 號備查..."
+            },
+            {
+              "document": "131122203002010201-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...所印製之要保書 , 經本公司同意承保及繳交保險費後 , 本保險始生效力 。 六 、 保險期間係指保單首頁所載之期間 。 但本契約提前終止者 , 則以終止生效日為保險期間之末日..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131122203002010201-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 246120,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 932,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203002010300",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險工業滲漏、污染及污損特別不保事項附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/04/02",
+      "discontinued_date": "096/08/30",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 875,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131122203002010300-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...險單不承保就下列所負責任 : 1. 直接或間接因滲漏 、 污染或污損導致人身或身體的傷害 , 財產的損失 、 毀壞或無法使用 ; 但在保險期勺 , 因突發不可預料的意外事故..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131122203002010300-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...險單不承保就下列所負責任 : 1. 直接或間接因滲漏 、 污染或污損導致人身或身體的傷害 , 財產的損失 、 毀壞或無法使用 ; 但在保險期勺 , 因突發不可預料的意外事故..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131122203002010300-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "美國環球產物商業火災保險工業滲漏 、 污染及污損特別不保事項附加條款保單簡介 9 & 04.02 環產 ( 96 ) 字第 080 號備查目的基..."
+            },
+            {
+              "document": "131122203002010300-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...此限 。 2. 爲去除 、 廢棄或理滲漏 、 污染或污損之污染物產生的費用 。 但在保險期間內 , 因突發不可預料的意外事故所引起滲漏 、 污染或污損者 , 不在此限 3. 任..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131122203002010300-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 34949,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 875,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203002010301",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險工業滲漏、污染及污損特別不保事項附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1097,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131122203002010301-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...險單不承保就下列所負責任 • l. 直接或間接因滲漏 、 污染或污損導致人身或身體的傷害 , 財產的損失 、 毀壞或無法使用 ; 但在保險期間內 , 因突發不可預料的意外事..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131122203002010301-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...險單不承保就下列所負責任 • l. 直接或間接因滲漏 、 污染或污損導致人身或身體的傷害 , 財產的損失 、 毀壞或無法使用 ; 但在保險期間內 , 因突發不可預料的意外事..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131122203002010301-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...漏 、 污染或污損導致人身或身體的傷害 , 財產的損失 、 毀壞或無法使用 ; 但在保險期間內 , 因突發不可預料的意外事故所引起滲漏 、 污染或污損 , 導致人身或身體的傷害..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131122203002010301-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 254755,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1097,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203002010400",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險霉與菌類附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/04/02",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1055,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131122203002010400-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...店 、 倉庫 、 公共場所 、 工廠等之使用性質 。 、 承保範圍 、 本公司僅就在保險期間內 , 因下列事故對承保標的物所致損害 , 直接引發霉 、 菌類或孢子對承保標的物造..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131122203002010400-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 44702,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1055,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203003010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險爆炸保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 6373,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030030101-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...本附加條款有效期間內,直接因爆炸所致之毀損或滅失,依本附加條款之約定,負賠償責任。 不保事項: 詳主保險契約條款第五條、第八條及本附加條款第二條、第三條。 \\主管機關\\商品資料..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311222030030101-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 306688,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 6373,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203004010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險地震保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 22413,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030040101-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...本附加條款有效期間內,直接因爆炸所致之毀損或滅失,依本附加條款之約定,負賠償責任。 不保事項: 詳主保險契約條款第五條、第八條及本附加條款第二條、第三條。 Cora本公司對於保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311222030040101-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 444416,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 22413,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203005010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險颱風及洪水保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 7320,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030050101-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...本附加條款有效期間內,直接因地震所致之毀損或滅失,依本附加條款之約定,負賠償責任。 不保事項: 詳主保險契約條款第五條、第八條及本附加條款第第三條。 \\主管機關\\商品資料庫\\資..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311222030050101-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 308224,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 7320,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203006010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險航空器墜落、機動車碰撞保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 7680,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030060101-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...有效期間內直接因颱風或洪水所致標的物之毀損或滅失,依本附加條款之約定,負賠償責任。 不保事項: 詳主保險契約條款第五條、第八條及本附加條款第四條。 \\主管機關\\商品資料庫\\資料..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311222030060101-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 308224,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 7680,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203007010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險罷工、暴動、民眾騷擾、惡意破壞行為保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 11311,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030070101-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...或軌道上行駛之機動車輛所致保險標的物之毀損或滅失,依本附加條款之約定,負賠償責任。 不保事項: 詳主保險契約條款第五條、第八條及本附加條款第二條。 Fubon 富邦產險(股)公..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311222030070101-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 454656,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 11311,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203008010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險恐怖主義保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 4358,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030080101-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...任何人非因政治、宗教、信仰、意識型態或其他類似意圖之目的之故意破壞或惡意破壞行為。 不保事項: 詳主保險契約條款第五條、第八條及本附加條款第二條。 \\主管機關\\商品資料庫\\資料..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311222030080101-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 170496,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 4358,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203009010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險自動消防裝置滲漏保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 4251,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030090101-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...團體,運用爆炸或其他任何破壞行動所致之毀損或滅失,依本附加條款之約定,負賠償責任。 不保事項: 詳主保險契約條款第五條、第八條及本附加條款第二條。 \\主管機關\\商品資料庫\\資料..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311222030090101-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 171008,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 4251,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203010010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險煙燻保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 7688,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030100101-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...水或其他物質,或因其水源倒塌、崩潰所致之毀損滅失,依本附加條款之約定,負賠償責任。 不保事項: 詳主保險契約條款第五條、第八條及本附加條款第三條、第四條。 \\主管機關\\商品資料..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311222030100101-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 308224,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 7688,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203011010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險水漬保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 7730,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030110101-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...加條款有效期間內,直接因意外煙燻所致之毀損或滅失,依本附加條款之約定,負賠償責任。 不保事項: 詳主保險契約條款第五條、第八條及本附加條款第二條。 水漬本公司對於保險標的物在本..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311222030110101-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 308736,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 7730,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203012010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險竊盜保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 4322,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030120101-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...冷暖氣及冷凍設備之水蒸氣之意外滲漏。 三、雨水、雪霜由屋頂、門窗或通氣口進入屋內。 不保事項: 詳主保險契約條款第五條、第八條及本附加條款第二條。 \\主管機關\\商品資料庫\\資料..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311222030120101-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 171008,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 4322,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203013010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險地層下陷、滑動或山崩保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 4294,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030130101-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...物因遭受竊盜所致之損失,本公司負賠償責任;但該毀損之建築物以被保險人所自有者為限。 不保事項: 詳主保險契約條款第五條、第八條及本附加條款第四條。 \\主管機關\\商品資料庫\\資料..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311222030130101-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 171008,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 4294,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203013021102",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險地層下陷、滑動或山崩保險附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1727,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131122203013021102-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...於或跨越每年五月一日至十月三十一日者 , 按附加險全年保費百分之百計算 。 七 、 保險金額本附加險之保險金額以商業火災保險的保險金額百分之八十為原則 , 但最高不得超過百分..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131122203013021102-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...動或山崩保險附加條款 」 承保之 。 、 承保範圍 : 詳附加條款內容 。 四 、 保險期間 • 以一年為原則 。 五 、 基本危險費率 : 參考基本危險費率為 3.63 ,..."
+            },
+            {
+              "document": "131122203013021102-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...額以商業火災保險的保險金額百分之八十為原則 , 但最高不得超過百分之百 。 八 、 自負額本附加險之自負額 • ( 一 ) 商業火災保險適用 : 每一事故為賠償金額之 10..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131122203013021102-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 251610,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1727,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203014010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險第三人意外責任保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 7734,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030140101-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...可預料之地層下陷、滑動或山崩所致之毀損或滅失,依本附加條款契約之約定,負賠償責任。 不保事項: 詳主保險契約條款第五條、第八條及本附加條款第三條。 \\主管機關\\商品資料庫\\資料..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311222030140101-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 307712,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 7734,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131122203015010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險營業中斷保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 7751,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311222030150101-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...物損害,依法應由被保險人負賠償責任而受賠償請求時,依本附加條款之約定,負賠償責任。 不保事項: 詳主保險契約條款第五條、第八條及本附加條款第五條。 \\主管機關\\商品資料庫\\資料..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311222030150101-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 307712,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 7751,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131221101014010101",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物第三人意外責任保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1101,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131221101014010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...加條款(住宅火災保險適用)(住宅火災\n及地震基本保險適用)保險商品內容說明 \n(主要給付項目：第三人體傷保險金、第三人死亡保險金、第三人財損保險金) \n91.04.29(91)..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131221101014010101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...金額新臺幣五十萬元。 \n保險期間內之最高賠償金額新臺幣一千萬元。 \n四、 不保事項或除外責任 \n本公司對於下列事故所致之賠償責任，不負賠償之責： \n一、因被保險人經營或兼營非本..."
+            },
+            {
+              "document": "131221101014010101-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...之保險金額新臺幣五百萬元。 \n每一意外事故財物損害責任之保險金額新臺幣五十萬元。 \n保險期間內之最高賠償金額新臺幣一千萬元。 \n四、 不保事項或除外責任 \n本公司對於下列事故所..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131221101014010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 87230,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1101,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131221201005010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物附加颱風及洪水保險(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/01",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 186,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1312212010050101-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...颱風及洪水保險附加條款 」 承保之 、 承保範圍 : 詳附加條款內容 。 四 、 保險期間 : 以一年為原則"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1312212010050101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 44173,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 186,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131221201007010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物附加罷工、暴動、民眾騷擾、惡意破壞行為保險(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/01",
+      "discontinued_date": "096/08/30",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 221,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1312212010070101-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...破壞行為保險附加條款 」 承保之 。 、 承保範圍 : 詳附加條款內容 。 四 、 保險期間 : 以一年為原則 。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1312212010070101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 45547,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 221,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131221201007010101",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物罷工、暴動、民眾騷擾、惡意破壞行為保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1033,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131221201007010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...險附加條款（住宅火災\n保險適用）(住宅火災及地震基本保險適用）保險商品內容說明 \n(給付項目：財損保險金) \n91.04.29(91)產火字第029 號函核備(公會版) \n96..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131221201007010101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...採取之行動。 \n五、任何人非因政治目的之故意破壞或惡意破壞行為。 \n三、 不保事項或除外責任 \n本公司對於下列毀損或滅失，不負賠償責任： \n一、任何性質之附帶損失(Conseq..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131221201007010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 91137,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1033,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131221201008010101",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物恐怖主義保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 734,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131221201008010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...險附加條款(住宅火災保險適用)(住宅火災及地震\n基本保險適用)保險商品內容說明 \n(給付項目：財損保險金) \n91.04.29(91)產火字第029 號函核備(公會版) \n96..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131221201008010101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...他任何破壞行動所致之毀損或滅失，依本附加條款之約定，負賠償責任。 \n三、 不保事項或除外責任 \n本公司對於下列毀損或滅失，不負賠償責任： \n一、任何性質之附帶損失(Conseq..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131221201008010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 80289,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 734,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131221201009010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物附加自動消防裝置滲漏保險(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/01",
+      "discontinued_date": "096/08/30",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 192,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1312212010090101-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...消防裝置滲漏保險附加條款 」 承保之 、 承保範圍 : 詳附加條款內容 。 四 、 保險期間 : 以一年為原則 。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1312212010090101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 44356,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 192,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131221201009010101",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物自動消防裝置滲漏保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 994,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131221201009010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...加條款(住宅火災保險適用)(住宅火\n災及地震基本保險適用)保險商品內容說明 \n(主要給付項目：財損保險金) \n91.04.29(91)產火字第029 號函核備(公會版) \n96..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131221201009010101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...水源倒塌、崩潰所\n致之毀損滅失，依本附加條款之約定，負賠償責任。 \n三、 不保事項或除外責任 \n不保之原因： \n本公司對下列原因導致自動消防裝置發生前述意外滲漏、噴射或其水源倒..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131221201009010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 91212,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 994,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131221201011010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物附加水漬保險(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/01",
+      "discontinued_date": "096/08/30",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 182,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1312212010110101-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...貼 「 水漬保險附加條款 」 承保之 、 承保範圍 : 詳附加條款內容 。 四 、 保險期間 : 以一年為原則 。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1312212010110101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 42686,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 182,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131221201011010101",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物水漬保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 993,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131221201011010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...加條款(住宅火災保險適用)(住宅火災及地震基本\n保險適用)保險商品內容說明 \n(主要給付項目：財損保險金) \n91.04.29(91)產火字第029 號函核備(公會版) \n96..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131221201011010101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...蒸氣之意外滲漏。 \n三、雨水、雪霜由屋頂、門窗或通氣口進入屋內。 \n三、 不保事項或除外責任 \n本公司對於下列毀損或滅失，不負賠償責任： \n一、任何性質之附帶損失（Conseq..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131221201011010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 92658,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 993,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131221201012010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物附加竊盜保險(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/01",
+      "discontinued_date": "096/08/30",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 249,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1312212010120101-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...「竊\n　　　　　　　盜保險附加條款」承保之。\n四、 承保範圍：詳附加條款內容。\n五、保險期間：以一年為原則。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1312212010120101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 45367,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 249,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131221201012010101",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物竊盜保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 761,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131221201012010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...險附加條款(住宅火災保險適用)(住宅火災及地震基本\n保險適用)保險商品內容說明 \n(給付項目：財損保險金) \n91.04.29(91)產火字第029 號函核備(公會版) \n96..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131221201012010101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...盜所致保險標的物之毀損或滅\n失，依本附加條款之約定，負賠償責任。 \n三、 不保事項或除外責任 \n本公司對於下列毀損或滅失，不負賠償責任： \n一、任何性質之附帶損失(Conseq..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131221201012010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 78907,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 761,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131221201014010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物附加第三人意外責任保險(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/01",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 341,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1312212010140101-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...責任之保險金額新臺幣五百萬元。\n每一意外事故財物損害責任之保險金額新臺幣五十萬元。\n保險期間內之最高賠償金額新臺幣一千萬元。\n五、保險期間：以一年為原則。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1312212010140101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 49174,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 341,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131221201015010101",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物租金損失保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 870,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131221201015010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...加條款(住宅火災保險適用)(住宅火災及地震\n基本保險適用)保險商品內容說明 \n(主要給付項目：財損保險金) \n91.04.29(91)產火字第029 號函核備(公會版) \n96..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131221201015010101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...Loss Sustained)，依本附加條款約定，負賠償責任。 \n三、 不保事項或除外責任 \n本公司對下列損失，不負賠償責任。 \n一、其他附帶損失（Consequential..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131221201015010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 83744,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 870,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222103014021201",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險第三人意外責任保險附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1238,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222103014021201-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...責任保險附加條款 」 承保之 。 、 承保範圍 : 詳附加條款內容 。 四 、 基本保險金額 • 每一個人體傷責任之保險金額新臺幣二十五萬元 。 每一個人死亡責任之保險金額新..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222103014021201-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...亡責任之保險金額新臺幣五百萬元每一意外事故財物損害責任之保險金額新臺幣五十萬元 。 保險期間內之最高賠償金額新臺幣一千萬元 。 五 、 保險期間 : 以一年為原則 。 、 基本..."
+            },
+            {
+              "document": "131222103014021201-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...% 80 % 85 % 90 % 95 % 不滿一個月者 , 以一個月計算八 、 自負額 : 體傷及死亡新臺幣二千元 ; 財損新臺幣一萬元九 、 其他 ( 一 ) 火險費率..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222103014021201-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 221169,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1238,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203002010001",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1327,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203002010001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...本公司所印製之要保書 , 經本公司同意承保及繳交保險費後 , 本保險始生效力五 、 保險期間 : 本保險之保險期間訂為一年 。 、 短期費率表 : 凡保險期間不足一年或被保險人..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203002010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 278930,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1327,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203003020101",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險爆炸保險附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1569,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203003020101-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...自負額提高為新台幣十萬元 ( 含 ) 以上時 , 本附加險之基本危險費率按自負額與保險金額之比例 , 依照下表所列扣減率予以扣減自負額扣減率表自負額與保險金額比例未 1 %..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203003020101-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...「 爆炸保險附加條款 」 承保之 。 、 承保範圍 : 詳附加條款內容 。 四 、 保險期間 : 以一年為原則 。 五 、 基本危險費率 ( 一 ) 本附加險之基本危險費率就第..."
+            },
+            {
+              "document": "131222203003020101-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...爆炸危險等級 , 以同一工廠或同一倉庫 、 堆棧範圍內最高爆炸險等級決定之 。 、 自負額 • ( 一 ) 本附加險基本自負額為新台幣三萬元 ( 二 ) 自負額提高為新台幣十..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203003020101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 237349,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1569,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203006010401",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險航空器墜落、機動車碰撞保險附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 825,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203006010401-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...機動車輛碰撞保險附加條款 」 承保之 、 承保範圍 : 詳附加條款內容 。 四 、 保險期間 : 以一年為原則 。 五 、 基本危險費率 : 千分之 。 . 。 四 ( 0.0..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203006010401-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 185802,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 825,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203007020501",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險罷工、暴動、民眾騷擾、惡意破壞行為保險附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1157,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203007020501-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...宗教 、 信仰 、 意識型態或其他類似意圖之目的之故意破壞或惡意破壞行為 。 、 不保事項本公司對於下列毀損或滅失 , 不負賠償責任 、 任何性質之附帶損失 (Consequ..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203007020501-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 277095,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1157,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203008020601",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險恐怖主義保險附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1490,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203008020601-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...自負額提高為新台幣十萬元 ( 含 ) 以上時 , 本附加險之基本危險費率按自負額與保險金額之比例 , 依照下表所列扣減率予以扣減 。 自負額扣減率表自負額與保未金額比例達..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203008020601-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...恐怖主義保險附加條款 」 承保之 。 、 承保範圍 : 詳附加條款內容 。 四 、 保險期間 : 以一年為原則 。 五 、 基本危險費率 : 不得低於千分之 。 一二 ( 0..."
+            },
+            {
+              "document": "131222203008020601-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...五 、 基本危險費率 : 不得低於千分之 。 一二 ( 0 • 12 ) 。 、 自負額 • ( 一 ) 本附加險基本自負額為新台幣三萬元 ( 二 ) 自負額提高為新台幣十..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203008020601-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 228146,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1490,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203009020701",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險自動消防裝置滲漏保險附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 776,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203009020701-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...裝置滲漏保險附加條款 」 承保之 。 、 承保範圍 : 詳附加條款內容 。 四 、 保險期間 : 以一年為原則 。 五 、 基本危險費率 • 建築物千分之 。 。 八 ( 0...."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203009020701-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 190637,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 776,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203009020801",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險煙燻保險附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1438,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203009020801-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...元自負額提高為新台幣十萬元 ( 含 ) 以上時 , 本附加險之基本危險費率按自負額與保險金額之比例 , 依照下表所列扣減率予以扣減 。 自負額扣減率表自負額與保未金額比例達..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203009020801-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...「 煙燻保險附加條款 」 承保之 。 、 承保範圍 : 詳附加條款內容 。 四 、 保險期間 : 以一年為原則 。 五 、 基本危險費率 : 千分之 。 。 八 ( 0.08..."
+            },
+            {
+              "document": "131222203009020801-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...為原則 。 五 、 基本危險費率 : 千分之 。 。 八 ( 0.08 ) 。 、 自負額 • 本附加險基本自負額為新台幣三萬元自負額提高為新台幣十萬元 ( 含 ) 以上時..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203009020801-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 215562,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1438,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203011020901",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險水漬保險附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1222,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203011020901-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...元自負額提高為新台幣十萬元 ( 含 ) 以上時 , 本附加險之基本危險費率按自負額與保險金額之比例 , 依照下表所列扣減率予以扣減自負額扣減率表自負額與保未 1 % 2 %..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203011020901-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...「 水漬保險附加條款 」 承保之 。 、 承保範圍 : 詳附加條款內容 。 四 、 保險期間 : 以一年為原則 。 五 、 基本危險費率 : 本附加險之基本危險費率應就使用性質..."
+            },
+            {
+              "document": "131222203011020901-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...費率 0. 13 辦公室工廠 、 倉庫 、 堆棧 0. 19 其他 0. 31 、 自負額 • 本附加險基本自負額為新台幣三萬元自負額提高為新台幣十萬元 ( 含 ) 以上時..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203011020901-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 229148,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1222,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203012021001",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險竊盜保險附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1269,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203012021001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...基本危險保費每一保單新臺幣三 , 0 一二一元 2 、 加收危險保費 = 各級距之保險金額 × 各級距之危險費率五佰萬元至一仟萬元之部份一仟萬元至二仟萬元之部份二仟萬元至三..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203012021001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...盜保險附加條款 」 承保之 。 四 、 承保範圍 : 詳附加險條款內容 。 五 、 保險期間 : 以一年為原則 。 、 保險費 : 本附加險之保險費為下列基本危險保費與加收保費..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203012021001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 234794,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1269,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203015021301",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險租金損失保險附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 876,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203015021301-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...一 ) 保險標的物之預期租金收入 。 ( 二 ) 保險標的物之預期租金費用五 、 保險期間 : 以一年為原則 。 七 、 自負額 : 以三天為原則 。 八 、 基本危險費率..."
+            },
+            {
+              "document": "131222203015021301-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...( 二 ) 保險標的物之預期租金費用五 、 保險期間 : 以一年為原則 。 七 、 自負額 : 以三天為原則 。 八 、 基本危險費率 : 為商業火險及附加險合計之平均基本危..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203015021301-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 209790,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 876,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203015021401",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險營業中斷保險附加條款 (製造業適用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1720,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203015021401-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...須事先詳閱本營業中斷保險附加條款批單簡介 , 且應填寫營業中斷險要保書及營業中斷險保險金額估算表 ( 製造業適用 ) 。 ( 二 ) 在商業火災保險單上加貼 「 營業中斷保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203015021401-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...金額估算表 」 承保之四 、 承保範圍承保範圍及不保項目詳附加條款內容 。 五 、 保險期間以一年為原則 。 、 保險金額 ( 一 ) 本附加險之保險金額 , 以保險金額估算表..."
+            },
+            {
+              "document": "131222203015021401-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...表與資產負債表 , 以及其投保年度之營業預算書 , 以作為承保公司核保之參考七 、 自負額以五個連續工作天為原則八 、 基本危險費率及基本危險保費計算 ( 一 ) 基本危險保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203015021401-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 246179,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 1720,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203015021501",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險營業中斷保險附加條款 (非製造業適用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1729,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203015021501-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "..., 須事先詳閱本營業中斷保險附加條款批單簡介 , 填寫營業中斷險要保書及營業中斷險保險金額估算表 ( 非製造業適用 ) 。 ( 二 ) 在商業火災保險單上加貼 「 營業中斷..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203015021501-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...算表 」 承保之 。 四 、 承保範圍承保範圍及不保項目詳附加條款內容 。 五 、 保險期間以一年為原則 。 、 保險金額 ( 一 ) 本附加險之保險金額 , 以保險金額估算表..."
+            },
+            {
+              "document": "131222203015021501-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...產負債表 , 以及其投保年度之營業預算書 。 以作為承保公司核保之參考 。 七 、 自負額以三個連續營業日為原則 。 八 、 危險費率及危險保費計算 ( 一 ) 保費 = 保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203015021501-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 269333,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 1729,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203028010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災綜合保險",
+      "sale_status": "已停售",
+      "sale_date": "092/01/07",
+      "discontinued_date": "096/08/30",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 6421,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1312222030280100-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...,為救護保險標的物,致保險標的物發生損失者,視同本保險契約承保危險事故所致之損失。 不保事項: 詳保險契約條款第四條、第五條、第六條、第七條、第八條、第九條及第十條。 \\主管機..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1312222030280100-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 306688,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 6421,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203028010001",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災綜合保險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 3395,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203028010001-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...的物 , 致保險標的物發生損失者 , 視同本保險契約承保危險事故所致之損失 。 、 不保事項 【 一 】 不保之危險事故原因一本保險契約不承保因下列各種危險事故所致保險標的物之..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203028010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 526471,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 3395,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203028010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災綜合保險電腦駭客特別不保事項附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/04/02",
+      "discontinued_date": "096/08/30",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 947,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203028010100-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "美國環球產物商業火災綜合保險電腦駭客特別不保事項附加條款保單簡介 96 , 04 , 02 環產 ( 96 ) 字第 096 號備查..."
+            },
+            {
+              "document": "131222203028010100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...公司所印製之要保書 , 經本公司同意承保及繳交保險費後 , 本保險始生效力 。 、 保險期間係指保單首頁所載之期間 。 但本契約提前終止者 , 則以終止生效日為保險期間之末日..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203028010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 37391,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 947,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203028010101",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災綜合保險電腦駭客特別不保事項附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 989,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203028010101-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "美國環球產物商業火災綜合保險電腦駭客特別不保事項附加條款保單簡介 96 · 04 2 環產 ( 96 ) 字第 096 號備查 96..."
+            },
+            {
+              "document": "131222203028010101-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...具本公司所印製之要保書 , 經本公司同意承保及繳交保險費後 , 本保險始生效力 、 保險期間係指保單首頁所載之期間 。 但本契約提前終止者 , 則以終止生效日為保險期間之末日..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203028010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 263827,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 989,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203028010200",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災綜合保險戰爭風險與恐怖主義特別不保事項附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/04/02",
+      "discontinued_date": "096/08/30",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 895,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203028010200-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "美國環球產物商業火災綜合保險戰爭風險與恐怖主義特別不保事項附加條款保單簡介 96.0 02 環產 ( 96 ) 字第 095 號備查目的基於核..."
+            },
+            {
+              "document": "131222203028010200-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...所印製之要保書 , 經本公司同意承保及繳交保險費後 , 本保險始生效力 。 六 、 保險期間係指保單首頁所載之期但本契約提前終止者 , 則以終止生效日為保險期間之末日 。 七..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203028010200-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 38334,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 895,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203028010201",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災綜合保險戰爭風險與恐怖主義特別不保事項附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 916,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203028010201-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "美國環球產物商業火災綜合保險戰爭風險與恐怖主義特別不保事項附加條款保單簡介 96 · 04 2 環產 ( 96 ) 字第 095 號備查 96..."
+            },
+            {
+              "document": "131222203028010201-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...具本公司所印製之要保書 , 經本公司同意承保及繳交保險費後 , 本保險始生效力 、 保險期間係指保單首頁所載之期間 。 但本契約提前終止者 , 則以終止生效日為保險期間之末日..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203028010201-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 247529,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 916,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203028010300",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災綜合保險工業滲漏、污染及污損特別不保事項附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/04/02",
+      "discontinued_date": "096/08/30",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 873,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203028010300-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...保險單不承保就下列所負責任 , l. 直接或接因滲漏 、 污染或污損導致人身或身體的傷害 , 財產的損失 、 毀壞或無法使用 ; 但在保險期 ” 內 , 因突發不可預料的意..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203028010300-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...保險單不承保就下列所負責任 , l. 直接或接因滲漏 、 污染或污損導致人身或身體的傷害 , 財產的損失 、 毀壞或無法使用 ; 但在保險期 ” 內 , 因突發不可預料的意..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203028010300-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "美國環球產物商業火災綜合保險工業滲漏 、 污染及污損特別不保事項附加條款保單簡介 96 , 04 2 環產 ( 96 ) 字第 094 號備查目的基..."
+            },
+            {
+              "document": "131222203028010300-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...。 2 , 爲去除 、 廢棄或清理滲漏 、 污染或污損之污染物產生的費用 。 但在保險期間內 , 因突發不可預料的意外事故所引起滲漏 、 污染或污損者 , 不在此限 。 3...."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203028010300-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 35185,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 873,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203028010301",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災綜合保險工業滲漏、污染及污損特別不保事項附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1100,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203028010301-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...險單不承保就下列所負責任 • l. 直接或間接因滲漏 、 污染或污損導致人身或身體的傷害 , 財產的損失 、 毀壞或無法使用 ; 但在保險期間內 , 因突發不可預料的意外事..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203028010301-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...險單不承保就下列所負責任 • l. 直接或間接因滲漏 、 污染或污損導致人身或身體的傷害 , 財產的損失 、 毀壞或無法使用 ; 但在保險期間內 , 因突發不可預料的意外事..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203028010301-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "美國環球產物商業火災保險工業滲漏 、 污染及污損特別不保事項附加條款保單簡介 96 , 04 , 02 環產 ( 96 ) 字第 094 號備查..."
+            },
+            {
+              "document": "131222203028010301-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...漏 、 污染或污損導致人身或身體的傷害 , 財產的損失 、 毀壞或無法使用 ; 但在保險期間內 , 因突發不可預料的意外事故所引起滲漏 、 污染或污損 , 導致人身或身體的傷害..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203028010301-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 258857,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1100,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203028010400",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災綜合保險霉與菌類特別不保事項附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/04/02",
+      "discontinued_date": "096/08/30",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 929,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203028010400-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "美國環球產物商業火災綜合保險霉與菌類特別不保事項附加條款保單簡介 96 4 , 02 環產 ( 96 ) 字第 082 號備查基於核..."
+            },
+            {
+              "document": "131222203028010400-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...公司所印製之要保書 , 經本公司同意承保及繳交保險費後 , 本保險始生效力 · 、 保險期間系指保單首頁所載之期問 。 但本契約提前終止者 , 則以終止生效日為保險期間之末日..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203028010400-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 37523,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 929,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222203028010401",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災綜合保險霉與菌類特別不保事項附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1002,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222203028010401-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...所印製之要保書 , 經本公司同意承保及繳交保險費後 , 本保險始生效力 。 六 、 保險期間係指保單首頁所載之期間 。 但本契約提前終止者 , 則以終止生效日為保險期間之末日..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222203028010401-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 252747,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1002,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131222225004020201",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物商業火災保險地震保險附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2020,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222225004020201-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...85 % 90 % 95 % 1 00 % 不滿一個月者 , 以一個月計算七 、 保險金額本附加險之保險金額以商業火災保險的保險金額百分之八十為原則 , 但最高不得超過百分..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131222225004020201-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...「 地震保險附加條款 」 承保之 。 、 承保範圍 : 詳附加條款內容 。 四 、 保險期間 : 以一年為原則 。 五 、 基本危險費率 : 本附加險之基本危險費率應就建築物與..."
+            },
+            {
+              "document": "131222225004020201-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...額以商業火災保險的保險金額百分之八十為原則 , 但最高不得超過百分之百 。 八 、 自負額一 ) 本附加險每一保險標的物所在地址之自負額為該保險標的物所在地址地震險總保險金額..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131222225004020201-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 306942,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2020,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131321201004010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物擴大地震保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/01",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 583,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：限制、保險期間。",
+          "terms": [
+            "限制",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313212010040101-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...、滑動、開裂、決口。\n　　（二）額外費用之補償\n1. 清除費用：需受不足額比例分攤之限制，其與賠償金額合計超過保險金額\n　　　　　　者，仍以保險金額為限。\n2. 臨時住宿費..."
+            },
+            {
+              "document": "1313212010040101-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...本保險或住宅火災及地震基本保險之保\n　　　　　　　險標的物均可加保本附加險。\n三、 保險期間：以一年為限。\n四、 保險標的物：（一）建築物\n　　　　　　　 （二）建築物內動產，..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313212010040101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 60505,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 583,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131321201028010001",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美商美國環球產物住宅天災費用補償保險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1082,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131321201028010001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...age 1 ---\n\n \n1\n美國環球產物住宅天災費用補償保險商品內容說明 \n(主要給付項目：財損保險金) \n財政部92.06.24 台財保字第0920750653 號函核准..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131321201028010001-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...閃電、雷擊、冰雹。 \n七、第一款至第六款事故所引起之火災與爆炸。 \n四、 不保事項或除外責任 \n因下列事項所致之事故或損失，不在本契約之承保範圍內： \n一、要保人或被保險人之故..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131321201028010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 95841,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1082,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131321201029010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物住宅火災保險及基本地震保險",
+      "sale_status": "已停售",
+      "sale_date": "090/12/25",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2335,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313212010290100-F.doc",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...2、額外費用之補償 (1)清除費用:需受不足額比例分攤之限制,其與賠償金額合計超過保險金額者,仍以保險金額為限。 (2)臨時住宿費用:每日最高新台幣三千元,以六十日為限,不..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：限制、保險期間。",
+          "terms": [
+            "限制",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313212010290100-F.doc",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...撞 (6)意外事故所致煙燻 2、額外費用之補償 (1)清除費用:需受不足額比例分攤之限制,其與賠償金額合計超過保險金額者,仍以保險金額為限。 (2)臨時住宿費用:每日最高新..."
+            },
+            {
+              "document": "1313212010290100-F.doc",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...期:91年4月1日 貳、適用對象:依火險基本費率使用性質代號為A大類之住宅者。 參、保險期間:以一年為限。 肆、一、住宅火災保險 (一)保險標的物: 1、建築物 2、建築物內之..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：理賠、通知。",
+          "terms": [
+            "理賠",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313212010290100-F.doc",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...保險人終止契約者:保險費 365) (3)保險人終止契約者:保險費 365) (五)理賠: 1、建築物:承保建築物之保險金額低於承保危險事故發生時之重置成本之百分之六十時,..."
+            },
+            {
+              "document": "1313212010290100-F.doc",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...其他保險人投保相同之地震基本保險,要保人或被保險人應立即將其他保險人之名稱及保險金額通知本公司。本公司僅就本保險契約保險金額對全部住宅地震基本保險保險金額總額之比例負賠償責..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313212010290100-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 43520,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 2335,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131321201031010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美國環球產物住宅天災費用補償保險",
+      "sale_status": "已停售",
+      "sale_date": "092/06/24",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 920,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313212010310100-F.doc",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...地下發火。 6)閃電、雷擊、冰雹。 7)第一款至第六款事故所引起之火災與爆炸。 5 保險金額:「每月補償金額」要保時由被保險人自行約定。 6 保險費及退費:1)保險費: (一..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313212010310100-F.doc",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...災費用補償保險簡介 1 適用對象:依火險基本費率使用性質代號為A大類之住宅者。 2 保險期間:以一年為限。 3 承保方式:以主保單方式承保。 4 承保範圍:本公司於保險期間內因..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：理賠。",
+          "terms": [
+            "理賠"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313212010310100-F.doc",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...地震基本保險」短期費率表計算。 2)退保費: 退保費 保險費x(1-短期費率) 8 理賠:因危險事故發生,導致承保建築物發生損失且連續超過7天以上不適合居住時,其損失程度達..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313212010310100-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 23552,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 920,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131321225004010101",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "美商美國環球產物擴大地震保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-078",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1249,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131321225004010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...震保險附加條款(住宅火災保險適用)(住宅火災及地\n震基本保險適用)商品內容說明 \n(給付項目：財損保險金) \n財政部91.01.25 台財保字第0910750050 號函核准(..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131321225004010101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...證者，每一事故之賠償限額每日最高為新台幣參仟元，但以六十日為限。 \n四、 不保事項或除外責任 \n本公司對下列危險事故所致保險標的物之損失，不負賠償責任： \n(一)、各種放射線之..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131321225004010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 96351,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1249,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

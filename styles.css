@@ -143,12 +143,55 @@ main {
 }
 
 .portfolio-builder-head,
+.portfolio-entry-head,
 .panel-heading,
 .suggestion-heading {
   display: flex;
   justify-content: space-between;
   gap: 14px;
   align-items: end;
+}
+
+.portfolio-entry-panel {
+  display: grid;
+  gap: 12px;
+  border-top: 1px solid rgba(21, 94, 239, 0.16);
+  border-bottom: 1px solid rgba(21, 94, 239, 0.16);
+  padding: 14px 0 16px;
+}
+
+.portfolio-entry-head {
+  align-items: center;
+}
+
+.portfolio-entry-head h3 {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.8vw, 1.28rem);
+  line-height: 1.35;
+}
+
+.workflow-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.workflow-steps li {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  border: 1px solid rgba(21, 94, 239, 0.18);
+  border-radius: 999px;
+  background: rgba(21, 94, 239, 0.07);
+  color: var(--blue-dark);
+  font-size: 0.78rem;
+  font-weight: 900;
+  padding: 0 10px;
+  white-space: nowrap;
 }
 
 .privacy-note {
@@ -218,17 +261,23 @@ main {
 }
 
 .identity-reminder {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 12px;
-  align-items: center;
   padding: 10px 12px;
   font-size: 0.88rem;
   line-height: 1.45;
 }
 
-.identity-reminder strong {
+.identity-reminder summary {
   color: var(--amber);
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.identity-reminder p {
+  margin: 8px 0 0;
+  color: #5c5040;
+  font-size: 0.86rem;
+  font-weight: 700;
+  line-height: 1.55;
 }
 
 .identity-warning {
@@ -338,6 +387,46 @@ main {
   display: grid;
   gap: 6px;
   margin: 10px 0 0;
+}
+
+.portfolio-event-scenarios {
+  display: grid;
+  gap: 6px;
+  margin: 0 0 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--surface-3);
+}
+
+.portfolio-event-scenarios > small {
+  color: var(--muted);
+}
+
+.portfolio-event-scenarios dl {
+  display: grid;
+  gap: 8px;
+  margin: 4px 0 0;
+}
+
+.portfolio-event-scenarios dl div {
+  display: grid;
+  grid-template-columns: minmax(130px, 0.7fr) minmax(0, 1.3fr);
+  gap: 12px;
+}
+
+.portfolio-event-scenarios dt,
+.portfolio-event-scenarios dd {
+  margin: 0;
+}
+
+.portfolio-event-scenarios dd {
+  display: grid;
+  gap: 2px;
+}
+
+.portfolio-event-scenarios dd small {
+  color: var(--muted);
 }
 
 .portfolio-benefit-list div {
@@ -478,6 +567,52 @@ main {
 .money-input > span {
   color: var(--ink);
   font-weight: 900;
+}
+
+.policy-state-fields {
+  display: grid;
+  grid-column: 1 / -1;
+  gap: 10px;
+  border: 1px solid rgba(122, 90, 18, 0.18);
+  border-radius: 8px;
+  background: #fffaf0;
+  padding: 12px;
+}
+
+.policy-state-guidance {
+  display: grid;
+  gap: 3px;
+  cursor: pointer;
+  list-style-position: inside;
+}
+
+.policy-state-guidance strong {
+  color: var(--ink);
+  font-size: 0.86rem;
+}
+
+.policy-state-guidance span,
+.policy-state-note,
+.policy-state-field small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  line-height: 1.45;
+}
+
+.policy-state-note {
+  margin: 0;
+}
+
+.policy-state-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.policy-state-field {
+  display: grid;
+  gap: 5px;
 }
 
 .coverage-entry-editors {
@@ -749,6 +884,27 @@ main {
   line-height: 1.55;
 }
 
+.coverage-status-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.coverage-status-summary span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 22px;
+  padding: 2px 7px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 900;
+  line-height: 1.2;
+}
+
 .coverage-meter {
   height: 8px;
   overflow: hidden;
@@ -783,6 +939,23 @@ main {
   color: var(--muted);
   font-size: 0.76rem;
   font-weight: 800;
+}
+
+.coverage-hidden-items {
+  display: grid;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.coverage-hidden-items summary {
+  color: var(--blue-dark);
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.coverage-hidden-items[open] summary {
+  margin-bottom: 4px;
 }
 
 .portfolio-benefit-source,
@@ -1918,6 +2091,41 @@ select:focus,
   line-height: 1.2;
 }
 
+.chip.structure-status,
+.coverage-status-summary span {
+  border: 1px solid rgba(39, 52, 59, 0.14);
+}
+
+.chip.status-calculated,
+.coverage-status-summary .status-calculated {
+  background: #e8f5ee;
+  color: #185f39;
+  border-color: rgba(24, 95, 57, 0.18);
+}
+
+.chip.status-needs_user_input,
+.coverage-status-summary .status-needs_user_input {
+  background: #fff7e6;
+  color: #805c13;
+  border-color: rgba(128, 92, 19, 0.22);
+}
+
+.chip.status-pending_structure,
+.coverage-status-summary .status-pending_structure {
+  background: #edf4ff;
+  color: #245382;
+  border-color: rgba(36, 83, 130, 0.2);
+}
+
+.chip.status-source_pending,
+.chip.status-confirmed_no_amount,
+.coverage-status-summary .status-source_pending,
+.coverage-status-summary .status-confirmed_no_amount {
+  background: var(--surface-2);
+  color: var(--muted);
+  border-color: var(--line);
+}
+
 .domain-chart {
   display: grid;
   gap: 8px;
@@ -2170,8 +2378,30 @@ select:focus,
     padding-right: 14px;
   }
 
+  .app-header {
+    gap: 14px;
+    padding-top: 18px;
+    padding-bottom: 16px;
+  }
+
+  h1 {
+    font-size: 1.78rem;
+    line-height: 1.14;
+  }
+
+  .lede {
+    margin-top: 8px;
+    font-size: 0.95rem;
+    line-height: 1.58;
+  }
+
+  main {
+    padding-top: 16px;
+  }
+
   .header-actions,
   .portfolio-builder-head,
+  .portfolio-entry-head,
   .panel-heading,
   .summary-heading,
   .portfolio-form,
@@ -2197,9 +2427,14 @@ select:focus,
   }
 
   .portfolio-builder-head,
+  .portfolio-entry-head,
   .panel-heading,
   .summary-heading {
     display: grid;
+  }
+
+  .workflow-steps {
+    justify-content: flex-start;
   }
 
   .privacy-note {
@@ -2213,12 +2448,22 @@ select:focus,
 
   .header-actions {
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
   }
 
   .portfolio-builder,
   .public-data-summary,
   .search-panel {
     padding: 14px;
+  }
+
+  .portfolio-form {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portfolio-query {
+    grid-column: 1 / -1;
   }
 
   .summary-metrics article {
@@ -2237,6 +2482,11 @@ select:focus,
 
   .source-item {
     grid-template-columns: 1fr;
+  }
+
+  .portfolio-event-scenarios dl div {
+    grid-template-columns: 1fr;
+    gap: 2px;
   }
 
   .policy-card,
@@ -2264,6 +2514,7 @@ select:focus,
   .pagination-controls,
   .portfolio-edit-fields,
   .portfolio-selection-fields,
+  .policy-state-grid,
   .coverage-entry-editor {
     display: grid;
     grid-template-columns: 1fr;

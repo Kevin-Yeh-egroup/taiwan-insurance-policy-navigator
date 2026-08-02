@@ -1,43 +1,50 @@
 {
-  "generated_at": "2026-07-09T13:41:43+08:00",
+  "generated_at": "2026-07-31T21:44:42+08:00",
   "summary": {
-    "generated_at": "2026-07-09T13:41:43+08:00",
+    "generated_at": "2026-07-31T21:44:42+08:00",
     "source": "local TII files downloaded through captcha session",
     "batch_id": "tii-life-090",
     "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
     "product_count": 131,
-    "document_count": 261,
-    "extracted_document_count": 261,
+    "document_count": 241,
+    "extracted_document_count": 241,
     "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 20,
     "error_document_count": 0,
-    "pdf_document_count": 261,
+    "pdf_document_count": 241,
     "legacy_doc_document_count": 0,
     "policy_terms_document_count": 130,
-    "product_summary_document_count": 131,
-    "total_text_characters": 2824170,
+    "product_summary_document_count": 111,
+    "total_text_characters": 2731361,
     "focus_counts": [
       {
         "label": "保障項目",
-        "count": 121
+        "count": 129
       },
       {
         "label": "理賠申請",
-        "count": 121
-      },
-      {
-        "label": "特殊項目",
-        "count": 120
+        "count": 129
       },
       {
         "label": "重要定義",
-        "count": 107
+        "count": 128
+      },
+      {
+        "label": "特殊項目",
+        "count": 128
       }
     ],
-    "coverage_tag_counts": [],
+    "coverage_tag_counts": [
+      {
+        "label": "年金險",
+        "count": 21
+      }
+    ],
     "status_counts": [
       {
         "label": "extracted",
-        "count": 261
+        "count": 241
       }
     ]
   },
@@ -47,53 +54,164 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險",
-      "sale_status": "已停售",
-      "sale_date": "097/01/23",
-      "discontinued_date": "097/06/11",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 34614,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 18228,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00100-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本商品本公司合格簽人員檢其內容業已符合一般精算原則及保險法令..."
+            },
+            {
+              "document": "217421M31A00100-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...· 7 / 19 第二項約定期限屆滿時 , 本契約效力即行終止 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付前項..."
+            },
+            {
+              "document": "217421M31A00100-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
+            }
+          ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00100-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00100-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00100-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00100-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...需之保單帳戶價值 , 其超出的部份之保單帳戶價值返還予要保人 。 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個月內償付..."
+            },
+            {
+              "document": "217421M31A00100-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00100-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...當於第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
+            }
+          ]
         },
         {
           "key": "claims",
           "label": "理賠申請",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00100-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...型 ) 」 及 「 宏秦人壽保證給付批註條 ( 乙型 ) 」 供選擇 , 但僅能擇一申請批註 · 第第條 , 核准文號 : 96 年 12 月 18 日金管保二字第 096..."
+            },
+            {
+              "document": "217421M31A00100-A.pdf",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...保人與被保險人為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
+            },
+            {
+              "document": "217421M31A00100-A.pdf",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 , 、 保險單或其謄本 、 被保險人死亡證明文件及除戶戶籍謄本 、 申請書..."
+            }
+          ]
         }
       ],
-      "focus_score": 0,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -103,19 +221,9 @@
           "file_size": 1204122,
           "page_count": 19,
           "pages_parsed": 19,
-          "text_char_count": 29128,
+          "text_char_count": 18228,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00100-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 1309876,
-          "page_count": 6,
-          "pages_parsed": 6,
-          "text_char_count": 5486,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -125,53 +233,164 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第1次部份變更)",
-      "sale_status": "已停售",
-      "sale_date": "097/06/12",
-      "discontinued_date": "097/06/30",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 37766,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 18377,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00101-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本商品本公司合格簽人員檢其內容業已符合一般精算原則及保險法令..."
+            },
+            {
+              "document": "217421M31A00101-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...置比例重新投入 。 第二項約定期限屆滿時 , 本契約效力即行終止 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付 。..."
+            },
+            {
+              "document": "217421M31A00101-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
+            }
+          ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00101-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00101-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00101-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00101-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...需之保單帳戶價值 , 其超出的部份之保單帳戶價值返還予要保人 。 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個月內償付..."
+            },
+            {
+              "document": "217421M31A00101-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00101-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...當於第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
+            }
+          ]
         },
         {
           "key": "claims",
           "label": "理賠申請",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00101-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...甲型 ) 」 及 「 宏人壽保證給付批註條 ( 乙型 ) 」 供選擇 , 但僅能擇一申請批註 · 第第條 , 核准文號 : 96 年 12 月 18 日金管保二字第 096..."
+            },
+            {
+              "document": "217421M31A00101-A.pdf",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...保人與被保險人為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
+            },
+            {
+              "document": "217421M31A00101-A.pdf",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 : 、 保險單或其謄本 、 被保險人死亡證明文件及除戶戶籍謄本 、 申請書..."
+            }
+          ]
         }
       ],
-      "focus_score": 0,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -181,19 +400,9 @@
           "file_size": 1580301,
           "page_count": 19,
           "pages_parsed": 19,
-          "text_char_count": 29142,
+          "text_char_count": 18377,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00101-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 467604,
-          "page_count": 6,
-          "pages_parsed": 6,
-          "text_char_count": 8624,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -203,53 +412,164 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第2次部份變更)",
-      "sale_status": "已停售",
-      "sale_date": "097/07/01",
-      "discontinued_date": "097/09/22",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 37269,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 18429,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00102-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本商品本公司合格簽人員檢其內容業已符合一般精算原則及保險法令..."
+            },
+            {
+              "document": "217421M31A00102-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...置比例重新投入 。 第二項約定期限屆滿時 , 本契約效力即行終止 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付 。..."
+            },
+            {
+              "document": "217421M31A00102-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
+            }
+          ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00102-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00102-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00102-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00102-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...需之保單帳戶價值 , 其超出的部份之保單帳戶價值返還予要保人 。 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個月內償付..."
+            },
+            {
+              "document": "217421M31A00102-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00102-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...當於第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
+            }
+          ]
         },
         {
           "key": "claims",
           "label": "理賠申請",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00102-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...甲型 ) 」 及 「 宏人壽保證給付批註條 ( 乙型 ) 」 供選擇 , 但僅能擇一申請批註 · 第第條 , 核准文號 : 96 年 12 月 18 日金管保二字第 096..."
+            },
+            {
+              "document": "217421M31A00102-A.pdf",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...保人與被保險人為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
+            },
+            {
+              "document": "217421M31A00102-A.pdf",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 , 、 保險單或其謄本 、 被保險人死亡證明文件及除戶戶籍謄本 、 申請書..."
+            }
+          ]
         }
       ],
-      "focus_score": 0,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -259,19 +579,9 @@
           "file_size": 1597329,
           "page_count": 19,
           "pages_parsed": 19,
-          "text_char_count": 29161,
+          "text_char_count": 18429,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00102-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 471509,
-          "page_count": 6,
-          "pages_parsed": 6,
-          "text_char_count": 8108,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -478,53 +788,164 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第4次部份變更)",
-      "sale_status": "已停售",
-      "sale_date": "097/11/12",
-      "discontinued_date": "098/05/12",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 41076,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 20000,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00104-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本商品本公司合格簽人員檢其內容業已符合一般精算原則及保險法令..."
+            },
+            {
+              "document": "217421M31A00104-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...置比例重新投入 。 第二項約定期限屆滿時 , 本契約效力即行終止 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付 。..."
+            },
+            {
+              "document": "217421M31A00104-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
+            }
+          ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00104-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00104-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00104-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00104-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...值 , 其超出的部份之保單帳戶價值返還予要保人 。 第十二條 , 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個月內償付..."
+            },
+            {
+              "document": "217421M31A00104-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00104-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...當於第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
+            }
+          ]
         },
         {
           "key": "claims",
           "label": "理賠申請",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00104-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...甲型 ) 」 及 「 宏人壽保證給付批註條 ( 乙型 ) 」 供選擇 , 但僅能擇一申請批註 · 第第條 , 核准文號 : 96 年 12 月 18 日金管保二字第 096..."
+            },
+            {
+              "document": "217421M31A00104-A.pdf",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...保人與被保險人為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
+            },
+            {
+              "document": "217421M31A00104-A.pdf",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 , 、 保險單或其謄本 、 被保險人死亡證明文件及除戶戶籍謄本 、 申請書..."
+            }
+          ]
         }
       ],
-      "focus_score": 0,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -534,19 +955,9 @@
           "file_size": 1454416,
           "page_count": 20,
           "pages_parsed": 20,
-          "text_char_count": 30846,
+          "text_char_count": 20000,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00104-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 501652,
-          "page_count": 7,
-          "pages_parsed": 7,
-          "text_char_count": 10230,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -556,53 +967,164 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第5次部份變更)",
-      "sale_status": "已停售",
-      "sale_date": "098/05/13",
-      "discontinued_date": "098/06/16",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 43029,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 21264,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00105-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本商品本公司合格簽人員檢其內容業已符合一般精算原則及保險法令..."
+            },
+            {
+              "document": "217421M31A00105-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...置比例重新投入 。 第二項約定期限屆滿時 , 本契約效力即行終止 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付 。..."
+            },
+            {
+              "document": "217421M31A00105-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
+            }
+          ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00105-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00105-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00105-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00105-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...值 , 其超出的部份之保單帳戶價值返還予要保人 。 第十二條 , 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個月內償付..."
+            },
+            {
+              "document": "217421M31A00105-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00105-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...當於第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
+            }
+          ]
         },
         {
           "key": "claims",
           "label": "理賠申請",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00105-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...甲型 ) 」 及 「 宏人壽保證給付批註條 ( 乙型 ) 」 供選擇 , 但僅能擇一申請批註 · 第第條 , 核准文號 : 96 年 12 月 18 日金管保二字第 096..."
+            },
+            {
+              "document": "217421M31A00105-A.pdf",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...保人與被保險人為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
+            },
+            {
+              "document": "217421M31A00105-A.pdf",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 , 、 保險單或其謄本 、 被保險人死亡證明文件及除戶戶籍謄本 、 申請書..."
+            }
+          ]
         }
       ],
-      "focus_score": 0,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -611,20 +1133,10 @@
           "document_kind": "pdf",
           "file_size": 1501046,
           "page_count": 21,
-          "pages_parsed": 20,
-          "text_char_count": 31622,
+          "pages_parsed": 21,
+          "text_char_count": 21264,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00105-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 567609,
-          "page_count": 8,
-          "pages_parsed": 8,
-          "text_char_count": 11407,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -634,53 +1146,164 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第6次部份變更)",
-      "sale_status": "已停售",
-      "sale_date": "098/06/17",
-      "discontinued_date": "098/08/31",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 43263,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 20867,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00106-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本商品本公司合格簽人員檢其內容業已符合一般精算原則及保險法令..."
+            },
+            {
+              "document": "217421M31A00106-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...置比例重新投入 。 第二項約定期限屆滿時 , 本契約效力即行終止 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付 。..."
+            },
+            {
+              "document": "217421M31A00106-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
+            }
+          ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00106-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00106-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00106-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00106-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...值 , 其超出的部份之保單帳戶價值返還予要保人 。 第十二條 , 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個月內償付..."
+            },
+            {
+              "document": "217421M31A00106-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00106-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...當於第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
+            }
+          ]
         },
         {
           "key": "claims",
           "label": "理賠申請",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00106-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...甲型 ) 」 及 「 宏人壽保證給付批註條 ( 乙型 ) 」 供選擇 , 但僅能擇一申請批註 · 第第條 , 核准文號 : 96 年 12 月 18 日金管保二字第 096..."
+            },
+            {
+              "document": "217421M31A00106-A.pdf",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...保人與被保險人為同人時 、 一可由要保人之法定繼承人向本公司提出申請 。 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
+            },
+            {
+              "document": "217421M31A00106-A.pdf",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 , 、 保險單或其謄本 、 被保險人死亡證明文件及除戶戶籍謄本 、 申請書..."
+            }
+          ]
         }
       ],
-      "focus_score": 0,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -689,20 +1312,10 @@
           "document_kind": "pdf",
           "file_size": 1498181,
           "page_count": 21,
-          "pages_parsed": 20,
-          "text_char_count": 31750,
+          "pages_parsed": 21,
+          "text_char_count": 20867,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00106-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 591442,
-          "page_count": 8,
-          "pages_parsed": 8,
-          "text_char_count": 11513,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -712,53 +1325,164 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第7次部份變更)",
-      "sale_status": "已停售",
-      "sale_date": "098/09/01",
-      "discontinued_date": "098/11/12",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 43344,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 20904,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00107-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本商品本公司合格簽人員檢其內容業已符合一般精算原則及保險法令..."
+            },
+            {
+              "document": "217421M31A00107-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...置比例重新投入 。 第二項約定期限屆滿時 , 本契約效力即行終止 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付 。..."
+            },
+            {
+              "document": "217421M31A00107-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
+            }
+          ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00107-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00107-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00107-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00107-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...值 , 其超出的部份之保單帳戶價值返還予要保人 。 第十二條 , 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個 VA..."
+            },
+            {
+              "document": "217421M31A00107-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...理 〕 一要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00107-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...當於第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
+            }
+          ]
         },
         {
           "key": "claims",
           "label": "理賠申請",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00107-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...甲型 ) 」 及 「 宏人壽保證給付批註條 ( 乙型 ) 」 供選擇 , 但僅能擇一申請批註 · 第第條 , 核准文號 : 96 年 12 月 18 日金管保二字第 096..."
+            },
+            {
+              "document": "217421M31A00107-A.pdf",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...保人與被保險人為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
+            },
+            {
+              "document": "217421M31A00107-A.pdf",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 , 、 保險單或其謄本 、 被保險人死亡證明文件及除戶戶籍謄本 、 申請書..."
+            }
+          ]
         }
       ],
-      "focus_score": 0,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -767,20 +1491,10 @@
           "document_kind": "pdf",
           "file_size": 1498222,
           "page_count": 21,
-          "pages_parsed": 20,
-          "text_char_count": 31826,
+          "pages_parsed": 21,
+          "text_char_count": 20904,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00107-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 569075,
-          "page_count": 8,
-          "pages_parsed": 8,
-          "text_char_count": 11518,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -790,53 +1504,164 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第8次部份變更)",
-      "sale_status": "已停售",
-      "sale_date": "098/11/13",
-      "discontinued_date": "099/04/08",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 37136,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 20606,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00108-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本商品本公司合格簽人員檢其內容業已符合一般精算原則及保險法令..."
+            },
+            {
+              "document": "217421M31A00108-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...置比例重新投入 。 第二項約定期限屆滿時 , 本契約效力即行終止 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付前項..."
+            },
+            {
+              "document": "217421M31A00108-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
+            }
+          ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00108-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00108-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 , 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00108-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00108-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...還予要保人 。 VA · 4 / 21 第十二條第十三條第十四條 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個月內償付..."
+            },
+            {
+              "document": "217421M31A00108-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00108-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...當於第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
+            }
+          ]
         },
         {
           "key": "claims",
           "label": "理賠申請",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00108-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...甲型 ) 」 及 「 宏人壽保證給付批註條 ( 乙型 ) 」 供選擇 , 但僅能擇一申請批註 · 第第條 , 核准文號 : 96 年 12 月 18 日金管保二字第 096..."
+            },
+            {
+              "document": "217421M31A00108-A.pdf",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...保人與被保險人為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
+            },
+            {
+              "document": "217421M31A00108-A.pdf",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 : 、 保險單或其謄本 、 被保險人死亡證明文件及除戶戶籍謄本 、 申請書..."
+            }
+          ]
         }
       ],
-      "focus_score": 0,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -845,20 +1670,10 @@
           "document_kind": "pdf",
           "file_size": 1493119,
           "page_count": 21,
-          "pages_parsed": 20,
-          "text_char_count": 31621,
+          "pages_parsed": 21,
+          "text_char_count": 20606,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00108-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 198328,
-          "page_count": 4,
-          "pages_parsed": 4,
-          "text_char_count": 5515,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -868,75 +1683,123 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第9次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "099/04/09",
-      "discontinued_date": "099/08/22",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 29662,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 21009,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：身故。",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
           "terms": [
-            "身故"
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
           ],
           "pages": [
-            1,
-            2,
-            3
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00109-F.pdf",
+              "document": "217421M31A00109-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "第第宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保..."
+            },
+            {
+              "document": "217421M31A00109-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...置比例重新投入 。 第二項約定期限屆滿時 , 本契約效力即行終止 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付 。..."
+            },
+            {
+              "document": "217421M31A00109-A.pdf",
               "page": 1,
               "term": "身故",
-              "snippet": "...萬元所需之保單帳戶價值， 其超出的部份之保單帳戶價值返還予要保人。 4. 〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉..."
-            },
-            {
-              "document": "217421M31A00109-F.pdf",
-              "page": 2,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證期間內按本批註條款約定之方式計算..."
-            },
-            {
-              "document": "217421M31A00109-F.pdf",
-              "page": 3,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證遞延期間內按本批註條款約定之方式..."
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 VA · 3 / 24 第五條 : 第..."
             }
           ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00109-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 條 , 〔 名詞定義 〕 本契約之名詞定義如下 • 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00109-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 條 , 〔 名詞定義 〕 本契約之名詞定義如下 • 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00109-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
           "terms": [
-            "除外責任"
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
           ],
           "pages": [
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00109-F.pdf",
-              "page": 4,
-              "term": "除外責任",
-              "snippet": "...當時依「樂活人生積極型投資帳戶」計價幣別可供連結之 貨幣型基金。 /square6 除外責任除外責任除外責任除外責任 無。"
+              "document": "217421M31A00109-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...需之保單帳戶價值 , 其超出的部份之保單帳戶價值返還予要保人 。 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個月內償付..."
+            },
+            {
+              "document": "217421M31A00109-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...七條 : 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00109-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 。 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
             }
           ]
         },
@@ -944,41 +1807,40 @@
           "key": "claims",
           "label": "理賠申請",
           "status": "detected",
-          "summary": "已從文件文字命中 3 個重點詞：申請、受益人、通知。",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
           "terms": [
             "申請",
+            "申領",
+            "檢具",
             "受益人",
             "通知"
           ],
           "pages": [
-            1,
-            2,
-            3,
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00109-F.pdf",
+              "document": "217421M31A00109-A.pdf",
               "page": 1,
               "term": "申請",
-              "snippet": "...生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本公司將以要保人檢齊申請所須文件並送達本公 司後的第二個資產評價日計算之保單帳戶價值返還予要保人或其他應得之..."
+              "snippet": "...) 」 及 「 宏豢人壽保證給付批註條款 ( 乙型 ) 」 供選擇 , 但僅能擇一申請批註 。 核准文號 : 96 年 12 月 18 日金管保二字第 096021706..."
             },
             {
-              "document": "217421M31A00109-F.pdf",
+              "document": "217421M31A00109-A.pdf",
               "page": 1,
-              "term": "受益人",
-              "snippet": "...〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉被保險人發生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本..."
+              "term": "申領",
+              "snippet": "...保人與被保險人為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
             },
             {
-              "document": "217421M31A00109-F.pdf",
+              "document": "217421M31A00109-A.pdf",
               "page": 1,
-              "term": "通知",
-              "snippet": "...七十歲之保單週年日 做為年金給付開始日。 要保人亦得於年金給付開始日的三十日前以書面通知本公司變更年金給付開始日或年金保證給付 期間，且須符合前項給付日之規定。 本公司應於..."
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 , VA · 8 / 24 第廿二條 : 第廿三條 : 第廿四條 : 、..."
             }
           ]
         }
       ],
-      "focus_score": 3,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -987,20 +1849,10 @@
           "document_kind": "pdf",
           "file_size": 1495453,
           "page_count": 24,
-          "pages_parsed": 20,
-          "text_char_count": 26415,
+          "pages_parsed": 24,
+          "text_char_count": 21009,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00109-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 78095,
-          "page_count": 4,
-          "pages_parsed": 4,
-          "text_char_count": 3247,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -1010,75 +1862,123 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第10次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "099/08/23",
-      "discontinued_date": "099/10/31",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 35373,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 22760,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：身故。",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
           "terms": [
-            "身故"
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
           ],
           "pages": [
-            1,
-            2,
-            3
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00110-F.pdf",
+              "document": "217421M31A00110-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項..."
+            },
+            {
+              "document": "217421M31A00110-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...本息 , 其未償還餘額不得逾依第一項約定之保險單借款可借金額上限 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保 VA · 7 / 23 第廿..."
+            },
+            {
+              "document": "217421M31A00110-A.pdf",
               "page": 1,
               "term": "身故",
-              "snippet": "...萬元所需之保單帳戶價值， 其超出的部份之保單帳戶價值返還予要保人。 4. 〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉..."
-            },
-            {
-              "document": "217421M31A00110-F.pdf",
-              "page": 2,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證期間內按本批註條款約定之方式計算..."
-            },
-            {
-              "document": "217421M31A00110-F.pdf",
-              "page": 3,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證遞延期間內按本批註條款約定之方式..."
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
             }
           ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00110-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...利於被保險人的解釋為原則 。 h()l'xtailic:.net\\\\'()rk 〔 名詞定義 〕 本契約之名詞定義如下 : 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00110-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...被保險人的解釋為原則 。 h()l'xtailic:.net\\\\'()rk 〔 名詞定義 〕 本契約之名詞定義如下 : 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00110-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
           "terms": [
-            "除外責任"
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
           ],
           "pages": [
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00110-F.pdf",
-              "page": 4,
-              "term": "除外責任",
-              "snippet": "...當時依「樂活人生積極型投資帳戶」計價幣別可供連結之 貨幣型基金。 /square6 除外責任除外責任除外責任除外責任 無。"
+              "document": "217421M31A00110-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...需之保單帳戶價值 , 其超出的部份之保單帳戶價值返還予要保人 。 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個月內償付..."
+            },
+            {
+              "document": "217421M31A00110-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...錯誤的處理要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00110-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 。 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
             }
           ]
         },
@@ -1086,41 +1986,40 @@
           "key": "claims",
           "label": "理賠申請",
           "status": "detected",
-          "summary": "已從文件文字命中 3 個重點詞：申請、受益人、通知。",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
           "terms": [
             "申請",
+            "申領",
+            "檢具",
             "受益人",
             "通知"
           ],
           "pages": [
-            1,
-            2,
-            3,
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00110-F.pdf",
+              "document": "217421M31A00110-A.pdf",
               "page": 1,
               "term": "申請",
-              "snippet": "...生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本公司將以要保人檢齊申請所須文件並送達本公 司後的第二個資產評價日計算之保單帳戶價值返還予要保人或其他應得之..."
+              "snippet": "...。 、 給付解約金 ( 含部分提領 ) 及返還保單帳戶價值 : 本公司根據收到相關申請文件或書面通知後第二個資產評價日本契約指定保管銀行之贖回投資標的貨幣即期買入匯率收盤..."
             },
             {
-              "document": "217421M31A00110-F.pdf",
+              "document": "217421M31A00110-A.pdf",
               "page": 1,
-              "term": "受益人",
-              "snippet": "...〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉被保險人發生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本..."
+              "term": "申領",
+              "snippet": "...保人與被保險人為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
             },
             {
-              "document": "217421M31A00110-F.pdf",
+              "document": "217421M31A00110-A.pdf",
               "page": 1,
-              "term": "通知",
-              "snippet": "...七十歲之保單週年日 做為年金給付開始日。 要保人亦得於年金給付開始日的三十日前以書面通知本公司變更年金給付開始日或年金保證給付 期間，且須符合前項給付日之規定。 本公司應於..."
+              "term": "檢具",
+              "snippet": "...第廿四條 : 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 , 、 保險單或其謄本 、 被保險人死亡證明文件及除戶戶籍謄本 、 申請書..."
             }
           ]
         }
       ],
-      "focus_score": 3,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -1129,20 +2028,10 @@
           "document_kind": "pdf",
           "file_size": 1454177,
           "page_count": 23,
-          "pages_parsed": 20,
-          "text_char_count": 32126,
+          "pages_parsed": 23,
+          "text_char_count": 22760,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00110-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 78095,
-          "page_count": 4,
-          "pages_parsed": 4,
-          "text_char_count": 3247,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -1152,75 +2041,123 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第11次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "099/11/01",
-      "discontinued_date": "099/12/09",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 34079,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 22246,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：身故。",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
           "terms": [
-            "身故"
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
           ],
           "pages": [
-            1,
-            2,
-            3
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00111-F.pdf",
+              "document": "217421M31A00111-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "第第宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項..."
+            },
+            {
+              "document": "217421M31A00111-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...本息 , 其未償還餘額不得逾依第一項約定之保險單借款可借金額上限 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保 VA · 7 / 22 第廿..."
+            },
+            {
+              "document": "217421M31A00111-A.pdf",
               "page": 1,
               "term": "身故",
-              "snippet": "...萬元所需之保單帳戶價值， 其超出的部份之保單帳戶價值返還予要保人。 4. 〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉..."
-            },
-            {
-              "document": "217421M31A00111-F.pdf",
-              "page": 2,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證期間內按本批註條款約定之方式計算..."
-            },
-            {
-              "document": "217421M31A00111-F.pdf",
-              "page": 3,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證遞延期間內按本批註條款約定之方式..."
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
             }
           ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00111-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 : 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00111-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 : 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00111-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
           "terms": [
-            "除外責任"
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
           ],
           "pages": [
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00111-F.pdf",
-              "page": 4,
-              "term": "除外責任",
-              "snippet": "...當時依「樂活人生積極型投資帳戶」計價幣別可供連結之 貨幣型基金。 /square6 除外責任除外責任除外責任除外責任 無。"
+              "document": "217421M31A00111-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...需之保單帳戶價值 , 其超出的部份之保單帳戶價值返還予要保人 。 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個月內償付..."
+            },
+            {
+              "document": "217421M31A00111-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...錯誤的處理要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00111-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 。 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
             }
           ]
         },
@@ -1228,41 +2165,40 @@
           "key": "claims",
           "label": "理賠申請",
           "status": "detected",
-          "summary": "已從文件文字命中 3 個重點詞：申請、受益人、通知。",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
           "terms": [
             "申請",
+            "申領",
+            "檢具",
             "受益人",
             "通知"
           ],
           "pages": [
-            1,
-            2,
-            3,
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00111-F.pdf",
+              "document": "217421M31A00111-A.pdf",
               "page": 1,
               "term": "申請",
-              "snippet": "...生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本公司將以要保人檢齊申請所須文件並送達本公 司後的第二個資產評價日計算之保單帳戶價值返還予要保人或其他應得之..."
+              "snippet": "...。 、 給付解約金 ( 含部分提領 ) 及返還保單帳戶價值 : 本公司根據收到相關申請文件或書面通知後第二個資產評價日本契約指定保管銀行之贖回投資標的貨幣即期買入匯率收盤..."
             },
             {
-              "document": "217421M31A00111-F.pdf",
+              "document": "217421M31A00111-A.pdf",
               "page": 1,
-              "term": "受益人",
-              "snippet": "...〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉被保險人發生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本..."
+              "term": "申領",
+              "snippet": "...保人與被保險人為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
             },
             {
-              "document": "217421M31A00111-F.pdf",
+              "document": "217421M31A00111-A.pdf",
               "page": 1,
-              "term": "通知",
-              "snippet": "...七十歲之保單週年日 做為年金給付開始日。 要保人亦得於年金給付開始日的三十日前以書面通知本公司變更年金給付開始日或年金保證給付 期間，且須符合前項給付日之規定。 本公司應於..."
+              "term": "檢具",
+              "snippet": "...第廿四條 : 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 , 、 保險單或其謄本 、 被保險人死亡證明文件及除戶戶籍謄本 、 申請書..."
             }
           ]
         }
       ],
-      "focus_score": 3,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -1271,20 +2207,10 @@
           "document_kind": "pdf",
           "file_size": 1385486,
           "page_count": 22,
-          "pages_parsed": 20,
-          "text_char_count": 30832,
+          "pages_parsed": 22,
+          "text_char_count": 22246,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00111-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 78095,
-          "page_count": 4,
-          "pages_parsed": 4,
-          "text_char_count": 3247,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -1512,75 +2438,123 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第13次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "100/03/21",
-      "discontinued_date": "100/04/21",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 10302,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 17201,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：身故。",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
           "terms": [
-            "身故"
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
           ],
           "pages": [
-            1,
-            2,
-            3
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00113-F.pdf",
+              "document": "217421M31A00113-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項..."
+            },
+            {
+              "document": "217421M31A00113-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...得逾依第一項約定之保險單借款可借金額上限 。 VA · 7 / 16 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付 。..."
+            },
+            {
+              "document": "217421M31A00113-A.pdf",
               "page": 1,
               "term": "身故",
-              "snippet": "...萬元所需之保單帳戶價值， 其超出的部份之保單帳戶價值返還予要保人。 4. 〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉..."
-            },
-            {
-              "document": "217421M31A00113-F.pdf",
-              "page": 2,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證期間內按本批註條款約定之方式計算..."
-            },
-            {
-              "document": "217421M31A00113-F.pdf",
-              "page": 3,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證遞延期間內按本批註條款約定之方式..."
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
             }
           ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00113-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 : 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00113-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 : 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00113-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...款 ( 甲 ) 每月保證費用率表保證方式費躉年躉年式投保年齡每月保證費用率方繳繳繳繳保證期間 | 5 年 ( 65 0 」 053 % 20 年仩 07 | 9 % 鎖利機制..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
           "terms": [
-            "除外責任"
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
           ],
           "pages": [
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00113-F.pdf",
-              "page": 4,
-              "term": "除外責任",
-              "snippet": "...當時依「樂活人生積極型投資帳戶」計價幣別可供連結之 貨幣型基金。 /square6 除外責任除外責任除外責任除外責任 無。"
+              "document": "217421M31A00113-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...人 。 h€)litairrcr-znetwork 第十二條 : 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個月內償付..."
+            },
+            {
+              "document": "217421M31A00113-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00113-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 。 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
             }
           ]
         },
@@ -1588,41 +2562,40 @@
           "key": "claims",
           "label": "理賠申請",
           "status": "detected",
-          "summary": "已從文件文字命中 3 個重點詞：申請、受益人、通知。",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
           "terms": [
             "申請",
+            "申領",
+            "檢具",
             "受益人",
             "通知"
           ],
           "pages": [
-            1,
-            2,
-            3,
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00113-F.pdf",
+              "document": "217421M31A00113-A.pdf",
               "page": 1,
               "term": "申請",
-              "snippet": "...生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本公司將以要保人檢齊申請所須文件並送達本公 司後的第二個資產評價日計算之保單帳戶價值返還予要保人或其他應得之..."
+              "snippet": "...。 、 給付解約金 ( 含部分提領 ) 及返還保單帳戶價值 : 本公司根據收到相關申請文件或書面通知後第二個資產評價日本契約指定保管銀行之贖回投資標的貨幣即期買入匯率收盤..."
             },
             {
-              "document": "217421M31A00113-F.pdf",
+              "document": "217421M31A00113-A.pdf",
               "page": 1,
-              "term": "受益人",
-              "snippet": "...〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉被保險人發生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本..."
+              "term": "申領",
+              "snippet": "...為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 第廿二條 : 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
             },
             {
-              "document": "217421M31A00113-F.pdf",
+              "document": "217421M31A00113-A.pdf",
               "page": 1,
-              "term": "通知",
-              "snippet": "...七十歲之保單週年日 做為年金給付開始日。 要保人亦得於年金給付開始日的三十日前以書面通知本公司變更年金給付開始日或年金保證給付 期間，且須符合前項給付日之規定。 本公司應於..."
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 · 、 保險單或其謄本 。 、 被保險人死亡證明文件及除戶戶籍謄本 、 申..."
             }
           ]
         }
       ],
-      "focus_score": 3,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -1632,19 +2605,9 @@
           "file_size": 249437,
           "page_count": 16,
           "pages_parsed": 16,
-          "text_char_count": 7055,
+          "text_char_count": 17201,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00113-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 78095,
-          "page_count": 4,
-          "pages_parsed": 4,
-          "text_char_count": 3247,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -1872,75 +2835,123 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第15次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "100/07/01",
-      "discontinued_date": "100/08/14",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 10270,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 22121,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：身故。",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
           "terms": [
-            "身故"
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
           ],
           "pages": [
-            1,
-            2,
-            3
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00115-F.pdf",
+              "document": "217421M31A00115-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項..."
+            },
+            {
+              "document": "217421M31A00115-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...本息 , 其未償還餘額不得逾依第一項約定之保險單借款可借金額上限 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付前項..."
+            },
+            {
+              "document": "217421M31A00115-A.pdf",
               "page": 1,
               "term": "身故",
-              "snippet": "...萬元所需之保單帳戶價值， 其超出的部份之保單帳戶價值返還予要保人。 4. 〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉..."
-            },
-            {
-              "document": "217421M31A00115-F.pdf",
-              "page": 2,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證期間內按本批註條款約定之方式計算..."
-            },
-            {
-              "document": "217421M31A00115-F.pdf",
-              "page": 3,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證遞延期間內按本批註條款約定之方式..."
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
             }
           ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00115-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 · 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00115-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 · 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00115-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
           "terms": [
-            "除外責任"
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
           ],
           "pages": [
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00115-F.pdf",
-              "page": 4,
-              "term": "除外責任",
-              "snippet": "...當時依「樂活人生積極型投資帳戶」計價幣別可供連結之 貨幣型基金。 /square6 除外責任除外責任除外責任除外責任 無。"
+              "document": "217421M31A00115-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...值 , 其超出的部份之保單帳戶價值返還予要保人 。 第十二條 : 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約本公司應於接到書面通知後一個月內償付解約金..."
+            },
+            {
+              "document": "217421M31A00115-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00115-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 。 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
             }
           ]
         },
@@ -1948,41 +2959,40 @@
           "key": "claims",
           "label": "理賠申請",
           "status": "detected",
-          "summary": "已從文件文字命中 3 個重點詞：申請、受益人、通知。",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
           "terms": [
             "申請",
+            "申領",
+            "檢具",
             "受益人",
             "通知"
           ],
           "pages": [
-            1,
-            2,
-            3,
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00115-F.pdf",
+              "document": "217421M31A00115-A.pdf",
               "page": 1,
               "term": "申請",
-              "snippet": "...生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本公司將以要保人檢齊申請所須文件並送達本公 司後的第二個資產評價日計算之保單帳戶價值返還予要保人或其他應得之..."
+              "snippet": "...。 、 給付解約金 ( 含部分提領 ) 及返還保單帳戶價值 : 本公司根據收到相關申請文件或書面通知後第二個資產評價日本契約指定保管銀行之贖回投資標的貨幣即期買入匯率收盤..."
             },
             {
-              "document": "217421M31A00115-F.pdf",
+              "document": "217421M31A00115-A.pdf",
               "page": 1,
-              "term": "受益人",
-              "snippet": "...〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉被保險人發生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本..."
+              "term": "申領",
+              "snippet": "...為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 第廿二條 : 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
             },
             {
-              "document": "217421M31A00115-F.pdf",
+              "document": "217421M31A00115-A.pdf",
               "page": 1,
-              "term": "通知",
-              "snippet": "...七十歲之保單週年日 做為年金給付開始日。 要保人亦得於年金給付開始日的三十日前以書面通知本公司變更年金給付開始日或年金保證給付 期間，且須符合前項給付日之規定。 本公司應於..."
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 · VA · 6 / 22 、 保險單或其謄本 。 、 被保險人死亡證明文..."
             }
           ]
         }
       ],
-      "focus_score": 3,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -1991,20 +3001,10 @@
           "document_kind": "pdf",
           "file_size": 273234,
           "page_count": 22,
-          "pages_parsed": 20,
-          "text_char_count": 7023,
+          "pages_parsed": 22,
+          "text_char_count": 22121,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00115-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 78095,
-          "page_count": 4,
-          "pages_parsed": 4,
-          "text_char_count": 3247,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -2014,75 +3014,123 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第16次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "100/08/15",
-      "discontinued_date": "100/11/30",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 10250,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 22029,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：身故。",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
           "terms": [
-            "身故"
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
           ],
           "pages": [
-            1,
-            2,
-            3
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00116-F.pdf",
+              "document": "217421M31A00116-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項..."
+            },
+            {
+              "document": "217421M31A00116-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...本息 , 其未償還餘額不得逾依第一項約定之保險單借款可借金額上限 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付前項..."
+            },
+            {
+              "document": "217421M31A00116-A.pdf",
               "page": 1,
               "term": "身故",
-              "snippet": "...萬元所需之保單帳戶價值， 其超出的部份之保單帳戶價值返還予要保人。 4. 〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉..."
-            },
-            {
-              "document": "217421M31A00116-F.pdf",
-              "page": 2,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證期間內按本批註條款約定之方式計算..."
-            },
-            {
-              "document": "217421M31A00116-F.pdf",
-              "page": 3,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證遞延期間內按本批註條款約定之方式..."
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
             }
           ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00116-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 · 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00116-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 · 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00116-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
           "terms": [
-            "除外責任"
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
           ],
           "pages": [
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00116-F.pdf",
-              "page": 4,
-              "term": "除外責任",
-              "snippet": "...當時依「樂活人生積極型投資帳戶」計價幣別可供連結之 貨幣型基金。 /square6 除外責任除外責任除外責任除外責任 無。"
+              "document": "217421M31A00116-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...值 , 其超出的部份之保單帳戶價值返還予要保人 。 第十二條 : 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約本公司應於接到書面通知後一個月內償付解約金..."
+            },
+            {
+              "document": "217421M31A00116-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00116-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 。 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
             }
           ]
         },
@@ -2090,41 +3138,40 @@
           "key": "claims",
           "label": "理賠申請",
           "status": "detected",
-          "summary": "已從文件文字命中 3 個重點詞：申請、受益人、通知。",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
           "terms": [
             "申請",
+            "申領",
+            "檢具",
             "受益人",
             "通知"
           ],
           "pages": [
-            1,
-            2,
-            3,
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00116-F.pdf",
+              "document": "217421M31A00116-A.pdf",
               "page": 1,
               "term": "申請",
-              "snippet": "...生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本公司將以要保人檢齊申請所須文件並送達本公 司後的第二個資產評價日計算之保單帳戶價值返還予要保人或其他應得之..."
+              "snippet": "...。 、 給付解約金 ( 含部分提領 ) 及返還保單帳戶價值 : 本公司根據收到相關申請文件或書面通知後第二個資產評價日本契約指定保管銀行之贖回投資標的貨幣即期買入匯率收盤..."
             },
             {
-              "document": "217421M31A00116-F.pdf",
+              "document": "217421M31A00116-A.pdf",
               "page": 1,
-              "term": "受益人",
-              "snippet": "...〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉被保險人發生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本..."
+              "term": "申領",
+              "snippet": "...為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 第廿二條 : 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
             },
             {
-              "document": "217421M31A00116-F.pdf",
+              "document": "217421M31A00116-A.pdf",
               "page": 1,
-              "term": "通知",
-              "snippet": "...七十歲之保單週年日 做為年金給付開始日。 要保人亦得於年金給付開始日的三十日前以書面通知本公司變更年金給付開始日或年金保證給付 期間，且須符合前項給付日之規定。 本公司應於..."
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 · VA · 6 / 22 、 保險單或其謄本 。 、 被保險人死亡證明文..."
             }
           ]
         }
       ],
-      "focus_score": 3,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -2133,20 +3180,10 @@
           "document_kind": "pdf",
           "file_size": 268650,
           "page_count": 22,
-          "pages_parsed": 20,
-          "text_char_count": 7003,
+          "pages_parsed": 22,
+          "text_char_count": 22029,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00116-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 78095,
-          "page_count": 4,
-          "pages_parsed": 4,
-          "text_char_count": 3247,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -2156,75 +3193,123 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第17次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "100/12/01",
-      "discontinued_date": "101/02/23",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 10250,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 22028,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：身故。",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
           "terms": [
-            "身故"
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
           ],
           "pages": [
-            1,
-            2,
-            3
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00117-F.pdf",
+              "document": "217421M31A00117-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項..."
+            },
+            {
+              "document": "217421M31A00117-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...本息 , 其未償還餘額不得逾依第一項約定之保險單借款可借金額上限 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付前項..."
+            },
+            {
+              "document": "217421M31A00117-A.pdf",
               "page": 1,
               "term": "身故",
-              "snippet": "...萬元所需之保單帳戶價值， 其超出的部份之保單帳戶價值返還予要保人。 4. 〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉..."
-            },
-            {
-              "document": "217421M31A00117-F.pdf",
-              "page": 2,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證期間內按本批註條款約定之方式計算..."
-            },
-            {
-              "document": "217421M31A00117-F.pdf",
-              "page": 3,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證遞延期間內按本批註條款約定之方式..."
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
             }
           ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00117-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 · 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00117-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 · 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00117-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
           "terms": [
-            "除外責任"
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
           ],
           "pages": [
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00117-F.pdf",
-              "page": 4,
-              "term": "除外責任",
-              "snippet": "...當時依「樂活人生積極型投資帳戶」計價幣別可供連結之 貨幣型基金。 /square6 除外責任除外責任除外責任除外責任 無。"
+              "document": "217421M31A00117-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...值 , 其超出的部份之保單帳戶價值返還予要保人 。 第十二條 : 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約本公司應於接到書面通知後一個月內償付解約金..."
+            },
+            {
+              "document": "217421M31A00117-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00117-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 。 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
             }
           ]
         },
@@ -2232,41 +3317,40 @@
           "key": "claims",
           "label": "理賠申請",
           "status": "detected",
-          "summary": "已從文件文字命中 3 個重點詞：申請、受益人、通知。",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
           "terms": [
             "申請",
+            "申領",
+            "檢具",
             "受益人",
             "通知"
           ],
           "pages": [
-            1,
-            2,
-            3,
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00117-F.pdf",
+              "document": "217421M31A00117-A.pdf",
               "page": 1,
               "term": "申請",
-              "snippet": "...生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本公司將以要保人檢齊申請所須文件並送達本公 司後的第二個資產評價日計算之保單帳戶價值返還予要保人或其他應得之..."
+              "snippet": "...。 、 給付解約金 ( 含部分提領 ) 及返還保單帳戶價值 : 本公司根據收到相關申請文件或書面通知後第二個資產評價日本契約指定保管銀行之贖回投資標的貨幣即期買入匯率收盤..."
             },
             {
-              "document": "217421M31A00117-F.pdf",
+              "document": "217421M31A00117-A.pdf",
               "page": 1,
-              "term": "受益人",
-              "snippet": "...〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉被保險人發生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本..."
+              "term": "申領",
+              "snippet": "...為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 第廿二條 : 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
             },
             {
-              "document": "217421M31A00117-F.pdf",
+              "document": "217421M31A00117-A.pdf",
               "page": 1,
-              "term": "通知",
-              "snippet": "...七十歲之保單週年日 做為年金給付開始日。 要保人亦得於年金給付開始日的三十日前以書面通知本公司變更年金給付開始日或年金保證給付 期間，且須符合前項給付日之規定。 本公司應於..."
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 · VA · 6 / 22 、 保險單或其謄本 。 、 被保險人死亡證明文..."
             }
           ]
         }
       ],
-      "focus_score": 3,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -2275,20 +3359,10 @@
           "document_kind": "pdf",
           "file_size": 268622,
           "page_count": 22,
-          "pages_parsed": 20,
-          "text_char_count": 7003,
+          "pages_parsed": 22,
+          "text_char_count": 22028,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00117-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 78095,
-          "page_count": 4,
-          "pages_parsed": 4,
-          "text_char_count": 3247,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -2298,75 +3372,123 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第18次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "101/02/24",
-      "discontinued_date": "101/06/30",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 8403,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 19695,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：身故。",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
           "terms": [
-            "身故"
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
           ],
           "pages": [
-            1,
-            2,
-            3
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00118-F.pdf",
+              "document": "217421M31A00118-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項..."
+            },
+            {
+              "document": "217421M31A00118-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...本息 , 其未償還餘額不得逾依第一項約定之保險單借款可借金額上限 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付前項..."
+            },
+            {
+              "document": "217421M31A00118-A.pdf",
               "page": 1,
               "term": "身故",
-              "snippet": "...萬元所需之保單帳戶價值， 其超出的部份之保單帳戶價值返還予要保人。 4. 〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉..."
-            },
-            {
-              "document": "217421M31A00118-F.pdf",
-              "page": 2,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證期間內按本批註條款約定之方式計算..."
-            },
-            {
-              "document": "217421M31A00118-F.pdf",
-              "page": 3,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證遞延期間內按本批註條款約定之方式..."
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
             }
           ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00118-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 · 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00118-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 · 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00118-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
           "terms": [
-            "除外責任"
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
           ],
           "pages": [
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00118-F.pdf",
-              "page": 4,
-              "term": "除外責任",
-              "snippet": "...當時依「樂活人生積極型投資帳戶」計價幣別可供連結之 貨幣型基金。 /square6 除外責任除外責任除外責任除外責任 無。"
+              "document": "217421M31A00118-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...值 , 其超出的部份之保單帳戶價值返還予要保人 。 第十二條 : 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約本公司應於接到書面通知後一個月內償付解約金..."
+            },
+            {
+              "document": "217421M31A00118-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00118-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 。 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
             }
           ]
         },
@@ -2374,41 +3496,40 @@
           "key": "claims",
           "label": "理賠申請",
           "status": "detected",
-          "summary": "已從文件文字命中 3 個重點詞：申請、受益人、通知。",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
           "terms": [
             "申請",
+            "申領",
+            "檢具",
             "受益人",
             "通知"
           ],
           "pages": [
-            1,
-            2,
-            3,
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00118-F.pdf",
+              "document": "217421M31A00118-A.pdf",
               "page": 1,
               "term": "申請",
-              "snippet": "...生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本公司將以要保人檢齊申請所須文件並送達本公 司後的第二個資產評價日計算之保單帳戶價值返還予要保人或其他應得之..."
+              "snippet": "...。 、 給付解約金 ( 含部分提領 ) 及返還保單帳戶價值 : 本公司根據收到相關申請文件或書面通知後第二個資產評價日本契約指定保管銀行之贖回投資標的貨幣即期買入匯率收盤..."
             },
             {
-              "document": "217421M31A00118-F.pdf",
+              "document": "217421M31A00118-A.pdf",
               "page": 1,
-              "term": "受益人",
-              "snippet": "...〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉被保險人發生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本..."
+              "term": "申領",
+              "snippet": "...為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 第廿二條 : 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
             },
             {
-              "document": "217421M31A00118-F.pdf",
+              "document": "217421M31A00118-A.pdf",
               "page": 1,
-              "term": "通知",
-              "snippet": "...七十歲之保單週年日 做為年金給付開始日。 要保人亦得於年金給付開始日的三十日前以書面通知本公司變更年金給付開始日或年金保證給付 期間，且須符合前項給付日之規定。 本公司應於..."
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 · VA · 6 / 20 、 保險單或其謄本 。 、 被保險人死亡證明文..."
             }
           ]
         }
       ],
-      "focus_score": 3,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -2418,19 +3539,9 @@
           "file_size": 250688,
           "page_count": 20,
           "pages_parsed": 20,
-          "text_char_count": 5156,
+          "text_char_count": 19695,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00118-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 78095,
-          "page_count": 4,
-          "pages_parsed": 4,
-          "text_char_count": 3247,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -2440,75 +3551,123 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第19次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "101/07/01",
-      "discontinued_date": "101/07/31",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 8403,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 19695,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：身故。",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
           "terms": [
-            "身故"
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
           ],
           "pages": [
-            1,
-            2,
-            3
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00119-F.pdf",
+              "document": "217421M31A00119-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項..."
+            },
+            {
+              "document": "217421M31A00119-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...本息 , 其未償還餘額不得逾依第一項約定之保險單借款可借金額上限 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付前項..."
+            },
+            {
+              "document": "217421M31A00119-A.pdf",
               "page": 1,
               "term": "身故",
-              "snippet": "...萬元所需之保單帳戶價值， 其超出的部份之保單帳戶價值返還予要保人。 4. 〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉..."
-            },
-            {
-              "document": "217421M31A00119-F.pdf",
-              "page": 2,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證期間內按本批註條款約定之方式計算..."
-            },
-            {
-              "document": "217421M31A00119-F.pdf",
-              "page": 3,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證遞延期間內按本批註條款約定之方式..."
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
             }
           ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00119-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 · 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00119-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 · 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00119-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司同意批註於保險單後 , 始生效力 。 本批註條款經批註後即不得申請撤銷及變更 「 保證期間 」 要保人申請本批註條款時 , 若選擇為分期繳費者 , 需約定為年繳繳別 。 要保..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
           "terms": [
-            "除外責任"
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
           ],
           "pages": [
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00119-F.pdf",
-              "page": 4,
-              "term": "除外責任",
-              "snippet": "...當時依「樂活人生積極型投資帳戶」計價幣別可供連結之 貨幣型基金。 /square6 除外責任除外責任除外責任除外責任 無。"
+              "document": "217421M31A00119-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...值 , 其超出的部份之保單帳戶價值返還予要保人 。 第十二條 : 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約本公司應於接到書面通知後一個月內償付解約金..."
+            },
+            {
+              "document": "217421M31A00119-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00119-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...第一期保險費之金額後十五日內不為同意承保與否之意思表示者 , 視為同意承保 。 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
             }
           ]
         },
@@ -2516,41 +3675,40 @@
           "key": "claims",
           "label": "理賠申請",
           "status": "detected",
-          "summary": "已從文件文字命中 3 個重點詞：申請、受益人、通知。",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
           "terms": [
             "申請",
+            "申領",
+            "檢具",
             "受益人",
             "通知"
           ],
           "pages": [
-            1,
-            2,
-            3,
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00119-F.pdf",
+              "document": "217421M31A00119-A.pdf",
               "page": 1,
               "term": "申請",
-              "snippet": "...生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本公司將以要保人檢齊申請所須文件並送達本公 司後的第二個資產評價日計算之保單帳戶價值返還予要保人或其他應得之..."
+              "snippet": "...。 、 給付解約金 ( 含部分提領 ) 及返還保單帳戶價值 : 本公司根據收到相關申請文件或書面通知後第二個資產評價日本契約指定保管銀行之贖回投資標的貨幣即期買入匯率收盤..."
             },
             {
-              "document": "217421M31A00119-F.pdf",
+              "document": "217421M31A00119-A.pdf",
               "page": 1,
-              "term": "受益人",
-              "snippet": "...〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉被保險人發生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本..."
+              "term": "申領",
+              "snippet": "...為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 第廿二條 : 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
             },
             {
-              "document": "217421M31A00119-F.pdf",
+              "document": "217421M31A00119-A.pdf",
               "page": 1,
-              "term": "通知",
-              "snippet": "...七十歲之保單週年日 做為年金給付開始日。 要保人亦得於年金給付開始日的三十日前以書面通知本公司變更年金給付開始日或年金保證給付 期間，且須符合前項給付日之規定。 本公司應於..."
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 · VA · 6 / 20 、 保險單或其謄本 。 、 被保險人死亡證明文..."
             }
           ]
         }
       ],
-      "focus_score": 3,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -2560,19 +3718,9 @@
           "file_size": 250688,
           "page_count": 20,
           "pages_parsed": 20,
-          "text_char_count": 5156,
+          "text_char_count": 19695,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00119-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 78095,
-          "page_count": 4,
-          "pages_parsed": 4,
-          "text_char_count": 3247,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -2582,75 +3730,123 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第20次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "101/08/01",
-      "discontinued_date": "101/11/15",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 8256,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 19630,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：身故。",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
           "terms": [
-            "身故"
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
           ],
           "pages": [
-            1,
-            2,
-            3
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00120-F.pdf",
+              "document": "217421M31A00120-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項..."
+            },
+            {
+              "document": "217421M31A00120-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...本息 , 其未償還餘額不得逾依第一項約定之保險單借款可借金額上限 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付前項..."
+            },
+            {
+              "document": "217421M31A00120-A.pdf",
               "page": 1,
               "term": "身故",
-              "snippet": "...萬元所需之保單帳戶價值， 其超出的部份之保單帳戶價值返還予要保人。 4. 〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉..."
-            },
-            {
-              "document": "217421M31A00120-F.pdf",
-              "page": 2,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證期間內按本批註條款約定之方式計算..."
-            },
-            {
-              "document": "217421M31A00120-F.pdf",
-              "page": 3,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證遞延期間內按本批註條款約定之方式..."
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
             }
           ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00120-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...一不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 : 、 年金保證給付期間 : 係指依本契約約定 , 一不..."
+            },
+            {
+              "document": "217421M31A00120-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 : 、 年金保證給付期間 : 係指依本契約約定 , 一不..."
+            },
+            {
+              "document": "217421M31A00120-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...基金 。 寬限期間屆滿前交付之保險費 , 本公司仍負保證金額之責任 ( 2 ) 若於保證期間辦理保單帳戶價值部分提領 ” 本公司將依該部分提領金額佔保單帳戶價值的百分比為調降之..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
           "terms": [
-            "除外責任"
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
           ],
           "pages": [
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00120-F.pdf",
-              "page": 4,
-              "term": "除外責任",
-              "snippet": "...當時依「樂活人生積極型投資帳戶」計價幣別可供連結之 貨幣型基金。 /square6 除外責任除外責任除外責任除外責任 無。"
+              "document": "217421M31A00120-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...帳戶價值 , 其超出的部份之保單帳戶價值返還予要保人第十二條 : 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個月內償付..."
+            },
+            {
+              "document": "217421M31A00120-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00120-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...9 第五條 : 第 、 條 : 第七條 : 第八條 : 第九條 : 第十條 : 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約..."
             }
           ]
         },
@@ -2658,41 +3854,40 @@
           "key": "claims",
           "label": "理賠申請",
           "status": "detected",
-          "summary": "已從文件文字命中 3 個重點詞：申請、受益人、通知。",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
           "terms": [
             "申請",
+            "申領",
+            "檢具",
             "受益人",
             "通知"
           ],
           "pages": [
-            1,
-            2,
-            3,
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00120-F.pdf",
+              "document": "217421M31A00120-A.pdf",
               "page": 1,
               "term": "申請",
-              "snippet": "...生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本公司將以要保人檢齊申請所須文件並送達本公 司後的第二個資產評價日計算之保單帳戶價值返還予要保人或其他應得之..."
+              "snippet": "...。 、 給付解約金 ( 含部分提領 ) 及返還保單帳戶價值 : 本公司根據收到相關申請文件或書面通知後第二個資產評價日本契約指定保管銀行之贖回投資標的貨幣即期買入匯率收盤..."
             },
             {
-              "document": "217421M31A00120-F.pdf",
+              "document": "217421M31A00120-A.pdf",
               "page": 1,
-              "term": "受益人",
-              "snippet": "...〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉被保險人發生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本..."
+              "term": "申領",
+              "snippet": "...為同一人時 , 可由要保人之法定繼承人向本公司提出申請 。 第廿二條 : 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
             },
             {
-              "document": "217421M31A00120-F.pdf",
+              "document": "217421M31A00120-A.pdf",
               "page": 1,
-              "term": "通知",
-              "snippet": "...七十歲之保單週年日 做為年金給付開始日。 要保人亦得於年金給付開始日的三十日前以書面通知本公司變更年金給付開始日或年金保證給付 期間，且須符合前項給付日之規定。 本公司應於..."
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 · 、 保險單或其謄本 。 、 被保險人死亡證明文件及除戶戶籍謄本 、 申..."
             }
           ]
         }
       ],
-      "focus_score": 3,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -2702,19 +3897,9 @@
           "file_size": 250802,
           "page_count": 19,
           "pages_parsed": 19,
-          "text_char_count": 5009,
+          "text_char_count": 19630,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00120-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 78095,
-          "page_count": 4,
-          "pages_parsed": 4,
-          "text_char_count": 3247,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -2941,75 +4126,123 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第22次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "102/02/27",
-      "discontinued_date": "102/05/23",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 8312,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 19893,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：身故。",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
           "terms": [
-            "身故"
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
           ],
           "pages": [
-            1,
-            2,
-            3
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00122-F.pdf",
+              "document": "217421M31A00122-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項..."
+            },
+            {
+              "document": "217421M31A00122-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...本息 , 其未償還餘額不得逾依第一項約定之保險單借款可借金額上限 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付 。..."
+            },
+            {
+              "document": "217421M31A00122-A.pdf",
               "page": 1,
               "term": "身故",
-              "snippet": "...萬元所需之保單帳戶價值， 其超出的部份之保單帳戶價值返還予要保人。 4. 〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉..."
-            },
-            {
-              "document": "217421M31A00122-F.pdf",
-              "page": 2,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證期間內按本批註條款約定之方式計算..."
-            },
-            {
-              "document": "217421M31A00122-F.pdf",
-              "page": 3,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證遞延期間內按本批註條款約定之方式..."
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
             }
           ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00122-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 · 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00122-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 · 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00122-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...貨幣型基金寬限期間屆滿前交付之保險費 , 本公司仍負保證金額之責任 ( 2 ) 若於保證期間辦理保單帳戶價值部分提領 , 本公司將依該部分提領金額佔保單帳戶價值的百分比為調降之..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
           "terms": [
-            "除外責任"
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
           ],
           "pages": [
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00122-F.pdf",
-              "page": 4,
-              "term": "除外責任",
-              "snippet": "...當時依「樂活人生積極型投資帳戶」計價幣別可供連結之 貨幣型基金。 /square6 除外責任除外責任除外責任除外責任 無。"
+              "document": "217421M31A00122-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...帳戶價值 , 其超出的部份之保單帳戶價值返還予要保人第十二條 : 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個月內償付..."
+            },
+            {
+              "document": "217421M31A00122-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00122-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...8 第五條 : 第 、 條 : 第七條 : 第八條 : 第九條 : 第十條 : 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約要..."
             }
           ]
         },
@@ -3017,41 +4250,40 @@
           "key": "claims",
           "label": "理賠申請",
           "status": "detected",
-          "summary": "已從文件文字命中 3 個重點詞：申請、受益人、通知。",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
           "terms": [
             "申請",
+            "申領",
+            "檢具",
             "受益人",
             "通知"
           ],
           "pages": [
-            1,
-            2,
-            3,
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00122-F.pdf",
+              "document": "217421M31A00122-A.pdf",
               "page": 1,
               "term": "申請",
-              "snippet": "...生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本公司將以要保人檢齊申請所須文件並送達本公 司後的第二個資產評價日計算之保單帳戶價值返還予要保人或其他應得之..."
+              "snippet": "...。 、 給付解約金 ( 含部分提領 ) 及返還保單帳戶價值 : 本公司根據收到相關申請文件或書面通知後第二個資產評價日本契約指定保管銀行之贖回投資標的貨幣即期買入匯率收盤..."
             },
             {
-              "document": "217421M31A00122-F.pdf",
+              "document": "217421M31A00122-A.pdf",
               "page": 1,
-              "term": "受益人",
-              "snippet": "...〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉被保險人發生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本..."
+              "term": "申領",
+              "snippet": "...保險人為同一人時 , 可由要保人之法定繼承人向本公司提出申請第廿二條 : 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
             },
             {
-              "document": "217421M31A00122-F.pdf",
+              "document": "217421M31A00122-A.pdf",
               "page": 1,
-              "term": "通知",
-              "snippet": "...七十歲之保單週年日 做為年金給付開始日。 要保人亦得於年金給付開始日的三十日前以書面通知本公司變更年金給付開始日或年金保證給付 期間，且須符合前項給付日之規定。 本公司應於..."
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 · 、 保險單或其謄本 、 被保險人死亡證明文件及除戶戶籍謄本 。 、 申..."
             }
           ]
         }
       ],
-      "focus_score": 3,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -3061,19 +4293,9 @@
           "file_size": 1112618,
           "page_count": 18,
           "pages_parsed": 18,
-          "text_char_count": 5065,
+          "text_char_count": 19893,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00122-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 78095,
-          "page_count": 4,
-          "pages_parsed": 4,
-          "text_char_count": 3247,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -3083,75 +4305,123 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第23次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "102/05/24",
-      "discontinued_date": "102/10/24",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 8310,
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 19576,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：身故。",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險金、身故、年金給付、年金金額、未支領之年金餘額。",
           "terms": [
-            "身故"
+            "給付項目",
+            "保險金",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
           ],
           "pages": [
-            1,
-            2,
-            3
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00123-F.pdf",
+              "document": "217421M31A00123-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "宏泰人壽樂活人生變額年金保險保單條款 ( 給付項目 : 年金給付 ) 、 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項..."
+            },
+            {
+              "document": "217421M31A00123-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...本息 , 其未償還餘額不得逾依第一項約定之保險單借款可借金額上限 。 本公司給付各項保險金 、 解約金或返還保單帳戶價值時 , 得先扣除本契約保險單借款及其應負利息後給付 。..."
+            },
+            {
+              "document": "217421M31A00123-A.pdf",
               "page": 1,
               "term": "身故",
-              "snippet": "...萬元所需之保單帳戶價值， 其超出的部份之保單帳戶價值返還予要保人。 4. 〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉..."
-            },
-            {
-              "document": "217421M31A00123-F.pdf",
-              "page": 2,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證期間內按本批註條款約定之方式計算..."
-            },
-            {
-              "document": "217421M31A00123-F.pdf",
-              "page": 3,
-              "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證遞延期間內按本批註條款約定之方式..."
+              "snippet": "...以同意承保時溯自預收相當於第一期保險費金額時開始 。 但本公司同意承保前而被保險人身故時 , 本公司無息退還要保人所繳保險費 。 本公司自預收相當於第一期保險費之金額後十..."
             }
           ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：名詞定義、定義、保證期間、年金給付期間、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "217421M31A00123-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 · 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00123-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 〔 名詞定義 〕 本契約之名詞定義如下 · 、 年金保證給付期間 : 係指依本契約約定 , 不論..."
+            },
+            {
+              "document": "217421M31A00123-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...貨幣型基金寬限期間屆滿前交付之保險費 , 本公司仍負保證金額之責任 ( 2 ) 若於保證期間辦理保單帳戶價值部分提領 , 本公司將依該部分提領金額佔保單帳戶價值的百分比為調降之..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "summary": "已從文件文字命中 5 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、變更年金給付開始日。",
           "terms": [
-            "除外責任"
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "變更年金給付開始日"
           ],
           "pages": [
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00123-F.pdf",
-              "page": 4,
-              "term": "除外責任",
-              "snippet": "...當時依「樂活人生積極型投資帳戶」計價幣別可供連結之 貨幣型基金。 /square6 除外責任除外責任除外責任除外責任 無。"
+              "document": "217421M31A00123-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...帳戶價值 , 其超出的部份之保單帳戶價值返還予要保人第十二條 : 〔 契約的終止及其限制 〕 要保人得於年金給付開始日前終止本契約 , 本公司應於接到書面通知後一個月內償付..."
+            },
+            {
+              "document": "217421M31A00123-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...處理 〕 要保人在申請投保時 , 應將被保險人出生年月日在要保書填明 。 被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 。 被保險人的投保..."
+            },
+            {
+              "document": "217421M31A00123-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...8 第五條 : 第 、 條 : 第七條 : 第八條 : 第九條 : 第十條 : 〔 契約撤銷權 〕 要保人於保險單送達的翌日起算十日內 , 得以書面檢同保險單向本公司撤銷本契約要..."
             }
           ]
         },
@@ -3159,41 +4429,40 @@
           "key": "claims",
           "label": "理賠申請",
           "status": "detected",
-          "summary": "已從文件文字命中 3 個重點詞：申請、受益人、通知。",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
           "terms": [
             "申請",
+            "申領",
+            "檢具",
             "受益人",
             "通知"
           ],
           "pages": [
-            1,
-            2,
-            3,
-            4
+            1
           ],
           "evidence": [
             {
-              "document": "217421M31A00123-F.pdf",
+              "document": "217421M31A00123-A.pdf",
               "page": 1,
               "term": "申請",
-              "snippet": "...生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本公司將以要保人檢齊申請所須文件並送達本公 司後的第二個資產評價日計算之保單帳戶價值返還予要保人或其他應得之..."
+              "snippet": "...。 、 給付解約金 ( 含部分提領 ) 及返還保單帳戶價值 : 本公司根據收到相關申請文件或書面通知後第二個資產評價日本契約指定保管銀行之贖回投資標的貨幣即期買入匯率收盤..."
             },
             {
-              "document": "217421M31A00123-F.pdf",
+              "document": "217421M31A00123-A.pdf",
               "page": 1,
-              "term": "受益人",
-              "snippet": "...〔被保險人身故的通知與返還保單帳戶價值或未支領之年金餘額〕 被保險人身故後，要保人或受益人應於知悉被保險人發生身故後通知本公司。 被保險人之身故若發生於年金給付開始日前者，本..."
+              "term": "申領",
+              "snippet": "...保險人為同一人時 , 可由要保人之法定繼承人向本公司提出申請第廿二條 : 〔 年金的申領 〕 被保險人於年金給付開始日後生存期間每屆保單週年日申領年金給付時 , 應提出可資..."
             },
             {
-              "document": "217421M31A00123-F.pdf",
+              "document": "217421M31A00123-A.pdf",
               "page": 1,
-              "term": "通知",
-              "snippet": "...七十歲之保單週年日 做為年金給付開始日。 要保人亦得於年金給付開始日的三十日前以書面通知本公司變更年金給付開始日或年金保證給付 期間，且須符合前項給付日之規定。 本公司應於..."
+              "term": "檢具",
+              "snippet": "...值的申請 〕 要保人依第十九條或第二十條之規定申請 「 保單帳戶價值 」 時 , 應檢具下列文件 · 、 保險單或其謄本 、 被保險人死亡證明文件及除戶戶籍謄本 。 、 申..."
             }
           ]
         }
       ],
-      "focus_score": 3,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -3203,19 +4472,9 @@
           "file_size": 1112561,
           "page_count": 18,
           "pages_parsed": 18,
-          "text_char_count": 5063,
+          "text_char_count": 19576,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "217421M31A00123-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 78095,
-          "page_count": 4,
-          "pages_parsed": 4,
-          "text_char_count": 3247,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -8576,11 +9835,13 @@
       "company": "宏泰人壽保險股份有限公司",
       "insurance_category": "投資型年金",
       "product_name": "宏泰人壽樂活人生變額年金保險(第35次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "106/12/15",
-      "discontinued_date": "107/04/22",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-090",
-      "coverage_tags": [],
+      "coverage_tags": [
+        "年金險"
+      ],
       "document_count": 1,
       "extracted_document_count": 1,
       "text_char_count": 2682,
@@ -8589,50 +9850,93 @@
           "key": "coverage",
           "label": "保障項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：身故。",
+          "summary": "已從文件文字命中 4 個重點詞：身故、年金給付、年金金額、未支領之年金餘額。",
           "terms": [
-            "身故"
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
           ],
           "pages": [
+            1,
             2,
             3
           ],
           "evidence": [
             {
               "document": "217421MV1A00123A11Z90000035-F.pdf",
-              "page": 2,
-              "term": "身故",
-              "snippet": "...的保險單借款利率與民法第二 百零三條法定週年利率兩者取其大之值計算。 4、[被保險人身故的通知與返還保單帳戶價值] 被保險人身故後 ， 要保人或受益人應於知悉被保險人發生身..."
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "宏泰人壽樂活人生變額年金保險  商品介紹 一、主契約 1、[年金給付的開始及給付期間] 要保人投保時可選擇一特定保單週年日做為年金給付開始日 , 但不得..."
             },
             {
               "document": "217421MV1A00123A11Z90000035-F.pdf",
-              "page": 3,
+              "page": 1,
+              "term": "年金金額",
+              "snippet": "...二、預定利率。 三、年金生命表。 四、年金保證給付期間。 五、給付方式。 六、每期年金金額。 年金給付開始日後 , 本公司於被保險人生存期間 , 依約定分期給付年金金額, 最..."
+            },
+            {
+              "document": "217421MV1A00123A11Z90000035-F.pdf",
+              "page": 2,
               "term": "身故",
-              "snippet": "...時累積之各次投資保險費將依該部分提領金額佔保單帳戶價值的百分比 等比例調降。 2、〔身故最低保證金額〕 要保人申請本批註條款後，本公司於保證遞延期間內按本批註條款約定之方式..."
+              "snippet": "...的保險單借款利率與民法第二 百零三條法定週年利率兩者取其大之值計算。 4、[被保險人身故的通知與返還保單帳戶價值] 被保險人身故後 , 要保人或受益人應於知悉被保險人發生身..."
             }
           ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：預定利率。",
+          "terms": [
+            "預定利率"
+          ],
+          "pages": [
+            1,
+            2
+          ],
+          "evidence": [
+            {
+              "document": "217421MV1A00123A11Z90000035-F.pdf",
+              "page": 1,
+              "term": "預定利率",
+              "snippet": "...給付金額係根據約定辦理。 前項試算之年金給付內容應包含: 一、年金給付開始日。 二、預定利率。 三、年金生命表。 四、年金保證給付期間。 五、給付方式。 六、每期年金金額。 年..."
+            },
+            {
+              "document": "217421MV1A00123A11Z90000035-F.pdf",
+              "page": 2,
+              "term": "預定利率",
+              "snippet": "...益人或其他應得之人 , 本 契約效力即行終止。 前項貼現利率適用於計算年金時所採用之預定利率。"
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
           "status": "detected",
-          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、年金給付開始日。",
           "terms": [
-            "除外責任"
+            "除外責任",
+            "年金給付開始日"
           ],
           "pages": [
+            1,
+            2,
             4
           ],
           "evidence": [
+            {
+              "document": "217421MV1A00123A11Z90000035-F.pdf",
+              "page": 1,
+              "term": "年金給付開始日",
+              "snippet": "...一、主契約 1、[年金給付的開始及給付期間] 要保人投保時可選擇一特定保單週年日做為年金給付開始日 , 但不得超過被保 險人保險年齡達八十歲之保單週年日 ; 要保人不做給付開始日的選..."
+            },
+            {
+              "document": "217421MV1A00123A11Z90000035-F.pdf",
+              "page": 2,
+              "term": "年金給付開始日",
+              "snippet": "...取之年金金額若低於新臺幣一萬元時 , 本公司改依年金累積期間屆 滿日之保單帳戶價值於年金給付開始日起十五日內一次給付被保險人 , 本契約 效力即行終止 。如因可歸責於本公司之事由致未..."
+            },
             {
               "document": "217421MV1A00123A11Z90000035-F.pdf",
               "page": 4,
@@ -8662,24 +9966,24 @@
               "document": "217421MV1A00123A11Z90000035-F.pdf",
               "page": 1,
               "term": "申請",
-              "snippet": "...以書面通知本公司變更年金給付開 始日或年金保證給付期間； 變更後的年金給付開始日須在申請日六十日之後， 且須符合前項給付日之約定。 本公司應於年金給付開始日的六十日前通知要..."
+              "snippet": "...以書面通知本公司變更年金給付開 始日或年金保證給付期間; 變更後的年金給付開始日須在申請日六十日之後, 且須符合前項給付日之約定。 本公司應於年金給付開始日的六十日前通知要..."
             },
             {
               "document": "217421MV1A00123A11Z90000035-F.pdf",
               "page": 1,
               "term": "通知",
-              "snippet": "...達七十歲之保單週年日做為年金給付開始日。 要保人亦得於年金給付開始日的三十日前以書面通知本公司變更年金給付開 始日或年金保證給付期間； 變更後的年金給付開始日須在申請日六十..."
+              "snippet": "...達七十歲之保單週年日做為年金給付開始日。 要保人亦得於年金給付開始日的三十日前以書面通知本公司變更年金給付開 始日或年金保證給付期間; 變更後的年金給付開始日須在申請日六十..."
             },
             {
               "document": "217421MV1A00123A11Z90000035-F.pdf",
               "page": 2,
               "term": "申請",
-              "snippet": "...故後通知本公司。 被保險人之身故若發生於年金給付開始日前者 ， 本公司將根據收齊約定申請文 件並送達本公司 後之次二個資產評價日 計算之保單帳戶價值返還予要保人或 其他應得..."
+              "snippet": "...故後通知本公司。 被保險人之身故若發生於年金給付開始日前者 , 本公司將根據收齊約定申請文 件並送達本公司 後之次二個資產評價日 計算之保單帳戶價值返還予要保人或 其他應得..."
             }
           ]
         }
       ],
-      "focus_score": 3,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -8691,6 +9995,7 @@
           "pages_parsed": 4,
           "text_char_count": 2682,
           "extraction_status": "extracted",
+          "extraction_method": "pypdf",
           "error": null
         }
       ]

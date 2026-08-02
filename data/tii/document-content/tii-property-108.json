@@ -1,0 +1,412 @@
+{
+  "generated_at": "2026-07-31T21:45:28+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:45:28+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-108",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 4,
+    "document_count": 4,
+    "extracted_document_count": 4,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 4,
+    "error_document_count": 0,
+    "pdf_document_count": 4,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 4,
+    "total_text_characters": 6512,
+    "focus_counts": [
+      {
+        "label": "理賠申請",
+        "count": 4
+      },
+      {
+        "label": "保障項目",
+        "count": 1
+      },
+      {
+        "label": "特殊項目",
+        "count": 1
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "豁免/附加條款",
+        "count": 2
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 4
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "197142321034010001",
+      "company": "聯合保證保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "美商聯合自用住宅抵押貸款信用保證保險(第1次部分變更)",
+      "sale_status": "未停售",
+      "sale_date": "096/06/01",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-108",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 3578,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "197142321034010001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "..., 或損害發生於違約之後 ; 及 ( 二 ) 扣除自負額後 , 仍有足夠的財產保險之保險金修補損害 ; 及 ( 三 ) 被保險人或其代理人將財產回復至除正常損耗外貸款撥款日之..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、自負額。",
+          "terms": [
+            "除外責任",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "197142321034010001-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...一般房屋貸款投保房屋保險貸款最低貸款價值比 : 貸款金融機構自負風險之成數八 、 除外責任本公司對於以下情事或事由所致之理賠請求不負理賠責任 : 任何涉及或因為債務人 、 被..."
+            },
+            {
+              "document": "197142321034010001-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "..., 證明損害並非違約之主要原因 , 或損害發生於違約之後 ; 及 ( 二 ) 扣除自負額後 , 仍有足夠的財產保險之保險金修補損害 ; 及 ( 三 ) 被保險人或其代理人將..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：理賠、申請、通知。",
+          "terms": [
+            "理賠",
+            "申請",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "197142321034010001-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...足抵付貸款未清償之本金餘額而有所損失時 , 本公司依本保險契約規定範圍內對被保險人負理賠之責 。 四 、 保原則 : ( 1 ) ( 2 ) ( 3 ) 本公司對貸款金融機..."
+            },
+            {
+              "document": "197142321034010001-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...· 九 、 本款所 「 貸款交易 」 係指被保險人與債務人 , 就抵押貸款信用保險申請書所載之貸款 、 財產及其他條件所為之交易 。 受保障貸款未以第一順位抵押擔保予被保..."
+            },
+            {
+              "document": "197142321034010001-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "..., 而不得與該其他保險分擔理賠責任 。 被保險人應於投保前述其他保險生效後三十日內通知本公司 。 本商品鱍本公司合格人員檢其內已合原則及保險法令 、 惟為礭保權 , 基於..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "197142321034010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 624256,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3578,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "197142321034010101",
+      "company": "聯合保證保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "美商聯合自用住宅抵押貸款信用保證保險承保比例附加條款(第1次部分變更)",
+      "sale_status": "未停售",
+      "sale_date": "096/06/01",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-108",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1229,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：理賠。",
+          "terms": [
+            "理賠"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "197142321034010101-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...足抵付貸款未清償之本金餘額而有所損失時 , 本公司依本保險契約規定範圍內對被保險人負理賠之責 。 四 、 核保原則 : ( I) 本公司對貸款金融機構之組織 、 貸款之審核..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "197142321034010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 239622,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1229,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "197342321034010000",
+      "company": "聯合保證保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "美商聯合自用住宅抵押貸款信用保證保險",
+      "sale_status": "已停售",
+      "sale_date": "094/12/05",
+      "discontinued_date": "096/05/31",
+      "source_batch_id": "tii-property-108",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 853,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：理賠。",
+          "terms": [
+            "理賠"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1973423210340100-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...足抵付貸款未清償之本金餘額而有所損失時 , 本公司依本保險契約規定範圍內對被保險人負理賠之責 。 四 、 保原則 : ( l) 本公司對貸款金融機構之組織 、 貸款之審及催..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1973423210340100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 202271,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 853,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "197342321034010100",
+      "company": "聯合保證保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "美商聯合自用住宅抵押貸款信用保證保險承保比例附加條款",
+      "sale_status": "已停售",
+      "sale_date": "094/06/21",
+      "discontinued_date": "096/05/31",
+      "source_batch_id": "tii-property-108",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 852,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：理賠。",
+          "terms": [
+            "理賠"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1973423210340101-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...足抵付貸款未清償之本金餘額而有所損失時 , 本公司依本保險契約規定範圍內對被保險人負理賠之責四 、 袨保原則 : ( 1 ) 本公司對貸款金融機構之組織 、 貸款之審核及催..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1973423210340101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 210413,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 852,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

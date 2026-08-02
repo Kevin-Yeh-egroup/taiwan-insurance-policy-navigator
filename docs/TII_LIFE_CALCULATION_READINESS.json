@@ -1,0 +1,1249 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-08-01T07:33:50+08:00",
+  "goal": "All life-insurance product versions should produce benefit numbers after collecting the inputs required by official terms, or have a clear unresolved reason.",
+  "version_boundary": "source_batch_id + product_id + source document",
+  "scope": {
+    "life_records": 63344,
+    "reviewed_benefit_versions": 4199,
+    "document_summary_versions": 62761,
+    "reviewable_proposal_versions": 6873
+  },
+  "status_definitions": {
+    "structured_direct_calculable": "Reviewed terms provide benefit numbers or formulas that can display without policy-state inputs.",
+    "structured_user_input_calculable": "Reviewed terms can calculate after the user enters plan, units, face amount, days, or expenses.",
+    "structured_needs_policy_state": "Reviewed terms can calculate only after policy-state values such as account value, reserve, paid premium, declared rate, or annuity factor are supplied.",
+    "structured_unresolved": "A reviewed schedule exists, but the audit cannot detect calculable coverage entries; inspect parser output.",
+    "reviewable_upgrade_pending": "A newer exact-source proposed schedule differs from the reviewed calculation contract and requires source review before replacement.",
+    "reviewable_proposal_pending": "A proposed exact-source schedule exists but has not been source-reviewed and promoted.",
+    "needs_parser_or_proposal": "Official source summary exists, but deterministic parser/proposal coverage is missing.",
+    "source_pending": "No usable exact source text exists for the version; source backfill, verified OCR, or manual source review is required."
+  },
+  "completion": {
+    "ready_for_user_number_flow": 3078,
+    "coverage_schedule_ready": 3078,
+    "claim_scenario_ready": 2726,
+    "coverage_schedule_only": 352,
+    "unresolved": 60266,
+    "ready_rate": 0.0486
+  },
+  "status_counts": {
+    "needs_parser_or_proposal": 55635,
+    "reviewable_proposal_pending": 2676,
+    "reviewable_upgrade_pending": 1118,
+    "source_pending": 837,
+    "structured_needs_policy_state": 2679,
+    "structured_user_input_calculable": 399
+  },
+  "category_summary": {
+    "健康保險": {
+      "total": 14908,
+      "ready_for_user_number_flow": 219,
+      "coverage_schedule_ready": 219,
+      "claim_scenario_ready": 30,
+      "unresolved": 14689,
+      "ready_rate": 0.0147,
+      "status_counts": {
+        "needs_parser_or_proposal": 13219,
+        "reviewable_proposal_pending": 1166,
+        "reviewable_upgrade_pending": 55,
+        "source_pending": 249,
+        "structured_needs_policy_state": 1,
+        "structured_user_input_calculable": 218
+      }
+    },
+    "傳統型壽險": {
+      "total": 16839,
+      "ready_for_user_number_flow": 220,
+      "coverage_schedule_ready": 220,
+      "claim_scenario_ready": 189,
+      "unresolved": 16619,
+      "ready_rate": 0.0131,
+      "status_counts": {
+        "needs_parser_or_proposal": 16243,
+        "reviewable_proposal_pending": 17,
+        "reviewable_upgrade_pending": 82,
+        "source_pending": 277,
+        "structured_needs_policy_state": 191,
+        "structured_user_input_calculable": 29
+      }
+    },
+    "傳統型年金": {
+      "total": 1029,
+      "ready_for_user_number_flow": 0,
+      "coverage_schedule_ready": 0,
+      "claim_scenario_ready": 0,
+      "unresolved": 1029,
+      "ready_rate": 0.0,
+      "status_counts": {
+        "needs_parser_or_proposal": 977,
+        "reviewable_proposal_pending": 26,
+        "source_pending": 26
+      }
+    },
+    "傷害保險": {
+      "total": 9390,
+      "ready_for_user_number_flow": 187,
+      "coverage_schedule_ready": 187,
+      "claim_scenario_ready": 56,
+      "unresolved": 9203,
+      "ready_rate": 0.0199,
+      "status_counts": {
+        "needs_parser_or_proposal": 9006,
+        "reviewable_proposal_pending": 69,
+        "reviewable_upgrade_pending": 4,
+        "source_pending": 124,
+        "structured_needs_policy_state": 35,
+        "structured_user_input_calculable": 152
+      }
+    },
+    "投資型壽險": {
+      "total": 14565,
+      "ready_for_user_number_flow": 645,
+      "coverage_schedule_ready": 645,
+      "claim_scenario_ready": 644,
+      "unresolved": 13920,
+      "ready_rate": 0.0443,
+      "status_counts": {
+        "needs_parser_or_proposal": 11542,
+        "reviewable_proposal_pending": 1300,
+        "reviewable_upgrade_pending": 977,
+        "source_pending": 101,
+        "structured_needs_policy_state": 645
+      }
+    },
+    "投資型年金": {
+      "total": 6613,
+      "ready_for_user_number_flow": 1807,
+      "coverage_schedule_ready": 1807,
+      "claim_scenario_ready": 1807,
+      "unresolved": 4806,
+      "ready_rate": 0.2732,
+      "status_counts": {
+        "needs_parser_or_proposal": 4648,
+        "reviewable_proposal_pending": 98,
+        "source_pending": 60,
+        "structured_needs_policy_state": 1807
+      }
+    }
+  },
+  "required_user_input_counts": {
+    "policy_recorded_limit": 3715,
+    "policy_account_value": 2611,
+    "basic_face_amount": 1977,
+    "annuity_factor": 1807,
+    "base_amount": 1324,
+    "current_insured_amount": 1065,
+    "paid_premium_total": 1065,
+    "policy_value_reserve": 1065,
+    "policy_type": 804,
+    "insurance_deduction_amount": 792,
+    "threshold_factor": 580,
+    "premium_or_paid_premium": 239,
+    "plan": 237,
+    "days": 180,
+    "actual_medical_expense": 172,
+    "units": 144,
+    "unexpired_premium": 114,
+    "hospital_daily_amount": 27
+  },
+  "source_processing_gate_counts": {
+    "needs_alternate_source_or_manual_document_review": 789,
+    "needs_exact_readable_source_or_verified_ocr": 48
+  },
+  "outputs": {
+    "records_jsonl": "work\\tii-life-calculation-readiness\\records.jsonl",
+    "groups_json": "work\\tii-life-calculation-readiness\\groups.json"
+  },
+  "next_groups": [
+    {
+      "queue_id": "reviewable_upgrade_pending:投資型壽險:tii-life-095",
+      "calculation_status": "reviewable_upgrade_pending",
+      "batch_id": "tii-life-095",
+      "insurance_category": "投資型壽險",
+      "company_counts": {
+        "安聯人壽保險股份有限公司": 804
+      },
+      "record_count": 804,
+      "required_user_input_counts": {
+        "basic_face_amount": 804,
+        "current_insured_amount": 804,
+        "paid_premium_total": 804,
+        "policy_account_value": 804,
+        "policy_recorded_limit": 804,
+        "policy_type": 804,
+        "policy_value_reserve": 804,
+        "insurance_deduction_amount": 792,
+        "threshold_factor": 580
+      },
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the newer exact-source schedule before replacing the currently reviewed calculation contract.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-095",
+          "product_id": "218141M31A05400",
+          "company": "安聯人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "安聯人壽金鑽一○○外幣變額萬能壽險",
+          "edition_label": "銷售日 102/10/07｜停售日 102/12/31｜productId 218141M31A05400"
+        },
+        {
+          "batch_id": "tii-life-095",
+          "product_id": "218141M31A05500",
+          "company": "安聯人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "安聯人壽旗開致勝外幣變額萬能壽險",
+          "edition_label": "銷售日 102/10/07｜停售日 102/12/31｜productId 218141M31A05500"
+        },
+        {
+          "batch_id": "tii-life-095",
+          "product_id": "218141M31A05600",
+          "company": "安聯人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "安聯人壽旗開得勝外幣變額萬能壽險",
+          "edition_label": "銷售日 102/10/07｜停售日 102/12/31｜productId 218141M31A05600"
+        },
+        {
+          "batch_id": "tii-life-095",
+          "product_id": "218141M31A05601",
+          "company": "安聯人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "安聯人壽旗開得勝外幣變額萬能壽險(第1次部分變更)",
+          "edition_label": "銷售日 103/01/01｜停售日 103/05/01｜productId 218141M31A05601"
+        },
+        {
+          "batch_id": "tii-life-095",
+          "product_id": "218141M31A05501",
+          "company": "安聯人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "安聯人壽旗開致勝外幣變額萬能壽險(第1次部分變更)",
+          "edition_label": "銷售日 103/01/01｜停售日 103/05/01｜productId 218141M31A05501"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_upgrade_pending:投資型壽險:tii-life-029",
+      "calculation_status": "reviewable_upgrade_pending",
+      "batch_id": "tii-life-029",
+      "insurance_category": "投資型壽險",
+      "company_counts": {
+        "凱基人壽保險股份有限公司(原中國人壽)": 94
+      },
+      "record_count": 94,
+      "required_user_input_counts": {
+        "base_amount": 94,
+        "basic_face_amount": 94,
+        "policy_recorded_limit": 94,
+        "premium_or_paid_premium": 7,
+        "unexpired_premium": 7
+      },
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the newer exact-source schedule before replacing the currently reviewed calculation contract.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-029",
+          "product_id": "205141M31A54006",
+          "company": "凱基人壽保險股份有限公司(原中國人壽)",
+          "insurance_category": "投資型壽險",
+          "product_name": "中國人壽百利人生變額壽險(第6次部份變更)",
+          "edition_label": "銷售日 099/11/01｜停售日 100/01/16｜productId 205141M31A54006"
+        },
+        {
+          "batch_id": "tii-life-029",
+          "product_id": "205141M31A53806",
+          "company": "凱基人壽保險股份有限公司(原中國人壽)",
+          "insurance_category": "投資型壽險",
+          "product_name": "中國人壽新喜樂人生變額壽險(第6次部份變更)",
+          "edition_label": "銷售日 100/01/17｜停售日 100/04/22｜productId 205141M31A53806"
+        },
+        {
+          "batch_id": "tii-life-029",
+          "product_id": "205141M31A54007",
+          "company": "凱基人壽保險股份有限公司(原中國人壽)",
+          "insurance_category": "投資型壽險",
+          "product_name": "中國人壽新百利人生變額壽險(第7次部份變更)",
+          "edition_label": "銷售日 100/01/17｜停售日 100/04/22｜productId 205141M31A54007"
+        },
+        {
+          "batch_id": "tii-life-029",
+          "product_id": "205141M31A54008",
+          "company": "凱基人壽保險股份有限公司(原中國人壽)",
+          "insurance_category": "投資型壽險",
+          "product_name": "中國人壽新百利人生變額壽險(第8次部份變更)",
+          "edition_label": "銷售日 100/04/23｜停售日 100/08/15｜productId 205141M31A54008"
+        },
+        {
+          "batch_id": "tii-life-029",
+          "product_id": "205141M31A53807",
+          "company": "凱基人壽保險股份有限公司(原中國人壽)",
+          "insurance_category": "投資型壽險",
+          "product_name": "中國人壽新喜樂人生變額壽險(第7次部份變更)",
+          "edition_label": "銷售日 100/04/23｜停售日 100/08/15｜productId 205141M31A53807"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_upgrade_pending:傳統型壽險:tii-life-009",
+      "calculation_status": "reviewable_upgrade_pending",
+      "batch_id": "tii-life-009",
+      "insurance_category": "傳統型壽險",
+      "company_counts": {
+        "台灣人壽保險股份有限公司": 65
+      },
+      "record_count": 65,
+      "required_user_input_counts": {
+        "basic_face_amount": 65,
+        "current_insured_amount": 65,
+        "paid_premium_total": 65,
+        "policy_recorded_limit": 65,
+        "policy_value_reserve": 65,
+        "premium_or_paid_premium": 63,
+        "unexpired_premium": 42,
+        "base_amount": 40
+      },
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the newer exact-source schedule before replacing the currently reviewed calculation contract.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-009",
+          "product_id": "202131MA1A82923B11Z10000000",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "傳統型壽險",
+          "product_name": "台灣人壽傳富美美元利率變動型終身壽險",
+          "edition_label": "銷售日 109/07/01｜停售日 110/07/01｜productId 202131MA1A82923B11Z10000000"
+        },
+        {
+          "batch_id": "tii-life-009",
+          "product_id": "202131MA1A83023B11Z10000000",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "傳統型壽險",
+          "product_name": "台灣人壽金美利傳承美元利率變動型終身壽險",
+          "edition_label": "銷售日 109/07/01｜停售日 110/07/01｜productId 202131MA1A83023B11Z10000000"
+        },
+        {
+          "batch_id": "tii-life-009",
+          "product_id": "202191MZ6G84423A11Z10000000",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "傳統型壽險",
+          "product_name": "台灣人壽愛家寶終身保險",
+          "edition_label": "銷售日 109/11/30｜停售日 110/06/30｜productId 202191MZ6G84423A11Z10000000"
+        },
+        {
+          "batch_id": "tii-life-009",
+          "product_id": "202131MA1A84923B11Z10000000",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "傳統型壽險",
+          "product_name": "台灣人壽美利豐盛美元利率變動型終身壽險",
+          "edition_label": "銷售日 109/12/07｜停售日 110/07/01｜productId 202131MA1A84923B11Z10000000"
+        },
+        {
+          "batch_id": "tii-life-009",
+          "product_id": "202131MA1A85023B11Z10000000",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "傳統型壽險",
+          "product_name": "台灣人壽臻富傳家美元利率變動型終身壽險",
+          "edition_label": "銷售日 109/12/15｜停售日 110/07/01｜productId 202131MA1A85023B11Z10000000"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_upgrade_pending:投資型壽險:tii-life-017",
+      "calculation_status": "reviewable_upgrade_pending",
+      "batch_id": "tii-life-017",
+      "insurance_category": "投資型壽險",
+      "company_counts": {
+        "保誠人壽保險股份有限公司": 41
+      },
+      "record_count": 41,
+      "required_user_input_counts": {
+        "base_amount": 41,
+        "basic_face_amount": 41,
+        "policy_recorded_limit": 41
+      },
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the newer exact-source schedule before replacing the currently reviewed calculation contract.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-017",
+          "product_id": "203131MV1A00723B11C90000005",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "保誠人壽三五一一外幣變額壽險(第5次部份變更)",
+          "edition_label": "銷售日 106/09/18｜停售日 107/01/17｜productId 203131MV1A00723B11C90000005"
+        },
+        {
+          "batch_id": "tii-life-017",
+          "product_id": "203131MV1A00623B11C90000008",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "保誠人壽三五成金外幣變額壽險(第8次部份變更)",
+          "edition_label": "銷售日 106/09/18｜停售日 107/03/30｜productId 203131MV1A00623B11C90000008"
+        },
+        {
+          "batch_id": "tii-life-017",
+          "product_id": "203131MV1A00223A11Z90000030",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "保誠人壽百樂人生變額壽險(第30次部份變更)",
+          "edition_label": "銷售日 106/09/18｜停售日 107/01/17｜productId 203131MV1A00223A11Z90000030"
+        },
+        {
+          "batch_id": "tii-life-017",
+          "product_id": "203131MV1A00623B11C90000009",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "保誠人壽三五成金外幣變額壽險(第9次部分變更)",
+          "edition_label": "銷售日 107/03/31｜停售日 107/10/14｜productId 203131MV1A00623B11C90000009"
+        },
+        {
+          "batch_id": "tii-life-017",
+          "product_id": "203131MV1A02523A11Z90000004",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "保誠人壽新富利滿滿變額壽險(一)(第4次部分變更)",
+          "edition_label": "銷售日 109/09/01｜停售日 109/12/31｜productId 203131MV1A02523A11Z90000004"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_upgrade_pending:投資型壽險:tii-life-011",
+      "calculation_status": "reviewable_upgrade_pending",
+      "batch_id": "tii-life-011",
+      "insurance_category": "投資型壽險",
+      "company_counts": {
+        "台灣人壽保險股份有限公司": 38
+      },
+      "record_count": 38,
+      "required_user_input_counts": {
+        "base_amount": 38,
+        "basic_face_amount": 38,
+        "policy_recorded_limit": 38
+      },
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the newer exact-source schedule before replacing the currently reviewed calculation contract.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-011",
+          "product_id": "202191M31AZE002",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "台灣人壽舞動人生變額萬能壽險(第2次部分變更)",
+          "edition_label": "銷售日 096/12/01｜停售日 096/12/06｜productId 202191M31AZE002"
+        },
+        {
+          "batch_id": "tii-life-011",
+          "product_id": "202191M31AZE003",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "台灣人壽舞動人生變額萬能壽險(第3次部分變更)",
+          "edition_label": "銷售日 096/12/07｜停售日 096/12/30｜productId 202191M31AZE003"
+        },
+        {
+          "batch_id": "tii-life-011",
+          "product_id": "202191M31AZE004",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "台灣人壽舞動人生變額萬能壽險(第4次部分變更)",
+          "edition_label": "銷售日 096/12/31｜停售日 097/03/19｜productId 202191M31AZE004"
+        },
+        {
+          "batch_id": "tii-life-011",
+          "product_id": "202191M31AZE005",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "台灣人壽舞動人生變額萬能壽險(第5次部分變更)",
+          "edition_label": "銷售日 097/03/20｜停售日 097/04/27｜productId 202191M31AZE005"
+        },
+        {
+          "batch_id": "tii-life-011",
+          "product_id": "202191M31AZE006",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "台灣人壽舞動人生變額萬能壽險(第6次部分變更)",
+          "edition_label": "銷售日 097/04/28｜停售日 097/08/25｜productId 202191M31AZE006"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_upgrade_pending:健康保險:tii-life-050",
+      "calculation_status": "reviewable_upgrade_pending",
+      "batch_id": "tii-life-050",
+      "insurance_category": "健康保險",
+      "company_counts": {
+        "富邦人壽保險股份有限公司": 38
+      },
+      "record_count": 38,
+      "required_user_input_counts": {
+        "units": 20,
+        "base_amount": 18,
+        "days": 18,
+        "plan": 18,
+        "actual_medical_expense": 10
+      },
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the newer exact-source schedule before replacing the currently reviewed calculation contract.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-050",
+          "product_id": "209321R11A00405",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "富邦人壽防癌終身健康保險附約(第5次部份變更)",
+          "edition_label": "銷售日 098/06/01｜停售日 098/07/31｜productId 209321R11A00405"
+        },
+        {
+          "batch_id": "tii-life-050",
+          "product_id": "209321M12B00301",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "富邦人壽新防癌終身健康保險(第1次部份變更)",
+          "edition_label": "銷售日 098/06/01｜停售日 098/07/31｜productId 209321M12B00301"
+        },
+        {
+          "batch_id": "tii-life-050",
+          "product_id": "209321M12B00302",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "富邦人壽新防癌終身健康保險(第2次部份變更)",
+          "edition_label": "銷售日 098/08/01｜停售日 099/05/11｜productId 209321M12B00302"
+        },
+        {
+          "batch_id": "tii-life-050",
+          "product_id": "209321R11A00406",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "富邦人壽防癌終身健康保險附約(第6次部份變更)",
+          "edition_label": "銷售日 098/08/01｜停售日 099/08/31｜productId 209321R11A00406"
+        },
+        {
+          "batch_id": "tii-life-050",
+          "product_id": "209321M12B00303",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "富邦人壽新防癌終身健康保險(第3次部份變更)",
+          "edition_label": "銷售日 099/05/12｜停售日 099/05/20｜productId 209321M12B00303"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_upgrade_pending:傳統型壽險:tii-life-051",
+      "calculation_status": "reviewable_upgrade_pending",
+      "batch_id": "tii-life-051",
+      "insurance_category": "傳統型壽險",
+      "company_counts": {
+        "富邦人壽保險股份有限公司": 15
+      },
+      "record_count": 15,
+      "required_user_input_counts": {
+        "base_amount": 15,
+        "days": 15,
+        "actual_medical_expense": 8,
+        "basic_face_amount": 8,
+        "plan": 7
+      },
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the newer exact-source schedule before replacing the currently reviewed calculation contract.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-051",
+          "product_id": "209197M12B00105",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "傳統型壽險",
+          "product_name": "富邦人壽慈濟髓緣團體人壽暨住院醫療保險(第5次部份變更)",
+          "edition_label": "銷售日 099/05/10｜停售日 102/02/28｜productId 209197M12B00105"
+        },
+        {
+          "batch_id": "tii-life-051",
+          "product_id": "209191M12G00101",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "傳統型壽險",
+          "product_name": "富邦人壽薪富人生傷害暨健康一年定期壽險(第1次部分變更)",
+          "edition_label": "銷售日 102/03/01｜停售日 103/04/30｜productId 209191M12G00101"
+        },
+        {
+          "batch_id": "tii-life-051",
+          "product_id": "209197M12B00106",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "傳統型壽險",
+          "product_name": "富邦人壽慈濟髓緣團體人壽暨住院醫療保險(第6次部分變更)",
+          "edition_label": "銷售日 102/03/01｜停售日 103/04/30｜productId 209197M12B00106"
+        },
+        {
+          "batch_id": "tii-life-051",
+          "product_id": "209191M12G00100",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "傳統型壽險",
+          "product_name": "富邦人壽薪富人生傷害暨健康一年定期壽險(第2次部分變更)",
+          "edition_label": "銷售日 103/05/01｜停售日 104/08/04｜productId 209191M12G00100"
+        },
+        {
+          "batch_id": "tii-life-051",
+          "product_id": "209193M11B00107",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "傳統型壽險",
+          "product_name": "富邦人壽慈濟髓緣團體人壽暨住院醫療保險(第7次部分變更)",
+          "edition_label": "銷售日 103/05/01｜停售日 未標示｜productId 209193M11B00107"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_upgrade_pending:健康保險:tii-life-026",
+      "calculation_status": "reviewable_upgrade_pending",
+      "batch_id": "tii-life-026",
+      "insurance_category": "健康保險",
+      "company_counts": {
+        "凱基人壽保險股份有限公司(原中國人壽)": 9
+      },
+      "record_count": 9,
+      "required_user_input_counts": {
+        "base_amount": 9,
+        "units": 9
+      },
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the newer exact-source schedule before replacing the currently reviewed calculation contract.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-026",
+          "product_id": "205311R11A54700",
+          "company": "凱基人壽保險股份有限公司(原中國人壽)",
+          "insurance_category": "健康保險",
+          "product_name": "中國人壽一年定期住院醫療帳戶型健康保險附約",
+          "edition_label": "銷售日 098/06/20｜停售日 098/12/31｜productId 205311R11A54700"
+        },
+        {
+          "batch_id": "tii-life-026",
+          "product_id": "205311R11A54701",
+          "company": "凱基人壽保險股份有限公司(原中國人壽)",
+          "insurance_category": "健康保險",
+          "product_name": "中國人壽一年定期住院醫療帳戶型健康保險附約(第1次部份變更)",
+          "edition_label": "銷售日 099/01/01｜停售日 099/08/31｜productId 205311R11A54701"
+        },
+        {
+          "batch_id": "tii-life-026",
+          "product_id": "205311R11A54702",
+          "company": "凱基人壽保險股份有限公司(原中國人壽)",
+          "insurance_category": "健康保險",
+          "product_name": "中國人壽一年定期住院醫療帳戶型健康保險附約(第2次部分變更)",
+          "edition_label": "銷售日 099/09/01｜停售日 102/02/28｜productId 205311R11A54702"
+        },
+        {
+          "batch_id": "tii-life-026",
+          "product_id": "205311R11A54704",
+          "company": "凱基人壽保險股份有限公司(原中國人壽)",
+          "insurance_category": "健康保險",
+          "product_name": "中國人壽一年定期住院醫療帳戶型健康保險附約(第4次部分變更)",
+          "edition_label": "銷售日 103/05/01｜停售日 104/08/03｜productId 205311R11A54704"
+        },
+        {
+          "batch_id": "tii-life-026",
+          "product_id": "205311RZ1A00121A11Z10000006",
+          "company": "凱基人壽保險股份有限公司(原中國人壽)",
+          "insurance_category": "健康保險",
+          "product_name": "中國人壽一年定期住院醫療帳戶型健康保險附約(第6次部分變更)",
+          "edition_label": "銷售日 107/09/10｜停售日 107/12/31｜productId 205311RZ1A00121A11Z10000006"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_upgrade_pending:健康保險:tii-life-014",
+      "calculation_status": "reviewable_upgrade_pending",
+      "batch_id": "tii-life-014",
+      "insurance_category": "健康保險",
+      "company_counts": {
+        "保誠人壽保險股份有限公司": 6
+      },
+      "record_count": 6,
+      "required_user_input_counts": {
+        "base_amount": 6,
+        "units": 6
+      },
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the newer exact-source schedule before replacing the currently reviewed calculation contract.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-014",
+          "product_id": "203311R11A00506",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "保誠人壽一年定期住院醫療帳戶型健康保險附約(第6次部份變更)",
+          "edition_label": "銷售日 099/12/27｜停售日 101/10/23｜productId 203311R11A00506"
+        },
+        {
+          "batch_id": "tii-life-014",
+          "product_id": "203311R11A00507",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "保誠人壽一年定期住院醫療帳戶型健康保險附約(第7次部份變更)",
+          "edition_label": "銷售日 101/10/24｜停售日 102/02/28｜productId 203311R11A00507"
+        },
+        {
+          "batch_id": "tii-life-014",
+          "product_id": "203311R11A00508",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "保誠人壽一年定期住院醫療帳戶型健康保險附約(第8次部份變更)",
+          "edition_label": "銷售日 102/03/01｜停售日 103/04/30｜productId 203311R11A00508"
+        },
+        {
+          "batch_id": "tii-life-014",
+          "product_id": "203311R11A00509",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "保誠人壽一年定期住院醫療帳戶型健康保險附約(第9次部份變更)",
+          "edition_label": "銷售日 103/05/01｜停售日 104/04/30｜productId 203311R11A00509"
+        },
+        {
+          "batch_id": "tii-life-014",
+          "product_id": "203311R11A00510",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "保誠人壽一年定期住院醫療帳戶型健康保險附約(第10次部份變更)",
+          "edition_label": "銷售日 104/05/01｜停售日 104/08/03｜productId 203311R11A00510"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_upgrade_pending:傷害保險:tii-life-013",
+      "calculation_status": "reviewable_upgrade_pending",
+      "batch_id": "tii-life-013",
+      "insurance_category": "傷害保險",
+      "company_counts": {
+        "保誠人壽保險股份有限公司": 4
+      },
+      "record_count": 4,
+      "required_user_input_counts": {
+        "base_amount": 4,
+        "units": 4
+      },
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the newer exact-source schedule before replacing the currently reviewed calculation contract.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-013",
+          "product_id": "203211R31A00202",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "傷害保險",
+          "product_name": "保誠人壽一年定期住院醫療帳戶型保險附約(第2次部份變更)",
+          "edition_label": "銷售日 096/09/01｜停售日 096/12/30｜productId 203211R31A00202"
+        },
+        {
+          "batch_id": "tii-life-013",
+          "product_id": "203211R31A00203",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "傷害保險",
+          "product_name": "保誠人壽一年定期住院醫療帳戶型健康保險附約(第3次部份變更)",
+          "edition_label": "銷售日 096/12/31｜停售日 097/05/29｜productId 203211R31A00203"
+        },
+        {
+          "batch_id": "tii-life-013",
+          "product_id": "203211R31A00204",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "傷害保險",
+          "product_name": "保誠人壽一年定期住院醫療帳戶型健康保險附約(第4次部份變更)",
+          "edition_label": "銷售日 097/05/30｜停售日 098/06/19｜productId 203211R31A00204"
+        },
+        {
+          "batch_id": "tii-life-013",
+          "product_id": "203211R31A00205",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "傷害保險",
+          "product_name": "保誠人壽一年定期住院醫療帳戶型健康保險附約(第5次部份變更)",
+          "edition_label": "銷售日 098/06/20｜停售日 099/12/26｜productId 203211R31A00205"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_upgrade_pending:傳統型壽險:tii-life-117",
+      "calculation_status": "reviewable_upgrade_pending",
+      "batch_id": "tii-life-117",
+      "insurance_category": "傳統型壽險",
+      "company_counts": {
+        "安泰人壽保險股份有限公司": 2
+      },
+      "record_count": 2,
+      "required_user_input_counts": {
+        "actual_medical_expense": 2,
+        "base_amount": 2,
+        "basic_face_amount": 2,
+        "days": 2
+      },
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the newer exact-source schedule before replacing the currently reviewed calculation contract.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-117",
+          "product_id": "252197M12B00202",
+          "company": "安泰人壽保險股份有限公司",
+          "insurance_category": "傳統型壽險",
+          "product_name": "安泰人壽慈濟髓緣團體人壽暨住院醫療保險(第2次部份變更)",
+          "edition_label": "銷售日 096/09/01｜停售日 097/05/29｜productId 252197M12B00202"
+        },
+        {
+          "batch_id": "tii-life-117",
+          "product_id": "252197M12B00203",
+          "company": "安泰人壽保險股份有限公司",
+          "insurance_category": "傳統型壽險",
+          "product_name": "安泰人壽慈濟髓緣團體人壽暨住院醫療保險(第3次部分變更)",
+          "edition_label": "銷售日 097/05/30｜停售日 098/05/31｜productId 252197M12B00203"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_upgrade_pending:健康保險:tii-life-008",
+      "calculation_status": "reviewable_upgrade_pending",
+      "batch_id": "tii-life-008",
+      "insurance_category": "健康保險",
+      "company_counts": {
+        "台灣人壽保險股份有限公司": 1
+      },
+      "record_count": 1,
+      "required_user_input_counts": {
+        "actual_medical_expense": 1,
+        "days": 1,
+        "plan": 1
+      },
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the newer exact-source schedule before replacing the currently reviewed calculation contract.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-008",
+          "product_id": "202311RZ1A01B21A11Z10000000",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "台灣人壽保實在住院醫療健康保險附約",
+          "edition_label": "銷售日 114/09/25｜停售日 未標示｜productId 202311RZ1A01B21A11Z10000000"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_upgrade_pending:健康保險:tii-life-116",
+      "calculation_status": "reviewable_upgrade_pending",
+      "batch_id": "tii-life-116",
+      "insurance_category": "健康保險",
+      "company_counts": {
+        "安泰人壽保險股份有限公司": 1
+      },
+      "record_count": 1,
+      "required_user_input_counts": {
+        "units": 1
+      },
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the newer exact-source schedule before replacing the currently reviewed calculation contract.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-116",
+          "product_id": "252321M12B00100",
+          "company": "安泰人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "安泰人壽新防癌終身健康保險",
+          "edition_label": "銷售日 097/08/26｜停售日 098/05/31｜productId 252321M12B00100"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_proposal_pending:投資型壽險:tii-life-173",
+      "calculation_status": "reviewable_proposal_pending",
+      "batch_id": "tii-life-173",
+      "insurance_category": "投資型壽險",
+      "company_counts": {
+        "法商法國巴黎人壽保險股份有限公司台灣分公司": 803
+      },
+      "record_count": 803,
+      "required_user_input_counts": {},
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the proposal against exact source_batch_id + product_id + source document before promotion.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-173",
+          "product_id": "267191M32A00100",
+          "company": "法商法國巴黎人壽保險股份有限公司台灣分公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "法商法國巴黎人壽保富變額壽險",
+          "edition_label": "銷售日 092/07/15｜停售日 093/05/30｜productId 267191M32A00100"
+        },
+        {
+          "batch_id": "tii-life-173",
+          "product_id": "267191M31A00200",
+          "company": "法商法國巴黎人壽保險股份有限公司台灣分公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "法商法國巴黎人壽利富變額壽險",
+          "edition_label": "銷售日 093/04/22｜停售日 094/03/21｜productId 267191M31A00200"
+        },
+        {
+          "batch_id": "tii-life-173",
+          "product_id": "267191M32A00101",
+          "company": "法商法國巴黎人壽保險股份有限公司台灣分公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "法商法國巴黎人壽保富變額壽險(第1次部份變更)",
+          "edition_label": "銷售日 093/05/31｜停售日 093/08/22｜productId 267191M32A00101"
+        },
+        {
+          "batch_id": "tii-life-173",
+          "product_id": "267191M32A00102",
+          "company": "法商法國巴黎人壽保險股份有限公司台灣分公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "法商法國巴黎人壽保富變額壽險(第2次部份變更)",
+          "edition_label": "銷售日 093/08/23｜停售日 093/09/08｜productId 267191M32A00102"
+        },
+        {
+          "batch_id": "tii-life-173",
+          "product_id": "267191M32A00103",
+          "company": "法商法國巴黎人壽保險股份有限公司台灣分公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "法商法國巴黎人壽保富變額壽險(第3次部份變更)",
+          "edition_label": "銷售日 093/09/09｜停售日 093/10/07｜productId 267191M32A00103"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_proposal_pending:健康保險:tii-life-050",
+      "calculation_status": "reviewable_proposal_pending",
+      "batch_id": "tii-life-050",
+      "insurance_category": "健康保險",
+      "company_counts": {
+        "富邦人壽保險股份有限公司": 222
+      },
+      "record_count": 222,
+      "required_user_input_counts": {},
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the proposal against exact source_batch_id + product_id + source document before promotion.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-050",
+          "product_id": "209311M12B00100",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "富邦人壽終身醫療健康保險",
+          "edition_label": "銷售日 093/01/01｜停售日 094/12/31｜productId 209311M12B00100"
+        },
+        {
+          "batch_id": "tii-life-050",
+          "product_id": "209311R11A00100",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "富邦人壽新住院醫療日額給付保險附約",
+          "edition_label": "銷售日 093/01/01｜停售日 096/08/31｜productId 209311R11A00100"
+        },
+        {
+          "batch_id": "tii-life-050",
+          "product_id": "209311R11A00200",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "富邦人壽安心住院醫療定額給付保險附約",
+          "edition_label": "銷售日 093/01/01｜停售日 096/08/31｜productId 209311R11A00200"
+        },
+        {
+          "batch_id": "tii-life-050",
+          "product_id": "209311R12B00100",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "富邦人壽終身醫療健康保險附約",
+          "edition_label": "銷售日 093/01/01｜停售日 094/12/31｜productId 209311R12B00100"
+        },
+        {
+          "batch_id": "tii-life-050",
+          "product_id": "209311R12B00101",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "富邦人壽終身醫療健康保險附約(第1次部分變更)",
+          "edition_label": "銷售日 095/01/01｜停售日 095/09/30｜productId 209311R12B00101"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_proposal_pending:健康保險:tii-life-080",
+      "calculation_status": "reviewable_proposal_pending",
+      "batch_id": "tii-life-080",
+      "insurance_category": "健康保險",
+      "company_counts": {
+        "遠雄人壽保險事業股份有限公司": 156
+      },
+      "record_count": 156,
+      "required_user_input_counts": {},
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the proposal against exact source_batch_id + product_id + source document before promotion.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-080",
+          "product_id": "216311R12G02500",
+          "company": "遠雄人壽保險事業股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "遠雄人壽特定傷病終身壽險附約",
+          "edition_label": "銷售日 089/01/17｜停售日 094/12/31｜productId 216311R12G02500"
+        },
+        {
+          "batch_id": "tii-life-080",
+          "product_id": "216341R12B02600",
+          "company": "遠雄人壽保險事業股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "遠雄人壽豁免保險費附約",
+          "edition_label": "銷售日 089/11/01｜停售日 094/12/31｜productId 216341R12B02600"
+        },
+        {
+          "batch_id": "tii-life-080",
+          "product_id": "216311R12G02700",
+          "company": "遠雄人壽保險事業股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "遠雄人壽金安心豁免保險費附約",
+          "edition_label": "銷售日 092/03/25｜停售日 094/12/31｜productId 216311R12G02700"
+        },
+        {
+          "batch_id": "tii-life-080",
+          "product_id": "216312R12B61300",
+          "company": "遠雄人壽保險事業股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "遠雄人壽團體住院醫療日額給付保險附約",
+          "edition_label": "銷售日 093/01/15｜停售日 096/08/31｜productId 216312R12B61300"
+        },
+        {
+          "batch_id": "tii-life-080",
+          "product_id": "216311R12G02701",
+          "company": "遠雄人壽保險事業股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "遠雄人壽金安心豁免保險費附約(第1次部份變更)",
+          "edition_label": "銷售日 095/01/01｜停售日 095/09/30｜productId 216311R12G02701"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_proposal_pending:健康保險:tii-life-032",
+      "calculation_status": "reviewable_proposal_pending",
+      "batch_id": "tii-life-032",
+      "insurance_category": "健康保險",
+      "company_counts": {
+        "南山人壽保險股份有限公司": 107
+      },
+      "record_count": 107,
+      "required_user_input_counts": {},
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the proposal against exact source_batch_id + product_id + source document before promotion.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-032",
+          "product_id": "206327M11A30100",
+          "company": "南山人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "南山人壽團體一年定期癌症醫療保險",
+          "edition_label": "銷售日 081/05/12｜停售日 095/06/30｜productId 206327M11A30100"
+        },
+        {
+          "batch_id": "tii-life-032",
+          "product_id": "206311R11A30300",
+          "company": "南山人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "南山人壽住院費用給付保險附約",
+          "edition_label": "銷售日 084/05/01｜停售日 094/12/31｜productId 206311R11A30300"
+        },
+        {
+          "batch_id": "tii-life-032",
+          "product_id": "206317R11A30100",
+          "company": "南山人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "南山人壽住院日額給付團體保險附約",
+          "edition_label": "銷售日 085/05/09｜停售日 095/06/30｜productId 206317R11A30100"
+        },
+        {
+          "batch_id": "tii-life-032",
+          "product_id": "206311R11A30100",
+          "company": "南山人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "南山人壽住院醫療保險附約",
+          "edition_label": "銷售日 087/04/03｜停售日 094/12/31｜productId 206311R11A30100"
+        },
+        {
+          "batch_id": "tii-life-032",
+          "product_id": "206391R11A30100",
+          "company": "南山人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "南山人壽特定傷病終身健康保險附約",
+          "edition_label": "銷售日 093/10/11｜停售日 094/02/03｜productId 206391R11A30100"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_proposal_pending:健康保險:tii-life-014",
+      "calculation_status": "reviewable_proposal_pending",
+      "batch_id": "tii-life-014",
+      "insurance_category": "健康保險",
+      "company_counts": {
+        "保誠人壽保險股份有限公司": 105
+      },
+      "record_count": 105,
+      "required_user_input_counts": {},
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the proposal against exact source_batch_id + product_id + source document before promotion.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-014",
+          "product_id": "203317M11A00200",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "保誠人壽團體住院醫療保險(乙型)",
+          "edition_label": "銷售日 088/12/13｜停售日 095/06/27｜productId 203317M11A00200"
+        },
+        {
+          "batch_id": "tii-life-014",
+          "product_id": "203327M11A00100",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "保誠人壽團體癌症住院日額保險",
+          "edition_label": "銷售日 088/12/13｜停售日 095/06/27｜productId 203327M11A00100"
+        },
+        {
+          "batch_id": "tii-life-014",
+          "product_id": "203327M11A00200",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "保誠人壽團體癌症醫療定額給付保險",
+          "edition_label": "銷售日 088/12/13｜停售日 088/12/12｜productId 203327M11A00200"
+        },
+        {
+          "batch_id": "tii-life-014",
+          "product_id": "203327M11A00201",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "保誠人壽團體癌症醫療定額給付保險(第1次部份變更)",
+          "edition_label": "銷售日 088/12/13｜停售日 096/08/31｜productId 203327M11A00201"
+        },
+        {
+          "batch_id": "tii-life-014",
+          "product_id": "203311R11A00300",
+          "company": "保誠人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "保誠人壽新住院醫療限額給付保險附約",
+          "edition_label": "銷售日 090/01/01｜停售日 095/12/31｜productId 203311R11A00300"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_proposal_pending:健康保險:tii-life-008",
+      "calculation_status": "reviewable_proposal_pending",
+      "batch_id": "tii-life-008",
+      "insurance_category": "健康保險",
+      "company_counts": {
+        "台灣人壽保險股份有限公司": 100
+      },
+      "record_count": 100,
+      "required_user_input_counts": {},
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the proposal against exact source_batch_id + product_id + source document before promotion.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-008",
+          "product_id": "202321M11A68000",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "台灣人壽防癌保險",
+          "edition_label": "銷售日 069/06/20｜停售日 096/08/31｜productId 202321M11A68000"
+        },
+        {
+          "batch_id": "tii-life-008",
+          "product_id": "202321M11A68100",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "台灣人壽新防癌健康保險",
+          "edition_label": "銷售日 069/06/20｜停售日 096/08/31｜productId 202321M11A68100"
+        },
+        {
+          "batch_id": "tii-life-008",
+          "product_id": "202311R11AG9A01",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "台灣人壽新住院醫療健康保險附約(第1次部分變更)",
+          "edition_label": "銷售日 096/01/01｜停售日 096/06/13｜productId 202311R11AG9A01"
+        },
+        {
+          "batch_id": "tii-life-008",
+          "product_id": "202311R11AG6101",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "台灣人壽住院醫療日額給付健康保險附約(第1次部分變更)",
+          "edition_label": "銷售日 096/01/01｜停售日 096/06/13｜productId 202311R11AG6101"
+        },
+        {
+          "batch_id": "tii-life-008",
+          "product_id": "202311R11AAC001",
+          "company": "台灣人壽保險股份有限公司",
+          "insurance_category": "健康保險",
+          "product_name": "台灣人壽永健住院醫療健康保險附約(第1次部分變更)",
+          "edition_label": "銷售日 096/01/01｜停售日 096/06/13｜productId 202311R11AAC001"
+        }
+      ]
+    },
+    {
+      "queue_id": "reviewable_proposal_pending:投資型壽險:tii-life-053",
+      "calculation_status": "reviewable_proposal_pending",
+      "batch_id": "tii-life-053",
+      "insurance_category": "投資型壽險",
+      "company_counts": {
+        "富邦人壽保險股份有限公司": 100
+      },
+      "record_count": 100,
+      "required_user_input_counts": {},
+      "source_pending_reason_counts": {},
+      "processing_gate_counts": {},
+      "next_action": "Source-review the proposal against exact source_batch_id + product_id + source document before promotion.",
+      "sample_products": [
+        {
+          "batch_id": "tii-life-053",
+          "product_id": "209141M31A00110",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "富邦人壽新吉祥變額萬能終身壽險(第10次部分變更)",
+          "edition_label": "銷售日 096/09/01｜停售日 096/09/30｜productId 209141M31A00110"
+        },
+        {
+          "batch_id": "tii-life-053",
+          "product_id": "209141M31A00111",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "富邦人壽新吉祥變額萬能終身壽險(第11次部分變更)",
+          "edition_label": "銷售日 096/10/01｜停售日 096/11/18｜productId 209141M31A00111"
+        },
+        {
+          "batch_id": "tii-life-053",
+          "product_id": "209141M31A00112",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "富邦人壽新吉祥變額萬能終身壽險(第12次部分變更)",
+          "edition_label": "銷售日 096/11/19｜停售日 096/12/31｜productId 209141M31A00112"
+        },
+        {
+          "batch_id": "tii-life-053",
+          "product_id": "209141M31A00113",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "富邦人壽新吉祥變額萬能終身壽險(第13次部分變更)",
+          "edition_label": "銷售日 097/01/01｜停售日 097/01/30｜productId 209141M31A00113"
+        },
+        {
+          "batch_id": "tii-life-053",
+          "product_id": "209141M31A00114",
+          "company": "富邦人壽保險股份有限公司",
+          "insurance_category": "投資型壽險",
+          "product_name": "富邦人壽新吉祥變額萬能終身壽險(第14次部分變更)",
+          "edition_label": "銷售日 097/01/31｜停售日 097/04/01｜productId 209141M31A00114"
+        }
+      ]
+    }
+  ]
+}

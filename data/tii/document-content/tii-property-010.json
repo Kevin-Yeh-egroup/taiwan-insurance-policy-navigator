@@ -1,0 +1,2744 @@
+{
+  "generated_at": "2026-07-31T21:44:45+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:44:45+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-010",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 30,
+    "document_count": 30,
+    "extracted_document_count": 30,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 30,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 30,
+    "total_text_characters": 115219,
+    "focus_counts": [
+      {
+        "label": "特殊項目",
+        "count": 30
+      },
+      {
+        "label": "理賠申請",
+        "count": 4
+      },
+      {
+        "label": "重要定義",
+        "count": 1
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "豁免/附加條款",
+        "count": 26
+      },
+      {
+        "label": "意外險",
+        "count": 2
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 30
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "103121202013010100",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物地層下陷、滑動或山崩保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/01",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1901,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103121202013010100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...層下\n陷、滑動或山崩保險附加條款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、費率：參考費率為6‰，保險公司於承保時可考量被保險標的物所在..."
+            },
+            {
+              "document": "103121202013010100-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...公司公開資訊，請見本公司網址\nhttp://www.walsun.com.tw\n八、自負額： \n本附加險之自負額： \n(一)每一事故為賠償金額之5%。 \n(二)最低自負額提高..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103121202013010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 121379,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1901,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103122203013010100",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物地層下陷、滑動或山崩保險附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/01",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1877,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103122203013010100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...層下陷、滑動或山崩保險附加條\n款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、基本危險費率：參考基本危險費率為3.63‰，保險公司於承保時..."
+            },
+            {
+              "document": "103122203013010100-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...公司公開資訊，請見本公司網址\nhttp://www.walsun.com.tw\n八、自負額： \n本附加險之自負額： \n(一)每一事故為賠償金額之10%，最低自負額為新台幣參萬..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103122203013010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 120691,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1877,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103221201007010400",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物罷工暴動民眾騷擾惡意破壞行為保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1729,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103221201007010400-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...眾騷擾、惡意破壞行為保險附加條款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、費率：不得低於千分之○‧一三(0.13‰)。 \n六、自負額：..."
+            },
+            {
+              "document": "103221201007010400-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...保險期間：以一年為原則。 \n五、費率：不得低於千分之○‧一三(0.13‰)。 \n六、自負額：本附加險基本自負額為新台幣三萬元。 \n自負額提高為新台幣十萬元(含)以上時，本附加..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103221201007010400-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 115091,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1729,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103221201009010500",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物自動消防裝置滲漏保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1683,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103221201009010500-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保險單上加貼「水漬保險\n附加條款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、費率：千分之○.二一(0.21‰)。 \n六、自負額： \n(一..."
+            },
+            {
+              "document": "103221201009010500-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...四、保險期間：以一年為原則。 \n五、費率：千分之○.二一(0.21‰)。 \n六、自負額： \n(一)本附加險基本自負額為新台幣三萬元。 \n(二)自負額提高為新台幣十萬元(含..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103221201009010500-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 112261,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1683,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103221201011010600",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物水漬保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1683,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103221201011010600-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保險單上加貼「水漬保險\n附加條款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、費率：千分之○.二一(0.21‰)。 \n六、自負額： \n(一..."
+            },
+            {
+              "document": "103221201011010600-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...四、保險期間：以一年為原則。 \n五、費率：千分之○.二一(0.21‰)。 \n六、自負額： \n(一)本附加險基本自負額為新台幣三萬元。 \n(二)自負額提高為新台幣十萬元(含..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103221201011010600-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 112261,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1683,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103221201012010700",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物竊盜保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1410,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103221201012010700-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保險單上加貼「竊盜保險\n附加條款」承保之。 \n四、承保範圍：詳附加條款內容。 \n五、保險期間：以一年為原則。 \n六、保險費：本附加險之保險費為下列基本保費與加收保費之和。 \n1..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103221201012010700-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 117435,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1410,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103221201014010900",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物第三人意外保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1320,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103221201014010900-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...之保險金額新臺幣五百萬元。 \n每一意外事故財物損害責任之保險金額新臺幣五十萬元。 \n保險期間內之最高賠償金額新臺幣一千萬元。 \n五、保險期間：以一年為原則。 \n六、費率: \n(..."
+            },
+            {
+              "document": "103221201014010900-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...90% \n超過十個月以上至十一個月者 \n95% \n不滿一個月者，以一個月計算 \n八、自負額：體傷及死亡新臺幣二千元；財損新臺幣一萬元。 \n九、其他： \n(一)火險費率規章之建..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103221201014010900-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 115251,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1320,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103221201015010800",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物租金損失保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1074,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103221201015010800-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...之： \n(一)保險標的物之預期租金收入。 \n(二)保險標的物之預期租金費用。 \n五、保險期間：以一年為原則。 \n六、保險金額：本附加險之保險金額以被保險人預計租金收入或租金費用..."
+            },
+            {
+              "document": "103221201015010800-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...加險之保險金額以被保險人預計租金收入或租金費用為準，\n最高以十二個月為基礎。 \n七、自負額:以三天為原則。 \n八、費率:為火險及附加險合計之平均費率 ×85﹪。 \n九、短期保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103221201015010800-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 111193,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1074,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103221202008010100",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物恐怖主義保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1713,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103221202008010100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...單上加貼「恐怖主義\n保險附加條款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、費率：不得低於千分之○.二(0.2‰)。 \n六、自負額：..."
+            },
+            {
+              "document": "103221202008010100-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...四、保險期間：以一年為原則。 \n五、費率：不得低於千分之○.二(0.2‰)。 \n六、自負額： \n(一)本附加險基本自負額為新台幣三萬元。 \n(二)自負額提高為新台幣十萬元(含..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103221202008010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 116134,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1713,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103221228005010300",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物颱風洪水保險附加條款(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "096/07/18",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2460,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：限制、保險期間、自負額。",
+          "terms": [
+            "限制",
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103221228005010300-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...高不得超過百分之百。 \n八、自負額： \n(一)每一事故為賠償金額之5％，無最低自負額限制。 \n(二)最低自負額提高為新台幣十萬元(含)以上時，按最低自負額與保險金\n額之比例..."
+            },
+            {
+              "document": "103221228005010300-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...上加貼「颱風及洪\n水保險附加條款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、費率(含現行附加費用率39.5%)：本附加險之費率應就不動產..."
+            },
+            {
+              "document": "103221228005010300-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...保險金額以住宅火災保險的保險金額百分之八十為原則，但最\n高不得超過百分之百。 \n八、自負額： \n(一)每一事故為賠償金額之5％，無最低自負額限制。 \n(二)最低自負額提高為新..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103221228005010300-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 139332,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2460,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222203001020000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物商業火災保險",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1319,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222203001020000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...壹、適用對象：依商業火險基本危險費率使用性質代號為B 大類至U 大類。 \n貳、保險期間：以一年為限。 \n參、一、保險標的物： \n(一)不動產：指建築物及營業裝修，但不包括..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222203001020000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 119882,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1319,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222203002020100",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物爆炸保險附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1880,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222203002020100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...災保險單上加貼「爆炸保險附加條款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、基本危險費率： \n(一)本附加險之基本危險費率就第三章商業火..."
+            },
+            {
+              "document": "103222203002020100-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...(三)爆炸危險等級，以同一工廠或同一倉庫、堆棧範圍內最高爆炸險等級\n決定之。 \n六、自負額： \n(一)本附加險基本自負額為新台幣三萬元。 \n(二)自負額提高為新台幣十萬元(含..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222203002020100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 117634,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1880,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222203006020400",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物航空器墜落機動車輛碰撞保險附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 777,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222203006020400-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...墜落、機動車輛碰撞保險附\n加條款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、基本危險費率：千分之○.○四(0.04‰)。 \n六、短期保費..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222203006020400-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 101024,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 777,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222203007020500",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物罷工暴動民眾騷擾惡意破壞行為保險附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1674,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222203007020500-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...騷擾、惡意破壞\n行為保險附加條款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、基本危險費率：不得低於千分之○.○八(0.08‰)。 \n六、..."
+            },
+            {
+              "document": "103222203007020500-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...：以一年為原則。 \n五、基本危險費率：不得低於千分之○.○八(0.08‰)。 \n六、自負額：本附加險基本自負額為新台幣三萬元。 \n自負額提高為新台幣十萬元(含)以上時，本附加..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222203007020500-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 114254,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1674,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222203008010100",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物恐怖主義保險附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/01",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1682,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222203008010100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...險單上加貼「恐怖主義保險附加條款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、基本危險費率：不得低於千分之○‧一二(0.12‰)。 \n六、..."
+            },
+            {
+              "document": "103222203008010100-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...：以一年為原則。 \n五、基本危險費率：不得低於千分之○‧一二(0.12‰)。 \n六、自負額： \n(一)本附加險基本自負額為新台幣三萬元。 \n(二)自負額提高為新台幣十萬元(含..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222203008010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 114999,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1682,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222203009020600",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物自動消防裝置滲漏保險附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 762,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222203009020600-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...「自動消防裝置滲漏保險附加條款」\n承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、基本危險費率： \n建築物            千分之○.○..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222203009020600-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 98426,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 762,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222203010020700",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物煙燻保險附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1646,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222203010020700-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...災保險單上加貼「煙燻保險附加條款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、基本危險費率：千分之○.○八(0.08‰)。 \n六、自負額：..."
+            },
+            {
+              "document": "103222203010020700-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...保險期間：以一年為原則。 \n五、基本危險費率：千分之○.○八(0.08‰)。 \n六、自負額： \n(一)本附加險基本自負額為新台幣三萬元。 \n(二)自負額提高為新台幣十萬元(含..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222203010020700-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 111278,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1646,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222203011020800",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物水漬保險附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1710,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222203011020800-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...災保險單上加貼「水漬保險附加條款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、基本危險費率：本附加險之基本危險費率應就使用性質及樓層別分別..."
+            },
+            {
+              "document": "103222203011020800-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...辦公室 \n0.13‰ \n工廠、倉庫、堆棧 \n0.19‰ \n其他 \n0.31‰ \n六、自負額： \n(一) 本附加險基本自負額為新台幣三萬元。 \n(二)自負額提高為新台幣十萬元(..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222203011020800-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 114194,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1710,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222203012020900",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物竊盜保險附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1379,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222203012020900-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保險單上加貼「竊盜保險附加條款」承保之。 \n四、承保範圍：詳附加險條款內容。 \n五、保險期間：以一年為原則。 \n六、保險費：本附加險之保險費為下列基本危險保費與加收危險保費之和..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222203012020900-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 113612,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1379,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222203015021000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物租金損失保險附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 865,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222203015021000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...之： \n(一)保險標的物之預期租金收入。 \n(二)保險標的物之預期租金費用。 \n五、保險期間：以一年為原則。 \n六、保險金額：本附加險之保險金額以被保險人預計租金收入或租金費用..."
+            },
+            {
+              "document": "103222203015021000-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...加險之保險金額以被保險人預計租金收入或租金費用為準，\n最高以十二個月為基礎。 \n七、自負額:以三天為原則。 \n八、基本危險費率:為商業火險及附加險合計之平均基本危險費率 ×8..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222203015021000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 101549,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 865,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222203015021200",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物營業中斷保險(製造業)附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 3352,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222203015021200-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...金額估\n算表」承保之。 \n四、承保範圍 \n承保範圍及不保項目詳附加條款內容。 \n五、保險期間 \n以一年為原則。 \n六、保險金額 \n(一)本附加險之保險金額，以保險金額估算表所列..."
+            },
+            {
+              "document": "103222203015021200-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...損益表與資產負債表，以及\n其投保年度之營業預算書，以作為承保公司核保之參考。 \n七、自負額 \n以五個連續工作天為原則。 \n八、基本危險費率及基本危險保費計算 \n(一)基本危險..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222203015021200-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 158543,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3352,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222203015021300",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物營業中斷保險(非製造業)附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 3200,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222203015021300-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...金額估算\n表」承保之。 \n四、承保範圍 \n承保範圍及不保項目詳附加條款內容。 \n五、保險期間 \n以一年為原則。 \n六、保險金額 \n(一)本附加險之保險金額，以保險金額估算表所列..."
+            },
+            {
+              "document": "103222203015021300-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...損益表與資產負債表，以及其\n投保年度之營業預算書。以作為承保公司核保之參考。 \n七、自負額 \n以三個連續營業日為原則。 \n八、危險費率及危險保費計算 \n(一)保費＝保險金額..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222203015021300-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 157170,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3200,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222203016021100",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物第三人意外保險附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1306,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222203016021100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...之保險金額新臺幣五百萬元。 \n每一意外事故財物損害責任之保險金額新臺幣五十萬元。 \n保險期間內之最高賠償金額新臺幣一千萬元。 \n五、保險期間：以一年為原則。 \n六、基本危險費率..."
+            },
+            {
+              "document": "103222203016021100-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...90% \n超過十個月以上至十一個月者 \n95% \n不滿一個月者，以一個月計算 \n八、自負額：體傷及死亡新臺幣二千元；財損新臺幣一萬元。 \n九、其他： \n(一)火險費率規章之建..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222203016021100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 114437,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1306,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222225004020200",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物地震保險附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2158,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222225004020200-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...災保險單上加貼「地震保險附加條款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、基本危險費率：本附加險之基本危險費率應就建築物與動產分別計費..."
+            },
+            {
+              "document": "103222225004020200-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...險金額以商業火災保險的保險金額百分之八十為原則，但最\n高不得超過百分之百。 \n八、 自負額: \n(一)本附加險每一保險標的物所在地址之自負額為該保險標的物所在地\n址地震險總保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222225004020200-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 142237,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2158,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222227025030000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物商業火災綜合保險",
+      "sale_status": "已停售",
+      "sale_date": "092/01/07",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1319,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222227025030000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...壹、適用對象：依商業火險基本危險費率使用性質代號為B 大類至U 大類。 \n貳、保險期間：以一年為限。 \n參、一、保險標的物： \n(一)不動產：指建築物及營業裝修，但不包括..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222227025030000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 119882,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1319,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222227025030300",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "SB附加條款SB001,SB002,SB003,SB004,SB005,SB008~SB015 計13條",
+      "sale_status": "已停售",
+      "sale_date": "085/08/24",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 30991,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：限制、續保、保險期間、自負額。",
+          "terms": [
+            "限制",
+            "續保",
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222227025030300-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...險金額範圍 \n內按實際損失金額賠付，不受本保險契約基本條款第二十五條第二項比例分攤之限制。 \n \n \n \n\n\n--- page 2 ---\n\n 總公司：台北市忠孝東路四段5..."
+            },
+            {
+              "document": "103222227025030300-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...業中斷損失，且本公司之賠償限額每一事故為新台幣 \n二千萬元。 \n \nSB046  \n續保保費調整附加條款(PREMIUM ADJUSTMENT CLAUSE)..."
+            },
+            {
+              "document": "103222227025030300-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...的物，其保險金額係以實損實賠(First Loss  \nInsurance)為基礎，保險期間內每一次保險事故發生時，以實際損失賠付，不受本保險契 \n約基本條款第二十五條第二項比..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：申請、通知。",
+          "terms": [
+            "申請",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222227025030300-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...險契約所載各該項保險標的物保險金額 \n  百分之十範圍時，被保險人得隨時通知本公司並申請辦理批加保險金額，未經被保險 \n  人申請辦理批改時，本公司對超過本保險契約所載各該..."
+            },
+            {
+              "document": "103222227025030300-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...標的物金額百分之十為限。 \n二、被保險人應於每三個月後七天內將保險標的物實際現金價值通知本公司憑以計算保險 \n  費，如逾規定通知之日不為通知時，本公司即以本保險契約所載保..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222227025030300-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 425989,
+          "page_count": 21,
+          "pages_parsed": 21,
+          "text_char_count": 30991,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222227025030400",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "SB附加條款SB006,SB007,SB016~SB066 計53條",
+      "sale_status": "已停售",
+      "sale_date": "092/07/07",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 30991,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：限制、續保、保險期間、自負額。",
+          "terms": [
+            "限制",
+            "續保",
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222227025030400-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...險金額範圍 \n內按實際損失金額賠付，不受本保險契約基本條款第二十五條第二項比例分攤之限制。 \n \n \n \n\n\n--- page 2 ---\n\n 總公司：台北市忠孝東路四段5..."
+            },
+            {
+              "document": "103222227025030400-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...業中斷損失，且本公司之賠償限額每一事故為新台幣 \n二千萬元。 \n \nSB046  \n續保保費調整附加條款(PREMIUM ADJUSTMENT CLAUSE)..."
+            },
+            {
+              "document": "103222227025030400-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...的物，其保險金額係以實損實賠(First Loss  \nInsurance)為基礎，保險期間內每一次保險事故發生時，以實際損失賠付，不受本保險契 \n約基本條款第二十五條第二項比..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：申請、通知。",
+          "terms": [
+            "申請",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222227025030400-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...險契約所載各該項保險標的物保險金額 \n  百分之十範圍時，被保險人得隨時通知本公司並申請辦理批加保險金額，未經被保險 \n  人申請辦理批改時，本公司對超過本保險契約所載各該..."
+            },
+            {
+              "document": "103222227025030400-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...標的物金額百分之十為限。 \n二、被保險人應於每三個月後七天內將保險標的物實際現金價值通知本公司憑以計算保險 \n  費，如逾規定通知之日不為通知時，本公司即以本保險契約所載保..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222227025030400-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 425989,
+          "page_count": 21,
+          "pages_parsed": 21,
+          "text_char_count": 30991,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103222228005020300",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物颱風洪水保險附加條款(商業火災保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "096/07/18",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2445,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103222228005020300-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...單上加貼「颱風及洪水保險附加條款」承保之。 \n三、承保範圍：詳附加條款內容。 \n四、保險期間：以一年為原則。 \n五、基本危險費率：本附加險之基本危險費率應就不動產與動產分別計費..."
+            },
+            {
+              "document": "103222228005020300-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...險金額以商業火災保險的保險金額百分之八十為原則，但最\n高不得超過百分之百。 \n八、 自負額： \n(一)每一事故為賠償金額之10％，最低自負額為新台幣三萬元整。 \n(二)最低自..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103222228005020300-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 141525,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2445,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103321201001010000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物住宅火災及地震基本保險",
+      "sale_status": "已停售",
+      "sale_date": "091/04/11",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 6283,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：定義。",
+          "terms": [
+            "定義"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103321201001010000-F.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...人依法應負賠償責任而受賠償請求時，依本保險契約之約定，負賠償責任。 \n(二)第三人之定義 \n指被保險人及其配偶、家屬、受僱人、同居人以外之人。 \n(三)保險金額 \n每一個人..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：限制、保險期間。",
+          "terms": [
+            "限制",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103321201001010000-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...燻 \n2、額外費用之補償 \n(1)清除費用：需受後述(五)理賠計算方式約定比例分攤之限制，其與賠償金額合計超過保險金額\n者，仍以保險金額為限。 \n(2)臨時住宿費用：每日最..."
+            },
+            {
+              "document": "103321201001010000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...1 月1 日 \n貳、適用對象：依火險基本費率使用性質代號為A 大類之住宅者。 \n參、保險期間：以一年為限。 \n肆、 \n一、住宅火災保險 \n (一)保險標的物 \n1、建築物 \n2..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103321201001010000-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...人責任基本保險同時應負賠償責任時，要保人或被保險人應將其他保\n險公司之名稱及保險金額通知本公司，本公司僅就住宅第三人責任基本保險之保險金額對全部住\n宅第三人責任基本保險保險..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103321201001010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 200385,
+          "page_count": 7,
+          "pages_parsed": 7,
+          "text_char_count": 6283,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103321225004010200",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "華山產物擴大地震保險(住宅火災保險適用)(住宅火災及地震基本保險適用)",
+      "sale_status": "已停售",
+      "sale_date": "091/04/01",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-010",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2630,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：限制、保險期間、自負額。",
+          "terms": [
+            "限制",
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103321225004010200-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...陷、滑動、開裂、決口。 \n(二)額外費用之補償 \n1、清除費用：需受不足額比例分攤之限制，其與賠償金額合計超過保險金額\n者，仍以保險金額為限。 \n2、臨時住宿費用：每日最高..."
+            },
+            {
+              "document": "103321225004010200-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保險附加地震基本保險或住宅火災及地震基本保險之保\n險標的物均可加保本附加險。 \n三、保險期間：以一年為限。 \n四、保險標的物：(一)建築物。 \n(二)建築物內動產，但住宅火災及..."
+            },
+            {
+              "document": "103321225004010200-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...保險金額以住宅火災保險的保險金額百分之八十為原則，但最高不得超\n過百分之百。 \n十、自負額： \n(一)本附加險每一保險標的物所在地址之自負額為該保險標的物所在地址地震險\n總保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103321225004010200-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...其他保險人投保住宅地震基本保險，要保人或被保險\n人應立即將其他保險人之名稱及保險金額通知保險人。 \n十三、其他： \n(一)本規章之建築等級及停工費率，不適用於本附加險。..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103321225004010200-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 147557,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2630,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,922 @@
+{
+  "generated_at": "2026-07-31T21:45:06+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:45:06+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-038",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 13,
+    "document_count": 13,
+    "extracted_document_count": 13,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 2,
+    "error_document_count": 0,
+    "pdf_document_count": 13,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 13,
+    "total_text_characters": 3705,
+    "focus_counts": [],
+    "coverage_tag_counts": [
+      {
+        "label": "意外險",
+        "count": 1
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 13
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "111321101014010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "國華產物住宅火災及地震基本保險",
+      "sale_status": "已停售",
+      "sale_date": "091/04/01",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-038",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 282,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113211010140100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 44135,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 282,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111321101014010900",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "國華產物住宅火災地震基本保險附加第三人意外責任保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/25",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-038",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 282,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113211010140109-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 44135,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 282,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111321201001010200",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "國華產物住宅火災地震基本保險附加地層下陷,滑動,或山崩保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/25",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-038",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 248,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113212010010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 40702,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 248,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111321201001010300",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "國華產物住宅火災地震基本保險附加恐怖主義保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/25",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-038",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 248,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113212010010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 40702,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 248,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111321203007010500",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "國華產物住宅火災地震基本保險附加罷工,暴動,民眾騷擾,惡意破壞行為保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/25",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-038",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 458,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113212030070100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 74246,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 458,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111321203009010400",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "國華產物住宅火災地震基本保險附加自動消防裝置滲漏保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/25",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-038",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 281,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113212030090100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 44100,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 281,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111321203011011000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "國華產物住宅火災地震基本保險附加水漬保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/25",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-038",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 341,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113212030110110-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 78809,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 341,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111321203012010600",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "國華產物住宅火災地震基本保險附加竊盜保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/25",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-038",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 265,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113212030120106-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 43533,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 265,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111321225004010100",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "國華產物住宅火災地震基本保險附加擴大地震保險",
+      "sale_status": "已停售",
+      "sale_date": "091/04/01",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-038",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 262,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113212250040100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 42167,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 262,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111321228225010800",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "國華產物住宅火災地震基本保險附加颱風洪水保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/25",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-038",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 353,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113212282250108-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 70735,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 353,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111321229029010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "國華產物住宅政策性地震保險",
+      "sale_status": "已停售",
+      "sale_date": "091/04/01",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-038",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 205,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113212290290100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 40807,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 205,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111322203002010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "國華產物商業火災保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/25",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-038",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 204,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113222030020100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 40598,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 204,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111322203015010700",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "國華產物住宅火災地震基本保險附加租金損失保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/25",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-038",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 276,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113222030150107-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 43922,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 276,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,3511 @@
+{
+  "generated_at": "2026-07-31T21:45:27+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:45:27+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-091",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 44,
+    "document_count": 49,
+    "extracted_document_count": 49,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 49,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 49,
+    "total_text_characters": 51672,
+    "focus_counts": [
+      {
+        "label": "特殊項目",
+        "count": 19
+      },
+      {
+        "label": "理賠申請",
+        "count": 5
+      },
+      {
+        "label": "保障項目",
+        "count": 2
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "豁免/附加條款",
+        "count": 39
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 49
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "142132205006070001",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物陸上貨物運送保險(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "083/12/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 2269,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142132205006010001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...09502522257 號令修正 \n \n \n第一條： \n保 險 期 間 \n \n \n本保險期間，自保險標的物為啟運而離開本保險單所記載啟運地之倉庫 \n \n \n或儲存處所之時開始，..."
+            },
+            {
+              "document": "142132205006020001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...金管保二字第09502522257 號令修正 \n \n第一條： \n保 險 期 間 \n本保險期間，自保險標的物為啟運而離開本保險單所記載啟運地之倉庫\n \n或儲存處所之時開始，經通常..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142132205006010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 100449,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1069,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        },
+        {
+          "file_name": "142132205006020001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 89313,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1200,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142132205006072202",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Jetty Clause 附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1115,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142132205006072202-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...所載之貨損理賠代理人前往查堪損失並公證，否則保險人不負賠償責任。 \n四、 不保事項(除外責任) \n本條款為約定被保險人須負某項義務之附加條款，無不保事項。 \n五、 保險費之交付..."
+            },
+            {
+              "document": "142132205006072202-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...填具本公司所印製之要保書，經本公司同意承保及繳交保險費後，本保險始生效力。 \n七、 保險期間 \n係指保單首頁所載之期間。但本契約提前終止者，則以終止生效日為保險期間之末日。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142132205006072202-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 150636,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1115,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142132206007070000",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Co-Insurance Clause 附加條款",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 766,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142132206007070000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...一、承保範圍 \n說明共同被保險人各自之責任如何區分。 \n \n二、不保事項(除外責任) \n同主保險契約不保事項或除外責任之約定。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142132206007070000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 73596,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 766,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142132206007070001",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/06/21",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [],
+      "document_count": 3,
+      "extracted_document_count": 3,
+      "text_char_count": 1875,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142132206007030001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 67118,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 632,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        },
+        {
+          "file_name": "142132206007020001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 66671,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 605,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        },
+        {
+          "file_name": "142132206007010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 65651,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 638,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142132206007070002",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Co-Insurance Clause附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 766,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142132206007070002-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...一、承保範圍 \n說明共同被保險人各自之責任如何區分。 \n \n二、不保事項(除外責任) \n同主保險契約不保事項或除外責任之約定。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142132206007070002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 73596,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 766,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205005070002",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物商業動產流動綜合保險(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/10/01",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1988,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、自負額。",
+          "terms": [
+            "不保事項",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142222203002010002-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...之區域及有效期\n間內直接因意外事故所致之損失為限。 \n \n \n第二章 特約承保事項及不保事項 \n\n\n--- page 2 ---\n\nPage 2 of 2 \n \n第四條  本公..."
+            },
+            {
+              "document": "142222203002010002-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...式加保內河\n沿海及離島水運。 \n \n第二條 本保險單遇有任何一賠款時，本公司僅對超過自負額之部份負賠償責任。 \n \n第三條 本保險單所承保之毀損滅失以保險標的物在本保單約定之..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142222203002010002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 149627,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1988,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070002",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物陸上貨物運送保險(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/10/01",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 2336,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006070002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...年9 月1 日金管保二字第09502522257 號令修正 \n \n \n第一條： \n保險期間 \n \n \n本保險期間，自保險標的物為啟運而離開本保險單所記載啟運地之倉庫..."
+            },
+            {
+              "document": "142332205006070002-F1.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...95 年9 月1 日金管保二字第09502522257 號令修正 \n \n第一條： \n保險期間 \n本保險期間，自保險標的物為啟運而離開本保險單所記載啟運地之倉庫\n \n或儲存處所之..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 100978,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1105,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        },
+        {
+          "file_name": "142332205006070002-F1.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 89428,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1231,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070003",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物陸上貨物運送保險(第3次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 2828,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006070003-F1.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...95 年9 月1 日金管保二字第09502522257 號令修正 \n \n第一條： \n保險期間 \n本保險期間，自保險標的物為啟運而離開本保險單所記載啟運地之倉庫\n \n或儲存處所之..."
+            },
+            {
+              "document": "142332205006070003-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...年9 月1 日金管保二字第09502522257 號令修正 \n \n \n第一條： \n保險期間 \n \n \n本保險期間，自保險標的物為啟運而離開本保險單所記載啟運地之倉庫..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070003-F1.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 97087,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1477,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        },
+        {
+          "file_name": "142332205006070003-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 108929,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1351,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070101",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Institute Cargo Clauses(A)附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1770,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 98347,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1770,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070102",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險INSTITUTE CARGO CLAUSES(A)附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1988,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070102-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 104669,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1988,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070201",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險INSTITUTE CARGO CLAUSES(B)附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "100/02/26",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1991,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006070201-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "....02.25(100)亞台分字第100016 號函簡易備查 \n一、 承保範圍 \n除了不保事項之規定以外，本保險承保被保險標的物一切滅失或毀損之危險。 \n二、 共同海損 \n本保險..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070201-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 227802,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1991,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070202",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險INSTITUTE CARGO CLAUSES(B)附加條款(第2次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1991,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006070202-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "....02.25(100)亞台分字第100016 號函簡易備查 \n一、 承保範圍 \n除了不保事項之規定以外，本保險承保被保險標的物一切滅失或毀損之危險。 \n二、 共同海損 \n本保險..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070202-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 227802,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1991,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070301",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Institute Cargo Clauses(C)附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1998,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006070301-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...按照\n本保險單所承保的危險予以理賠。倘船舶運送人依據該條款要求賠償時，被保險人同\n意通知保險人，保險人得自備費用為被保險人對該賠償要求提出抗辯。  \n四、 不保事項 \n1...."
+            }
+          ]
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070301-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 102419,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1998,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070302",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險INSTITUTE CARGO CLAUSES(C)附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2216,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006070302-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...按照\n本保險單所承保的危險予以理賠。倘船舶運送人依據該條款要求賠償時，被保險人同\n意通知保險人，保險人得自備費用為被保險人對該賠償要求提出抗辯。  \n四、 不保事項 \n1...."
+            }
+          ]
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070302-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 109156,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 2216,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070401",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Institute Cargo Clauses(AIR)附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1204,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070401-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 87420,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1204,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070402",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險INSTITUTE CARGO CLAUSES(AIR)附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1423,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070402-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 94792,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1423,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070501",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Cutting Clauses附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 480,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006070501-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...、鋼條、鋼製品等可切割之受損部份及切割費用給付損害賠\n償金額。 \n \n二、不保事項(除外責任) \n同主保險契約不保事項或除外責任之約定。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070501-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 58882,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 480,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070502",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Cutting Clauses附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 703,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006070502-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...、鋼條、鋼製品等可切割之受損部份及切割費用給付損害賠\n償金額。 \n \n二、不保事項(除外責任) \n同主保險契約不保事項或除外責任之約定。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070502-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 69320,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 703,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070701",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險保險標的物實際現金價值附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 556,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070701-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 63348,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 556,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070702",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險保險標的物實際現金價值附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 776,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070702-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 72081,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 776,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070801",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險保險標的物價值鑑定附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 575,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070801-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 64206,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 575,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070802",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險保險標的物價值鑑定附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 800,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070802-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 72090,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 800,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070901",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險保險理賠標準附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 593,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070901-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 61587,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 593,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006070902",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險保險理賠標準附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 816,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006070902-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 71715,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 816,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071001",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Deferred Unpacking Clauses(延遲開箱)附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 663,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006071001-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...作必要公證以防止或減輕損失，否則視同貨物完好。 \n不保事項 \n同主保險契約不保事項或除外責任之約定。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006071001-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...賠償責任。 \n4.被保險人保證：貨物運抵倉庫時，如貨物之外箱有明顯損壞或異狀者，立即通知\n保險人，並採取措施或作必要公證以防止或減輕損失，否則視同貨物完好。 \n不保事項..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 82679,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 663,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071002",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Deferred Unpacking Clauses(延遲開箱)附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 887,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006071002-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...作必要公證以防止或減輕損失，否則視同貨物完好。 \n不保事項 \n同主保險契約不保事項或除外責任之約定。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006071002-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...賠償責任。 \n4.被保險人保證：貨物運抵倉庫時，如貨物之外箱有明顯損壞或異狀者，立即通知\n保險人，並採取措施或作必要公證以防止或減輕損失，否則視同貨物完好。 \n不保事項..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 91848,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 887,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071101",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Special Endorsement on Small Loss Claim 附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 556,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006071101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...、\n損失清單及貨損照片向保險公司申請理賠。 \n \n不保事項 \n同主保險契約不保事項或除外責任之約定。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：申請、通知。",
+          "terms": [
+            "申請",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006071101-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...並備齊運送人簽發之貨損證明、保單、提單、發票、裝貨單、\n損失清單及貨損照片向保險公司申請理賠。 \n \n不保事項 \n同主保險契約不保事項或除外責任之約定。"
+            },
+            {
+              "document": "142332205006071101-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...範圍 \n貨損發生如果損失金額低於NT$20,000 或US$600 時，被保險人無須通知海外之理賠\n代理人，直接通知保險公司並備齊運送人簽發之貨損證明、保單、提單、發票、裝..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 77976,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 556,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071201",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Cargo ISM Endorsement 附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 561,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071201-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 76681,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 561,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071202",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Cargo ISM Endorsement 附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 785,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071202-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 87179,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 785,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071301",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險INSTITUTE REPLACEMENT CLAUSES 附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 528,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006071301-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...險人之責任以不超過投保之機器全部價值為限。 \n \n不保事項 \n同主保險契約不保事項或除外責任之約定。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071301-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 77079,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 528,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071302",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險INSTITUTE REPLACEMENT CLAUSES 附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 750,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006071302-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...險人之責任以不超過投保之機器全部價值為限。 \n \n不保事項 \n同主保險契約不保事項或除外責任之約定。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071302-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 87697,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 750,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071401",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險PARCEL POST INSURANCE-ALL RISKS 附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 527,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006071401-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...失原因包括遭窃，割損、未送達(遺\n失)等。 \n \n不保事項 \n同主保險契約不保事項或除外責任之約定。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071401-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 78500,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 527,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071402",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險PARCEL POST INSURANCE-ALL RISKS 附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 751,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006071402-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...失原因包括遭窃，割損、未送達(遺\n失)等。 \n \n不保事項 \n同主保險契約不保事項或除外責任之約定。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071402-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 88774,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 751,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071501",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Sellers Interest Clauses 附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 520,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071501-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 76366,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 520,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071502",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Sellers Interest Clauses 附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 740,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071502-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 86787,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 740,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071601",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Terrorism Exclusion Endorsement 附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 553,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071601-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 79226,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 553,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071602",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Terrorism Exclusion Endorsement 附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 777,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071602-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 89336,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 777,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071701",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Replacement Clauses-Secondhand Machinery附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "100/01/27",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1526,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006071701-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...機器價值之比例\n分攤加運費及安裝費用為限，但不包括關稅。 \n2.除非全部關稅已包含在保險金額內，保險人對於額外支付之關稅將予補償。 \n3.保險人之責任不超過全部機器之保險價值..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071701-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 106207,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1526,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071702",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險Replacement Clauses-Secondhand Machinery附加條款(第2次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1526,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006071702-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...機器價值之比例\n分攤加運費及安裝費用為限，但不包括關稅。 \n2.除非全部關稅已包含在保險金額內，保險人對於額外支付之關稅將予補償。 \n3.保險人之責任不超過全部機器之保險價值..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071702-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 106207,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1526,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071801",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險INSTITUTE STRIKES CLAUSES (CARGO)附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1369,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071801-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 88256,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1369,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071901",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險INSTITUTE WAR CLAUSES (CARGO)附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "102/03/13",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1270,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071901-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 84425,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1270,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006071902",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險INSTITUTE WAR CLAUSES (CARGO)附加條款(第2次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/03/14",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1490,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006071902-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 91660,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1490,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006072001",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險INSTITUTE STRIKES CLAUSES (AIR CARGO)附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1081,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006072001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 82369,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1081,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "142332205006072101",
+      "company": "香港商亞洲保險有限公司台灣分公司",
+      "insurance_category": "海上保險",
+      "product_name": "亞洲產物海上(空)貨物運輸保險BUYERS INTEREST CONTINGENCY CLAUSE附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/09/25",
+      "discontinued_date": "103/07/01",
+      "source_batch_id": "tii-property-091",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 989,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "142332205006072101-F.PDF",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...保留對賣方起訴之權利，若有其他保險則本條款視為不存在或\n複保險。 \n四、 不保事項(除外責任)  \n同主保險契約不保事項或除外責任之約定。 \n五、 保險費之交付 \n要保人應於訂..."
+            },
+            {
+              "document": "142332205006072101-F.PDF",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...填具本公司所印製之要保書，經本公司同意承保及繳交保險費後，本保險始生效力。 \n七、 保險期間 \n係指保單首頁所載之期間。但本契約提前終止者，則以終止生效日為保險期間之末日。..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "142332205006072101-F.PDF",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 83908,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 989,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

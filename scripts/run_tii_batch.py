@@ -601,11 +601,13 @@ def fetch_detail_pages(
         detail_path = detail_root / f"{product_id}.html"
         detail_html = ""
         detail_existed = detail_path.exists()
+        made_network_request = False
         if detail_existed and not fetch_documents:
             already_saved.append(str(detail_path))
             detail_html = detail_path.read_text(encoding="utf-8", errors="replace")
         else:
             try:
+                made_network_request = True
                 detail_bytes, _ = read_url(client, url)
                 detail_html = detail_bytes.decode("utf-8", errors="replace")
                 if any(marker in detail_html for marker in INVALID_DETAIL_MARKERS):
@@ -650,7 +652,7 @@ def fetch_detail_pages(
             document_saved_sample.extend(document_result.get("saved_document_sample") or [])
             document_already_saved_sample.extend(document_result.get("already_saved_document_sample") or [])
             document_failures.extend(document_result.get("failed_documents") or [])
-        if delay_seconds and index < len(links):
+        if delay_seconds and index < len(links) and (made_network_request or fetch_documents):
             time.sleep(delay_seconds)
     final_document_window = (
         fetch_documents
@@ -741,6 +743,29 @@ def update_progress(progress_path: Path, record: dict) -> dict:
         progress = load_json(progress_path)
     else:
         progress = {"generated_at": now(), "runs": []}
+    existing = [item for item in progress.get("runs", []) if item.get("batch_id") == record["batch_id"]]
+    if record.get("status") == "captcha_required":
+        submitted = next(
+            (
+                item
+                for item in reversed(existing)
+                if item.get("status") == "submitted_result_saved"
+            ),
+            None,
+        )
+        if submitted:
+            progress["generated_at"] = now()
+            progress["summary"] = {
+                "attempted_batches": len(progress.get("runs", [])),
+                "completed_batches": sum(
+                    1 for item in progress.get("runs", []) if item.get("status") == "submitted_result_saved"
+                ),
+                "captcha_required_batches": sum(
+                    1 for item in progress.get("runs", []) if "captcha" in item.get("status", "")
+                ),
+            }
+            write_json(progress_path, progress)
+            return progress
     runs = [item for item in progress.get("runs", []) if item.get("batch_id") != record["batch_id"]]
     runs.append(record)
     progress["generated_at"] = now()

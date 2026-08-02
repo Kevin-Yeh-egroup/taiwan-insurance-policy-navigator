@@ -1,0 +1,1866 @@
+{
+  "generated_at": "2026-07-31T21:45:06+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:45:06+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-037",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 22,
+    "document_count": 22,
+    "extracted_document_count": 22,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 15,
+    "error_document_count": 0,
+    "pdf_document_count": 22,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 22,
+    "total_text_characters": 4791,
+    "focus_counts": [
+      {
+        "label": "保障項目",
+        "count": 11
+      },
+      {
+        "label": "理賠申請",
+        "count": 6
+      },
+      {
+        "label": "重要定義",
+        "count": 4
+      },
+      {
+        "label": "特殊項目",
+        "count": 2
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "意外險",
+        "count": 4
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 22
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "111311110036010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物汽車第三人責任保險(財損)",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 254,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111311110036-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 44576,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 254,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111311112035010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物汽車第三人責任保險(傷害)",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 257,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險金、傷害。",
+          "terms": [
+            "保險金",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111311112035-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...﹐致第㆔㆟體傷或死亡﹐依法應\n負賠償責任而受賠償請求時﹐保險公司就超過強\n制汽車責任保險金額以㆖的部分對被保險㆟負\n賠償之責。 \n其它"
+            },
+            {
+              "document": "111311112035-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n其它附加說明: \n商品名稱 \n任意第㆔㆟責任險(傷害) \n保險類別 \n依財產保險公會編碼 \n公會編碼之商品編號 \n1111203512..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111311112035-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n其它附加說明: \n商品名稱 \n任意第㆔㆟責任險(傷害) \n保險類別 \n依財產保險公會編碼 \n公會編碼之商品編號 \n1111203512..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111311112035-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 46122,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 257,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111311112037010100",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物汽車乘客責任險（附）",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 214,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111311112037-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 45131,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 214,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111311112039010100",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物酗酒駕車第三人責任險(附)",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 248,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111311112039-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...或第㆔㆟財物受有損失，依法應由\n被保險㆟負賠償責任而受賠償請求時，本公司對\n第㆔㆟於保險金額範圍內直接賠償。 \n其它"
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111311112039-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 45265,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 248,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111311112041010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物汽車雇主責任險",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 217,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：殘廢。",
+          "terms": [
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111311112041-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...被保險人僱用之駕駛人及隨車服務人員 , 因被保險汽車發生意外事故 , 受有體傷 、 殘廢或死亡 , 被保險人依法應負賠償責任而受賠償請求時 , 保險公司對被保險人負賠償責任..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111311112041-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 45075,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 217,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111311114057010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物強制汽車責任險",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 218,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險金、殘廢。",
+          "terms": [
+            "保險金",
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111311114057-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...廢或死亡者 , 不論被保險人有無過失 , 本公司依本保險契約之約定 , 對受益人給付保險金 。"
+            },
+            {
+              "document": "111311114057-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...被保險人因所有 、 使用或管理被保險汽車發生汽車交通事故 , 造成受害人體傷 、 殘廢或死亡者 , 不論被保險人有無過失 , 本公司依本保險契約之約定 , 對受益人給付保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：受益人。",
+          "terms": [
+            "受益人"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111311114057-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...傷 、 殘廢或死亡者 , 不論被保險人有無過失 , 本公司依本保險契約之約定 , 對受益人給付保險金 。"
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111311114057-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 45037,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 218,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111311116058010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物強制機車責任險",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 215,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險金、殘廢。",
+          "terms": [
+            "保險金",
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111311116058-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...廢或死亡者 , 不論被保險人有無過失 , 本公司依本保險契約之約定 , 對受益人給付保險金 。"
+            },
+            {
+              "document": "111311116058-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...被保險人因所有 、 使用或管理被保險汽車發生汽車交通事故 , 造成受害人體傷 、 殘廢或死亡者 , 不論被保險人有無過失 , 本公司依本保險契約之約定 , 對受益人給付保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：受益人。",
+          "terms": [
+            "受益人"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111311116058-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...傷 、 殘廢或死亡者 , 不論被保險人有無過失 , 本公司依本保險契約之約定 , 對受益人給付保險金 。"
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111311116058-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 45123,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 215,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111311116060010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物機車強制責任保險附加駕駛人傷害保險",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 199,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：殘廢、傷害。",
+          "terms": [
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111311116060-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...對駕駛人涉及強制汽車責任保險被保險機車單一機車交通事故 , 致駕駛人本人死亡 、 殘廢或受有體傷時 , 對受益人負賠償之責 。"
+            },
+            {
+              "document": "111311116060-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...查文號核准日期或核備 、 備查日期商品停售日期商品內容簡介機車強制責任保險附加駕駛人傷害保險依財產保險公會編碼 II 42406019 台財保第 881782855 號函..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111311116060-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...查文號核准日期或核備 、 備查日期商品停售日期商品內容簡介機車強制責任保險附加駕駛人傷害保險依財產保險公會編碼 II 42406019 台財保第 881782855 號函..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：受益人。",
+          "terms": [
+            "受益人"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111311116060-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...任保險被保險機車單一機車交通事故 , 致駕駛人本人死亡 、 殘廢或受有體傷時 , 對受益人負賠償之責 。"
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111311116060-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 44106,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 199,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111311210001010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物汽車車體損失險甲式",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 175,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111311210001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 42081,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 175,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111311210006010100",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物零件配件被竊損失險(附)",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 178,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111311210006-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...06 川台財保第 851793208 號函 85 , 6 , 7 針對汽車竊盜損失險不保事項中之零 、 配件 「 單獨 」 被竊所致之損失負賠償之責 。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111311210006-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 42202,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 178,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111311210022010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物自用汽車車體損失保險丙式-免自負額車對車碰撞損失保險",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 188,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111311210022-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...備查文號核准日期或核備 、 備查日期商品停售日期商品內容簡介汽車車體損失保險丙式一免自負額車對車碰撞損失保險依財產保險公會編碼 II 2 川 022 川台財保第 881782..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111311210022-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 42776,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 188,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111311210059010100",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物颱風洪水附加險(附)",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 200,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111311210059-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 44747,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 200,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111312111036010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物任意第三人責任保險(財損)",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 254,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111312111036-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 44578,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 254,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111312113035010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物任意第三人責任保險(傷害)",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 257,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險金、傷害。",
+          "terms": [
+            "保險金",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111312113035-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...﹐致第㆔㆟體傷或死亡﹐依法應\n負賠償責任而受賠償請求時﹐保險公司就超過強\n制汽車責任保險金額以㆖的部分對被保險㆟負\n賠償之責。 \n其它"
+            },
+            {
+              "document": "111312113035-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n其它附加說明: \n商品名稱 \n任意第㆔㆟責任險(傷害) \n保險類別 \n依財產保險公會編碼 \n公會編碼之商品編號 \n1211303512..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111312113035-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n其它附加說明: \n商品名稱 \n任意第㆔㆟責任險(傷害) \n保險類別 \n依財產保險公會編碼 \n公會編碼之商品編號 \n1211303512..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111312113035-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 46124,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 257,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111312113047010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物汽車旅客責任險",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 211,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：殘廢。",
+          "terms": [
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111312113047-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...使用或管理被保險汽車發生意外事故 , 致駕駛人及乘坐或上下被保險汽車之人死亡 、 殘廢或受有體傷時 , 保險公司負賠償責任 。 承保人數依行照上所人數為準 。"
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111312113047-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 60454,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 211,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111312113048010100",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物汽車貨物運送人責任險(貨物)(附)",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 265,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111312113048-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 45006,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 265,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111312113049010100",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物汽車貨物運送人責任險(貨櫃)(附)",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 266,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111312113049-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 44697,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 266,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111312115057010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物強制汽車責任險",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 218,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險金、殘廢。",
+          "terms": [
+            "保險金",
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111312115057-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...廢或死亡者 , 不論被保險人有無過失 , 本公司依本保險契約之約定 , 對受益人給付保險金 。"
+            },
+            {
+              "document": "111312115057-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...被保險人因所有 、 使用或管理被保險汽車發生汽車交通事故 , 造成受害人體傷 、 殘廢或死亡者 , 不論被保險人有無過失 , 本公司依本保險契約之約定 , 對受益人給付保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：受益人。",
+          "terms": [
+            "受益人"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111312115057-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...傷 、 殘廢或死亡者 , 不論被保險人有無過失 , 本公司依本保險契約之約定 , 對受益人給付保險金 。"
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111312115057-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 45036,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 218,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111312116058010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物強制機車責任險",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 215,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險金、殘廢。",
+          "terms": [
+            "保險金",
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111312116058-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...廢或死亡者 , 不論被保險人有無過失 , 本公司依本保險契約之約定 , 對受益人給付保險金 。"
+            },
+            {
+              "document": "111312116058-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...被保險人因所有 、 使用或管理被保險汽車發生汽車交通事故 , 造成受害人體傷 、 殘廢或死亡者 , 不論被保險人有無過失 , 本公司依本保險契約之約定 , 對受益人給付保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：受益人。",
+          "terms": [
+            "受益人"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111312116058-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...傷 、 殘廢或死亡者 , 不論被保險人有無過失 , 本公司依本保險契約之約定 , 對受益人給付保險金 。"
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111312116058-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 45124,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 215,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111312116060010100",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物機車強制責任保險附加駕駛人傷害保險",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 199,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：殘廢、傷害。",
+          "terms": [
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111312116060-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...對駕駛人涉及強制汽車責任保險被保險機車單一機車交通事故 , 致駕駛人本人死亡 、 殘廢或受有體傷時 , 對受益人負賠償之責 。"
+            },
+            {
+              "document": "111312116060-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...查文號核准日期或核備 、 備查日期商品停售日期商品內容簡介機車強制責任保險附加駕駛人傷害保險依財產保險公會編碼 II 42406019 台財保第 881782855 號函..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111312116060-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...查文號核准日期或核備 、 備查日期商品停售日期商品內容簡介機車強制責任保險附加駕駛人傷害保險依財產保險公會編碼 II 42406019 台財保第 881782855 號函..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：受益人。",
+          "terms": [
+            "受益人"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "111312116060-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...任保險被保險機車單一機車交通事故 , 致駕駛人本人死亡 、 殘廢或受有體傷時 , 對受益人負賠償之責 。"
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111312116060-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 44106,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 199,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111312211001010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物汽車車體損失險甲式",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 175,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111312211001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 42082,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 175,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111312211003010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "國華產物竊盜損失險",
+      "sale_status": "已停售",
+      "sale_date": "085/06/07",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-037",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 168,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "111312211003-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 42504,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 168,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

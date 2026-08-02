@@ -56,4 +56,42 @@ structured_summary = compact_document_summary(
 structured_tags = structured_summary["records"][0]["coverage_tags"]
 assert structured_tags == ["醫療險", "癌症險", "豁免/附加條款"]
 
+reviewed_summary = compact_document_summary(
+    {
+        "generated_at": "2026-07-20T00:00:00+08:00",
+        "records": [
+            {
+                "product_id": "PRODUCT-1",
+                "product_name": "測試醫療保險",
+                "insurance_category": "健康保險",
+                "coverage_tags": ["醫療險"],
+                "coverage_entries": [
+                    {"id": "stale", "name": "舊保障", "amount": 1},
+                ],
+            }
+        ],
+    },
+    "tii-life-999",
+    reviewed_records=[
+        {
+            "product_id": "PRODUCT-1",
+            "status": "verified_reference",
+            "parser_id": "parser-1",
+            "source_file": "PRODUCT-1-A.pdf",
+            "source_document_sha256": "a" * 64,
+            "schedule_sha256": "b" * 64,
+            "reviewed_at": "2026-07-29T00:00:00+08:00",
+            "selection_type": "unit",
+            "coverage_entries": [
+                {"id": "verified", "name": "已核准保障", "amount": 1000},
+            ],
+        }
+    ],
+)
+reviewed_record = reviewed_summary["records"][0]
+assert reviewed_record["review_status"] == "verified_reference"
+assert reviewed_record["source_document_sha256"] == "a" * 64
+assert reviewed_record["schedule_sha256"] == "b" * 64
+assert reviewed_record["coverage_entries"][0]["id"] == "verified"
+
 print("tii document content tests: ok")

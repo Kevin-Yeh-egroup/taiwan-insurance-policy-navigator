@@ -1,0 +1,4793 @@
+{
+  "generated_at": "2026-07-31T21:45:28+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:45:28+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-100",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 42,
+    "document_count": 42,
+    "extracted_document_count": 42,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 42,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 42,
+    "total_text_characters": 68316,
+    "focus_counts": [
+      {
+        "label": "保障項目",
+        "count": 40
+      },
+      {
+        "label": "特殊項目",
+        "count": 38
+      },
+      {
+        "label": "重要定義",
+        "count": 18
+      },
+      {
+        "label": "理賠申請",
+        "count": 5
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "意外險",
+        "count": 12
+      },
+      {
+        "label": "豁免/附加條款",
+        "count": 11
+      },
+      {
+        "label": "失能/殘扶",
+        "count": 6
+      },
+      {
+        "label": "醫療險",
+        "count": 5
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 42
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "145141223152010000",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物家電維修費用補償保險",
+      "sale_status": "已停售",
+      "sale_date": "103/03/25",
+      "discontinued_date": "104/05/12",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1573,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145141223152010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...保險\n法商法國巴黎產物家電維修費用補償保險\n法商法國巴黎產物家電維修費用補償保險 \n給付項目：修復費用補償保險金 \n \n承保範圍\n承保範圍\n承保範圍\n承保範圍： \n本公司於本保..."
+            },
+            {
+              "document": "145141223152010000-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...家電維修費用補償保險\n法商法國巴黎產物家電維修費用補償保險 \n給付項目：修復費用補償保險金 \n \n承保範圍\n承保範圍\n承保範圍\n承保範圍： \n本公司於本保險契約保險期間內，依..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保證期間。",
+          "terms": [
+            "保證期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145141223152010000-F.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司於本保險契約保險期間內，依所承保家電產品原廠保證書保證之內容，對該家電產品\n在原廠保證期間以外且符合承保年限內，因正常使用狀態下發生機械或電子故障所致之維修\n費用，依本保險契..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：除外責任、續保、保險期間。",
+          "terms": [
+            "除外責任",
+            "續保",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145141223152010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...保險人負修復及補償之責。但於保險期間屆滿前且經本公司同意續保者，不在此限。 \n \n除外責任\n除外責任\n除外責任\n除外責任： \n本公司對於下列各項家電產品、零件、費用或事故所致..."
+            },
+            {
+              "document": "145141223152010000-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...前項保險事故，本公司始對被\n保險人負修復及補償之責。但於保險期間屆滿前且經本公司同意續保者，不在此限。 \n \n除外責任\n除外責任\n除外責任\n除外責任： \n本公司對於下列各項..."
+            },
+            {
+              "document": "145141223152010000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...費用補償保險金 \n \n承保範圍\n承保範圍\n承保範圍\n承保範圍： \n本公司於本保險契約保險期間內，依所承保家電產品原廠保證書保證之內容，對該家電產品\n在原廠保證期間以外且符合承保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145141223152010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 112396,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1573,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145142117062010000",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物產品延長保固契約責任保險",
+      "sale_status": "已停售",
+      "sale_date": "103/07/15",
+      "discontinued_date": "104/06/14",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1504,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145142117062010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...產品延長保固契約責任\n法商法國巴黎產物產品延長保固契約責任保險\n保險\n保險\n保險 \n給付項目：修復費用補償保險金 \n \n承保範圍\n承保範圍\n承保範圍\n承保範圍： \n本公司對被保..."
+            },
+            {
+              "document": "145142117062010000-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...法商法國巴黎產物產品延長保固契約責任保險\n保險\n保險\n保險 \n給付項目：修復費用補償保險金 \n \n承保範圍\n承保範圍\n承保範圍\n承保範圍： \n本公司對被保險人在保險期間內所簽..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145142117062010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...於產品延長保固保證書之保障期間所支付維修費用，依本保險契約約定負\n賠償之責。 \n \n除外責任\n除外責任\n除外責任\n除外責任： \n本公司對於下列各項損失不負賠償責任： \n一、..."
+            },
+            {
+              "document": "145142117062010000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...費用補償保險金 \n \n承保範圍\n承保範圍\n承保範圍\n承保範圍： \n本公司對被保險人在保險期間內所簽訂經本公司同意之產品延長保固保證書，依該產品延長\n保固保證書約定，於原廠保證書..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145142117062010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 111602,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1504,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145142117062010001",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物產品延長保固契約責任保險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "104/06/15",
+      "discontinued_date": "104/06/14",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1490,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145142117062010001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...事，應由本公司及負責人依法負責。 \n \n法商法國巴黎產物產品延長保固契約責任保險 \n給付項目：修復費用補償保險金 \n \n備查文號：民國103 年07 月15 日 巴黎(103)..."
+            },
+            {
+              "document": "145142117062010001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...依法負責。 \n \n法商法國巴黎產物產品延長保固契約責任保險 \n給付項目：修復費用補償保險金 \n \n備查文號：民國103 年07 月15 日 巴黎(103)產字第07001 號..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145142117062010001-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...於產品延長保固保證書之保障期間所支付維修費用，依本保險契約約定負\n賠償之責。 \n \n除外責任： \n本公司對於下列各項損失不負賠償責任： \n一、 \n產品之漆面、色調、外殼或表面修..."
+            },
+            {
+              "document": "145142117062010001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...15 日 巴黎(104)產字第06003 號 \n \n承保範圍： \n本公司對被保險人在保險期間內所簽訂經本公司同意之產品延長保固保證書，依該產品延長\n保固保證書約定，於原廠保證書..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145142117062010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 103418,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1490,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145142117137010000",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物產品修護契約責任保險",
+      "sale_status": "已停售",
+      "sale_date": "103/10/01",
+      "discontinued_date": "103/09/30",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2030,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145142117137010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...責任\n產品修護契約責任\n產品修護契約責任\n產品修護契約責任保險\n保險\n保險\n保險 \n給付項目：修護費用補償保險金 \n備查文號: 民國103 年10 月01 日巴黎(103)產字..."
+            },
+            {
+              "document": "145142117137010000-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...產品修護契約責任\n產品修護契約責任保險\n保險\n保險\n保險 \n給付項目：修護費用補償保險金 \n備查文號: 民國103 年10 月01 日巴黎(103)產字第10005 號函..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145142117137010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...修復責任者，本公司就被保險人所支付之修復費用，依本\n保險契約約定負賠償之責。 \n \n除外責任\n除外責任\n除外責任\n除外責任： \n本公司對於下列各項損失不負賠償責任： \n一、..."
+            },
+            {
+              "document": "145142117137010000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...10005 號函 \n承保範圍\n承保範圍\n承保範圍\n承保範圍： \n本公司對於被保險人在保險期間內所簽訂經本公司同意之產品修護契約，依該約定被保險人\n應負擔產品因意外事故所致毀損之..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145142117137010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 137152,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 2030,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341223089010000",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物勞工失業給付保險",
+      "sale_status": "已停售",
+      "sale_date": "090/08/30",
+      "discontinued_date": "096/03/12",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 290,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341223089010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...險 \n \n商品介紹 \n一、承保範圍 : 非自願性離職保險金。 \n \n二、不保事項（或除外責任）: \n被保險人離職有下列情事之一者，本公司不負給付責任： \n一、由於被保險人之不誠..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341223089010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 110696,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 290,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341223089010001",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物勞工失業給付保險(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/03/13",
+      "discontinued_date": "096/08/31",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 290,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341223089010001-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...險 \n \n商品介紹 \n一、承保範圍 : 非自願性離職保險金。 \n \n二、不保事項（或除外責任）: \n被保險人離職有下列情事之一者，本公司不負給付責任： \n一、由於被保險人之不誠..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341223089010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 110696,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 290,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341223089010002",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物勞工失業給付保險(第2次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/09/01",
+      "discontinued_date": "097/05/31",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 672,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341223089010002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...age 1 ---\n\n \n第1 頁，共1 頁 \n法商法國巴黎產物勞工失業給付保險 \n給付項目：非自願性離職保險金 \n \n本公司資訊公開說明文件，請查閱本公司網址：www.car..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341223089010002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 124081,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 672,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341223089010003",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物勞工失業給付保險(第3次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "097/06/01",
+      "discontinued_date": "099/06/14",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 715,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341223089010003-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...age 1 ---\n\n \n第1 頁，共1 頁 \n法商法國巴黎產物勞工失業給付保險 \n給付項目：非自願性離職保險金 \n \n本公司資訊公開說明文件，請查閱本公司網址：www.car..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341223089010003-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 124107,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 715,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341223089010004",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物勞工失業給付保險(第四次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "099/06/15",
+      "discontinued_date": "100/12/29",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 715,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341223089010004-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...age 1 ---\n\n \n第1 頁，共1 頁 \n法商法國巴黎產物勞工失業給付保險 \n給付項目：非自願性離職保險金 \n \n本公司資訊公開說明文件，請查閱本公司網址：www.car..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341223089010004-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 124107,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 715,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341223133010000",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物個人皮件、證件及行動電話盜打賠償保險",
+      "sale_status": "已停售",
+      "sale_date": "097/04/19",
+      "discontinued_date": "097/05/31",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1257,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341223133010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...分公司 \n法商法國巴黎產物個人皮件、證件及行動電話盜打賠償保險 \n商品簡介 \n \n(給付項目：皮件賠償保險、卡片重置費用賠償保險、證件重置費用賠償保險、卡片盜用費用賠償\n保險、..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341223133010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...保險金 \n四、卡片盜用費用賠償保險金 \n五、行動電話盜打費用賠償保險金 \n \n二、 除外責任： \n因下列原因所致之損失，本公司不負理賠責任： \n一、 被保險人之故意或犯罪行為。..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341223133010000-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...失。 \n七、 被保險人發生卡片遺失或被竊等情形後，自當期繳款截止日起已逾二\n十日仍未通知發卡行或其他經發卡行指定機構辦理掛失停用手續者。 \n八、 被保險人於辦理卡片掛失手續..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341223133010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 107258,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1257,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341223133010001",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物個人皮件、證件及行動電話盜打賠償保險(第一次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "097/06/01",
+      "discontinued_date": "101/04/11",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1300,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341223133010001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...商法國巴黎產物個人皮件、證件及行動電話盜打賠償保險 \nA7 附件：商品簡介 \n \n(給付項目：皮件賠償保險、卡片重置費用賠償保險、證件重置費用賠償保險、卡片盜用費用賠償\n保險、..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341223133010001-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...保險金 \n四、卡片盜用費用賠償保險金 \n五、行動電話盜打費用賠償保險金 \n \n二、 除外責任： \n因下列原因所致之損失，本公司不負理賠責任： \n一、 被保險人之故意或犯罪行為。..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341223133010001-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...失。 \n七、 被保險人發生卡片遺失或被竊等情形後，自當期繳款截止日起已逾二\n十日仍未通知發卡行或其他經發卡行指定機構辦理掛失停用手續者。 \n八、 被保險人於辦理卡片掛失手續..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341223133010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 95450,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1300,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010000",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險",
+      "sale_status": "已停售",
+      "sale_date": "096/03/30",
+      "discontinued_date": "096/03/29",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 4640,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、住院、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "住院",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...准文號:中華民國 95 年8 月24 日金管保二字第09502094270 號 \n(給付項目：身故保險金、殘廢保險金、個人攜帶物品損失保險金、海外緊急救援費用補償保\n險金、第三..."
+            },
+            {
+              "document": "145341526095010000-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...、 被保險人於中華民國境內所發生之一切事故。 \n五、 被保險人於出國前六個月內，即曾住院或已經接受診斷或治療(包\n括開給藥劑處方)，因既存病況所生之相關費用。 \n六、  被..."
+            },
+            {
+              "document": "145341526095010000-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...華民國 95 年8 月24 日金管保二字第09502094270 號 \n(給付項目：身故保險金、殘廢保險金、個人攜帶物品損失保險金、海外緊急救援費用補償保\n險金、第三人責任..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：疾病、傷害、醫師、住院、意外傷害事故。",
+          "terms": [
+            "疾病",
+            "傷害",
+            "醫師",
+            "住院",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010000-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...地區旅遊、商務出\n差等活動期間(不含短期求學及探親)，因遭受意外傷害事故或突發重大\n疾病所致之緊急救援，本公司代為安排並負擔相關之海外緊急救援服\n務。 \n(三)個人攜帶物品..."
+            },
+            {
+              "document": "145341526095010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...商品是為現代忙碌的女性所量身訂做的綜合型保單，一張保單中貼心\n地保障女性需要的多倍型傷害保險、出門在外如逛街購物，遇到竊盜、搶奪\n或強盜致個人物品的損失，提供海外旅遊時因突..."
+            },
+            {
+              "document": "145341526095010000-F.pdf",
+              "page": 1,
+              "term": "醫師",
+              "snippet": "...一醫療事故發生一次以上緊急轉送或\n轉送回國服務。 \n七、 被保險人經國際救援組織專職醫師認定可於無醫療伴護之情況下正\n常旅行者或其病情可於當地獲得充分醫療照顧或其病情並非急..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：除外責任、保險期間、自負額。",
+          "terms": [
+            "除外責任",
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...內賠償請求次數超過一次時，本公司所負之累積最高賠償\n責任而言。 \n \n五、不保事項或除外責任 \n第一章 共同條款 \n共同除外責任 \n本公司對於下列事由所致之損失不負賠償責任：..."
+            },
+            {
+              "document": "145341526095010000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...傷害事故。但不包含被保險人搭乘大眾\n運輸工具所致之意外傷害事故。 \n(2)被保險人於保險期間內在本保險契約約定的居住處所內，因遭受\n意外傷害事故而致成死亡者。 \n3.因第一款及..."
+            },
+            {
+              "document": "145341526095010000-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...故損失賠償限額」：本公司加總所有損失物品應負之賠\n償金額並扣除被保險人所需自行負擔之自負額，其最高賠償金額以不\n超過保險金額為限。 \n「保險期間內累積最高賠償金額」：係指在本..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 374129,
+          "page_count": 5,
+          "pages_parsed": 5,
+          "text_char_count": 4640,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010001",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/03/30",
+      "discontinued_date": "096/03/31",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 4606,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、住院、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "住院",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...修訂文號：中華民國95 年8 月10 日金管保二字第09502069411 號 \n(給付項目：身故保險金、殘廢保險金、個人攜帶物品損失保險金、海外緊急救援費用補償保\n險金、第三..."
+            },
+            {
+              "document": "145341526095010001-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...、 被保險人於中華民國境內所發生之一切事故。 \n五、 被保險人於出國前六個月內，即曾住院或已經接受診斷或治療(包\n括開給藥劑處方)，因既存病況所生之相關費用。 \n六、 被保..."
+            },
+            {
+              "document": "145341526095010001-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...中華民國95 年8 月10 日金管保二字第09502069411 號 \n(給付項目：身故保險金、殘廢保險金、個人攜帶物品損失保險金、海外緊急救援費用補償保\n險金、第三人責任..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：疾病、傷害、醫師、住院、意外傷害事故。",
+          "terms": [
+            "疾病",
+            "傷害",
+            "醫師",
+            "住院",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010001-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...地區旅遊、商務出\n差等活動期間(不含短期求學及探親)，因遭受意外傷害事故或突發重大\n疾病所致之緊急救援，本公司代為安排並負擔相關之海外緊急救援服\n務。 \n(三)個人攜帶物品..."
+            },
+            {
+              "document": "145341526095010001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...商品是為現代忙碌的女性所量身訂做的綜合型保單，一張保單中貼心\n地保障女性需要的多倍型傷害保險、出門在外如逛街購物，遇到竊盜、搶奪\n或強盜致個人物品的損失，提供海外旅遊時因突..."
+            },
+            {
+              "document": "145341526095010001-F.pdf",
+              "page": 1,
+              "term": "醫師",
+              "snippet": "...一醫療事故發生一次以上緊急轉送或\n轉送回國服務。 \n七、 被保險人經國際救援組織專職醫師認定可於無醫療伴護之情況下正\n常旅行者或其病情可於當地獲得充分醫療照顧或其病情並非急..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：除外責任、保險期間、自負額。",
+          "terms": [
+            "除外責任",
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010001-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...內賠償請求次數超過一次時，本公司所負之累積最高賠償\n責任而言。 \n \n五、不保事項或除外責任 \n第一章 共同條款 \n共同除外責任 \n本公司對於下列事由所致之損失不負賠償責任：..."
+            },
+            {
+              "document": "145341526095010001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...傷害事故。但不包含被保險人搭乘大眾\n運輸工具所致之意外傷害事故。 \n(2)被保險人於保險期間內在本保險契約約定的居住處所內，因遭受\n意外傷害事故而致成死亡者。 \n3.因第一款及..."
+            },
+            {
+              "document": "145341526095010001-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...故損失賠償限額」：本公司加總所有損失物品應負之賠\n償金額並扣除被保險人所需自行負擔之自負額，其最高賠償金額以不\n超過保險金額為限。 \n「保險期間內累積最高賠償金額」：係指在本..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 380286,
+          "page_count": 5,
+          "pages_parsed": 5,
+          "text_char_count": 4606,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010002",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險(第2次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/04/01",
+      "discontinued_date": "096/08/31",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 4706,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、住院、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "住院",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...核准文號：中華民國96 年2 月15 日金管保三字第09602009970 號 \n(給付項目：身故保險金、殘廢保險金、個人攜帶物品損失保險金、海外緊急救援費用補償保\n險金、第三..."
+            },
+            {
+              "document": "145341526095010002-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...、 被保險人於中華民國境內所發生之一切事故。 \n五、 被保險人於出國前六個月內，即曾住院或已經接受診斷或治療(包\n括開給藥劑處方)，因既存病況所生之相關費用。 \n六、 被保..."
+            },
+            {
+              "document": "145341526095010002-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...中華民國96 年2 月15 日金管保三字第09602009970 號 \n(給付項目：身故保險金、殘廢保險金、個人攜帶物品損失保險金、海外緊急救援費用補償保\n險金、第三人責任..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：疾病、傷害、醫師、住院、意外傷害事故。",
+          "terms": [
+            "疾病",
+            "傷害",
+            "醫師",
+            "住院",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010002-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...地區旅遊、商務出\n差等活動期間(不含短期求學及探親)，因遭受意外傷害事故或突發重大\n疾病所致之緊急救援，本公司代為安排並負擔相關之海外緊急救援服\n務。 \n(三)個人攜帶物品..."
+            },
+            {
+              "document": "145341526095010002-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...商品是為現代忙碌的女性所量身訂做的綜合型保單，一張保單中貼心\n地保障女性需要的多倍型傷害保險、出門在外如逛街購物，遇到竊盜、搶奪\n或強盜致個人物品的損失，提供海外旅遊時因突..."
+            },
+            {
+              "document": "145341526095010002-F.pdf",
+              "page": 1,
+              "term": "醫師",
+              "snippet": "...一醫療事故發生一次以上緊急轉送或\n轉送回國服務。 \n七、 被保險人經國際救援組織專職醫師認定可於無醫療伴護之情況下正\n常旅行者或其病情可於當地獲得充分醫療照顧或其病情並非急..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：除外責任、保險期間、自負額。",
+          "terms": [
+            "除外責任",
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010002-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...內賠償請求次數超過一次時，本公司所負之累積最高賠償\n責任而言。 \n \n五、不保事項或除外責任 \n第一章 共同條款 \n共同除外責任 \n本公司對於下列事由所致之損失不負賠償責任：..."
+            },
+            {
+              "document": "145341526095010002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...傷害事故。但不包含被保險人搭乘大眾\n運輸工具所致之意外傷害事故。 \n(2)被保險人於保險期間內在本保險契約約定的居住處所內，因遭受\n意外傷害事故而致成死亡者。 \n3.因第一款及..."
+            },
+            {
+              "document": "145341526095010002-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...故損失賠償限額」：本公司加總所有損失物品應負之賠\n償金額並扣除被保險人所需自行負擔之自負額，其最高賠償金額以不\n超過保險金額為限。 \n「保險期間內累積最高賠償金額」：係指在本..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 157554,
+          "page_count": 5,
+          "pages_parsed": 5,
+          "text_char_count": 4706,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010003",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險(第3次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/09/01",
+      "discontinued_date": "097/05/31",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2501,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、住院、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "住院",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010003-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...page 1 ---\n\n \n第1 頁，共3 頁 \n法商法國巴黎產物女性綜合保險 \n給付項目：身故保險金、殘廢保險金、個人攜帶物品損失保險金、海外緊急救援費用補償保險金、 \n第..."
+            },
+            {
+              "document": "145341526095010003-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...四、被保險人於中華民國境內所發生之一切事故。 \n五、被保險人於出國前六個月內，即曾住院或已經接受診斷或治療(包括開給藥劑\n處方)，因既存病況所生之相關費用。 \n六、被保險..."
+            },
+            {
+              "document": "145341526095010003-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...1 ---\n\n \n第1 頁，共3 頁 \n法商法國巴黎產物女性綜合保險 \n給付項目：身故保險金、殘廢保險金、個人攜帶物品損失保險金、海外緊急救援費用補償保險金、 \n第三人責..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：疾病、傷害、醫師、住院、意外傷害事故。",
+          "terms": [
+            "疾病",
+            "傷害",
+            "醫師",
+            "住院",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010003-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...理或控制之財物，受有損失之賠償責任。\n但契約另有約定者，不在此限。 \n六、因各種傳染疾病所致之賠償責任。 \n七、被保險人因酒醉、受毒品或迷幻藥等影響所致之賠償責任。酒醉係指..."
+            },
+            {
+              "document": "145341526095010003-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...但契約另有約定者不\n在此限。 \n前項第一款情形（除被保險人的故意行為外），致被保險人傷害或殘廢時，本公\n司仍給付保險金。 \n \n \n三、不保事項：傷害保險 \n本公司對於下列..."
+            },
+            {
+              "document": "145341526095010003-F.pdf",
+              "page": 1,
+              "term": "醫師",
+              "snippet": "...同一醫療事故發生一次以上緊急轉送或轉送回國\n服務。 \n七、被保險人經國際救援組織專職醫師認定可於無醫療伴護之情況下正常旅行者\n或其病情可於當地獲得充分醫療照顧或其病情並非急..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010003-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...人攜帶物品損失保險金、海外緊急救援\n費用補償保險金、第三人責任保險金 \n \n二、共同除外責任 \n本公司對於下列事由所致之損失不負賠償責任： \n一、要保人或被保險人之故意行為。..."
+            },
+            {
+              "document": "145341526095010003-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...經接受診斷或治療(包括開給藥劑\n處方)，因既存病況所生之相關費用。 \n六、被保險人於保險期間內，就同一醫療事故發生一次以上緊急轉送或轉送回國\n服務。 \n七、被保險人經國際救援組..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010003-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 179562,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2501,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010004",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險(第4次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "097/06/01",
+      "discontinued_date": "099/04/08",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2546,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、住院、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "住院",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010004-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...page 1 ---\n\n \n第1 頁，共3 頁 \n法商法國巴黎產物女性綜合保險 \n給付項目：身故保險金、殘廢保險金、個人攜帶物品損失保險金、海外緊急救援費用補償保險金、 \n第..."
+            },
+            {
+              "document": "145341526095010004-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...四、被保險人於中華民國境內所發生之一切事故。 \n五、被保險人於出國前六個月內，即曾住院或已經接受診斷或治療(包括開給藥劑\n處方)，因既存病況所生之相關費用。 \n六、被保險..."
+            },
+            {
+              "document": "145341526095010004-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...1 ---\n\n \n第1 頁，共3 頁 \n法商法國巴黎產物女性綜合保險 \n給付項目：身故保險金、殘廢保險金、個人攜帶物品損失保險金、海外緊急救援費用補償保險金、 \n第三人責..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：疾病、傷害、醫師、住院、意外傷害事故。",
+          "terms": [
+            "疾病",
+            "傷害",
+            "醫師",
+            "住院",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010004-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...理或控制之財物，受有損失之賠償責任。\n但契約另有約定者，不在此限。 \n六、因各種傳染疾病所致之賠償責任。 \n七、被保險人因酒醉、受毒品或迷幻藥等影響所致之賠償責任。酒醉係指..."
+            },
+            {
+              "document": "145341526095010004-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...但契約另有約定者不\n在此限。 \n前項第一款情形（除被保險人的故意行為外），致被保險人傷害或殘廢時，本公\n司仍給付保險金。 \n \n \n三、不保事項：傷害保險 \n本公司對於下列..."
+            },
+            {
+              "document": "145341526095010004-F.pdf",
+              "page": 1,
+              "term": "醫師",
+              "snippet": "...同一醫療事故發生一次以上緊急轉送或轉送回國\n服務。 \n七、被保險人經國際救援組織專職醫師認定可於無醫療伴護之情況下正常旅行者\n或其病情可於當地獲得充分醫療照顧或其病情並非急..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010004-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...人攜帶物品損失保險金、海外緊急救援\n費用補償保險金、第三人責任保險金 \n \n二、共同除外責任 \n本公司對於下列事由所致之損失不負賠償責任： \n一、要保人或被保險人之故意行為。..."
+            },
+            {
+              "document": "145341526095010004-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...經接受診斷或治療(包括開給藥劑\n處方)，因既存病況所生之相關費用。 \n六、被保險人於保險期間內，就同一醫療事故發生一次以上緊急轉送或轉送回國\n服務。 \n七、被保險人經國際救援組..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010004-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 179681,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2546,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010005",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險(第5次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "099/04/09",
+      "discontinued_date": "100/12/30",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2627,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、住院、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "住院",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010005-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...page 1 ---\n\n \n第1 頁，共3 頁 \n法商法國巴黎產物女性綜合保險 \n給付項目：身故保險金、殘廢保險金、個人攜帶物品損失保險金、海外緊急救援費用補償保險金、 \n第..."
+            },
+            {
+              "document": "145341526095010005-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...四、被保險人於中華民國境內所發生之一切事故。 \n五、被保險人於出國前六個月內，即曾住院或已經接受診斷或治療(包括開給藥劑\n處方)，因既存病況所生之相關費用。 \n六、被保險..."
+            },
+            {
+              "document": "145341526095010005-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...1 ---\n\n \n第1 頁，共3 頁 \n法商法國巴黎產物女性綜合保險 \n給付項目：身故保險金、殘廢保險金、個人攜帶物品損失保險金、海外緊急救援費用補償保險金、 \n第三人責..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：疾病、傷害、醫師、住院、意外傷害事故。",
+          "terms": [
+            "疾病",
+            "傷害",
+            "醫師",
+            "住院",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010005-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...理或控制之財物，受有損失之賠償責任。\n但契約另有約定者，不在此限。 \n六、因各種傳染疾病所致之賠償責任。 \n七、被保險人因酒醉、受毒品或迷幻藥等影響所致之賠償責任。酒醉係指..."
+            },
+            {
+              "document": "145341526095010005-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...但契約另有約定者不\n在此限。 \n前項第一款情形（除被保險人的故意行為外），致被保險人傷害或殘廢時，本公\n司仍給付保險金。 \n \n \n三、不保事項：傷害保險 \n本公司對於下列..."
+            },
+            {
+              "document": "145341526095010005-F.pdf",
+              "page": 1,
+              "term": "醫師",
+              "snippet": "...同一醫療事故發生一次以上緊急轉送或轉送回國\n服務。 \n七、被保險人經國際救援組織專職醫師認定可於無醫療伴護之情況下正常旅行者\n或其病情可於當地獲得充分醫療照顧或其病情並非急..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010005-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...人攜帶物品損失保險金、海外緊急救援\n費用補償保險金、第三人責任保險金 \n \n二、共同除外責任 \n本公司對於下列事由所致之損失不負賠償責任： \n一、要保人或被保險人之故意行為。..."
+            },
+            {
+              "document": "145341526095010005-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...經接受診斷或治療(包括開給藥劑\n處方)，因既存病況所生之相關費用。 \n六、被保險人於保險期間內，就同一醫療事故發生一次以上緊急轉送或轉送回國\n服務。 \n七、被保險人經國際救援組..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010005-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 189132,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2627,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010100",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險傷害醫療保險給付附加條款(實支實付與住院日額型)",
+      "sale_status": "已停售",
+      "sale_date": "096/03/30",
+      "discontinued_date": "096/03/29",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "醫療險",
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2623,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、住院、傷害。",
+          "terms": [
+            "給付項目",
+            "住院",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...准文號:中華民國 95 年8 月24 日金管保二字第09502094260 號 \n(給付項目：實支實付傷害醫療保險金 \n傷害醫療住院保險金(共五項)：一般傷害醫療住院保險金、顏..."
+            },
+            {
+              "document": "145341526095010100-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...，共 3 頁 \n「法商法國巴黎產物女性綜合保險傷害醫療保險給付附加條款(實支實付\n與住院日額型)」保險商品簡介 \n                            核..."
+            },
+            {
+              "document": "145341526095010100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n法商法國巴黎女性綜合保險傷害醫療保險金給付附加條款商品簡介~第 1 頁，共 3 頁 \n「法商法國巴黎產物女性綜合..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：傷害、醫院、住院、意外傷害事故。",
+          "terms": [
+            "傷害",
+            "醫院",
+            "住院",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n法商法國巴黎女性綜合保險傷害醫療保險金給付附加條款商品簡介~第 1 頁，共 3 頁 \n「法商法國巴黎產物女性綜合..."
+            },
+            {
+              "document": "145341526095010100-F.pdf",
+              "page": 1,
+              "term": "醫院",
+              "snippet": "...有效期間內遭受意外傷害事故，自意外傷害 \n事故發生之日起一百八十日以內，經登記合格的醫院或診所治療者，本公司 \n就其實際醫療費用及住院日數，按下列約定給付保險金，其給付內容..."
+            },
+            {
+              "document": "145341526095010100-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...，共 3 頁 \n「法商法國巴黎產物女性綜合保險傷害醫療保險給付附加條款(實支實付\n與住院日額型)」保險商品簡介 \n                            核..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...，\n給付「住院家事代勞補償金」，但同一次傷害事故給付最高以九十日\n為限。 \n \n五、除外責任： \n同主保險契約第三條共同不保事項與第二章傷害保險第廿四條除外責任。 \n \n六、保..."
+            },
+            {
+              "document": "145341526095010100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...任： \n同主保險契約第三條共同不保事項與第二章傷害保險第廿四條除外責任。 \n \n六、保險期間： \n本保險附加條款之保險期間為一年。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 102549,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2623,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010101",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險傷害醫療保險給付附加條款(實支實付與住院日額型)(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/03/30",
+      "discontinued_date": "096/03/31",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "醫療險",
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2547,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、住院、傷害。",
+          "terms": [
+            "給付項目",
+            "住院",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...文號：中華民國95 年8 月10 日金管保二字第09502069411 號 \n \n(給付項目：實支實付傷害醫療保險金 \n傷害醫療住院保險金(共五項)：一般傷害醫療住院保險金、顏..."
+            },
+            {
+              "document": "145341526095010101-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...共 3 頁 \n「法商法國巴黎產物女性綜合保險傷害醫療保險給付附加條款 \n(實支實付與住院日額型)」保險商品簡介 \n                           核准..."
+            },
+            {
+              "document": "145341526095010101-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n \n法商法國巴黎女性綜合保險傷害醫療保險金給付附加條款商品簡介~第1 頁，共 3 頁 \n「法商法國巴黎產物女性綜合保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：傷害、醫院、住院、意外傷害事故。",
+          "terms": [
+            "傷害",
+            "醫院",
+            "住院",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010101-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n \n法商法國巴黎女性綜合保險傷害醫療保險金給付附加條款商品簡介~第1 頁，共 3 頁 \n「法商法國巴黎產物女性綜合保..."
+            },
+            {
+              "document": "145341526095010101-F.pdf",
+              "page": 1,
+              "term": "醫院",
+              "snippet": "...有效期間內遭受意外傷害事故，自意外傷害 \n事故發生之日起一百八十日以內，經登記合格的醫院或診所治療者，本公司 \n就其實際醫療費用及住院日數，按下列約定給付保險金，但超過一百..."
+            },
+            {
+              "document": "145341526095010101-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...共 3 頁 \n「法商法國巴黎產物女性綜合保險傷害醫療保險給付附加條款 \n(實支實付與住院日額型)」保險商品簡介 \n                           核准..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...，\n給付「住院家事代勞補償金」，但同一次傷害事故給付最高以九十日\n為限。 \n \n五、除外責任： \n同主保險契約第三條共同不保事項與第二章傷害保險第廿四條除外責任與\n不保事項。..."
+            },
+            {
+              "document": "145341526095010101-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保險契約第三條共同不保事項與第二章傷害保險第廿四條除外責任與\n不保事項。 \n \n六、保險期間： \n本保險附加條款之保險期間為一年。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 270160,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2547,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010102",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險傷害醫療保險給付附加條款(實支實付與住院日額型)(第2次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/04/01",
+      "discontinued_date": "096/08/31",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "醫療險",
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2589,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、住院、傷害。",
+          "terms": [
+            "給付項目",
+            "住院",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010102-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...號:中華民國 96 年2 月15 日金管保三字第09602009970 號 \n \n(給付項目：實支實付傷害醫療保險金 \n傷害醫療住院保險金(共五項)：一般傷害醫療住院保險金、顏..."
+            },
+            {
+              "document": "145341526095010102-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...共 3 頁 \n「法商法國巴黎產物女性綜合保險傷害醫療保險給付附加條款 \n(實支實付與住院日額型)」保險商品簡介 \n                           核准..."
+            },
+            {
+              "document": "145341526095010102-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n \n法商法國巴黎女性綜合保險傷害醫療保險金給付附加條款商品簡介~第1 頁，共 3 頁 \n「法商法國巴黎產物女性綜合保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：傷害、醫院、住院、意外傷害事故。",
+          "terms": [
+            "傷害",
+            "醫院",
+            "住院",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010102-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n \n法商法國巴黎女性綜合保險傷害醫療保險金給付附加條款商品簡介~第1 頁，共 3 頁 \n「法商法國巴黎產物女性綜合保..."
+            },
+            {
+              "document": "145341526095010102-F.pdf",
+              "page": 1,
+              "term": "醫院",
+              "snippet": "...有效期間內遭受意外傷害事故，自意外傷害 \n事故發生之日起一百八十日以內，經登記合格的醫院或診所治療者，本公司 \n就其實際醫療費用及住院日數，按下列約定給付保險金，但超過一百..."
+            },
+            {
+              "document": "145341526095010102-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...共 3 頁 \n「法商法國巴黎產物女性綜合保險傷害醫療保險給付附加條款 \n(實支實付與住院日額型)」保險商品簡介 \n                           核准..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010102-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...，\n給付「住院家事代勞補償金」，但同一次傷害事故給付最高以九十日\n為限。 \n \n五、除外責任： \n同主保險契約第三條共同不保事項與第二章傷害保險第廿四條除外責任與\n不保事項。..."
+            },
+            {
+              "document": "145341526095010102-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保險契約第三條共同不保事項與第二章傷害保險第廿四條除外責任與\n不保事項。 \n \n六、保險期間： \n本保險附加條款之保險期間為一年。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010102-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 273789,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2589,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010103",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險傷害醫療保險給付附加條款(實支實付與住院日額型)(第3次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/09/01",
+      "discontinued_date": "096/12/27",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "醫療險",
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1167,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：給付項目、住院、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "住院",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010103-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...法商法國巴黎產物女性綜合保險傷害醫療保險給付\n附加條款(實支實付與住院日額型) \n給付項目：實支實付傷害醫療保險金、傷害醫療住院保險金(共五項：一般傷害醫療住院保險金、顏面傷..."
+            },
+            {
+              "document": "145341526095010103-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...頁，共2 頁 \n法商法國巴黎產物女性綜合保險傷害醫療保險給付\n附加條款(實支實付與住院日額型) \n給付項目：實支實付傷害醫療保險金、傷害醫療住院保險金(共五項：一般傷害醫..."
+            },
+            {
+              "document": "145341526095010103-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...另有約定者不\n在此限。 \n前項第一款情形（除被保險人的故意行為外），致被保險人傷害或殘廢時，本公\n司仍給付保險金。 \n \n三、不保事項：傷害保險 \n本公司對於下列事由所致之..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：傷害、住院。",
+          "terms": [
+            "傷害",
+            "住院"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010103-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...-- page 1 ---\n\n \n第1 頁，共2 頁 \n法商法國巴黎產物女性綜合保險傷害醫療保險給付\n附加條款(實支實付與住院日額型) \n給付項目：實支實付傷害醫療保險金、..."
+            },
+            {
+              "document": "145341526095010103-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...頁，共2 頁 \n法商法國巴黎產物女性綜合保險傷害醫療保險給付\n附加條款(實支實付與住院日額型) \n給付項目：實支實付傷害醫療保險金、傷害醫療住院保險金(共五項：一般傷害醫..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010103-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...住院保\n險金、燒燙傷加護病房傷害醫療住院保險金、住院家事代勞補償金) \n \n二、共同除外責任 \n本公司對於下列事由所致之損失不負賠償責任： \n一、要保人或被保險人之故意行為。..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010103-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 137764,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1167,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010104",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險傷害醫療保險給付附加條款(實支實付與住院日額型)(第4次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/12/28",
+      "discontinued_date": "100/12/30",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "醫療險",
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1212,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：給付項目、住院、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "住院",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010104-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...法商法國巴黎產物女性綜合保險傷害醫療保險給付\n附加條款(實支實付與住院日額型) \n給付項目：實支實付傷害醫療保險金、傷害醫療住院保險金(共五項：一般傷害醫療住院保險金、顏面傷..."
+            },
+            {
+              "document": "145341526095010104-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...頁，共2 頁 \n法商法國巴黎產物女性綜合保險傷害醫療保險給付\n附加條款(實支實付與住院日額型) \n給付項目：實支實付傷害醫療保險金、傷害醫療住院保險金(共五項：一般傷害醫..."
+            },
+            {
+              "document": "145341526095010104-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...另有約定者不\n在此限。 \n前項第一款情形（除被保險人的故意行為外），致被保險人傷害或殘廢時，本公\n司仍給付保險金。 \n \n三、不保事項：傷害保險 \n本公司對於下列事由所致之..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：傷害、住院。",
+          "terms": [
+            "傷害",
+            "住院"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010104-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...-- page 1 ---\n\n \n第1 頁，共2 頁 \n法商法國巴黎產物女性綜合保險傷害醫療保險給付\n附加條款(實支實付與住院日額型) \n給付項目：實支實付傷害醫療保險金、..."
+            },
+            {
+              "document": "145341526095010104-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...頁，共2 頁 \n法商法國巴黎產物女性綜合保險傷害醫療保險給付\n附加條款(實支實付與住院日額型) \n給付項目：實支實付傷害醫療保險金、傷害醫療住院保險金(共五項：一般傷害醫..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010104-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...住院保\n險金、燒燙傷加護病房傷害醫療住院保險金、住院家事代勞補償金) \n \n二、共同除外責任 \n本公司對於下列事由所致之損失不負賠償責任： \n一、要保人或被保險人之故意行為。..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010104-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 137892,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1212,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010200",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險特定傷害事故保險金附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/03/30",
+      "discontinued_date": "096/03/29",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 935,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、傷害。",
+          "terms": [
+            "給付項目",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010200-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...:中華民國 95 年 8 月 22 日金管保二字第09502094250 號 \n (給付項目：特定傷害事故保險金)                   \n◎ 本商品經本公司合格..."
+            },
+            {
+              "document": "145341526095010200-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n法商法國巴黎女性綜合保險特定傷害事故保險金商品簡介~第 1 頁，共 1 頁 \n「法商法國巴黎產物女性綜合保險特定傷害..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010200-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n法商法國巴黎女性綜合保險特定傷害事故保險金商品簡介~第 1 頁，共 1 頁 \n「法商法國巴黎產物女性綜合保險特定傷害..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010200-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...以上之賠償請求\n時，本公司僅依照本保險契約所約定之保險金額給付一次之保險金。 \n五、除外責任： \n同主保險契約第三條共同不保事項與第二章傷害保險第廿四條除外責任。 \n六、保險期..."
+            },
+            {
+              "document": "145341526095010200-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...外責任： \n同主保險契約第三條共同不保事項與第二章傷害保險第廿四條除外責任。 \n六、保險期間： \n本保險附加條款之保險期間為一年。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010200-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 188156,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 935,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010201",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險特定傷害事故保險金附加條款(第1次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/03/30",
+      "discontinued_date": "096/03/31",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 963,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、傷害。",
+          "terms": [
+            "給付項目",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010201-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...號：中華民國95 年8 月10 日金管保二字第09502069411 號 \n \n (給付項目：特定傷害事故保險金)                   \n◎ 本商品經本公司合格..."
+            },
+            {
+              "document": "145341526095010201-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n法商法國巴黎女性綜合保險特定傷害事故保險金商品簡介~第 1 頁，共 1 頁 \n「法商法國巴黎產物女性綜合保險特定傷害..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010201-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n法商法國巴黎女性綜合保險特定傷害事故保險金商品簡介~第 1 頁，共 1 頁 \n「法商法國巴黎產物女性綜合保險特定傷害..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010201-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...以上之賠償請求\n時，本公司僅依照本保險契約所約定之保險金額給付一次之保險金。 \n五、除外責任： \n同主保險契約第三條共同不保事項與第二章傷害保險第廿四條除外責任與\n不保事項。..."
+            },
+            {
+              "document": "145341526095010201-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...同主保險契約第三條共同不保事項與第二章傷害保險第廿四條除外責任與\n不保事項。 \n六、保險期間： \n本保險附加條款之保險期間為一年。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010201-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 187739,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 963,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010202",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險特定傷害事故保險金附加條款(第2次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/04/01",
+      "discontinued_date": "096/08/31",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1007,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、傷害。",
+          "terms": [
+            "給付項目",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010202-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...:中華民國 96 年 2 月 15 日金管保三字第09602009970 號 \n (給付項目：特定傷害事故保險金)                   \n◎ 本商品經本公司合格..."
+            },
+            {
+              "document": "145341526095010202-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n法商法國巴黎女性綜合保險特定傷害事故保險金商品簡介~第 1 頁，共 1 頁 \n「法商法國巴黎產物女性綜合保險特定傷害..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010202-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n法商法國巴黎女性綜合保險特定傷害事故保險金商品簡介~第 1 頁，共 1 頁 \n「法商法國巴黎產物女性綜合保險特定傷害..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010202-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...以上之賠償請求\n時，本公司僅依照本保險契約所約定之保險金額給付一次之保險金。 \n五、除外責任： \n同主保險契約第三條共同不保事項與第二章傷害保險第廿四條除外責任與\n不保事項。..."
+            },
+            {
+              "document": "145341526095010202-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...同主保險契約第三條共同不保事項與第二章傷害保險第廿四條除外責任與\n不保事項。 \n六、保險期間： \n本保險附加條款之保險期間為一年。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010202-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 187900,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1007,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010203",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險特定傷害事故保險金附加條款(第3次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/09/01",
+      "discontinued_date": "096/12/27",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 988,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010203-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...第1 頁，共2 頁 \n法商法國巴黎產物女性綜合保險特定傷害事故 \n保險金附加條款 \n給付項目：特定傷害事故保險金 \n \n本公司資訊公開說明文件，請查閱本公司網址：www.car..."
+            },
+            {
+              "document": "145341526095010203-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...另有約定者不\n在此限。 \n前項第一款情形（除被保險人的故意行為外），致被保險人傷害或殘廢時，本公\n司仍給付保險金。 \n \n三、不保事項：傷害保險 \n本公司對於下列事由所致之..."
+            },
+            {
+              "document": "145341526095010203-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...page 1 ---\n\n \n第1 頁，共2 頁 \n法商法國巴黎產物女性綜合保險特定傷害事故 \n保險金附加條款 \n給付項目：特定傷害事故保險金 \n \n本公司資訊公開說明文件..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010203-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...page 1 ---\n\n \n第1 頁，共2 頁 \n法商法國巴黎產物女性綜合保險特定傷害事故 \n保險金附加條款 \n給付項目：特定傷害事故保險金 \n \n本公司資訊公開說明文件..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010203-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...502522257 號令修正 \n \n一、承保範圍：特定傷害事故保險金 \n \n二、共同除外責任 \n本公司對於下列事由所致之損失不負賠償責任： \n一、要保人或被保險人之故意行為。..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010203-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 134174,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 988,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145341526095010204",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物女性綜合保險特定傷害事故保險金附加條款(第4次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/12/28",
+      "discontinued_date": "100/12/30",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1033,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010204-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...第1 頁，共2 頁 \n法商法國巴黎產物女性綜合保險特定傷害事故 \n保險金附加條款 \n給付項目：特定傷害事故保險金 \n \n本公司資訊公開說明文件，請查閱本公司網址：www.car..."
+            },
+            {
+              "document": "145341526095010204-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...另有約定者不\n在此限。 \n前項第一款情形（除被保險人的故意行為外），致被保險人傷害或殘廢時，本公\n司仍給付保險金。 \n \n三、不保事項：傷害保險 \n本公司對於下列事由所致之..."
+            },
+            {
+              "document": "145341526095010204-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...page 1 ---\n\n \n第1 頁，共2 頁 \n法商法國巴黎產物女性綜合保險特定傷害事故 \n保險金附加條款 \n給付項目：特定傷害事故保險金 \n \n本公司資訊公開說明文件..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010204-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...page 1 ---\n\n \n第1 頁，共2 頁 \n法商法國巴黎產物女性綜合保險特定傷害事故 \n保險金附加條款 \n給付項目：特定傷害事故保險金 \n \n本公司資訊公開說明文件..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145341526095010204-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...9602505761 號 \n \n \n一、承保範圍：特定傷害事故保險金 \n \n二、共同除外責任 \n本公司對於下列事由所致之損失不負賠償責任： \n一、要保人或被保險人之故意行為。..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145341526095010204-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 134277,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1033,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146141223037010000",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物平安遨遊個人海外旅行不便保險",
+      "sale_status": "已停售",
+      "sale_date": "108/09/16",
+      "discontinued_date": "110/03/22",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 889,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146141223037010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": ".../，或洽免付費服務（申訴）專線\n0800-266288 或至本公司查詢。 \n \n主要給付項目： \n班機延誤保險、行李延誤保險、旅程延誤保險、旅程更改保險、行李損失保險、旅行文件..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146141223037010000-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...同一承保事\n故所致之行李損失及行李延誤損失，被保險人僅能擇一\n請求理賠。 \n \n共同不保事項 \n被保險人直接或間接因下列事項所致之損失或所負之責\n任，本公司不負理賠責任： \n一..."
+            },
+            {
+              "document": "146141223037010000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...備查文號：民國108 年09 月16 日巴黎(108)產字第09002 號 \n \n保險期間 \n本保險契約的保險期間，以本保險契約保險單上所載日\n時為準。 \n \n承保範圍 \n本..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：理賠。",
+          "terms": [
+            "理賠"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146141223037010000-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...保險 \n六、 旅行文件重置費用 \n七、 劫機慰問保險 \n被保險人依前項各承保項目請求理賠時，因同一承保事\n故所致之行李損失及行李延誤損失，被保險人僅能擇一\n請求理賠。..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146141223037010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 295148,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 889,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146141223037010001",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物平安遨遊個人海外旅行不便保險(第一次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "110/03/23",
+      "discontinued_date": "110/09/01",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 924,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146141223037010001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": ".../，或洽免付費服務（申訴）專線\n0800-266288 或至本公司查詢。 \n \n主要給付項目： \n班機延誤保險、行李延誤保險、旅程延誤保險、旅程更改保險、行李損失保險、旅行文件..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146141223037010001-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...同一承保事\n故所致之行李損失及行李延誤損失，被保險人僅能擇一\n請求理賠。 \n \n共同不保事項 \n被保險人直接或間接因下列事項所致之損失或所負之責\n任，本分公司不負理賠責任：..."
+            },
+            {
+              "document": "146141223037010001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...02 號 \n民國110 年03 月23 日巴黎(110)產字第03003 號 \n \n保險期間 \n本保險契約的保險期間，以本保險契約保險單上所載日\n時為準。 \n \n承保範圍 \n本..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：理賠。",
+          "terms": [
+            "理賠"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146141223037010001-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...保險 \n六、 旅行文件重置費用 \n七、 劫機慰問保險 \n被保險人依前項各承保項目請求理賠時，因同一承保事\n故所致之行李損失及行李延誤損失，被保險人僅能擇一\n請求理賠。..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146141223037010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 418086,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 924,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146141223037020100",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物國際制裁限制除外不保附加條款",
+      "sale_status": "未停售",
+      "sale_date": "108/09/16",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 644,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146141223037020100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...頁，共1 頁 \n法商法國巴黎產物國際制裁限制除外不保附加條款 \n保險商品簡介 \n \n給付項目：不保事項 \n \n本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令..."
+            },
+            {
+              "document": "146141223037020100-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...契約對於依照貿易、經濟制裁或其他法令禁止本分公司提供保險者，不予承保，亦不\n負擔賠付保險金及任何利益之責任。 \n倘本分公司提供保險保障、賠付保險金或提供任何利益給付將導致本分..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、限制。",
+          "terms": [
+            "不保事項",
+            "限制"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146141223037020100-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...頁 \n法商法國巴黎產物國際制裁限制除外不保附加條款 \n保險商品簡介 \n \n給付項目：不保事項 \n \n本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令，惟為確保..."
+            },
+            {
+              "document": "146141223037020100-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "--- page 1 ---\n\n \n第1 頁，共1 頁 \n法商法國巴黎產物國際制裁限制除外不保附加條款 \n保險商品簡介 \n \n給付項目：不保事項 \n \n本商品經本公司合格..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146141223037020100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 204058,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 644,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146141223152010003",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物家電維修費用補償保險(第三次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "106/03/20",
+      "discontinued_date": "106/10/31",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1527,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146141223152010003-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...法情事，應由本公司及負責人依法負責。 \n \n法商法國巴黎產物家電維修費用補償保險 \n給付項目：修復費用補償保險金 \n \n備查文號：民國103 年03 月31 日 巴黎(103)..."
+            },
+            {
+              "document": "146141223152010003-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...責人依法負責。 \n \n法商法國巴黎產物家電維修費用補償保險 \n給付項目：修復費用補償保險金 \n \n備查文號：民國103 年03 月31 日 巴黎(103)產字第03003 號..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保證期間。",
+          "terms": [
+            "保證期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146141223152010003-F.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司於本保險契約保險期間內，依所承保家電產品原廠保證書保證之內容，對該家電產品\n在原廠保證期間以外且符合承保年限內，因正常使用狀態下發生機械或電子故障所致之維修\n費用，依本保險契..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：除外責任、續保、保險期間。",
+          "terms": [
+            "除外責任",
+            "續保",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146141223152010003-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...保險人負修復及補償之責。但於保險期間屆滿前且經本公司同意續保者，不在此限。 \n \n除外責任： \n本公司對於下列各項家電產品、零件、費用或事故所致之損失不負賠償責任： \n一、..."
+            },
+            {
+              "document": "146141223152010003-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...前項保險事故，本公司始對被\n保險人負修復及補償之責。但於保險期間屆滿前且經本公司同意續保者，不在此限。 \n \n除外責任： \n本公司對於下列各項家電產品、零件、費用或事故所致..."
+            },
+            {
+              "document": "146141223152010003-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...20 日 巴黎(106)產字第03004 號 \n \n承保範圍： \n本公司於本保險契約保險期間內，依所承保家電產品原廠保證書保證之內容，對該家電產品\n在原廠保證期間以外且符合承保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146141223152010003-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 280180,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1527,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146142117062010002",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物產品延長保固契約責任保險",
+      "sale_status": "已停售",
+      "sale_date": "104/06/15",
+      "discontinued_date": "105/01/31",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1323,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146142117062010002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...事，應由本公司及負責人依法負責。 \n \n法商法國巴黎產物產品延長保固契約責任保險 \n給付項目：修復費用補償保險金 \n \n承保範圍： \n本公司對被保險人在保險期間內所簽訂經本公司..."
+            },
+            {
+              "document": "146142117062010002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...依法負責。 \n \n法商法國巴黎產物產品延長保固契約責任保險 \n給付項目：修復費用補償保險金 \n \n承保範圍： \n本公司對被保險人在保險期間內所簽訂經本公司同意之產品延長保固保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146142117062010002-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...於產品延長保固保證書之保障期間所支付維修費用，依本保險契約約定負\n賠償之責。 \n \n除外責任： \n一、 本公司對於下列各項損失不負賠償責任： \n二、 產品之漆面、色調、外殼或表..."
+            },
+            {
+              "document": "146142117062010002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...契約責任保險 \n給付項目：修復費用補償保險金 \n \n承保範圍： \n本公司對被保險人在保險期間內所簽訂經本公司同意之產品延長保固保證書，依該產品延長\n保固保證書約定，於原廠保證書..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146142117062010002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 113162,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1323,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146142117137010000",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物產品修護契約責任保險",
+      "sale_status": "已停售",
+      "sale_date": "103/10/01",
+      "discontinued_date": "103/09/30",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2030,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145142117137010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...責任\n產品修護契約責任\n產品修護契約責任\n產品修護契約責任保險\n保險\n保險\n保險 \n給付項目：修護費用補償保險金 \n備查文號: 民國103 年10 月01 日巴黎(103)產字..."
+            },
+            {
+              "document": "145142117137010000-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...產品修護契約責任\n產品修護契約責任保險\n保險\n保險\n保險 \n給付項目：修護費用補償保險金 \n備查文號: 民國103 年10 月01 日巴黎(103)產字第10005 號函..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145142117137010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...修復責任者，本公司就被保險人所支付之修復費用，依本\n保險契約約定負賠償之責。 \n \n除外責任\n除外責任\n除外責任\n除外責任： \n本公司對於下列各項損失不負賠償責任： \n一、..."
+            },
+            {
+              "document": "145142117137010000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...10005 號函 \n承保範圍\n承保範圍\n承保範圍\n承保範圍： \n本公司對於被保險人在保險期間內所簽訂經本公司同意之產品修護契約，依該約定被保險人\n應負擔產品因意外事故所致毀損之..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145142117137010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 137152,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 2030,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146142117137010002",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物產品修護契約責任保險(第二次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "105/03/02",
+      "discontinued_date": "106/12/29",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2030,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145142117137010002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...責任\n產品修護契約責任\n產品修護契約責任\n產品修護契約責任保險\n保險\n保險\n保險 \n給付項目：修護費用補償保險金 \n備查文號: 民國103 年10 月01 日巴黎(103)產字..."
+            },
+            {
+              "document": "145142117137010002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...產品修護契約責任\n產品修護契約責任保險\n保險\n保險\n保險 \n給付項目：修護費用補償保險金 \n備查文號: 民國103 年10 月01 日巴黎(103)產字第10005 號函..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145142117137010002-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...修復責任者，本公司就被保險人所支付之修復費用，依本\n保險契約約定負賠償之責。 \n \n除外責任\n除外責任\n除外責任\n除外責任： \n本公司對於下列各項損失不負賠償責任： \n一、..."
+            },
+            {
+              "document": "145142117137010002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...10005 號函 \n承保範圍\n承保範圍\n承保範圍\n承保範圍： \n本公司對於被保險人在保險期間內所簽訂經本公司同意之產品修護契約，依該約定被保險人\n應負擔產品因意外事故所致毀損之..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145142117137010002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 137152,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 2030,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146142117137020001",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物行動裝置修護契約責任保險(MP)(第一次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "105/03/02",
+      "discontinued_date": "105/09/13",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1669,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145142117137020001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...本公司及負責人依法負責。 \n \n法商法國巴黎產物行動裝置修護契約責任保險(MP) \n給付項目：修復費用補償保險金 \n備查文號: 民國104 年10 月08 日巴黎(104)產字..."
+            },
+            {
+              "document": "145142117137020001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...。 \n \n法商法國巴黎產物行動裝置修護契約責任保險(MP) \n給付項目：修復費用補償保險金 \n備查文號: 民國104 年10 月08 日巴黎(104)產字第10002 號函..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145142117137020001-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...維修責任者，本公司就被保險人所支付之修復費用，依本保險契約之約定負賠償之責。 \n \n除外責任： \n本公司對於下列各項損失不負賠償責任： \n一、 因戰爭、類似戰爭（不論宣戰與否）..."
+            },
+            {
+              "document": "145142117137020001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...月08 日巴黎(104)產字第10002 號函 \n承保範圍： \n本公司對於被保險人在保險期間內所簽訂經本公司認可之修護契約，依該約定應由被保險人\n負擔維修責任者，本公司就被保險..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145142117137020001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 135991,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1669,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146142117137020002",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物行動裝置修護契約責任保險(MP)(第二次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "105/09/14",
+      "discontinued_date": "106/12/29",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1683,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145142117137020002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...本公司及負責人依法負責。 \n \n法商法國巴黎產物行動裝置修護契約責任保險(MP) \n給付項目：修復費用補償保險金 \n備查文號: 民國104 年10 月08 日巴黎(104)產字..."
+            },
+            {
+              "document": "145142117137020002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...。 \n \n法商法國巴黎產物行動裝置修護契約責任保險(MP) \n給付項目：修復費用補償保險金 \n備查文號: 民國104 年10 月08 日巴黎(104)產字第10002 號函..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145142117137020002-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...維修責任者，本公司就被保險人所支付之修復費用，依本保險契約之約定負賠償之責。 \n \n除外責任： \n本公司對於下列各項損失不負賠償責任： \n一、 因戰爭、類似戰爭（不論宣戰與否）..."
+            },
+            {
+              "document": "145142117137020002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...月14 日巴黎(105)產字第09002 號函 \n承保範圍： \n本公司對於被保險人在保險期間內所簽訂經本公司認可之修護契約，依該約定應由被保險人\n負擔維修責任者，本公司就被保險..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145142117137020002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 121798,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1683,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146142223179010000",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物產品延長保固費用保險",
+      "sale_status": "已停售",
+      "sale_date": "107/12/14",
+      "discontinued_date": "108/02/26",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1464,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146142223179010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...1 \nA7 附件 \n法商法國巴黎產物產品延長保固費用保險 \n保險商品簡介 \n給付項目：費用賠償保險金 \n本商品經本公司合格簽署人員檢視其內容業已符合保險精算原則及保險法..."
+            },
+            {
+              "document": "146142223179010000-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...附件 \n法商法國巴黎產物產品延長保固費用保險 \n保險商品簡介 \n給付項目：費用賠償保險金 \n本商品經本公司合格簽署人員檢視其內容業已符合保險精算原則及保險法令，惟為確保權益..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146142223179010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...長保固保證書係以被保險人於保險期間內\n所簽訂，且經本公司事前書面同意者為限。 \n \n除外責任（一） \n如產品有下列情事者，本公司不負賠償責任： \n一、 產品或其型號、序號經改裝..."
+            },
+            {
+              "document": "146142223179010000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...付之維修費用，依本保險契約約定負\n賠償之責。 \n前項產品延長保固保證書係以被保險人於保險期間內\n所簽訂，且經本公司事前書面同意者為限。 \n \n除外責任（一） \n如產品有下列情事..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146142223179010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 95077,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1464,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146142223179010001",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物產品延長保固費用保險(第一次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "108/02/27",
+      "discontinued_date": "108/08/15",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1464,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146142223179010001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...1 \nA7 附件 \n法商法國巴黎產物產品延長保固費用保險 \n保險商品簡介 \n給付項目：費用賠償保險金 \n本商品經本公司合格簽署人員檢視其內容業已符合保險精算原則及保險法..."
+            },
+            {
+              "document": "146142223179010001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...附件 \n法商法國巴黎產物產品延長保固費用保險 \n保險商品簡介 \n給付項目：費用賠償保險金 \n本商品經本公司合格簽署人員檢視其內容業已符合保險精算原則及保險法令，惟為確保權益..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146142223179010001-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...長保固保證書係以被保險人於保險期間內\n所簽訂，且經本公司事前書面同意者為限。 \n \n除外責任（一） \n如產品有下列情事者，本公司不負賠償責任： \n一、 產品或其型號、序號經改裝..."
+            },
+            {
+              "document": "146142223179010001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...付之維修費用，依本保險契約約定負\n賠償之責。 \n前項產品延長保固保證書係以被保險人於保險期間內\n所簽訂，且經本公司事前書面同意者為限。 \n \n除外責任（一） \n如產品有下列情事..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146142223179010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 95077,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1464,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146142223179010002",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物產品延長保固費用保險(第二次部分變更)",
+      "sale_status": "未停售",
+      "sale_date": "108/08/16",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1542,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146142223179010002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...1 \nA7 附件 \n法商法國巴黎產物產品延長保固費用保險 \n保險商品簡介 \n \n給付項目：費用賠償保險金 \n \n本商品經本公司合格簽署人員檢視其內容業已符合保險精算原則及保..."
+            },
+            {
+              "document": "146142223179010002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...件 \n法商法國巴黎產物產品延長保固費用保險 \n保險商品簡介 \n \n給付項目：費用賠償保險金 \n \n本商品經本公司合格簽署人員檢視其內容業已符合保險精算原則及保險法令，惟為確保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146142223179010002-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...長保固保證書係以被保險人於保險期間內\n所簽訂，且經本公司事前書面同意者為限。 \n \n除外責任（一） \n如產品有下列情事者，本公司不負賠償責任： \n一、 產品或其型號、序號經改裝..."
+            },
+            {
+              "document": "146142223179010002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...付之維修費用，依本保險契約約定負\n賠償之責。 \n前項產品延長保固保證書係以被保險人於保險期間內\n所簽訂，且經本公司事前書面同意者為限。 \n \n除外責任（一） \n如產品有下列情事..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146142223179010002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 294569,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1542,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146341223089010006",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物勞工失業給付保險(第六次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "104/08/04",
+      "discontinued_date": "109/06/29",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 618,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146341223089010006-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "--- page 1 ---\n\n \n \n法商法國巴黎產物勞工失業給付保險 \n給付項目：非自願性離職保險金 \n本公司資訊公開說明文件，請查閱本公司網址：www.cardi..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146341223089010006-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 180424,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 618,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146341223089010007",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物勞工失業給付保險(第七次部份變更)",
+      "sale_status": "已停售",
+      "sale_date": "109/06/30",
+      "discontinued_date": "110/10/31",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 638,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險範圍。",
+          "terms": [
+            "給付項目",
+            "保險範圍"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146341223089010007-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "--- page 1 ---\n\n \n \n \n法商法國巴黎產物勞工失業給付保險 \n給付項目：非自願性離職保險金 \n \n本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則..."
+            },
+            {
+              "document": "146341223089010007-F.pdf",
+              "page": 1,
+              "term": "保險範圍",
+              "snippet": "...號 \n備查文號：民國109年06月30日巴黎(109)產字第06008號 \n \n一、保險範圍：非自願性離職保險金 \n \n二、不保事項 \n被保險人離職有下列情事之一者，本公司不負..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146341223089010007-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...巴黎(109)產字第06008號 \n \n一、保險範圍：非自願性離職保險金 \n \n二、不保事項 \n被保險人離職有下列情事之一者，本公司不負給付責任： \n一.由於被保險人之不誠實行..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146341223089010007-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 344607,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 638,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146341223133010003",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "法商法國巴黎產物個人皮件、證件及行動電話盜打賠償保險(第三次部份變更)",
+      "sale_status": "未停售",
+      "sale_date": "104/08/04",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-100",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1345,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146341223133010003-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...法商法國巴黎產物個人皮件、證件及行動電話盜打賠償保險 \nA7 附件：商品簡介 \n(給付項目：皮件賠償保險、卡片重置費用賠償保險、證件重置費用賠償保險、卡片盜用費用賠償 \n保險..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146341223133010003-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...賠償保險金 \n四、卡片盜用費用賠償保險金 \n五、行動電話盜打費用賠償保險金 \n二、 除外責任： \n因下列原因所致之損失，本公司不負理賠責任： \n一、 被保險人之故意或犯罪行為。..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146341223133010003-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...。 \n七、 被保險人發生卡片遺失或被竊等情形後，自當期繳款截止日起已逾二 \n十日仍未通知發卡行或其他經發卡行指定機構辦理掛失停用手續者。 \n八、 被保險人於辦理卡片掛失手續..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146341223133010003-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 60054,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1345,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

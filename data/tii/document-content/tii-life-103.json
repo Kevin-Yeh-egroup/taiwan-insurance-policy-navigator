@@ -1,32 +1,34 @@
 {
-  "generated_at": "2026-07-13T15:34:01+08:00",
+  "generated_at": "2026-07-31T21:44:42+08:00",
   "summary": {
-    "generated_at": "2026-07-13T15:34:01+08:00",
+    "generated_at": "2026-07-31T21:44:42+08:00",
     "source": "local TII files downloaded through captcha session",
     "batch_id": "tii-life-103",
     "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
-    "product_count": 199,
-    "document_count": 393,
-    "extracted_document_count": 392,
+    "product_count": 200,
+    "document_count": 395,
+    "extracted_document_count": 394,
     "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 0,
     "error_document_count": 1,
-    "pdf_document_count": 393,
+    "pdf_document_count": 395,
     "legacy_doc_document_count": 0,
-    "policy_terms_document_count": 199,
-    "product_summary_document_count": 194,
-    "total_text_characters": 2270717,
+    "policy_terms_document_count": 200,
+    "product_summary_document_count": 195,
+    "total_text_characters": 2272318,
     "focus_counts": [
       {
         "label": "保障項目",
-        "count": 199
+        "count": 200
       },
       {
         "label": "理賠申請",
-        "count": 199
+        "count": 200
       },
       {
         "label": "重要定義",
-        "count": 198
+        "count": 199
       },
       {
         "label": "特殊項目",
@@ -36,11 +38,11 @@
     "coverage_tag_counts": [
       {
         "label": "意外險",
-        "count": 199
+        "count": 200
       },
       {
         "label": "豁免/附加條款",
-        "count": 139
+        "count": 140
       },
       {
         "label": "失能/殘扶",
@@ -48,13 +50,13 @@
       },
       {
         "label": "醫療險",
-        "count": 37
+        "count": 38
       }
     ],
     "status_counts": [
       {
         "label": "extracted",
-        "count": 392
+        "count": 394
       },
       {
         "label": "error",
@@ -38260,6 +38262,203 @@
           "pages_parsed": 1,
           "text_char_count": 464,
           "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "221221AZ1ATMR21A11Z10000005",
+      "company": "第一金人壽保險股份有限公司",
+      "insurance_category": "傷害保險",
+      "product_name": "第一金人壽旅行平安保險傷害醫療保險金附加條款(第五次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "105/07/01",
+      "discontinued_date": "108/12/31",
+      "source_batch_id": "tii-life-103",
+      "coverage_tags": [
+        "醫療險",
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 1601,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：保險金、住院、醫療費用、身故、傷害。",
+          "terms": [
+            "保險金",
+            "住院",
+            "醫療費用",
+            "身故",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "221221AZ1ATMR21A11Z10000005-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "- 3 - 第一金人壽旅行平安保險傷害醫療保險金附加條款 傷害醫療保險金 一、本商品經本公司合格簽署人員檢視其內容業已符合一般精算原..."
+            },
+            {
+              "document": "221221AZ1ATMR21A11Z10000005-A.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...險金」時應檢具下列文件: 一、保險金申請書。 二、保險單或其謄本。 三、醫療診斷書或住院證明;但必要時本公司得要求提供意外傷害事故證明文件。 四、醫療費用明細或醫療證明文件..."
+            },
+            {
+              "document": "221221AZ1ATMR21A11Z10000005-A.pdf",
+              "page": 1,
+              "term": "醫療費用",
+              "snippet": "...意外傷害事故發生之日起一百八 十日以內,經登記合格的醫院或診所治療者,本公司就其實際醫療費用,超過全民健康保險給付部分,給付傷 害醫療保險金。但超過一百八十日繼續治療者,受益人..."
+            },
+            {
+              "document": "221221AZ1ATMR21A11Z10000005-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "第一金人壽第一金人壽第一金人壽第一金人壽旅行平安保險傷害醫療保險金附加條旅行平安保險傷害醫療保險金附加條旅行平安保險傷害醫療保險金附加條旅行平安保險傷..."
+            },
+            {
+              "document": "221221AZ1ATMR21A11Z10000005-F.pdf",
+              "page": 1,
+              "term": "醫療費用",
+              "snippet": "...外傷害事故發生之日起一百八十日以內,經登記合格的醫院或診所治療者,本公 司就其實際醫療費用,超過全民健康保險給付部分,給付傷害醫療保險金。但超 過一百八十日繼續治療者,受益人..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：名詞定義、定義、傷害、醫院、住院、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "醫院",
+            "住院",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "221221AZ1ATMR21A11Z10000005-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...構成本契約之一部分,本契約之條款與本附加條款相牴觸者,優先適用本附加條款。 第二條 名詞定義 本附加條款所稱「醫院、診所」係指依醫療法規定,領有開業執照之公、私立及醫療法人醫院..."
+            },
+            {
+              "document": "221221AZ1ATMR21A11Z10000005-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...本契約之一部分,本契約之條款與本附加條款相牴觸者,優先適用本附加條款。 第二條 名詞定義 本附加條款所稱「醫院、診所」係指依醫療法規定,領有開業執照之公、私立及醫療法人醫院..."
+            },
+            {
+              "document": "221221AZ1ATMR21A11Z10000005-A.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "- 3 - 第一金人壽旅行平安保險傷害醫療保險金附加條款 傷害醫療保險金 一、本商品經本公司合格簽署人員檢視其內容業已符合..."
+            },
+            {
+              "document": "221221AZ1ATMR21A11Z10000005-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "第一金人壽第一金人壽第一金人壽第一金人壽旅行平安保險傷害醫療保險金附加條旅行平安保險傷害醫療保險金附加條旅行平安保險傷害醫療保險金附加條旅行..."
+            },
+            {
+              "document": "221221AZ1ATMR21A11Z10000005-F.pdf",
+              "page": 1,
+              "term": "醫院",
+              "snippet": "...契約第二條約定的意外傷害事故,自意 外傷害事故發生之日起一百八十日以內,經登記合格的醫院或診所治療者,本公 司就其實際醫療費用,超過全民健康保險給付部分,給付傷害醫療保險金..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：申請、保險金的申領、申領、檢具、醫療費用收據、受益人。",
+          "terms": [
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "醫療費用收據",
+            "受益人"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "221221AZ1ATMR21A11Z10000005-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...構成 本第一金人壽旅行平安保險傷害醫療保險金附加條款(以下簡稱本附加條款)依要保人之申請並經本公司同 意,附加於本公司所銷售之第一金人壽旅行平安保險(以下簡稱本契約)。 本..."
+            },
+            {
+              "document": "221221AZ1ATMR21A11Z10000005-A.pdf",
+              "page": 1,
+              "term": "保險金的申領",
+              "snippet": "...付 總額仍以保險單所記載的「每次實支實付傷害醫療保險金限額」為限。 第四條 傷害醫療保險金的申領 受益人申領「傷害醫療保險金」時應檢具下列文件: 一、保險金申請書。 二、保險單或其..."
+            },
+            {
+              "document": "221221AZ1ATMR21A11Z10000005-A.pdf",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...仍以保險單所記載的「每次實支實付傷害醫療保險金限額」為限。 第四條 傷害醫療保險金的申領 受益人申領「傷害醫療保險金」時應檢具下列文件: 一、保險金申請書。 二、保險單或其..."
+            },
+            {
+              "document": "221221AZ1ATMR21A11Z10000005-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...療費用,超過全民健康保險給付部分,給付傷害醫療保險金。但超 過一百八十日繼續治療者,受益人若能證明被保險人之治療與該意外傷害事故具 有因果關係者,不在此限。 前項同一次傷害的..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "221221AZ1ATMR21A11Z10000005-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 402508,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1138,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "221221AZ1ATMR21A11Z10000005-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 98121,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 463,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
           "error": null
         }
       ]

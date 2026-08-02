@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-23T09:33:07+08:00",
+  "generated_at": "2026-07-28T18:13:34+08:00",
   "batch_id": "tii-life-007",
   "record_count": 3,
   "records": [
     {
       "product_id": "202211MZ2A89622A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v90",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-qianwan-chuxing-a-accident-face-amount-v1",
       "source_file": "202211MZ2A89622A11Z10000000-A.pdf",
       "source_document_sha256": "692babd47eece60b07150bf6fc7c47674dfd73522bb5e91318925d4e8087b2b5",
@@ -193,7 +193,7 @@
     {
       "product_id": "202211MZ2A89622A11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v90",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-qianwan-chuxing-a-accident-face-amount-v1",
       "source_file": "202211MZ2A89622A11Z10000001-A.pdf",
       "source_document_sha256": "42031af06e51e8cbfbf85f984cd25cfbfbe1e63c722c5cbc44ac74a7f0b41f99",
@@ -379,7 +379,7 @@
     {
       "product_id": "202211MZ2A89622A11Z10000002",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v90",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-qianwan-chuxing-a-accident-face-amount-v1",
       "source_file": "202211MZ2A89622A11Z10000002-A.pdf",
       "source_document_sha256": "4d5814f843409764c7c9255c2403aa0455e2364e5620ffb6bf4f077571979fed",

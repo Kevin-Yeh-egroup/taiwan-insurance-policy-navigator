@@ -1,7 +1,7 @@
 {
-  "generated_at": "2026-07-16T12:01:39+08:00",
+  "generated_at": "2026-07-31T21:44:42+08:00",
   "summary": {
-    "generated_at": "2026-07-16T12:01:39+08:00",
+    "generated_at": "2026-07-31T21:44:42+08:00",
     "source": "local TII files downloaded through captcha session",
     "batch_id": "tii-life-173",
     "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
@@ -46,7 +46,7 @@
       },
       {
         "label": "意外險",
-        "count": 792
+        "count": 791
       },
       {
         "label": "失能/殘扶",
@@ -296424,13 +296424,12 @@
       "company": "法商法國巴黎人壽保險股份有限公司台灣分公司",
       "insurance_category": "投資型壽險",
       "product_name": "法商法國巴黎人壽恆富變額壽險(第3次部份變更)",
-      "sale_status": "已停售",
-      "sale_date": "096/09/01",
-      "discontinued_date": "096/09/30",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-173",
       "coverage_tags": [
         "壽險",
-        "意外險",
         "失能/殘扶"
       ],
       "document_count": 2,

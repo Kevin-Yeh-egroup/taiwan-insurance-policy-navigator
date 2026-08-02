@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-25T15:38:54+08:00",
+  "generated_at": "2026-07-28T19:12:39+08:00",
   "batch_id": "tii-life-009",
   "record_count": 232,
   "records": [
@@ -18470,7 +18470,7 @@
     {
       "product_id": "202131MA1A42A23B11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v97",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA1A42A23B11Z10000000-A.pdf",
       "source_document_sha256": "1df14b39f865f09a0bd79af4837b293bb106590a564deaa4a7b44472c8308757",
@@ -18604,7 +18604,7 @@
     {
       "product_id": "202131MA1A42A23B11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v97",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA1A42A23B11Z10000001-A.pdf",
       "source_document_sha256": "22a92f9e7420920b6a03846e0e15a9642e06beca98673050877cc633a2cbf0d5",
@@ -18738,7 +18738,7 @@
     {
       "product_id": "202131MA1A44A23B11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v97",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA1A44A23B11Z10000000-A.pdf",
       "source_document_sha256": "d2a252fc5af2d26acf9de41019f0662b2c7a874eb7e20853fd4a6f3b561686cb",
@@ -18872,7 +18872,7 @@
     {
       "product_id": "202131MA1A44A23B11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v97",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA1A44A23B11Z10000001-A.pdf",
       "source_document_sha256": "789d8a7680f8fa06412d9fb5d3b1bbd20c715aa22b77632bbe4d1cccf13af7db",
@@ -19006,7 +19006,7 @@
     {
       "product_id": "202131MA1A95823B11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v97",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA1A95823B11Z10000000-A.pdf",
       "source_document_sha256": "39e7a42c6a6eb7087a2a02bdd9ebe299ea6cda56c5639b2273195e86605787a7",
@@ -19155,7 +19155,7 @@
     {
       "product_id": "202131MA1A95823B11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v97",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA1A95823B11Z10000001-A.pdf",
       "source_document_sha256": "95b4324d090754f3df9e64b646bdda59a7fa3089e4c920ddda2357bfd23bd213",
@@ -19304,7 +19304,7 @@
     {
       "product_id": "202131MA1A99123B11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v97",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA1A99123B11Z10000000-A.pdf",
       "source_document_sha256": "e9ac21cd8c9ff4e109d5a5af1213e0277d7944b87cdbe24df0ed72f257743c49",
@@ -19438,7 +19438,7 @@
     {
       "product_id": "202131MA1A99123B11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v97",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA1A99123B11Z10000001-A.pdf",
       "source_document_sha256": "59e6ecf966cf346768001644a5e1678a47e7f63e2026ee8232000b85e4b10e3d",
@@ -19572,7 +19572,7 @@
     {
       "product_id": "202131MA2A23A23A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v98",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA2A23A23A11Z10000000-A.pdf",
       "source_document_sha256": "008dc15b7cf8d14e1f927277c22f3a6c977243fea05741c641f6f793db2b1d0d",
@@ -19706,7 +19706,7 @@
     {
       "product_id": "202131MA2A92023A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v98",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA2A92023A11Z10000000-A.pdf",
       "source_document_sha256": "8e70198516b41be8665815fada6982baef3cb3f3d926dfcd67c8f7ae8166aaae",
@@ -19840,7 +19840,7 @@
     {
       "product_id": "202131MA2A92023A11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v98",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA2A92023A11Z10000001-A.pdf",
       "source_document_sha256": "d71d3fefe44c05f4cf96eac86efef54ac273134c4351a17629b23da39cc51233",
@@ -19974,7 +19974,7 @@
     {
       "product_id": "202131MA2A92023A11Z10000002",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v98",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA2A92023A11Z10000002-A.pdf",
       "source_document_sha256": "7e936ba4772d810987dae33ad4f3fffd8f3635f0a60ceaa52ba31c8567d90a42",
@@ -20108,7 +20108,7 @@
     {
       "product_id": "202131MA2A96923A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v98",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA2A96923A11Z10000000-A.pdf",
       "source_document_sha256": "60b7b55e9e92dce1054e2378c6785c6577e6d72e5fd56e35df6813878be73329",
@@ -20242,7 +20242,7 @@
     {
       "product_id": "202131MA2A99323A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v98",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA2A99323A11Z10000000-A.pdf",
       "source_document_sha256": "56a2e86e21b7a4379bbd7fa63402ee33176e3a2aad3c452ad40b30a753a402ac",
@@ -20376,7 +20376,7 @@
     {
       "product_id": "202131MA2A99323A11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v98",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA2A99323A11Z10000001-A.pdf",
       "source_document_sha256": "62c72d5500a187caa75ffa02e074a7b20a99ec615b853df3169ca438807215d8",
@@ -20510,7 +20510,7 @@
     {
       "product_id": "202131RZ2A81523A12Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v99",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-funeral-service-rider-fixed-v1",
       "source_file": "202131RZ2A81523A12Z10000000-A.pdf",
       "source_document_sha256": "8914473f8040437990f4dd52bd9dc0b83136b4a78ae4491f72b1d0273ff1c2df",
@@ -20655,7 +20655,7 @@
     {
       "product_id": "202131RZ2A81523A12Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v99",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-funeral-service-rider-fixed-v1",
       "source_file": "202131RZ2A81523A12Z10000001-A.pdf",
       "source_document_sha256": "63d633c2d0cd0070bfed8303e22c1c12656f51637985b2bcddfdf10898cfd20b",
@@ -20800,7 +20800,7 @@
     {
       "product_id": "202131RZ2A81523A12Z10000002",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v99",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-funeral-service-rider-fixed-v1",
       "source_file": "202131RZ2A81523A12Z10000002-A.pdf",
       "source_document_sha256": "8cd006dac22f9fe5f89d5a68b75c8e764d1e4f1ab48eae96f19688c7c2fede68",
@@ -20945,7 +20945,7 @@
     {
       "product_id": "202131RZ2A81523A12Z10000003",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v99",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-funeral-service-rider-fixed-v1",
       "source_file": "202131RZ2A81523A12Z10000003-A.pdf",
       "source_document_sha256": "b5871f038c07cce28c48313ec4bd10991fe7ec620ed071d610f38c929f718ba2",
@@ -21090,7 +21090,7 @@
     {
       "product_id": "202131RZ2A81523A12Z10000004",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v99",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-funeral-service-rider-fixed-v1",
       "source_file": "202131RZ2A81523A12Z10000004-A.pdf",
       "source_document_sha256": "7cdcb87746225b1a6c48934b659762e2fa4445f71e29db5017c4eba733cf35b6",
@@ -21235,7 +21235,7 @@
     {
       "product_id": "202131RZ2A81523A12Z10000005",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v99",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-funeral-service-rider-fixed-v1",
       "source_file": "202131RZ2A81523A12Z10000005-A.pdf",
       "source_document_sha256": "21415959fd3b906f135859ca4ada10aa55962836ea30e0fc475286a1a7e82932",
@@ -21380,7 +21380,7 @@
     {
       "product_id": "202131MA1A45A23B11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v99",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA1A45A23B11Z10000000-A.pdf",
       "source_document_sha256": "a9e86a4566b8a9aff4aa738d34db62b414fa1c55f0ee91f2cf3a2c1153d6737c",
@@ -21514,7 +21514,7 @@
     {
       "product_id": "202131MA1A45A23B11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v99",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA1A45A23B11Z10000001-A.pdf",
       "source_document_sha256": "ebe794f81672f332e39ad612fa1b7f5c33332697d6e819f65afd5fc1a2cec441",
@@ -21648,7 +21648,7 @@
     {
       "product_id": "202131MA1A47A23B11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v99",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA1A47A23B11Z10000000-A.pdf",
       "source_document_sha256": "0372b29fdec14ce66dee4374d9db6584c9fd5f1bb7f8e671360e5ec8d75dce67",
@@ -21782,7 +21782,7 @@
     {
       "product_id": "202131MA1A47A23B11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v99",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA1A47A23B11Z10000001-A.pdf",
       "source_document_sha256": "0b5654997a757e33bb5792acf376afef59476e8994ecab85ae570fabb7821560",
@@ -21916,7 +21916,7 @@
     {
       "product_id": "202131MA1A57A23A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v99",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA1A57A23A11Z10000000-A.pdf",
       "source_document_sha256": "ac849b3842add285e349e5408704b5e462780c10cba0d6bd5ecb7e33b6a325f0",
@@ -22050,7 +22050,7 @@
     {
       "product_id": "202131MA4B94423B11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v99",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-whole-life-formula-v1",
       "source_file": "202131MA4B94423B11Z10000000-A.pdf",
       "source_document_sha256": "d18a338aaeba2b0aa16b7f09e8e894c6a1eb0226b44b5b77ee8e48d01bbc624f",
@@ -22199,7 +22199,7 @@
     {
       "product_id": "202131MZ1A58423A12Z10000005",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v100",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-funeral-service-whole-life-plan-v1",
       "source_file": "202131MZ1A58423A12Z10000005-A.pdf",
       "source_document_sha256": "fbb7142794533e2650dab3b2f1965c782098bf11a398e4a764df4db45166a270",
@@ -24368,7 +24368,7 @@
     {
       "product_id": "202131MZ1A58423A12Z10000006",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v100",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-funeral-service-whole-life-plan-v1",
       "source_file": "202131MZ1A58423A12Z10000006-A.pdf",
       "source_document_sha256": "450bda0c1fd9dc7fe3caf71dda01979e19db801abf00b66fffd16280786e4199",
@@ -26537,7 +26537,7 @@
     {
       "product_id": "202131MZ1A58423A12Z10000008",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v100",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-funeral-service-whole-life-plan-v1",
       "source_file": "202131MZ1A58423A12Z10000008-A.pdf",
       "source_document_sha256": "d3d41029d1b39cde1e7a160f2b90e82f49620d39b9210c0dce09e8ed5c72a03a",
@@ -28706,7 +28706,7 @@
     {
       "product_id": "202131MZ1A58423A12Z10000009",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v100",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-funeral-service-whole-life-plan-v1",
       "source_file": "202131MZ1A58423A12Z10000009-A.pdf",
       "source_document_sha256": "d15e82545f269a9075dc938a137b63bc06e97c22f3b8ebdf86d661c95653acc1",
@@ -30875,7 +30875,7 @@
     {
       "product_id": "202131MZ1A58423A12Z10000010",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v100",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-funeral-service-whole-life-plan-v1",
       "source_file": "202131MZ1A58423A12Z10000010-A.pdf",
       "source_document_sha256": "a2b6ddc65e6961b4dd5d3a704439a022ef83121f7ef720500d7cafd327676258",
@@ -33044,7 +33044,7 @@
     {
       "product_id": "202131MZ1A58423A12Z10000011",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v100",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-funeral-service-whole-life-plan-v1",
       "source_file": "202131MZ1A58423A12Z10000011-A.pdf",
       "source_document_sha256": "a2b6ddc65e6961b4dd5d3a704439a022ef83121f7ef720500d7cafd327676258",
@@ -35213,7 +35213,7 @@
     {
       "product_id": "202131MA2A87923A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v101",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-accident-whole-life-formula-v1",
       "source_file": "202131MA2A87923A11Z10000000-A.pdf",
       "source_document_sha256": "7053ed04533444a616069ae1896052057df9e9ecd790a70df6b82d0a778427a9",
@@ -35409,7 +35409,7 @@
     {
       "product_id": "202131MA2A87923A11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v101",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-accident-whole-life-formula-v1",
       "source_file": "202131MA2A87923A11Z10000001-A.pdf",
       "source_document_sha256": "b465ea1b407063926ae1bc842112987013230349d8d4f69c72f6a8009ada876a",
@@ -35600,7 +35600,7 @@
     {
       "product_id": "202131MA2A88623A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v101",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-accident-whole-life-formula-v1",
       "source_file": "202131MA2A88623A11Z10000000-A.pdf",
       "source_document_sha256": "e54468ad403981f29d2031acbe18880c9f6dcddce2e6943098302fa6458ebb47",
@@ -35796,7 +35796,7 @@
     {
       "product_id": "202131MA2A88623A11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v101",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-accident-whole-life-formula-v1",
       "source_file": "202131MA2A88623A11Z10000001-A.pdf",
       "source_document_sha256": "9ab22bdce6f4abde9786f4a24a2f55e30fe763b2cf3870e2a8a8365cd1c263a3",
@@ -35987,7 +35987,7 @@
     {
       "product_id": "202131MA2A88623A11Z10000002",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v101",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-accident-whole-life-formula-v1",
       "source_file": "202131MA2A88623A11Z10000002-A.pdf",
       "source_document_sha256": "9ab22bdce6f4abde9786f4a24a2f55e30fe763b2cf3870e2a8a8365cd1c263a3",
@@ -36178,7 +36178,7 @@
     {
       "product_id": "202131MA2A81823A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v102",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-chuanshi-fuli-whole-life-formula-v1",
       "source_file": "202131MA2A81823A11Z10000000-A.pdf",
       "source_document_sha256": "0f1c7c1988cd6a8561f45f84aa2f67c3cd4485eafac49c135c06f5a2e02ae7f6",
@@ -36476,7 +36476,7 @@
     {
       "product_id": "202131MA2A81823A11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v102",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-chuanshi-fuli-whole-life-formula-v1",
       "source_file": "202131MA2A81823A11Z10000001-A.pdf",
       "source_document_sha256": "3b6f593c6288051bf6665192ff15484eec835d3209bc9ceeb821dd5eef6528e1",
@@ -36779,7 +36779,7 @@
     {
       "product_id": "202131MA2A81823A11Z10000002",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v102",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-chuanshi-fuli-whole-life-formula-v1",
       "source_file": "202131MA2A81823A11Z10000002-A.pdf",
       "source_document_sha256": "7c872389beeff11af51aaa9b8af69934da74f66a04d9bdb81d7e1d5f892c3cb0",
@@ -37077,7 +37077,7 @@
     {
       "product_id": "202131MA2A81823A11Z10000003",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v102",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-chuanshi-fuli-whole-life-formula-v1",
       "source_file": "202131MA2A81823A11Z10000003-A.pdf",
       "source_document_sha256": "10101908d2ad660f3cec520ebf49015be70f50c9551a46b4c91f2ce861f75e08",
@@ -54032,7 +54032,7 @@
     {
       "product_id": "202121MZ1A02A23A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v111",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-fixed-return-whole-life-formula-v1",
       "source_file": "202121MZ1A02A23A11Z10000000-A.pdf",
       "source_document_sha256": "bdd7ef45519c997ae032133d841c95d94a6b9d380e25089508d904c9858374ee",
@@ -54196,7 +54196,7 @@
     {
       "product_id": "202121MZ1A02A23A11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v111",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-fixed-return-whole-life-formula-v1",
       "source_file": "202121MZ1A02A23A11Z10000001-A.pdf",
       "source_document_sha256": "d25891570e1d2ee6b5ae478f555947e3dad1d12f01f8031445fc41eafb7d8ce1",
@@ -54360,7 +54360,7 @@
     {
       "product_id": "202121MZ1A53A23A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v111",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-fixed-return-whole-life-formula-v1",
       "source_file": "202121MZ1A53A23A11Z10000000-A.pdf",
       "source_document_sha256": "9747209dbd0e0fab788070580d7b7316e95cf92d1c7437d13210b7846402edba",
@@ -54992,7 +54992,7 @@
     {
       "product_id": "202121MA1A34A22D11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v114",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-endowment-formula-v1",
       "source_file": "202121MA1A34A22D11Z10000000-A.pdf",
       "source_document_sha256": "c30e90953338243df61c2b5c2e9433fe0cbb6d2f3c442d31449750cf95d70a2c",
@@ -55128,7 +55128,7 @@
     {
       "product_id": "202121MA1A43A22B11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v114",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-endowment-formula-v1",
       "source_file": "202121MA1A43A22B11Z10000000-A.pdf",
       "source_document_sha256": "f2f296d13b9f0135ad9c5a04ff1d7aa165a4574b16bc6ccfed2ae613eb55af97",
@@ -55264,7 +55264,7 @@
     {
       "product_id": "202121MA1A88A22A11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v114",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-endowment-formula-v1",
       "source_file": "202121MA1A88A22A11Z10000000-A.pdf",
       "source_document_sha256": "b9f092cad2ebfe6fbafd795a27067ef60ecc295af1a84215c23e49ab38f0b714",
@@ -55783,7 +55783,7 @@
     {
       "product_id": "202131MA5B28A23B11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v116",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-specific-disease-whole-life-formula-v1",
       "source_file": "202131MA5B28A23B11Z10000000-A.pdf",
       "source_document_sha256": "2b6c1c381da3bfc42bc45a45e24b9bdd4307ab9a9bb2fe7c49c2e8458b959681",
@@ -55955,7 +55955,7 @@
     {
       "product_id": "202131MA5B28A23B11Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v116",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-interest-rate-specific-disease-whole-life-formula-v1",
       "source_file": "202131MA5B28A23B11Z10000001-A.pdf",
       "source_document_sha256": "79aac672e73a04698736e04b91d57a6bdfcbf4281a80b6ab3679c9dfda3a88ef",
@@ -57968,7 +57968,7 @@
     {
       "product_id": "202131MZ1A62623A12Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v129",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-funeral-service-whole-life-early-plan-v1",
       "source_file": "202131MZ1A62623A12Z10000000-A.pdf",
       "source_document_sha256": "9cdc1a2842fa909c1724fdf4d31764b078d14628d7b346b481db74e93be82399",
@@ -60462,7 +60462,7 @@
     {
       "product_id": "202131MZ1A62623A12Z10000001",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v129",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-funeral-service-whole-life-early-plan-v1",
       "source_file": "202131MZ1A62623A12Z10000001-A.pdf",
       "source_document_sha256": "5e3040066dc26a0fea81f98e512e5e9d561efdc1cf0c11de61f46cc71e125d05",
@@ -65762,7 +65762,7 @@
     {
       "product_id": "202131MA9B91023B11Z10000000",
       "status": "verified_reference",
-      "extractor_version": "tii-plan-benefits-v153",
+      "extractor_version": "tii-plan-benefits-v201",
       "parser_id": "taiwan-fengfu-meili-usd-interest-whole-life-v1",
       "source_file": "202131MA9B91023B11Z10000000-A.pdf",
       "source_document_sha256": "23efab25a404f3405d3fe9eaa6bee3693be1dcfb09643c69ac394258b6256a37",

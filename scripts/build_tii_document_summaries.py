@@ -31,6 +31,7 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Build compact, browser-facing TII document summary shards.")
     parser.add_argument("--input-dir", type=Path, default=Path("data/tii/document-content"))
     parser.add_argument("--output-dir", type=Path, default=Path("data/tii/document-summaries"))
+    parser.add_argument("--reviewed-dir", type=Path, default=Path("data/tii/reviewed-benefits"))
     parser.add_argument("--batch-id", default=None)
     args = parser.parse_args()
 
@@ -43,7 +44,18 @@ def main() -> None:
     total_records = 0
     for source_path in source_paths:
         public_output = json.loads(source_path.read_text(encoding="utf-8"))
-        compact = compact_document_summary(public_output, source_path.stem)
+        reviewed_path = args.reviewed_dir / source_path.name
+        reviewed_records = []
+        if reviewed_path.is_file():
+            reviewed_payload = json.loads(reviewed_path.read_text(encoding="utf-8"))
+            if reviewed_payload.get("batch_id") != source_path.stem:
+                raise SystemExit(f"reviewed benefit batch mismatch: {reviewed_path}")
+            reviewed_records = reviewed_payload.get("records") or []
+        compact = compact_document_summary(
+            public_output,
+            source_path.stem,
+            reviewed_records=reviewed_records,
+        )
         write_json(args.output_dir / source_path.name, compact)
         total_records += compact["record_count"]
 

@@ -1,36 +1,38 @@
 {
-  "generated_at": "2026-07-26T17:46:14+08:00",
+  "generated_at": "2026-07-31T21:44:41+08:00",
   "summary": {
-    "generated_at": "2026-07-06T12:08:36+08:00",
+    "generated_at": "2026-07-31T21:44:41+08:00",
     "source": "local TII files downloaded through captcha session",
     "batch_id": "tii-life-053",
     "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
     "product_count": 745,
-    "document_count": 1468,
-    "extracted_document_count": 1453,
-    "no_text_document_count": 14,
+    "document_count": 1462,
+    "extracted_document_count": 1451,
+    "no_text_document_count": 10,
+    "garbled_document_count": 0,
+    "ocr_document_count": 6,
     "error_document_count": 1,
-    "pdf_document_count": 1451,
+    "pdf_document_count": 1445,
     "legacy_doc_document_count": 17,
     "policy_terms_document_count": 743,
-    "product_summary_document_count": 725,
-    "total_text_characters": 20224650,
+    "product_summary_document_count": 719,
+    "total_text_characters": 20185320,
     "focus_counts": [
       {
         "label": "理賠申請",
-        "count": 649
+        "count": 655
       },
       {
         "label": "保障項目",
-        "count": 598
+        "count": 604
       },
       {
         "label": "特殊項目",
-        "count": 581
+        "count": 587
       },
       {
         "label": "重要定義",
-        "count": 414
+        "count": 420
       }
     ],
     "coverage_tag_counts": [
@@ -48,17 +50,17 @@
       },
       {
         "label": "失能/殘扶",
-        "count": 161
+        "count": 167
       }
     ],
     "status_counts": [
       {
         "label": "extracted",
-        "count": 1453
+        "count": 1451
       },
       {
         "label": "no_text",
-        "count": 14
+        "count": 10
       },
       {
         "label": "error",
@@ -69247,56 +69249,168 @@
       "company": "富邦人壽保險股份有限公司",
       "insurance_category": "投資型壽險",
       "product_name": "富邦人壽新吉祥變額萬能終身壽險(A型、B型)(第40次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "101/07/25",
-      "discontinued_date": "101/09/06",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-053",
       "coverage_tags": [
-        "壽險"
+        "壽險",
+        "失能/殘扶"
       ],
-      "document_count": 2,
-      "extracted_document_count": 0,
-      "text_char_count": 0,
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 25215,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險範圍、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209141M31A00140-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...: VUQ/VSQ 富邦人壽新吉祥變額萬能終身壽險 ( A 、 B 型 ) 型 ( 給付項目 : 身故保險金 、 全殘廢保險金及祝壽保險金 ) ( 本保為不分紅保險單 , 不參..."
+            },
+            {
+              "document": "209141M31A00140-A.pdf",
+              "page": 1,
+              "term": "保險範圍",
+              "snippet": "...在本公司為同意承保與否之意思表示發生予給付之保事故時 , 本公司仍負保險責任 , 保險範圍第四條之一於本契約有效期間內 , 本公司依第十五條至第十七條約定給付保險金 · 契約..."
+            },
+            {
+              "document": "209141M31A00140-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...富邦人壽新吉祥變額萬能終身壽險 ( A 、 B 型 ) 型 ( 給付項目 : 身故保險金 、 全殘廢保險金及祝壽保險金 ) ( 本保為不分紅保險單 , 不參加釭利分配 ,..."
+            }
+          ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：名詞定義、定義、傷害、意外傷害事故、保證期間、宣告利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "意外傷害事故",
+            "保證期間",
+            "宣告利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209141M31A00140-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...定義 VXQX 川川 725 2 / 20 商品代號 : VUQ/VSQ 本契約所用名詞定義如下 、 保險金額 : 係保險單上所載之保險金額 , 保人在本契約有效期問內 , 經..."
+            },
+            {
+              "document": "209141M31A00140-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...意 , 不得拘泥於所用的文字 : 如有疑義時 , 以作有利於被保險人的解釋為原則名的定義 VXQX 川川 725 2 / 20 商品代號 : VUQ/VSQ 本契約所用名詞..."
+            },
+            {
+              "document": "209141M31A00140-A.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "..., 如經法院宣告死亡或要保人或受益人能提出證明文件 , 足以認為被保險人極可能因意外傷害事故而死亡者 , 本公司給付身故保險金 , 本契約效力即行終止 , 若日後發現被保險..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：除外責任、限制、投保年齡、契約撤銷權。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "契約撤銷權"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209141M31A00140-A.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...的申第二十條 · 於本契約符合第十七條給付要件時 , 本公司主動給付祝壽保險金 ” 除外責任有下列情形之一者 , 本公司不負給付保險金的貢任 、 要保人故意致被保人於死 · 、..."
+            },
+            {
+              "document": "209141M31A00140-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...制而無法繼續交保險費時 , 不受前項 「 任一保單週年日到期前之一個月內 」 之約定限制 , 得隨時檢具被保險人的健康聲明書向本公司申請增加保險金額 , 每次所增加的保險金..."
+            },
+            {
+              "document": "209141M31A00140-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...的計算及誤的處理要保人在屮請投保時 , 應將被保險人出生年月日在要保書填明被保險人的投保年齡 , 以足歲計算 , 但未滿一歲的零數超過六個月者 , 加算一歲 , 被保險人的投保..."
+            }
+          ]
         },
         {
           "key": "claims",
           "label": "理賠申請",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209141M31A00140-A.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...要保時間之先後者 , 各該保公司應依其喪葬費用保險金額與扣除要保時冏在先之保險公司應理賠之金額後所餘之比例分其責任 · 保險範 • 全殘廢保險金之付被保險人於十五足前之本契..."
+            },
+            {
+              "document": "209141M31A00140-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...險金額 : 係保險單上所載之保險金額 , 保人在本契約有效期問內 , 經本公司同意得申請變更保金額 , 保險金額變更後 , 以變更後之保險金為準 , 惟不得超過本公司約定之..."
+            },
+            {
+              "document": "209141M31A00140-A.pdf",
+              "page": 1,
+              "term": "保險金的申領",
+              "snippet": "...人死亡證明書及除戶戶籍謄本 , 、 保險金中請書四 、 受益人的身分證明 , 全殘廢保險金的申領第十九條受益人中領 「 全殘廢保險金 」 時 , 應檢具下列文件 : 、 保險單或其..."
+            }
+          ]
         }
       ],
-      "focus_score": 0,
-      "confidence": "unreviewed",
+      "focus_score": 4,
+      "confidence": "parsed",
       "documents": [
         {
           "file_name": "209141M31A00140-A.pdf",
@@ -69305,19 +69419,9 @@
           "file_size": 917118,
           "page_count": 20,
           "pages_parsed": 20,
-          "text_char_count": 0,
-          "extraction_status": "no_text",
-          "error": null
-        },
-        {
-          "file_name": "209141M31A00140-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 315553,
-          "page_count": 8,
-          "pages_parsed": 8,
-          "text_char_count": 0,
-          "extraction_status": "no_text",
+          "text_char_count": 25215,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -72876,55 +72980,168 @@
       "company": "富邦人壽保險股份有限公司",
       "insurance_category": "投資型壽險",
       "product_name": "富邦人壽新吉祥變額萬能終身壽險(A型、B型)(第56次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "104/03/27",
-      "discontinued_date": "104/04/30",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-053",
       "coverage_tags": [
-        "壽險"
+        "壽險",
+        "失能/殘扶"
       ],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 54073,
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 27621,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：給付項目、保險範圍、保險金、身故、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209141M31A00156-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...: VUQ/VSQ 富邦人壽新吉祥變額萬能終身壽險 ( A 型 、 B 型 ) ( 給付項目 : 身故保險金 、 全殘廢保險金及祝壽保險金 ) ( 本保險為不分紅保險單 , 不..."
+            },
+            {
+              "document": "209141M31A00156-A.pdf",
+              "page": 1,
+              "term": "保險範圍",
+              "snippet": "...公司為同意承保與否之意思表示前發生應予給付之保險事故時 , 本公司仍負保險責任 。 保險範圍第四條之一 : 於本契約有效期間內 , 本公司依第十五條至第十七條約定給付保險金 。..."
+            },
+            {
+              "document": "209141M31A00156-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...富邦人壽新吉祥變額萬能終身壽險 ( A 型 、 B 型 ) ( 給付項目 : 身故保險金 、 全殘廢保險金及祝壽保險金 ) ( 本保險為不分紅保險單 , 不參加紅利分配 ,..."
+            }
+          ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：名詞定義、定義、傷害、意外傷害事故、保證期間、宣告利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "意外傷害事故",
+            "保證期間",
+            "宣告利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209141M31A00156-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...如有疑義時 , 以作有利於被保險人的解釋為原則 。 名詞的定義第二條 : 本契約所用名詞定義如下 : 、 保險金額 • 係指保險單上所載之保險金額 。 要保人在本契約有效期間內..."
+            },
+            {
+              "document": "209141M31A00156-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...不得拘泥於所用的文字 ; 如有疑義時 , 以作有利於被保險人的解釋為原則 。 名詞的定義第二條 : 本契約所用名詞定義如下 : 、 保險金額 • 係指保險單上所載之保險金額..."
+            },
+            {
+              "document": "209141M31A00156-A.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "..., 如經法院宣告死亡或要保人或受益人能提出證明文件 , 足以認為被保險人極可能因意外傷害事故而死亡者 , 本公司給付身故保險金 , 本契約效力即行終止 ; 若日後發現被保險..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：除外責任、限制、投保年齡、保險期間、契約撤銷權。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間",
+            "契約撤銷權"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209141M31A00156-A.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...申領第二十條 : 於本契約符合第十七條給付要件時 , 本公司主動給付祝壽保險金 。 除外責任第二十一條 : 有下列情形之一者 , 本公司不負給付保險金的責任 。 、 要保人故意..."
+            },
+            {
+              "document": "209141M31A00156-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...險事故者 , 視為未撤銷 , 本公司仍應依本契約規定負保險責任第二期以後保險費的繳交限制 、 交付 、 寬限期間及契約效力的停止第六條 : 本契約 「 身故保險金 」 金額..."
+            },
+            {
+              "document": "209141M31A00156-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...第三十二條 : 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項目 。 投保年齡的計算及錯誤的處理第三十三條 : 要保人在申請投保時 , 應將被保險人出生年月日在要..."
+            }
+          ]
         },
         {
           "key": "claims",
           "label": "理賠申請",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209141M31A00156-A.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...保時間之先後者 , 各該保險公司應依其喪葬費用保險金額與扣除要保時間在先之保險公司應理賠之金額後所餘之限額比例分擔其責任 。 險範圍 : 全殘廢保險金之付被保險人於十五足前..."
+            },
+            {
+              "document": "209141M31A00156-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...額 • 係指保險單上所載之保險金額 。 要保人在本契約有效期間內 , 經本公司同意得申請變更保險金額 , 保險金額變更後 , 以變更後之保險金額為準 , 惟不得超過本公司約..."
+            },
+            {
+              "document": "209141M31A00156-A.pdf",
+              "page": 1,
+              "term": "保險金的申領",
+              "snippet": "...算保單帳戶價值給付祝壽保險金 , 本公司給付祝壽保險金後 , 本契約效力即行終止身故保險金的申領第十八條 : 受益人申領 「 身故保險金 」 時 , 應檢具下列文件 • 、 保險單..."
+            }
+          ]
         }
       ],
-      "focus_score": 0,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -72933,20 +73150,10 @@
           "document_kind": "pdf",
           "file_size": 901230,
           "page_count": 22,
-          "pages_parsed": 20,
-          "text_char_count": 43310,
+          "pages_parsed": 22,
+          "text_char_count": 27621,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "209141M31A00156-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 276484,
-          "page_count": 5,
-          "pages_parsed": 5,
-          "text_char_count": 10763,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -94901,56 +95108,172 @@
       "company": "富邦人壽保險股份有限公司",
       "insurance_category": "投資型壽險",
       "product_name": "富邦人壽吉祥理財變額萬能壽險(第4次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "100/03/08",
-      "discontinued_date": "100/05/03",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-053",
       "coverage_tags": [
-        "壽險"
+        "壽險",
+        "失能/殘扶"
       ],
-      "document_count": 2,
-      "extracted_document_count": 0,
-      "text_char_count": 0,
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 34240,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：給付項目、保險範圍、保險金、手術、身故、殘廢。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "手術",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209141M31A00904-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...人壽吉祥理財變額萬能壽險 【 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項目 】 【 給付項目 : 保單帳戶價值之返還 、 身故保險金或喪葬費用保險金 、 完全..."
+            },
+            {
+              "document": "209141M31A00904-A.pdf",
+              "page": 1,
+              "term": "保險範圍",
+              "snippet": "...定之保險事故者 , 視為契約有效 , 本公司依約定給付保險金而不退還保險費 。 【 保險範圍 】 第五條本契約有效期間內 , 本公司依第十六條至第十八條約定給付保險金 。 【..."
+            },
+            {
+              "document": "209141M31A00904-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...加紅利分配 , 並無紅利給付項目 】 【 給付項目 : 保單帳戶價值之返還 、 身故保險金或喪葬費用保險金 、 完全殘廢保險金 、 祝壽保險金給付 】 本商品經本公司合格簽署..."
+            }
+          ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 8 個重點詞：名詞定義、定義、傷害、醫師、手術、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "醫師",
+            "手術",
+            "意外傷害事故",
+            "保證期間",
+            "宣告利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209141M31A00904-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "..., 要保人應於要保書中擇一投保 , 所投保之型別並將載明於本契約保單首頁 , 【 名詞定義 】 第二條本契約所用名詞定義如下 、 「 本公司 」 : 係指富邦人壽保險股份有限..."
+            },
+            {
+              "document": "209141M31A00904-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...要保人應於要保書中擇一投保 , 所投保之型別並將載明於本契約保單首頁 , 【 名詞定義 】 第二條本契約所用名詞定義如下 、 「 本公司 」 : 係指富邦人壽保險股份有限..."
+            },
+            {
+              "document": "209141M31A00904-A.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...約效力即行終止 ; 如要保人或受益人能提出證明文件 , 足以認為被保險人極可能因意外傷害事故而死亡者 , 本公司應依意外傷害事故發生日為準 , 依第十七條約定返還保單帳戶價..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：除外責任、限制、投保年齡、保險期間、契約撤銷權。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間",
+            "契約撤銷權"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209141M31A00904-A.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...本契約符合第十八條約定之給付要件時 , 本公司應主動給付祝壽保險金予受益人 。 【 除外責任 】 第二十五條有下列情形之一者 , 本公司不負給付保險金的責任 、 要保人故意致被..."
+            },
+            {
+              "document": "209141M31A00904-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...本契約有效期間內 , 本公司依第十六條至第十八條約定給付保險金 。 【 保險費交付的限制 】 第六條本契約身故保險金或喪葬費用保險金額除以保單帳戶價值之比率 , 應在一定數..."
+            },
+            {
+              "document": "209141M31A00904-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...】 第三十八條本保險為不分紅保單 , 不參加紅利分配 , 並無紅利給付項目 · 【 投保年齡的計算及錯誤的處理 】 第三十九條要保人在申請投保時 , 應將被保險人出生年月白在要..."
+            }
+          ]
         },
         {
           "key": "claims",
           "label": "理賠申請",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209141M31A00904-A.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...保時間之先後者 , 各該保險公司應依其喪葬費用保險金額與扣除要保時間在先之保險公司應理賠之金額後所餘之限額比例分擔其責任 。 受益人檢齊第二十二條約定申領保險金之文件並送達..."
+            },
+            {
+              "document": "209141M31A00904-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "..., 以當月之末日為保單週月日 - 十四 、 「 增額保費 」 : 係指要保人以書面申請並經本公司同意後所交付超過計畫保費之保費 。 要保人應先繳足當期之計畫保費後 , 始..."
+            },
+            {
+              "document": "209141M31A00904-A.pdf",
+              "page": 1,
+              "term": "保險金的申領",
+              "snippet": "...重新指定之投資標的中 , 且就重新投資之金額 , 不再扣除前置費用 。 【 完全殘廢保險金的申領 】 第二十一條受益人申領 「 完全殘廢保險金 」 時應檢具下列文件 : 、 保險單..."
+            }
+          ]
         }
       ],
-      "focus_score": 0,
-      "confidence": "unreviewed",
+      "focus_score": 4,
+      "confidence": "parsed",
       "documents": [
         {
           "file_name": "209141M31A00904-A.pdf",
@@ -94958,20 +95281,10 @@
           "document_kind": "pdf",
           "file_size": 1392996,
           "page_count": 26,
-          "pages_parsed": 20,
-          "text_char_count": 0,
-          "extraction_status": "no_text",
-          "error": null
-        },
-        {
-          "file_name": "209141M31A00904-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 271224,
-          "page_count": 7,
-          "pages_parsed": 7,
-          "text_char_count": 0,
-          "extraction_status": "no_text",
+          "pages_parsed": 25,
+          "text_char_count": 34240,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -140993,55 +141306,172 @@
       "company": "富邦人壽保險股份有限公司",
       "insurance_category": "投資型壽險",
       "product_name": "富邦人壽吉祥理財變額萬能壽險(第24次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "105/01/18",
-      "discontinued_date": "105/03/03",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-053",
       "coverage_tags": [
-        "壽險"
+        "壽險",
+        "失能/殘扶"
       ],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 66850,
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 42769,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 8 個重點詞：給付項目、保險範圍、保險金、手術、身故、失能。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "手術",
+            "身故",
+            "失能",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209191MV1A00323A11Z90000024-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...人壽吉祥理財變額萬能壽險 【 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項目 】 【 給付項目 : 保單帳戶價值之返還 、 身故保險金或喪葬費用保險金 、 完全..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000024-A.pdf",
+              "page": 1,
+              "term": "保險範圍",
+              "snippet": "...定之保險事故者 , 視為契約有效 , 本公司依約定給付保險金而不退還保險費 。 【 保險範圍 】 第五條本契約有效期間內 , 本公司依第十七條至第十九條約定給付保險金 。 【..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000024-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...加紅利分配 , 並無紅利給付項目 】 【 給付項目 : 保單帳戶價值之返還 、 身故保險金或喪葬費用保險金 、 完全殘廢保險金 、 祝壽保險金 】 本商品經本公司合格簽署人員..."
+            }
+          ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 8 個重點詞：名詞定義、定義、傷害、醫師、手術、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "醫師",
+            "手術",
+            "意外傷害事故",
+            "保證期間",
+            "宣告利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209191MV1A00323A11Z90000024-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "..., 要保人應於要保書中擇一投保 , 所投保之型別並將載明於本契約保單首頁 。 【 名詞定義 】 第二條本契約所用名詞定義如下 · 、 「 本公司 」 : 係指富邦人壽保險股份..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000024-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...要保人應於要保書中擇一投保 , 所投保之型別並將載明於本契約保單首頁 。 【 名詞定義 】 第二條本契約所用名詞定義如下 · 、 「 本公司 」 : 係指富邦人壽保險股份..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000024-A.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...約效力即行終止 ; 如要保人或受益人能提出證明文件 , 足以認為被保險人極可能因意外傷害事故而死亡者 , 本公司應依意外傷害事故發生日為準 , 依第十八條約定返還保單帳戶價..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：除外責任、限制、投保年齡、保險期間、契約撤銷權。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間",
+            "契約撤銷權"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209191MV1A00323A11Z90000024-A.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...本契約符合第十九條約定之給付要件時 , 本公司應主動給付祝壽保險金予受益人 。 【 除外責任 】 第二十六條有下列情形之一者 , 本公司不負給付保險金的責任 、 要保人故意致被..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000024-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...本契約有效期間內 , 本公司依第十七條至第十九條約定給付保險金 。 【 保險費交付的限制 】 第六條本契約下列金額除以 「 保單帳戶價值加計當次預定投資保費金額 」 之比例..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000024-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...】 第三十九條本保險為不分紅保單 , 不參加紅利分配 , 並無紅利給付項目 。 【 投保年齡的計算及錯誤的處理 】 第四十條要保人在申請投保時 , 應將被保險人出生年月日在要保..."
+            }
+          ]
         },
         {
           "key": "claims",
           "label": "理賠申請",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209191MV1A00323A11Z90000024-A.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...保時間之先後者 , 各該保險公司應依其喪葬費用保險金額與扣除要保時間在先之保險公司應理賠之金額後所餘之限額比例分擔其責任 。 受益人依第二十三條約定申領身故保險金或喪葬費用..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000024-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...額與保單帳戶價值兩者之總和給付 , 其中 , 淨危險保額及保單帳戶價值係以受益人檢齊申請身故 、 完全殘廢保險金之所須文件並送達本公司之日為基準日 , 依附表三 「 評價時..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000024-A.pdf",
+              "page": 1,
+              "term": "保險金的申領",
+              "snippet": "...重新指定之投資標的中 , 且就重新投資之金額 , 不再扣除保費費用 。 【 完全殘廢保險金的申領 】 第二十二條受益人申領 「 完全殘廢保險金 」 時應檢具下列文件 · 、 保險單..."
+            }
+          ]
         }
       ],
-      "focus_score": 0,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -141050,20 +141480,10 @@
           "document_kind": "pdf",
           "file_size": 771442,
           "page_count": 30,
-          "pages_parsed": 20,
-          "text_char_count": 53727,
+          "pages_parsed": 30,
+          "text_char_count": 42769,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "209191MV1A00323A11Z90000024-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 256893,
-          "page_count": 8,
-          "pages_parsed": 8,
-          "text_char_count": 13123,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -141073,55 +141493,172 @@
       "company": "富邦人壽保險股份有限公司",
       "insurance_category": "投資型壽險",
       "product_name": "富邦人壽吉祥理財變額萬能壽險(第25次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "105/03/04",
-      "discontinued_date": "105/04/10",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-053",
       "coverage_tags": [
-        "壽險"
+        "壽險",
+        "失能/殘扶"
       ],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 67008,
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 42933,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 8 個重點詞：給付項目、保險範圍、保險金、手術、身故、失能。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "手術",
+            "身故",
+            "失能",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209191MV1A00323A11Z90000025-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...人壽吉祥理財變額萬能壽險 【 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項目 】 【 給付項目 : 保單帳戶價值之返還 、 身故保險金或喪葬費用保險金 、 完全..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000025-A.pdf",
+              "page": 1,
+              "term": "保險範圍",
+              "snippet": "...定之保險事故者 , 視為契約有效 , 本公司依約定給付保險金而不退還保險費 。 【 保險範圍 】 第五條本契約有效期間內 , 本公司依第十七條至第十九條約定給付保險金 。 【..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000025-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...加紅利分配 , 並無紅利給付項目 】 【 給付項目 : 保單帳戶價值之返還 、 身故保險金或喪葬費用保險金 、 完全殘廢保險金 、 祝壽保險金 】 本商品經本公司合格簽署人員..."
+            }
+          ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 8 個重點詞：名詞定義、定義、傷害、醫師、手術、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "醫師",
+            "手術",
+            "意外傷害事故",
+            "保證期間",
+            "宣告利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209191MV1A00323A11Z90000025-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "..., 要保人應於要保書中擇一投保 , 所投保之型別並將載明於本契約保單首頁 。 【 名詞定義 】 第二條本契約所用名詞定義如下 · 、 「 本公司 」 : 係指富邦人壽保險股份..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000025-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...要保人應於要保書中擇一投保 , 所投保之型別並將載明於本契約保單首頁 。 【 名詞定義 】 第二條本契約所用名詞定義如下 · 、 「 本公司 」 : 係指富邦人壽保險股份..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000025-A.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...約效力即行終止 ; 如要保人或受益人能提出證明文件 , 足以認為被保險人極可能因意外傷害事故而死亡者 , 本公司應依意外傷害事故發生日為準 , 依第十八條約定返還保單帳戶價..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：除外責任、限制、投保年齡、保險期間、契約撤銷權。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間",
+            "契約撤銷權"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209191MV1A00323A11Z90000025-A.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...本契約符合第十九條約定之給付要件時 , 本公司應主動給付祝壽保險金予受益人 。 【 除外責任 】 第二十六條有下列情形之一者 , 本公司不負給付保險金的責任 、 要保人故意致被..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000025-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...本契約有效期間內 , 本公司依第十七條至第十九條約定給付保險金 。 【 保險費交付的限制 】 第六條本契約下列金額除以 「 保單帳戶價值加計當次預定投資保費金額 」 之比例..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000025-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...】 第三十九條本保險為不分紅保單 , 不參加紅利分配 , 並無紅利給付項目 。 【 投保年齡的計算及錯誤的處理 】 第四十條要保人在申請投保時 , 應將被保險人出生年月日在要保..."
+            }
+          ]
         },
         {
           "key": "claims",
           "label": "理賠申請",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209191MV1A00323A11Z90000025-A.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...保時間之先後者 , 各該保險公司應依其喪葬費用保險金額與扣除要保時間在先之保險公司應理賠之金額後所餘之限額比例分擔其責任 。 受益人依第二十三條約定申領身故保險金或喪葬費用..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000025-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...額與保單帳戶價值兩者之總和給付 , 其中 , 淨危險保額及保單帳戶價值係以受益人檢齊申請身故 、 完全殘廢保險金之所須文件並送達本公司之日為基準日 , 依附表三 「 評價時..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000025-A.pdf",
+              "page": 1,
+              "term": "保險金的申領",
+              "snippet": "...重新指定之投資標的中 , 且就重新投資之金額 , 不再扣除保費費用 。 【 完全殘廢保險金的申領 】 第二十二條受益人申領 「 完全殘廢保險金 」 時應檢具下列文件 · 、 保險單..."
+            }
+          ]
         }
       ],
-      "focus_score": 0,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -141130,20 +141667,10 @@
           "document_kind": "pdf",
           "file_size": 771344,
           "page_count": 30,
-          "pages_parsed": 20,
-          "text_char_count": 53843,
+          "pages_parsed": 30,
+          "text_char_count": 42933,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "209191MV1A00323A11Z90000025-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 256559,
-          "page_count": 8,
-          "pages_parsed": 8,
-          "text_char_count": 13165,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]
@@ -141153,55 +141680,172 @@
       "company": "富邦人壽保險股份有限公司",
       "insurance_category": "投資型壽險",
       "product_name": "富邦人壽吉祥理財變額萬能壽險(第26次部分變更)",
-      "sale_status": "已停售",
-      "sale_date": "105/04/11",
-      "discontinued_date": "105/06/12",
+      "sale_status": "",
+      "sale_date": "",
+      "discontinued_date": "",
       "source_batch_id": "tii-life-053",
       "coverage_tags": [
-        "壽險"
+        "壽險",
+        "失能/殘扶"
       ],
-      "document_count": 2,
-      "extracted_document_count": 2,
-      "text_char_count": 67080,
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 42903,
       "reader_focus": [
         {
           "key": "coverage",
           "label": "保障項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 8 個重點詞：給付項目、保險範圍、保險金、手術、身故、失能。",
+          "terms": [
+            "給付項目",
+            "保險範圍",
+            "保險金",
+            "手術",
+            "身故",
+            "失能",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209191MV1A00323A11Z90000026-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...人壽吉祥理財變額萬能壽險 【 本保險為不分紅保險單 , 不參加紅利分配 , 並無紅利給付項目 】 【 給付項目 : 保單帳戶價值之返還 、 身故保險金或喪葬費用保險金 、 完全..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000026-A.pdf",
+              "page": 1,
+              "term": "保險範圍",
+              "snippet": "...定之保險事故者 , 視為契約有效 , 本公司依約定給付保險金而不退還保險費 。 【 保險範圍 】 第五條本契約有效期間內 , 本公司依第十七條至第十九條約定給付保險金 。 【..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000026-A.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...加紅利分配 , 並無紅利給付項目 】 【 給付項目 : 保單帳戶價值之返還 、 身故保險金或喪葬費用保險金 、 完全殘廢保險金 、 祝壽保險金 】 本商品經本公司合格簽署人員..."
+            }
+          ]
         },
         {
           "key": "definitions",
           "label": "重要定義",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 8 個重點詞：名詞定義、定義、傷害、醫師、手術、意外傷害事故。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "傷害",
+            "醫師",
+            "手術",
+            "意外傷害事故",
+            "保證期間",
+            "宣告利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209191MV1A00323A11Z90000026-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "..., 要保人應於要保書中擇一投保 , 所投保之型別並將載明於本契約保單首頁 。 【 名詞定義 】 第二條本契約所用名詞定義如下 · 、 「 本公司 」 : 係指富邦人壽保險股份..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000026-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...要保人應於要保書中擇一投保 , 所投保之型別並將載明於本契約保單首頁 。 【 名詞定義 】 第二條本契約所用名詞定義如下 · 、 「 本公司 」 : 係指富邦人壽保險股份..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000026-A.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...約效力即行終止 ; 如要保人或受益人能提出證明文件 , 足以認為被保險人極可能因意外傷害事故而死亡者 , 本公司應依意外傷害事故發生日為準 , 依第十八條約定返還保單帳戶價..."
+            }
+          ]
         },
         {
           "key": "special",
           "label": "特殊項目",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：除外責任、限制、投保年齡、保險期間、契約撤銷權。",
+          "terms": [
+            "除外責任",
+            "限制",
+            "投保年齡",
+            "保險期間",
+            "契約撤銷權"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209191MV1A00323A11Z90000026-A.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...本契約符合第十九條約定之給付要件時 , 本公司應主動給付祝壽保險金予受益人 。 【 除外責任 】 第二十六條有下列情形之一者 , 本公司不負給付保險金的責任 、 要保人故意致被..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000026-A.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...本契約有效期間內 , 本公司依第十七條至第十九條約定給付保險金 。 【 保險費交付的限制 】 第六條本契約下列金額除以 「 保單帳戶價值加計當次預定投資保費金額 」 之比例..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000026-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...】 第三十九條本保險為不分紅保單 , 不參加紅利分配 , 並無紅利給付項目 。 【 投保年齡的計算及錯誤的處理 】 第四十條要保人在申請投保時 , 應將被保險人出生年月日在要保..."
+            }
+          ]
         },
         {
           "key": "claims",
           "label": "理賠申請",
-          "status": "not_detected",
-          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
-          "terms": [],
-          "pages": [],
-          "evidence": []
+          "status": "detected",
+          "summary": "已從文件文字命中 7 個重點詞：理賠、申請、保險金的申領、申領、檢具、受益人。",
+          "terms": [
+            "理賠",
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209191MV1A00323A11Z90000026-A.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...保時間之先後者 , 各該保險公司應依其喪葬費用保險金額與扣除要保時間在先之保險公司應理賠之金額後所餘之限額比例分擔其責任 。 受益人依第二十三條約定申領身故保險金或喪葬費用..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000026-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...額與保單帳戶價值兩者之總和給付 , 其中 , 淨危險保額及保單帳戶價值係以受益人檢齊申請身故 、 完全殘廢保險金之所須文件並送達本公司之日為基準日 , 依附表三 「 評價時..."
+            },
+            {
+              "document": "209191MV1A00323A11Z90000026-A.pdf",
+              "page": 1,
+              "term": "保險金的申領",
+              "snippet": "...重新指定之投資標的中 , 且就重新投資之金額 , 不再扣除保費費用 。 【 完全殘廢保險金的申領 】 第二十二條受益人申領 「 完全殘廢保險金 」 時應檢具下列文件 · 、 保險單..."
+            }
+          ]
         }
       ],
-      "focus_score": 0,
+      "focus_score": 4,
       "confidence": "parsed",
       "documents": [
         {
@@ -141210,20 +141854,10 @@
           "document_kind": "pdf",
           "file_size": 771762,
           "page_count": 30,
-          "pages_parsed": 20,
-          "text_char_count": 53915,
+          "pages_parsed": 30,
+          "text_char_count": 42903,
           "extraction_status": "extracted",
-          "error": null
-        },
-        {
-          "file_name": "209191MV1A00323A11Z90000026-F.pdf",
-          "document_type": "product_summary",
-          "document_kind": "pdf",
-          "file_size": 256916,
-          "page_count": 8,
-          "pages_parsed": 8,
-          "text_char_count": 13165,
-          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
           "error": null
         }
       ]

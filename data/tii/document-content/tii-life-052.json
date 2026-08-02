@@ -1,48 +1,54 @@
 {
-  "generated_at": "2026-07-06T09:11:38+08:00",
+  "generated_at": "2026-07-31T21:44:41+08:00",
   "summary": {
-    "generated_at": "2026-07-06T09:11:38+08:00",
+    "generated_at": "2026-07-31T21:44:41+08:00",
     "source": "local TII files downloaded through captcha session",
     "batch_id": "tii-life-052",
     "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
-    "product_count": 126,
-    "document_count": 246,
-    "extracted_document_count": 246,
+    "product_count": 128,
+    "document_count": 250,
+    "extracted_document_count": 250,
     "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 0,
     "error_document_count": 0,
-    "pdf_document_count": 232,
+    "pdf_document_count": 236,
     "legacy_doc_document_count": 14,
-    "policy_terms_document_count": 126,
-    "product_summary_document_count": 120,
-    "total_text_characters": 731827,
+    "policy_terms_document_count": 128,
+    "product_summary_document_count": 122,
+    "total_text_characters": 739702,
     "focus_counts": [
       {
         "label": "特殊項目",
-        "count": 118
+        "count": 120
       },
       {
         "label": "保障項目",
-        "count": 117
+        "count": 119
       },
       {
         "label": "理賠申請",
-        "count": 108
+        "count": 110
       },
       {
         "label": "重要定義",
-        "count": 105
+        "count": 107
       }
     ],
     "coverage_tag_counts": [
       {
         "label": "豁免/附加條款",
-        "count": 5
+        "count": 6
+      },
+      {
+        "label": "年金險",
+        "count": 2
       }
     ],
     "status_counts": [
       {
         "label": "extracted",
-        "count": 246
+        "count": 250
       }
     ]
   },
@@ -11721,6 +11727,254 @@
       ]
     },
     {
+      "product_id": "209421M21A01100",
+      "company": "富邦人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "富邦人壽好利年年利率變動型年金保險（甲型）",
+      "sale_status": "已停售",
+      "sale_date": "099/09/01",
+      "discontinued_date": "099/10/01",
+      "source_batch_id": "tii-life-052",
+      "coverage_tags": [
+        "年金險"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 6312,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、身故、年金給付、年金金額、未支領之年金餘額。",
+          "terms": [
+            "給付項目",
+            "身故",
+            "年金給付",
+            "年金金額",
+            "未支領之年金餘額"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "evidence": [
+            {
+              "document": "209421M21A01100-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...好利年年利率變動型年金保險(甲型) (本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目。) 【給付項目:年金、返還年金保單價值準備金】 本商品經本公司合格簽署人員檢視其內..."
+            },
+            {
+              "document": "209421M21A01100-A.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...任,以同意承保時溯自 預收相當於第一期保險費金額時開始。但本公司同意承保前而被保險人身故時,本公司無息退還要保 人所繳保險費。 本公司自預收相當於第一期保險費之金額後十五日..."
+            },
+            {
+              "document": "209421M21A01100-A.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...,並參考當時市場利率水準訂定之,且不得為 負數。 本契約所稱「預定利率」係指本公司於年金給付開始日用以計算年金金額之利率,最高不得超過年金 給付開始日當月之宣告利率,且不得為負..."
+            },
+            {
+              "document": "209421M21A01100-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...始日起仍生存者,本公司應按約定之年金給 付方式給付其依第八條計算所得申領之年金,至其身故或保險年齡達 一百一十一歲為止。 被保險人於本契約「保證期間」內身故者,本公司仍應將..."
+            },
+            {
+              "document": "209421M21A01100-F.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...11歲)。 【承保範圍】(詳細內容依保險單條款為準) (一) 年金的給付 被保險人自年金給付開始日起仍生存者,本公司應按約定之年金給 付方式給付其依第八條計算所得申領之年金,至..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：名詞定義、定義、保證期間、年金給付期間、宣告利率、預定利率。",
+          "terms": [
+            "名詞定義",
+            "定義",
+            "保證期間",
+            "年金給付期間",
+            "宣告利率",
+            "預定利率"
+          ],
+          "pages": [
+            1,
+            2,
+            3
+          ],
+          "evidence": [
+            {
+              "document": "209421M21A01100-A.pdf",
+              "page": 1,
+              "term": "名詞定義",
+              "snippet": "...事人的真意,不得拘泥於所用的文字;如有疑義時,以作有利於被保險 人的解釋為原則。 【名詞定義】 第 二 條 本契約所稱「保證期間」係指依本契約約定,不論被保險人生存與否,本公司..."
+            },
+            {
+              "document": "209421M21A01100-A.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...的真意,不得拘泥於所用的文字;如有疑義時,以作有利於被保險 人的解釋為原則。 【名詞定義】 第 二 條 本契約所稱「保證期間」係指依本契約約定,不論被保險人生存與否,本公司..."
+            },
+            {
+              "document": "209421M21A01100-A.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...有疑義時,以作有利於被保險 人的解釋為原則。 【名詞定義】 第 二 條 本契約所稱「保證期間」係指依本契約約定,不論被保險人生存與否,本公司保證給付年金之期間, 分別為十年、十..."
+            },
+            {
+              "document": "209421M21A01100-F.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...八條計算所得申領之年金,至其身故或保險年齡達 一百一十一歲為止。 被保險人於本契約「保證期間」內身故者,本公司仍應將「未支領 之年金餘額」給付予本契約之身故受益人或其他應得之人..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 8 個重點詞：限制、投保年齡、契約撤銷權、年金給付開始日、年金保單價值準備金、變更年金給付開始日。",
+          "terms": [
+            "限制",
+            "投保年齡",
+            "契約撤銷權",
+            "年金給付開始日",
+            "年金保單價值準備金",
+            "變更年金給付開始日",
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            5
+          ],
+          "evidence": [
+            {
+              "document": "209421M21A01100-A.pdf",
+              "page": 1,
+              "term": "契約撤銷權",
+              "snippet": "...收相當於第一期保險費之金額後十五日內不為同意承保與否之意思表示者,視為同意承保。 【契約撤銷權】 第 四 條 要保人於保險單送達的翌日起算十日內,得以書面檢同保險單向本公司撤銷本..."
+            },
+            {
+              "document": "209421M21A01100-A.pdf",
+              "page": 1,
+              "term": "年金給付開始日",
+              "snippet": "...,並參考當時市場利率水準訂定之,且不得為 負數。 本契約所稱「預定利率」係指本公司於年金給付開始日用以計算年金金額之利率,最高不得超過年金 給付開始日當月之宣告利率,且不得為負數。..."
+            },
+            {
+              "document": "209421M21A01100-A.pdf",
+              "page": 1,
+              "term": "年金保單價值準備金",
+              "snippet": "...(本保險為不分紅保險單,不參加紅利分配,並無紅利給付項目。) 【給付項目:年金、返還年金保單價值準備金】 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令,惟為確保權益..."
+            },
+            {
+              "document": "209421M21A01100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...年 金餘額,本公司應將其未支領之年金餘額依約定給付予身故受益人或 其他應得之人。 【除外責任】 無"
+            },
+            {
+              "document": "209421M21A01100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...金保險(甲型) 保險商品內容說明 【繳費方法】 年繳、半年繳、季繳、月繳及彈性繳 【保險期間】 終身(至保險年齡達 111歲)。 【承保範圍】(詳細內容依保險單條款為準) (一..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：申請、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "evidence": [
+            {
+              "document": "209421M21A01100-A.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...地點交付,或由本公司派員前往收取,並交 付本公司開發之憑證。 【年金保單價值準備金的通知與計算】 第 六 條 年金給付開始日前,本公司於本契約每一保單年度末,應依約定方式通..."
+            },
+            {
+              "document": "209421M21A01100-A.pdf",
+              "page": 2,
+              "term": "申請",
+              "snippet": "SACA0990413 2 / 5 商品代號:SACA 二、扣除要保人依第十一條申請減少之金額。 三、每日依前二款之淨額加計按宣告利率以單利法計算之金額。 第二保單年度..."
+            },
+            {
+              "document": "209421M21A01100-A.pdf",
+              "page": 2,
+              "term": "受益人",
+              "snippet": "...年金金額若低於新台幣五千元時,本公司改依年金保單價值準備金於年金給付開始日 一次給付受益人,本契約即行終止。 【年金的給付】 第 九 條 被保險人自年金給付開始日起仍生存者,..."
+            },
+            {
+              "document": "209421M21A01100-F.pdf",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...險人自年金給付開始日起仍生存者,本公司應按約定之年金給 付方式給付其依第八條計算所得申領之年金,至其身故或保險年齡達 一百一十一歲為止。 被保險人於本契約「保證期間」內身故..."
+            },
+            {
+              "document": "209421M21A01100-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...人於本契約「保證期間」內身故者,本公司仍應將「未支領 之年金餘額」給付予本契約之身故受益人或其他應得之人至「保證期 間」屆滿為止;被保險人於「保證期間」屆滿後身故者,本契約即..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "209421M21A01100-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 115471,
+          "page_count": 5,
+          "pages_parsed": 5,
+          "text_char_count": 5756,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "209421M21A01100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 56017,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 556,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        }
+      ]
+    },
+    {
       "product_id": "209421M21A01200",
       "company": "富邦人壽保險股份有限公司",
       "insurance_category": "傳統型年金",
@@ -22451,6 +22705,223 @@
           "pages_parsed": 1,
           "text_char_count": 292,
           "extraction_status": "extracted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "209491E21A00200",
+      "company": "富邦人壽保險股份有限公司",
+      "insurance_category": "傳統型年金",
+      "product_name": "富邦人壽年齡的計算及錯誤的處理批註條款",
+      "sale_status": "未停售",
+      "sale_date": "100/01/19",
+      "discontinued_date": "",
+      "source_batch_id": "tii-life-052",
+      "coverage_tags": [
+        "年金險",
+        "豁免/附加條款"
+      ],
+      "document_count": 2,
+      "extracted_document_count": 2,
+      "text_char_count": 1563,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、年金給付、年金金額。",
+          "terms": [
+            "給付項目",
+            "年金給付",
+            "年金金額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209491E21A00200-A.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...邦人壽年齡的計算及錯誤的處理批註條款 【本保險為不分紅保單,不參加紅利分配,並無紅利給付項目】 本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令,惟為確保權益..."
+            },
+            {
+              "document": "209491E21A00200-A.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...誤,而致本公司短發年金金額者,本公司應計算實付年金金額與應付年金金額的差 額,於下次年金給付時按應付年金金額給付,並一次補足過去實付年金金額與應付年金金額的差 額。 三、因投保..."
+            },
+            {
+              "document": "209491E21A00200-A.pdf",
+              "page": 1,
+              "term": "年金金額",
+              "snippet": "...如有已給付 年金者,受益人應將其無息退還本公司。 二、因投保年齡錯誤,而致本公司短發年金金額者,本公司應計算實付年金金額與應付年金金額的差 額,於下次年金給付時按應付年金金額給..."
+            },
+            {
+              "document": "209491E21A00200-F.pdf",
+              "page": 1,
+              "term": "年金給付",
+              "snippet": "...誤,而致本公司短發年金金額者,本公司應計算實付年金金額與應付年金 金額的差額,於下次年金給付時按應付年金金額給付,並一次補足過去實付年金金額與應 付年金金額的差額。 三、因投保..."
+            },
+            {
+              "document": "209491E21A00200-F.pdf",
+              "page": 1,
+              "term": "年金金額",
+              "snippet": "...如 有已給付年金者,受益人應將其無息退還本公司。 二、因投保年齡錯誤,而致本公司短發年金金額者,本公司應計算實付年金金額與應付年金 金額的差額,於下次年金給付時按應付年金金額給..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：年金給付期間、預定利率。",
+          "terms": [
+            "年金給付期間",
+            "預定利率"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209491E21A00200-A.pdf",
+              "page": 1,
+              "term": "年金給付期間",
+              "snippet": "...錯誤,而溢發年金金額者,本公司應重新計算實付年金金額與應付年金金額的差額, 並於未來年金給付期間分期扣除。 前項第一、二款情形,其錯誤原因歸責於本公司者,應加計利息退還或給付,若發..."
+            },
+            {
+              "document": "209491E21A00200-A.pdf",
+              "page": 1,
+              "term": "預定利率",
+              "snippet": "...利率」兩者 取其大者計算;若發生於年金給付開始日後者,其利息按「本契約計算年金金額之預定利率」與「民 法第二百零三條法定週年利率」兩者取其大者計算。 附表一:適用於本批註條款之..."
+            },
+            {
+              "document": "209491E21A00200-F.pdf",
+              "page": 1,
+              "term": "年金給付期間",
+              "snippet": "...錯誤,而溢發年金金額者,本公司應重新計算實付年金金額與應付年金金額 的差額,並於未來年金給付期間分期扣除。 前項第一、二款情形,其錯誤原因歸責於本公司者,應加計利息退還或給付,若發..."
+            },
+            {
+              "document": "209491E21A00200-F.pdf",
+              "page": 1,
+              "term": "預定利率",
+              "snippet": "...利率」兩者取其大者計算;若發生於年金給付開始日後者,其利息按「本契約計算年金金額 之預定利率」與「民法第二百零三條法定週年利率」兩者取其大者計算。 【除外責任】 無"
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：投保年齡、年金給付開始日、除外責任。",
+          "terms": [
+            "投保年齡",
+            "年金給付開始日",
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209491E21A00200-A.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...理】 第 二 條 要保人在申請投保時,應將被保險人出生年月日在要保書填明。被保險人的投保年齡,以足歲計算, 但未滿一歲的零數超過六個月者,加算一歲。 被保險人的投保年齡發生錯誤..."
+            },
+            {
+              "document": "209491E21A00200-A.pdf",
+              "page": 1,
+              "term": "年金給付開始日",
+              "snippet": "...度辦理保單借款之利率」與「民法第二百零三條法定週年利率」兩者 取其大者計算;若發生於年金給付開始日後者,其利息按「本契約計算年金金額之預定利率」與「民 法第二百零三條法定週年利率」兩..."
+            },
+            {
+              "document": "209491E21A00200-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...約計算年金金額 之預定利率」與「民法第二百零三條法定週年利率」兩者取其大者計算。 【除外責任】 無"
+            },
+            {
+              "document": "209491E21A00200-F.pdf",
+              "page": 1,
+              "term": "投保年齡",
+              "snippet": "...算及錯誤的處理】 要保人在申請投保時,應將被保險人出生年月日在要保書填明。被保險人的投保年齡,以足歲 計算,但未滿一歲的零數超過六個月者,加算一歲。 被保險人的投保年齡發生錯誤..."
+            },
+            {
+              "document": "209491E21A00200-F.pdf",
+              "page": 1,
+              "term": "年金給付開始日",
+              "snippet": "...度辦理保單借款之利率」與「民法第二百零三條法定週 年利率」兩者取其大者計算;若發生於年金給付開始日後者,其利息按「本契約計算年金金額 之預定利率」與「民法第二百零三條法定週年利率」兩..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：申請、受益人。",
+          "terms": [
+            "申請",
+            "受益人"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "209491E21A00200-A.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...以作有利於被 保險人的解釋為原則。 【年齡的計算及錯誤的處理】 第 二 條 要保人在申請投保時,應將被保險人出生年月日在要保書填明。被保險人的投保年齡,以足歲計算, 但未滿..."
+            },
+            {
+              "document": "209491E21A00200-A.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...齡高於七十歲者,本契約無效,本公司應將已繳保險費無息退還要保人,如有已給付 年金者,受益人應將其無息退還本公司。 二、因投保年齡錯誤,而致本公司短發年金金額者,本公司應計算實..."
+            },
+            {
+              "document": "209491E21A00200-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...齡的計算及錯誤的處理批註條款 保險商品內容說明 【年齡的計算及錯誤的處理】 要保人在申請投保時,應將被保險人出生年月日在要保書填明。被保險人的投保年齡,以足歲 計算,但未滿..."
+            },
+            {
+              "document": "209491E21A00200-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...齡高於七十歲者,本契約無效,本公司應將已繳保險費無息退還要保人,如 有已給付年金者,受益人應將其無息退還本公司。 二、因投保年齡錯誤,而致本公司短發年金金額者,本公司應計算實..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "209491E21A00200-A.pdf",
+          "document_type": "policy_terms",
+          "document_kind": "pdf",
+          "file_size": 98286,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1024,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
+          "error": null
+        },
+        {
+          "file_name": "209491E21A00200-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 56644,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 539,
+          "extraction_status": "extracted",
+          "extraction_method": "pypdf",
           "error": null
         }
       ]

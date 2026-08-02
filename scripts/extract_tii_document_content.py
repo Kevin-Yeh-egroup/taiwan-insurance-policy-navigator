@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import logging
 import os
@@ -23,6 +24,11 @@ try:
     import pypdfium2 as pdfium
 except ImportError:  # pragma: no cover - optional fallback for legacy PDF encodings
     pdfium = None
+
+try:
+    import pymupdf
+except ImportError:  # pragma: no cover - optional OCR renderer
+    pymupdf = None
 
 
 TAIPEI = timezone(timedelta(hours=8))
@@ -253,8 +259,13 @@ def normalize_ocr_text(text: str) -> str:
     return re.sub(r"(?<=[\u4e00-\u9fff])\s+(?=[\u4e00-\u9fff])", "", normalized)
 
 
-def extract_windows_ocr_pages(path: Path, pages_to_parse: int) -> tuple[str, list[dict[str, Any]]]:
-    if os.name != "nt" or pdfium is None:
+def extract_windows_ocr_pages(
+    path: Path,
+    pages_to_parse: int,
+    *,
+    evidence_output: Path | None = None,
+) -> tuple[str, list[dict[str, Any]]]:
+    if os.name != "nt" or (pdfium is None and pymupdf is None):
         return "", []
 
     helper = Path(__file__).with_name("ocr_pdf_windows.ps1")
@@ -265,21 +276,63 @@ def extract_windows_ocr_pages(path: Path, pages_to_parse: int) -> tuple[str, lis
         with tempfile.TemporaryDirectory(prefix="tii-ocr-") as temp_dir:
             temp_root = Path(temp_dir)
             output_path = temp_root / "ocr.json"
-            document = pdfium.PdfDocument(str(path))
-            try:
-                for index in range(min(len(document), pages_to_parse)):
-                    page = document[index]
-                    width, height = page.get_size()
-                    max_dimension = max(width, height)
-                    scale = min(2.0, 2200 / max_dimension) if max_dimension else 2.0
-                    bitmap = page.render(scale=scale)
-                    image = bitmap.to_pil()
-                    image.save(temp_root / f"page-{index + 1:04d}.png")
-                    image.close()
-                    bitmap.close()
-                    page.close()
-            finally:
-                document.close()
+            render_evidence: list[dict[str, Any]] = []
+            renderer = "pymupdf" if pymupdf is not None else "pypdfium2"
+            if pymupdf is not None:
+                document = pymupdf.open(path)
+                try:
+                    for index in range(min(len(document), pages_to_parse)):
+                        page = document[index]
+                        width, height = page.rect.width, page.rect.height
+                        max_dimension = max(width, height)
+                        scale = min(2.0, 2200 / max_dimension) if max_dimension else 2.0
+                        pixmap = page.get_pixmap(
+                            matrix=pymupdf.Matrix(scale, scale),
+                            alpha=False,
+                        )
+                        image_path = temp_root / f"page-{index + 1:04d}.png"
+                        pixmap.save(image_path)
+                        render_evidence.append(
+                            {
+                                "page": index + 1,
+                                "render_scale": scale,
+                                "pixel_width": pixmap.width,
+                                "pixel_height": pixmap.height,
+                                "png_sha256": hashlib.sha256(
+                                    image_path.read_bytes()
+                                ).hexdigest(),
+                            }
+                        )
+                finally:
+                    document.close()
+            else:
+                document = pdfium.PdfDocument(str(path))
+                try:
+                    for index in range(min(len(document), pages_to_parse)):
+                        page = document[index]
+                        width, height = page.get_size()
+                        max_dimension = max(width, height)
+                        scale = min(2.0, 2200 / max_dimension) if max_dimension else 2.0
+                        bitmap = page.render(scale=scale)
+                        image = bitmap.to_pil()
+                        image_path = temp_root / f"page-{index + 1:04d}.png"
+                        image.save(image_path)
+                        render_evidence.append(
+                            {
+                                "page": index + 1,
+                                "render_scale": scale,
+                                "pixel_width": image.width,
+                                "pixel_height": image.height,
+                                "png_sha256": hashlib.sha256(
+                                    image_path.read_bytes()
+                                ).hexdigest(),
+                            }
+                        )
+                        image.close()
+                        bitmap.close()
+                        page.close()
+                finally:
+                    document.close()
 
             completed = subprocess.run(
                 [
@@ -308,6 +361,7 @@ def extract_windows_ocr_pages(path: Path, pages_to_parse: int) -> tuple[str, lis
             payload = json.loads(output_path.read_text(encoding="utf-8"))
             page_texts = []
             parts = []
+            text_evidence: dict[int, dict[str, Any]] = {}
             for item in payload.get("pages", []):
                 page_text = normalize_ocr_text(str(item.get("text") or ""))
                 if not page_text:
@@ -315,7 +369,56 @@ def extract_windows_ocr_pages(path: Path, pages_to_parse: int) -> tuple[str, lis
                 page_number = int(item.get("page") or len(page_texts) + 1)
                 page_texts.append({"page": page_number, "text": page_text})
                 parts.append(page_text)
-            return normalize_ocr_text(" ".join(parts)), page_texts
+                text_evidence[page_number] = {
+                    "ocr_text_char_count": len(page_text),
+                    "ocr_text_sha256": hashlib.sha256(
+                        page_text.encode("utf-8")
+                    ).hexdigest(),
+                    "text": page_text,
+                }
+            normalized_text = normalize_ocr_text(" ".join(parts))
+            if evidence_output is not None:
+                evidence_pages = []
+                for item in render_evidence:
+                    page_number = int(item["page"])
+                    evidence_pages.append(
+                        {
+                            **item,
+                            **text_evidence.get(
+                                page_number,
+                                {
+                                    "ocr_text_char_count": 0,
+                                    "ocr_text_sha256": "",
+                                    "text": "",
+                                },
+                            ),
+                        }
+                    )
+                evidence = {
+                    "schema_version": 1,
+                    "source_file": path.name,
+                    "source_document_sha256": hashlib.sha256(
+                        path.read_bytes()
+                    ).hexdigest(),
+                    "renderer": renderer,
+                    "ocr_language": payload.get("language") or "",
+                    "page_count": len(evidence_pages),
+                    "page_numbers": [
+                        item["page"] for item in evidence_pages
+                    ],
+                    "normalized_text_char_count": len(normalized_text),
+                    "normalized_text_sha256": hashlib.sha256(
+                        normalized_text.encode("utf-8")
+                    ).hexdigest(),
+                    "pages": evidence_pages,
+                }
+                evidence_output.parent.mkdir(parents=True, exist_ok=True)
+                evidence_output.write_text(
+                    json.dumps(evidence, ensure_ascii=False, indent=2)
+                    + "\n",
+                    encoding="utf-8",
+                )
+            return normalized_text, page_texts
     except Exception:
         return "", []
 
@@ -717,12 +820,45 @@ def summarize(records: list[dict[str, Any]], documents: list[dict[str, Any]], ge
     }
 
 
-def compact_document_summary(public_output: dict[str, Any], batch_id: str) -> dict[str, Any]:
+REVIEWED_SCHEDULE_FIELDS = (
+    "selection_type",
+    "input_mode",
+    "selection_source",
+    "selection_label",
+    "face_amount_label",
+    "selection_guidance",
+    "unit_fields",
+    "version_characteristics",
+    "plan_options",
+    "coverage_entries",
+)
+
+REVIEWED_SOURCE_FIELDS = (
+    "parser_id",
+    "source_file",
+    "source_document_sha256",
+    "schedule_sha256",
+    "reviewed_at",
+)
+
+
+def compact_document_summary(
+    public_output: dict[str, Any],
+    batch_id: str,
+    reviewed_records: list[dict[str, Any]] | None = None,
+) -> dict[str, Any]:
+    reviewed_by_product_id = {
+        str(record.get("product_id") or ""): record
+        for record in (reviewed_records or [])
+        if record.get("product_id")
+    }
     records = []
     for record in public_output.get("records", []):
+        product_id = str(record.get("product_id") or "")
+        reviewed = reviewed_by_product_id.get(product_id)
         structured_tags = infer_structured_coverage_tags(record)
         summary = {
-            "product_id": record.get("product_id", ""),
+            "product_id": product_id,
             "coverage_tags": (
                 structured_tags
                 if structured_tags is not None
@@ -737,19 +873,15 @@ def compact_document_summary(public_output: dict[str, Any], batch_id: str) -> di
                 if card.get("status") == "detected"
             ],
         }
-        for field in [
-            "selection_type",
-            "input_mode",
-            "selection_source",
-            "selection_label",
-            "selection_guidance",
-            "unit_fields",
-            "version_characteristics",
-            "plan_options",
-            "coverage_entries",
-        ]:
-            if record.get(field):
-                summary[field] = record[field]
+        schedule_source = reviewed or record
+        for field in REVIEWED_SCHEDULE_FIELDS:
+            if schedule_source.get(field):
+                summary[field] = schedule_source[field]
+        if reviewed:
+            for field in REVIEWED_SOURCE_FIELDS:
+                if reviewed.get(field):
+                    summary[field] = reviewed[field]
+            summary["review_status"] = "verified_reference"
         records.append(summary)
     return {
         "generated_at": public_output.get("generated_at"),

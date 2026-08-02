@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-24T18:25:43+08:00",
+  "generated_at": "2026-07-28T16:09:39+08:00",
   "runs": [
     {
       "batch_id": "tii-life-001",
@@ -528,9 +528,9 @@
     },
     {
       "batch_id": "tii-life-008",
-      "ran_at": "2026-06-12T12:14:37+08:00",
+      "ran_at": "2026-07-27T15:06:47+08:00",
       "status": "submitted_result_saved",
-      "note": "Fetched all result pages from an existing completed TII session.",
+      "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "202-台灣人壽保險股份有限公司",
       "category_label": "健康保險",
       "query_hint": {
@@ -544,15 +544,15 @@
       "captcha_files": [
         "work\\tii-execution\\tii-life-008-captcha-1.jpg"
       ],
-      "result_file": "work\\tii-results\\tii-life-008-page-001.html",
+      "result_file": "work\\tii-results\\tii-life-008.html",
       "fetched_pages": {
         "page_size": 10,
-        "total_count": 1283,
-        "total_pages": 129,
-        "official_row_count": 1283,
-        "unique_product_id_count": 1283,
+        "total_count": 1296,
+        "total_pages": 130,
+        "official_row_count": 1296,
+        "unique_product_id_count": 1296,
         "duplicate_product_id_count": 0,
-        "saved_page_count": 129,
+        "saved_page_count": 130,
         "saved_page_sample": [
           "work\\tii-results\\tii-life-008-page-001.html",
           "work\\tii-results\\tii-life-008-page-002.html",
@@ -578,10 +578,10 @@
         "is_complete": true
       },
       "fetched_details": {
-        "detail_link_count": 1283,
+        "detail_link_count": 1296,
         "saved_detail_count": 0,
-        "already_saved_detail_count": 1273,
-        "total_saved_detail_count": 1273,
+        "already_saved_detail_count": 1286,
+        "total_saved_detail_count": 1286,
         "failed_detail_count": 10,
         "saved_detail_sample": [],
         "failed_details": [
@@ -635,7 +635,29 @@
             "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=202311MZ1ANHB21A11Z10000013",
             "reason": "invalid_detail_session"
           }
-        ]
+        ],
+        "document_downloads": {
+          "enabled": false,
+          "priority": "core",
+          "total_scanned_all_details": true,
+          "total_document_link_count": 0,
+          "document_offset": 0,
+          "document_limit": 0,
+          "skipped_document_count": 0,
+          "document_link_count": 0,
+          "saved_document_count": 0,
+          "already_saved_document_count": 0,
+          "failed_document_count": 0,
+          "final_repair_attempted": false,
+          "available_document_count": 0,
+          "repaired_document_count": 0,
+          "unresolved_document_count": 0,
+          "missing_detail_count": 0,
+          "status_path": "",
+          "saved_document_sample": [],
+          "already_saved_document_sample": [],
+          "failed_documents": []
+        }
       }
     },
     {
@@ -2060,9 +2082,9 @@
     },
     {
       "batch_id": "tii-life-027",
-      "ran_at": "2026-06-15T11:44:02+08:00",
-      "status": "submitted_result_saved",
-      "note": "Official site returned a result-like page and it was saved for import.",
+      "ran_at": "2026-07-27T16:58:04+08:00",
+      "status": "captcha_failed_or_required",
+      "note": "Official site did not return usable result data; captcha may be missing or incorrect.",
       "company_label": "205-凱基人壽保險股份有限公司(原中國人壽)",
       "category_label": "傳統型壽險",
       "query_hint": {
@@ -2077,68 +2099,8 @@
         "work\\tii-execution\\tii-life-027-captcha-1.jpg"
       ],
       "result_file": "work\\tii-results\\tii-life-027.html",
-      "fetched_pages": {
-        "page_size": 10,
-        "total_count": 1222,
-        "total_pages": 123,
-        "official_row_count": 1222,
-        "unique_product_id_count": 1100,
-        "duplicate_product_id_count": 122,
-        "saved_page_count": 123,
-        "saved_page_sample": [
-          "work\\tii-results\\tii-life-027-page-001.html",
-          "work\\tii-results\\tii-life-027-page-002.html",
-          "work\\tii-results\\tii-life-027-page-003.html",
-          "work\\tii-results\\tii-life-027-page-004.html",
-          "work\\tii-results\\tii-life-027-page-005.html",
-          "work\\tii-results\\tii-life-027-page-006.html",
-          "work\\tii-results\\tii-life-027-page-007.html",
-          "work\\tii-results\\tii-life-027-page-008.html",
-          "work\\tii-results\\tii-life-027-page-009.html",
-          "work\\tii-results\\tii-life-027-page-010.html",
-          "work\\tii-results\\tii-life-027-page-011.html",
-          "work\\tii-results\\tii-life-027-page-012.html",
-          "work\\tii-results\\tii-life-027-page-013.html",
-          "work\\tii-results\\tii-life-027-page-014.html",
-          "work\\tii-results\\tii-life-027-page-015.html",
-          "work\\tii-results\\tii-life-027-page-016.html",
-          "work\\tii-results\\tii-life-027-page-017.html",
-          "work\\tii-results\\tii-life-027-page-018.html",
-          "work\\tii-results\\tii-life-027-page-019.html",
-          "work\\tii-results\\tii-life-027-page-020.html"
-        ],
-        "is_complete": true
-      },
-      "fetched_details": {
-        "detail_link_count": 1100,
-        "saved_detail_count": 1100,
-        "already_saved_detail_count": 0,
-        "total_saved_detail_count": 1100,
-        "failed_detail_count": 0,
-        "saved_detail_sample": [
-          "work\\tii-details\\tii-life-027\\205137M11A03100.html",
-          "work\\tii-details\\tii-life-027\\205121M11A01300.html",
-          "work\\tii-details\\tii-life-027\\205121M11A01000.html",
-          "work\\tii-details\\tii-life-027\\205131M12A00800.html",
-          "work\\tii-details\\tii-life-027\\205121M12A01400.html",
-          "work\\tii-details\\tii-life-027\\205131R12A02200.html",
-          "work\\tii-details\\tii-life-027\\205121M12C00300.html",
-          "work\\tii-details\\tii-life-027\\205121M12C00500.html",
-          "work\\tii-details\\tii-life-027\\205141M11A00200.html",
-          "work\\tii-details\\tii-life-027\\205141M12A00600.html",
-          "work\\tii-details\\tii-life-027\\205121R12A01800.html",
-          "work\\tii-details\\tii-life-027\\205141M12A00700.html",
-          "work\\tii-details\\tii-life-027\\205141M12A00900.html",
-          "work\\tii-details\\tii-life-027\\205141M12B01100.html",
-          "work\\tii-details\\tii-life-027\\205141M12B01200.html",
-          "work\\tii-details\\tii-life-027\\205121M11A00100.html",
-          "work\\tii-details\\tii-life-027\\205131M12A05500.html",
-          "work\\tii-details\\tii-life-027\\205121M12C05400.html",
-          "work\\tii-details\\tii-life-027\\205131M12A05600.html",
-          "work\\tii-details\\tii-life-027\\205141M11A00201.html"
-        ],
-        "failed_details": []
-      }
+      "fetched_pages": {},
+      "fetched_details": {}
     },
     {
       "batch_id": "tii-life-028",
@@ -3017,9 +2979,9 @@
     },
     {
       "batch_id": "tii-life-039",
-      "ran_at": "2026-06-15T17:30:47+08:00",
-      "status": "submitted_result_saved",
-      "note": "Official site returned a result-like page and it was saved for import.",
+      "ran_at": "2026-07-27T17:17:12+08:00",
+      "status": "captcha_failed_or_required",
+      "note": "Official site did not return usable result data; captcha may be missing or incorrect.",
       "company_label": "207-國華人壽保險股份有限公司",
       "category_label": "傳統型壽險",
       "query_hint": {
@@ -3034,68 +2996,8 @@
         "work\\tii-execution\\tii-life-039-captcha-1.jpg"
       ],
       "result_file": "work\\tii-results\\tii-life-039.html",
-      "fetched_pages": {
-        "page_size": 10,
-        "total_count": 341,
-        "total_pages": 35,
-        "official_row_count": 341,
-        "unique_product_id_count": 326,
-        "duplicate_product_id_count": 15,
-        "saved_page_count": 35,
-        "saved_page_sample": [
-          "work\\tii-results\\tii-life-039-page-001.html",
-          "work\\tii-results\\tii-life-039-page-002.html",
-          "work\\tii-results\\tii-life-039-page-003.html",
-          "work\\tii-results\\tii-life-039-page-004.html",
-          "work\\tii-results\\tii-life-039-page-005.html",
-          "work\\tii-results\\tii-life-039-page-006.html",
-          "work\\tii-results\\tii-life-039-page-007.html",
-          "work\\tii-results\\tii-life-039-page-008.html",
-          "work\\tii-results\\tii-life-039-page-009.html",
-          "work\\tii-results\\tii-life-039-page-010.html",
-          "work\\tii-results\\tii-life-039-page-011.html",
-          "work\\tii-results\\tii-life-039-page-012.html",
-          "work\\tii-results\\tii-life-039-page-013.html",
-          "work\\tii-results\\tii-life-039-page-014.html",
-          "work\\tii-results\\tii-life-039-page-015.html",
-          "work\\tii-results\\tii-life-039-page-016.html",
-          "work\\tii-results\\tii-life-039-page-017.html",
-          "work\\tii-results\\tii-life-039-page-018.html",
-          "work\\tii-results\\tii-life-039-page-019.html",
-          "work\\tii-results\\tii-life-039-page-020.html"
-        ],
-        "is_complete": true
-      },
-      "fetched_details": {
-        "detail_link_count": 326,
-        "saved_detail_count": 326,
-        "already_saved_detail_count": 0,
-        "total_saved_detail_count": 326,
-        "failed_detail_count": 0,
-        "saved_detail_sample": [
-          "work\\tii-details\\tii-life-039\\207137M11A00100.html",
-          "work\\tii-details\\tii-life-039\\207191A11A00100.html",
-          "work\\tii-details\\tii-life-039\\207137R11A00100.html",
-          "work\\tii-details\\tii-life-039\\207141M11A00403.html",
-          "work\\tii-details\\tii-life-039\\207141M11A00501.html",
-          "work\\tii-details\\tii-life-039\\207131M11A00702.html",
-          "work\\tii-details\\tii-life-039\\207131R11A00303.html",
-          "work\\tii-details\\tii-life-039\\207121M11A01902.html",
-          "work\\tii-details\\tii-life-039\\207121M11A02203.html",
-          "work\\tii-details\\tii-life-039\\207121M11A02303.html",
-          "work\\tii-details\\tii-life-039\\207121M11A02103.html",
-          "work\\tii-details\\tii-life-039\\207121M12G00804.html",
-          "work\\tii-details\\tii-life-039\\207131M11A00602.html",
-          "work\\tii-details\\tii-life-039\\207131M11A00303.html",
-          "work\\tii-details\\tii-life-039\\207131M11A00503.html",
-          "work\\tii-details\\tii-life-039\\207121M11A02500.html",
-          "work\\tii-details\\tii-life-039\\207121M11A02600.html",
-          "work\\tii-details\\tii-life-039\\207121M11A02204.html",
-          "work\\tii-details\\tii-life-039\\207131M11A00800.html",
-          "work\\tii-details\\tii-life-039\\207131R11A00400.html"
-        ],
-        "failed_details": []
-      }
+      "fetched_pages": {},
+      "fetched_details": {}
     },
     {
       "batch_id": "tii-life-040",
@@ -5960,7 +5862,7 @@
     },
     {
       "batch_id": "tii-life-081",
-      "ran_at": "2026-06-17T14:26:52+08:00",
+      "ran_at": "2026-07-27T17:33:04+08:00",
       "status": "submitted_result_saved",
       "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "216-遠雄人壽保險事業股份有限公司",
@@ -5977,67 +5879,37 @@
         "work\\tii-execution\\tii-life-081-captcha-1.jpg"
       ],
       "result_file": "work\\tii-results\\tii-life-081.html",
-      "fetched_pages": {
-        "page_size": 10,
-        "total_count": 895,
-        "total_pages": 90,
-        "official_row_count": 895,
-        "unique_product_id_count": 778,
-        "duplicate_product_id_count": 117,
-        "saved_page_count": 90,
-        "saved_page_sample": [
-          "work\\tii-results\\tii-life-081-page-001.html",
-          "work\\tii-results\\tii-life-081-page-002.html",
-          "work\\tii-results\\tii-life-081-page-003.html",
-          "work\\tii-results\\tii-life-081-page-004.html",
-          "work\\tii-results\\tii-life-081-page-005.html",
-          "work\\tii-results\\tii-life-081-page-006.html",
-          "work\\tii-results\\tii-life-081-page-007.html",
-          "work\\tii-results\\tii-life-081-page-008.html",
-          "work\\tii-results\\tii-life-081-page-009.html",
-          "work\\tii-results\\tii-life-081-page-010.html",
-          "work\\tii-results\\tii-life-081-page-011.html",
-          "work\\tii-results\\tii-life-081-page-012.html",
-          "work\\tii-results\\tii-life-081-page-013.html",
-          "work\\tii-results\\tii-life-081-page-014.html",
-          "work\\tii-results\\tii-life-081-page-015.html",
-          "work\\tii-results\\tii-life-081-page-016.html",
-          "work\\tii-results\\tii-life-081-page-017.html",
-          "work\\tii-results\\tii-life-081-page-018.html",
-          "work\\tii-results\\tii-life-081-page-019.html",
-          "work\\tii-results\\tii-life-081-page-020.html"
-        ],
-        "is_complete": true
-      },
+      "fetched_pages": {},
       "fetched_details": {
-        "detail_link_count": 778,
-        "saved_detail_count": 778,
-        "already_saved_detail_count": 0,
-        "total_saved_detail_count": 778,
+        "detail_link_count": 810,
+        "saved_detail_count": 0,
+        "already_saved_detail_count": 810,
+        "total_saved_detail_count": 810,
         "failed_detail_count": 0,
-        "saved_detail_sample": [
-          "work\\tii-details\\tii-life-081\\216141R11A03000.html",
-          "work\\tii-details\\tii-life-081\\216141E11A03700.html",
-          "work\\tii-details\\tii-life-081\\216141A12A03800.html",
-          "work\\tii-details\\tii-life-081\\216191E11A18400.html",
-          "work\\tii-details\\tii-life-081\\216131M22C03400.html",
-          "work\\tii-details\\tii-life-081\\216131M22C03500.html",
-          "work\\tii-details\\tii-life-081\\216131M11A01700.html",
-          "work\\tii-details\\tii-life-081\\216121M12C01100.html",
-          "work\\tii-details\\tii-life-081\\216121M12C01200.html",
-          "work\\tii-details\\tii-life-081\\216131M11A01300.html",
-          "work\\tii-details\\tii-life-081\\216141M11A00100.html",
-          "work\\tii-details\\tii-life-081\\216141M11A00200.html",
-          "work\\tii-details\\tii-life-081\\216141M11A00300.html",
-          "work\\tii-details\\tii-life-081\\216141M11A00400.html",
-          "work\\tii-details\\tii-life-081\\216141M11A00500.html",
-          "work\\tii-details\\tii-life-081\\216141M11A00600.html",
-          "work\\tii-details\\tii-life-081\\216141M11A00700.html",
-          "work\\tii-details\\tii-life-081\\216142R12A62400.html",
-          "work\\tii-details\\tii-life-081\\216142R11A60900.html",
-          "work\\tii-details\\tii-life-081\\216141A12A03801.html"
-        ],
-        "failed_details": []
+        "saved_detail_sample": [],
+        "failed_details": [],
+        "document_downloads": {
+          "enabled": false,
+          "priority": "core",
+          "total_scanned_all_details": true,
+          "total_document_link_count": 0,
+          "document_offset": 0,
+          "document_limit": 0,
+          "skipped_document_count": 0,
+          "document_link_count": 0,
+          "saved_document_count": 0,
+          "already_saved_document_count": 0,
+          "failed_document_count": 0,
+          "final_repair_attempted": false,
+          "available_document_count": 0,
+          "repaired_document_count": 0,
+          "unresolved_document_count": 0,
+          "missing_detail_count": 0,
+          "status_path": "",
+          "saved_document_sample": [],
+          "already_saved_document_sample": [],
+          "failed_documents": []
+        }
       }
     },
     {
@@ -13939,7 +13811,7 @@
     },
     {
       "batch_id": "tii-property-002",
-      "ran_at": "2026-06-04T15:18:58+08:00",
+      "ran_at": "2026-07-27T11:33:01+08:00",
       "status": "submitted_result_saved",
       "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "101-臺灣產物保險股份有限公司",
@@ -13956,707 +13828,43 @@
         "work\\tii-execution\\tii-property-002-captcha-1.jpg"
       ],
       "result_file": "work\\tii-results\\tii-property-002.html",
-      "fetched_pages": {
-        "page_size": 10,
-        "total_count": 618,
-        "total_pages": 62,
-        "unique_product_id_count": 618,
-        "saved_pages": [
-          "work\\tii-results\\tii-property-002-page-001.html",
-          "work\\tii-results\\tii-property-002-page-002.html",
-          "work\\tii-results\\tii-property-002-page-003.html",
-          "work\\tii-results\\tii-property-002-page-004.html",
-          "work\\tii-results\\tii-property-002-page-005.html",
-          "work\\tii-results\\tii-property-002-page-006.html",
-          "work\\tii-results\\tii-property-002-page-007.html",
-          "work\\tii-results\\tii-property-002-page-008.html",
-          "work\\tii-results\\tii-property-002-page-009.html",
-          "work\\tii-results\\tii-property-002-page-010.html",
-          "work\\tii-results\\tii-property-002-page-011.html",
-          "work\\tii-results\\tii-property-002-page-012.html",
-          "work\\tii-results\\tii-property-002-page-013.html",
-          "work\\tii-results\\tii-property-002-page-014.html",
-          "work\\tii-results\\tii-property-002-page-015.html",
-          "work\\tii-results\\tii-property-002-page-016.html",
-          "work\\tii-results\\tii-property-002-page-017.html",
-          "work\\tii-results\\tii-property-002-page-018.html",
-          "work\\tii-results\\tii-property-002-page-019.html",
-          "work\\tii-results\\tii-property-002-page-020.html",
-          "work\\tii-results\\tii-property-002-page-021.html",
-          "work\\tii-results\\tii-property-002-page-022.html",
-          "work\\tii-results\\tii-property-002-page-023.html",
-          "work\\tii-results\\tii-property-002-page-024.html",
-          "work\\tii-results\\tii-property-002-page-025.html",
-          "work\\tii-results\\tii-property-002-page-026.html",
-          "work\\tii-results\\tii-property-002-page-027.html",
-          "work\\tii-results\\tii-property-002-page-028.html",
-          "work\\tii-results\\tii-property-002-page-029.html",
-          "work\\tii-results\\tii-property-002-page-030.html",
-          "work\\tii-results\\tii-property-002-page-031.html",
-          "work\\tii-results\\tii-property-002-page-032.html",
-          "work\\tii-results\\tii-property-002-page-033.html",
-          "work\\tii-results\\tii-property-002-page-034.html",
-          "work\\tii-results\\tii-property-002-page-035.html",
-          "work\\tii-results\\tii-property-002-page-036.html",
-          "work\\tii-results\\tii-property-002-page-037.html",
-          "work\\tii-results\\tii-property-002-page-038.html",
-          "work\\tii-results\\tii-property-002-page-039.html",
-          "work\\tii-results\\tii-property-002-page-040.html",
-          "work\\tii-results\\tii-property-002-page-041.html",
-          "work\\tii-results\\tii-property-002-page-042.html",
-          "work\\tii-results\\tii-property-002-page-043.html",
-          "work\\tii-results\\tii-property-002-page-044.html",
-          "work\\tii-results\\tii-property-002-page-045.html",
-          "work\\tii-results\\tii-property-002-page-046.html",
-          "work\\tii-results\\tii-property-002-page-047.html",
-          "work\\tii-results\\tii-property-002-page-048.html",
-          "work\\tii-results\\tii-property-002-page-049.html",
-          "work\\tii-results\\tii-property-002-page-050.html",
-          "work\\tii-results\\tii-property-002-page-051.html",
-          "work\\tii-results\\tii-property-002-page-052.html",
-          "work\\tii-results\\tii-property-002-page-053.html",
-          "work\\tii-results\\tii-property-002-page-054.html",
-          "work\\tii-results\\tii-property-002-page-055.html",
-          "work\\tii-results\\tii-property-002-page-056.html",
-          "work\\tii-results\\tii-property-002-page-057.html",
-          "work\\tii-results\\tii-property-002-page-058.html",
-          "work\\tii-results\\tii-property-002-page-059.html",
-          "work\\tii-results\\tii-property-002-page-060.html",
-          "work\\tii-results\\tii-property-002-page-061.html",
-          "work\\tii-results\\tii-property-002-page-062.html"
-        ],
-        "is_complete": true
-      },
+      "fetched_pages": {},
       "fetched_details": {
         "detail_link_count": 618,
-        "saved_detail_count": 617,
+        "saved_detail_count": 0,
+        "already_saved_detail_count": 617,
+        "total_saved_detail_count": 617,
         "failed_detail_count": 1,
-        "saved_details": [
-          "work\\tii-details\\tii-property-002\\101121201007010100.html",
-          "work\\tii-details\\tii-property-002\\101121201008010100.html",
-          "work\\tii-details\\tii-property-002\\101121201009010100.html",
-          "work\\tii-details\\tii-property-002\\101121201029010000.html",
-          "work\\tii-details\\tii-property-002\\101121201029010001.html",
-          "work\\tii-details\\tii-property-002\\101121201011010100.html",
-          "work\\tii-details\\tii-property-002\\101121201012010100.html",
-          "work\\tii-details\\tii-property-002\\101121201013010100.html",
-          "work\\tii-details\\tii-property-002\\101121201099010100.html",
-          "work\\tii-details\\tii-property-002\\101121201014010100.html",
-          "work\\tii-details\\tii-property-002\\101121201099020100.html",
-          "work\\tii-details\\tii-property-002\\101121228005010100.html",
-          "work\\tii-details\\tii-property-002\\101122203006010100.html",
-          "work\\tii-details\\tii-property-002\\101122203007010100.html",
-          "work\\tii-details\\tii-property-002\\101122203009010100.html",
-          "work\\tii-details\\tii-property-002\\101122203008010100.html",
-          "work\\tii-details\\tii-property-002\\101122203009020100.html",
-          "work\\tii-details\\tii-property-002\\101122203010010100.html",
-          "work\\tii-details\\tii-property-002\\101122203011010100.html",
-          "work\\tii-details\\tii-property-002\\101122203012010100.html",
-          "work\\tii-details\\tii-property-002\\101122203013010100.html",
-          "work\\tii-details\\tii-property-002\\101122203015010100.html",
-          "work\\tii-details\\tii-property-002\\101122203099010100.html",
-          "work\\tii-details\\tii-property-002\\101122203014010100.html",
-          "work\\tii-details\\tii-property-002\\101122228005010100.html",
-          "work\\tii-details\\tii-property-002\\101122203099440100.html",
-          "work\\tii-details\\tii-property-002\\101122203099450100.html",
-          "work\\tii-details\\tii-property-002\\101122203099460100.html",
-          "work\\tii-details\\tii-property-002\\101122203099470100.html",
-          "work\\tii-details\\tii-property-002\\101122203099480100.html",
-          "work\\tii-details\\tii-property-002\\101122203099490100.html",
-          "work\\tii-details\\tii-property-002\\101122203099500100.html",
-          "work\\tii-details\\tii-property-002\\101122203099510100.html",
-          "work\\tii-details\\tii-property-002\\101122203099530100.html",
-          "work\\tii-details\\tii-property-002\\101122203099520100.html",
-          "work\\tii-details\\tii-property-002\\101122225004010100.html",
-          "work\\tii-details\\tii-property-002\\101122203099030100.html",
-          "work\\tii-details\\tii-property-002\\101122203099040100.html",
-          "work\\tii-details\\tii-property-002\\101122203099050100.html",
-          "work\\tii-details\\tii-property-002\\101122203099060100.html",
-          "work\\tii-details\\tii-property-002\\101122203099070100.html",
-          "work\\tii-details\\tii-property-002\\101122203099080100.html",
-          "work\\tii-details\\tii-property-002\\101122203099090100.html",
-          "work\\tii-details\\tii-property-002\\101122203099100100.html",
-          "work\\tii-details\\tii-property-002\\101122203099110100.html",
-          "work\\tii-details\\tii-property-002\\101122203099120100.html",
-          "work\\tii-details\\tii-property-002\\101122203099130100.html",
-          "work\\tii-details\\tii-property-002\\101122203099140100.html",
-          "work\\tii-details\\tii-property-002\\101122203099150100.html",
-          "work\\tii-details\\tii-property-002\\101122203099160100.html",
-          "work\\tii-details\\tii-property-002\\101122203099170100.html",
-          "work\\tii-details\\tii-property-002\\101122203099180100.html",
-          "work\\tii-details\\tii-property-002\\101122203099190100.html",
-          "work\\tii-details\\tii-property-002\\101122203099200100.html",
-          "work\\tii-details\\tii-property-002\\101122203099210100.html",
-          "work\\tii-details\\tii-property-002\\101122203099220100.html",
-          "work\\tii-details\\tii-property-002\\101122203099230100.html",
-          "work\\tii-details\\tii-property-002\\101122203099240100.html",
-          "work\\tii-details\\tii-property-002\\101122203099250100.html",
-          "work\\tii-details\\tii-property-002\\101122203099260100.html",
-          "work\\tii-details\\tii-property-002\\101122203099270100.html",
-          "work\\tii-details\\tii-property-002\\101122203099280100.html",
-          "work\\tii-details\\tii-property-002\\101122203099290100.html",
-          "work\\tii-details\\tii-property-002\\101122203099300100.html",
-          "work\\tii-details\\tii-property-002\\101122203099310100.html",
-          "work\\tii-details\\tii-property-002\\101122203099320100.html",
-          "work\\tii-details\\tii-property-002\\101122203099330100.html",
-          "work\\tii-details\\tii-property-002\\101122203099340100.html",
-          "work\\tii-details\\tii-property-002\\101122203099350100.html",
-          "work\\tii-details\\tii-property-002\\101122203099360100.html",
-          "work\\tii-details\\tii-property-002\\101122203099370100.html",
-          "work\\tii-details\\tii-property-002\\101122203099380100.html",
-          "work\\tii-details\\tii-property-002\\101122203099390100.html",
-          "work\\tii-details\\tii-property-002\\101122203099400100.html",
-          "work\\tii-details\\tii-property-002\\101122203099410100.html",
-          "work\\tii-details\\tii-property-002\\101122203099420100.html",
-          "work\\tii-details\\tii-property-002\\101122203099430100.html",
-          "work\\tii-details\\tii-property-002\\101321424021010100.html",
-          "work\\tii-details\\tii-property-002\\101321424021010200.html",
-          "work\\tii-details\\tii-property-002\\101321424021010300.html",
-          "work\\tii-details\\tii-property-002\\101321424021010400.html",
-          "work\\tii-details\\tii-property-002\\101321424021010500.html",
-          "work\\tii-details\\tii-property-002\\101321424022010100.html",
-          "work\\tii-details\\tii-property-002\\101321424022010200.html",
-          "work\\tii-details\\tii-property-002\\101321424022010300.html",
-          "work\\tii-details\\tii-property-002\\101321424022010400.html",
-          "work\\tii-details\\tii-property-002\\101321424022010500.html",
-          "work\\tii-details\\tii-property-002\\101121424021010000.html",
-          "work\\tii-details\\tii-property-002\\101221424022010000.html",
-          "work\\tii-details\\tii-property-002\\101321424021010600.html",
-          "work\\tii-details\\tii-property-002\\101321424021010700.html",
-          "work\\tii-details\\tii-property-002\\101321424021010800.html",
-          "work\\tii-details\\tii-property-002\\101121201029010300.html",
-          "work\\tii-details\\tii-property-002\\101121201029010400.html",
-          "work\\tii-details\\tii-property-002\\101321424021010801.html",
-          "work\\tii-details\\tii-property-002\\101321424022010101.html",
-          "work\\tii-details\\tii-property-002\\101321424022010301.html",
-          "work\\tii-details\\tii-property-002\\101321424022010201.html",
-          "work\\tii-details\\tii-property-002\\101321424022010501.html",
-          "work\\tii-details\\tii-property-002\\101321424022010401.html",
-          "work\\tii-details\\tii-property-002\\101321424021010701.html",
-          "work\\tii-details\\tii-property-002\\101321424021010601.html",
-          "work\\tii-details\\tii-property-002\\101321424021010501.html",
-          "work\\tii-details\\tii-property-002\\101321424021010401.html",
-          "work\\tii-details\\tii-property-002\\101321424021010301.html",
-          "work\\tii-details\\tii-property-002\\101121229004010101.html",
-          "work\\tii-details\\tii-property-002\\101121229029010000.html",
-          "work\\tii-details\\tii-property-002\\101121424021010001.html",
-          "work\\tii-details\\tii-property-002\\101121225004020101.html",
-          "work\\tii-details\\tii-property-002\\101121228005010101.html",
-          "work\\tii-details\\tii-property-002\\101121201099020101.html",
-          "work\\tii-details\\tii-property-002\\101121201014010101.html",
-          "work\\tii-details\\tii-property-002\\101121201099010101.html",
-          "work\\tii-details\\tii-property-002\\101121201013010101.html",
-          "work\\tii-details\\tii-property-002\\101121201012010101.html",
-          "work\\tii-details\\tii-property-002\\101121201011010101.html",
-          "work\\tii-details\\tii-property-002\\101121201029010002.html",
-          "work\\tii-details\\tii-property-002\\101121201009010101.html",
-          "work\\tii-details\\tii-property-002\\101121201008010101.html",
-          "work\\tii-details\\tii-property-002\\101121201007010101.html",
-          "work\\tii-details\\tii-property-002\\101121101014010101.html",
-          "work\\tii-details\\tii-property-002\\101122203011010101.html",
-          "work\\tii-details\\tii-property-002\\101122203010010101.html",
-          "work\\tii-details\\tii-property-002\\101122203009020101.html",
-          "work\\tii-details\\tii-property-002\\101122203002010200.html",
-          "work\\tii-details\\tii-property-002\\101122203002010300.html",
-          "work\\tii-details\\tii-property-002\\101122203008010101.html",
-          "work\\tii-details\\tii-property-002\\101122203009010101.html",
-          "work\\tii-details\\tii-property-002\\101122203007010101.html",
-          "work\\tii-details\\tii-property-002\\101122203006010101.html",
-          "work\\tii-details\\tii-property-002\\101122203003010101.html",
-          "work\\tii-details\\tii-property-002\\101122203002010001.html",
-          "work\\tii-details\\tii-property-002\\101122103014010101.html",
-          "work\\tii-details\\tii-property-002\\101321424021010201.html",
-          "work\\tii-details\\tii-property-002\\101321424021010101.html",
-          "work\\tii-details\\tii-property-002\\101122228005010101.html",
-          "work\\tii-details\\tii-property-002\\101122203099640100.html",
-          "work\\tii-details\\tii-property-002\\101122225004010101.html",
-          "work\\tii-details\\tii-property-002\\101122203099520101.html",
-          "work\\tii-details\\tii-property-002\\101122203099560100.html",
-          "work\\tii-details\\tii-property-002\\101122203099530101.html",
-          "work\\tii-details\\tii-property-002\\101122203099590100.html",
-          "work\\tii-details\\tii-property-002\\101122203099600100.html",
-          "work\\tii-details\\tii-property-002\\101122203099510101.html",
-          "work\\tii-details\\tii-property-002\\101122203099500101.html",
-          "work\\tii-details\\tii-property-002\\101122203099490101.html",
-          "work\\tii-details\\tii-property-002\\101122203099480101.html",
-          "work\\tii-details\\tii-property-002\\101122203099470101.html",
-          "work\\tii-details\\tii-property-002\\101122203099460101.html",
-          "work\\tii-details\\tii-property-002\\101122203099450101.html",
-          "work\\tii-details\\tii-property-002\\101122203099440101.html",
-          "work\\tii-details\\tii-property-002\\101122203099430101.html",
-          "work\\tii-details\\tii-property-002\\101122203099420101.html",
-          "work\\tii-details\\tii-property-002\\101122203099410101.html",
-          "work\\tii-details\\tii-property-002\\101122203099400101.html",
-          "work\\tii-details\\tii-property-002\\101122203099390101.html",
-          "work\\tii-details\\tii-property-002\\101122203099380101.html",
-          "work\\tii-details\\tii-property-002\\101122203099370101.html",
-          "work\\tii-details\\tii-property-002\\101122203099360101.html",
-          "work\\tii-details\\tii-property-002\\101122203099350101.html",
-          "work\\tii-details\\tii-property-002\\101122203099340101.html",
-          "work\\tii-details\\tii-property-002\\101122203099330101.html",
-          "work\\tii-details\\tii-property-002\\101122203099320101.html",
-          "work\\tii-details\\tii-property-002\\101122203099310101.html",
-          "work\\tii-details\\tii-property-002\\101122203099300101.html",
-          "work\\tii-details\\tii-property-002\\101122203099290101.html",
-          "work\\tii-details\\tii-property-002\\101122203099280101.html",
-          "work\\tii-details\\tii-property-002\\101122203099270101.html",
-          "work\\tii-details\\tii-property-002\\101122203099260101.html",
-          "work\\tii-details\\tii-property-002\\101122203099250101.html",
-          "work\\tii-details\\tii-property-002\\101122203099240101.html",
-          "work\\tii-details\\tii-property-002\\101122203099230101.html",
-          "work\\tii-details\\tii-property-002\\101122203099220101.html",
-          "work\\tii-details\\tii-property-002\\101122203099210101.html",
-          "work\\tii-details\\tii-property-002\\101122203099200101.html",
-          "work\\tii-details\\tii-property-002\\101122203099190101.html",
-          "work\\tii-details\\tii-property-002\\101122203099180101.html",
-          "work\\tii-details\\tii-property-002\\101122203099170101.html",
-          "work\\tii-details\\tii-property-002\\101122203099160101.html",
-          "work\\tii-details\\tii-property-002\\101122203099150101.html",
-          "work\\tii-details\\tii-property-002\\101122203099140101.html",
-          "work\\tii-details\\tii-property-002\\101122203099130101.html",
-          "work\\tii-details\\tii-property-002\\101122203099120101.html",
-          "work\\tii-details\\tii-property-002\\101122203099110101.html",
-          "work\\tii-details\\tii-property-002\\101122203099100101.html",
-          "work\\tii-details\\tii-property-002\\101122203099090101.html",
-          "work\\tii-details\\tii-property-002\\101122203099080101.html",
-          "work\\tii-details\\tii-property-002\\101122203099070101.html",
-          "work\\tii-details\\tii-property-002\\101122203099060101.html",
-          "work\\tii-details\\tii-property-002\\101122203099050101.html",
-          "work\\tii-details\\tii-property-002\\101122203099040101.html",
-          "work\\tii-details\\tii-property-002\\101122203099030101.html",
-          "work\\tii-details\\tii-property-002\\101122203014010101.html",
-          "work\\tii-details\\tii-property-002\\101122203028010000.html",
-          "work\\tii-details\\tii-property-002\\101122203099020101.html",
-          "work\\tii-details\\tii-property-002\\101122203015010101.html",
-          "work\\tii-details\\tii-property-002\\101122203015010201.html",
-          "work\\tii-details\\tii-property-002\\101122203013010101.html",
-          "work\\tii-details\\tii-property-002\\101122203012010101.html",
-          "work\\tii-details\\tii-property-002\\101122203099610100.html",
-          "work\\tii-details\\tii-property-002\\101122203099620100.html",
-          "work\\tii-details\\tii-property-002\\101122203099630100.html",
-          "work\\tii-details\\tii-property-002\\101122203099570100.html",
-          "work\\tii-details\\tii-property-002\\101122203099580100.html",
-          "work\\tii-details\\tii-property-002\\101122203099540100.html",
-          "work\\tii-details\\tii-property-002\\101122203099550100.html",
-          "work\\tii-details\\tii-property-002\\101122203099650100.html",
-          "work\\tii-details\\tii-property-002\\101122203099660100.html",
-          "work\\tii-details\\tii-property-002\\101122203099670100.html",
-          "work\\tii-details\\tii-property-002\\101122203099680100.html",
-          "work\\tii-details\\tii-property-002\\101122203002010100.html",
-          "work\\tii-details\\tii-property-002\\101122203099700100.html",
-          "work\\tii-details\\tii-property-002\\101122203099710100.html",
-          "work\\tii-details\\tii-property-002\\101122203099720100.html",
-          "work\\tii-details\\tii-property-002\\101122203099730100.html",
-          "work\\tii-details\\tii-property-002\\101122203099740100.html",
-          "work\\tii-details\\tii-property-002\\101122203099750100.html",
-          "work\\tii-details\\tii-property-002\\101122203099760100.html",
-          "work\\tii-details\\tii-property-002\\101121201099020102.html",
-          "work\\tii-details\\tii-property-002\\101121201099010102.html",
-          "work\\tii-details\\tii-property-002\\101121201011010102.html",
-          "work\\tii-details\\tii-property-002\\101121201012010102.html",
-          "work\\tii-details\\tii-property-002\\101121201013010102.html",
-          "work\\tii-details\\tii-property-002\\101121101014010102.html",
-          "work\\tii-details\\tii-property-002\\101121201007010102.html",
-          "work\\tii-details\\tii-property-002\\101121201008010102.html",
-          "work\\tii-details\\tii-property-002\\101121201009010102.html",
-          "work\\tii-details\\tii-property-002\\101121201029010003.html",
-          "work\\tii-details\\tii-property-002\\101121228005010102.html",
-          "work\\tii-details\\tii-property-002\\101121225004020102.html",
-          "work\\tii-details\\tii-property-002\\101121229004010102.html",
-          "work\\tii-details\\tii-property-002\\101121229029010001.html",
-          "work\\tii-details\\tii-property-002\\101121229029020000.html",
-          "work\\tii-details\\tii-property-002\\101121229029030000.html",
-          "work\\tii-details\\tii-property-002\\101122103014010102.html",
-          "work\\tii-details\\tii-property-002\\101122203002010002.html",
-          "work\\tii-details\\tii-property-002\\101122203003010102.html",
-          "work\\tii-details\\tii-property-002\\101122203006010102.html",
-          "work\\tii-details\\tii-property-002\\101122203007010102.html",
-          "work\\tii-details\\tii-property-002\\101122203009010102.html",
-          "work\\tii-details\\tii-property-002\\101122203008010102.html",
-          "work\\tii-details\\tii-property-002\\101122203010010102.html",
-          "work\\tii-details\\tii-property-002\\101122203011010102.html",
-          "work\\tii-details\\tii-property-002\\101122203099640101.html",
-          "work\\tii-details\\tii-property-002\\101122228005010102.html",
-          "work\\tii-details\\tii-property-002\\101122203099750101.html",
-          "work\\tii-details\\tii-property-002\\101122203099700101.html",
-          "work\\tii-details\\tii-property-002\\101122225004010102.html",
-          "work\\tii-details\\tii-property-002\\101122227028010001.html",
-          "work\\tii-details\\tii-property-002\\101122203099560101.html",
-          "work\\tii-details\\tii-property-002\\101122203099520102.html",
-          "work\\tii-details\\tii-property-002\\101122203099590101.html",
-          "work\\tii-details\\tii-property-002\\101122203099600101.html",
-          "work\\tii-details\\tii-property-002\\101122203099450102.html",
-          "work\\tii-details\\tii-property-002\\101122203099470102.html",
-          "work\\tii-details\\tii-property-002\\101122203099480102.html",
-          "work\\tii-details\\tii-property-002\\101122203099490102.html",
-          "work\\tii-details\\tii-property-002\\101122203099500102.html",
-          "work\\tii-details\\tii-property-002\\101122203099510102.html",
-          "work\\tii-details\\tii-property-002\\101122203012010102.html",
-          "work\\tii-details\\tii-property-002\\101122203013010102.html",
-          "work\\tii-details\\tii-property-002\\101122203015010202.html",
-          "work\\tii-details\\tii-property-002\\101122203015010102.html",
-          "work\\tii-details\\tii-property-002\\101122203099020102.html",
-          "work\\tii-details\\tii-property-002\\101122203099030102.html",
-          "work\\tii-details\\tii-property-002\\101122203099040102.html",
-          "work\\tii-details\\tii-property-002\\101122203099050102.html",
-          "work\\tii-details\\tii-property-002\\101122203099060102.html",
-          "work\\tii-details\\tii-property-002\\101122203099080102.html",
-          "work\\tii-details\\tii-property-002\\101122203099090102.html",
-          "work\\tii-details\\tii-property-002\\101122203099140102.html",
-          "work\\tii-details\\tii-property-002\\101122203099150102.html",
-          "work\\tii-details\\tii-property-002\\101122203099170102.html",
-          "work\\tii-details\\tii-property-002\\101122203099190102.html",
-          "work\\tii-details\\tii-property-002\\101122203099200102.html",
-          "work\\tii-details\\tii-property-002\\101122203099210102.html",
-          "work\\tii-details\\tii-property-002\\101122203099220102.html",
-          "work\\tii-details\\tii-property-002\\101122203099240102.html",
-          "work\\tii-details\\tii-property-002\\101122203099280102.html",
-          "work\\tii-details\\tii-property-002\\101122203099290102.html",
-          "work\\tii-details\\tii-property-002\\101122203099310102.html",
-          "work\\tii-details\\tii-property-002\\101122203099320102.html",
-          "work\\tii-details\\tii-property-002\\101122203099340102.html",
-          "work\\tii-details\\tii-property-002\\101122203099350102.html",
-          "work\\tii-details\\tii-property-002\\101122203099360102.html",
-          "work\\tii-details\\tii-property-002\\101122203099390102.html",
-          "work\\tii-details\\tii-property-002\\101122203099420102.html",
-          "work\\tii-details\\tii-property-002\\101122203099430102.html",
-          "work\\tii-details\\tii-property-002\\101122203015010103.html",
-          "work\\tii-details\\tii-property-002\\101122203015010203.html",
-          "work\\tii-details\\tii-property-002\\101122228005010103.html",
-          "work\\tii-details\\tii-property-002\\101121201029010004.html",
-          "work\\tii-details\\tii-property-002\\101122203010010103.html",
-          "work\\tii-details\\tii-property-002\\101122203009010103.html",
-          "work\\tii-details\\tii-property-002\\101122203007010103.html",
-          "work\\tii-details\\tii-property-002\\101122203006010103.html",
-          "work\\tii-details\\tii-property-002\\101122203012010103.html",
-          "work\\tii-details\\tii-property-002\\101122203012010104.html",
-          "work\\tii-details\\tii-property-002\\101122203006010104.html",
-          "work\\tii-details\\tii-property-002\\101122203007010104.html",
-          "work\\tii-details\\tii-property-002\\101122203009010104.html",
-          "work\\tii-details\\tii-property-002\\101122203010010104.html",
-          "work\\tii-details\\tii-property-002\\101122227028010002.html",
-          "work\\tii-details\\tii-property-002\\101122203002010003.html",
-          "work\\tii-details\\tii-property-002\\101122227028010003.html",
-          "work\\tii-details\\tii-property-002\\101122227028010100.html",
-          "work\\tii-details\\tii-property-002\\101122203009940000.html",
-          "work\\tii-details\\tii-property-002\\101122203008010103.html",
-          "work\\tii-details\\tii-property-002\\101122203010010105.html",
-          "work\\tii-details\\tii-property-002\\101122203011010103.html",
-          "work\\tii-details\\tii-property-002\\101122203009010105.html",
-          "work\\tii-details\\tii-property-002\\101122203007010105.html",
-          "work\\tii-details\\tii-property-002\\101122103014010103.html",
-          "work\\tii-details\\tii-property-002\\101122203006010105.html",
-          "work\\tii-details\\tii-property-002\\101122203003010103.html",
-          "work\\tii-details\\tii-property-002\\101121201009010103.html",
-          "work\\tii-details\\tii-property-002\\101121201008010103.html",
-          "work\\tii-details\\tii-property-002\\101121201007010103.html",
-          "work\\tii-details\\tii-property-002\\101121101014010103.html",
-          "work\\tii-details\\tii-property-002\\101121201013010103.html",
-          "work\\tii-details\\tii-property-002\\101121201012010103.html",
-          "work\\tii-details\\tii-property-002\\101121201011010103.html",
-          "work\\tii-details\\tii-property-002\\101121201099010103.html",
-          "work\\tii-details\\tii-property-002\\101121225004020103.html",
-          "work\\tii-details\\tii-property-002\\101121228005010103.html",
-          "work\\tii-details\\tii-property-002\\101122228005010104.html",
-          "work\\tii-details\\tii-property-002\\101122225004010103.html",
-          "work\\tii-details\\tii-property-002\\101122203013010103.html",
-          "work\\tii-details\\tii-property-002\\101122203015010204.html",
-          "work\\tii-details\\tii-property-002\\101122203015010104.html",
-          "work\\tii-details\\tii-property-002\\101122203099020103.html",
-          "work\\tii-details\\tii-property-002\\101122227990000413.html",
-          "work\\tii-details\\tii-property-002\\101121526019010000.html",
-          "work\\tii-details\\tii-property-002\\101122203002010000.html",
-          "work\\tii-details\\tii-property-002\\101122203002010400.html",
-          "work\\tii-details\\tii-property-002\\101122203009940001.html",
-          "work\\tii-details\\tii-property-002\\101122203008010104.html",
-          "work\\tii-details\\tii-property-002\\101122203011010104.html",
-          "work\\tii-details\\tii-property-002\\101122203010010106.html",
-          "work\\tii-details\\tii-property-002\\101122203007010106.html",
-          "work\\tii-details\\tii-property-002\\101122203009010106.html",
-          "work\\tii-details\\tii-property-002\\101122103014010104.html",
-          "work\\tii-details\\tii-property-002\\101122203002010004.html",
-          "work\\tii-details\\tii-property-002\\101122203003010104.html",
-          "work\\tii-details\\tii-property-002\\101122203006010106.html",
-          "work\\tii-details\\tii-property-002\\101121526019010001.html",
-          "work\\tii-details\\tii-property-002\\101121228005010104.html",
-          "work\\tii-details\\tii-property-002\\101121225004020104.html",
-          "work\\tii-details\\tii-property-002\\101121201013010104.html",
-          "work\\tii-details\\tii-property-002\\101121201029010005.html",
-          "work\\tii-details\\tii-property-002\\101122228005010105.html",
-          "work\\tii-details\\tii-property-002\\101122225004010104.html",
-          "work\\tii-details\\tii-property-002\\101122227028010004.html",
-          "work\\tii-details\\tii-property-002\\101122203015010105.html",
-          "work\\tii-details\\tii-property-002\\101122203015010205.html",
-          "work\\tii-details\\tii-property-002\\101122203013010104.html",
-          "work\\tii-details\\tii-property-002\\101121201029010006.html",
-          "work\\tii-details\\tii-property-002\\101121526019010002.html",
-          "work\\tii-details\\tii-property-002\\101121501019030000.html",
-          "work\\tii-details\\tii-property-002\\101122203006010107.html",
-          "work\\tii-details\\tii-property-002\\101122203003010105.html",
-          "work\\tii-details\\tii-property-002\\101122203002010005.html",
-          "work\\tii-details\\tii-property-002\\101122103014010105.html",
-          "work\\tii-details\\tii-property-002\\101122203009010107.html",
-          "work\\tii-details\\tii-property-002\\101122203007010107.html",
-          "work\\tii-details\\tii-property-002\\101122203010010107.html",
-          "work\\tii-details\\tii-property-002\\101122203011010105.html",
-          "work\\tii-details\\tii-property-002\\101122203008010105.html",
-          "work\\tii-details\\tii-property-002\\101122203013010105.html",
-          "work\\tii-details\\tii-property-002\\101122203012010105.html",
-          "work\\tii-details\\tii-property-002\\101122203015010206.html",
-          "work\\tii-details\\tii-property-002\\101122203015010106.html",
-          "work\\tii-details\\tii-property-002\\101122203099020104.html",
-          "work\\tii-details\\tii-property-002\\101122227028010005.html",
-          "work\\tii-details\\tii-property-002\\101122225004010105.html",
-          "work\\tii-details\\tii-property-002\\101122228005010106.html",
-          "work\\tii-details\\tii-property-002\\101121501019030001.html",
-          "work\\tii-details\\tii-property-002\\101121526019010003.html",
-          "work\\tii-details\\tii-property-002\\101121229004010103.html",
-          "work\\tii-details\\tii-property-002\\101121229029010002.html",
-          "work\\tii-details\\tii-property-002\\101121201029010007.html",
-          "work\\tii-details\\tii-property-002\\101121201029010100.html",
-          "work\\tii-details\\tii-property-002\\101122228005010107.html",
-          "work\\tii-details\\tii-property-002\\101122225004010106.html",
-          "work\\tii-details\\tii-property-002\\101121501019030101.html",
-          "work\\tii-details\\tii-property-002\\101122203002010500.html",
-          "work\\tii-details\\tii-property-002\\101122203002010006.html",
-          "work\\tii-details\\tii-property-002\\101121526019010004.html",
-          "work\\tii-details\\tii-property-002\\101122227028010006.html",
-          "work\\tii-details\\tii-property-002\\101122227028010007.html",
-          "work\\tii-details\\tii-property-002\\101122203002010007.html",
-          "work\\tii-details\\tii-property-002\\101121526019010005.html",
-          "work\\tii-details\\tii-property-002\\101121526019020000.html",
-          "work\\tii-details\\tii-property-002\\101121501019030102.html",
-          "work\\tii-details\\tii-property-002\\101121525050010100.html",
-          "work\\tii-details\\tii-property-002\\101121501019030002.html",
-          "work\\tii-details\\tii-property-002\\101121225034010100.html",
-          "work\\tii-details\\tii-property-002\\101121225050010100.html",
-          "work\\tii-details\\tii-property-002\\101121201029010008.html",
-          "work\\tii-details\\tii-property-002\\101122225004010109.html",
-          "work\\tii-details\\tii-property-002\\101122203012010106.html",
-          "work\\tii-details\\tii-property-002\\101122203013010106.html",
-          "work\\tii-details\\tii-property-002\\101122103014010106.html",
-          "work\\tii-details\\tii-property-002\\101122203003010106.html",
-          "work\\tii-details\\tii-property-002\\101122203006010108.html",
-          "work\\tii-details\\tii-property-002\\101122203008010106.html",
-          "work\\tii-details\\tii-property-002\\101122203011010106.html",
-          "work\\tii-details\\tii-property-002\\101122203010010108.html",
-          "work\\tii-details\\tii-property-002\\101122203007010108.html",
-          "work\\tii-details\\tii-property-002\\101122203009010108.html",
-          "work\\tii-details\\tii-property-002\\101121526019020001.html",
-          "work\\tii-details\\tii-property-002\\101122203099770100.html",
-          "work\\tii-details\\tii-property-002\\101122203099780100.html",
-          "work\\tii-details\\tii-property-002\\101122203099790100.html",
-          "work\\tii-details\\tii-property-002\\101122203099800100.html",
-          "work\\tii-details\\tii-property-002\\101122227028010008.html",
-          "work\\tii-details\\tii-property-002\\101122203002010008.html",
-          "work\\tii-details\\tii-property-002\\101121526019010006.html",
-          "work\\tii-details\\tii-property-002\\101122203003010107.html",
-          "work\\tii-details\\tii-property-002\\101122203010010109.html",
-          "work\\tii-details\\tii-property-002\\101122203011010107.html",
-          "work\\tii-details\\tii-property-002\\101122227028010009.html",
-          "work\\tii-details\\tii-property-002\\101122203046010100.html",
-          "work\\tii-details\\tii-property-002\\101122203008010107.html",
-          "work\\tii-details\\tii-property-002\\101122203009010109.html",
-          "work\\tii-details\\tii-property-002\\101122203007010109.html",
-          "work\\tii-details\\tii-property-002\\101122203006010109.html",
-          "work\\tii-details\\tii-property-002\\101121225004020105.html",
-          "work\\tii-details\\tii-property-002\\101121228005010105.html",
-          "work\\tii-details\\tii-property-002\\101122203002010009.html",
-          "work\\tii-details\\tii-property-002\\101122227028010010.html",
-          "work\\tii-details\\tii-property-002\\101122225004010107.html",
-          "work\\tii-details\\tii-property-002\\101122228005010108.html",
-          "work\\tii-details\\tii-property-002\\101122203046010101.html",
-          "work\\tii-details\\tii-property-002\\101122203099020105.html",
-          "work\\tii-details\\tii-property-002\\101122203013010107.html",
-          "work\\tii-details\\tii-property-002\\101122203012010107.html",
-          "work\\tii-details\\tii-property-002\\101122203015010107.html",
-          "work\\tii-details\\tii-property-002\\101122203015010207.html",
-          "work\\tii-details\\tii-property-002\\101122103014010107.html",
-          "work\\tii-details\\tii-property-002\\101122203006010110.html",
-          "work\\tii-details\\tii-property-002\\101122203003010108.html",
-          "work\\tii-details\\tii-property-002\\101122203007010110.html",
-          "work\\tii-details\\tii-property-002\\101122203009010110.html",
-          "work\\tii-details\\tii-property-002\\101122203008010108.html",
-          "work\\tii-details\\tii-property-002\\101122203011010108.html",
-          "work\\tii-details\\tii-property-002\\101122203010010110.html",
-          "work\\tii-details\\tii-property-002\\101121526019010007.html",
-          "work\\tii-details\\tii-property-002\\101121526019020002.html",
-          "work\\tii-details\\tii-property-002\\101121501019030003.html",
-          "work\\tii-details\\tii-property-002\\101121501019030103.html",
-          "work\\tii-details\\tii-property-002\\101121201029010009.html",
-          "work\\tii-details\\tii-property-002\\101121101014010104.html",
-          "work\\tii-details\\tii-property-002\\101121201012010104.html",
-          "work\\tii-details\\tii-property-002\\101121201032010100.html",
-          "work\\tii-details\\tii-property-002\\101121201044010100.html",
-          "work\\tii-details\\tii-property-002\\101121201047010100.html",
-          "work\\tii-details\\tii-property-002\\101122203002010600.html",
-          "work\\tii-details\\tii-property-002\\101122203002010700.html",
-          "work\\tii-details\\tii-property-002\\101121526019020003.html",
-          "work\\tii-details\\tii-property-002\\101121424022010100.html",
-          "work\\tii-details\\tii-property-002\\101121424022010200.html",
-          "work\\tii-details\\tii-property-002\\101121101067010000.html",
-          "work\\tii-details\\tii-property-002\\101121526019030000.html",
-          "work\\tii-details\\tii-property-002\\101121526019030001.html",
-          "work\\tii-details\\tii-property-002\\101122203002010010.html",
-          "work\\tii-details\\tii-property-002\\101121201029010010.html",
-          "work\\tii-details\\tii-property-002\\101121229029010003.html",
-          "work\\tii-details\\tii-property-002\\101121526019020004.html",
-          "work\\tii-details\\tii-property-002\\101121526019010008.html",
-          "work\\tii-details\\tii-property-002\\101121501019030004.html",
-          "work\\tii-details\\tii-property-002\\101122227028010011.html",
-          "work\\tii-details\\tii-property-002\\101122227028010012.html",
-          "work\\tii-details\\tii-property-002\\101122225004010108.html",
-          "work\\tii-details\\tii-property-002\\101122228005010109.html",
-          "work\\tii-details\\tii-property-002\\101122203015010208.html",
-          "work\\tii-details\\tii-property-002\\101122203015010108.html",
-          "work\\tii-details\\tii-property-002\\101122203012010108.html",
-          "work\\tii-details\\tii-property-002\\101122203013010108.html",
-          "work\\tii-details\\tii-property-002\\101122203099020106.html",
-          "work\\tii-details\\tii-property-002\\101122203046010102.html",
-          "work\\tii-details\\tii-property-002\\101122203002010011.html",
-          "work\\tii-details\\tii-property-002\\101122103014010108.html",
-          "work\\tii-details\\tii-property-002\\101122203003010109.html",
-          "work\\tii-details\\tii-property-002\\101122203006010111.html",
-          "work\\tii-details\\tii-property-002\\101122203008010109.html",
-          "work\\tii-details\\tii-property-002\\101122203010010111.html",
-          "work\\tii-details\\tii-property-002\\101122203011010109.html",
-          "work\\tii-details\\tii-property-002\\101122203009010111.html",
-          "work\\tii-details\\tii-property-002\\101122203007010111.html",
-          "work\\tii-details\\tii-property-002\\101121525030010100.html",
-          "work\\tii-details\\tii-property-002\\101122203007010112.html",
-          "work\\tii-details\\tii-property-002\\101122203009010112.html",
-          "work\\tii-details\\tii-property-002\\101122203011010110.html",
-          "work\\tii-details\\tii-property-002\\101122203010010112.html",
-          "work\\tii-details\\tii-property-002\\101122203008010110.html",
-          "work\\tii-details\\tii-property-002\\101122203006010112.html",
-          "work\\tii-details\\tii-property-002\\101122203003010110.html",
-          "work\\tii-details\\tii-property-002\\101122103014010109.html",
-          "work\\tii-details\\tii-property-002\\101122203002010012.html",
-          "work\\tii-details\\tii-property-002\\101122203013010109.html",
-          "work\\tii-details\\tii-property-002\\101122203012010109.html",
-          "work\\tii-details\\tii-property-002\\101122227028010013.html",
-          "work\\tii-details\\tii-property-002\\101121424022010201.html",
-          "work\\tii-details\\tii-property-002\\101121424022010202.html",
-          "work\\tii-details\\tii-property-002\\101122203002010013.html",
-          "work\\tii-details\\tii-property-002\\101122103014010110.html",
-          "work\\tii-details\\tii-property-002\\101122203003010111.html",
-          "work\\tii-details\\tii-property-002\\101122203006010113.html",
-          "work\\tii-details\\tii-property-002\\101122203008010111.html",
-          "work\\tii-details\\tii-property-002\\101122203010010113.html",
-          "work\\tii-details\\tii-property-002\\101122203011010111.html",
-          "work\\tii-details\\tii-property-002\\101122203009010113.html",
-          "work\\tii-details\\tii-property-002\\101122203007010113.html",
-          "work\\tii-details\\tii-property-002\\101122227028010014.html",
-          "work\\tii-details\\tii-property-002\\101122228005010110.html",
-          "work\\tii-details\\tii-property-002\\101122203012010110.html",
-          "work\\tii-details\\tii-property-002\\101122203013010110.html",
-          "work\\tii-details\\tii-property-002\\101122203015010109.html",
-          "work\\tii-details\\tii-property-002\\101122203015010209.html",
-          "work\\tii-details\\tii-property-002\\101122203046010103.html",
-          "work\\tii-details\\tii-property-002\\101122203099020107.html",
-          "work\\tii-details\\tii-property-002\\101122203012010111.html",
-          "work\\tii-details\\tii-property-002\\101122227028010015.html",
-          "work\\tii-details\\tii-property-002\\101122203007010114.html",
-          "work\\tii-details\\tii-property-002\\101122203009010114.html",
-          "work\\tii-details\\tii-property-002\\101122203011010112.html",
-          "work\\tii-details\\tii-property-002\\101122203006010114.html",
-          "work\\tii-details\\tii-property-002\\101122203003010112.html",
-          "work\\tii-details\\tii-property-002\\101122203002010014.html",
-          "work\\tii-details\\tii-property-002\\101121424022010203.html",
-          "work\\tii-details\\tii-property-002\\101121424022010101.html",
-          "work\\tii-details\\tii-property-002\\101122203012010112.html",
-          "work\\tii-details\\tii-property-002\\101122203012010113.html",
-          "work\\tii-details\\tii-property-002\\101122203078010100.html",
-          "work\\tii-details\\tii-property-002\\101121201065010100.html",
-          "work\\tii-details\\tii-property-002\\101122203002010800.html",
-          "work\\tii-details\\tii-property-002\\101121201065010101.html",
-          "work\\tii-details\\tii-property-002\\101121201032010101.html",
-          "work\\tii-details\\tii-property-002\\101121201029010011.html",
-          "work\\tii-details\\tii-property-002\\101121424022010102.html",
-          "work\\tii-details\\tii-property-002\\101121424022010204.html",
-          "work\\tii-details\\tii-property-002\\101121229029020001.html",
-          "work\\tii-details\\tii-property-002\\101121228005010106.html",
-          "work\\tii-details\\tii-property-002\\101121229029030001.html",
-          "work\\tii-details\\tii-property-002\\101121501019030005.html",
-          "work\\tii-details\\tii-property-002\\101121526019010009.html",
-          "work\\tii-details\\tii-property-002\\101121526019020005.html",
-          "work\\tii-details\\tii-property-002\\101122203099810100.html",
-          "work\\tii-details\\tii-property-002\\101121201029010101.html",
-          "work\\tii-details\\tii-property-002\\101121526019020006.html",
-          "work\\tii-details\\tii-property-002\\101121526075010000.html",
-          "work\\tii-details\\tii-property-002\\101122203002010701.html",
-          "work\\tii-details\\tii-property-002\\101121526075010001.html",
-          "work\\tii-details\\tii-property-002\\101121526075010002.html",
-          "work\\tii-details\\tii-property-002\\101122203002010900.html",
-          "work\\tii-details\\tii-property-002\\101122203002011600.html",
-          "work\\tii-details\\tii-property-002\\101122203002011000.html",
-          "work\\tii-details\\tii-property-002\\101122203002011100.html",
-          "work\\tii-details\\tii-property-002\\101122203002011200.html",
-          "work\\tii-details\\tii-property-002\\101122203002011300.html",
-          "work\\tii-details\\tii-property-002\\101122203002011400.html",
-          "work\\tii-details\\tii-property-002\\101121526019030002.html",
-          "work\\tii-details\\tii-property-002\\101121526019020007.html",
-          "work\\tii-details\\tii-property-002\\101121526019010010.html",
-          "work\\tii-details\\tii-property-002\\101121501019030006.html",
-          "work\\tii-details\\tii-property-002\\101121201029010012.html",
-          "work\\tii-details\\tii-property-002\\101122203002011500.html",
-          "work\\tii-details\\tii-property-002\\101121424022010103.html",
-          "work\\tii-details\\tii-property-002\\101122203003010113.html",
-          "work\\tii-details\\tii-property-002\\101122203006010115.html",
-          "work\\tii-details\\tii-property-002\\101122203002010015.html",
-          "work\\tii-details\\tii-property-002\\101122203008010112.html",
-          "work\\tii-details\\tii-property-002\\101122203011010113.html",
-          "work\\tii-details\\tii-property-002\\101122203010010114.html",
-          "work\\tii-details\\tii-property-002\\101122203009010115.html",
-          "work\\tii-details\\tii-property-002\\101122203007010115.html",
-          "work\\tii-details\\tii-property-002\\101122227028010016.html",
-          "work\\tii-details\\tii-property-002\\101122203012010114.html",
-          "work\\tii-details\\tii-property-002\\101122203013010111.html",
-          "work\\tii-details\\tii-property-002\\101121225004020106.html",
-          "work\\tii-details\\tii-property-002\\101121201029010013.html",
-          "work\\tii-details\\tii-property-002\\101121526019030003.html",
-          "work\\tii-details\\tii-property-002\\101121526019010011.html",
-          "work\\tii-details\\tii-property-002\\101121228005010107.html",
-          "work\\tii-details\\tii-property-002\\101121201072010000.html",
-          "work\\tii-details\\tii-property-002\\101121201029010200.html",
-          "work\\tii-details\\tii-property-002\\101121201072010101.html",
-          "work\\tii-details\\tii-property-002\\101121201072010102.html",
-          "work\\tii-details\\tii-property-002\\101121201029010014.html",
-          "work\\tii-details\\tii-property-002\\101121501019030007.html",
-          "work\\tii-details\\tii-property-002\\101121526019010012.html",
-          "work\\tii-details\\tii-property-002\\101121526019020008.html",
-          "work\\tii-details\\tii-property-002\\101121201029010015.html",
-          "work\\tii-details\\tii-property-002\\101121101067010001.html",
-          "work\\tii-details\\tii-property-002\\101121201029010201.html",
-          "work\\tii-details\\tii-property-002\\101121201011010104.html",
-          "work\\tii-details\\tii-property-002\\101121201029010016.html",
-          "work\\tii-details\\tii-property-002\\101121201029010017.html",
-          "work\\tii-details\\tii-property-002\\101121526019020009.html",
-          "work\\tii-details\\tii-property-002\\101121526019010013.html",
-          "work\\tii-details\\tii-property-002\\101121501019030008.html",
-          "work\\tii-details\\tii-property-002\\101121229004010104.html",
-          "work\\tii-details\\tii-property-002\\101121229029010004.html",
-          "work\\tii-details\\tii-property-002\\101122203002010016.html",
-          "work\\tii-details\\tii-property-002\\101122203002010017.html",
-          "work\\tii-details\\tii-property-002\\101121526019030004.html",
-          "work\\tii-details\\tii-property-002\\101121229029010005.html",
-          "work\\tii-details\\tii-property-002\\101121229004010105.html",
-          "work\\tii-details\\tii-property-002\\101121225004020107.html",
-          "work\\tii-details\\tii-property-002\\101121228005010108.html",
-          "work\\tii-details\\tii-property-002\\101121501019030009.html",
-          "work\\tii-details\\tii-property-002\\101121525050010101.html",
-          "work\\tii-details\\tii-property-002\\101121525030010101.html",
-          "work\\tii-details\\tii-property-002\\101121526019010014.html",
-          "work\\tii-details\\tii-property-002\\101121526019020010.html",
-          "work\\tii-details\\tii-property-002\\101121201029010018.html"
-        ],
+        "saved_detail_sample": [],
         "failed_details": [
           {
             "product_id": "101122203099690100",
             "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=101122203099690100",
             "reason": "invalid_detail_session"
           }
-        ]
+        ],
+        "document_downloads": {
+          "enabled": false,
+          "priority": "core",
+          "total_scanned_all_details": true,
+          "total_document_link_count": 0,
+          "document_offset": 0,
+          "document_limit": 0,
+          "skipped_document_count": 0,
+          "document_link_count": 0,
+          "saved_document_count": 0,
+          "already_saved_document_count": 0,
+          "failed_document_count": 0,
+          "final_repair_attempted": false,
+          "available_document_count": 0,
+          "repaired_document_count": 0,
+          "unresolved_document_count": 0,
+          "missing_detail_count": 0,
+          "status_path": "",
+          "saved_document_sample": [],
+          "already_saved_document_sample": [],
+          "failed_documents": []
+        }
       }
     },
     {
@@ -28453,7 +27661,7 @@
     },
     {
       "batch_id": "tii-property-016",
-      "ran_at": "2026-06-05T15:41:19+08:00",
+      "ran_at": "2026-07-27T18:11:49+08:00",
       "status": "submitted_result_saved",
       "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "105-富邦產物保險股份有限公司",
@@ -28470,13 +27678,66 @@
         "work\\tii-execution\\tii-property-016-captcha-1.jpg"
       ],
       "result_file": "work\\tii-results\\tii-property-016.html",
-      "fetched_pages": {},
+      "fetched_pages": {
+        "page_size": 10,
+        "total_count": 10558,
+        "total_pages": 1056,
+        "official_row_count": 10558,
+        "unique_product_id_count": 8119,
+        "duplicate_product_id_count": 2439,
+        "saved_page_count": 1056,
+        "saved_page_sample": [
+          "work\\tii-results\\tii-property-016-page-001.html",
+          "work\\tii-results\\tii-property-016-page-002.html",
+          "work\\tii-results\\tii-property-016-page-003.html",
+          "work\\tii-results\\tii-property-016-page-004.html",
+          "work\\tii-results\\tii-property-016-page-005.html",
+          "work\\tii-results\\tii-property-016-page-006.html",
+          "work\\tii-results\\tii-property-016-page-007.html",
+          "work\\tii-results\\tii-property-016-page-008.html",
+          "work\\tii-results\\tii-property-016-page-009.html",
+          "work\\tii-results\\tii-property-016-page-010.html",
+          "work\\tii-results\\tii-property-016-page-011.html",
+          "work\\tii-results\\tii-property-016-page-012.html",
+          "work\\tii-results\\tii-property-016-page-013.html",
+          "work\\tii-results\\tii-property-016-page-014.html",
+          "work\\tii-results\\tii-property-016-page-015.html",
+          "work\\tii-results\\tii-property-016-page-016.html",
+          "work\\tii-results\\tii-property-016-page-017.html",
+          "work\\tii-results\\tii-property-016-page-018.html",
+          "work\\tii-results\\tii-property-016-page-019.html",
+          "work\\tii-results\\tii-property-016-page-020.html"
+        ],
+        "is_complete": true
+      },
       "fetched_details": {
-        "detail_link_count": 8056,
-        "saved_detail_count": 5391,
-        "already_saved_detail_count": 2620,
-        "total_saved_detail_count": 8011,
+        "detail_link_count": 8119,
+        "saved_detail_count": 1671,
+        "already_saved_detail_count": 6403,
+        "total_saved_detail_count": 8074,
         "failed_detail_count": 45,
+        "saved_detail_sample": [
+          "work\\tii-details\\tii-property-016\\105142117007010500.html",
+          "work\\tii-details\\tii-property-016\\105242424530010001.html",
+          "work\\tii-details\\tii-property-016\\105142519002017700.html",
+          "work\\tii-details\\tii-property-016\\105142519002017800.html",
+          "work\\tii-details\\tii-property-016\\105142519002018100.html",
+          "work\\tii-details\\tii-property-016\\105142519002018200.html",
+          "work\\tii-details\\tii-property-016\\105142519002018000.html",
+          "work\\tii-details\\tii-property-016\\105142519002015000.html",
+          "work\\tii-details\\tii-property-016\\105142519002015500.html",
+          "work\\tii-details\\tii-property-016\\105142519002015600.html",
+          "work\\tii-details\\tii-property-016\\105142519002015700.html",
+          "work\\tii-details\\tii-property-016\\105142519002015800.html",
+          "work\\tii-details\\tii-property-016\\105142519002015900.html",
+          "work\\tii-details\\tii-property-016\\105142519001011300.html",
+          "work\\tii-details\\tii-property-016\\105142519001011400.html",
+          "work\\tii-details\\tii-property-016\\105142519001011500.html",
+          "work\\tii-details\\tii-property-016\\105142519001011600.html",
+          "work\\tii-details\\tii-property-016\\105142519001011700.html",
+          "work\\tii-details\\tii-property-016\\105142519002017900.html",
+          "work\\tii-details\\tii-property-016\\105142519001011000.html"
+        ],
         "failed_details": [
           {
             "product_id": "105142118104010000",
@@ -28486,6 +27747,11 @@
           {
             "product_id": "105142118104010001",
             "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104010001",
+            "reason": "invalid_detail_session"
+          },
+          {
+            "product_id": "105142118104030003",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104030003",
             "reason": "invalid_detail_session"
           },
           {
@@ -28509,13 +27775,13 @@
             "reason": "invalid_detail_session"
           },
           {
-            "product_id": "105142519005017900",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142519005017900",
+            "product_id": "10514251900301AZ00",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=10514251900301AZ00",
             "reason": "invalid_detail_session"
           },
           {
-            "product_id": "10514251900301AZ00",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=10514251900301AZ00",
+            "product_id": "10514251900601AX00",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=10514251900601AX00",
             "reason": "invalid_detail_session"
           },
           {
@@ -28529,13 +27795,13 @@
             "reason": "invalid_detail_session"
           },
           {
-            "product_id": "105142118104020200",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020200",
+            "product_id": "105142118104020100",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020100",
             "reason": "invalid_detail_session"
           },
           {
-            "product_id": "105142118104020100",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020100",
+            "product_id": "105142118104020200",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020200",
             "reason": "invalid_detail_session"
           },
           {
@@ -28544,8 +27810,8 @@
             "reason": "invalid_detail_session"
           },
           {
-            "product_id": "105142118104010002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104010002",
+            "product_id": "105142118104020400",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020400",
             "reason": "invalid_detail_session"
           },
           {
@@ -28554,53 +27820,48 @@
             "reason": "invalid_detail_session"
           },
           {
+            "product_id": "105142118104010002",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104010002",
+            "reason": "invalid_detail_session"
+          },
+          {
             "product_id": "105142117109093200",
             "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142117109093200",
             "reason": "invalid_detail_session"
           },
           {
-            "product_id": "105142118104020003",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020003",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "105142118104010004",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104010004",
+            "product_id": "105142117109090002",
+            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142117109090002",
             "reason": "invalid_detail_session"
           },
           {
             "product_id": "105142118104020600",
             "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142118104020600",
             "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "105142117109090004",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=105142117109090004",
-            "reason": "invalid_detail_session"
           }
         ],
-        "saved_detail_sample": [
-          "work\\tii-details\\tii-property-016\\105241117017010100.html",
-          "work\\tii-details\\tii-property-016\\10514251900601CH00.html",
-          "work\\tii-details\\tii-property-016\\10514251900601CI00.html",
-          "work\\tii-details\\tii-property-016\\10514251900601CJ00.html",
-          "work\\tii-details\\tii-property-016\\10514251900101LP00.html",
-          "work\\tii-details\\tii-property-016\\10514251900101LQ00.html",
-          "work\\tii-details\\tii-property-016\\10514251900101LL00.html",
-          "work\\tii-details\\tii-property-016\\10514251900101LM00.html",
-          "work\\tii-details\\tii-property-016\\10514251900101NC00.html",
-          "work\\tii-details\\tii-property-016\\10514251900101ND00.html",
-          "work\\tii-details\\tii-property-016\\10514251900101NE00.html",
-          "work\\tii-details\\tii-property-016\\10514251900101NF00.html",
-          "work\\tii-details\\tii-property-016\\10514251900101NG00.html",
-          "work\\tii-details\\tii-property-016\\10514251900201ME00.html",
-          "work\\tii-details\\tii-property-016\\10514251900201MF00.html",
-          "work\\tii-details\\tii-property-016\\10514251900201MG00.html",
-          "work\\tii-details\\tii-property-016\\10514251900201MH00.html",
-          "work\\tii-details\\tii-property-016\\10514251900601BN00.html",
-          "work\\tii-details\\tii-property-016\\10514251900601BO00.html",
-          "work\\tii-details\\tii-property-016\\10514251900601BJ00.html"
-        ]
+        "document_downloads": {
+          "enabled": false,
+          "priority": "core",
+          "total_scanned_all_details": true,
+          "total_document_link_count": 0,
+          "document_offset": 0,
+          "document_limit": 0,
+          "skipped_document_count": 0,
+          "document_link_count": 0,
+          "saved_document_count": 0,
+          "already_saved_document_count": 0,
+          "failed_document_count": 0,
+          "final_repair_attempted": false,
+          "available_document_count": 0,
+          "repaired_document_count": 0,
+          "unresolved_document_count": 0,
+          "missing_detail_count": 0,
+          "status_path": "",
+          "saved_document_sample": [],
+          "already_saved_document_sample": [],
+          "failed_documents": []
+        }
       }
     },
     {
@@ -28898,9 +28159,9 @@
     },
     {
       "batch_id": "tii-property-020",
-      "ran_at": "2026-06-05T17:28:50+08:00",
-      "status": "submitted_result_saved",
-      "note": "Official site returned a result-like page and it was saved for import.",
+      "ran_at": "2026-07-28T11:42:40+08:00",
+      "status": "captcha_failed_or_required",
+      "note": "Official site did not return usable result data; captcha may be missing or incorrect.",
       "company_label": "106-和泰產物保險股份有限公司",
       "category_label": "意外保險",
       "query_hint": {
@@ -28915,169 +28176,8 @@
         "work\\tii-execution\\tii-property-020-captcha-1.jpg"
       ],
       "result_file": "work\\tii-results\\tii-property-020.html",
-      "fetched_pages": {
-        "page_size": 10,
-        "total_count": 5159,
-        "total_pages": 516,
-        "official_row_count": 5159,
-        "unique_product_id_count": 3874,
-        "duplicate_product_id_count": 1285,
-        "saved_page_count": 516,
-        "saved_page_sample": [
-          "work\\tii-results\\tii-property-020-page-001.html",
-          "work\\tii-results\\tii-property-020-page-002.html",
-          "work\\tii-results\\tii-property-020-page-003.html",
-          "work\\tii-results\\tii-property-020-page-004.html",
-          "work\\tii-results\\tii-property-020-page-005.html",
-          "work\\tii-results\\tii-property-020-page-006.html",
-          "work\\tii-results\\tii-property-020-page-007.html",
-          "work\\tii-results\\tii-property-020-page-008.html",
-          "work\\tii-results\\tii-property-020-page-009.html",
-          "work\\tii-results\\tii-property-020-page-010.html",
-          "work\\tii-results\\tii-property-020-page-011.html",
-          "work\\tii-results\\tii-property-020-page-012.html",
-          "work\\tii-results\\tii-property-020-page-013.html",
-          "work\\tii-results\\tii-property-020-page-014.html",
-          "work\\tii-results\\tii-property-020-page-015.html",
-          "work\\tii-results\\tii-property-020-page-016.html",
-          "work\\tii-results\\tii-property-020-page-017.html",
-          "work\\tii-results\\tii-property-020-page-018.html",
-          "work\\tii-results\\tii-property-020-page-019.html",
-          "work\\tii-results\\tii-property-020-page-020.html"
-        ],
-        "is_complete": true
-      },
-      "fetched_details": {
-        "detail_link_count": 3874,
-        "saved_detail_count": 3835,
-        "already_saved_detail_count": 0,
-        "total_saved_detail_count": 3835,
-        "failed_detail_count": 39,
-        "saved_detail_sample": [
-          "work\\tii-details\\tii-property-020\\106141118021010000.html",
-          "work\\tii-details\\tii-property-020\\106142519004010000.html",
-          "work\\tii-details\\tii-property-020\\106142519004010001.html",
-          "work\\tii-details\\tii-property-020\\106142519003010000.html",
-          "work\\tii-details\\tii-property-020\\106143223044010000.html",
-          "work\\tii-details\\tii-property-020\\106143223047010000.html",
-          "work\\tii-details\\tii-property-020\\106142223049010000.html",
-          "work\\tii-details\\tii-property-020\\106142519004011900.html",
-          "work\\tii-details\\tii-property-020\\106142519004012000.html",
-          "work\\tii-details\\tii-property-020\\106142519004012100.html",
-          "work\\tii-details\\tii-property-020\\106142519005012500.html",
-          "work\\tii-details\\tii-property-020\\106142519006012400.html",
-          "work\\tii-details\\tii-property-020\\106142519006012500.html",
-          "work\\tii-details\\tii-property-020\\106142519006012600.html",
-          "work\\tii-details\\tii-property-020\\106142519006012700.html",
-          "work\\tii-details\\tii-property-020\\106142519006012800.html",
-          "work\\tii-details\\tii-property-020\\106142519005012800.html",
-          "work\\tii-details\\tii-property-020\\106142519004012200.html",
-          "work\\tii-details\\tii-property-020\\106142519006012900.html",
-          "work\\tii-details\\tii-property-020\\106142519006013400.html"
-        ],
-        "failed_details": [
-          {
-            "product_id": "106142519001012900",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142519001012900",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142519004011600",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142519004011600",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142519005012000",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142519005012000",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142519002012800",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142519002012800",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142519006012100",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142519006012100",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142519003012000",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142519003012000",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142519003012001",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142519003012001",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142519005012001",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142519005012001",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142519004011601",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142519004011601",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142118104010001",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142118104010001",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142519001012901",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142519001012901",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142118030021600",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142118030021600",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106143118138010100",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106143118138010100",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142118104010002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142118104010002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106143118138010200",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106143118138010200",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106143118138010300",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106143118138010300",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142118030020004",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142118030020004",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142519006012102",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142519006012102",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142519001012902",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142519001012902",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "106142118030023001",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=106142118030023001",
-            "reason": "invalid_detail_session"
-          }
-        ]
-      }
+      "fetched_pages": {},
+      "fetched_details": {}
     },
     {
       "batch_id": "tii-property-021",
@@ -29904,9 +29004,9 @@
     },
     {
       "batch_id": "tii-property-030",
-      "ran_at": "2026-06-08T11:37:11+08:00",
-      "status": "submitted_result_saved",
-      "note": "Official site returned a result-like page and it was saved for import.",
+      "ran_at": "2026-07-28T12:13:48+08:00",
+      "status": "captcha_failed_or_required",
+      "note": "Official site did not return usable result data; captcha may be missing or incorrect.",
       "company_label": "109-南山產物保險股份有限公司",
       "category_label": "火災保險",
       "query_hint": {
@@ -29921,169 +29021,8 @@
         "work\\tii-execution\\tii-property-030-captcha-1.jpg"
       ],
       "result_file": "work\\tii-results\\tii-property-030.html",
-      "fetched_pages": {
-        "page_size": 10,
-        "total_count": 1259,
-        "total_pages": 126,
-        "official_row_count": 1259,
-        "unique_product_id_count": 1259,
-        "duplicate_product_id_count": 0,
-        "saved_page_count": 126,
-        "saved_page_sample": [
-          "work\\tii-results\\tii-property-030-page-001.html",
-          "work\\tii-results\\tii-property-030-page-002.html",
-          "work\\tii-results\\tii-property-030-page-003.html",
-          "work\\tii-results\\tii-property-030-page-004.html",
-          "work\\tii-results\\tii-property-030-page-005.html",
-          "work\\tii-results\\tii-property-030-page-006.html",
-          "work\\tii-results\\tii-property-030-page-007.html",
-          "work\\tii-results\\tii-property-030-page-008.html",
-          "work\\tii-results\\tii-property-030-page-009.html",
-          "work\\tii-results\\tii-property-030-page-010.html",
-          "work\\tii-results\\tii-property-030-page-011.html",
-          "work\\tii-results\\tii-property-030-page-012.html",
-          "work\\tii-results\\tii-property-030-page-013.html",
-          "work\\tii-results\\tii-property-030-page-014.html",
-          "work\\tii-results\\tii-property-030-page-015.html",
-          "work\\tii-results\\tii-property-030-page-016.html",
-          "work\\tii-results\\tii-property-030-page-017.html",
-          "work\\tii-results\\tii-property-030-page-018.html",
-          "work\\tii-results\\tii-property-030-page-019.html",
-          "work\\tii-results\\tii-property-030-page-020.html"
-        ],
-        "is_complete": true
-      },
-      "fetched_details": {
-        "detail_link_count": 1259,
-        "saved_detail_count": 1226,
-        "already_saved_detail_count": 0,
-        "total_saved_detail_count": 1226,
-        "failed_detail_count": 33,
-        "saved_detail_sample": [
-          "work\\tii-details\\tii-property-030\\109222203002010000.html",
-          "work\\tii-details\\tii-property-030\\109222203002010100.html",
-          "work\\tii-details\\tii-property-030\\109222203002010200.html",
-          "work\\tii-details\\tii-property-030\\109222203002010300.html",
-          "work\\tii-details\\tii-property-030\\109222203002010400.html",
-          "work\\tii-details\\tii-property-030\\109222203002010500.html",
-          "work\\tii-details\\tii-property-030\\109222203002010600.html",
-          "work\\tii-details\\tii-property-030\\109222203002010700.html",
-          "work\\tii-details\\tii-property-030\\109222203002010800.html",
-          "work\\tii-details\\tii-property-030\\109222203002010900.html",
-          "work\\tii-details\\tii-property-030\\109222203002011000.html",
-          "work\\tii-details\\tii-property-030\\109222203002011100.html",
-          "work\\tii-details\\tii-property-030\\109222203002011200.html",
-          "work\\tii-details\\tii-property-030\\109222203002011300.html",
-          "work\\tii-details\\tii-property-030\\109222203002011400.html",
-          "work\\tii-details\\tii-property-030\\109222203002011500.html",
-          "work\\tii-details\\tii-property-030\\109222203002011700.html",
-          "work\\tii-details\\tii-property-030\\109222203025010000.html",
-          "work\\tii-details\\tii-property-030\\109222203025010100.html",
-          "work\\tii-details\\tii-property-030\\109321201029010000.html"
-        ],
-        "failed_details": [
-          {
-            "product_id": "109222203002019500",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203002019500",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203002010006",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203002010006",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203025010005",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203025010005",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203002010007",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203002010007",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203025010006",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203025010006",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203002010008",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203002010008",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203025010007",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203025010007",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203002019501",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203002019501",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203025010008",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203025010008",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203002010009",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203002010009",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203025010009",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203025010009",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203002019502",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203002019502",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203002010010",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203002010010",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203025010010",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203025010010",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203002019503",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203002019503",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203002010011",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203002010011",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203025010011",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203025010011",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203002010012",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203002010012",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203025010012",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203025010012",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "109222203002010013",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=109222203002010013",
-            "reason": "invalid_detail_session"
-          }
-        ]
-      }
+      "fetched_pages": {},
+      "fetched_details": {}
     },
     {
       "batch_id": "tii-property-031",
@@ -31624,9 +30563,9 @@
     },
     {
       "batch_id": "tii-property-048",
-      "ran_at": "2026-06-09T14:28:53+08:00",
-      "status": "submitted_result_saved",
-      "note": "Official site returned a result-like page and it was saved for import.",
+      "ran_at": "2026-07-28T13:51:44+08:00",
+      "status": "captcha_failed_or_required",
+      "note": "Official site did not return usable result data; captcha may be missing or incorrect.",
       "company_label": "113-新光產物保險股份有限公司",
       "category_label": "意外保險",
       "query_hint": {
@@ -31641,169 +30580,8 @@
         "work\\tii-execution\\tii-property-048-captcha-1.jpg"
       ],
       "result_file": "work\\tii-results\\tii-property-048.html",
-      "fetched_pages": {
-        "page_size": 10,
-        "total_count": 3630,
-        "total_pages": 363,
-        "official_row_count": 3630,
-        "unique_product_id_count": 2906,
-        "duplicate_product_id_count": 724,
-        "saved_page_count": 363,
-        "saved_page_sample": [
-          "work\\tii-results\\tii-property-048-page-001.html",
-          "work\\tii-results\\tii-property-048-page-002.html",
-          "work\\tii-results\\tii-property-048-page-003.html",
-          "work\\tii-results\\tii-property-048-page-004.html",
-          "work\\tii-results\\tii-property-048-page-005.html",
-          "work\\tii-results\\tii-property-048-page-006.html",
-          "work\\tii-results\\tii-property-048-page-007.html",
-          "work\\tii-results\\tii-property-048-page-008.html",
-          "work\\tii-results\\tii-property-048-page-009.html",
-          "work\\tii-results\\tii-property-048-page-010.html",
-          "work\\tii-results\\tii-property-048-page-011.html",
-          "work\\tii-results\\tii-property-048-page-012.html",
-          "work\\tii-results\\tii-property-048-page-013.html",
-          "work\\tii-results\\tii-property-048-page-014.html",
-          "work\\tii-results\\tii-property-048-page-015.html",
-          "work\\tii-results\\tii-property-048-page-016.html",
-          "work\\tii-results\\tii-property-048-page-017.html",
-          "work\\tii-results\\tii-property-048-page-018.html",
-          "work\\tii-results\\tii-property-048-page-019.html",
-          "work\\tii-results\\tii-property-048-page-020.html"
-        ],
-        "is_complete": true
-      },
-      "fetched_details": {
-        "detail_link_count": 2906,
-        "saved_detail_count": 2872,
-        "already_saved_detail_count": 0,
-        "total_saved_detail_count": 2872,
-        "failed_detail_count": 34,
-        "saved_detail_sample": [
-          "work\\tii-details\\tii-property-048\\113341118021010000.html",
-          "work\\tii-details\\tii-property-048\\113343223047010000.html",
-          "work\\tii-details\\tii-property-048\\113142321031010000.html",
-          "work\\tii-details\\tii-property-048\\113342223049010000.html",
-          "work\\tii-details\\tii-property-048\\113342223032010000.html",
-          "work\\tii-details\\tii-property-048\\113342223042010000.html",
-          "work\\tii-details\\tii-property-048\\113341117017010000.html",
-          "work\\tii-details\\tii-property-048\\113342117009010000.html",
-          "work\\tii-details\\tii-property-048\\113342117013010000.html",
-          "work\\tii-details\\tii-property-048\\113342117019010000.html",
-          "work\\tii-details\\tii-property-048\\113342118025010000.html",
-          "work\\tii-details\\tii-property-048\\113342117015010000.html",
-          "work\\tii-details\\tii-property-048\\113342118027010000.html",
-          "work\\tii-details\\tii-property-048\\113342117007010000.html",
-          "work\\tii-details\\tii-property-048\\113342117008010000.html",
-          "work\\tii-details\\tii-property-048\\113242117010010000.html",
-          "work\\tii-details\\tii-property-048\\113342321077010000.html",
-          "work\\tii-details\\tii-property-048\\113342321078010000.html",
-          "work\\tii-details\\tii-property-048\\113342321079010000.html",
-          "work\\tii-details\\tii-property-048\\113341424068010000.html"
-        ],
-        "failed_details": [
-          {
-            "product_id": "113142519004010000",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113142519004010000",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113142519005010000",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113142519005010000",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113142519003010000",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113142519003010000",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113342519001010000",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113342519001010000",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113342519006010000",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113342519006010000",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113342519002010000",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113342519002010000",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113342519006010001",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113342519006010001",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113142219122010000",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113142219122010000",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113142519001DUDU00",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113142519001DUDU00",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113142519006879000",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113142519006879000",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113342519001010002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113342519001010002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113342519002010002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113342519002010002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113342519006010002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113342519006010002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113142519003010002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113142519003010002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113342519001010003",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113342519001010003",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113142519003010003",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113142519003010003",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113342519006010003",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113342519006010003",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113342519002010003",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113342519002010003",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113142519004010003",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113142519004010003",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "113142519005010003",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=113142519005010003",
-            "reason": "invalid_detail_session"
-          }
-        ]
-      }
+      "fetched_pages": {},
+      "fetched_details": {}
     },
     {
       "batch_id": "tii-property-049",
@@ -32168,7 +30946,7 @@
     },
     {
       "batch_id": "tii-property-053",
-      "ran_at": "2026-06-09T16:02:40+08:00",
+      "ran_at": "2026-07-28T13:59:09+08:00",
       "status": "submitted_result_saved",
       "note": "Official site returned a result-like page and it was saved for import.",
       "company_label": "115-國泰世紀產物保險股份有限公司",
@@ -32187,12 +30965,12 @@
       "result_file": "work\\tii-results\\tii-property-053.html",
       "fetched_pages": {
         "page_size": 10,
-        "total_count": 1013,
-        "total_pages": 102,
-        "official_row_count": 1013,
-        "unique_product_id_count": 1013,
+        "total_count": 1025,
+        "total_pages": 103,
+        "official_row_count": 1025,
+        "unique_product_id_count": 1025,
         "duplicate_product_id_count": 0,
-        "saved_page_count": 102,
+        "saved_page_count": 103,
         "saved_page_sample": [
           "work\\tii-results\\tii-property-053-page-001.html",
           "work\\tii-results\\tii-property-053-page-002.html",
@@ -32218,135 +30996,35 @@
         "is_complete": true
       },
       "fetched_details": {
-        "detail_link_count": 1013,
-        "saved_detail_count": 93,
-        "already_saved_detail_count": 0,
-        "total_saved_detail_count": 93,
-        "failed_detail_count": 920,
-        "saved_detail_sample": [
-          "work\\tii-details\\tii-property-053\\115111112035010000.html",
-          "work\\tii-details\\tii-property-053\\115111112041010600.html",
-          "work\\tii-details\\tii-property-053\\115111112037010700.html",
-          "work\\tii-details\\tii-property-053\\115111112094010500.html",
-          "work\\tii-details\\tii-property-053\\115111210001010000.html",
-          "work\\tii-details\\tii-property-053\\115111210002010000.html",
-          "work\\tii-details\\tii-property-053\\115111210003010000.html",
-          "work\\tii-details\\tii-property-053\\115111210004010300.html",
-          "work\\tii-details\\tii-property-053\\115111210006010300.html",
-          "work\\tii-details\\tii-property-053\\115111210059010200.html",
-          "work\\tii-details\\tii-property-053\\115112113047010000.html",
-          "work\\tii-details\\tii-property-053\\115112113078010000.html",
-          "work\\tii-details\\tii-property-053\\115112113041010000.html",
-          "work\\tii-details\\tii-property-053\\115311210007010100.html",
-          "work\\tii-details\\tii-property-053\\115311210011010100.html",
-          "work\\tii-details\\tii-property-053\\115311210012010200.html",
-          "work\\tii-details\\tii-property-053\\115311210023010100.html",
-          "work\\tii-details\\tii-property-053\\115111210022010000.html",
-          "work\\tii-details\\tii-property-053\\115311210024010200.html",
-          "work\\tii-details\\tii-property-053\\115311112065010200.html"
-        ],
-        "failed_details": [
-          {
-            "product_id": "115312113044010301",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115312113044010301",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115311424079010002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115311424079010002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115311424067010102",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115311424067010102",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115311223081010001",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115311223081010001",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115112113044010100",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115112113044010100",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115111114057010004",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111114057010004",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115311210005010003",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115311210005010003",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115111114057010003",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111114057010003",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115312113044010302",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115312113044010302",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115111114057010005",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111114057010005",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115311210005010004",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115311210005010004",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115111114057010006",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111114057010006",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115111114057010007",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111114057010007",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115111210001010002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111210001010002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115111210002010002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111210002010002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115111210003010002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111210003010002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115111112094010502",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111112094010502",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115111112035010002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111112035010002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115111112041010602",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111112041010602",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "115111112044010802",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=115111112044010802",
-            "reason": "invalid_detail_session"
-          }
-        ]
+        "detail_link_count": 1025,
+        "saved_detail_count": 0,
+        "already_saved_detail_count": 1025,
+        "total_saved_detail_count": 1025,
+        "failed_detail_count": 0,
+        "saved_detail_sample": [],
+        "failed_details": [],
+        "document_downloads": {
+          "enabled": false,
+          "priority": "core",
+          "total_scanned_all_details": true,
+          "total_document_link_count": 0,
+          "document_offset": 0,
+          "document_limit": 0,
+          "skipped_document_count": 0,
+          "document_link_count": 0,
+          "saved_document_count": 0,
+          "already_saved_document_count": 0,
+          "failed_document_count": 0,
+          "final_repair_attempted": false,
+          "available_document_count": 0,
+          "repaired_document_count": 0,
+          "unresolved_document_count": 0,
+          "missing_detail_count": 0,
+          "status_path": "",
+          "saved_document_sample": [],
+          "already_saved_document_sample": [],
+          "failed_documents": []
+        }
       }
     },
     {
@@ -33359,9 +32037,9 @@
     },
     {
       "batch_id": "tii-property-064",
-      "ran_at": "2026-06-10T12:32:11+08:00",
-      "status": "submitted_result_saved",
-      "note": "Official site returned a result-like page and it was saved for import.",
+      "ran_at": "2026-07-28T15:08:23+08:00",
+      "status": "captcha_failed_or_required",
+      "note": "Official site did not return usable result data; captcha may be missing or incorrect.",
       "company_label": "118-中國信託產物保險股份有限公司",
       "category_label": "意外保險",
       "query_hint": {
@@ -33376,169 +32054,8 @@
         "work\\tii-execution\\tii-property-064-captcha-1.jpg"
       ],
       "result_file": "work\\tii-results\\tii-property-064.html",
-      "fetched_pages": {
-        "page_size": 10,
-        "total_count": 7087,
-        "total_pages": 709,
-        "official_row_count": 7087,
-        "unique_product_id_count": 4749,
-        "duplicate_product_id_count": 2338,
-        "saved_page_count": 709,
-        "saved_page_sample": [
-          "work\\tii-results\\tii-property-064-page-001.html",
-          "work\\tii-results\\tii-property-064-page-002.html",
-          "work\\tii-results\\tii-property-064-page-003.html",
-          "work\\tii-results\\tii-property-064-page-004.html",
-          "work\\tii-results\\tii-property-064-page-005.html",
-          "work\\tii-results\\tii-property-064-page-006.html",
-          "work\\tii-results\\tii-property-064-page-007.html",
-          "work\\tii-results\\tii-property-064-page-008.html",
-          "work\\tii-results\\tii-property-064-page-009.html",
-          "work\\tii-results\\tii-property-064-page-010.html",
-          "work\\tii-results\\tii-property-064-page-011.html",
-          "work\\tii-results\\tii-property-064-page-012.html",
-          "work\\tii-results\\tii-property-064-page-013.html",
-          "work\\tii-results\\tii-property-064-page-014.html",
-          "work\\tii-results\\tii-property-064-page-015.html",
-          "work\\tii-results\\tii-property-064-page-016.html",
-          "work\\tii-results\\tii-property-064-page-017.html",
-          "work\\tii-results\\tii-property-064-page-018.html",
-          "work\\tii-results\\tii-property-064-page-019.html",
-          "work\\tii-results\\tii-property-064-page-020.html"
-        ],
-        "is_complete": true
-      },
-      "fetched_details": {
-        "detail_link_count": 4749,
-        "saved_detail_count": 4727,
-        "already_saved_detail_count": 0,
-        "total_saved_detail_count": 4727,
-        "failed_detail_count": 22,
-        "saved_detail_sample": [
-          "work\\tii-details\\tii-property-064\\118142519003010002.html",
-          "work\\tii-details\\tii-property-064\\118142519005010002.html",
-          "work\\tii-details\\tii-property-064\\118142519006010002.html",
-          "work\\tii-details\\tii-property-064\\118142519004010002.html",
-          "work\\tii-details\\tii-property-064\\118142118025150000.html",
-          "work\\tii-details\\tii-property-064\\118142321033010000.html",
-          "work\\tii-details\\tii-property-064\\118142321033020000.html",
-          "work\\tii-details\\tii-property-064\\118142321033030000.html",
-          "work\\tii-details\\tii-property-064\\118142321033040000.html",
-          "work\\tii-details\\tii-property-064\\118142321033050000.html",
-          "work\\tii-details\\tii-property-064\\118141424068190100.html",
-          "work\\tii-details\\tii-property-064\\118141424068190200.html",
-          "work\\tii-details\\tii-property-064\\118141424068190300.html",
-          "work\\tii-details\\tii-property-064\\118141424068190400.html",
-          "work\\tii-details\\tii-property-064\\118141424068190500.html",
-          "work\\tii-details\\tii-property-064\\118141424068190600.html",
-          "work\\tii-details\\tii-property-064\\118141424068190700.html",
-          "work\\tii-details\\tii-property-064\\118141424068190800.html",
-          "work\\tii-details\\tii-property-064\\118141424068190900.html",
-          "work\\tii-details\\tii-property-064\\118141424068191000.html"
-        ],
-        "failed_details": [
-          {
-            "product_id": "118142118030020100",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142118030020100",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142118030020000",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142118030020000",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142219122160004",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142219122160004",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142519001010006",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142519001010006",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142118030020001",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142118030020001",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142118030020102",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142118030020102",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142118030020103",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142118030020103",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142118030020002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142118030020002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142118030020003",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142118030020003",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142118030020004",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142118030020004",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142519001014J00",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142519001014J00",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142519002010007",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142519002010007",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142219122160005",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142219122160005",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142519001014J01",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142519001014J01",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142519004010007",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142519004010007",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142519003010007",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142519003010007",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142519006010105",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142519006010105",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142519005010007",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142519005010007",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142519006010008",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142519006010008",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "118142118030020006",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=118142118030020006",
-            "reason": "invalid_detail_session"
-          }
-        ]
-      }
+      "fetched_pages": {},
+      "fetched_details": {}
     },
     {
       "batch_id": "tii-property-065",
@@ -34833,9 +33350,9 @@
     },
     {
       "batch_id": "tii-property-084",
-      "ran_at": "2026-06-11T10:23:41+08:00",
-      "status": "submitted_result_saved",
-      "note": "Official site returned a result-like page and it was saved for import.",
+      "ran_at": "2026-07-28T16:09:39+08:00",
+      "status": "captcha_failed_or_required",
+      "note": "Official site did not return usable result data; captcha may be missing or incorrect.",
       "company_label": "132-美商安達產物保險股份有限公司台灣分公司",
       "category_label": "意外保險",
       "query_hint": {
@@ -34850,169 +33367,8 @@
         "work\\tii-execution\\tii-property-084-captcha-1.jpg"
       ],
       "result_file": "work\\tii-results\\tii-property-084.html",
-      "fetched_pages": {
-        "page_size": 10,
-        "total_count": 4089,
-        "total_pages": 409,
-        "official_row_count": 4089,
-        "unique_product_id_count": 3381,
-        "duplicate_product_id_count": 708,
-        "saved_page_count": 409,
-        "saved_page_sample": [
-          "work\\tii-results\\tii-property-084-page-001.html",
-          "work\\tii-results\\tii-property-084-page-002.html",
-          "work\\tii-results\\tii-property-084-page-003.html",
-          "work\\tii-results\\tii-property-084-page-004.html",
-          "work\\tii-results\\tii-property-084-page-005.html",
-          "work\\tii-results\\tii-property-084-page-006.html",
-          "work\\tii-results\\tii-property-084-page-007.html",
-          "work\\tii-results\\tii-property-084-page-008.html",
-          "work\\tii-results\\tii-property-084-page-009.html",
-          "work\\tii-results\\tii-property-084-page-010.html",
-          "work\\tii-results\\tii-property-084-page-011.html",
-          "work\\tii-results\\tii-property-084-page-012.html",
-          "work\\tii-results\\tii-property-084-page-013.html",
-          "work\\tii-results\\tii-property-084-page-014.html",
-          "work\\tii-results\\tii-property-084-page-015.html",
-          "work\\tii-results\\tii-property-084-page-016.html",
-          "work\\tii-results\\tii-property-084-page-017.html",
-          "work\\tii-results\\tii-property-084-page-018.html",
-          "work\\tii-results\\tii-property-084-page-019.html",
-          "work\\tii-results\\tii-property-084-page-020.html"
-        ],
-        "is_complete": true
-      },
-      "fetched_details": {
-        "detail_link_count": 3381,
-        "saved_detail_count": 3306,
-        "already_saved_detail_count": 0,
-        "total_saved_detail_count": 3306,
-        "failed_detail_count": 75,
-        "saved_detail_sample": [
-          "work\\tii-details\\tii-property-084\\132142117007010000.html",
-          "work\\tii-details\\tii-property-084\\132142117008010000.html",
-          "work\\tii-details\\tii-property-084\\132142117008010100.html",
-          "work\\tii-details\\tii-property-084\\132142117008010200.html",
-          "work\\tii-details\\tii-property-084\\132142117008010300.html",
-          "work\\tii-details\\tii-property-084\\132142117008010400.html",
-          "work\\tii-details\\tii-property-084\\132142117008010500.html",
-          "work\\tii-details\\tii-property-084\\132142117008010600.html",
-          "work\\tii-details\\tii-property-084\\132142117008010700.html",
-          "work\\tii-details\\tii-property-084\\132142117008010800.html",
-          "work\\tii-details\\tii-property-084\\132142117008010900.html",
-          "work\\tii-details\\tii-property-084\\132142117008011000.html",
-          "work\\tii-details\\tii-property-084\\132142117008011100.html",
-          "work\\tii-details\\tii-property-084\\132142117008011200.html",
-          "work\\tii-details\\tii-property-084\\132142117008011300.html",
-          "work\\tii-details\\tii-property-084\\132342117054010000.html",
-          "work\\tii-details\\tii-property-084\\132342117054020000.html",
-          "work\\tii-details\\tii-property-084\\132342118030010000.html",
-          "work\\tii-details\\tii-property-084\\132342118030010100.html",
-          "work\\tii-details\\tii-property-084\\132341117068010000.html"
-        ],
-        "failed_details": [
-          {
-            "product_id": "132142118030035500",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030035500",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030035501",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030035501",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030060001",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030060001",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142117109041800",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142117109041800",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142117109040002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142117109040002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030070002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030070002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030064600",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030064600",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030070003",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030070003",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030080000",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030080000",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030070004",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030070004",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030090001",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030090001",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030090200",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030090200",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030080200",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030080200",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030010100",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030010100",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030090002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030090002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030060002",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030060002",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030070005",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030070005",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030070006",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030070006",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030070007",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030070007",
-            "reason": "invalid_detail_session"
-          },
-          {
-            "product_id": "132142118030060003",
-            "url": "https://insprod.tii.org.tw/DetailList.aspx?productId=132142118030060003",
-            "reason": "invalid_detail_session"
-          }
-        ]
-      }
+      "fetched_pages": {},
+      "fetched_details": {}
     },
     {
       "batch_id": "tii-property-085",
@@ -36481,7 +34837,7 @@
   ],
   "summary": {
     "attempted_batches": 306,
-    "completed_batches": 302,
-    "captcha_required_batches": 4
+    "completed_batches": 295,
+    "captcha_required_batches": 11
   }
 }

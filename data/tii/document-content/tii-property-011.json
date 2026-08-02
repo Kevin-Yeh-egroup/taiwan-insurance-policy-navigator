@@ -1,0 +1,604 @@
+{
+  "generated_at": "2026-07-31T21:44:45+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:44:45+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-011",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 7,
+    "document_count": 7,
+    "extracted_document_count": 7,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 7,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 7,
+    "total_text_characters": 9454,
+    "focus_counts": [
+      {
+        "label": "特殊項目",
+        "count": 5
+      },
+      {
+        "label": "理賠申請",
+        "count": 1
+      },
+      {
+        "label": "保障項目",
+        "count": 1
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "意外險",
+        "count": 1
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 7
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "103132206007010000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "海上保險",
+      "product_name": "華山產物貨物運輸保險",
+      "sale_status": "已停售",
+      "sale_date": "096/08/30",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-011",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1531,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103132206007010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 94065,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1531,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103132507013020000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "海上保險",
+      "product_name": "華山產物船舶保險",
+      "sale_status": "已停售",
+      "sale_date": "096/08/30",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-011",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2359,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103132507013020000-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...11.共同海損與救助GENERAL ARERAGE AND SALVAGE \n12.自負額 DEDUCTIBLE \n23.兵險除外 WAR EXCLUSION \n24.罷工除..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103132507013020000-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...安排之拖帶或救助服\n務。本1.1 條不排除與裝缷有關之習慣性拖帶。 \n1.2 除事先通知保險人且任何其所要求之承保條件之修改及額外保費經其同意外，被保險船舶受僱於海上\n從其..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103132507013020000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 105846,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 2359,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103332108004040000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "海上保險",
+      "product_name": "華山產物漁業漁船船員僱主責任保險",
+      "sale_status": "已停售",
+      "sale_date": "087/09/22",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-011",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 762,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：殘廢。",
+          "terms": [
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103332108004040000-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...合格適航之漁船，因從事漁撈作業漁船活\n動發生意外事故，致船上工作人員死亡、失蹤或肢體殘廢時，依法應由被保險人負賠償責任而受\n賠償請求時，由保險人對被保險人負賠償責任。 \n貳..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103332108004040000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...管保二字第09502522257 號令修正】 \n壹 承保範圍 \n本保險承保被保險人在保險期間內合法使用或管理檢驗合格適航之漁船，因從事漁撈作業漁船活\n動發生意外事故，致船上工作..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103332108004040000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 77722,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 762,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103332108009050000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "海上保險",
+      "product_name": "華山產物娛樂漁業漁船意外責任保險",
+      "sale_status": "已停售",
+      "sale_date": "088/05/27",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-011",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 928,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103332108009050000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...管保二字第09502522257 號令修正】 \n壹 承保範圍 \n本保險承保被保險人在保險期間內合法使用或管理被保險船舶，因從事娛樂漁業漁船活動發生意\n外事故，致船上工作人員、乘..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103332108009050000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 83878,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 928,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103332205001070000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "海上保險",
+      "product_name": "華山產物貨物運送人責任保險",
+      "sale_status": "已停售",
+      "sale_date": "070/11/24",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-011",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1194,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103332205001070000-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...請求時，保險人對被保險人負賠償之責。 \n二、本保險遇有任何一次賠款時，保險人僅對超過自負額之部份負賠償責任。 \n三、本保險所承保之毀損滅失責任，以受運送之貨物在本保險約定之區..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103332205001070000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 94938,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1194,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103332205007060000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "海上保險",
+      "product_name": "華山產物商業動產流動綜合保險",
+      "sale_status": "已停售",
+      "sale_date": "071/02/01",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-011",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1588,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103332205007060000-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...以批單方式加保內河沿海及離\n島水運。 \n四、本保險遇有任何一次賠款時，保險人僅對超過自負額之部份負賠償責任。 \n五、本保險所承保之毀損滅失以保險標的物在本保險約定之區域及有效..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103332205007060000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 105083,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1588,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103332508014030000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "海上保險",
+      "product_name": "華山產物漁船船舶保險",
+      "sale_status": "已停售",
+      "sale_date": "084/11/02",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-011",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1092,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103332508014030000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 92404,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1092,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

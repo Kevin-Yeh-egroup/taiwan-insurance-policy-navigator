@@ -1,0 +1,194 @@
+{
+  "generated_at": "2026-07-31T21:45:24+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:45:24+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-079",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 2,
+    "document_count": 2,
+    "extracted_document_count": 2,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 2,
+    "error_document_count": 0,
+    "pdf_document_count": 1,
+    "legacy_doc_document_count": 1,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 2,
+    "total_text_characters": 10312,
+    "focus_counts": [
+      {
+        "label": "特殊項目",
+        "count": 2
+      }
+    ],
+    "coverage_tag_counts": [],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 2
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "131132206007010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "海上保險",
+      "product_name": "美國環球產物貨物運輸保險",
+      "sale_status": "已停售",
+      "sale_date": "092/05/15",
+      "discontinued_date": "096/08/30",
+      "source_batch_id": "tii-property-079",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 9822,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1311322060070100-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...、折舊、蛀蟲、害蟲或保險標的固有瑕疵之損失,以及因遲延抵達與間接損失不負賠償責任。 不保事項: 詳「協會輻射污染除外條款」、「化學、生物、生化、電磁武器及網路攻擊除外條款」、「..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1311322060070100-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 450560,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 9822,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131132206007010001",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "海上保險",
+      "product_name": "美國環球產物貨物運輸保險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "096/08/31",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-079",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 490,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131132206007010001-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...、 蛀蟲 、 害蟲或保險標的固有瑕疵之損失 , 以及因遲延抵達與間接損失不負賠償責不保事項對因氣候 、 天氣 、 自然耗損 、 折舊 、 蛀蟲 、 害蟲或保險標的固有瑕疵之損..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131132206007010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 164695,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 490,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

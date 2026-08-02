@@ -41,7 +41,9 @@ const state = {
   policyPageSize: 20,
 };
 
-const formatNumber = new Intl.NumberFormat("zh-Hant-TW");
+const formatNumber = new Intl.NumberFormat("zh-Hant-TW", {
+  maximumFractionDigits: 4,
+});
 const PORTFOLIO_STORAGE_KEY = "taiwanPolicyNavigator.portfolio.v1";
 const PORTFOLIO_PAGE_SIZES = [5, 10, 20, 50, 100];
 const POLICY_PAGE_SIZES = [20, 50, 100, 200];
@@ -130,14 +132,336 @@ function planText(value, item) {
   return /^(計畫|方案)/.test(plan) ? plan : `計畫 ${plan}`;
 }
 
-function normalizeCoverageAmount(value) {
-  return coverageModel.normalizeMoneyAmount(value);
+function normalizeCoverageAmount(value, item) {
+  const decimalPlaces = coverageModel.moneyDecimalPlaces(item);
+  return decimalPlaces
+    ? coverageModel.normalizeDecimalMoneyAmount(
+        value,
+        decimalPlaces,
+      )
+    : coverageModel.normalizeMoneyAmount(value);
+}
+
+function itemCurrencyLabel(item) {
+  const requiresIsoCode =
+    item?.version_characteristics?.contract_currency_code_format ===
+    "iso_4217_alpha3";
+  const contractCurrency = requiresIsoCode
+    ? coverageModel.normalizeContractCurrencyCode(
+        item?.policy_state?.contract_currency,
+      )
+    : coverageModel.normalizePolicyText(
+        item?.policy_state?.contract_currency,
+        20,
+      );
+  const requiresContractCurrency = coverageModel
+    .policyStateRequirements(item)
+    .fields
+    .some((field) => field.key === "contract_currency");
+  return contractCurrency || (requiresContractCurrency ? "契約幣別" : "元");
 }
 
 function faceAmountText(item) {
-  const amount = normalizeCoverageAmount(item?.face_amount);
+  const amount = normalizeCoverageAmount(item?.face_amount, item);
   const label = coverageModel.selectionRequirements(item).label;
-  return amount ? `${label} ${formatNumber.format(amount)} 元` : `未填${label}`;
+  return amount
+    ? `${label} ${formatNumber.format(amount)} ${itemCurrencyLabel(item)}`
+    : `未填${label}`;
+}
+
+function accountValueText(item) {
+  const amount = normalizeCoverageAmount(
+    item?.account_value || item?.policy_state?.policy_account_value,
+    item,
+  );
+  const label = coverageModel.selectionRequirements(item).label || "保單帳戶價值";
+  return amount
+    ? `${label} ${formatNumber.format(amount)} ${itemCurrencyLabel(item)}`
+    : `未填${label}`;
+}
+
+function policyStateFieldLabel(key) {
+  return coverageModel.POLICY_STATE_FIELDS?.[key]?.label || key;
+}
+
+function policyStateFieldsText(keys) {
+  const labels = [...new Set(keys || [])].map(policyStateFieldLabel).filter(Boolean);
+  return labels.length ? labels.join("、") : "必要保單狀態";
+}
+
+function policyStateValueText(field, value) {
+  const normalizedValue = String(value ?? "").trim();
+  if (!normalizedValue) return "";
+  if (field.type === "rate") return `${normalizedValue}%`;
+  if (["number", "integer"].includes(field.type)) {
+    return `${normalizedValue}${field.unit ? ` ${field.unit}` : ""}`;
+  }
+  if (field.type === "boolean") return value === true || normalizedValue === "true" ? "已確認" : "";
+  if (field.type === "choice") {
+    return field.options?.find((option) => option.value === normalizedValue)?.label || normalizedValue;
+  }
+  if (field.type === "text") return normalizedValue;
+  const amount = normalizeCoverageAmount(normalizedValue);
+  return amount ? `${formatNumber.format(amount)} 元` : normalizedValue;
+}
+
+function normalizedPolicyStateValue(field, input, item) {
+  if (field.type === "boolean") return input?.checked ? true : null;
+  const rawValue = String(input?.value || "").trim();
+  input?.setCustomValidity("");
+  if (!rawValue) return null;
+  if (field.type === "choice") {
+    const valid = field.options?.some((option) => option.value === rawValue);
+    input?.setCustomValidity(valid ? "" : `請選擇${field.label}`);
+    if (!valid) {
+      input?.reportValidity();
+      return undefined;
+    }
+    return rawValue;
+  }
+  if (field.type === "text") {
+    const value = coverageModel.normalizePolicyText(rawValue, field.max_length);
+    const pattern = field.pattern ? new RegExp(field.pattern, "u") : null;
+    const valid = Boolean(value) && (!pattern || pattern.test(value));
+    input?.setCustomValidity(
+      valid
+        ? ""
+        : field.key === "contract_currency"
+          ? `${field.label}請輸入三碼英文字母，例如 USD`
+          : `${field.label}請輸入有效文字`,
+    );
+    if (!valid) {
+      input?.reportValidity();
+      return undefined;
+    }
+    return value;
+  }
+  if (field.type === "integer") {
+    const value = Number(rawValue.replaceAll(",", ""));
+    const max = Number(field.max || coverageModel.MAX_INSURED_AGE);
+    const min = field.allow_zero ? 0 : 1;
+    const valid = Number.isSafeInteger(value) && value >= min && value <= max;
+    input?.setCustomValidity(valid ? "" : `${field.label}請輸入 ${min} 到 ${formatNumber.format(max)} 的整數`);
+    if (!valid) {
+      input?.reportValidity();
+      return undefined;
+    }
+    return value;
+  }
+  if (field.type === "number") {
+    const value = Number(rawValue.replaceAll(",", ""));
+    const max = Number(field.max || coverageModel.MAX_RATE * 100);
+    const min = field.allow_zero ? 0 : Number.EPSILON;
+    const valid = Number.isFinite(value) && value >= min && value <= max;
+    input?.setCustomValidity(valid ? "" : `${field.label}請輸入 ${field.allow_zero ? "0" : "大於 0"} 到 ${formatNumber.format(max)} 之間的數字`);
+    if (!valid) {
+      input?.reportValidity();
+      return undefined;
+    }
+    return value;
+  }
+  if (field.type === "rate") {
+    const value = Number(rawValue.replaceAll(",", ""));
+    const maxPercent = coverageModel.MAX_RATE * 100;
+    const valid = Number.isFinite(value) && value >= 0 && value <= maxPercent;
+    input?.setCustomValidity(valid ? "" : `${field.label}請輸入 0 到 ${formatNumber.format(maxPercent)} 的百分比`);
+    if (!valid) {
+      input?.reportValidity();
+      return undefined;
+    }
+    return value;
+  }
+  if (field.type === "non_negative_money") {
+    const decimalPlaces = coverageModel.moneyDecimalPlaces(item);
+    if (decimalPlaces) {
+      const value = coverageModel.normalizeDecimalMoneyAmount(
+        rawValue,
+        decimalPlaces,
+        true,
+      );
+      const valid = value !== null;
+      input?.setCustomValidity(
+        valid
+          ? ""
+          : `${field.label}請輸入 0 到 ${formatNumber.format(coverageModel.MAX_MONEY_AMOUNT)}、最多 ${decimalPlaces} 位小數的金額`,
+      );
+      if (!valid) {
+        input?.reportValidity();
+        return undefined;
+      }
+      return value;
+    }
+    const value = Number(rawValue.replaceAll(",", ""));
+    const valid = Number.isSafeInteger(value) && value >= 0 && value <= coverageModel.MAX_MONEY_AMOUNT;
+    input?.setCustomValidity(valid ? "" : `${field.label}請輸入 0 到 ${formatNumber.format(coverageModel.MAX_MONEY_AMOUNT)} 的整數金額`);
+    if (!valid) {
+      input?.reportValidity();
+      return undefined;
+    }
+    return value;
+  }
+  const decimalPlaces = coverageModel.moneyDecimalPlaces(item);
+  if (decimalPlaces) {
+    const value = coverageModel.normalizeDecimalMoneyAmount(
+      rawValue,
+      decimalPlaces,
+    );
+    const valid = value !== null;
+    input?.setCustomValidity(
+      valid
+        ? ""
+        : `${field.label}請輸入大於 0、最多 ${decimalPlaces} 位小數的金額`,
+    );
+    if (!valid) {
+      input?.reportValidity();
+      return undefined;
+    }
+    return value;
+  }
+  const amount = positiveIntegerInputValue(input, field.label, coverageModel.MAX_MONEY_AMOUNT, true);
+  return amount === null ? null : amount;
+}
+
+function normalizePolicyStateForItem(container, item) {
+  const stateValues = {};
+  const fields = coverageModel.policyStateRequirements(item).fields;
+  for (const field of fields) {
+    const input = container.querySelector(`[data-policy-state-key="${CSS.escape(field.key)}"]`);
+    if (!input) continue;
+    const value = normalizedPolicyStateValue(field, input, item);
+    if (value === undefined) return null;
+    if (value !== null) stateValues[field.key] = value;
+  }
+  return stateValues;
+}
+
+const TWD_CONFIRMATION_DEPENDENT_FIELDS = new Set([
+  "benefit_valuation_policy_account_value",
+  "benefit_valuation_basic_premium_policy_account_value",
+  "maturity_policy_account_value",
+  "maturity_basic_premium_policy_account_value",
+  "policy_value_component",
+  "general_death_disability_insurance_amount",
+  "accidental_death_disability_insurance_amount",
+  "unallocated_net_premium_amount",
+]);
+
+function policyStateWithFieldUpdate(item, key, value) {
+  const policyState = {
+    ...(item?.policy_state || {}),
+    [key]: value,
+  };
+  if (TWD_CONFIRMATION_DEPENDENT_FIELDS.has(key)) {
+    policyState.policy_values_converted_to_twd = false;
+  }
+  return policyState;
+}
+
+function syncPolicyStateConfirmationControl(container, item, changedKey) {
+  if (!TWD_CONFIRMATION_DEPENDENT_FIELDS.has(changedKey)) return;
+  const confirmation = container?.querySelector(
+    `[data-policy-state-key="${CSS.escape("policy_values_converted_to_twd")}"]`,
+  );
+  if (confirmation) {
+    confirmation.checked = item?.policy_state?.policy_values_converted_to_twd === true;
+  }
+}
+
+function policyStateInputHtml(field, item) {
+  const value = item?.policy_state?.[field.key] ?? "";
+  if (field.type === "boolean") {
+    return `
+      <label class="policy-state-field policy-state-confirmation">
+        <span>${escapeHtml(field.label)}</span>
+        <span class="check-control">
+          <input type="checkbox" ${value === true ? "checked" : ""} data-policy-state-key="${escapeHtml(field.key)}">
+          <span>已確認</span>
+        </span>
+        <small>${escapeHtml(field.guidance || "")}</small>
+      </label>
+    `;
+  }
+  if (field.type === "choice") {
+    return `
+      <label class="policy-state-field">
+        <span>${escapeHtml(field.label)}</span>
+        <select data-policy-state-key="${escapeHtml(field.key)}">
+          <option value="">請選擇</option>
+          ${(field.options || [])
+            .map(
+              (option) =>
+                `<option value="${escapeHtml(option.value)}" ${String(value) === String(option.value) ? "selected" : ""}>${escapeHtml(option.label)}</option>`,
+            )
+            .join("")}
+        </select>
+        <small>${escapeHtml(field.guidance || "")}</small>
+      </label>
+    `;
+  }
+  const isCurrencyAmount = field.type?.includes("money") && coverageModel
+    .policyStateRequirements(item)
+    .fields
+    .some((requiredField) => requiredField.key === "contract_currency");
+  const displayUnit = isCurrencyAmount ? itemCurrencyLabel(item) : field.unit || "";
+  const moneyDecimalPlaces = coverageModel.moneyDecimalPlaces(item);
+  const moneyStep = moneyDecimalPlaces
+    ? `0.${"0".repeat(moneyDecimalPlaces - 1)}1`
+    : "1";
+  const moneyInputMode = moneyDecimalPlaces ? "decimal" : "numeric";
+  const inputAttrs = field.type === "rate"
+    ? `type="number" min="0" max="${coverageModel.MAX_RATE * 100}" step="0.01" inputmode="decimal"`
+    : field.type === "text"
+      ? `type="text" maxlength="${escapeHtml(field.max_length || 100)}" autocomplete="off"`
+      : field.type === "integer"
+        ? `type="number" min="${field.allow_zero ? 0 : 1}" max="${escapeHtml(field.max || coverageModel.MAX_INSURED_AGE)}" step="1" inputmode="numeric"`
+    : field.type === "number"
+      ? `type="number" min="0" max="${escapeHtml(field.max || coverageModel.MAX_RATE * 100)}" step="${escapeHtml(field.step || "0.01")}" inputmode="decimal"`
+      : field.type === "non_negative_money"
+        ? `type="number" min="0" max="${coverageModel.MAX_MONEY_AMOUNT}" step="${moneyStep}" inputmode="${moneyInputMode}"`
+        : `type="number" min="${moneyStep}" max="${coverageModel.MAX_MONEY_AMOUNT}" step="${moneyStep}" inputmode="${moneyInputMode}"`;
+  const placeholder = field.type === "rate"
+    ? "例如：2.25"
+    : field.key === "contract_currency" &&
+        field.pattern
+      ? "例如：USD"
+    : field.type === "text"
+      ? "例如：USD 或美元"
+      : field.type === "integer"
+        ? `請輸入${field.unit || "正整數"}`
+    : field.type === "number"
+      ? "例如：1.3 或 130"
+      : "請輸入保單列示金額";
+  return `
+    <label class="policy-state-field">
+      <span>${escapeHtml(field.label)}</span>
+      <div class="money-input">
+        <input ${inputAttrs} value="${escapeHtml(value)}" placeholder="${escapeHtml(placeholder)}" data-policy-state-key="${escapeHtml(field.key)}">
+        <span>${escapeHtml(displayUnit)}</span>
+      </div>
+      <small>${escapeHtml(field.guidance || "")}</small>
+    </label>
+  `;
+}
+
+function policyStateFieldsHtml(item) {
+  const selectionFields = coverageModel.selectionRequirements(item).fields;
+  const fields = coverageModel
+    .policyStateRequirements(item)
+    .fields
+    .filter((field) => !(field.key === "policy_account_value" && selectionFields.includes("account_value")));
+  if (!fields.length) return "";
+  return `
+    <details class="policy-state-fields" data-policy-state-fields ${fields.length <= 2 ? "open" : ""}>
+      <summary class="policy-state-guidance">
+        <strong>這張保單還需要補 ${formatNumber.format(fields.length)} 項資料才能完整計算</strong>
+        <span>可先留白；系統會在對應保障項目旁提示缺哪一項。</span>
+      </summary>
+      <p class="policy-state-note">這些資料會隨保單現況、事故日或保險公司試算而變動，不會被當成條款固定金額。</p>
+      <div class="policy-state-grid">
+        ${fields.map((field) => policyStateInputHtml(field, item)).join("")}
+      </div>
+    </details>
+  `;
 }
 
 function normalizeCoverageEntries(entries) {
@@ -169,13 +493,65 @@ function coverageEntryUnitCount(entry, selection) {
   return normalizeUnitCount(key ? selection?.unit_counts?.[key] : selection?.unit_count);
 }
 
+function coverageFormulaCandidateLabel(candidate) {
+  const labels = {
+    annual_premium_total_times_rate: "年繳應繳保險費總和乘以條款倍數",
+    annual_premium_total_times_rate_minus_prior_long_term_care:
+      "年繳應繳保險費總和乘以條款倍數後扣除已領長照金",
+    face_amount_minus_prior_long_term_care:
+      "保險金額扣除已領長照金",
+    policy_reserve_value: "保單價值準備金",
+  };
+  return labels[candidate?.key] || policyStateFieldLabel(candidate?.key);
+}
+
+function paidPremiumFactorCoverageText(name, result, currencyLabel) {
+  const factorText = result.specified_factor
+    ? `${formatNumber.format(result.specified_factor)} 倍`
+    : "指定倍數";
+  const basisText =
+    result.paid_premium_basis !== undefined
+      ? `已繳保費基礎 ${formatNumber.format(result.paid_premium_basis)} ${currencyLabel}`
+      : "已繳保費基礎";
+  const accountText =
+    result.account_value !== undefined
+      ? `保單帳戶價值 ${formatNumber.format(result.account_value)} ${currencyLabel}`
+      : "保單帳戶價值";
+  const formulaText =
+    result.formula_type === "A"
+      ? `${basisText} × ${factorText} 與 ${accountText} 取高者`
+      : `${basisText} × ${factorText} + ${accountText}`;
+  const offsetText = [
+    ["保單借款及利息", result.policy_loan_and_interest_amount],
+    ["其他未償費用", result.unpaid_policy_charge_amount],
+    ["匯款相關費用", result.remittance_fee_amount],
+  ]
+    .filter(([, value]) => value)
+    .map(
+      ([label, value]) =>
+        ` - ${label} ${formatNumber.format(value)} ${currencyLabel}`,
+    )
+    .join("");
+  const funeralText =
+    result.funeral_benefit_limit !== null &&
+    result.funeral_benefit_limit !== undefined
+      ? `；非投資保障部分以喪葬費用剩餘額度 ${formatNumber.format(result.funeral_benefit_limit)} ${currencyLabel}為限`
+      : "";
+  const grossText =
+    result.gross_value_before_offsets !== undefined
+      ? `，毛額 ${formatNumber.format(result.gross_value_before_offsets)} ${currencyLabel}`
+      : "";
+  return `${name}：${formulaText}${funeralText}${grossText}${offsetText} = ${formatNumber.format(result.value)} ${currencyLabel}`;
+}
+
 function coverageEntryText(entry, selectedValues) {
   const normalized = coverageModel.normalizeCoverageEntry(entry, 0);
   const selection = coverageSelection(selectedValues);
   const amount = normalized.amount;
   const result = coverageModel.coverageValue(normalized, selection);
   const name = normalized.name || "保障項目";
-  const formattedAmount = amount ? `${formatNumber.format(amount)} 元` : "金額尚待整理";
+  const currencyLabel = String(result.currency_label || "元").trim() || "元";
+  const formattedAmount = amount ? `${formatNumber.format(amount)} 元` : "待補條款金額";
   const units = coverageEntryUnitCount(normalized, selection);
   const rateRange = [normalized.rate_min, normalized.rate_max]
     .filter(Boolean)
@@ -184,34 +560,607 @@ function coverageEntryText(entry, selectedValues) {
 
   if (result.state === "needs_plan") return `${name}：請先選擇計畫，再依條款附表顯示金額`;
   if (result.state === "amount_overflow") return `${name}：金額超出可安全計算範圍，請回條款確認`;
-  if (!amount && !normalizeCoverageAmount(selection.face_amount)) {
-    return normalized.note ? `${name}：${normalized.note}` : `${name}：金額尚待整理`;
+  if (result.state === "needs_policy_state") {
+    return `${name}：請輸入${policyStateFieldsText(result.required_fields)}後計算${normalized.note ? `；${normalized.note}` : ""}`;
+  }
+  if (result.state === "needs_insurer_confirmation") {
+    if (result.confirmation_reason === "contract_not_confirmed_active") {
+      return `${name}：給付時點的契約不是已確認有效狀態，無法直接套用有效契約的條款公式；請由保險公司確認復效、終止或實際可領金額`;
+    }
+    if (result.confirmation_reason === "offsets_exceed_gross_benefit") {
+      return `${name}：保單借款、利息或尚未扣除費用合計高於本次試算毛額，不能直接算成 0 元；請向保險公司確認正式結算金額`;
+    }
+    if (
+      result.confirmation_reason ===
+      "disability_status_after_waiting_period_uncertain"
+    ) {
+      return `${name}：條款要求殘廢確定滿 180 日後狀態仍持續存在；目前尚未確認，請依醫療與理賠文件補充後再計算`;
+    }
+    if (
+      result.confirmation_reason ===
+      "fractional_monthly_amount_rounding_undefined"
+    ) {
+      return `${name}：主約金額的 1% 為 ${formatNumber.format(result.raw_monthly_amount)} 元，但條款未載明元以下如何處理，請向保險公司確認正式月給付金額`;
+    }
+    if (
+      result.confirmation_reason ===
+      "fractional_policy_amount_rounding_undefined"
+    ) {
+      return `${name}：條款公式會產生元以下數值，但本版條款未載明如何取捨；系統不會自行四捨五入，請向保險公司確認正式給付金額`;
+    }
+    if (
+      result.confirmation_reason ===
+      "benefit_exclusion_requires_review"
+    ) {
+      return `${name}：可能適用除外責任或尚未確認，不能直接套用一般給付公式；請由保險公司確認是否給付及帳戶價值返還方式`;
+    }
+    if (
+      result.confirmation_reason ===
+      "total_disability_not_confirmed"
+    ) {
+      return `${name}：尚未確認符合本版條款第一級七項全殘之一，不能直接換算全殘保險金；請依診斷及理賠認定確認`;
+    }
+    if (
+      result.confirmation_reason ===
+      "aggregate_cap_allocation_required"
+    ) {
+      return `${name}：本保單依條款為 ${formatNumber.format(result.gross_value)} 元，同公司其他保單為 ${formatNumber.format(result.other_benefit_amount)} 元，合計 ${formatNumber.format(result.combined_benefit_amount)} 元已超過跨契約上限 ${formatNumber.format(result.aggregate_limit)} 元；目前剩餘額度為 ${formatNumber.format(result.marginal_capacity)} 元，但條款未載明各契約如何分配，請由保險公司確認本保單實際金額`;
+    }
+    return `${name}：目前保單狀態超出本版條款可安全自動換算的範圍，請向保險公司確認`;
+  }
+  if (result.state === "not_eligible") {
+    if (
+      result.exclusion_state_key ===
+      "disability_support_claim_status"
+    ) {
+      return `${name}：這不是目前選擇的給付情境，因此不列入本次試算`;
+    }
+    if (
+      result.eligibility_reason ===
+      "insured_age_above_maximum"
+    ) {
+      return `${name}：事故時保險年齡為 ${formatNumber.format(result.insured_age_at_event)} 歲，超過本版條款列示的 ${formatNumber.format(result.maximum_eligible_age)} 歲範圍，試算為 0 元`;
+    }
+    if (
+      result.eligibility_reason ===
+      "disability_not_persisting_after_waiting_period"
+    ) {
+      return `${name}：殘廢確定滿 ${formatNumber.format(result.waiting_period_days)} 日後狀態未持續存在，不符合本項月給付條件，試算為 0 元`;
+    }
+    return `${name}：依你選擇的${policyStateFieldLabel(result.exclusion_state_key)}，本項不符合條款給付條件，保障試算為 0 元`;
+  }
+  if (result.state === "needs_account_value") {
+    return `${name}：請輸入保單帳戶價值後呈現${normalized.note ? `；${normalized.note}` : ""}`;
+  }
+  if (result.state === "outside_terms_formula_age_range") {
+    return `${name}：本版條款的保險金最低比率表自滿 ${formatNumber.format(result.minimum_formula_age || 15)} 足歲起適用；事故時年齡為 ${formatNumber.format(result.insured_age_at_event || 0)} 歲，無法由該表自動換算，請向保險公司確認實際給付金額`;
+  }
+  if (result.state === "needs_annuity_factor") {
+    return `${name}：保單帳戶價值 ${formatNumber.format(result.reference_amount)} 元；年金金額仍需依年金生命表、預定利率與給付方式換算，若已有保險公司試算可填入年金給付金額`;
+  }
+  if (
+    normalized.calculation_basis ===
+      "protected_amount_plus_policy_account_value" &&
+    Number.isSafeInteger(result.value)
+  ) {
+    const faceLabel = selection.face_amount_label || "基本保險金額";
+    const protectedText = result.formula_type === "minor_account_value_return"
+      ? `事故時未滿 ${formatNumber.format(result.minor_account_value_return_age || 15)} 足歲，條款保障額不計入`
+      : result.formula_type === "funeral_cap_plus_account_value"
+        ? `${faceLabel} ${formatNumber.format(result.face_amount)} 元受本保單喪葬費用剩餘額度 ${formatNumber.format(result.remaining_funeral_benefit_limit || 0)} 元限制，保障部分為 ${formatNumber.format(result.protected_amount)} 元`
+        : `${faceLabel} ${formatNumber.format(result.protected_amount)} 元`;
+    const accountLabel = policyStateFieldLabel(
+      result.policy_state_key ||
+        "benefit_valuation_policy_account_value",
+    );
+    const accountText = `${accountLabel} ${formatNumber.format(result.benefit_valuation_policy_account_value)} 元`;
+    const pendingText = result.investment_allocation_status === "awaiting_allocation"
+      ? ` + 已收取尚未投入之淨保險費 ${formatNumber.format(result.unallocated_net_premium_amount)} 元`
+      : "";
+    const insuranceCostRefundAmount =
+      result.post_event_insurance_cost_refund_amount ||
+      result.unexpired_premium_refund_amount ||
+      0;
+    const insuranceCostRefundText = insuranceCostRefundAmount
+      ? ` + 事故後已收取保險成本返還 ${formatNumber.format(insuranceCostRefundAmount)} 元`
+      : "";
+    const offsets = (result.policy_loan_and_interest_amount || 0) +
+      (result.unpaid_policy_charge_amount || 0);
+    const offsetText = offsets
+      ? ` - 保單借款及利息 ${formatNumber.format(result.policy_loan_and_interest_amount || 0)} 元 - 尚未扣除費用 ${formatNumber.format(result.unpaid_policy_charge_amount || 0)} 元`
+      : "";
+    return `${name}：${protectedText} + ${accountText}${pendingText}${insuranceCostRefundText}${offsetText} = ${formatNumber.format(result.value)} 元；帳戶價值及事故後已收取保險成本須以保險公司正式列示金額為準`;
+  }
+  if (result.state === "account_value_return") {
+    if (
+      result.formula_type === "low_annual_annuity_lump_sum"
+    ) {
+      return `${name}：保險公司試算的每年年金 ${formatNumber.format(result.annual_annuity_amount)} 元，低於條款門檻 ${formatNumber.format(result.minimum_annual_annuity_amount)} 元，改為一次給付年金開始日保單帳戶價值 ${formatNumber.format(result.value)} ${currencyLabel}`;
+    }
+    const ageText = result.formula_type === "minor_account_value_return"
+      ? "事故時未滿 15 足歲，依條款返還"
+      : "依";
+    if (
+      result.product_family ===
+      "global-new-excellence-variable-universal-life"
+    ) {
+      const refundText = result.delayed_notice_policy_fee_refund_amount
+        ? `；事故後應退保單費用 ${formatNumber.format(result.delayed_notice_policy_fee_refund_amount)} ${currencyLabel}已併入帳戶價值重算`
+        : "";
+      const loanText = `；再扣除保單借款及利息 ${formatNumber.format(result.policy_loan_and_interest_amount || 0)} ${currencyLabel}`;
+      const confirmationText =
+        result.minor_funeral_precedence_requires_insurer_confirmation
+          ? "；若同時涉及條款所列心智狀態，適用先後請向保險公司確認"
+          : "";
+      return `${name}：${ageText}調整後保單帳戶價值 ${formatNumber.format(result.gross_value_before_loan_offset)} ${currencyLabel}${refundText}${loanText} = ${formatNumber.format(result.value)} ${currencyLabel}${confirmationText}`;
+    }
+    return `${name}：${ageText}保單帳戶價值 ${formatNumber.format(result.value)} ${currencyLabel}`;
+  }
+  if (
+    result.formula_type ===
+      "disability_support_monthly_schedule" &&
+    Number.isSafeInteger(result.value)
+  ) {
+    const baseLabel =
+      result.policy_type === "investment"
+        ? "投資型主約基本保額"
+        : result.policy_type === "non_investment"
+          ? "非投資型主約保險金額"
+          : "主約保險金額";
+    const capText =
+      result.allocation_state === "needs_insurer_confirmation"
+        ? `；另有同一保險公司其他同類月給付 ${formatNumber.format(result.other_disability_support_monthly_amount)} 元，合計 ${formatNumber.format(result.combined_monthly_total)} 元已超過每月 ${formatNumber.format(result.combined_monthly_cap_amount)} 元上限；本附約邊際可納入額度為 ${formatNumber.format(result.marginal_monthly_capacity)} 元，實際跨契約分配須由保險公司確認`
+        : result.other_disability_support_monthly_amount
+          ? `；另有同一保險公司其他同類月給付 ${formatNumber.format(result.other_disability_support_monthly_amount)} 元，合計 ${formatNumber.format(result.combined_monthly_total)} 元，未超過每月 ${formatNumber.format(result.combined_monthly_cap_amount)} 元上限`
+          : `；本附約與同一保險公司同類給付合計每月上限 ${formatNumber.format(result.combined_monthly_cap_amount)} 元`;
+    const priorText =
+      result.prior_disability_status === "exists"
+        ? `；有既往殘廢時依保險公司核定剩餘 ${formatNumber.format(result.payable_payment_months)} 個月，可申領名目總額為 ${formatNumber.format(result.payable_nominal_total)} 元`
+        : `；名目總額 ${formatNumber.format(result.payable_nominal_total)} 元`;
+    return `${name}：${baseLabel} ${formatNumber.format(result.face_amount)} 元 × ${formatNumber.format(result.monthly_rate * 100)}% = 本附約條款月額 ${formatNumber.format(result.value)} 元${capText}；第 ${escapeHtml(result.disability_grade)} 級最長 ${formatNumber.format(result.payment_months)} 個月${priorText}；須符合殘廢確定滿 ${formatNumber.format(result.waiting_period_days)} 日後仍持續存在等條款條件`;
+  }
+  if (
+    normalized.calculation_basis === "maturity_policy_account_value" &&
+    result.state === "conditional_amount"
+  ) {
+    if (result.gross_value_before_offsets !== undefined) {
+      const interestText = result.maturity_interest_amount
+        ? ` + 保險公司列示利息 ${formatNumber.format(result.maturity_interest_amount)} ${currencyLabel}`
+        : "";
+      const loanText = result.policy_loan_and_interest_amount
+        ? ` - 保單借款及應付利息 ${formatNumber.format(result.policy_loan_and_interest_amount)} ${currencyLabel}`
+        : "";
+      const chargeText = result.unpaid_policy_charge_amount
+        ? ` - 尚未扣除費用 ${formatNumber.format(result.unpaid_policy_charge_amount)} ${currencyLabel}`
+        : "";
+      const remittanceText = result.remittance_fee_amount
+        ? ` - 匯款相關費用 ${formatNumber.format(result.remittance_fee_amount)} ${currencyLabel}`
+        : "";
+      const maturityAccountLabel = policyStateFieldLabel(
+        result.policy_state_key || "maturity_policy_account_value",
+      );
+      return `${name}：${maturityAccountLabel} ${formatNumber.format(result.maturity_policy_account_value)} ${currencyLabel}${interestText}${loanText}${chargeText}${remittanceText} = ${formatNumber.format(result.value)} ${currencyLabel}；實際金額仍依保險公司滿期評價日、匯率與正式結算為準`;
+    }
+    return `${name}：契約於滿期時仍有效且被保險人生存時，依保險公司按實際投資標的、評價日與匯率列示的滿期保單帳戶價值 ${formatNumber.format(result.value)} 元；不可用目前帳戶價值推定；這是保障試算，不代表滿期時一定給付此金額`;
+  }
+  if (result.state === "policy_state_value") {
+    if (
+      normalized.id ===
+      "chubb-disability-support-death-balance"
+    ) {
+      return `${name}：依保險公司按未支領期數及條款預定利率 2% 正式列示的折現金額，呈現為 ${formatNumber.format(result.value)} 元；這不是另一筆月給付，不能與扶助金名目總額重複加總`;
+    }
+    if (
+      result.formula_type === "insurer_quoted_annual_annuity"
+    ) {
+      return `${name}：保險公司試算的每年年金為 ${formatNumber.format(result.value)} ${currencyLabel}；條款門檻為 ${formatNumber.format(result.minimum_annual_annuity_amount)} 元，年領上限為 ${formatNumber.format(result.maximum_annual_annuity_amount)} 元，實際給付仍依保險公司正式通知`;
+    }
+    if (normalized.result_kind === "payment_method") {
+      return `${name}：依保險公司實際列示的每期金額 ${formatNumber.format(result.value)} ${currencyLabel}呈現；這是給付方式，不是額外保障`;
+    }
+    if (
+      result.quantity_state_key &&
+      Number.isSafeInteger(result.eligible_quantity)
+    ) {
+      const quantityLabel = policyStateFieldLabel(
+        result.quantity_state_key,
+      );
+      const cappedText =
+        result.quantity_cap &&
+        result.quantity > result.eligible_quantity
+          ? `（${result.quantity_cap_state_key ? "保單記載上限" : "條款上限"} ${formatNumber.format(result.quantity_cap)}，本次輸入 ${formatNumber.format(result.quantity)}）`
+          : "";
+      return `${name}：${policyStateFieldLabel(result.policy_state_key)} ${formatNumber.format(result.reference_amount)} 元 × ${formatNumber.format(result.eligible_quantity)} ${quantityLabel}${cappedText} = ${formatNumber.format(result.value)} 元`;
+    }
+    return `${name}：依你輸入的${policyStateFieldLabel(result.policy_state_key)} ${formatNumber.format(result.value)} 元呈現`;
+  }
+  if (result.state === "value_sharing_bonus") {
+    const reserve = result.reference_amount || 0;
+    const spread = result.rate_spread || 0;
+    const formula = `${formatNumber.format(reserve)} 元 × (${formatNumber.format((result.declared_rate || 0) * 100)}% - ${formatNumber.format((result.scheduled_rate || 0) * 100)}%)`;
+    return result.value
+      ? `${name}：${formula} = ${formatNumber.format(result.value)} 元`
+      : `${name}：${formula}，宣告利率未高於預定利率，本年度無給付`;
+  }
+  if (result.state === "value_added_account_credit") {
+    if (result.formula_type === "qualification_lost") {
+      return `${name}：依你選擇的保單狀態，目前已喪失加值給付資格，本期加值為 0 元`;
+    }
+    if (
+      normalized.calculation_basis ===
+      "installment_premium_value_addition"
+    ) {
+      const frequencyText =
+        result.payment_frequency === "annual" ? "年繳" : "月繳";
+      return `${name}：${frequencyText}，前期累積分期保險費平均值 ${formatNumber.format(result.previous_average_installment_premium || 0)} 元 × 本期適用給付率合計 ${formatNumber.format((result.applicable_rate_sum || 0) * 100)}% = ${formatNumber.format(result.value || 0)} 元；此金額投入新臺幣貨幣帳戶，入帳後不再與事故或滿期保障重複加總`;
+    }
+    const average = result.average_target_premium || 0;
+    const rateSum = result.applicable_rate_sum || 0;
+    return `${name}：累積所繳目標保險費平均值 ${formatNumber.format(average)} 元 × 本期新增繳費次數對應給付率合計 ${formatNumber.format(rateSum * 100)}% = ${formatNumber.format(result.value || 0)} 元；此金額依條款投入新臺幣貨幣帳戶，不另加到身故保障`;
+  }
+  if (result.state === "death_or_funeral_amount") {
+    if (
+      normalized.calculation_basis ===
+      "paid_premium_factor_account_value_formula"
+    ) {
+      return paidPremiumFactorCoverageText(
+        name,
+        result,
+        currencyLabel,
+      );
+    }
+    if (result.formula_type === "face_amount_funeral_cap") {
+      return `${name}：保險金額 ${formatNumber.format(result.gross_value_before_funeral_cap)} 元與本保單可用喪葬費用剩餘額度 ${formatNumber.format(result.funeral_benefit_limit)} 元取低者 = ${formatNumber.format(result.value)} 元`;
+    }
+    if (
+      result.formula_type ===
+        "face_amount_percentage_funeral_cap" ||
+      result.formula_type ===
+        "face_amount_percentage_standard_death"
+    ) {
+      const rateText = formatNumber.format(
+        (result.applied_rate || 0) * 100,
+      );
+      const grossText = `保險金額 ${formatNumber.format(result.face_amount)} 元 × ${rateText}% = ${formatNumber.format(result.gross_value_before_funeral_cap)} 元`;
+      const priorText = result.same_accident_prior_paid_amount
+        ? `，再扣除同一事故先前已領失能／殘廢保險金 ${formatNumber.format(result.same_accident_prior_paid_amount)} 元`
+        : "";
+      const funeralText =
+        result.formula_type ===
+        "face_amount_percentage_funeral_cap"
+          ? `，並受本保單可用喪葬費用剩餘額度 ${formatNumber.format(result.funeral_benefit_limit)} 元限制`
+          : "";
+      return `${name}：${grossText}${priorText}${funeralText} = ${formatNumber.format(result.value)} 元`;
+    }
+    if (
+      result.formula_type ===
+        "policy_state_percentage_funeral_cap" ||
+      result.formula_type ===
+        "policy_state_percentage_standard_death"
+    ) {
+      const baseLabel = policyStateFieldLabel(
+        result.policy_state_key,
+      );
+      const rateText = formatNumber.format(
+        (result.applied_rate || 0) * 100,
+      );
+      const paidText = result.cumulative_paid_amount
+        ? `，再扣除累計手術醫療保險金 ${formatNumber.format(result.cumulative_paid_amount)} 元`
+        : "";
+      const funeralText =
+        result.formula_type ===
+        "policy_state_percentage_funeral_cap"
+          ? `，並受本保單可用喪葬費用剩餘額度 ${formatNumber.format(result.funeral_benefit_limit)} 元限制`
+          : "";
+      return `${name}：${baseLabel} ${formatNumber.format(result.reference_amount)} 元 × ${rateText}%${paidText}${funeralText} = ${formatNumber.format(result.value)} 元`;
+    }
+    if (result.candidates?.length) {
+      const candidates = result.candidates
+        .map((candidate) => {
+          const label = coverageFormulaCandidateLabel(candidate);
+          if (candidate.base_value !== undefined && candidate.rate) {
+            return `${label} ${formatNumber.format(candidate.value)} 元`;
+          }
+          return `${label} ${formatNumber.format(candidate.value)} 元`;
+        })
+        .join("；");
+      const grossAmount =
+        result.gross_value_before_funeral_cap ?? result.value;
+      if (result.funeral_benefit_limit !== undefined) {
+        return `${name}：條款保障毛額取較高值 ${formatNumber.format(grossAmount)} 元（${candidates}），再受本保單可用喪葬費用剩餘額度 ${formatNumber.format(result.funeral_benefit_limit)} 元限制，結果為 ${formatNumber.format(result.value)} 元`;
+      }
+      return `${name}：條款保障毛額取較高值 ${formatNumber.format(result.value)} 元（${candidates}）`;
+    }
+    return `${name}：依保險金額給付 ${formatNumber.format(result.value)} 元`;
+  }
+  if (
+    normalized.calculation_basis ===
+      "paid_premium_factor_account_value_formula" &&
+    Number.isSafeInteger(result.value)
+  ) {
+    return paidPremiumFactorCoverageText(name, result, currencyLabel);
+  }
+  if (result.state === "greater_of") {
+    if (result.formula_type === "funeral_cap_plus_account_value_return") {
+      const accountValue = result.account_value_return || 0;
+      const protectedAmount = result.protected_amount || 0;
+      const funeralLimit = result.funeral_benefit_limit || 0;
+      const cappedProtectedAmount =
+        result.capped_protected_amount ?? Math.min(protectedAmount, funeralLimit);
+      const offsetText = [
+        ["保單借款及利息", result.policy_loan_and_interest_amount],
+        ["其他未償費用", result.unpaid_policy_charge_amount],
+        ["匯款相關費用", result.remittance_fee_amount],
+      ]
+        .filter(([, value]) => value)
+        .map(([label, value]) => ` - ${label} ${formatNumber.format(value)} ${currencyLabel}`)
+        .join("");
+      return `${name}：保單帳戶價值返還 ${formatNumber.format(accountValue)} ${currencyLabel} + 非投資保障部分 ${formatNumber.format(protectedAmount)} ${currencyLabel}與本保單可用喪葬費用剩餘額度 ${formatNumber.format(funeralLimit)} ${currencyLabel}取低者 ${formatNumber.format(cappedProtectedAmount)} ${currencyLabel}${offsetText} = ${formatNumber.format(result.value)} ${currencyLabel}`;
+    }
+    const candidates = (result.candidates || [])
+      .map((candidate) => {
+        const label = coverageFormulaCandidateLabel(candidate);
+        if (candidate.base_value && candidate.rate) {
+          return `${label} ${formatNumber.format(candidate.base_value)} 元 × ${formatNumber.format(candidate.rate * 100)}% = ${formatNumber.format(candidate.value)} 元`;
+        }
+        return `${label} ${formatNumber.format(candidate.value)} 元`;
+      })
+      .join("；");
+    const grossText =
+      result.gross_value_before_offsets !== undefined
+        ? `，毛額 ${formatNumber.format(result.gross_value_before_offsets)} ${currencyLabel}`
+        : "";
+    const offsetText = [
+      ["保單借款及利息", result.policy_loan_and_interest_amount],
+      ["其他未償費用", result.unpaid_policy_charge_amount],
+      ["匯款相關費用", result.remittance_fee_amount],
+    ]
+      .filter(([, value]) => value)
+      .map(([label, value]) => ` - ${label} ${formatNumber.format(value)} ${currencyLabel}`)
+      .join("");
+    return `${name}：取較高值${grossText || ` ${formatNumber.format(result.value)} ${currencyLabel}`}${candidates ? `（${candidates}）` : ""}${offsetText}${grossText ? ` = ${formatNumber.format(result.value)} ${currencyLabel}` : ""}`;
+  }
+  if (result.state === "premium_waiver_effect") {
+    return `${name}：這不是可領現金；依你輸入的${policyStateFieldLabel(result.policy_state_key)} ${formatNumber.format(result.value)} 元，呈現為可免繳保費的保障效果`;
+  }
+  if (result.state === "aggregate_cap") {
+    const scope = coverageModel.LIMIT_SCOPES[normalized.limit_scope] || coverageModel.LIMIT_SCOPES.unknown;
+    return `${name}：${scope}總限額 ${formatNumber.format(result.value)} 元；這是累計上限，不是額外給付`;
+  }
+  if (result.state === "policy_state_daily_rate") {
+    return `${name}：依你輸入的${policyStateFieldLabel(result.policy_state_key)}，每日 ${formatNumber.format(result.value)} 元`;
+  }
+  if (result.state === "policy_state_multiplier") {
+    const baseLabel = result.policy_state_key
+      ? policyStateFieldLabel(result.policy_state_key)
+      : "基準額";
+    const multiplierLabel = policyStateFieldLabel(
+      result.multiplier_state_key,
+    );
+    return `${name}：${baseLabel} ${formatNumber.format(result.reference_amount)} 元 × ${multiplierLabel} ${result.multiplier} 倍 = ${formatNumber.format(result.value)} 元`;
+  }
+  if (result.state === "policy_state_rate_table") {
+    const multiplierText = result.multiplier && result.multiplier !== 1 ? ` × ${result.multiplier}` : "";
+    const baseText = `${policyStateFieldLabel(result.policy_state_key)}${multiplierText} = ${formatNumber.format(result.reference_amount)} 元`;
+    return `${name}：${baseText}；${rateRange ? `再依條款比例 ${rateRange}` : "再依條款比例表"}計算`;
+  }
+  if (result.state === "policy_state_percentage") {
+    const label = policyStateFieldLabel(result.policy_state_key);
+    const multiplierText = result.multiplier && result.multiplier !== 1 ? ` × ${result.multiplier}` : "";
+    return `${name}：依你輸入的${label}${multiplierText}，基準額 ${formatNumber.format(result.reference_amount)} 元 × ${formatNumber.format((normalized.rate || 0) * 100)}% = ${formatNumber.format(result.value)} 元`;
+  }
+  if (
+    normalized.calculation_basis ===
+      "net_amount_at_risk_plus_policy_account_value" &&
+    Number.isFinite(result.value)
+  ) {
+    const faceText = `${result.face_amount_label || "基本保額"} ${formatNumber.format(result.face_amount)} ${currencyLabel}`;
+    const accountText = `保單帳戶價值 ${formatNumber.format(result.account_value)} ${currencyLabel}`;
+    const riskText = `淨危險保額 ${formatNumber.format(result.net_amount_at_risk)} ${currencyLabel}`;
+    const deductionText = `保險金扣除額 ${formatNumber.format(result.insurance_deduction_amount || 0)} ${currencyLabel}`;
+    const thresholdText = `帳戶價值 × ${formatNumber.format((result.threshold_factor || 0) * 100)}%`;
+    const paidPremiumText = `累計已繳保費 ${formatNumber.format(result.paid_premium_total || 0)} ${currencyLabel}`;
+    const withdrawalText = `累計已提領 ${formatNumber.format(result.partial_termination_amount_total || 0)} ${currencyLabel}`;
+    let formulaText = `${result.policy_type}：${riskText}；再加${accountText}`;
+    if (
+      result.product_family ===
+      "global-new-excellence-variable-universal-life"
+    ) {
+      const policyType = String(result.policy_type || "").replace("型", "");
+      const rawAccountText = `事故時保單帳戶價值 ${formatNumber.format(result.raw_account_value || 0)} ${currencyLabel}`;
+      const adjustedAccountText = `公式帳戶價值 ${formatNumber.format(result.adjusted_account_value || 0)} ${currencyLabel}`;
+      if (result.semantic_phase === "premium_three_way_ab") {
+        const premiumCandidateText = `${paidPremiumText} × 112% - ${withdrawalText}`;
+        formulaText = policyType === "A"
+          ? `A 型：${rawAccountText} × 110%、${faceText}、${premiumCandidateText}三者取高`
+          : `B 型：${faceText} + ${rawAccountText}，與${premiumCandidateText}取高`;
+      } else if (policyType === "A") {
+        formulaText = `A 型：${faceText}與${thresholdText}取高`;
+      } else if (policyType === "B") {
+        formulaText = `B 型：${faceText}加${adjustedAccountText}，與${thresholdText}取高`;
+      } else if (policyType === "C") {
+        formulaText = `C 型：${faceText}與${adjustedAccountText}取高`;
+      } else {
+        formulaText = `D 型：${faceText}加${adjustedAccountText}`;
+      }
+      const refundText =
+        result.delayed_notice_policy_fee_refund_rule ===
+        "restore_account_value_then_recalculate"
+          ? `；事故後應退保單費用 ${formatNumber.format(result.delayed_notice_policy_fee_refund_amount || 0)} ${currencyLabel}先併入帳戶價值重算`
+          : `；公式結果另加事故後應退保單費用 ${formatNumber.format(result.delayed_notice_policy_fee_refund_amount || 0)} ${currencyLabel}`;
+      const funeralText =
+        result.formula_type?.includes("funeral_limited")
+          ? `；喪葬費用保障部分以剩餘額度 ${formatNumber.format(result.funeral_benefit_limit || 0)} ${currencyLabel}為限，帳戶價值不計入上限`
+          : "";
+      const loanText = `；扣除保單借款及利息 ${formatNumber.format(result.policy_loan_and_interest_amount || 0)} ${currencyLabel}`;
+      return `${name}：${formulaText}${refundText}${funeralText}${loanText} = ${formatNumber.format(result.value)} ${currencyLabel}`;
+    } else if (
+      result.product_family ===
+      "allianz-worldview-foreign-currency-variable-universal-life"
+    ) {
+      const refundText = result.post_event_insurance_cost_refund_amount
+        ? `；保單帳戶價值已加回事故後收取的保險成本 ${formatNumber.format(result.post_event_insurance_cost_refund_amount)} ${currencyLabel}`
+        : "";
+      const offsetText = [
+        ["保單借款及利息", result.policy_loan_and_interest_amount],
+        ["寬限期間欠繳的每月扣除額", result.unpaid_monthly_deduction_amount],
+      ]
+        .filter(([, value]) => value)
+        .map(
+          ([label, value]) =>
+            ` - ${label} ${formatNumber.format(value)} ${currencyLabel}`,
+        )
+        .join("");
+      if (result.formula_type === "minor_account_value_return") {
+        return `${name}：事故時未滿 15 足歲，依條款返還保單帳戶價值 ${formatNumber.format(result.account_value)} ${currencyLabel}${offsetText} = ${formatNumber.format(result.value)} ${currencyLabel}${refundText}`;
+      }
+      const adjustedAccountText = `公式帳戶價值 ${formatNumber.format(result.adjusted_account_value)} ${currencyLabel}`;
+      if (
+        result.semantic_phase ===
+        "legacy-annual-insurance-amount-abc"
+      ) {
+        if (result.policy_type === "甲型") {
+          formulaText = `甲型：當年度保險金額 ${formatNumber.format(result.annual_insurance_amount)} ${currencyLabel}扣除${deductionText}，與${adjustedAccountText}取高`;
+        } else if (result.policy_type === "乙型") {
+          formulaText = `乙型：${faceText}加${adjustedAccountText}`;
+        } else {
+          formulaText = `丙型：${faceText}扣除${deductionText}，與${adjustedAccountText}取高`;
+        }
+      } else if (result.policy_type === "A型") {
+        formulaText = `A 型：${faceText}扣除${deductionText}，與${thresholdText}取高`;
+      } else if (result.policy_type === "B型") {
+        formulaText = `B 型：${faceText}加${adjustedAccountText}，與${thresholdText}取高`;
+      } else if (result.policy_type === "C型") {
+        formulaText = `C 型：${faceText}加${adjustedAccountText}`;
+      } else {
+        formulaText = `D 型：${faceText}扣除${deductionText}，與${adjustedAccountText}取高`;
+      }
+      return `${name}：${formulaText}${offsetText} = ${formatNumber.format(result.value)} ${currencyLabel}${refundText}`;
+    } else if (
+      result.product_family ===
+      "global-excellence-variable-universal-life"
+    ) {
+      if (
+        result.minimum_rate_formula_variant === "fixed_110_percent" &&
+        result.policy_type.includes("A")
+      ) {
+        formulaText = `A 型：${faceText}與${accountText} × 110% 取高者`;
+      } else if (
+        result.minimum_rate_formula_variant === "fixed_110_percent"
+      ) {
+        formulaText = `B 型：${faceText}加${accountText}`;
+      } else if (result.policy_type.includes("A")) {
+        formulaText = `A 型：${faceText}與${thresholdText}取高者`;
+      } else {
+        formulaText = `B 型：${faceText}加${accountText}，與${thresholdText}取高者`;
+      }
+    } else if (result.formula_type === "甲") {
+      formulaText = `甲型：${faceText}扣除${deductionText}及${accountText}，最低為 0，得${riskText}；再加${accountText}`;
+    } else if (result.formula_type === "乙") {
+      formulaText = `乙型：${riskText}等於${faceText}；再加${accountText}`;
+    } else if (result.formula_type === "丙") {
+      formulaText = `丙型：${faceText}扣除${deductionText}及${accountText}，與${thresholdText}取高者，得${riskText}；再加${accountText}`;
+    } else if (result.formula_type === "丁") {
+      formulaText = `丁型：${faceText}與${thresholdText}取高者，得${riskText}；再加${accountText}`;
+    } else if (result.formula_type === "戊") {
+      formulaText = `戊型：${faceText}扣除${deductionText}及${accountText}、${paidPremiumText}扣除${withdrawalText}及${accountText}、${thresholdText}三者取高，得${riskText}；再加${accountText}`;
+    }
+    return `${name}：${formulaText} = ${formatNumber.format(result.value)} ${currencyLabel}`;
+  }
+  if (
+    [
+      "policy_value_plus_general_insurance_amount",
+      "policy_value_plus_general_and_accidental_insurance_amount",
+    ].includes(normalized.calculation_basis) &&
+    result.value
+  ) {
+    const parts = [
+      `事故時保單價值部分 ${formatNumber.format(result.policy_value_component)} 元`,
+      `一般身故／完全殘廢保險金額 ${formatNumber.format(result.general_insurance_amount)} 元`,
+    ];
+    if (result.accidental_insurance_amount) {
+      parts.push(
+        `意外傷害身故／完全殘廢保險金額 ${formatNumber.format(result.accidental_insurance_amount)} 元`,
+      );
+    }
+    return `${name}：在契約有效、請求權與事故認定等條款條件成立時，${parts.join(" + ")} = ${formatNumber.format(result.value)} 元；這是保障試算，不代表個案一定理賠`;
+  }
+  if (normalized.calculation_basis === "annuity_face_amount_schedule" && result.value) {
+    const frequencyRate = formatNumber.format((result.annuity_frequency_rate || 0) * 100);
+    const patternText = result.annuity_payment_pattern === "increasing"
+      ? `第 ${formatNumber.format(result.annuity_payment_year || 1)} 年，3% 單利增額係數 ${formatNumber.format(result.annuity_growth_multiplier || 1)}`
+      : "平準給付";
+    return `${name}：年金投保金額 ${formatNumber.format(result.reference_amount)} 元 × 領取頻率換算係數 ${frequencyRate}% × ${patternText} = 試算每期 ${formatNumber.format(result.value)} 元；元以下處理與實際給付以保單或保險公司列示為準`;
+  }
+  if (
+    normalized.calculation_basis ===
+      "single_premium_minus_paid_annuity_total" &&
+    result.state === "calculated_annuity_balance"
+  ) {
+    const settlementText = normalized.result_kind === "payment_method"
+      ? "此為身故後按原頻率續領的剩餘總額，不是身故當下一次給付"
+      : "此版本於被保險人身故後一次給付餘額";
+    return `${name}：躉繳保險費 ${formatNumber.format(result.single_premium_amount)} 元 - 累計實際已領年金 ${formatNumber.format(result.paid_annuity_total)} 元 = ${formatNumber.format(result.value)} 元；${settlementText}`;
+  }
+  if (
+    normalized.calculation_basis ===
+      "reserve_minus_policy_loan_and_interest" &&
+    result.formula_type === "reserve_minus_policy_loan_and_interest"
+  ) {
+    return `${name}：保單價值準備金 ${formatNumber.format(result.policy_reserve_value)} 元 - 保單借款及應付利息 ${formatNumber.format(result.policy_loan_and_interest_amount)} 元 = ${formatNumber.format(result.value)} 元`;
+  }
+  if (!amount && !normalizeCoverageAmount(selection.face_amount, selection) && !result.value && !result.reference_amount) {
+    return normalized.note ? `${name}：${normalized.note}` : `${name}：待補條款金額`;
   }
   if (normalized.calculation_basis === "per_unit") {
-    return result.value
+    if (
+      normalized.quantity_state_key &&
+      Number.isSafeInteger(result.value)
+    ) {
+      const rateText =
+        result.applied_rate !== undefined &&
+        result.applied_rate !== 1
+          ? ` × ${formatNumber.format(result.applied_rate * 100)}%`
+          : "";
+      const paidText =
+        result.cumulative_paid_amount !== null &&
+        result.cumulative_paid_amount !== undefined
+          ? ` - 本次事故前已領 ${formatNumber.format(result.cumulative_paid_amount)} 元`
+          : "";
+      return `${name}：每單位 ${formattedAmount} × ${formatNumber.format(units)} 單位 × ${formatNumber.format(result.quantity)} ${policyStateFieldLabel(normalized.quantity_state_key)}${rateText}${paidText} = ${formatNumber.format(result.value)} 元`;
+    }
+    return Number.isSafeInteger(result.value)
       ? `${name}：每單位 ${formattedAmount} × ${formatNumber.format(units)} 單位 = ${formatNumber.format(result.value)} 元`
       : `${name}：每單位 ${formattedAmount}；請補上單位數`;
   }
   if (normalized.calculation_basis === "per_unit_per_day") {
-    return result.value
+    if (normalized.quantity_state_key && Number.isSafeInteger(result.value)) {
+      return `${name}：每單位／每日 ${formattedAmount} × ${formatNumber.format(units)} 單位 × ${formatNumber.format(result.quantity)} ${policyStateFieldLabel(normalized.quantity_state_key)} = ${formatNumber.format(result.value)} 元`;
+    }
+    return Number.isSafeInteger(result.value)
       ? `${name}：每單位／每日 ${formattedAmount} × ${formatNumber.format(units)} 單位 = 每日 ${formatNumber.format(result.value)} 元`
       : `${name}：每單位／每日 ${formattedAmount}；請補上單位數`;
   }
   if (normalized.calculation_basis === "percentage_of_base") {
-    const base = result.reference_amount || normalizeCoverageAmount(selection.face_amount);
+    const base = result.reference_amount || normalizeCoverageAmount(selection.face_amount, selection);
     const unitBased = ["per_unit", "daily_per_unit"].includes(normalized.basis);
     if (result.state === "needs_unit_count") {
       return `${name}：每單位基準額 ${formattedAmount}；請補上單位數後依條款比例表計算`;
     }
-    if (result.value && normalized.rate) {
-      return `${name}：${unitBased && units ? `${formatNumber.format(units)} 單位，` : ""}基準額 ${formatNumber.format(base)} 元 × ${formatNumber.format(normalized.rate * 100)}% = ${formatNumber.format(result.value)} 元`;
+    const appliedRate = result.applied_rate || normalized.rate;
+    if (Number.isSafeInteger(result.value) && appliedRate) {
+      return `${name}：${unitBased && units ? `${formatNumber.format(units)} 單位，` : ""}基準額 ${formatNumber.format(base)} 元 × ${formatNumber.format(appliedRate * 100)}% = ${formatNumber.format(result.value)} 元`;
     }
     return `${name}：${unitBased && units ? `${formatNumber.format(units)} 單位，` : ""}基準額 ${formatNumber.format(base)} 元；${rateRange ? `依條款比例 ${rateRange}` : "依條款比例表計算"}`;
   }
   if (normalized.calculation_basis === "table_multiplier") {
     const base = result.reference_amount || amount;
+    const multiplier =
+      result.applied_multiplier ||
+      result.multiplier ||
+      normalized.multiplier;
     return result.value
-      ? `${name}：基準額 ${formatNumber.format(base)} 元 × ${normalized.multiplier} 倍 = ${formatNumber.format(result.value)} 元`
+      ? `${name}：基準額 ${formatNumber.format(base)} 元 × ${multiplier} 倍 = ${formatNumber.format(result.value)} 元`
       : `${name}：基準額 ${formatNumber.format(base)} 元；依條款倍數表計算`;
   }
   if (normalized.calculation_basis === "reimbursement_with_cap") {
@@ -226,27 +1175,91 @@ function coverageEntryText(entry, selectedValues) {
         .join("；");
       return `${name}：${caps}；實際給付依支出與條款`;
     }
+    if (normalized.expense_state_key && Number.isSafeInteger(result.value)) {
+      const rateText =
+        result.applied_rate && result.applied_rate !== 1
+          ? ` × ${formatNumber.format(result.applied_rate * 100)}%`
+          : "";
+      const annualText =
+        result.remaining_aggregate_limit === null ||
+        result.remaining_aggregate_limit === undefined
+          ? ""
+          : `，再受本年度剩餘限額 ${formatNumber.format(result.remaining_aggregate_limit)} 元限制`;
+      return `${name}：實際費用 ${formatNumber.format(result.expense_amount)} 元${rateText}，與${scope}限額 ${formatNumber.format(result.reference_amount)} 元取低${annualText} = ${formatNumber.format(result.value)} 元`;
+    }
     const limit = result.value || amount;
-    return `${name}：${unitBased && units ? `${formatNumber.format(units)} 單位，` : ""}${scope}最高 ${formatNumber.format(limit)} 元；實際給付依支出與條款`;
+    const statePrefix = result.state === "policy_state_limit"
+      ? `依你輸入的${policyStateFieldLabel(result.policy_state_key)}，`
+      : "";
+    return `${name}：${statePrefix}${unitBased && units ? `${formatNumber.format(units)} 單位，` : ""}${scope}最高 ${formatNumber.format(limit)} 元；實際給付依支出與條款`;
   }
   if (normalized.calculation_basis === "percentage_of_actual_expense_with_cap") {
     const scope = coverageModel.LIMIT_SCOPES[normalized.limit_scope] || coverageModel.LIMIT_SCOPES.unknown;
-    const limit = result.value || amount || normalizeCoverageAmount(selection.face_amount);
+    const limit = result.value || amount || normalizeCoverageAmount(selection.face_amount, selection);
     const rateText = normalized.rate ? `${formatNumber.format(normalized.rate * 100)}%` : "條款比例";
-    return `${name}：實際支出 ${rateText}，${scope}最高 ${formatNumber.format(limit)} 元；實際給付依支出與條款`;
+    const statePrefix = result.state === "policy_state_limit"
+      ? `依你輸入的${policyStateFieldLabel(result.policy_state_key)}，`
+      : "";
+    if (normalized.expense_state_key && Number.isSafeInteger(result.value)) {
+      const annualText =
+        result.remaining_aggregate_limit === null ||
+        result.remaining_aggregate_limit === undefined
+          ? ""
+          : `，再受本年度剩餘限額 ${formatNumber.format(result.remaining_aggregate_limit)} 元限制`;
+      return `${name}：實際費用 ${formatNumber.format(result.expense_amount)} 元 × ${formatNumber.format((result.applied_rate || 0) * 100)}%，與${scope}限額 ${formatNumber.format(result.reference_amount)} 元取低${annualText} = ${formatNumber.format(result.value)} 元`;
+    }
+    return `${name}：${statePrefix}實際支出 ${rateText}，${scope}最高 ${formatNumber.format(limit)} 元；實際給付依支出與條款`;
   }
-  if (normalized.calculation_basis === "per_day") return `${name}：每日 ${formattedAmount}`;
+  if (normalized.calculation_basis === "per_day") {
+    return normalized.quantity_state_key && Number.isSafeInteger(result.value)
+      ? `${name}：每日 ${formattedAmount} × ${formatNumber.format(result.quantity)} 日 = ${formatNumber.format(result.value)} 元`
+      : `${name}：每日 ${formattedAmount}`;
+  }
+  if (
+    normalized.calculation_basis === "fixed_amount" &&
+    normalized.quantity_state_key &&
+    Number.isSafeInteger(result.value)
+  ) {
+    return `${name}：每次 ${formattedAmount} × ${formatNumber.format(result.quantity)} 次 = ${formatNumber.format(result.value)} 元`;
+  }
   if (normalized.calculation_basis === "additional_benefit") return `${name}：額外給付 ${formattedAmount}`;
   if (normalized.calculation_basis === "tiered_or_stepped") {
+    if (
+      result.selected_tier &&
+      Number.isSafeInteger(result.value)
+    ) {
+      const rateText =
+        result.applied_rate !== undefined &&
+        result.applied_rate !== 1
+          ? ` × ${formatNumber.format(result.applied_rate * 100)}%`
+          : "";
+      const paidText =
+        result.cumulative_paid_amount !== null &&
+        result.cumulative_paid_amount !== undefined
+          ? ` - 本次事故前已領 ${formatNumber.format(result.cumulative_paid_amount)} 元`
+          : "";
+      if (
+        normalized.basis === "face_amount" &&
+        result.selected_tier.multiplier &&
+        Number.isSafeInteger(result.reference_amount)
+      ) {
+        return `${name}：${policyStateFieldLabel(result.tier_selection_state_key)} ${formatNumber.format(result.tier_selection_value)}，適用「${result.selected_tier.label}」保險金額 ${formatNumber.format(result.reference_amount)} 元 × ${formatNumber.format(result.selected_tier.multiplier * 100)}%${rateText}${paidText} = ${formatNumber.format(result.value)} 元`;
+      }
+      return `${name}：${policyStateFieldLabel(result.tier_selection_state_key)} ${formatNumber.format(result.tier_selection_value)}，適用「${result.selected_tier.label}」每單位 ${formatNumber.format(result.selected_tier.amount)} 元 × ${formatNumber.format(units)} 單位${rateText}${paidText} = ${formatNumber.format(result.value)} 元`;
+    }
     if (result.tier_values?.length) {
       const tiers = result.tier_values
         .map((tier) =>
-          tier.value
-            ? `${tier.label} ${formatNumber.format(tier.value)} 元`
+          Number.isSafeInteger(tier.value)
+            ? `${tier.label}${Number.isSafeInteger(tier.quantity) ? `共 ${formatNumber.format(tier.quantity)} 日` : ""} ${formatNumber.format(tier.value)} 元`
             : `${tier.label}每單位 ${formatNumber.format(tier.reference_amount)} 元`,
         )
         .join("；");
-      return `${name}：${units ? `${formatNumber.format(units)} 單位，` : ""}${tiers}${units ? "" : "；請補上單位數"}`;
+      const total =
+        result.state === "calculated" && Number.isSafeInteger(result.value)
+          ? `；合計 ${formatNumber.format(result.value)} 元`
+          : "";
+      return `${name}：${units ? `${formatNumber.format(units)} 單位，` : ""}${tiers}${total}${units ? "" : "；請補上單位數"}`;
     }
     return `${name}：${formattedAmount}；依條款級距或階梯表計算`;
   }
@@ -275,11 +1288,53 @@ function positiveIntegerInputValue(input, label = "單位數", max = 9999, allow
   return valid ? value : null;
 }
 
+function moneyInputValue(
+  input,
+  item,
+  label,
+  allowBlank = false,
+  allowZero = false,
+) {
+  const rawValue = String(input?.value || "").trim();
+  if (allowBlank && !rawValue) {
+    input?.setCustomValidity("");
+    return null;
+  }
+  const decimalPlaces = coverageModel.moneyDecimalPlaces(item);
+  if (!decimalPlaces) {
+    return positiveIntegerInputValue(
+      input,
+      label,
+      coverageModel.MAX_MONEY_AMOUNT,
+      allowBlank,
+    );
+  }
+  const value = coverageModel.normalizeDecimalMoneyAmount(
+    rawValue,
+    decimalPlaces,
+    allowZero,
+  );
+  const valid = value !== null;
+  input?.setCustomValidity(
+    valid
+      ? ""
+      : `${label}請輸入${allowZero ? "不小於" : "大於"} 0、最多 ${decimalPlaces} 位小數的金額`,
+  );
+  if (!valid) input?.reportValidity();
+  return valid ? value : null;
+}
+
 function portfolioSelectionFieldsHtml(item) {
   const requirements = coverageModel.selectionRequirements(item);
   const planOptions = requirements.plan_options;
   const mode = requirements.mode;
   const selectedPlan = String(item?.plan_name || "").trim();
+  const currencyLabel = itemCurrencyLabel(item);
+  const moneyDecimalPlaces = coverageModel.moneyDecimalPlaces(item);
+  const moneyStep = moneyDecimalPlaces
+    ? `0.${"0".repeat(moneyDecimalPlaces - 1)}1`
+    : "1";
+  const moneyInputMode = moneyDecimalPlaces ? "decimal" : "numeric";
   const planControl = planOptions.length
     ? `<select data-selection-plan>
         <option value="">請選擇計畫／方案</option>
@@ -293,10 +1348,14 @@ function portfolioSelectionFieldsHtml(item) {
     : `<input type="text" maxlength="60" value="${escapeHtml(selectedPlan)}" placeholder="例如：計畫 B" data-selection-plan>`;
   const defaultGuidance = {
     face_amount: "依這個版本的條款，請填保單首頁記載的契約保險金額。",
+    face_amount_plan: "依這個版本的條款，請填保單首頁記載的基本保額，並選擇保險型態。",
+    account_value: "依這個版本的條款，請填保單帳戶價值；投資型壽險或年金常需要用這個金額呈現返還或換算結果。",
+    paid_premium_factor_plan: "請選擇保險型態，並在下方輸入條款公式需要的已繳保費、部分終止金額、指定百分比或倍數與保單帳戶價值。",
     plan: "依這個版本的條款選擇計畫；保障項目與金額會自動帶入。",
     unit: "依這個版本的條款填投保單位數；只能輸入正整數。",
     multi_unit: "這個商品有兩組以上的投保單位，請依保單首頁分別填寫。",
     plan_unit: "這個商品的條款同時使用計畫與單位，兩項都需填寫。",
+    policy_state: "這個商品需依保單當時狀態計算，請填下方條款要求的保單欄位。",
     fixed: "條款已整理為固定給付，不需輸入保額、計畫或單位。",
     unknown: "金額輸入方式尚未從條款確認；可以先加入集合，系統不會推估金額。",
   }[mode];
@@ -319,10 +1378,17 @@ function portfolioSelectionFieldsHtml(item) {
       </div>
       <input type="hidden" value="${escapeHtml(mode)}" data-selection-mode>
       <label data-selection-field="face_amount" ${requirements.fields.includes("face_amount") ? "" : "hidden"}>
-        <span>${escapeHtml(mode === "face_amount" ? requirements.label : "契約保險金額")}</span>
+        <span>${escapeHtml(requirements.face_amount_label)}</span>
         <div class="money-input">
-          <input type="number" min="1" max="${coverageModel.MAX_MONEY_AMOUNT}" step="1" inputmode="numeric" value="${escapeHtml(normalizeCoverageAmount(item?.face_amount) || "")}" placeholder="請輸入保單記載金額" data-selection-face-amount>
-          <span>元</span>
+          <input type="number" min="${moneyStep}" max="${coverageModel.MAX_MONEY_AMOUNT}" step="${moneyStep}" inputmode="${moneyInputMode}" value="${escapeHtml(normalizeCoverageAmount(item?.face_amount, item) || "")}" placeholder="請輸入保單記載金額" data-selection-face-amount>
+          <span>${escapeHtml(currencyLabel)}</span>
+        </div>
+      </label>
+      <label data-selection-field="account_value" ${requirements.fields.includes("account_value") ? "" : "hidden"}>
+        <span>${escapeHtml(mode === "account_value" ? requirements.label : "保單帳戶價值")}</span>
+        <div class="money-input">
+          <input type="number" min="${moneyStep}" max="${coverageModel.MAX_MONEY_AMOUNT}" step="${moneyStep}" inputmode="${moneyInputMode}" value="${escapeHtml(normalizeCoverageAmount(item?.account_value || item?.policy_state?.policy_account_value, item) || "")}" placeholder="請輸入保單帳戶價值" data-selection-account-value>
+          <span>${escapeHtml(currencyLabel)}</span>
         </div>
       </label>
       <label data-selection-field="unit" ${requirements.fields.includes("unit_count") ? "" : "hidden"}>
@@ -331,9 +1397,10 @@ function portfolioSelectionFieldsHtml(item) {
       </label>
       ${requirements.fields.includes("unit_counts") ? unitFields : ""}
       <label data-selection-field="plan" ${requirements.fields.includes("plan_name") ? "" : "hidden"}>
-        <span>計畫別</span>
+        <span>${escapeHtml(["face_amount_plan", "paid_premium_factor_plan"].includes(mode) ? "保險型態" : "計畫別")}</span>
         ${planControl}
       </label>
+      ${policyStateFieldsHtml(item)}
     </div>
   `;
 }
@@ -345,10 +1412,13 @@ function readPortfolioSelection(container, item) {
     selection_mode: mode,
     selection_type: mode,
     face_amount: null,
+    account_value: null,
     unit_count: null,
     unit_counts: {},
     plan_name: "",
+    policy_state: normalizePolicyStateForItem(container, item),
   };
+  if (selection.policy_state === null) return null;
   if (requirements.fields.includes("plan_name")) {
     const planInput = container.querySelector("[data-selection-plan]");
     const planName = String(planInput?.value || "").trim();
@@ -375,9 +1445,27 @@ function readPortfolioSelection(container, item) {
   }
   if (requirements.fields.includes("face_amount")) {
     const amountInput = container.querySelector("[data-selection-face-amount]");
-    const faceAmount = positiveIntegerInputValue(amountInput, requirements.label, coverageModel.MAX_MONEY_AMOUNT);
+    const faceAmount = moneyInputValue(
+      amountInput,
+      item,
+      requirements.label,
+    );
     if (faceAmount === null) return null;
     selection.face_amount = faceAmount;
+  }
+  if (requirements.fields.includes("account_value")) {
+    const amountInput = container.querySelector("[data-selection-account-value]");
+    const accountValue = moneyInputValue(
+      amountInput,
+      item,
+      requirements.label,
+    );
+    if (accountValue === null) return null;
+    selection.account_value = accountValue;
+    selection.policy_state = {
+      ...selection.policy_state,
+      policy_account_value: accountValue,
+    };
   }
   return selection;
 }
@@ -395,6 +1483,8 @@ function syncPortfolioSelectionFields(container) {
 function portfolioSelectionText(item) {
   const mode = portfolioSelectionMode(item);
   if (mode === "face_amount") return faceAmountText(item);
+  if (mode === "account_value") return accountValueText(item);
+  if (mode === "paid_premium_factor_plan") return planText(item?.plan_name, item) || "尚未選擇保險型態";
   if (mode === "plan") return planText(item?.plan_name, item) || "尚未選擇計畫";
   if (mode === "unit") return unitText(item?.unit_count);
   if (mode === "multi_unit") {
@@ -406,8 +1496,9 @@ function portfolioSelectionText(item) {
   if (mode === "plan_unit") {
     return [planText(item?.plan_name, item) || "尚未選擇計畫", unitText(item?.unit_count)].join("、");
   }
+  if (mode === "policy_state") return "依保單狀態計算";
   if (mode === "fixed") return "條款固定給付";
-  return "金額尚待整理";
+  return "待補條款金額";
 }
 
 function clampPage(page, totalPages) {
@@ -843,13 +1934,20 @@ function loadPortfolioItems() {
           .map((item) => {
             const selectionMode = portfolioSelectionMode(item);
             const selectionFields = coverageModel.SELECTION_MODES[selectionMode]?.fields || [];
+            const requiresVersionRefresh =
+              item.source_kind === "tii" &&
+              item.source_batch_id &&
+              item.product_id;
             return {
               ...item,
               id: portfolioItemId(item),
               selection_mode: selectionMode,
               selection_type: selectionMode,
               selection_source: item.selection_source || "",
-              face_amount: selectionFields.includes("face_amount") ? normalizeCoverageAmount(item.face_amount) : null,
+              face_amount: selectionFields.includes("face_amount") ? normalizeCoverageAmount(item.face_amount, item) : null,
+              account_value: selectionFields.includes("account_value")
+                ? normalizeCoverageAmount(item.account_value || item.policy_state?.policy_account_value, item)
+                : null,
               unit_count: selectionFields.includes("unit_count") ? normalizeUnitCount(item.unit_count ?? item.units) : null,
               unit_counts: selectionFields.includes("unit_counts")
                 ? Object.fromEntries(
@@ -860,7 +1958,14 @@ function loadPortfolioItems() {
                   )
                 : {},
               plan_name: selectionFields.includes("plan_name") ? String(item.plan_name || "").trim() : "",
-              coverage_entries: normalizeCoverageEntries(item.coverage_entries),
+              policy_state: Object.fromEntries(
+                Object.entries(item.policy_state || {}).filter(([, value]) => value !== null && value !== undefined && value !== ""),
+              ),
+              plan_options: requiresVersionRefresh ? [] : item.plan_options || [],
+              coverage_entries: requiresVersionRefresh
+                ? []
+                : normalizeCoverageEntries(item.coverage_entries),
+              document_summary_loaded: false,
             };
           })
       : [];
@@ -923,7 +2028,9 @@ function itemMatchesPortfolioFilters(item) {
 function portfolioIdentityFingerprint(item) {
   return portfolioKey(
     [
+      item.source_batch_id || "",
       item.product_id || "no-product-id",
+      item.source_document_sha256 || "",
       item.company || "",
       inferPortfolioBucket(item),
       item.product_type || "",
@@ -1159,16 +2266,19 @@ function coverageBadgeHtml(item) {
   return buckets.map((bucket) => `<span class="chip">${escapeHtml(bucket.label)}</span>`).join("");
 }
 
+function structureStatusForItem(item) {
+  return coverageModel.structureStatus(item);
+}
+
+function structureStatusBadgeHtml(item) {
+  const status = structureStatusForItem(item);
+  return `<span class="chip structure-status status-${escapeHtml(status.id)}">${escapeHtml(status.short_label || status.label)}</span>`;
+}
+
 function selectionModeBadgeHtml(item) {
   const requirements = coverageModel.selectionRequirements(item);
-  const summaryNotLoaded =
-    requirements.mode === "unknown" &&
-    item?.source_kind === "tii" &&
-    item?.source_batch_id &&
-    !item?.document_summary_loaded;
-  const label = summaryNotLoaded ? "查看保障與金額" : requirements.label;
-  const pendingClass = requirements.mode === "unknown" ? " muted" : "";
-  return `<span class="chip${pendingClass}">${escapeHtml(label)}</span>`;
+  if (requirements.mode === "unknown") return "";
+  return `<span class="chip">${escapeHtml(requirements.label)}</span>`;
 }
 
 function policyCodeBadgeHtml(item) {
@@ -1203,7 +2313,10 @@ function addPortfolioItem(item) {
     id: item.id || portfolioItemId(item),
     selection_mode: selectionMode,
     selection_type: item.selection_type || selectionMode,
-    face_amount: selectionFields.includes("face_amount") ? normalizeCoverageAmount(item.face_amount) : null,
+    face_amount: selectionFields.includes("face_amount") ? normalizeCoverageAmount(item.face_amount, item) : null,
+    account_value: selectionFields.includes("account_value")
+      ? normalizeCoverageAmount(item.account_value || item.policy_state?.policy_account_value, item)
+      : null,
     unit_count: selectionFields.includes("unit_count") ? normalizeUnitCount(item.unit_count) : null,
     unit_counts: selectionFields.includes("unit_counts")
       ? Object.fromEntries(
@@ -1214,6 +2327,9 @@ function addPortfolioItem(item) {
         )
       : {},
     plan_name: selectionFields.includes("plan_name") ? String(item.plan_name || "").trim() : "",
+    policy_state: Object.fromEntries(
+      Object.entries(item.policy_state || {}).filter(([, value]) => value !== null && value !== undefined && value !== ""),
+    ),
     coverage_entries: normalizeCoverageEntries(item.coverage_entries),
   };
   const existingIndex = state.portfolioItems.findIndex((current) => current.id === normalizedItem.id);
@@ -1226,12 +2342,17 @@ function addPortfolioItem(item) {
             selection_mode: normalizedItem.selection_mode,
             selection_type: normalizedItem.selection_type,
             face_amount: normalizedItem.face_amount,
+            account_value: normalizedItem.account_value,
             unit_count: normalizedItem.unit_count,
             unit_counts: normalizedItem.unit_counts,
             plan_name: normalizedItem.plan_name,
-            coverage_entries: normalizedItem.coverage_entries.length
-              ? normalizedItem.coverage_entries
-              : normalizeCoverageEntries(current.coverage_entries),
+            policy_state: normalizedItem.policy_state,
+            coverage_entries:
+              normalizedItem.source_kind === "tii"
+                ? normalizedItem.coverage_entries
+                : normalizedItem.coverage_entries.length
+                  ? normalizedItem.coverage_entries
+                  : normalizeCoverageEntries(current.coverage_entries),
           }
         : current,
     );
@@ -1276,12 +2397,16 @@ function renderPortfolioSuggestions(matches, query) {
   state.portfolioSuggestionPage = clampPage(state.portfolioSuggestionPage, totalPages);
   const startIndex = (state.portfolioSuggestionPage - 1) * state.portfolioSuggestionPageSize;
   const visibleMatches = matches.slice(startIndex, startIndex + state.portfolioSuggestionPageSize);
+  const shouldPaginate = matches.length > state.portfolioSuggestionPageSize;
+  const portfolioPagination = shouldPaginate
+    ? paginationHtml("portfolio", matches.length, state.portfolioSuggestionPage, state.portfolioSuggestionPageSize, PORTFOLIO_PAGE_SIZES)
+    : "";
   container.innerHTML = `
     <div class="suggestion-heading">
       <strong>找到 ${formatNumber.format(matches.length)} 個候選</strong>
-      <span>請先核對摘要與版本，再加入集合。</span>
+      <span>請先查看保障與金額，再加入集合。</span>
     </div>
-    ${paginationHtml("portfolio", matches.length, state.portfolioSuggestionPage, state.portfolioSuggestionPageSize, PORTFOLIO_PAGE_SIZES)}
+    ${portfolioPagination}
     <div class="suggestion-list">
       ${visibleMatches
         .map(
@@ -1296,10 +2421,10 @@ function renderPortfolioSuggestions(matches, query) {
                   <span>${escapeHtml(item.product_type)}</span>
                   ${identityMetaHtml(item)}
                 </div>
-                <div class="policy-flags">${coverageBadgeHtml(item)}${selectionModeBadgeHtml(item)}</div>
+                <div class="policy-flags">${coverageBadgeHtml(item)}${structureStatusBadgeHtml(item)}${selectionModeBadgeHtml(item)}</div>
               </div>
               <div class="suggestion-actions">
-                <button class="button primary" type="button" data-view-suggestion="${index}">查看</button>
+                <button class="button primary" type="button" data-view-suggestion="${index}">查看保障與金額</button>
               </div>
             </article>
           `;
@@ -1307,7 +2432,7 @@ function renderPortfolioSuggestions(matches, query) {
         )
         .join("")}
     </div>
-    ${matches.length > state.portfolioSuggestionPageSize ? paginationHtml("portfolio", matches.length, state.portfolioSuggestionPage, state.portfolioSuggestionPageSize, PORTFOLIO_PAGE_SIZES) : ""}
+    ${portfolioPagination}
     <p class="result-summary">「${escapeHtml(query)}」共有 ${formatNumber.format(matches.length)} 個候選；若同名很多，請用公司與銷售日期核對版本。</p>
   `;
 }
@@ -1318,9 +2443,13 @@ function focusByKeyForPortfolio(item, key) {
 
 function coverageSummaryForItem(item) {
   const buckets = detectCoverageBuckets(item).map((bucket) => bucket.label);
-  if (buckets.length) return `系統依商品名稱與險種判斷，這張保單可能對應 ${buckets.join("、")}。`;
-  if (item.product_type && item.product_type !== "待分類") return `目前可確認的險種為 ${item.product_type}。`;
-  return "目前先保留為待分類項目，建議用完整保單名稱或公司再查一次。";
+  const status = structureStatusForItem(item);
+  const categoryText = buckets.length
+    ? `系統依商品名稱與險種判斷，這張保單可能對應 ${buckets.join("、")}。`
+    : item.product_type && item.product_type !== "待分類"
+      ? `目前可確認的險種為 ${item.product_type}。`
+      : "目前先保留為待分類項目，建議用完整保單名稱或公司再查一次。";
+  return `${categoryText}${status.description}`;
 }
 
 function focusSummaryHtml(item) {
@@ -1357,15 +2486,15 @@ function coveragePreviewHtml(item) {
   );
   const entries = effectiveCoverageEntries(item);
   const needsPlan = options.length && !selectedPlan;
-  const verified = hasVerifiedBenefits(item);
+  const status = structureStatusForItem(item);
   return `
     <section class="portfolio-benefit-preview" data-plan-benefit-preview>
       <div class="portfolio-benefit-preview-top">
         <div>
-          <p class="eyebrow">${verified ? "Verified Benefits" : "Benefit Status"}</p>
+          <p class="eyebrow">${escapeHtml(status.label)}</p>
           <h4>${selectedPlan ? `${escapeHtml(selectedPlan.label)} 的保障與金額` : needsPlan ? "選擇計畫後查看保障與金額" : "條款保障與金額"}</h4>
         </div>
-        ${entries.length ? `<span class="chip">${formatNumber.format(entries.length)} 項保障</span>` : '<span class="chip muted">金額待整理</span>'}
+        ${entries.length ? `<span class="chip">${formatNumber.format(entries.length)} 項保障</span>` : `<span class="chip structure-status status-${escapeHtml(status.id)}">${escapeHtml(status.short_label || status.label)}</span>`}
       </div>
       ${
         needsPlan
@@ -1404,7 +2533,7 @@ function renderPortfolioDetail(item) {
     <article class="portfolio-detail-card">
       <div class="portfolio-detail-top">
         <div>
-          <p class="eyebrow">Policy Summary</p>
+          <p class="eyebrow">保障摘要</p>
           <h3 class="policy-title-line">${policyTitleHtml(item)}</h3>
         </div>
         <button class="button ghost" type="button" data-close-portfolio-detail>關閉</button>
@@ -1418,7 +2547,7 @@ function renderPortfolioDetail(item) {
         <section>
           <h4>保障摘要</h4>
           <p>${escapeHtml(coverageSummaryForItem(item))}</p>
-          <div class="policy-flags">${coverageBadgeHtml(item)}${selectionModeBadgeHtml(item)}</div>
+          <div class="policy-flags">${coverageBadgeHtml(item)}${structureStatusBadgeHtml(item)}${selectionModeBadgeHtml(item)}</div>
         </section>
         <section>
           <h4>核對資訊</h4>
@@ -1432,8 +2561,8 @@ function renderPortfolioDetail(item) {
       </div>
       ${
         showFallbackSummary
-          ? `<details class="coverage-detail" open>
-              <summary>保障內容摘要與險種細項</summary>
+          ? `<details class="coverage-detail">
+              <summary>文件摘要</summary>
               <div class="portfolio-summary-grid">${focusSummaryHtml(item)}</div>
             </details>`
           : ""
@@ -1442,7 +2571,7 @@ function renderPortfolioDetail(item) {
       ${portfolioSelectionFieldsHtml(item)}
       ${coveragePreviewHtml(item)}
       <div class="portfolio-detail-actions">
-        <button class="button primary" type="button" data-confirm-add-portfolio ${item.document_summary_loading ? "disabled aria-busy=\"true\"" : ""}>${item.document_summary_loading ? "載入條款摘要中" : isInPortfolio ? "更新集合" : "加入"}</button>
+        <button class="button primary" type="button" data-confirm-add-portfolio ${item.document_summary_loading ? "disabled aria-busy=\"true\"" : ""}>${item.document_summary_loading ? "載入條款摘要中" : isInPortfolio ? "更新保單集合" : "加入我的保單集合"}</button>
         ${detailLink ? `<a class="button secondary" href="${escapeHtml(detailLink)}" target="_blank" rel="noreferrer">官方來源</a>` : ""}
       </div>
     </article>
@@ -1479,20 +2608,58 @@ async function enrichPortfolioItemWithDocumentSummary(item) {
   const payload = await loadTiiDocumentSummaryBatch(batchId);
   const summary = payload?.records?.find((record) => record.product_id === item.product_id);
   if (!summary) return item;
+  const verifiedSourceSha = String(summary.source_document_sha256 || "");
+  const verifiedSchedule =
+    summary.review_status === "verified_reference" &&
+    Boolean(verifiedSourceSha);
   return {
     ...item,
     coverage_tags: summary.coverage_tags || [],
     reader_focus: summary.reader_focus || [],
-    selection_type: summary.selection_type || summary.input_mode || item.selection_type || "",
-    input_mode: summary.input_mode || item.input_mode || "",
-    selection_source: summary.selection_source || item.selection_source || "",
-    selection_label: summary.selection_label || item.selection_label || "",
-    selection_guidance: summary.selection_guidance || item.selection_guidance || "",
-    unit_fields: summary.unit_fields || item.unit_fields || [],
-    plan_options: summary.plan_options || item.plan_options || [],
-    coverage_entries: normalizeCoverageEntries(summary.coverage_entries || item.coverage_entries),
+    selection_type: verifiedSchedule ? summary.selection_type || summary.input_mode || "" : "",
+    input_mode: verifiedSchedule ? summary.input_mode || "" : "",
+    selection_source: verifiedSchedule ? summary.selection_source || "" : "",
+    selection_label: verifiedSchedule ? summary.selection_label || "" : "",
+    face_amount_label: verifiedSchedule ? summary.face_amount_label || "" : "",
+    selection_guidance: verifiedSchedule ? summary.selection_guidance || "" : "",
+    unit_fields: verifiedSchedule ? summary.unit_fields || [] : [],
+    plan_options: verifiedSchedule ? summary.plan_options || [] : [],
+    coverage_entries: verifiedSchedule
+      ? normalizeCoverageEntries(summary.coverage_entries)
+      : [],
+    parser_id: verifiedSchedule ? summary.parser_id || "" : "",
+    source_file: verifiedSchedule ? summary.source_file || "" : "",
+    source_document_sha256: verifiedSchedule ? verifiedSourceSha : "",
+    schedule_sha256: verifiedSchedule ? summary.schedule_sha256 || "" : "",
+    review_status: verifiedSchedule ? summary.review_status : "",
+    reviewed_at: verifiedSchedule ? summary.reviewed_at || "" : "",
     document_summary_loaded: true,
   };
+}
+
+async function refreshSavedTiiPortfolioItems() {
+  const refreshed = await Promise.all(
+    state.portfolioItems.map(async (item) => {
+      if (item.source_kind !== "tii" || !item.source_batch_id || !item.product_id) {
+        return item;
+      }
+      try {
+        return await enrichPortfolioItemWithDocumentSummary(item);
+      } catch {
+        return {
+          ...item,
+          plan_options: [],
+          coverage_entries: [],
+          source_document_sha256: "",
+          schedule_sha256: "",
+          review_status: "",
+          document_summary_loaded: false,
+        };
+      }
+    }),
+  );
+  state.portfolioItems = refreshed;
+  savePortfolioItems();
 }
 
 async function openPortfolioDetail(item) {
@@ -1517,17 +2684,55 @@ async function openPortfolioDetail(item) {
 
 function portfolioCoverageEntriesHtml(item, options = {}) {
   const entries = effectiveCoverageEntries(item);
+  const status = structureStatusForItem(item);
   if (entries.length) {
+    const eventScenarios = coverageModel.coverageEventScenarios(item);
     const visibleEntries = options.compact ? entries.slice(0, 3) : entries;
     const remainingEntries = options.compact ? entries.slice(3) : [];
+    const eventScenarioHtml = eventScenarios.length
+      ? `
+        <section class="portfolio-event-scenarios">
+          <strong>事故別條款保障毛額</strong>
+          <small>各事故互斥，不可彼此相加；意外附加給付只列入意外事故。此處是條款毛額，實際給付仍可能有欠繳保費、保單借款或其他條款扣除。</small>
+          <dl>
+            ${eventScenarios
+              .map((scenario) => {
+                const parts = scenario.parts
+                  .map((part) =>
+                    Number.isSafeInteger(part.value)
+                      ? `${part.name} ${formatNumber.format(part.value)} 元`
+                      : part.name,
+                  )
+                  .join(" + ");
+                const value = scenario.state === "calculated"
+                  ? `${formatNumber.format(scenario.value)} 元`
+                  : scenario.state === "amount_overflow"
+                    ? "金額超出可安全計算範圍"
+                    : `請輸入${policyStateFieldsText(scenario.required_fields)}後計算`;
+                return `<div><dt>${escapeHtml(scenario.label)}</dt><dd><strong>${escapeHtml(value)}</strong><small>${escapeHtml(parts)}</small></dd></div>`;
+              })
+              .join("")}
+          </dl>
+        </section>
+      `
+      : "";
     const entryHtml = (entry) => {
       const valueText = coverageEntryValueText(entry, item);
+      const aggregationLabel =
+        coverageModel.AGGREGATION_RULES[entry.aggregation_rule] ||
+        coverageModel.AGGREGATION_RULES.unknown;
+      const resultKindLabel =
+        coverageModel.RESULT_KINDS[entry.result_kind] ||
+        coverageModel.RESULT_KINDS.reference;
+      const amountStageLabel =
+        coverageModel.AMOUNT_STAGES[entry.amount_stage] ||
+        coverageModel.AMOUNT_STAGES.not_applicable;
       return `
         <div>
           <dt>${escapeHtml(entry.name || "保障項目")}</dt>
           <dd>
             <strong>${escapeHtml(valueText)}</strong>
-            <span class="benefit-meta">${escapeHtml(coverageModel.AMOUNT_ROLES[entry.amount_role] || coverageModel.AMOUNT_ROLES.unknown)} · ${escapeHtml(coverageModel.LIMIT_SCOPES[entry.limit_scope] || coverageModel.LIMIT_SCOPES.unknown)}</span>
+            <span class="benefit-meta">${escapeHtml(resultKindLabel)} · ${escapeHtml(amountStageLabel)} · ${escapeHtml(coverageModel.LIMIT_SCOPES[entry.limit_scope] || coverageModel.LIMIT_SCOPES.unknown)} · ${escapeHtml(aggregationLabel)}</span>
             ${entry.note && entry.note !== valueText ? `<small>${escapeHtml(entry.note)}</small>` : ""}
             ${entry.conditions?.length ? `<small>${escapeHtml(entry.conditions.join("；"))}</small>` : ""}
             ${entry.source_ref ? `<small class="portfolio-benefit-reference">${escapeHtml(entry.source_ref)}</small>` : ""}
@@ -1536,6 +2741,7 @@ function portfolioCoverageEntriesHtml(item, options = {}) {
       `;
     };
     return `
+      ${eventScenarioHtml}
       <p class="portfolio-benefit-source">依條款資料整理</p>
       <dl class="portfolio-benefit-list">
         ${visibleEntries.map(entryHtml).join("")}
@@ -1553,14 +2759,15 @@ function portfolioCoverageEntriesHtml(item, options = {}) {
     const terms = coverageFocus.terms?.slice(0, 6) || [];
     return `
       <div class="portfolio-terms-summary">
-        <p class="portfolio-benefit-source">條款保障摘要</p>
+        <p class="portfolio-benefit-source">${escapeHtml(status.label)}</p>
+        <p>${escapeHtml(status.description)}</p>
         <p>${escapeHtml(coverageFocus.summary)}</p>
         ${terms.length ? `<div class="chips">${terms.map((term) => `<span class="chip">${escapeHtml(term)}</span>`).join("")}</div>` : ""}
       </div>
     `;
   }
 
-  return '<p class="portfolio-benefit-empty">條款保障項目尚未完成結構化，暫不顯示推估內容。</p>';
+  return `<p class="portfolio-benefit-empty">${escapeHtml(status.description)}</p>`;
 }
 
 function portfolioEditFormHtml(item) {
@@ -1598,7 +2805,7 @@ function renderPortfolioList() {
               <span>${escapeHtml(portfolioSelectionText(item))}</span>
             </div>
             <div class="policy-flags">
-              ${coverageBadgeHtml(item)}${selectionModeBadgeHtml(item)}
+              ${coverageBadgeHtml(item)}${structureStatusBadgeHtml(item)}${selectionModeBadgeHtml(item)}
             </div>
             ${portfolioCoverageEntriesHtml(item, { compact: true })}
           </div>
@@ -1632,34 +2839,78 @@ function renderCoverageBuckets() {
     personal: ["人身保障", "壽險、醫療、意外、癌症、重大疾病、長照與年金"],
     property: ["財產保障", "汽車、住宅火災、海上運輸與其他產險"],
   };
+  const structureStatusCounts = (items) =>
+    items.reduce((counts, item) => {
+      const statusId = structureStatusForItem(item).id;
+      counts[statusId] = (counts[statusId] || 0) + 1;
+      return counts;
+    }, {});
+  const structureStatusSummaryParts = (items) => {
+    const counts = structureStatusCounts(items);
+    const order = ["calculated", "needs_user_input", "pending_structure", "source_pending", "confirmed_no_amount"];
+    return order
+      .filter((statusId) => counts[statusId])
+      .map((statusId) => {
+        const status = coverageModel.STRUCTURE_STATUSES[statusId] || { short_label: statusId };
+        return {
+          id: statusId,
+          label: status.short_label || status.label,
+          count: counts[statusId],
+        };
+      });
+  };
+  const structureStatusSummaryText = (items) =>
+    structureStatusSummaryParts(items)
+      .map((part) => `${part.label} ${formatNumber.format(part.count)}`)
+      .join("、");
+  const structureStatusSummaryHtml = (items) => {
+    const parts = structureStatusSummaryParts(items).map(
+      (part) =>
+        `<span class="status-${escapeHtml(part.id)}">${escapeHtml(part.label)} ${formatNumber.format(part.count)}</span>`,
+    );
+    return parts.length ? `<div class="coverage-status-summary">${parts.join("")}</div>` : "";
+  };
   const bucketHtml = (bucket) => {
     const hasItems = bucket.items.length > 0;
+    const visibleItems = bucket.items.slice(0, 3);
+    const hiddenItems = bucket.items.slice(3);
+    const itemSummaryHtml = (item) => {
+      const entries = effectiveCoverageEntries(item);
+      const visibleEntries = entries.slice(0, 2);
+      const remainingEntries = entries.length - visibleEntries.length;
+      const coverageDetails = visibleEntries
+        .map(
+          (entry) =>
+            `<small>${escapeHtml(coverageEntryText(entry, item))}${entry.note ? `；${escapeHtml(entry.note)}` : ""}</small>`,
+        )
+        .join("");
+      const remainingText = remainingEntries > 0
+        ? `<small>另有 ${formatNumber.format(remainingEntries)} 項保障，請在保單集合內查看。</small>`
+        : "";
+      const coverageFocus = focusByKeyForPortfolio(item, "coverage");
+      const status = structureStatusForItem(item);
+      const fallbackSummary = !coverageDetails && coverageFocus?.summary
+        ? `<small>${escapeHtml(coverageFocus.summary)}</small>`
+        : `<small class="amount-pending">${escapeHtml(status.description)}</small>`;
+      return `<span><strong>${escapeHtml(item.product_name)}</strong><small>${escapeHtml(portfolioSelectionText(item))}</small><small>${escapeHtml(status.short_label || status.label)}</small>${coverageDetails || fallbackSummary}${coverageDetails ? remainingText : ""}</span>`;
+    };
     return `
       <details class="coverage-bucket ${hasItems ? "active" : ""}">
         <summary class="coverage-bucket-top">
           <strong>${escapeHtml(bucket.label)}</strong>
-          <span>${formatNumber.format(bucket.items.length)} 個險種</span>
+          <span>${formatNumber.format(bucket.items.length)} 個險種${hasItems ? ` · ${escapeHtml(structureStatusSummaryText(bucket.items))}` : ""}</span>
         </summary>
         <p>${escapeHtml(bucket.summary)}</p>
+        ${hasItems ? structureStatusSummaryHtml(bucket.items) : ""}
         <div class="coverage-meter" aria-hidden="true"><span style="width:${hasItems ? "100" : "0"}%"></span></div>
         <div class="coverage-examples">
           ${
             hasItems
-              ? bucket.items
-                  .map((item) => {
-                    const coverageDetails = effectiveCoverageEntries(item)
-                      .map(
-                        (entry) =>
-                          `<small>${escapeHtml(coverageEntryText(entry, item))}${entry.note ? `；${escapeHtml(entry.note)}` : ""}</small>`,
-                      )
-                      .join("");
-                    const coverageFocus = focusByKeyForPortfolio(item, "coverage");
-                    const fallbackSummary = !coverageDetails && coverageFocus?.summary
-                      ? `<small>${escapeHtml(coverageFocus.summary)}</small>`
-                      : '<small class="amount-pending">保障金額尚待條款整理</small>';
-                    return `<span><strong>${escapeHtml(item.product_name)}</strong><small>${escapeHtml(portfolioSelectionText(item))}</small>${coverageDetails || fallbackSummary}</span>`;
-                  })
-                  .join("")
+              ? `${visibleItems.map(itemSummaryHtml).join("")}${
+                  hiddenItems.length
+                    ? `<details class="coverage-hidden-items"><summary>查看其餘 ${formatNumber.format(hiddenItems.length)} 個險種</summary>${hiddenItems.map(itemSummaryHtml).join("")}</details>`
+                    : ""
+                }`
               : "<span>尚未加入對應保單</span>"
           }
         </div>
@@ -1713,7 +2964,7 @@ async function runPortfolioSearch(query) {
       renderPortfolioSuggestions(productIdMatches, cleanedQuery);
       setText(
         "portfolioHint",
-        `已找到「${productIdMatches[0].product_name}」。請點「查看」核對保障摘要後再加入。`,
+        `已找到「${productIdMatches[0].product_name}」。請點「查看保障與金額」確認後再加入。`,
       );
       return;
     }
@@ -1728,7 +2979,7 @@ async function runPortfolioSearch(query) {
       renderPortfolioSuggestions(nameMatches, cleanedQuery);
       setText(
         "portfolioHint",
-        `已找到「${nameMatches[0].product_name}」。請點「查看」核對保障摘要後再加入。`,
+        `已找到「${nameMatches[0].product_name}」。請點「查看保障與金額」確認後再加入。`,
       );
       return;
     }
@@ -1739,7 +2990,7 @@ async function runPortfolioSearch(query) {
     }
     if (matches.length === 1) {
       renderPortfolioSuggestions(matches, cleanedQuery);
-      setText("portfolioHint", `已找到「${matches[0].product_name}」。請點「查看」核對保障摘要後再加入。`);
+      setText("portfolioHint", `已找到「${matches[0].product_name}」。請點「查看保障與金額」確認後再加入。`);
       return;
     }
     if (matches.length) {
@@ -2789,7 +4040,7 @@ function bindEvents() {
     if (!item) return;
     await openPortfolioDetail(item);
     document.getElementById("portfolioDetail").scrollIntoView({ behavior: "smooth", block: "start" });
-    setText("portfolioHint", `正在查看「${item.product_name}」摘要。確認後可加入集合。`);
+    setText("portfolioHint", `正在查看「${item.product_name}」的保障與金額。確認後可加入集合。`);
   });
 
   document.getElementById("portfolioSuggestions").addEventListener("change", (event) => {
@@ -2822,6 +4073,7 @@ function bindEvents() {
         ? `已加入「${item.product_name}」，${portfolioSelectionText(item)}。`
         : `已更新「${item.product_name}」為 ${portfolioSelectionText(item)}。`,
     );
+    document.querySelector(".portfolio-layout")?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
   document.getElementById("portfolioDetail").addEventListener("change", (event) => {
@@ -2861,9 +4113,59 @@ function bindEvents() {
     if (event.target.matches("[data-selection-face-amount]")) {
       state.portfolioDetailItem = {
         ...state.portfolioDetailItem,
-        face_amount: normalizeCoverageAmount(event.target.value),
+        face_amount: normalizeCoverageAmount(
+          event.target.value,
+          state.portfolioDetailItem,
+        ),
       };
       renderPortfolioDetail(state.portfolioDetailItem);
+      return;
+    }
+    if (event.target.matches("[data-selection-account-value]")) {
+      const accountValue = normalizeCoverageAmount(
+        event.target.value,
+        state.portfolioDetailItem,
+      );
+      state.portfolioDetailItem = {
+        ...state.portfolioDetailItem,
+        account_value: accountValue,
+        policy_state: {
+          ...(state.portfolioDetailItem.policy_state || {}),
+          policy_account_value: accountValue,
+        },
+      };
+      refreshPortfolioBenefitPreview();
+      return;
+    }
+    if (event.target.matches("[data-policy-state-key]")) {
+      const key = event.target.dataset.policyStateKey;
+      state.portfolioDetailItem = {
+        ...state.portfolioDetailItem,
+        policy_state: policyStateWithFieldUpdate(
+          state.portfolioDetailItem,
+          key,
+          event.target.type === "checkbox"
+            ? event.target.checked
+          : String(event.target.value || "").trim(),
+        ),
+      };
+      syncPolicyStateConfirmationControl(
+        event.currentTarget,
+        state.portfolioDetailItem,
+        key,
+      );
+      if (
+        key === "death_benefit_status" ||
+        key === "investment_allocation_status" ||
+        key === "injury_medical_rider_status" ||
+        key === "prior_same_insurer_major_burn_claim_status" ||
+        key === "disability_support_claim_status" ||
+        key === "prior_disability_status"
+      ) {
+        renderPortfolioDetail(state.portfolioDetailItem);
+        return;
+      }
+      refreshPortfolioBenefitPreview();
     }
   });
 
@@ -2892,8 +4194,47 @@ function bindEvents() {
     if (event.target.matches("[data-selection-face-amount]")) {
       state.portfolioDetailItem = {
         ...state.portfolioDetailItem,
-        face_amount: normalizeCoverageAmount(event.target.value),
+        face_amount: normalizeCoverageAmount(
+          event.target.value,
+          state.portfolioDetailItem,
+        ),
       };
+      refreshPortfolioBenefitPreview();
+      return;
+    }
+    if (event.target.matches("[data-selection-account-value]")) {
+      const accountValue = normalizeCoverageAmount(
+        event.target.value,
+        state.portfolioDetailItem,
+      );
+      state.portfolioDetailItem = {
+        ...state.portfolioDetailItem,
+        account_value: accountValue,
+        policy_state: {
+          ...(state.portfolioDetailItem.policy_state || {}),
+          policy_account_value: accountValue,
+        },
+      };
+      refreshPortfolioBenefitPreview();
+      return;
+    }
+    if (event.target.matches("[data-policy-state-key]")) {
+      const key = event.target.dataset.policyStateKey;
+      state.portfolioDetailItem = {
+        ...state.portfolioDetailItem,
+        policy_state: policyStateWithFieldUpdate(
+          state.portfolioDetailItem,
+          key,
+          event.target.type === "checkbox"
+            ? event.target.checked
+          : String(event.target.value || "").trim(),
+        ),
+      };
+      syncPolicyStateConfirmationControl(
+        event.currentTarget,
+        state.portfolioDetailItem,
+        key,
+      );
       refreshPortfolioBenefitPreview();
     }
   });
@@ -3033,7 +4374,7 @@ async function main() {
     renderTaxonomy();
     renderDomainChart();
     loadPortfolioItems();
-    savePortfolioItems();
+    await refreshSavedTiiPortfolioItems();
     populatePortfolioFilters();
     renderPortfolio();
     renderPolicyCards();

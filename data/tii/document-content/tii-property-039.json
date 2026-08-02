@@ -1,0 +1,284 @@
+{
+  "generated_at": "2026-07-31T21:45:06+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:45:06+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-039",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 3,
+    "document_count": 3,
+    "extracted_document_count": 3,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 3,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 3,
+    "total_text_characters": 981,
+    "focus_counts": [
+      {
+        "label": "特殊項目",
+        "count": 2
+      },
+      {
+        "label": "理賠申請",
+        "count": 1
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "意外險",
+        "count": 1
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 3
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "111332117009010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "海上保險",
+      "product_name": "國華產物娛樂漁業漁船意外責任保險",
+      "sale_status": "已停售",
+      "sale_date": "084/01/01",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-039",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 337,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113321170090100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...或核備、備查日期 \n84 \n商品停售日期 \n \n商品內容簡介 \n本保險承保被保險㆟在保險期間內合法使用或\n管理被保險船舶、因從事娛樂漁業漁船活動發生 \n意外事故，致船㆖工作㆟員..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113321170090100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 78189,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 337,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111332205006010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "海上保險",
+      "product_name": "國華產物陸上貨物運送保險",
+      "sale_status": "已停售",
+      "sale_date": "083/01/01",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-039",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 265,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113322050060100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 42662,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 265,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111332208014010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "海上保險",
+      "product_name": "國華產物漁船保險",
+      "sale_status": "已停售",
+      "sale_date": "084/01/01",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-039",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 379,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：續保。",
+          "terms": [
+            "續保"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113322080140100-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...鐵殼(含塑鋼殼)\n漁船船齡在20 年以㆖者，不予承保，但屬於同\n㆒船隊名義㆘之漁船或續保者不在此限：惟超過\n前述年限之漁船，仍應送公會審核。 \n其它 \n \nPDF crea..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：理賠。",
+          "terms": [
+            "理賠"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113322080140100-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...船，投保\n漁船保險，均應納入漁船險共保委員會(以㆘簡\n稱公會)共保，並按”漁船險承保理賠要點”之規定\n辦理。 \n木殼漁船船齡在10 年以㆖者、鐵殼(含塑鋼殼)\n漁船船齡在2..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113322080140100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 82846,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 379,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

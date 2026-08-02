@@ -1,0 +1,1961 @@
+{
+  "generated_at": "2026-07-31T21:45:28+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:45:28+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-098",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 20,
+    "document_count": 20,
+    "extracted_document_count": 20,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 20,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 20,
+    "total_text_characters": 39129,
+    "focus_counts": [
+      {
+        "label": "特殊項目",
+        "count": 18
+      },
+      {
+        "label": "保障項目",
+        "count": 12
+      },
+      {
+        "label": "理賠申請",
+        "count": 6
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "豁免/附加條款",
+        "count": 8
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 20
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "145121201029010000",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物住宅火災及地震基本保險",
+      "sale_status": "已停售",
+      "sale_date": "099/03/01",
+      "discontinued_date": "100/06/30",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2049,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145121201029010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...國巴黎產物保險股份有限公司台灣分公司 \n法商法國巴黎產物住宅火災及地震基本保險 \n【給付項目：建築物及動產財損、臨時住宿費用、清除費用、第三人體傷或財損責任】 \n \n本商品經本..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145121201029010000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...碰撞、  \n6.意外事故所致之煙燻  \n(二)住宅第三人責任基本保險  \n本公司對於保險期間內保險標的物因火災、閃電雷擊、爆炸或意外事故所\n致之煙燻，致第三人遭受體傷、死亡或財..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145121201029010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 174466,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2049,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145121201029010001",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物住宅火災及地震基本保險(第一次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "100/07/01",
+      "discontinued_date": "100/12/31",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2342,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145121201029010001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...法商法國巴黎產物住宅火災及地震基本保險\n法商法國巴黎產物住宅火災及地震基本保險 \n【給付項目：建築物及動產財損、臨時住宿費用、清除費用、第三人體傷或財損責任】 \n \n本商品經本..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145121201029010001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...碰撞、  \n6.意外事故所致之煙燻  \n(二)住宅第三人責任基本保險  \n本公司對於保險期間內保險標的物因火災、閃電雷擊、爆炸或意外事故所\n致之煙燻，致第三人遭受體傷、死亡或財..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145121201029010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 142960,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2342,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145121201029010002",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物住宅火災及地震基本保險(第二次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "101/01/01",
+      "discontinued_date": "102/01/01",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2936,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145121201029010002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...火災及地震基本保險\n火災及地震基本保險\n火災及地震基本保險\n火災及地震基本保險 \n【給付項目：建築物及動產財損、臨時住宿費用、清除費用、第三人體傷或財損責任】 \n \n本商品經本..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145121201029010002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...碰撞、  \n6.意外事故所致之煙燻  \n(二)住宅第三人責任基本保險  \n本公司對於保險期間內保險標的物因火災、閃電雷擊、爆炸或意外事故所\n致之煙燻，致第三人遭受體傷、死亡或財..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145121201029010002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 257937,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2936,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145121201029010003",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物住宅火災及地震基本保險(第三次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "102/01/02",
+      "discontinued_date": "103/09/30",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2890,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145121201029010003-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...法商法國巴黎產物住宅火災及地震基本保險\n法商法國巴黎產物住宅火災及地震基本保險 \n【給付項目：住宅火災保險、住宅第三人責任基本保險、住宅地震基本保險】 \n \n本商品經本公司合格..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145121201029010003-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...碰撞、  \n6.意外事故所致之煙燻  \n(二)住宅第三人責任基本保險  \n本公司對於保險期間內保險標的物因火災、閃電雷擊、爆炸或意外事故所\n致之煙燻，致第三人遭受體傷、死亡或財..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145121201029010003-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 244224,
+          "page_count": 3,
+          "pages_parsed": 3,
+          "text_char_count": 2890,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145121201029010200",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物自動續保附加條款",
+      "sale_status": "已停售",
+      "sale_date": "099/03/01",
+      "discontinued_date": "103/03/24",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 797,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：續保、保險期間。",
+          "terms": [
+            "續保",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145121201029010200-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...品簡介 \n \n \n法商法國巴黎產物保險股份有限公司台灣分公司 \n法商法國巴黎產物自動續保附加條款 \n \n \n本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法..."
+            },
+            {
+              "document": "145121201029010200-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...辦理自動續保。 \n2. \n主保險契約及其附加條款（詳如要保書所列要保人投保項目） 之保險期間為一\n年。經本公司同意續保且要保人於保險期間屆滿前或本公司另行指定之期限內繳\n交續保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145121201029010200-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 136574,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 797,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "145121201029010201",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物自動續保附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "103/03/25",
+      "discontinued_date": "103/09/30",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 746,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：續保、保險期間。",
+          "terms": [
+            "續保",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "145121201029010201-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...品如有虛偽不實或\n違法情事，應由本公司及負責人依法負責。 \n \n法商法國巴黎產物自動續保附加條款\n法商法國巴黎產物自動續保附加條款\n法商法國巴黎產物自動續保附加條款\n法商法..."
+            },
+            {
+              "document": "145121201029010201-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...年辦理自動續保。 \n二、 主保險契約及其附加條款（詳如要保書所列要保人投保項目）之保險期間為一年。經本公\n司同意續保且要保人於保險期間屆滿前或本公司另行指定之期限內繳交續保保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "145121201029010201-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 86086,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 746,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146121201029010005",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物住宅火災及地震基本保險(第五次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "104/08/04",
+      "discontinued_date": "108/12/31",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2577,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010005-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...國巴黎產物保險股份有限公司台灣分公司 \n法商法國巴黎產物住宅火災及地震基本保險 \n【給付項目：住宅火災保險、住宅第三人責任基本保險、住宅地震基本保險】 \n \n本商品經本公司合格..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010005-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...民眾騷擾、惡意破壞行為 \n8. 竊盜 \n(二) 住宅第三人責任基本保險 \n本公司對於保險期間內保險標的物因火災、閃電雷擊、爆炸或意外事故所致\n之煙燻，致第三人遭受體傷、死亡或財..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146121201029010005-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 119105,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 2577,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146121201029010006",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物住宅火災及地震基本保險(第六次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "109/01/01",
+      "discontinued_date": "110/03/31",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 3357,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010006-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...法國巴黎產物保險股份有限公司台灣分公司 \n法商法國巴黎產物住宅火災及地震基本保險 \n給付項目：住宅火災保險、住宅第三人責任基本保險、住宅玻璃保險、住宅颱風及洪水災害\n補償保險、..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：除外責任、不保事項、保險期間。",
+          "terms": [
+            "除外責任",
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010006-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...動產，如經特別約定載明承保者，本公司亦負賠償責任。 \n二、住宅第三人責任基本保險 \n除外責任： \n本公司於被保險人因下列事項對於第三人所致之賠償責任，不負賠償之責： \n一、要保..."
+            },
+            {
+              "document": "146121201029010006-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...崩、地層下陷、滑動、開裂、決口。 \n4. 地震引起之海嘯、海潮高漲、洪水。 \n \n不保事項 \n一、住宅火災保險 \n不保之危險事故： \n除另有約定外，對於不論直接或間接因下列各..."
+            },
+            {
+              "document": "146121201029010006-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...--- page 2 ---\n\n2 \n \n二、住宅第三人責任基本保險 \n本公司對於保險期間內保險標的物因火災、閃電雷擊、爆炸或意外事故所致之煙燻，致\n第三人遭受體傷、死亡或財..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146121201029010006-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 389483,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3357,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146121201029010007",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物住宅火災及地震基本保險(第七次部分變更)",
+      "sale_status": "未停售",
+      "sale_date": "110/04/01",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 3418,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010007-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...法國巴黎產物保險股份有限公司台灣分公司 \n法商法國巴黎產物住宅火災及地震基本保險 \n給付項目：住宅火災保險、住宅第三人責任基本保險、住宅玻璃保險、住宅颱風及洪水災害\n補償保險、..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：除外責任、不保事項、保險期間。",
+          "terms": [
+            "除外責任",
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010007-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...動產，如經特別約定載明承保者，本公司亦負賠償責任。 \n二、住宅第三人責任基本保險 \n除外責任： \n本公司於被保險人因下列事項對於第三人所致之賠償責任，不負賠償之責： \n一、要保..."
+            },
+            {
+              "document": "146121201029010007-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...崩、地層下陷、滑動、開裂、決口。 \n4. 地震引起之海嘯、海潮高漲、洪水。 \n \n不保事項 \n一、住宅火災保險 \n不保之危險事故： \n除另有約定外，對於不論直接或間接因下列各..."
+            },
+            {
+              "document": "146121201029010007-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...動、民眾騷擾、惡意破壞行為 \n8. 竊盜 \n二、住宅第三人責任基本保險 \n本公司對於保險期間內保險標的物因火災、閃電雷擊、爆炸或意外事故所致之煙燻，致\n第三人遭受體傷、死亡或財..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146121201029010007-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 389542,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3418,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146121201029010009",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物住宅火災及地震基本保險(第九次部分變更)",
+      "sale_status": "未停售",
+      "sale_date": "114/01/01",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 3573,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010009-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...法國巴黎產物保險股份有限公司台灣分公司 \n法商法國巴黎產物住宅火災及地震基本保險 \n給付項目：住宅火災保險、住宅第三人責任基本保險、住宅玻璃保險、住宅颱風及洪水災害\n颱風及洪水..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：除外責任、不保事項、保險期間。",
+          "terms": [
+            "除外責任",
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010009-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...動產，如經特別約定載明承保者，本公司亦負賠償責任。 \n二、住宅第三人責任基本保險 \n除外責任： \n本公司於被保險人因下列事項對於第三人所致之賠償責任，不負賠償之責： \n一、要保..."
+            },
+            {
+              "document": "146121201029010009-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...崩、地層下陷、滑動、開裂、決口。 \n4. 地震引起之海嘯、海潮高漲、洪水。 \n⚫ \n不保事項 \n一、住宅火災保險 \n不保之危險事故： \n除另有約定外，對於不論直接或間接因下列各..."
+            },
+            {
+              "document": "146121201029010009-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...動、民眾騷擾、惡意破壞行為 \n8. 竊盜 \n二、住宅第三人責任基本保險 \n本公司對於保險期間內保險標的物因火災、閃電雷擊、爆炸或意外事故所致之煙燻，致\n第三人遭受體傷、死亡或財..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146121201029010009-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 215979,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3573,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146121201029010010",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物住宅火災及地震基本保險(第十次部分變更)",
+      "sale_status": "未停售",
+      "sale_date": "114/07/15",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 3689,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010010-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...法國巴黎產物保險股份有限公司台灣分公司 \n法商法國巴黎產物住宅火災及地震基本保險 \n給付項目：住宅火災保險、住宅第三人責任基本保險、住宅玻璃保險、住宅颱風及洪水災害\n補償保險、..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：除外責任、不保事項、保險期間。",
+          "terms": [
+            "除外責任",
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010010-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...動產，如經特別約定載明承保者，本公司亦負賠償責任。 \n二、住宅第三人責任基本保險 \n除外責任： \n本公司於被保險人因下列事項對於第三人所致之賠償責任，不負賠償之責： \n一、要保..."
+            },
+            {
+              "document": "146121201029010010-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...崩、地層下陷、滑動、開裂、決口。 \n4. 地震引起之海嘯、海潮高漲、洪水。 \n \n不保事項 \n一、住宅火災保險 \n不保之危險事故： \n除另有約定外，對於不論直接或間接因下列各..."
+            },
+            {
+              "document": "146121201029010010-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...動、民眾騷擾、惡意破壞行為 \n8. 竊盜 \n二、住宅第三人責任基本保險 \n本公司對於保險期間內保險標的物因火災、閃電雷擊、爆炸或意外事故所致之煙燻，致\n第三人遭受體傷、死亡或財..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146121201029010010-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 236937,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 3689,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146121201029010011",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物住宅火災及地震基本保險(第十一次部分變更)",
+      "sale_status": "未停售",
+      "sale_date": "115/01/01",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 3845,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010011-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...法國巴黎產物保險股份有限公司台灣分公司 \n法商法國巴黎產物住宅火災及地震基本保險 \n給付項目：住宅火災保險、住宅第三人責任基本保險、住宅玻璃保險、住宅颱風及洪水災害\n補償保險、..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：除外責任、不保事項、保險期間。",
+          "terms": [
+            "除外責任",
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010011-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...動產，如經特別約定載明承保者，本公司亦負賠償責任。 \n二、住宅第三人責任基本保險 \n除外責任： \n本公司於被保險人因下列事項對於第三人所致之賠償責任，不負賠償之責： \n一、要保..."
+            },
+            {
+              "document": "146121201029010011-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...崩、地層下陷、滑動、開裂、決口。 \n4. 地震引起之海嘯、海潮高漲、洪水。 \n \n不保事項 \n一、住宅火災保險 \n不保之危險事故： \n除另有約定外，對於不論直接或間接因下列各..."
+            },
+            {
+              "document": "146121201029010011-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...動、民眾騷擾、惡意破壞行為 \n8. 竊盜 \n二、住宅第三人責任基本保險 \n本公司對於保險期間內保險標的物因火災、閃電雷擊、爆炸或意外事故所致之煙燻，致\n第三人遭受體傷、死亡或財..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146121201029010011-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 238209,
+          "page_count": 5,
+          "pages_parsed": 5,
+          "text_char_count": 3845,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146121201029010100",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物住宅火災及地震基本保險抵押權附加條款",
+      "sale_status": "已停售",
+      "sale_date": "099/03/01",
+      "discontinued_date": "108/12/31",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1087,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：續保。",
+          "terms": [
+            "續保"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010100-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...抵押貸款期間內，經按年度繳付各年期保險費後，視\n為每年依主管機關最新核定之保險單自動續保。 \n9. \n本保險契約之年繳保險費應依續保時之保險金額及保險費率計算之。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：申請、通知。",
+          "terms": [
+            "申請",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010100-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...險人同意於承保事故發生後，於未受清償債務範圍內，抵押權人得以代理人\n身分代理被保險人申請理賠。 抵押權人以代理人身分申請理賠時，應併檢附尚\n未受清償之抵押債權餘額證明文件。..."
+            },
+            {
+              "document": "146121201029010100-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...押權人即不得依本附加條款第一條及第三\n條就給付之保險金額優先受償。但抵押權人經本公司通知並於十五日內代為繳付\n保險費者，不在此限。 \n7. \n本公司依本保險契約之規定終止契..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146121201029010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 144645,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1087,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146121201029010101",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物住宅火災及地震基本保險抵押權附加條款(第一次部分變更)",
+      "sale_status": "未停售",
+      "sale_date": "109/01/01",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1147,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...附加條款（住宅火災保險附加地震基本保險\n適用）（住宅火災及地震基本保險適用） \n \n給付項目：抵押權保險金 \n \n本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險..."
+            },
+            {
+              "document": "146121201029010101-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...災保險附加地震基本保險\n適用）（住宅火災及地震基本保險適用） \n \n給付項目：抵押權保險金 \n \n本商品經本公司合格簽署人員檢視其內容業已符合一般精算原則及保險法令，惟為確保..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：續保。",
+          "terms": [
+            "續保"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010101-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...終止契約時，應於十五日\n前通知抵押權人。 \n \n第八條 \n本保險契約之年繳保險費應依續保時之保險金額及保\n險費率計算之。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：理賠、申請、通知。",
+          "terms": [
+            "理賠",
+            "申請",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010101-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...範\n圍內，抵押權人得以代理人身分代理被保險人申請理\n賠。 \n抵押權人以代理人身分申請理賠時，應併檢附尚未受\n清償之抵押債權餘額證明文件。 \n \n第五條 \n抵押權人之抵押債權..."
+            },
+            {
+              "document": "146121201029010101-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...險人同意於承保事故發生後，於未受清償債務範\n圍內，抵押權人得以代理人身分代理被保險人申請理\n賠。 \n抵押權人以代理人身分申請理賠時，應併檢附尚未受\n清償之抵押債權餘額證明文..."
+            },
+            {
+              "document": "146121201029010101-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...權人即不得依本附加條\n款第一條及第三條就給付之保險金額優先受償。但抵\n押權人經本公司通知並於十五日內代為繳付保險費\n者，不在此限。 \n \n第七條 \n本公司依本保險契約之規定..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146121201029010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 305091,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1147,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146121201029010203",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物自動續保附加條款(第三次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "106/08/22",
+      "discontinued_date": "106/10/15",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 763,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：續保、保險期間。",
+          "terms": [
+            "續保",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010203-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "--- page 1 ---\n\n法商法國巴黎產物自動續保附加條款 \n \n \n本公司資訊公開說明文件，請查閱本公司網址：http://www...."
+            },
+            {
+              "document": "146121201029010203-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...理自動續保。 \n \n2. \n主保險契約及其附加條款（詳如要保書所列要保人投保項目）之保險期間為一年。經本\n公司同意續保且要保人於保險期間屆滿前或本公司另行指定之期限內繳交續保保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146121201029010203-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 68182,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 763,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146121201029010204",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物自動續保附加條款(第四次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "106/10/16",
+      "discontinued_date": "108/09/15",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 688,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：續保、保險期間。",
+          "terms": [
+            "續保",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010204-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "--- page 1 ---\n\n法商法國巴黎產物自動續保附加條款 \n \n \n本公司資訊公開說明文件，請查閱本公司網址：http://www...."
+            },
+            {
+              "document": "146121201029010204-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...理自動續保。 \n \n2. \n主保險契約及其附加條款（詳如要保書所列要保人投保項目）之保險期間為一年。經本\n公司同意續保且要保人於保險期間屆滿前或本公司另行指定之期限內繳交續保保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146121201029010204-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 68058,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 688,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146121201029010205",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物自動續保附加條款(第五次部分變更)",
+      "sale_status": "未停售",
+      "sale_date": "108/09/16",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 970,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010205-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "--- page 1 ---\n\n法商法國巴黎產物自動續保附加條款 \n \n給付項目：同主契約及其附加條款之給付項目 \n \n本商品經本公司合格簽署人員檢視其內容業已符合..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：續保、保險期間。",
+          "terms": [
+            "續保",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010205-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "--- page 1 ---\n\n法商法國巴黎產物自動續保附加條款 \n \n給付項目：同主契約及其附加條款之給付項目 \n \n本商品經本公司合格簽..."
+            },
+            {
+              "document": "146121201029010205-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...險契約有效期間及續保約定 \n主保險契約及其附加條款（詳如要保書所列要保人投保項目）之保險期間為一年。經本公司\n同意續保且要保人於保險期間屆滿前或本公司另行指定之期限內繳交續保保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：申請。",
+          "terms": [
+            "申請"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010205-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...法國巴黎產物自動續保附加條款\n產物自動續保附加條款(以下簡稱本附加條款)，依要保人之申請，經本公司同\n意後，附加於個人保險主契約訂立之。本公司依本附加條款之約定，辦理續保手..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146121201029010205-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 271330,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 970,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146121201029010300",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物保險費延緩交付特約條款-(甲式)",
+      "sale_status": "未停售",
+      "sale_date": "099/03/01",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 655,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010300-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...保險費，或所交付票據未\n能於延緩期間內兌現，本公司即根據保險法第六十八條規定，以書面通知要保人\n自延緩期滿之翌日起解除契約，其在有效期間之應收保險費仍按短期費率計收，\n並通..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146121201029010300-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 134721,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 655,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146121201029010400",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物保險費延緩交付特約條款-(戊式)",
+      "sale_status": "未停售",
+      "sale_date": "099/03/01",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 818,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010400-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...倘要保人(或被保險人)未能在保險責任開始之目起十五日內交清保險費時，本公\n司應以書面通知抵押(質)權人，並仍應繼續催收保險費。 \n3. \n抵押(質)權人收到前項通知應於十五..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146121201029010400-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 139519,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 818,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "146121201029010500",
+      "company": "法商法國巴黎產物保險股份有限公司",
+      "insurance_category": "火災保險",
+      "product_name": "法商法國巴黎產物住宅火災及地震基本保險續保約定附加條款",
+      "sale_status": "未停售",
+      "sale_date": "103/10/01",
+      "discontinued_date": "",
+      "source_batch_id": "tii-property-098",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 782,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：續保、保險期間。",
+          "terms": [
+            "續保",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010500-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "--- page 1 ---\n\n法商法國巴黎住宅火災及地震基本保險續保約定\n法商法國巴黎住宅火災及地震基本保險續保約定\n法商法國巴黎住宅火災及地震基本保險..."
+            },
+            {
+              "document": "146121201029010500-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...人及被保險人之\n權益，逐年辦理續保。 \n \n2. \n經本公司依約定方式通知且要保人於保險期間屆滿前或本公司另行指定之期限內繳交續\n保保險費，本公司應製發續保年度之保險單及保險費..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "146121201029010500-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...於或不影響要保人及被保險人之\n權益，逐年辦理續保。 \n \n2. \n經本公司依約定方式通知且要保人於保險期間屆滿前或本公司另行指定之期限內繳交續\n保保險費，本公司應製發續保年..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "146121201029010500-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 74851,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 782,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

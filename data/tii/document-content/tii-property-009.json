@@ -1,0 +1,6164 @@
+{
+  "generated_at": "2026-07-31T21:44:45+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:44:45+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-009",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 68,
+    "document_count": 68,
+    "extracted_document_count": 68,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 68,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 68,
+    "total_text_characters": 58231,
+    "focus_counts": [
+      {
+        "label": "保障項目",
+        "count": 45
+      },
+      {
+        "label": "特殊項目",
+        "count": 31
+      },
+      {
+        "label": "重要定義",
+        "count": 24
+      },
+      {
+        "label": "理賠申請",
+        "count": 4
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "豁免/附加條款",
+        "count": 23
+      },
+      {
+        "label": "意外險",
+        "count": 6
+      },
+      {
+        "label": "醫療險",
+        "count": 2
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 68
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "103111112037120000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車第三人責任保險乘客體傷責任附加條款",
+      "sale_status": "已停售",
+      "sale_date": "095/05/01",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 771,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：殘廢、傷害。",
+          "terms": [
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112037120000-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...保事項： \n除主保險契約及汽車共同條款約定之不保事項外，乘客因下列原因所致之傷害、\n殘廢或死亡，本公司亦不負理賠責任： \n一.乘客之故意行為。 \n二.乘客之自殺或犯罪行為。..."
+            },
+            {
+              "document": "103111112037120000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...不保事項： \n除主保險契約及汽車共同條款約定之不保事項外，乘客因下列原因所致之傷害、\n殘廢或死亡，本公司亦不負理賠責任： \n一.乘客之故意行為。 \n二.乘客之自殺或犯..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：疾病、傷害。",
+          "terms": [
+            "疾病",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112037120000-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...負理賠責任： \n一.乘客之故意行為。 \n二.乘客之自殺或犯罪行為。 \n三.乘客本身之疾病、殘疾。"
+            },
+            {
+              "document": "103111112037120000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...不保事項： \n除主保險契約及汽車共同條款約定之不保事項外，乘客因下列原因所致之傷害、\n殘廢或死亡，本公司亦不負理賠責任： \n一.乘客之故意行為。 \n二.乘客之自殺或犯..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111112037120000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 63105,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 771,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111112037120001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車第三人責任保險乘客體傷責任附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 794,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112037120001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...8-698 \n(公會版) \n華山產物汽車第三人責任保險乘客體傷責任附加條款 \n(主要給付項目: 責任保險金之給付)..."
+            },
+            {
+              "document": "103111112037120001-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...保事項： \n除主保險契約及汽車共同條款約定之不保事項外，乘客因下列原因所致之傷害、\n殘廢或死亡，本公司亦不負理賠責任： \n一.乘客之故意行為。 \n二.乘客之自殺或犯罪行為。..."
+            },
+            {
+              "document": "103111112037120001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...不保事項： \n除主保險契約及汽車共同條款約定之不保事項外，乘客因下列原因所致之傷害、\n殘廢或死亡，本公司亦不負理賠責任： \n一.乘客之故意行為。 \n二.乘客之自殺或犯..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：疾病、傷害。",
+          "terms": [
+            "疾病",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112037120001-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...負理賠責任： \n一.乘客之故意行為。 \n二.乘客之自殺或犯罪行為。 \n三.乘客本身之疾病、殘疾。"
+            },
+            {
+              "document": "103111112037120001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...不保事項： \n除主保險契約及汽車共同條款約定之不保事項外，乘客因下列原因所致之傷害、\n殘廢或死亡，本公司亦不負理賠責任： \n一.乘客之故意行為。 \n二.乘客之自殺或犯..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111112037120001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 63938,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 794,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111112044010300",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車第三人責任保險超額責任附加條款",
+      "sale_status": "已停售",
+      "sale_date": "094/01/07",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 532,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112044010300-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...附\n加條款之規定，對被保險人負賠償責任。 \n本附加條款之承保範圍如下： \n一、第三人傷害超額責任。 \n二、第三人財損超額責任。"
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112044010300-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...附\n加條款之規定，對被保險人負賠償責任。 \n本附加條款之承保範圍如下： \n一、第三人傷害超額責任。 \n二、第三人財損超額責任。"
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111112044010300-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 51664,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 532,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111112044010301",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車第三人責任保險超額責任附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 557,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、傷害。",
+          "terms": [
+            "給付項目",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112044010301-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...華山產物汽車第三人責任保險超額責任附加條款 \n(自用小客車、小貨車適用) \n(主要給付項目: 責任保險金之給付)..."
+            },
+            {
+              "document": "103111112044010301-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...附\n加條款之規定，對被保險人負賠償責任。 \n本附加條款之承保範圍如下： \n一、第三人傷害超額責任。 \n二、第三人財損超額責任。"
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112044010301-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...附\n加條款之規定，對被保險人負賠償責任。 \n本附加條款之承保範圍如下： \n一、第三人傷害超額責任。 \n二、第三人財損超額責任。"
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111112044010301-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 52519,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 557,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111112048120000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車貨物運送人責任保險(貨物-自用)",
+      "sale_status": "已停售",
+      "sale_date": "095/05/01",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1417,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112048120000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...502522257 號令修正 \n \n \n保險商品簡介 \n \n承保範圍： \n被保險人在保險期間內受託運人之託，以載明於要保書上之被保險汽車運送物\n品，於運送途中（含運送途中休息或..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111112048120000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 91316,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1417,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111112048120001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車貨物運送人責任保險(貨物-自用)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1438,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112048120001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...-698 \n(公會版) \n華山產物汽車貨物運送人責任保險條款 \n       (主要給付項目:責任保險金之給付)..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112048120001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...502522257 號令修正 \n \n \n保險商品簡介 \n \n承保範圍： \n被保險人在保險期間內受託運人之託，以載明於要保書上之被保險汽車運送物\n品，於運送途中（含運送途中休息或..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111112048120001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 92186,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1438,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111112049120000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車貨物運送人責任保險(貨櫃-自用)",
+      "sale_status": "已停售",
+      "sale_date": "095/05/01",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1417,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112049120000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...502522257 號令修正 \n \n \n保險商品簡介 \n \n承保範圍： \n被保險人在保險期間內受託運人之託，以載明於要保書上之被保險汽車運送物\n品，於運送途中（含運送途中休息或..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111112049120000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 91314,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1417,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111112049120001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車貨物運送人責任保險(貨櫃-自用)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1438,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112049120001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...-698 \n(公會版) \n華山產物汽車貨物運送人責任保險條款 \n       (主要給付項目:責任保險金之給付)..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112049120001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...502522257 號令修正 \n \n \n保險商品簡介 \n \n承保範圍： \n被保險人在保險期間內受託運人之託，以載明於要保書上之被保險汽車運送物\n品，於運送途中（含運送途中休息或..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111112049120001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 92186,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1438,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111112050010100",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車第三人責任保險教練車使用附加條款(自用)",
+      "sale_status": "已停售",
+      "sale_date": "095/01/26",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 745,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112050010100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...失，依法應由被保險人負賠償責任而受賠償請求時，本公司\n對被保險人負賠償之責。 \n \n除外責任： \n除主保險契約及汽車共同條款約定之不保事項(但不包括汽車共同條款有關「被保險\n汽..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111112050010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 60727,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 745,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111112050010101",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車第三人責任保險教練車使用附加條款(自用)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 831,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112050010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...(公會版) \n  華山產物汽車第三人責任保險教練車使用附加條款 \n(主要給付項目:責任保險金之給付)..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111112050010101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...失，依法應由被保險人負賠償責任而受賠償請求時，本公司\n對被保險人負賠償之責。 \n \n除外責任： \n除主保險契約及汽車共同條款約定之不保事項(但不包括汽車共同條款有關「被保險\n汽..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111112050010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 61298,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 831,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111210005010000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物機車竊盜損失保險(整車失竊)",
+      "sale_status": "已停售",
+      "sale_date": "095/12/01",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 727,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111210005010000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...車險市場提供客戶對於機車整車失竊之保障。 \n \n二、 承保範圍：本公司對被保險機車於保險期間內因遭受竊盜、搶 \n               奪、強盜所致之整車失竊，依本保險契..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111210005010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 58706,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 727,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111210005010001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物機車竊盜損失保險(整車失竊)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1074,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111210005010001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...華山產物市區汽車客運業責任保險條款 \n                  (主要給付項目:責任保險金之給付)..."
+            },
+            {
+              "document": "103111210005010001-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...或路線行駛而發生事故(以下簡稱行車事故)致乘坐或上下被\n保險汽車之旅客遭受身體傷害、殘廢或死亡，被保險人依法應負賠償責\n任而受賠償請求時，本公司於超過強制汽車責任保險金額以..."
+            },
+            {
+              "document": "103111210005010001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...之區域或路線行駛而發生事故(以下簡稱行車事故)致乘坐或上下被\n保險汽車之旅客遭受身體傷害、殘廢或死亡，被保險人依法應負賠償責\n任而受賠償請求時，本公司於超過強制汽車責任保險..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：疾病、傷害。",
+          "terms": [
+            "疾病",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111210005010001-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...害。 \n\n\n--- page 2 ---\n\n \n2-2 \n2\n五、旅客或受僱人本身之疾病、殘疾。 \n六、旅客未依約定給付對價而搭乘被保險汽車。"
+            },
+            {
+              "document": "103111210005010001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...之區域或路線行駛而發生事故(以下簡稱行車事故)致乘坐或上下被\n保險汽車之旅客遭受身體傷害、殘廢或死亡，被保險人依法應負賠償責\n任而受賠償請求時，本公司於超過強制汽車責任保險..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111210005010001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...承保範圍： \n本公司對被保險人所營運使用之被保險汽車於保險期間內在經主管機關\n核准之區域或路線行駛而發生事故(以下簡稱行車事故)致乘坐或上下被\n保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111210005010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 70372,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1074,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111210113100100",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車車體損失保險許可使用免追償附加條款",
+      "sale_status": "已停售",
+      "sale_date": "097/02/05",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 736,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111210113100100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...698 \n \n華山產物汽車車體損失保險許可使用免追償附加條款 \n       (主要給付項目:財產損失保險金之給付)..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：除外責任、保險期間、自負額。",
+          "terms": [
+            "除外責任",
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111210113100100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...1.5%) \n \n五、自負額： \n    本附加條款無自負額。 \n \n六、不保事項及除外責任： \n    同主保險契約內容。"
+            },
+            {
+              "document": "103111210113100100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...業務期間所致之毀損滅失，本公司於給付保險金後\n得向該使用人或管理人追償。 \n \n三、保險期間：一年 \n \n四、費率表： \n總保險費 = 主保險契約總保險費X 免追償係數 \n(本..."
+            },
+            {
+              "document": "103111210113100100-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...主保險契約總保險費X 免追償係數 \n(本附加條款之免追償係數為1.5%) \n \n五、自負額： \n    本附加條款無自負額。 \n \n六、不保事項及除外責任： \n    同主保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111210113100100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 58462,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 736,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111424079190000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車第三人責任保險附加駕駛人傷害保險",
+      "sale_status": "已停售",
+      "sale_date": "095/05/01",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 873,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：殘廢、傷害。",
+          "terms": [
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111424079190000-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...司對被保\n險人於本附加險有效期間內駕駛被保險汽車發生交通意外事故，致被保險人死亡\n或殘廢時，本公司依照本附加險之約定負給付保險金的責任。 \n本附加險所稱之「被保險人」，指駕..."
+            },
+            {
+              "document": "103111424079190000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...w \n免費申訴電話：0800-868-698 \n \n華山汽車第三人責任保險附加駕駛人傷害保險條款 \n \n94.11.09 金管保二字第09402088420 號函核准..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111424079190000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...w \n免費申訴電話：0800-868-698 \n \n華山汽車第三人責任保險附加駕駛人傷害保險條款 \n \n94.11.09 金管保二字第09402088420 號函核准..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：申請。",
+          "terms": [
+            "申請"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111424079190000-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...上，且經其簽名同意者為限。在本附加險有效期間內，駕駛被保險汽車之人如\n有更換，於變更申請書送達本公司時，新更換之駕駛被保險汽車之人取得被保險\n人資格；被更換之駕駛人則同時喪..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111424079190000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 67510,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 873,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111424079190001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車第三人責任保險附加駕駛人傷害保險",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 897,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111424079190001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...68-698 \n(公會版) \n華山汽車第三人責任保險附加駕駛人傷害保險條款 \n(主要給付項目:傷害保險金之給付) \n \n94.11.09 金管保二字第09402088420 號..."
+            },
+            {
+              "document": "103111424079190001-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...司對被保\n險人於本附加險有效期間內駕駛被保險汽車發生交通意外事故，致被保險人死亡\n或殘廢時，本公司依照本附加險之約定負給付保險金的責任。 \n本附加險所稱之「被保險人」，指駕..."
+            },
+            {
+              "document": "103111424079190001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...申訴電話：0800-868-698 \n(公會版) \n華山汽車第三人責任保險附加駕駛人傷害保險條款 \n(主要給付項目:傷害保險金之給付) \n \n94.11.09 金管保二字第..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111424079190001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...申訴電話：0800-868-698 \n(公會版) \n華山汽車第三人責任保險附加駕駛人傷害保險條款 \n(主要給付項目:傷害保險金之給付) \n \n94.11.09 金管保二字第..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：申請。",
+          "terms": [
+            "申請"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111424079190001-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...上，且經其簽名同意者為限。在本附加險有效期間內，駕駛被保險汽車之人如\n有更換，於變更申請書送達本公司時，新更換之駕駛被保險汽車之人取得被保險\n人資格；被更換之駕駛人則同時喪..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111424079190001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 68098,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 897,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111424079190100",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車第三人責任保險附加傷害保險傷害醫療保險給付",
+      "sale_status": "已停售",
+      "sale_date": "095/05/01",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "醫療險",
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1173,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：住院、傷害。",
+          "terms": [
+            "住院",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111424079190100-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...外事故，自交通意外事故發生之日起一百八十日以\n內，經登記合格的醫院治療者，本公司就其住院日數，給付保險單所記載的「住\n院醫療保險金日額」。但超過一百八十日繼續治療者，受益人..."
+            },
+            {
+              "document": "103111424079190100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...免費申訴電話：0800-868-698 \n \n華山產物汽車第三人責任保險附加駕駛人傷害保險 \n傷害醫療給付附加條款 \n \n94.11.09 金管保二字第094020884..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：傷害、醫院、住院、意外傷害事故。",
+          "terms": [
+            "傷害",
+            "醫院",
+            "住院",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111424079190100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...免費申訴電話：0800-868-698 \n \n華山產物汽車第三人責任保險附加駕駛人傷害保險 \n傷害醫療給付附加條款 \n \n94.11.09 金管保二字第094020884..."
+            },
+            {
+              "document": "103111424079190100-F.pdf",
+              "page": 1,
+              "term": "醫院",
+              "snippet": "...保險第一條約定的交通意外事故，自交通意外事故發生之日起一百八十日以\n內，經登記合格的醫院治療者，本公司就其住院日數，給付保險單所記載的「住\n院醫療保險金日額」。但超過一百八..."
+            },
+            {
+              "document": "103111424079190100-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...外事故，自交通意外事故發生之日起一百八十日以\n內，經登記合格的醫院治療者，本公司就其住院日數，給付保險單所記載的「住\n院醫療保險金日額」。但超過一百八十日繼續治療者，受益人..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111424079190100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 77283,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1173,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103111424079190101",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車第三人責任保險附加傷害保險傷害醫療保險給付",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "醫療險",
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1197,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、住院、傷害。",
+          "terms": [
+            "給付項目",
+            "住院",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111424079190101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...) \n華山產物汽車第三人責任保險附加駕駛人傷害保險 \n傷害醫療給付附加條款 \n(主要給付項目:傷害保險金之給付) \n \n94.11.09 金管保二字第09402088420 號..."
+            },
+            {
+              "document": "103111424079190101-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...外事故，自交通意外事故發生之日起一百八十日以\n內，經登記合格的醫院治療者，本公司就其住院日數，給付保險單所記載的「住\n院醫療保險金日額」。但超過一百八十日繼續治療者，受益人..."
+            },
+            {
+              "document": "103111424079190101-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...電話：0800-868-698 \n(公會版) \n華山產物汽車第三人責任保險附加駕駛人傷害保險 \n傷害醫療給付附加條款 \n(主要給付項目:傷害保險金之給付) \n \n94.11..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：傷害、醫院、住院、意外傷害事故。",
+          "terms": [
+            "傷害",
+            "醫院",
+            "住院",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103111424079190101-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...電話：0800-868-698 \n(公會版) \n華山產物汽車第三人責任保險附加駕駛人傷害保險 \n傷害醫療給付附加條款 \n(主要給付項目:傷害保險金之給付) \n \n94.11..."
+            },
+            {
+              "document": "103111424079190101-F.pdf",
+              "page": 1,
+              "term": "醫院",
+              "snippet": "...保險第一條約定的交通意外事故，自交通意外事故發生之日起一百八十日以\n內，經登記合格的醫院治療者，本公司就其住院日數，給付保險單所記載的「住\n院醫療保險金日額」。但超過一百八..."
+            },
+            {
+              "document": "103111424079190101-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...外事故，自交通意外事故發生之日起一百八十日以\n內，經登記合格的醫院治療者，本公司就其住院日數，給付保險單所記載的「住\n院醫療保險金日額」。但超過一百八十日繼續治療者，受益人..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103111424079190101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 78242,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1197,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103112113048120000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車貨物運送人責任保險(貨物-營業用)",
+      "sale_status": "已停售",
+      "sale_date": "095/05/01",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1417,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103112113048120000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...502522257 號令修正 \n \n \n保險商品簡介 \n \n承保範圍： \n被保險人在保險期間內受託運人之託，以載明於要保書上之被保險汽車運送物\n品，於運送途中（含運送途中休息或..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103112113048120000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 91316,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1417,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103112113048120001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車貨物運送人責任保險(貨物-營業用)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1438,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103112113048120001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...-698 \n(公會版) \n華山產物汽車貨物運送人責任保險條款 \n       (主要給付項目:責任保險金之給付)..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103112113048120001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...502522257 號令修正 \n \n \n保險商品簡介 \n \n承保範圍： \n被保險人在保險期間內受託運人之託，以載明於要保書上之被保險汽車運送物\n品，於運送途中（含運送途中休息或..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103112113048120001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 92186,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1438,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103112113049120000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車貨物運送人責任保險(貨櫃-營業用)",
+      "sale_status": "已停售",
+      "sale_date": "095/05/01",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1417,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103112113049120000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...502522257 號令修正 \n \n \n保險商品簡介 \n \n承保範圍： \n被保險人在保險期間內受託運人之託，以載明於要保書上之被保險汽車運送物\n品，於運送途中（含運送途中休息或..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103112113049120000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 91316,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1417,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103112113049120001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車貨物運送人責任保險(貨櫃-營業用)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1438,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103112113049120001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...-698 \n(公會版) \n華山產物汽車貨物運送人責任保險條款 \n       (主要給付項目:責任保險金之給付)..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103112113049120001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...502522257 號令修正 \n \n \n保險商品簡介 \n \n承保範圍： \n被保險人在保險期間內受託運人之託，以載明於要保書上之被保險汽車運送物\n品，於運送途中（含運送途中休息或..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103112113049120001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 92186,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1438,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103112113050010100",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車第三人責任保險教練車使用附加條款(營業用)",
+      "sale_status": "已停售",
+      "sale_date": "095/01/26",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 745,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103112113050010100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...失，依法應由被保險人負賠償責任而受賠償請求時，本公司\n對被保險人負賠償之責。 \n \n除外責任： \n除主保險契約及汽車共同條款約定之不保事項(但不包括汽車共同條款有關「被保險\n汽..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103112113050010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 60726,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 745,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103112113050010101",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車第三人責任保險教練車使用附加條款(營業用)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 831,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103112113050010101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...(公會版) \n  華山產物汽車第三人責任保險教練車使用附加條款 \n(主要給付項目:責任保險金之給付)..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103112113050010101-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...失，依法應由被保險人負賠償責任而受賠償請求時，本公司\n對被保險人負賠償之責。 \n \n除外責任： \n除主保險契約及汽車共同條款約定之不保事項(但不包括汽車共同條款有關「被保險\n汽..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103112113050010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 61298,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 831,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311112035060000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車第三人責任險-財損",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1201,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311112035060000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...管保二字第09502522257 號令修正 \n \n保險商品簡介 \n承保範圍： \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人\n死亡或受有體傷..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311112035060000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...管保二字第09502522257 號令修正 \n \n保險商品簡介 \n承保範圍： \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人\n死亡或受有體傷..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：限制。",
+          "terms": [
+            "限制"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311112035060000-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...之抗辯或訴訟，\n事先經本公司同意者，其支出之費用本公司同意支付之，並不受保\n險金額之限制。 \n \n因下列事項所致之賠償責任，本公司不負賠償之責： \n一、因尚未裝載於被保險汽..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311112035060000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 71538,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1201,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311112035060001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車第三人責任險-財損",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1239,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311112035060001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...-698 \n    (公會版) \n   華山產物自用汽車第三人責任保險條款 \n(主要給付項目: 體傷、殘廢、死亡保險金之給付) \n \n91.07.10 台財保第09107507..."
+            },
+            {
+              "document": "103311112035060001-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...(公會版) \n   華山產物自用汽車第三人責任保險條款 \n(主要給付項目: 體傷、殘廢、死亡保險金之給付) \n \n91.07.10 台財保第0910750797 號函核准..."
+            },
+            {
+              "document": "103311112035060001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...管保二字第09502522257 號令修正 \n \n保險商品簡介 \n承保範圍： \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人\n死亡或受有體傷..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311112035060001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...管保二字第09502522257 號令修正 \n \n保險商品簡介 \n承保範圍： \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人\n死亡或受有體傷..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：限制。",
+          "terms": [
+            "限制"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311112035060001-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...之抗辯或訴訟，\n事先經本公司同意者，其支出之費用本公司同意支付之，並不受保\n險金額之限制。 \n \n因下列事項所致之賠償責任，本公司不負賠償之責： \n一、因尚未裝載於被保險汽..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311112035060001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 72998,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1239,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311112039060200",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用第三人責任險受酒類影響車禍受害人補償附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 599,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311112039060200-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 61402,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 599,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311112039060201",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用第三人責任險受酒類影響車禍受害人補償附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 623,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311112039060201-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...(公會版) \n華山產物汽車第三人責任保險受酒類影響車禍受害人補償\n附加條款 \n(主要給付項目:責任保險金之給付) \n \n91.07.10 台財保第0910750797 號函核准..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311112039060201-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 62220,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 623,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311112041060100",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用第三人責任險雇主責任附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 564,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：殘廢、傷害。",
+          "terms": [
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311112041060100-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...務及隨車執行職務之人，因\n被保險汽車發生意外事故或因隨車執行職務發生事故，受有體傷、殘廢或死亡，\n被保險人依勞動基準法或其他相關法規應負賠償責任而受賠償請求時，亦負賠償\n之..."
+            },
+            {
+              "document": "103311112041060100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...他相關法規應負賠償責任而受賠償請求時，亦負賠償\n之責。 \n \n受僱人因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n(一)受僱人之故意行為。 \n(二)受僱人之毆鬥..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：疾病、傷害。",
+          "terms": [
+            "疾病",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311112041060100-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...一)受僱人之故意行為。 \n(二)受僱人之毆鬥、自殺或犯罪行為。 \n(三)受僱人本身之疾病，殘疾。"
+            },
+            {
+              "document": "103311112041060100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...他相關法規應負賠償責任而受賠償請求時，亦負賠償\n之責。 \n \n受僱人因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n(一)受僱人之故意行為。 \n(二)受僱人之毆鬥..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311112041060100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 59443,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 564,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311112041060101",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用第三人責任險雇主責任附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 599,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311112041060101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...) \n華山產物自用汽車第三人責任保險雇主責任附加條款 \n           (主要給付項目:責任保險金之給付) \n \n91.07.10 台財保第0910750797 號函核准..."
+            },
+            {
+              "document": "103311112041060101-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...務及隨車執行職務之人，因\n被保險汽車發生意外事故或因隨車執行職務發生事故，受有體傷、殘廢或死亡，\n被保險人依勞動基準法或其他相關法規應負賠償責任而受賠償請求時，亦負賠償\n之..."
+            },
+            {
+              "document": "103311112041060101-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...他相關法規應負賠償責任而受賠償請求時，亦負賠償\n之責。 \n \n受僱人因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n(一)受僱人之故意行為。 \n(二)受僱人之毆鬥..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：疾病、傷害。",
+          "terms": [
+            "疾病",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311112041060101-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...一)受僱人之故意行為。 \n(二)受僱人之毆鬥、自殺或犯罪行為。 \n(三)受僱人本身之疾病，殘疾。"
+            },
+            {
+              "document": "103311112041060101-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...他相關法規應負賠償責任而受賠償請求時，亦負賠償\n之責。 \n \n受僱人因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n(一)受僱人之故意行為。 \n(二)受僱人之毆鬥..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311112041060101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 60448,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 599,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210001010000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車車體損失險甲式",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 917,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210001010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 74419,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 917,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210001010001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車車體損失險甲式",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 944,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210001010001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...-868-698 \n(公會版) \n華山產物自用汽車車體損失保險甲式條款 \n  (主要給付項目: 財產損失保險金之給付) \n \n91.07.10 台財保第0910750797 號..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210001010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 74804,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 944,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210002020000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車車體損失險乙式",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 934,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210002020000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 72566,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 934,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210002020001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車車體損失險乙式",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 964,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210002020001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...868-698 \n (公會版) \n華山產物自用汽車車體損失保險乙式條款 \n  (主要給付項目: 財產損失保險金之給付)..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210002020001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 73470,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 964,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210002020100",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車車體損失險罷工、暴動、民眾騷擾附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 385,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210002020100-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...被保險汽車因罷工、暴動、民眾騷擾所致之毀損滅失，亦負\n賠償之責。 \n \n本附加條款無自負額。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210002020100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 52204,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 385,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210002020101",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車車體損失險罷工、暴動、民眾騷擾附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 415,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210002020101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...8 \n(公會版) \n華山產物汽車車體損失保險罷工、暴動、民眾騷擾附加條款 \n (主要給付項目: 財產損失保險金之給付) \n \n \n \n91.07.10 台財保第09107507..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210002020101-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...被保險汽車因罷工、暴動、民眾騷擾所致之毀損滅失，亦負\n賠償之責。 \n \n本附加條款無自負額。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210002020101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 53312,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 415,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210003050000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車竊盜損失險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 828,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210003050000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 67588,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 828,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210003050001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車竊盜損失險",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 858,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210003050001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...-868-698 \n (公會版) \n華山產物自用汽車竊盜損失保險條款 \n   (主要給付項目:財產損失保險金之給付) \n \n \n91.07.10 台財保第0910750797..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210003050001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 68015,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 858,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210006050100",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車竊盜損失險零件、配件被竊損失附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 455,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210006050100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...款所稱之零件、配件非與被保險汽車同時\n被竊所致之損失，亦負賠償之責。 \n本附加條款於保險期間內累計賠償金額最高以實收保險費六倍為限。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210006050100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 52487,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 455,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210006050101",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車竊盜損失險零件、配件被竊損失附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 481,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210006050101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...(公會版) \n華山產物汽車竊盜損失保險零件、配件被竊損失險附加條款 \n(主要給付項目: 財產損失險金之給付) \n \n \n91.07.10 台財保第0910750797..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210006050101-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...款所稱之零件、配件非與被保險汽車同時\n被竊所致之損失，亦負賠償之責。 \n本附加條款於保險期間內累計賠償金額最高以實收保險費六倍為限。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210006050101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 53387,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 481,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210007050300",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車竊盜損失險附加代車費用險",
+      "sale_status": "已停售",
+      "sale_date": "089/06/01",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 659,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210007050300-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...竊後尋回之狀況──依向警方報案日期第三日起（不含報案日當\n天）至被保險汽車修復完畢，通知被保險人領車日止之日數計算。 \n \n不保事項： \n被保險汽車失竊，非依事實向警方報案..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210007050300-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 59168,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 659,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210007050301",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車竊盜損失險附加代車費用險",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 682,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210007050301-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...：0800-868-698 \n \n華山產物汽車竊盜損失保險代車費用附加條款 \n(主要給付項目:代車費用保險金之給付) \n \n \n89.06.01 台財保第0890705001..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210007050301-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...竊後尋回之狀況──依向警方報案日期第三日起（不含報案日當\n天）至被保險汽車修復完畢，通知被保險人領車日止之日數計算。 \n \n不保事項： \n被保險汽車失竊，非依事實向警方報案..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210007050301-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 59833,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 682,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210008040000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用小客車重大車體損失險",
+      "sale_status": "已停售",
+      "sale_date": "086/04/19",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1439,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210008040000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 91681,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1439,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210008040001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用小客車重大車體損失險",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1463,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210008040001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...訴電話：0800-868-698 \n  \n華山產物自用小客車重大車體損失險 \n(主要給付項目:財產損失險保險金之給付)..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210008040001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 94060,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1463,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210011010200",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車車體損失險全損免折舊附加條款",
+      "sale_status": "已停售",
+      "sale_date": "087/05/20",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 472,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210011010200-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 52409,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 472,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210011010201",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車車體損失險全損免折舊附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 493,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210011010201-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...8-698 \n \n華山產物汽車車體損失保險全損免折舊附加條款 \n       (主要給付項目:財產損失保險金之給付)..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210011010201-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 52660,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 493,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210012050200",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車竊盜損失險全損免折舊附加條款",
+      "sale_status": "已停售",
+      "sale_date": "087/05/20",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 434,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210012050200-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...費用數額達\n保險金額扣除折舊後數額四分之三以上時，本公司按保險金額扣除第三條所約\n定自負額後賠付，不再扣除折舊。 \n車種僅限自用小客車及自用小貨車。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210012050200-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 52588,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 434,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210012050201",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物汽車竊盜損失險全損免折舊附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 460,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210012050201-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...0-868-698 \n華山產物汽車竊盜損失保險全損免折舊附加條款 \n     (主要給付項目:財產損失保險金之給付) \n \n       \n87.05.20 台財保第87182..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210012050201-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...費用數額達\n保險金額扣除折舊後數額四分之三以上時，本公司按保險金額扣除第三條所約\n定自負額後賠付，不再扣除折舊。 \n車種僅限自用小客車及自用小貨車。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210012050201-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 54025,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 460,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210022030000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車車體損失險丙式",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 837,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210022030000-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...免費申訴電話：0800-868-698 \n  \n \n華山產物汽車車體損失保險丙式－免自負額車對車碰撞損\n失保險條款 \n \n91.07.10 台財保第0910750797 號函..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210022030000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 68856,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 837,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311210022030001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車車體損失險丙式",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 876,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210022030001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...體損失保險丙式－免自負額車對車碰撞損\n失保險條款 \n             (主要給付項目:財產損失保險金之給付) \n \n91.07.10 台財保第0910750797 號函..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311210022030001-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...話：0800-868-698 \n  \n(公會版) \n華山產物汽車車體損失保險丙式－免自負額車對車碰撞損\n失保險條款 \n             (主要給付項目:財產損失保險金..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311210022030001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 70512,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 876,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311228059010300",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車車體損失險颱風、地震、海嘯附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 471,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311228059010300-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...、地震、海嘯、冰雹、洪水、或因雨積水 \n所致之毀損滅失，負賠償之責。 \n本附加條款無自負額。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311228059010300-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 53340,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 471,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103311228059010301",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車車體損失險颱風、地震、海嘯附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 498,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311228059010301-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...華山產物汽車車體損失保險颱風、地震、海嘯、冰雹、洪水\n或因雨積水附加條款 \n (主要給付項目:財產損失保險金之給付) \n \n91.07.10 台財保第0910750797 號函..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103311228059010301-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...、地震、海嘯、冰雹、洪水、或因雨積水 \n所致之毀損滅失，負賠償之責。 \n本附加條款無自負額。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103311228059010301-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 53988,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 498,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103312113035060000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物營業用汽車第三人責任險-財損",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1209,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113035060000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...二字第09502522257 號令修正 \n \n保險商品簡介 \n \n承保範圍： \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人死亡或\n受有體傷..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113035060000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...二字第09502522257 號令修正 \n \n保險商品簡介 \n \n承保範圍： \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人死亡或\n受有體傷..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：限制。",
+          "terms": [
+            "限制"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113035060000-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...金額仍應先將\n強制汽車責任保險所規定之給付標準扣除之。但經書面約定批改加保者不\n在此限制。 \n二、財損責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人財..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103312113035060000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 71224,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1209,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103312113035060001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物營業用汽車第三人責任險-財損",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1209,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113035060001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...二字第09502522257 號令修正 \n \n保險商品簡介 \n \n承保範圍： \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人死亡或\n受有體傷..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113035060001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...二字第09502522257 號令修正 \n \n保險商品簡介 \n \n承保範圍： \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人死亡或\n受有體傷..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：限制。",
+          "terms": [
+            "限制"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113035060001-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...金額仍應先將\n強制汽車責任保險所規定之給付標準扣除之。但經書面約定批改加保者不\n在此限制。 \n二、財損責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人財..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103312113035060001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 71431,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1209,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103312113041070000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物營業用汽車僱主責任險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 506,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：殘廢、傷害。",
+          "terms": [
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113041070000-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...司對被保險人之受僱人，因被保險汽車發生意外事故或因隨車執行職務發生\n事故，受有體傷、殘廢或死亡，被保險人依勞動基準法或其他相關法規應負賠償\n責任而受賠償請求時，負賠償之責。..."
+            },
+            {
+              "document": "103312113041070000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...應負賠償\n責任而受賠償請求時，負賠償之責。 \n \n不保事項 \n受僱人因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n一、受僱人之故意行為。 \n二、受僱人之毆鬥、自..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：疾病、傷害。",
+          "terms": [
+            "疾病",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113041070000-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...一、受僱人之故意行為。 \n二、受僱人之毆鬥、自殺或犯罪行為。 \n三、受僱人本身之疾病、殘疾。"
+            },
+            {
+              "document": "103312113041070000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...應負賠償\n責任而受賠償請求時，負賠償之責。 \n \n不保事項 \n受僱人因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n一、受僱人之故意行為。 \n二、受僱人之毆鬥、自..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103312113041070000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 56481,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 506,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103312113041070001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物營業用汽車僱主責任險",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 506,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：殘廢、傷害。",
+          "terms": [
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113041070001-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...司對被保險人之受僱人，因被保險汽車發生意外事故或因隨車執行職務發生\n事故，受有體傷、殘廢或死亡，被保險人依勞動基準法或其他相關法規應負賠償\n責任而受賠償請求時，負賠償之責。..."
+            },
+            {
+              "document": "103312113041070001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...應負賠償\n責任而受賠償請求時，負賠償之責。 \n \n不保事項 \n受僱人因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n一、受僱人之故意行為。 \n二、受僱人之毆鬥、自..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：疾病、傷害。",
+          "terms": [
+            "疾病",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113041070001-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...一、受僱人之故意行為。 \n二、受僱人之毆鬥、自殺或犯罪行為。 \n三、受僱人本身之疾病、殘疾。"
+            },
+            {
+              "document": "103312113041070001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...應負賠償\n責任而受賠償請求時，負賠償之責。 \n \n不保事項 \n受僱人因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n一、受僱人之故意行為。 \n二、受僱人之毆鬥、自..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103312113041070001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 56583,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 506,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103312113047080000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物營業用汽車旅客責任險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 606,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：殘廢、傷害。",
+          "terms": [
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113047080000-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...於保險期間內發生意外事故並以此為直接原因致乘坐或上下被保險\n汽車之旅客遭受身體傷害、殘廢或死亡，被保險人依法應負賠償責任時，本公司\n對被保險人負賠償之責。 \n本保險之承保人..."
+            },
+            {
+              "document": "103312113047080000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...險汽車於保險期間內發生意外事故並以此為直接原因致乘坐或上下被保險\n汽車之旅客遭受身體傷害、殘廢或死亡，被保險人依法應負賠償責任時，本公司\n對被保險人負賠償之責。 \n本保險之..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：疾病、傷害。",
+          "terms": [
+            "疾病",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113047080000-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...責任： \n一、旅客之故意行為。 \n二、旅客之毆鬥、自殺或犯罪行為。 \n三、旅客本身之疾病、殘疾。"
+            },
+            {
+              "document": "103312113047080000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...險汽車於保險期間內發生意外事故並以此為直接原因致乘坐或上下被保險\n汽車之旅客遭受身體傷害、殘廢或死亡，被保險人依法應負賠償責任時，本公司\n對被保險人負賠償之責。 \n本保險之..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113047080000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...第09502522257 號令修正 \n保險商品簡介 \n \n承保範圍： \n被保險汽車於保險期間內發生意外事故並以此為直接原因致乘坐或上下被保險\n汽車之旅客遭受身體傷害、殘廢或死亡..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103312113047080000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 60315,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 606,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103312113047080001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物營業用汽車旅客責任險",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 606,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：殘廢、傷害。",
+          "terms": [
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113047080001-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...於保險期間內發生意外事故並以此為直接原因致乘坐或上下被保險\n汽車之旅客遭受身體傷害、殘廢或死亡，被保險人依法應負賠償責任時，本公司\n對被保險人負賠償之責。 \n本保險之承保人..."
+            },
+            {
+              "document": "103312113047080001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...險汽車於保險期間內發生意外事故並以此為直接原因致乘坐或上下被保險\n汽車之旅客遭受身體傷害、殘廢或死亡，被保險人依法應負賠償責任時，本公司\n對被保險人負賠償之責。 \n本保險之..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：疾病、傷害。",
+          "terms": [
+            "疾病",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113047080001-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...責任： \n一、旅客之故意行為。 \n二、旅客之毆鬥、自殺或犯罪行為。 \n三、旅客本身之疾病、殘疾。"
+            },
+            {
+              "document": "103312113047080001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...險汽車於保險期間內發生意外事故並以此為直接原因致乘坐或上下被保險\n汽車之旅客遭受身體傷害、殘廢或死亡，被保險人依法應負賠償責任時，本公司\n對被保險人負賠償之責。 \n本保險之..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312113047080001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...第09502522257 號令修正 \n保險商品簡介 \n \n承保範圍： \n被保險汽車於保險期間內發生意外事故並以此為直接原因致乘坐或上下被保險\n汽車之旅客遭受身體傷害、殘廢或死亡..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103312113047080001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 60445,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 606,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103312211001010000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物營業用汽車車體損失險甲式",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1034,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103312211001010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 77907,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1034,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103312211001010001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物營業用汽車車體損失險甲式",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1059,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312211001010001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...0-868-698 \n(公會版) \n華山產物營業用汽車車體損失保險甲式條款 \n(主要給付項目: 財產損失保險金之給付) \n \n91.07.10 台財保第0910750797 號..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103312211001010001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 78814,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1059,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103312211002020000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物營業用汽車車體損失險乙式",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1050,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103312211002020000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 78194,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1050,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103312211002020001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物營業用汽車車體損失險乙式",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1076,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103312211002020001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...0-868-698 \n(公會版) \n華山產物營業用汽車車體損失保險乙式條款 \n(主要給付項目: 財產損失保險金之給付)  \n \n91.07.10 台財保第0910750797..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103312211002020001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 78949,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1076,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103312211003050000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物營業用汽車竊盜損失險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 781,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103312211003050000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 64145,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 781,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103312211003050001",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物營業用汽車竊盜損失險",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 781,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103312211003050001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 64290,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 781,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103313114057090000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物自用汽車強制責任險",
+      "sale_status": "已停售",
+      "sale_date": "094/11/07",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 565,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103313114057090000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...承保範圍： \n被保險人因使用或管理被保險汽車發生汽車交通事故，致乘客或車外第三人 \n傷害或死亡者，不論被保險人有無過失，本公司應依本保險契約之約定，對 \n請求權人給付保險金..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103313114057090000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...承保範圍： \n被保險人因使用或管理被保險汽車發生汽車交通事故，致乘客或車外第三人 \n傷害或死亡者，不論被保險人有無過失，本公司應依本保險契約之約定，對 \n請求權人給付保險金..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103313114057090000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 56171,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 565,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103313115057090000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物營業用汽車強制責任險",
+      "sale_status": "已停售",
+      "sale_date": "094/11/07",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 565,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103313115057090000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...承保範圍： \n被保險人因使用或管理被保險汽車發生汽車交通事故，致乘客或車外第三人 \n傷害或死亡者，不論被保險人有無過失，本公司應依本保險契約之約定，對 \n請求權人給付保險金..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103313115057090000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...承保範圍： \n被保險人因使用或管理被保險汽車發生汽車交通事故，致乘客或車外第三人 \n傷害或死亡者，不論被保險人有無過失，本公司應依本保險契約之約定，對 \n請求權人給付保險金..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103313115057090000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 56172,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 565,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103313116058100000",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物機車強制責任險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/23",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 565,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103313116058100000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...承保範圍： \n被保險人因使用或管理被保險汽車發生汽車交通事故，致乘客或車外第三人 \n傷害或死亡者，不論被保險人有無過失，本公司應依本保險契約之約定，對 \n請求權人給付保險金..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103313116058100000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...承保範圍： \n被保險人因使用或管理被保險汽車發生汽車交通事故，致乘客或車外第三人 \n傷害或死亡者，不論被保險人有無過失，本公司應依本保險契約之約定，對 \n請求權人給付保險金..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103313116058100000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 56299,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 565,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103313116060100100",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物機車強制責任險附加駕駛人傷害險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 699,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：殘廢、傷害。",
+          "terms": [
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103313116060100100-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...公司對駕駛人涉及『強制汽車\n責任保險』被保險機車單一機車交通事故，致駕駛人本人死亡、殘廢或受有體\n傷時，本公司依照本附加條款之約定，對受益人負賠償之責。 \n前項所稱『駕駛人..."
+            },
+            {
+              "document": "103313116060100100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...tw \n免費申訴電話：0800-868-698 \n \n華山產物機車強制責任保險駕駛人傷害附加條款 \n \n \n91.07.10 台財保第0910750797 號函核准 \n96..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103313116060100100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...tw \n免費申訴電話：0800-868-698 \n \n華山產物機車強制責任保險駕駛人傷害附加條款 \n \n \n91.07.10 台財保第0910750797 號函核准 \n96..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103313116060100100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 65177,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 699,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "103313116060100101",
+      "company": "華山產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "華山產物機車強制責任險附加駕駛人傷害險",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/17",
+      "source_batch_id": "tii-property-009",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 721,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103313116060100101-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...868-698 \n(公會版) \n華山產物機車強制責任保險駕駛人傷害附加條款 \n(主要給付項目:傷害保險金之給付) \n \n91.07.10 台財保第0910750797 號函核准..."
+            },
+            {
+              "document": "103313116060100101-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...公司對駕駛人涉及『強制汽車\n責任保險』被保險機車單一機車交通事故，致駕駛人本人死亡、殘廢或受有體\n傷時，本公司依照本附加條款之約定，對受益人負賠償之責。 \n前項所稱『駕駛人..."
+            },
+            {
+              "document": "103313116060100101-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...費申訴電話：0800-868-698 \n(公會版) \n華山產物機車強制責任保險駕駛人傷害附加條款 \n(主要給付項目:傷害保險金之給付) \n \n91.07.10 台財保第09..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "103313116060100101-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...費申訴電話：0800-868-698 \n(公會版) \n華山產物機車強制責任保險駕駛人傷害附加條款 \n(主要給付項目:傷害保險金之給付) \n \n91.07.10 台財保第09..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "103313116060100101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 66298,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 721,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

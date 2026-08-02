@@ -1,0 +1,3105 @@
+{
+  "generated_at": "2026-07-31T21:45:06+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:45:06+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-040",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 40,
+    "document_count": 40,
+    "extracted_document_count": 40,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 2,
+    "error_document_count": 0,
+    "pdf_document_count": 40,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 40,
+    "total_text_characters": 14920,
+    "focus_counts": [
+      {
+        "label": "特殊項目",
+        "count": 12
+      },
+      {
+        "label": "重要定義",
+        "count": 6
+      },
+      {
+        "label": "保障項目",
+        "count": 5
+      },
+      {
+        "label": "理賠申請",
+        "count": 1
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "意外險",
+        "count": 6
+      },
+      {
+        "label": "醫療險",
+        "count": 2
+      },
+      {
+        "label": "失能/殘扶",
+        "count": 1
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 40
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "111341117017010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物高爾夫球員責任保險",
+      "sale_status": "已停售",
+      "sale_date": "075/09/17",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [
+        "醫療險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 472,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：醫療費用。",
+          "terms": [
+            "醫療費用"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113411170170100-1-F.pdf",
+              "page": 1,
+              "term": "醫療費用",
+              "snippet": "...竊盜所致之損失。球桿之\n破裂或斷折所致損失，惟以參加高爾夫球運動時\n為限。一桿進洞。醫療費用。球童特別費用。 \n \n其它 \n \nPDF created with pdfFact..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113411170170100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 146373,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 472,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111341118021010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物醫師業務責任保險",
+      "sale_status": "已停售",
+      "sale_date": "078/05/29",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 488,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：醫院、醫師。",
+          "terms": [
+            "醫院",
+            "醫師"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113411180210100-1-F.pdf",
+              "page": 1,
+              "term": "醫院",
+              "snippet": "...醫師證書，經主管機關發給執業執\n照或服務執照應加入所在地醫師公會執業\n或服務於公私立醫院、診所、衛生所執行醫\n療業務之醫師，及在中央衛生主管機關認可\n之實習醫院醫師指導下實..."
+            },
+            {
+              "document": "1113411180210100-1-F.pdf",
+              "page": 1,
+              "term": "醫師",
+              "snippet": "--- page 1 ---\n\n其它附加說明: \n商品名稱 \n醫師業務責任保險 \n保險類別 \n依財產保險公會編碼 \n公會編碼之商品編號 \n411180..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113411180210100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 127289,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 488,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111341118026010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物保險公證人專業責任保險",
+      "sale_status": "已停售",
+      "sale_date": "083/10/13",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 354,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113411180260100-f.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...日期 \n83 年10 月13 日 \n商品停售日期 \n無 \n商品內容簡介 \n被保險㆟於保險期間或追溯期間內，因執行本保險單所載業\n務之過失、錯誤或疏漏行為，致第㆔㆟受有損害，被保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113411180260100-f.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 94339,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 354,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342117007010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物公共意外責任保險",
+      "sale_status": "已停售",
+      "sale_date": "076/09/01",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 421,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113421170070100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 109210,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 421,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342117008010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物產品責任保險",
+      "sale_status": "已停售",
+      "sale_date": "068/04/20",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 375,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113421170080100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 89391,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 375,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342117009010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物電梯意外責任保險",
+      "sale_status": "已停售",
+      "sale_date": "076/09/01",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 401,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113421170090100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 107829,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 401,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342117010010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物營繕承包人意外責任保險",
+      "sale_status": "已停售",
+      "sale_date": "076/09/01",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 387,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113421170100100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 110198,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 387,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342117013010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物僱主意外責任保險",
+      "sale_status": "已停售",
+      "sale_date": "076/09/01",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 446,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113421170130100-1-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...准日期或核備、備查日期 \n \n商品停售日期 \n \n商品內容簡介 \n被保險人之受僱人在保險期間內因執行職務\n發生意外事故遭受體傷或死亡，依法應由被\n保險人負責賠償而受賠償請求時，..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113421170130100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 110730,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 446,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342117015010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物保全業責任保險",
+      "sale_status": "已停售",
+      "sale_date": "083/07/22",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 420,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113421170150100-1-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...商品內容簡介 \n被保險人因經營保全業務，在保險期間內發生下\n列事故，致第三人身體傷害、死亡或財物受有損\n失，依法應負賠償責任並受賠償請求時，本公司\n對被保險人負賠償之責..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113421170150100-1-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...商品內容簡介 \n被保險人因經營保全業務，在保險期間內發生下\n列事故，致第三人身體傷害、死亡或財物受有損\n失，依法應負賠償責任並受賠償請求時，本公司\n對被保險人負賠償之責..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113421170150100-1-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...核備、備查日期 \n \n商品停售日期 \n \n商品內容簡介 \n被保險人因經營保全業務，在保險期間內發生下\n列事故，致第三人身體傷害、死亡或財物受有損\n失，依法應負賠償責任並受賠償請..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113421170150100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 143076,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 420,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342117019010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物金融業保管箱責任保險",
+      "sale_status": "已停售",
+      "sale_date": "078/07/28",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 453,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113421170190100-1-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...期間內，因經營出租保管箱業\n務，發生竊盜、搶奪、強盜、火災、爆炸或本保\n險單第二條「不保事項」所列舉不保者以外之意\n外事故，致承租人之置存物毀損、滅失，依法應\n由被保險人負責賠..."
+            },
+            {
+              "document": "1113421170190100-1-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...准 \n核准日期或核備、備查日期 \n \n商品停售日期 \n \n商品內容簡介 \n被保險人在保險期間內，因經營出租保管箱業\n務，發生竊盜、搶奪、強盜、火災、爆炸或本保\n險單第二條「不保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113421170190100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 137071,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 453,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342118022010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物醫院綜合意外責任保險",
+      "sale_status": "已停售",
+      "sale_date": "078/05/29",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 487,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：醫院。",
+          "terms": [
+            "醫院"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113421180220100-1-F.pdf",
+              "page": 1,
+              "term": "醫院",
+              "snippet": "--- page 1 ---\n\n其它附加說明: \n商品名稱 \n醫院綜合意外責任保險 \n保險類別 \n依財產保險公會編碼 \n公會編碼之商品編號 \n4211..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113421180220100-1-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...或核備、備查日期 \n \n商品停售日期 \n \n商品內容簡介 \n被保險人因經營醫療業務在保險期間發生下列\n意外事故致第三人受有體傷或死亡，依法應負賠\n償責任，而受賠償請求時，本公司..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113421180220100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 135183,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 487,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342118023010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物會計師責任保險",
+      "sale_status": "已停售",
+      "sale_date": "074/01/26",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 340,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113421180240100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 91444,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 340,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342118024010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物律師責任保險",
+      "sale_status": "已停售",
+      "sale_date": "074/01/26",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 340,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113421180240100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 91444,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 340,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342118025010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物建築師工程師專業責任保險",
+      "sale_status": "已停售",
+      "sale_date": "083/09/22",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 333,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113421180250100-1-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...錯誤或過\n失，違反業務上之義務，致第三人受有損失，依\n法應由被保險人負賠償責任，而於保險期間或延\n長報案期間內提出賠償請求時，由承保公司對被\n保險人負賠償之責。 \n \n其它..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113421180250100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 105027,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 333,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342118027010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物保險代理人經紀人專業責任保險",
+      "sale_status": "已停售",
+      "sale_date": "083/10/13",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 331,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113421180270100-1-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...准 \n核准日期或核備、備查日期 \n \n商品停售日期 \n \n商品內容簡介 \n被保險人於保險期間或追溯期間內，因執行本保\n險單所載業務之過失、錯誤或疏漏行為，致第三\n人受有損害，被..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113421180270100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 115129,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 331,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342223042010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物現金保險",
+      "sale_status": "已停售",
+      "sale_date": "075/09/08",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 209,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113422230420100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 94478,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 209,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342223049010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物玻璃保險",
+      "sale_status": "已停售",
+      "sale_date": "075/03/11",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 323,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113422230490100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 115443,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 323,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342321031010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物員工誠實保證保險",
+      "sale_status": "已停售",
+      "sale_date": "053/05/28",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 411,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保證期間。",
+          "terms": [
+            "保證期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113423210310100-1-F.pdf",
+              "page": 1,
+              "term": "保證期間",
+              "snippet": "...司對於被保險人所有、依法應負責任或以任\n何名義保管之財產，為任一被保證員工，在其被\n保證期間內，因單獨或共謀之不誠實行為所致之\n直接損失負賠償之責。 \n前項所稱「不誠實行為」係..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113423210310100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 104806,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 411,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342321033010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物工程押標金保證保險",
+      "sale_status": "已停售",
+      "sale_date": "075/03/11",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 328,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113423210330100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 100534,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 328,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342321033020000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物工程保留款保證保險",
+      "sale_status": "已停售",
+      "sale_date": "075/03/11",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 350,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113423210330200-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 93687,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 350,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342321033030000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物工程預付款保證保險",
+      "sale_status": "已停售",
+      "sale_date": "075/03/11",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 365,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113423210330300-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 94039,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 365,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342321033040000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物工程履約保證保險",
+      "sale_status": "已停售",
+      "sale_date": "075/03/11",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 400,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113423210330400-f.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...期 \n75 年3 月11 日 \n商品停售日期 \n無 \n商品內容簡介 \n工程承攬㆟，於保險期間內，不履行工程契約，致定作㆟受\n有損失，而承攬㆟依工程契約之規定應負賠償責任時，由本..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113423210330400-f.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 113461,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 400,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342321033050000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物工程支付款保證保險",
+      "sale_status": "已停售",
+      "sale_date": "075/03/11",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 392,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113423210330500-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 114323,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 392,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342321033060000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物工程保固保證保險",
+      "sale_status": "已停售",
+      "sale_date": "075/03/11",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 356,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113423210330600-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 93236,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 356,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342321077010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物履約保證金保證保險",
+      "sale_status": "已停售",
+      "sale_date": "090/08/06",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 362,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113423210770100-1-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...情形致被保險人受有損失時，本公司依本保\n險契約之約定對被保險人負賠償之責，但最高以\n保險金額為限。 \n \n其它 \n \nPDF created with pdfFactory..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113423210770100-1-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...核准日期或核備、備查日期 \n70 \n商品停售日期 \n \n商品內容簡介 \n要保人於保險期間內，不履行本保險契約所載之\n採購契約，依採購契約規定，有不發還履約保證\n金之情形致被..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113423210770100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 115324,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 362,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342321078010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物預付款保證金保證保險",
+      "sale_status": "已停售",
+      "sale_date": "090/08/06",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 186,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113423210780100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 40937,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 186,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342321079010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物保固保證金保證保險",
+      "sale_status": "已停售",
+      "sale_date": "090/08/06",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 322,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113423210790100-1-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...號 \n核准日期或核備、備查日期 \n \n商品停售日期 \n \n商品內容簡介 \n得標人於保險期間內，不履行本保險契約所載採\n購契約之保固或養護責任，被保險人依採購契約\n規定，有不發..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113423210790100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 79503,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 322,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342322035010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物消費者貸款信用保險",
+      "sale_status": "已停售",
+      "sale_date": "075/09/30",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 296,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113423220350100-1-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...商品內容簡介 \n凡被保險人之借款人未依約攤還借款本息逾期六\n個月，並由被保險人通知催收無著而遭受損失\n時，由承保公司對被保險人負賠償之責。 \n \n其它 \n \nPDF..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113423220350100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 92784,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 296,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342424007010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物個人傷害保險",
+      "sale_status": "已停售",
+      "sale_date": "090/08/01",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [
+        "醫療險",
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 467,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：保險金、醫療費用、身故、殘廢、傷害。",
+          "terms": [
+            "保險金",
+            "醫療費用",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113424240070100-1-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...傷害並因而致成死亡或殘\n廢時，本公司依照本契約的約定，給付身故\n（或喪葬費用）或殘廢保險金。 \n2、醫療給付：被保險人於本契約有效期間內，\n因遭受意外傷害事故，致其身體蒙受傷..."
+            },
+            {
+              "document": "1113424240070100-1-F.pdf",
+              "page": 1,
+              "term": "醫療費用",
+              "snippet": "...療給付：被保險人於本契約有效期間內，\n因遭受意外傷害事故，致其身體蒙受傷害並\n因而有醫療費用之支出時，本公司依照本契\n約的約定，給付醫療保險金。 \n \n其它 \n \nPDF cr..."
+            },
+            {
+              "document": "1113424240070100-1-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...契約之承保範圍，依雙方當事人之協議，就下\n列第一項投保，並得附加投保第二項： \n1、身故（或喪葬費用）及殘廢給付：被保險人\n於本契約有效期間內，因遭受意外傷害事\n故，致其身..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：傷害、意外傷害事故。",
+          "terms": [
+            "傷害",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113424240070100-1-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n其它附加說明: \n商品名稱 \n國華產物個人傷害保險 \n保險類別 \n依財產保險公會編碼 \n公會編碼之商品編號 \n4142450019..."
+            },
+            {
+              "document": "1113424240070100-1-F.pdf",
+              "page": 1,
+              "term": "意外傷害事故",
+              "snippet": "...（或喪葬費用）或殘廢保險金。 \n2、醫療給付：被保險人於本契約有效期間內，\n因遭受意外傷害事故，致其身體蒙受傷害並\n因而有醫療費用之支出時，本公司依照本契\n約的約定，給付醫療保險..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113424240070100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 109751,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 467,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342519001010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物營造綜合保險",
+      "sale_status": "已停售",
+      "sale_date": "069/03/31",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 465,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113425190010100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 129280,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 465,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342519002010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物安裝工程綜合保險",
+      "sale_status": "已停售",
+      "sale_date": "062/01/04",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 399,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113425190020100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 124522,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 399,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342519003010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物營建機具綜合保險",
+      "sale_status": "已停售",
+      "sale_date": "069/06/10",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 399,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113425190030100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 128077,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 399,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342519004010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物鍋爐保險",
+      "sale_status": "已停售",
+      "sale_date": "065/07/13",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 264,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113425190040100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 89347,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 264,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342519005010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物機械保險",
+      "sale_status": "已停售",
+      "sale_date": "066/08/26",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 277,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：續保。",
+          "terms": [
+            "續保"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113425190050100-1-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...、備查日期 \n66 年10 月 \n商品停售日期 \n \n商品內容簡介 \n為安裝保險的後續保險，用以保障機械於\n使用及運轉時，發生各種意外事故所造成\n之損失。 \n其它 \n \nP..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113425190050100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 85344,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 277,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342519006010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物電子設備保險",
+      "sale_status": "已停售",
+      "sale_date": "083/02/19",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 299,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113425190060100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 87304,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 299,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342523048010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物節目中斷保險",
+      "sale_status": "已停售",
+      "sale_date": "087/06/03",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 551,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：疾病。",
+          "terms": [
+            "疾病"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113425230480100-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...任何氣候因素所致者。 \n2.因演出主要㆟員未能出席（危險因素限\n定於死亡、意外事故、疾病）以致節目㆗\n斷、取消或延期(Non Appearance)。 \n3.㆝候因素未能如..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113425230480100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 126227,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 551,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111342523051010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物資訊系統不法行為保險",
+      "sale_status": "已停售",
+      "sale_date": "076/05/21",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 379,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113425230510100-f.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 114596,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 379,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111343117020020000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物鐵路旅客運送責任保險",
+      "sale_status": "已停售",
+      "sale_date": "090/10/29",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 478,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險金、殘廢。",
+          "terms": [
+            "保險金",
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113431170200200-f.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...身體受傷、殘廢或死亡，依鐵路法第六十㆓條規定應負給付\n責任，而受賠償請求時，本公司於保險金額範圍內對被保險\n㆟負損害補償之責。 \n遇有前項保險事故發生時，本公司對㆘列費用亦負..."
+            },
+            {
+              "document": "1113431170200200-f.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...契約所載之鐵路旅客\n運送業務，於營業處所內發生行車及其他意外事故，致旅客\n身體受傷、殘廢或死亡，依鐵路法第六十㆓條規定應負給付\n責任，而受賠償請求時，本公司於保險金額範圍內..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1113431170200200-f.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...日期 \n90 年10 月29 日 \n商品停售日期 \n無 \n商品內容簡介 \n被保險㆟在保險期間內因經營本保險契約所載之鐵路旅客\n運送業務，於營業處所內發生行車及其他意外事故，致旅..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113431170200200-f.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 124844,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 478,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111343223044010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物竊盜損失保險",
+      "sale_status": "已停售",
+      "sale_date": "072/11/29",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 304,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113432230440100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 89989,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 304,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "111343223047010000",
+      "company": "國華產物保險股份有限公司",
+      "insurance_category": "意外保險",
+      "product_name": "國華產物藝術品綜合保險",
+      "sale_status": "已停售",
+      "sale_date": "073/09/27",
+      "discontinued_date": "094/11/18",
+      "source_batch_id": "tii-property-040",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 290,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1113432230470100-1-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 112288,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 290,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

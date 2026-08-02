@@ -1,0 +1,5640 @@
+{
+  "generated_at": "2026-07-31T21:45:24+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:45:24+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-077",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 54,
+    "document_count": 54,
+    "extracted_document_count": 54,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 13,
+    "error_document_count": 0,
+    "pdf_document_count": 48,
+    "legacy_doc_document_count": 6,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 54,
+    "total_text_characters": 206839,
+    "focus_counts": [
+      {
+        "label": "特殊項目",
+        "count": 46
+      },
+      {
+        "label": "保障項目",
+        "count": 43
+      },
+      {
+        "label": "重要定義",
+        "count": 23
+      },
+      {
+        "label": "理賠申請",
+        "count": 16
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "豁免/附加條款",
+        "count": 19
+      },
+      {
+        "label": "失能/殘扶",
+        "count": 13
+      },
+      {
+        "label": "意外險",
+        "count": 5
+      },
+      {
+        "label": "醫療險",
+        "count": 2
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 54
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "131111112035010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車第三人體傷責任保險(自用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1592,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112035010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...page 1 ---\n\n \n1\n美國環球產物汽車第三人責任保險商品內容說明 \n(主要給付項目：第三人體傷保險金、第三人殘廢保險金、第三人死亡保險金) \n中華民國91 年7 月1..."
+            },
+            {
+              "document": "131111112035010000-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...國環球產物汽車第三人責任保險商品內容說明 \n(主要給付項目：第三人體傷保險金、第三人殘廢保險金、第三人死亡保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091..."
+            },
+            {
+              "document": "131111112035010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...人或經指定之駕駛人。 \n三、 承保範圍 \n汽車第三人責任保險承保範圍如下：  \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人死亡或受有體傷，..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112035010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...人或經指定之駕駛人。 \n三、 承保範圍 \n汽車第三人責任保險承保範圍如下：  \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人死亡或受有體傷，..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112035010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...公司同意者，\n其支出之費用本公司同意支付之，並不受保險金額之限。 \n四、 不保事項或除外責任 \n因下列事項所致之賠償責任，本公司不負賠償之責：  \n一、因尚未裝載於被保險汽車或..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111112035010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 96665,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1592,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111112036010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車第三人財損責任保險(自用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1574,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、傷害。",
+          "terms": [
+            "給付項目",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112036010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...page 1 ---\n\n \n1\n美國環球產物汽車第三人責任保險商品內容說明 \n(主要給付項目：第三人財損保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091075..."
+            },
+            {
+              "document": "131111112036010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...人或經指定之駕駛人。 \n三、 承保範圍 \n汽車第三人責任保險承保範圍如下：  \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人死亡或受有體傷，..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112036010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...人或經指定之駕駛人。 \n三、 承保範圍 \n汽車第三人責任保險承保範圍如下：  \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人死亡或受有體傷，..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112036010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...公司同意者，\n其支出之費用本公司同意支付之，並不受保險金額之限。 \n四、 不保事項或除外責任 \n因下列事項所致之賠償責任，本公司不負賠償之責：  \n一、因尚未裝載於被保險汽車或..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111112036010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 96153,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1574,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111112037020100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車第三人責任保險乘客體傷責任附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "095/01/26",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "失能/殘扶",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 949,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112037020100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...1\n美國環球產物汽車第三人責任保險乘客體傷責任附加條款保險商品內容說明 \n(主要給付項目：乘客體傷保險金、乘客死亡保險金、乘客殘廢保險金) \n95.01.26 金管保二字第..."
+            },
+            {
+              "document": "131111112037020100-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...責任附加條款保險商品內容說明 \n(主要給付項目：乘客體傷保險金、乘客死亡保險金、乘客殘廢保險金) \n95.01.26 金管保二字第09402120610 號函核准 \n95...."
+            },
+            {
+              "document": "131111112037020100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...保事項或除外責任 \n除主保險契約及汽車共同條款約定之不保事項外，乘客因下列原因所致之傷害、殘廢或死\n亡，本公司亦不負理賠責任： \n一、乘客之故意行為。 \n二、乘客之自殺或犯..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：疾病、傷害。",
+          "terms": [
+            "疾病",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112037020100-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...負理賠責任： \n一、乘客之故意行為。 \n二、乘客之自殺或犯罪行為。 \n三、乘客本身之疾病、殘疾。 \n五、 警語 \n1. 本公司財務及業務等公開資訊，歡迎至本公司網站(htt..."
+            },
+            {
+              "document": "131111112037020100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...保事項或除外責任 \n除主保險契約及汽車共同條款約定之不保事項外，乘客因下列原因所致之傷害、殘廢或死\n亡，本公司亦不負理賠責任： \n一、乘客之故意行為。 \n二、乘客之自殺或犯..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112037020100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...賠償實際支出之殯葬費用，且最高以「每\n一個人死亡」保險金額為限。 \n四、 不保事項或除外責任 \n除主保險契約及汽車共同條款約定之不保事項外，乘客因下列原因所致之傷害、殘廢或死..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111112037020100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 85186,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 949,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111112039010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車第三人責任保險受酒類影響車禍受害人補償附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "失能/殘扶",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1012,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、殘廢。",
+          "terms": [
+            "給付項目",
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112039010100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...環球產物汽車第三人責任保險受酒類影響車禍受害人補償附加條款保險商品內容說明 \n(主要給付項目：第三人體傷保險金、第三人殘廢保險金、第三人死亡保險金、第三人財損\n保險金) \n中華..."
+            },
+            {
+              "document": "131111112039010100-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...響車禍受害人補償附加條款保險商品內容說明 \n(主要給付項目：第三人體傷保險金、第三人殘廢保險金、第三人死亡保險金、第三人財損\n保險金) \n中華民國91 年7 月10 日奉財..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112039010100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...危險罪者，本公司於給付後\n得於給付金額範圍內請求被保險人返還之。 \n四、 不保事項或除外責任 \n依主保險契約之規定。 \n五、 警語 \n1. 本公司財務及業務等公開資訊，歡迎至本..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111112039010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 87985,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1012,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111112041010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車第三人責任保險雇主責任附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "失能/殘扶",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 831,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112041010100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...1\n美國環球產物汽車第三人責任保險雇主責任附加條款保險商品內容說明 \n(主要給付項目：體傷保險金、殘廢保險金、死亡保險金) \n中華民國91 年7 月10 日奉財政部台財..."
+            },
+            {
+              "document": "131111112041010100-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...物汽車第三人責任保險雇主責任附加條款保險商品內容說明 \n(主要給付項目：體傷保險金、殘廢保險金、死亡保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091075..."
+            },
+            {
+              "document": "131111112041010100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...而受賠償請求時，亦負賠償之責。 \n四、 不保事項或除外責任 \n受僱人因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n(一)受僱人之故意行為。 \n(二)受僱人之毆鬥..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：疾病、傷害。",
+          "terms": [
+            "疾病",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112041010100-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...一)受僱人之故意行為。 \n(二)受僱人之毆鬥、自殺或犯罪行為。 \n(三)受僱人本身之疾病，殘疾。 \n五、 警語 \n1. 本公司財務及業務等公開資訊，歡迎至本公司網站(htt..."
+            },
+            {
+              "document": "131111112041010100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...而受賠償請求時，亦負賠償之責。 \n四、 不保事項或除外責任 \n受僱人因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n(一)受僱人之故意行為。 \n(二)受僱人之毆鬥..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112041010100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...動基準法或其他相關法規應負賠償責任而受賠償請求時，亦負賠償之責。 \n四、 不保事項或除外責任 \n受僱人因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n(一)受僱人之故..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111112041010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 83191,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 831,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111112044020100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車第三人責任保險超額責任附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1125,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、傷害。",
+          "terms": [
+            "給付項目",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112044020100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...1\n美國環球產物汽車第三人責任保險超額責任附加條款保險商品內容說明 \n(主要給付項目：第三人體傷保險金、第三人死亡保險金、第三人財損保險金) \n94.01.17 金管保..."
+            },
+            {
+              "document": "131111112044020100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...附\n加條款之規定，對被保險人負賠償責任。 \n本附加條款之承保範圍如下： \n一、第三人傷害超額責任： \n    本公司對被保險人因所有、使用或管理被保險汽車發生意外事故，致第..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112044020100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...附\n加條款之規定，對被保險人負賠償責任。 \n本附加條款之承保範圍如下： \n一、第三人傷害超額責任： \n    本公司對被保險人因所有、使用或管理被保險汽車發生意外事故，致第..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111112044020100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...契約所約定之保險 \n    金額以上部份，對被保險人負賠償之責。 \n四、 不保事項或除外責任 \n依主保險契約規定。 \n五、 警語 \n1. 本公司財務及業務等公開資訊，歡迎至本公..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111112044020100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 85812,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1125,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111210001010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車車體損失保險甲式(自用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1319,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210001010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...---\n\n \n1\n美國環球產物汽車車體損失保險甲式(自用)保險商品內容說明 \n(主要給付項目：財損保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091075079..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210001010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...意行為。 \n七、不屬本保險契約特別載明為不保事項之任何其他原因。 \n四、 不保事項或除外責任 \n因下列事項所致之毀損滅失，本公司不負賠償之責： \n一、被保險人因被保險汽車之毀損..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111210001010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 103241,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1319,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111210002010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車車體損失保險乙式(自用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1369,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210002010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...---\n\n \n1\n美國環球產物汽車車體損失保險乙式(自用)保險商品內容說明 \n(主要給付項目：財損保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091075079..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210002010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...火災。 \n三、閃電、雷擊。 \n四、爆炸。 \n五、拋擲物或墜落物。 \n四、 不保事項或除外責任 \n因下列事項所致被保險汽車之毀損滅失，本公司不負賠償之責： \n一、被保險人因被保險..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111210002010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 104710,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1369,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111210003010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車竊盜損失保險(自用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1016,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210003010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...page 1 ---\n\n \n1\n美國環球產物汽車竊盜損失保險商品內容說明 \n(主要給付項目：財損保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091075079..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210003010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...遭受偷竊、搶奪、強盜所致之毀損滅失，本公司對被保險人負賠償之責。 \n四、 不保事項或除外責任 \n下列事項所致之毀損滅失，本公司不負賠償之責： \n一、被保險人因被保險汽車之毀損滅..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111210003010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 91192,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1016,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111210004010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車車體損失保險罷工、暴動、民眾騷擾附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 675,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210004010100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...美國環球產物汽車車體損失保險罷工、暴動、民眾騷擾附加條款保險商品內容說明 \n(主要給付項目：財損保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091075079..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210004010100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...被保險汽車因罷工、暴動、民眾騷擾所致之毀損滅失，亦負賠\n償之責。 \n四、 不保事項或除外責任 \n依主保險契約條款規定。 \n五、 警語 \n1. 本公司財務及業務等公開資訊，歡迎至..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111210004010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 80170,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 675,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111210006010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車竊盜損失保險零件、配件被竊損失附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 744,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、傷害。",
+          "terms": [
+            "給付項目",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210006010100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...1\n美國環球產物汽車竊盜損失保險零件、配件被竊損失附加條款保險商品內容說明 \n(主要給付項目：財損保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091075079..."
+            },
+            {
+              "document": "131111210006010100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...果有竊盜損失險及此附加險的保障，不僅可讓車主的財務損失\n降到最低，亦可安撫心理造成的傷害。 \n二、 承保對象 \n汽車所有權人或經指定之駕駛人。 \n三、 承保範圍 \n茲經雙方..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210006010100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...果有竊盜損失險及此附加險的保障，不僅可讓車主的財務損失\n降到最低，亦可安撫心理造成的傷害。 \n二、 承保對象 \n汽車所有權人或經指定之駕駛人。 \n三、 承保範圍 \n茲經雙方..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210006010100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...稱之零件、配\n件非與被保險汽車同時被竊所致之損失，亦負賠償之責。 \n四、 不保事項或除外責任 \n依主保險契約之規定。 \n五、 警語 \n1. 本公司財務及業務等公開資訊，歡迎至本..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111210006010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 82662,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 744,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111210012010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車竊盜損失保險全損理賠無折舊附加條款",
+      "sale_status": "已停售",
+      "sale_date": "095/12/21",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 699,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210012010100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...-\n\n1\n美國環球產物汽車竊盜損失保險全損理賠無折舊附加條款保險商品內容說明\n(主要給付項目：財損保險金)\n95.12.21 環產(95)字第312 號函備查\n免費申訴專線：0..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210012010100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...按保險金額扣除主保險契約第三條所約定自負\n額後賠付，不再扣除折舊。\n四、 不保事項或除外責任\n依主保險契約規定。\n五、 警語\n1. \n本公司財務及業務等公開資訊，歡迎至本公司網..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111210012010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 77098,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 699,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111210022010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車車體損失保險丙式-免自負額車對車碰撞損失保險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1175,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210022010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...美國環球產物汽車車體損失保險丙式-免自負額車對車碰撞損失保險商\n品內容說明 \n(主要給付項目：財損保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091075079..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、自負額。",
+          "terms": [
+            "除外責任",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210022010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...，但經憲警現場處理且經由本公司查証屬實者，本公司亦負\n賠償之責。 \n四、 不保事項或除外責任 \n下列毀損滅失，本公司不負賠償之責： \n一、被保險汽車非直接與對造車輛碰撞、擦撞所..."
+            },
+            {
+              "document": "131111210022010000-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "--- page 1 ---\n\n \n1\n美國環球產物汽車車體損失保險丙式-免自負額車對車碰撞損失保險商\n品內容說明 \n(主要給付項目：財損保險金) \n中華民國91 年..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111210022010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 96731,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1175,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111210062010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車保險道路救援費用附加條款",
+      "sale_status": "已停售",
+      "sale_date": "095/12/20",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1075,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210062010100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...- page 1 ---\n\n美商美國環球產物汽車保險道路救援費用保險商品內容說明\n(給付項目：財損保險金)..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111210062010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 84399,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1075,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111210068010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車限定駕駛人限額碰撞損失保險",
+      "sale_status": "已停售",
+      "sale_date": "095/12/19",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1071,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210068010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...e 1 ---\n\n1\n美國環球產物汽車限定駕駛人限額碰撞損失保險商品內容說明\n(主要給付項目，財損保險金)\n95.12.19 環產(95)字第278 號函備查\n免費申訴電話:..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111210068010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...汽車之毀損滅失，於雙方約定之保險金額範圍內對被保險人負賠償之責。\n四、 不保事項或除外責任\n下列毀損滅失，本公司不負賠償之責：\n一、被保險汽車非直接與對造車輛碰撞所致之毀損滅..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111210068010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 89418,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1071,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111228059010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車車體損失保險颱風、地震、海嘯、冰雹、洪水或因雨積水附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 693,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111228059010100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...體損失保險颱風、地震、海嘯、冰雹、洪水或因雨積水\n附加條款保險商品內容說明 \n(主要給付項目：財損保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091075079..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111228059010100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...震、海嘯、冰雹、洪水、或因雨積水所\n致之毀損滅失，亦負賠償之責。 \n四、 不保事項或除外責任 \n依主保險契約條款規定。 \n五、 警語 \n1. 本公司財務及業務等公開資訊，歡迎至..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111228059010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 81036,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 693,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111424060010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物機車強制責任保險駕駛人傷害附加條款(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "093/08/09",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "意外險",
+        "失能/殘扶",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 964,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111424060010100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...--\n\n \n1\n美國環球產物機車強制責任保險駕駛人傷害附加條款商品內容說明 \n(主要給付項目：殘廢保險金、死亡保險金、傷害醫療保險金) \n中華民國91 年7 月10 日奉財政部..."
+            },
+            {
+              "document": "131111424060010100-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...1\n美國環球產物機車強制責任保險駕駛人傷害附加條款商品內容說明 \n(主要給付項目：殘廢保險金、死亡保險金、傷害醫療保險金) \n中華民國91 年7 月10 日奉財政部台財保..."
+            },
+            {
+              "document": "131111424060010100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n1\n美國環球產物機車強制責任保險駕駛人傷害附加條款商品內容說明 \n(主要給付項目：殘廢保險金、死亡保險金、傷害醫療保險金)..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111424060010100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n1\n美國環球產物機車強制責任保險駕駛人傷害附加條款商品內容說明 \n(主要給付項目：殘廢保險金、死亡保險金、傷害醫療保險金)..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111424060010100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...險人或事先經被保險人同意使用被保險機車之人，且須經其\n書面同意。 \n四、 不保事項或除外責任 \n駕駛人駕駛被保險機車因下列事項而致死亡、殘廢或受有體傷者，本公司不負賠償之責：..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111424060010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 88121,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 964,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111424098010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車第三人責任保險附加駕駛人傷害保險條款",
+      "sale_status": "已停售",
+      "sale_date": "094/11/09",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 908,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111424098010100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...-\n\n \n美國環球產物汽車第三人責任保險附加駕駛人傷害保險條款商品內容說明 \n(主要給付項目：殘廢保險金、死亡保險金) \n \n94.11.09 金管保二字第0940208842..."
+            },
+            {
+              "document": "131111424098010100-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...美國環球產物汽車第三人責任保險附加駕駛人傷害保險條款商品內容說明 \n(主要給付項目：殘廢保險金、死亡保險金) \n \n94.11.09 金管保二字第09402088420 號..."
+            },
+            {
+              "document": "131111424098010100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n美國環球產物汽車第三人責任保險附加駕駛人傷害保險條款商品內容說明 \n(主要給付項目：殘廢保險金、死亡保險金) \n \n94.11...."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111424098010100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n美國環球產物汽車第三人責任保險附加駕駛人傷害保險條款商品內容說明 \n(主要給付項目：殘廢保險金、死亡保險金) \n \n94.11...."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111424098010100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...變更申請書，應有新更換之駕駛被保險汽車之人同意加 \n 保之簽名。 \n三、 不保事項或除外責任 \n被保險人駕駛被保險汽車因下列事項而致死亡殘廢或有體傷者，本公司不負給付保險金的..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：申請。",
+          "terms": [
+            "申請"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111424098010100-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...得被保險人資格；被更換之駕駛人則\n同時喪失被保險人資格。 \n 前項所定之被保險人變更申請書，應有新更換之駕駛被保險汽車之人同意加 \n 保之簽名。 \n三、 不保事項或除外責任..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111424098010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 82577,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 908,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131111424098020100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車第三人責任保險附加駕駛人傷害保險傷害醫療給付附加條款",
+      "sale_status": "已停售",
+      "sale_date": "094/11/09",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "醫療險",
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 642,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、住院、傷害。",
+          "terms": [
+            "給付項目",
+            "住院",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111424098020100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...汽車第三人責任保險附加駕駛人傷害保險傷害醫療給付\n附加條款保險商品內容說明 \n(主要給付項目：住院醫療保險金) \n94.11.09 金管保二字第09402088420 號函核准..."
+            },
+            {
+              "document": "131111424098020100-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...責任保險附加駕駛人傷害保險傷害醫療給付\n附加條款保險商品內容說明 \n(主要給付項目：住院醫療保險金) \n94.11.09 金管保二字第09402088420 號函核准 \n9..."
+            },
+            {
+              "document": "131111424098020100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n1\n美國環球產物汽車第三人責任保險附加駕駛人傷害保險傷害醫療給付\n附加條款保險商品內容說明 \n(主要給付項目：住院醫療保險金) \n9..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：傷害、醫院、住院、意外傷害事故。",
+          "terms": [
+            "傷害",
+            "醫院",
+            "住院",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111424098020100-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n1\n美國環球產物汽車第三人責任保險附加駕駛人傷害保險傷害醫療給付\n附加條款保險商品內容說明 \n(主要給付項目：住院醫療保險金) \n9..."
+            },
+            {
+              "document": "131111424098020100-F.pdf",
+              "page": 1,
+              "term": "醫院",
+              "snippet": "...保險第一條\n約定的交通意外事故，自交通意外事故發生之日起一百八十日以內，經登記合格的醫院治\n療者，本公司就其住院日數，給付保險單所記載的「住院醫療保險金日額」。但超過一百..."
+            },
+            {
+              "document": "131111424098020100-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...責任保險附加駕駛人傷害保險傷害醫療給付\n附加條款保險商品內容說明 \n(主要給付項目：住院醫療保險金) \n94.11.09 金管保二字第09402088420 號函核准 \n9..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131111424098020100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...因果關係者，\n不在此限。 \n前項每次傷害給付日數不得超過九十日。 \n三、 不保事項或除外責任 \n依主保險契約規定。 \n四、 警語 \n1. 本公司財務及業務等公開資訊，歡迎至本公..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131111424098020100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 74064,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 642,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131112113035010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車第三人體傷責任保險(營業用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1592,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112113035010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...page 1 ---\n\n \n1\n美國環球產物汽車第三人責任保險商品內容說明 \n(主要給付項目：第三人體傷保險金、第三人殘廢保險金、第三人死亡保險金) \n中華民國91 年7 月1..."
+            },
+            {
+              "document": "131112113035010000-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...國環球產物汽車第三人責任保險商品內容說明 \n(主要給付項目：第三人體傷保險金、第三人殘廢保險金、第三人死亡保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091..."
+            },
+            {
+              "document": "131112113035010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...人或經指定之駕駛人。 \n三、 承保範圍 \n汽車第三人責任保險承保範圍如下：  \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人死亡或受有體傷，..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112113035010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...人或經指定之駕駛人。 \n三、 承保範圍 \n汽車第三人責任保險承保範圍如下：  \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人死亡或受有體傷，..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112113035010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...公司同意者，\n其支出之費用本公司同意支付之，並不受保險金額之限。 \n四、 不保事項或除外責任 \n因下列事項所致之賠償責任，本公司不負賠償之責：  \n一、因尚未裝載於被保險汽車或..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131112113035010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 96667,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1592,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131112113036010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車第三人財損責任保險(營業用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1574,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、傷害。",
+          "terms": [
+            "給付項目",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112113036010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...page 1 ---\n\n \n1\n美國環球產物汽車第三人責任保險商品內容說明 \n(主要給付項目：第三人財損保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091075..."
+            },
+            {
+              "document": "131112113036010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...人或經指定之駕駛人。 \n三、 承保範圍 \n汽車第三人責任保險承保範圍如下：  \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人死亡或受有體傷，..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112113036010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...人或經指定之駕駛人。 \n三、 承保範圍 \n汽車第三人責任保險承保範圍如下：  \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人死亡或受有體傷，..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112113036010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...公司同意者，\n其支出之費用本公司同意支付之，並不受保險金額之限。 \n四、 不保事項或除外責任 \n因下列事項所致之賠償責任，本公司不負賠償之責：  \n一、因尚未裝載於被保險汽車或..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131112113036010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 96155,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1574,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131112113041010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車僱主責任保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 766,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112113041010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...page 1 ---\n\n \n1\n美國環球產物汽車僱主責任保險商品內容說明 \n(主要給付項目：體傷保險金、殘廢保險金、死亡保險金) \n中華民國91 年7 月10 日奉財政部台財..."
+            },
+            {
+              "document": "131112113041010000-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...1\n美國環球產物汽車僱主責任保險商品內容說明 \n(主要給付項目：體傷保險金、殘廢保險金、死亡保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091075..."
+            },
+            {
+              "document": "131112113041010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...而受賠償請求\n時，負賠償之責。 \n四、 不保事項或除外責任 \n受僱人因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n一、受僱人之故意行為。 \n二、受僱人之毆鬥、自..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：疾病、傷害。",
+          "terms": [
+            "疾病",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112113041010000-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...一、受僱人之故意行為。 \n二、受僱人之毆鬥、自殺或犯罪行為。 \n三、受僱人本身之疾病、殘疾。 \n五、 警語 \n1. 本公司財務及業務等公開資訊，歡迎至本公司網站(htt..."
+            },
+            {
+              "document": "131112113041010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...而受賠償請求\n時，負賠償之責。 \n四、 不保事項或除外責任 \n受僱人因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n一、受僱人之故意行為。 \n二、受僱人之毆鬥、自..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112113041010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...動基準法或其他相關法規應負賠償責任而受賠償請求\n時，負賠償之責。 \n四、 不保事項或除外責任 \n受僱人因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n一、受僱人之故意..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131112113041010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 79450,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 766,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131112113047010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車旅客責任保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 948,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112113047010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...page 1 ---\n\n \n1\n美國環球產物汽車旅客責任保險商品內容說明 \n(主要給付項目：旅客體傷保險金、旅客殘廢保險金、旅客死亡保險金) \n中華民國91 年7 月10 日..."
+            },
+            {
+              "document": "131112113047010000-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...1\n美國環球產物汽車旅客責任保險商品內容說明 \n(主要給付項目：旅客體傷保險金、旅客殘廢保險金、旅客死亡保險金) \n中華民國91 年7 月10 日奉財政部台財保字第0910..."
+            },
+            {
+              "document": "131112113047010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...險汽車於保險期間內發生意外事故並以此為直接原因致乘坐或上下被保險汽車之旅\n客遭受身體傷害、殘廢或死亡，被保險人依法應負賠償責任時，本公司對被保險人負賠償\n之責。 \n本保險之..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：疾病、傷害。",
+          "terms": [
+            "疾病",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112113047010000-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...責任： \n一、旅客之故意行為。 \n二、旅客之毆鬥、自殺或犯罪行為。 \n三、旅客本身之疾病、殘疾。 \n五、 警語 \n1. 本公司財務及業務等公開資訊，歡迎至本公司網站(htt..."
+            },
+            {
+              "document": "131112113047010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...險汽車於保險期間內發生意外事故並以此為直接原因致乘坐或上下被保險汽車之旅\n客遭受身體傷害、殘廢或死亡，被保險人依法應負賠償責任時，本公司對被保險人負賠償\n之責。 \n本保險之..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、保險期間。",
+          "terms": [
+            "除外責任",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112113047010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...保險給付，\n僅按約定承保人數與實際載運旅客人數之比例賠付保險金。 \n四、 不保事項或除外責任 \n旅客因下列原因所致之傷害、殘廢或死亡，本公司不負賠償責任： \n一、旅客之故意行為..."
+            },
+            {
+              "document": "131112113047010000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...三、其他未依約定給付對價而搭乘被保險汽車之人。 \n三、 承保範圍 \n被保險汽車於保險期間內發生意外事故並以此為直接原因致乘坐或上下被保險汽車之旅\n客遭受身體傷害、殘廢或死亡..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131112113047010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 87172,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 948,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131112211001010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車車體損失保險甲式(營業用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1320,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112211001010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...--\n\n \n1\n美國環球產物汽車車體損失保險甲式(營業用)保險商品內容說明 \n(主要給付項目：財損保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091075079..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112211001010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...意行為。 \n七、不屬本保險契約特別載明為不保事項之任何其他原因。 \n四、 不保事項或除外責任 \n因下列事項所致之毀損滅失，本公司不負賠償之責： \n一、被保險人因被保險汽車之毀損..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131112211001010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 103464,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1320,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131112211002010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車車體損失保險乙式(營業用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1370,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112211002010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...--\n\n \n1\n美國環球產物汽車車體損失保險乙式(營業用)保險商品內容說明 \n(主要給付項目：財損保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091075079..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112211002010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...火災。 \n三、閃電、雷擊。 \n四、爆炸。 \n五、拋擲物或墜落物。 \n四、 不保事項或除外責任 \n因下列事項所致被保險汽車之毀損滅失，本公司不負賠償之責： \n一、被保險人因被保險..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131112211002010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 104910,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1370,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131112211003010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車竊盜損失保險(營業用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1016,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112211003010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...page 1 ---\n\n \n1\n美國環球產物汽車竊盜損失保險商品內容說明 \n(主要給付項目：財損保險金) \n中華民國91 年7 月10 日奉財政部台財保字第091075079..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112211003010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...遭受偷竊、搶奪、強盜所致之毀損滅失，本公司對被保險人負賠償之責。 \n四、 不保事項或除外責任 \n下列事項所致之毀損滅失，本公司不負賠償之責： \n一、被保險人因被保險汽車之毀損滅..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131112211003010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 91191,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1016,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131112511030010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車經銷商綜合保險條款(車體)(甲式)",
+      "sale_status": "已停售",
+      "sale_date": "094/11/01",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1725,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、傷害。",
+          "terms": [
+            "給付項目",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112511030010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...ge 1 ---\n\n \n1\n美國環球產物汽車經銷商綜合保險條款商品內容說明 \n(主要給付項目：財損保險金、第三人體傷保險金、第三人死亡保險金、第三人財損保險金) \n94.04...."
+            },
+            {
+              "document": "131112511030010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...保險 \n三、汽車經銷商汽車竊盜損失保險 \n \n汽車經銷商汽車第三人責任保險： \n一、傷害責任 \n被保險人或其所僱用之駕駛人及所屬之業務使用人駕駛或管理被保險汽車，於儲放處所..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112511030010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...保險 \n三、汽車經銷商汽車竊盜損失保險 \n \n汽車經銷商汽車第三人責任保險： \n一、傷害責任 \n被保險人或其所僱用之駕駛人及所屬之業務使用人駕駛或管理被保險汽車，於儲放處所..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112511030010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...、強盜所\n致之被保險汽車之毀損滅失，本公司對被保險人負賠償之責。 \n四、 不保事項或除外責任 \n因下列事項所致之賠償責任或被保險汽車毀損滅失，本公司不負賠償之責： \n一、因敵人..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112511030010000-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...唆使犯罪或逃避合法逮捕之行為所致者。 \n八、被保險人未依規定於提領被保險汽車前以書面通知本公司保險更改生效日及起訖地點\n者。 \n五、 警語 \n1. 本公司財務及業務等公開資..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131112511030010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 107287,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1725,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131112511031010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車經銷商綜合保險條款(車體)(乙式)",
+      "sale_status": "已停售",
+      "sale_date": "094/11/01",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1725,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、傷害。",
+          "terms": [
+            "給付項目",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112511031010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...ge 1 ---\n\n \n1\n美國環球產物汽車經銷商綜合保險條款商品內容說明 \n(主要給付項目：財損保險金、第三人體傷保險金、第三人死亡保險金、第三人財損保險金) \n94.04...."
+            },
+            {
+              "document": "131112511031010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...保險 \n三、汽車經銷商汽車竊盜損失保險 \n \n汽車經銷商汽車第三人責任保險： \n一、傷害責任 \n被保險人或其所僱用之駕駛人及所屬之業務使用人駕駛或管理被保險汽車，於儲放處所..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112511031010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...保險 \n三、汽車經銷商汽車竊盜損失保險 \n \n汽車經銷商汽車第三人責任保險： \n一、傷害責任 \n被保險人或其所僱用之駕駛人及所屬之業務使用人駕駛或管理被保險汽車，於儲放處所..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112511031010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...、強盜所\n致之被保險汽車之毀損滅失，本公司對被保險人負賠償之責。 \n四、 不保事項或除外責任 \n因下列事項所致之賠償責任或被保險汽車毀損滅失，本公司不負賠償之責： \n一、因敵人..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112511031010000-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...唆使犯罪或逃避合法逮捕之行為所致者。 \n八、被保險人未依規定於提領被保險汽車前以書面通知本公司保險更改生效日及起訖地點\n者。 \n五、 警語 \n1. 本公司財務及業務等公開資..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131112511031010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 107285,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1725,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131112511033010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車經銷商綜合保險條款(竊盜)",
+      "sale_status": "已停售",
+      "sale_date": "094/11/01",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1725,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、傷害。",
+          "terms": [
+            "給付項目",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112511033010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...ge 1 ---\n\n \n1\n美國環球產物汽車經銷商綜合保險條款商品內容說明 \n(主要給付項目：財損保險金、第三人體傷保險金、第三人死亡保險金、第三人財損保險金) \n94.04...."
+            },
+            {
+              "document": "131112511033010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...保險 \n三、汽車經銷商汽車竊盜損失保險 \n \n汽車經銷商汽車第三人責任保險： \n一、傷害責任 \n被保險人或其所僱用之駕駛人及所屬之業務使用人駕駛或管理被保險汽車，於儲放處所..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112511033010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...保險 \n三、汽車經銷商汽車竊盜損失保險 \n \n汽車經銷商汽車第三人責任保險： \n一、傷害責任 \n被保險人或其所僱用之駕駛人及所屬之業務使用人駕駛或管理被保險汽車，於儲放處所..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112511033010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...、強盜所\n致之被保險汽車之毀損滅失，本公司對被保險人負賠償之責。 \n四、 不保事項或除外責任 \n因下列事項所致之賠償責任或被保險汽車毀損滅失，本公司不負賠償之責： \n一、因敵人..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112511033010000-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...唆使犯罪或逃避合法逮捕之行為所致者。 \n八、被保險人未依規定於提領被保險汽車前以書面通知本公司保險更改生效日及起訖地點\n者。 \n五、 警語 \n1. 本公司財務及業務等公開資..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131112511033010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 107286,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1725,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131112513051010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車經銷商綜合保險條款(第三人體傷)",
+      "sale_status": "已停售",
+      "sale_date": "094/11/01",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1725,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、傷害。",
+          "terms": [
+            "給付項目",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112513051010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...ge 1 ---\n\n \n1\n美國環球產物汽車經銷商綜合保險條款商品內容說明 \n(主要給付項目：財損保險金、第三人體傷保險金、第三人死亡保險金、第三人財損保險金) \n94.04...."
+            },
+            {
+              "document": "131112513051010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...保險 \n三、汽車經銷商汽車竊盜損失保險 \n \n汽車經銷商汽車第三人責任保險： \n一、傷害責任 \n被保險人或其所僱用之駕駛人及所屬之業務使用人駕駛或管理被保險汽車，於儲放處所..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112513051010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...保險 \n三、汽車經銷商汽車竊盜損失保險 \n \n汽車經銷商汽車第三人責任保險： \n一、傷害責任 \n被保險人或其所僱用之駕駛人及所屬之業務使用人駕駛或管理被保險汽車，於儲放處所..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112513051010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...、強盜所\n致之被保險汽車之毀損滅失，本公司對被保險人負賠償之責。 \n四、 不保事項或除外責任 \n因下列事項所致之賠償責任或被保險汽車毀損滅失，本公司不負賠償之責： \n一、因敵人..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112513051010000-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...唆使犯罪或逃避合法逮捕之行為所致者。 \n八、被保險人未依規定於提領被保險汽車前以書面通知本公司保險更改生效日及起訖地點\n者。 \n五、 警語 \n1. 本公司財務及業務等公開資..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131112513051010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 107283,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1725,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131112513052010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車經銷商綜合保險條款(第三人財損)",
+      "sale_status": "已停售",
+      "sale_date": "094/11/01",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1725,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、傷害。",
+          "terms": [
+            "給付項目",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112513052010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...ge 1 ---\n\n \n1\n美國環球產物汽車經銷商綜合保險條款商品內容說明 \n(主要給付項目：財損保險金、第三人體傷保險金、第三人死亡保險金、第三人財損保險金) \n94.04...."
+            },
+            {
+              "document": "131112513052010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...保險 \n三、汽車經銷商汽車竊盜損失保險 \n \n汽車經銷商汽車第三人責任保險： \n一、傷害責任 \n被保險人或其所僱用之駕駛人及所屬之業務使用人駕駛或管理被保險汽車，於儲放處所..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112513052010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...保險 \n三、汽車經銷商汽車竊盜損失保險 \n \n汽車經銷商汽車第三人責任保險： \n一、傷害責任 \n被保險人或其所僱用之駕駛人及所屬之業務使用人駕駛或管理被保險汽車，於儲放處所..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112513052010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...、強盜所\n致之被保險汽車之毀損滅失，本公司對被保險人負賠償之責。 \n四、 不保事項或除外責任 \n因下列事項所致之賠償責任或被保險汽車毀損滅失，本公司不負賠償之責： \n一、因敵人..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131112513052010000-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...唆使犯罪或逃避合法逮捕之行為所致者。 \n八、被保險人未依規定於提領被保險汽車前以書面通知本公司保險更改生效日及起訖地點\n者。 \n五、 警語 \n1. 本公司財務及業務等公開資..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131112513052010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 107286,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1725,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131211112044010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物超額汽車責任保險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "084/05/26",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 875,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、殘廢。",
+          "terms": [
+            "給付項目",
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131211112044010100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "--- page 1 ---\n\n美國環球產物汽車超額責任保險商品內容說明 \n(主要給付項目：第三人體傷保險金、第三人殘廢保險金、第三人死亡保險金、第三人財損保險)\n84.05..."
+            },
+            {
+              "document": "131211112044010100-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...美國環球產物汽車超額責任保險商品內容說明 \n(主要給付項目：第三人體傷保險金、第三人殘廢保險金、第三人死亡保險金、第三人財損保險)\n84.05.26(84)產汽字第099號..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：除外責任。",
+          "terms": [
+            "除外責任"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131211112044010100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...對每一事故及每\n年累計賠償金額，均以保險單上約定之保險金額為限。 \n四、 不保事項或除外責任 \n依主保險契約條款規定。 \n五、 警語 \n1. 本公司財務及業務等公開資訊，歡迎至..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131211112044010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 86685,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 875,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311112035010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物自用汽車第三人責任保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "醫療險",
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 21872,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：保險金、住院、手術、醫療費用、傷害。",
+          "terms": [
+            "保險金",
+            "住院",
+            "手術",
+            "醫療費用",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313111120350100-F.doc",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...之賠償責任所為之抗辯或訴訟,事先經本公司同意者,其支出之費用本公司同意支付之,並不受保險金額之限制。 不保事項: 詳自用汽車保險共同條款第及本承保類別條款第四條。 汽車第三人..."
+            },
+            {
+              "document": "1313111120350100-F.doc",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...關於醫療費用單據,倘傷者係於私立醫院就醫者,應請院方就治療之經過將手術費、藥品費、住院費、檢查費等分項開列清單,貴重藥品應加註藥品名稱、廠牌及數量、單價始准核銷。 三、交..."
+            },
+            {
+              "document": "1313111120350100-F.doc",
+              "page": 1,
+              "term": "手術",
+              "snippet": "...由主治醫師簽證。 關於醫療費用單據,倘傷者係於私立醫院就醫者,應請院方就治療之經過將手術費、藥品費、住院費、檢查費等分項開列清單,貴重藥品應加註藥品名稱、廠牌及數量、單價始..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：定義、傷害、醫院、醫師、住院、手術。",
+          "terms": [
+            "定義",
+            "傷害",
+            "醫院",
+            "醫師",
+            "住院",
+            "手術"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313111120350100-F.doc",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...公司同意者,其支出之費用本公司同意支付之,並不受保險金額之限制。 第二條 被保險人之定義 本保險所稱之「被保險人」,其意義包括列名被保險人及附加被保險人: 一、列名被保險人..."
+            },
+            {
+              "document": "1313111120350100-F.doc",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "汽車第三人責任保險條款介紹 承保範圍: 一、傷害責任險 被保險人因所有、使用或管理被保險汽車發生意外事故,致第三人死亡或受有體傷,依..."
+            },
+            {
+              "document": "1313111120350100-F.doc",
+              "page": 1,
+              "term": "醫院",
+              "snippet": "...或護送費用:緊急救治或護送傷亡者,所必需之實際費用。 二、醫療費用:須具有執照之中西醫院所開具之醫療費用單據,包括掛號、醫藥、 光檢查等必需費用,如向藥房購買藥品等單據並應..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、限制。",
+          "terms": [
+            "不保事項",
+            "限制"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313111120350100-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...辯或訴訟,事先經本公司同意者,其支出之費用本公司同意支付之,並不受保險金額之限制。 不保事項: 詳自用汽車保險共同條款第及本承保類別條款第四條。 汽車第三人責任保險條款介紹 承..."
+            },
+            {
+              "document": "1313111120350100-F.doc",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...所為之抗辯或訴訟,事先經本公司同意者,其支出之費用本公司同意支付之,並不受保險金額之限制。 不保事項: 詳自用汽車保險共同條款第及本承保類別條款第四條。 汽車第三人責任保險..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：理賠、申請、檢具、通知。",
+          "terms": [
+            "理賠",
+            "申請",
+            "檢具",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313111120350100-F.doc",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...同意本公司協助所為之和解或抗辯時,則本公司協助為和解或抗辯之義務即為終了。 第九條 理賠範圍及方式 體傷死亡理賠範圍及方式 一、急救或護送費用:緊急救治或護送傷亡者,所必需..."
+            },
+            {
+              "document": "1313111120350100-F.doc",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...時,應將收受之賠償請求書或法院書狀等影本立即送交本公司。 損害賠償請求償人依前條規定申請給付保險金時,應檢具和解書或法院判決書。 第八條 和解或抗辯 被保險汽車在本保險契約..."
+            },
+            {
+              "document": "1313111120350100-F.doc",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...求書或法院書狀等影本立即送交本公司。 損害賠償請求償人依前條規定申請給付保險金時,應檢具和解書或法院判決書。 第八條 和解或抗辯 被保險汽車在本保險契約有效期間內因意外事故..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313111120350100-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 912384,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 21872,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311112037010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車乘客責任險",
+      "sale_status": "已停售",
+      "sale_date": "085/07/01",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 116,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：殘廢。",
+          "terms": [
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313111120370101-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...使用或管理被保險汽車發生意外事故 , 致駕駛人及乘坐或上下被保險汽車之人死亡 、 殘廢或受有體傷時 , 保險公司負賠償責任 。 承保人數依行照上所人數為準 。"
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313111120370101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 43520,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 116,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311112039010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車第三人責任保險受酒類影響車禍受害人補償附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 37846,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313111120350101-F.doc",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...體傷或第三人財物受有損失,依法應由被保險人負賠償責任而受賠償請求時,本公司對第三人於保險金額範圍內直接賠償。倘被保險人已先行賠償予該第三人時,本公司於應付給之賠償金額範圍內將..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313111120350101-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...屬故意行為,違反公共危險罪者,本公司於給付後得於給付金額範圍內請求被保險人還原之。 不保事項: 詳自用汽車保險共同條款第十條及自用汽車第三人責任保險條款第四條。 Fubon 富..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313111120350101-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 592384,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 37846,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311112041010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車第三人責任保險雇主責任附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/07/15",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 109,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：殘廢。",
+          "terms": [
+            "殘廢"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313111120410101-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...被保險人僱用之駕駛人及隨車服務人員 , 因被保險汽車發生意外事故 , 受有體傷 、 殘廢或死亡 , 被保險人依法應負賠償責任而受賠償請求時 , 保險公司對被保險人負賠償責任..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313111120410101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 43458,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 109,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311114057010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物強制汽車責任保險(自用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/23",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1876,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311114057010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...page 1 ---\n\n \n1\n美國環球產物強制汽車責任保險商品內容說明 \n(主要給付項目：第三人傷害醫療保險金、第三人殘廢保險金、第三人死亡保險金) \n財政部91.07.2..."
+            },
+            {
+              "document": "131311114057010000-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...環球產物強制汽車責任保險商品內容說明 \n(主要給付項目：第三人傷害醫療保險金、第三人殘廢保險金、第三人死亡保險金) \n財政部91.07.23 台財保字第0910750555..."
+            },
+            {
+              "document": "131311114057010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...---\n\n \n1\n美國環球產物強制汽車責任保險商品內容說明 \n(主要給付項目：第三人傷害醫療保險金、第三人殘廢保險金、第三人死亡保險金) \n財政部91.07.23 台財保字..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311114057010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...---\n\n \n1\n美國環球產物強制汽車責任保險商品內容說明 \n(主要給付項目：第三人傷害醫療保險金、第三人殘廢保險金、第三人死亡保險金) \n財政部91.07.23 台財保字..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、續保。",
+          "terms": [
+            "除外責任",
+            "續保"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311114057010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...險人有無過失，本公司應依本保險契約之約定，對請求權人給付保險金。 \n四、 不保事項或除外責任 \n受害人或其他請求權人有下列情事之一，致被保險汽車發生汽車交通事故者，本公司對其..."
+            },
+            {
+              "document": "131311114057010000-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...。 \n \n那假使不投保的話會怎樣呢？在本法第四十九條中明文規定；未投保或保險過期未再續保\n者﹐遇到警察機關或公路監理機關執行路邊聯檢稽查舉發時﹐由公路主管機關（監理處﹑\n所..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：申請。",
+          "terms": [
+            "申請"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311114057010000-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...駛人以外之受害者給予賠付（駕駛人不賠）。  \n \n汽﹑機車發生交通事故後﹐受害人如何申請醫療或死殘給付﹖被保險汽車發生交通事故時﹐\n請求權人得在保險金額範圍內直接向保險公司..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131311114057010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 108295,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1876,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311116058010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物強制機車責任保險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/23",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1876,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311116058010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...page 1 ---\n\n \n1\n美國環球產物強制汽車責任保險商品內容說明 \n(主要給付項目：第三人傷害醫療保險金、第三人殘廢保險金、第三人死亡保險金) \n財政部91.07.2..."
+            },
+            {
+              "document": "131311116058010000-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...環球產物強制汽車責任保險商品內容說明 \n(主要給付項目：第三人傷害醫療保險金、第三人殘廢保險金、第三人死亡保險金) \n財政部91.07.23 台財保字第0910750555..."
+            },
+            {
+              "document": "131311116058010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...---\n\n \n1\n美國環球產物強制汽車責任保險商品內容說明 \n(主要給付項目：第三人傷害醫療保險金、第三人殘廢保險金、第三人死亡保險金) \n財政部91.07.23 台財保字..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311116058010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...---\n\n \n1\n美國環球產物強制汽車責任保險商品內容說明 \n(主要給付項目：第三人傷害醫療保險金、第三人殘廢保險金、第三人死亡保險金) \n財政部91.07.23 台財保字..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、續保。",
+          "terms": [
+            "除外責任",
+            "續保"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311116058010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...險人有無過失，本公司應依本保險契約之約定，對請求權人給付保險金。 \n四、 不保事項或除外責任 \n受害人或其他請求權人有下列情事之一，致被保險汽車發生汽車交通事故者，本公司對其..."
+            },
+            {
+              "document": "131311116058010000-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...。 \n \n那假使不投保的話會怎樣呢？在本法第四十九條中明文規定；未投保或保險過期未再續保\n者﹐遇到警察機關或公路監理機關執行路邊聯檢稽查舉發時﹐由公路主管機關（監理處﹑\n所..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：申請。",
+          "terms": [
+            "申請"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311116058010000-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...駛人以外之受害者給予賠付（駕駛人不賠）。  \n \n汽﹑機車發生交通事故後﹐受害人如何申請醫療或死殘給付﹖被保險汽車發生交通事故時﹐\n請求權人得在保險金額範圍內直接向保險公司..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131311116058010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 108296,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1876,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311210001010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物自用汽車車體損失保險甲式",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 56449,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313112100010100-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...爆炸。 五、拋擲物或墜落物。 六、第三者之非善意行為。 七、不屬本保險契約特別載明為不保事項之任何其他原因。 不保及追償事項: 詳自用汽車保險共同條款第十條及車體損失保險 渀琀..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313112100010100-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 884224,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 56449,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311210002010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物自用汽車車體損失保險乙式",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 22311,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313112100020100-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...一、碰撞、傾覆。 二、火災。 三、閃電、雷擊。 四、爆炸。 五、拋擲物或墜落物。 不保事項: 詳自用汽車保險共保條款第十條及本承保類別條款第三條。 美國環球自用汽車車體損失保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313112100020100-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 448000,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 22311,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311210003010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物自用汽車竊盜損失保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 9466,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313112100030100-F.doc",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...款第 被保險汽車因遭受偷竊、搶奪、強盜所致之毀損滅失,本公司對被保險人負賠償之責。 不保事項: 詳自用汽車保險共保條款第十條及本承保類別條款第二條。 Fubon 富邦產險(股)..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313112100030100-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 448512,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 9466,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311210004010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車車體損失保險罷工、暴動、民眾騷擾附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 136,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313112100040101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 44848,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 136,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311210006010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車竊盜損失保險零件、配件被竊損失附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 139,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313112100060101-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...項第一款所稱之零件 、 配件非與被保險汽車同時被竊所致之損失 , 亦負賠償之責 。 不保事項 : 詳自用汽車保險共同條款第十條及竊盜損失保險條款第二條 。"
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313112100060101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 44100,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 139,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311210007010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車車體損失保險交通費用附加條款",
+      "sale_status": "已停售",
+      "sale_date": "095/08/24",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 781,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311210007010100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "美國環球產物汽車車體損失保險交通費用附加條款保險商品內容說明 ( 主要給付項目 : 財損保險金 ) 9 0 & 24 金管保二字第 09502067750 號函核..."
+            },
+            {
+              "document": "131311210007010100-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...環球產物汽車車體損失保險交通費用附加條款保險商品內容說明 ( 主要給付項目 : 財損保險金 ) 9 0 & 24 金管保二字第 09502067750 號函核免訴專線 : 0..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、不保事項。",
+          "terms": [
+            "除外責任",
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311210007010100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...通費用 。 本加條款僅適用於自用小客車 、 自用小貨車及自用小客貨車 。 不保事項或除外責任四 、 被保險人於接獲領車通知而遲延領取被保險汽車 , 本公司對於因被保險人誤產生之..."
+            },
+            {
+              "document": "131311210007010100-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...規定給付交通費用 。 本加條款僅適用於自用小客車 、 自用小貨車及自用小客貨車 。 不保事項或除外責任四 、 被保險人於接獲領車通知而遲延領取被保險汽車 , 本公司對於因被保險..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：理賠、通知。",
+          "terms": [
+            "理賠",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311210007010100-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...用 , 除造成生活不便外 , 亦增加交通費用的支出 , 這項額外費用並不屬於車體險的理賠範圍 。 針對這項額外增加的費用 , 本保險將可彌補車體險的不足 。 、 承保對象自..."
+            },
+            {
+              "document": "131311210007010100-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...客車 、 自用小貨車及自用小客貨車 。 不保事項或除外責任四 、 被保險人於接獲領車通知而遲延領取被保險汽車 , 本公司對於因被保險人誤產生之額外日數 , 不負交通費用給付..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131311210007010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 32406,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 781,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311210007020100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車竊盜損失保險代步費用附加條款",
+      "sale_status": "已停售",
+      "sale_date": "095/08/25",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1022,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311210007020100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "美國環球產物汽車竊盜損失保險代步費用附加條款保險商品內容說明 ( 主要給付項目 : 財損保險金 ) 95. 0 25 金管保二字第 095020690 和函核免費..."
+            },
+            {
+              "document": "131311210007020100-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...環球產物汽車竊盜損失保險代步費用附加條款保險商品內容說明 ( 主要給付項目 : 財損保險金 ) 95. 0 25 金管保二字第 095020690 和函核免費申訴專線 : 0..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、不保事項。",
+          "terms": [
+            "除外責任",
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311210007020100-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...本附加條款僅適用於自用小客車 、 自用小貨車及自用小客貨車 。 四 、 不保事項或除外責任本公司對下列事項 , 不負賠償責任 : 、 被保險汽車失竊 , 非向警察機關報案 ,..."
+            },
+            {
+              "document": "131311210007020100-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...步費用 。 本附加條款僅適用於自用小客車 、 自用小貨車及自用小客貨車 。 四 、 不保事項或除外責任本公司對下列事項 , 不負賠償責任 : 、 被保險汽車失竊 , 非向警察機..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：理賠、通知。",
+          "terms": [
+            "理賠",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311210007020100-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "..., 除造成生活不便外 , 亦增加交通費用的支出 , 但這項額外費用並不屬於竊盜險的理賠範圍 , 無法獲得保險公司的補償 。 針對這項因汽車失竊而增加的費用 , 設計 「..."
+            },
+            {
+              "document": "131311210007020100-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...關報案 , 並取得證明者 , 本公司不負代步費用給付之責 。 、 被保險人於接獲領車通知而遲延領取被保險汽車 , 本公司對於因被保險人延誤產生之額外日數 , 不負代步費用給..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131311210007020100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 38522,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1022,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311210008010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車綜合重大損失保險(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "086/08/07",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1110,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311210008010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...-- page 1 ---\n\n美國環球產物汽車綜合重大損失保險商品內容說明 \n(主要給付項目：財損保險金)\n中華民國86年8月7日奉財政部台財保字第861795128號函核准..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、限制。",
+          "terms": [
+            "除外責任",
+            "限制"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311210008010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...，同一次損失最高以新台幣壹萬五仟元為限。但\n不受保險金額之限制。 \n四、 不保事項或除外責任 \n下列事項所致保險汽車之毀損滅失，本公司不負賠償之責： \n一、被保險汽車未達保險金..."
+            },
+            {
+              "document": "131311210008010000-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...，每一日以新台幣伍佰元為限，同一次損失最高以新台幣壹萬五仟元為限。但\n不受保險金額之限制。 \n四、 不保事項或除外責任 \n下列事項所致保險汽車之毀損滅失，本公司不負賠償之責..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131311210008010000-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...交通費用： \n被保險汽車遇有偷竊、搶奪、強盜之事故發生時，自被保險人向警察機關報案並通知本公司\n之日起算，至被保險汽車尋回或本公司賠付日止，給付交通費用。 \n前項之給付，每..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131311210008010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 99383,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1110,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311210022010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物自用汽車車體損失保險丙式-免自負額車對車碰撞損失保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 9780,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313112100220100-F.doc",
+          "document_type": "product_summary",
+          "document_kind": "doc",
+          "file_size": 449024,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 9780,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311228059010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物汽車車體損失保險颱風、地震、海嘯、冰雹、洪水或因雨積水附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 148,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313112280590101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 45159,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 148,
+          "extraction_status": "extracted",
+          "extraction_method": "windows_ocr",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131311424060010100",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物機車強制責任保險駕駛人傷害附加條款",
+      "sale_status": "已停售",
+      "sale_date": "093/08/09",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 216,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313114240600101-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n機車駕駛人傷害險\n依強制保險規定，交通事故若僅涉及一輛機車時，該機車駕駛人不負賠償責任。\n為使強制..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313114240600101-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n機車駕駛人傷害險\n依強制保險規定，交通事故若僅涉及一輛機車時，該機車駕駛人不負賠償責任。\n為使強制..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313114240600101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 48583,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 216,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131312113035010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物營業用汽車第三人責任保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 490,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 0,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313121130350100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 68988,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 490,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131312115057010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物強制汽車責任保險(營業用)(第1次部分變更)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/23",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1876,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131312115057010000-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...page 1 ---\n\n \n1\n美國環球產物強制汽車責任保險商品內容說明 \n(主要給付項目：第三人傷害醫療保險金、第三人殘廢保險金、第三人死亡保險金) \n財政部91.07.2..."
+            },
+            {
+              "document": "131312115057010000-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...環球產物強制汽車責任保險商品內容說明 \n(主要給付項目：第三人傷害醫療保險金、第三人殘廢保險金、第三人死亡保險金) \n財政部91.07.23 台財保字第0910750555..."
+            },
+            {
+              "document": "131312115057010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...---\n\n \n1\n美國環球產物強制汽車責任保險商品內容說明 \n(主要給付項目：第三人傷害醫療保險金、第三人殘廢保險金、第三人死亡保險金) \n財政部91.07.23 台財保字..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131312115057010000-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...---\n\n \n1\n美國環球產物強制汽車責任保險商品內容說明 \n(主要給付項目：第三人傷害醫療保險金、第三人殘廢保險金、第三人死亡保險金) \n財政部91.07.23 台財保字..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：除外責任、續保。",
+          "terms": [
+            "除外責任",
+            "續保"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131312115057010000-F.pdf",
+              "page": 1,
+              "term": "除外責任",
+              "snippet": "...險人有無過失，本公司應依本保險契約之約定，對請求權人給付保險金。 \n四、 不保事項或除外責任 \n受害人或其他請求權人有下列情事之一，致被保險汽車發生汽車交通事故者，本公司對其..."
+            },
+            {
+              "document": "131312115057010000-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...。 \n \n那假使不投保的話會怎樣呢？在本法第四十九條中明文規定；未投保或保險過期未再續保\n者﹐遇到警察機關或公路監理機關執行路邊聯檢稽查舉發時﹐由公路主管機關（監理處﹑\n所..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：申請。",
+          "terms": [
+            "申請"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "131312115057010000-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...駛人以外之受害者給予賠付（駕駛人不賠）。  \n \n汽﹑機車發生交通事故後﹐受害人如何申請醫療或死殘給付﹖被保險汽車發生交通事故時﹐\n請求權人得在保險金額範圍內直接向保險公司..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "131312115057010000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 108293,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1876,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131312211001010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物營業用汽車車體損失保險甲式",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 705,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313122110010100-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...雷擊。\n4.爆炸。\n5.拋擲物或墬落物。\n甲式及乙式被保險人申請理賠時﹐均應負擔基本自負額：\n第一次新台幣三千元 / 第二次新台幣五千元 / 第三次以後新台幣七千元\n除了上列..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：申請。",
+          "terms": [
+            "申請"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313122110010100-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...2.火災。\n3.閃電、雷擊。\n4.爆炸。\n5.拋擲物或墬落物。\n甲式及乙式被保險人申請理賠時﹐均應負擔基本自負額：\n第一次新台幣三千元 / 第二次新台幣五千元 / 第三次..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313122110010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 81472,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 705,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131312211002010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物營業用汽車車體損失保險乙式",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 705,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313122110020100-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...雷擊。\n4.爆炸。\n5.拋擲物或墬落物。\n甲式及乙式被保險人申請理賠時﹐均應負擔基本自負額：\n第一次新台幣三千元 / 第二次新台幣五千元 / 第三次以後新台幣七千元\n除了上列..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：申請。",
+          "terms": [
+            "申請"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313122110020100-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...2.火災。\n3.閃電、雷擊。\n4.爆炸。\n5.拋擲物或墬落物。\n甲式及乙式被保險人申請理賠時﹐均應負擔基本自負額：\n第一次新台幣三千元 / 第二次新台幣五千元 / 第三次..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313122110020100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 81471,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 705,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "131312211003010000",
+      "company": "美國環球產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "美國環球產物營業用汽車竊盜損失保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/10/01",
+      "source_batch_id": "tii-property-077",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 291,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313122110030100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...生變成黑白的。這個時候如果有竊盜損失險的保障﹐就可以讓\n損失降到最低。\n被保險汽車在保險期間因遭受偷竊、搶奪、強盜所致之毀損滅失，保險公司對被\n保險人負賠償之責。所以竊盜損失險..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：申請。",
+          "terms": [
+            "申請"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "1313122110030100-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...保範圍，除了遭偷竊外\n其中還包括遭搶奪、強盜所致被保險車輛發生損失時，亦可向保險公司申請理\n賠。"
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "1313122110030100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 57460,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 291,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    }
+  ]
+}

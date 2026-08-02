@@ -19,9 +19,12 @@ PROGRESS_PATH = ROOT / "data" / "tii-execution-progress.json"
 RESULTS_PATH = ROOT / "data" / "tii-policy-results.json"
 WORK_DIR = ROOT / "work" / "tii-execution"
 JOB_PATH = ROOT / "work" / "tii-operator-job.json"
+DETAIL_RETRY_FAILURES_PATH = WORK_DIR / "detail-retry-failures.json"
 DOCUMENT_DOWNLOAD_SCOPE = "life"
 DOCUMENT_DOWNLOAD_BATCH_SIZE = 800
 DOCUMENT_DOWNLOAD_PROGRESS_PATH = ROOT / "work" / "tii-documents" / "document-download-progress.json"
+COMPLETION_SOURCE_GROUPS_PATH = ROOT / "work" / "tii-completion-queues" / "source-pending-groups.json"
+CAPTCHA_MAX_AGE_SECONDS = 15 * 60
 JOB_LOCK = threading.Lock()
 READ_RETRY_ATTEMPTS = 30
 READ_RETRY_DELAY_SECONDS = 0.25
@@ -29,6 +32,13 @@ READ_RETRY_DELAY_SECONDS = 0.25
 
 def now_iso() -> str:
     return datetime.now().astimezone().isoformat(timespec="seconds")
+
+
+def iso_timestamp(value: object) -> float:
+    try:
+        return datetime.fromisoformat(str(value).replace("Z", "+00:00")).timestamp()
+    except (TypeError, ValueError):
+        return 0
 
 
 def load_json(path: Path, fallback: dict) -> dict:
@@ -55,12 +65,73 @@ def write_json(path: Path, payload: dict) -> None:
 
 
 def job_status() -> dict:
-    return load_json(JOB_PATH, {"status": "idle"})
+    job = load_json(JOB_PATH, {"status": "idle"})
+    return reconcile_job_status(job)
 
 
 def set_job_status(payload: dict) -> None:
     with JOB_LOCK:
         write_json(JOB_PATH, payload)
+
+
+def reconcile_job_status(job: dict) -> dict:
+    if job.get("status") not in {"running", "import_failed"}:
+        return job
+
+    batch_id = str(job.get("batch_id") or "")
+    if not batch_id:
+        return job
+
+    if job.get("mode") != "document_extract":
+        progress = load_json(PROGRESS_PATH, {"runs": []})
+        started_at = iso_timestamp(job.get("started_at"))
+        latest = latest_submitted_runs_by_batch(progress).get(batch_id, {})
+        if latest and started_at and iso_timestamp(latest.get("ran_at")) < started_at:
+            latest = {}
+        latest = latest or submitted_run_from_job(job)
+        if latest and started_at and iso_timestamp(latest.get("ran_at")) < started_at:
+            latest = {}
+        if latest.get("status") == "submitted_result_saved":
+            details = latest.get("fetched_details") if isinstance(latest.get("fetched_details"), dict) else {}
+            remember_detail_retry_failures(latest)
+            if job.get("status") == "import_failed" and int(details.get("saved_detail_count") or 0) > 0:
+                return job
+            updated = dict(job)
+            updated.update(
+                {
+                    "status": "completed",
+                    "message": (
+                        "TII result/detail fetch completed. "
+                        f"Saved {details.get('saved_detail_count', 0)} new detail pages; "
+                        f"{details.get('already_saved_detail_count', 0)} already existed; "
+                        f"{details.get('failed_detail_count', 0)} still failed."
+                    ),
+                    "finished_at": latest.get("ran_at") or now_iso(),
+                }
+            )
+            set_job_status(updated)
+            return updated
+        return job
+
+    extract_progress = load_json(document_extract_progress_path(batch_id), {})
+    if extract_progress.get("status") != "completed":
+        return job
+
+    summary = extract_progress.get("summary") if isinstance(extract_progress.get("summary"), dict) else {}
+    updated = dict(job)
+    updated.update(
+        {
+            "status": "completed",
+            "message": (
+                "Document download and policy-summary extraction completed. "
+                f"Extracted {summary.get('document_count', extract_progress.get('total_files', 0))} documents "
+                f"for {summary.get('product_count', 0)} products."
+            ),
+            "finished_at": extract_progress.get("updated_at") or now_iso(),
+        }
+    )
+    set_job_status(updated)
+    return updated
 
 
 def run_command(args: list[str], timeout: int = 14400) -> tuple[int, str]:
@@ -69,6 +140,8 @@ def run_command(args: list[str], timeout: int = 14400) -> tuple[int, str]:
             [PYTHON, *args],
             cwd=ROOT,
             text=True,
+            encoding="utf-8",
+            errors="replace",
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,
             timeout=timeout,
@@ -78,7 +151,171 @@ def run_command(args: list[str], timeout: int = 14400) -> tuple[int, str]:
         if isinstance(output, bytes):
             output = output.decode("utf-8", errors="replace")
         return 124, output + f"\nTimed out after {timeout} seconds."
-    return completed.returncode, completed.stdout
+    return completed.returncode, completed.stdout or ""
+
+
+def latest_runs_by_batch(progress: dict) -> dict[str, dict]:
+    latest: dict[str, dict] = {}
+    for run in progress.get("runs", []):
+        batch_id = str(run.get("batch_id") or "")
+        if batch_id:
+            latest[batch_id] = run
+    return latest
+
+
+def latest_submitted_runs_by_batch(progress: dict) -> dict[str, dict]:
+    latest: dict[str, dict] = {}
+    for run in progress.get("runs", []):
+        batch_id = str(run.get("batch_id") or "")
+        if batch_id and run.get("status") == "submitted_result_saved":
+            latest[batch_id] = run
+    return latest
+
+
+def load_detail_retry_failures_by_batch() -> dict[str, dict[str, set[str] | int]]:
+    payload = load_json(DETAIL_RETRY_FAILURES_PATH, {"failures": []})
+    by_batch: dict[str, dict[str, set[str] | int]] = {}
+    for item in payload.get("failures") or []:
+        if not isinstance(item, dict):
+            continue
+        batch_id = str(item.get("batch_id") or "")
+        product_id = str(item.get("product_id") or "")
+        reason = str(item.get("reason") or "")
+        if not batch_id or not product_id or not reason:
+            continue
+        bucket = by_batch.setdefault(
+            batch_id,
+            {"product_ids": set(), "reasons": set(), "failed_count": 0},
+        )
+        product_ids = bucket["product_ids"]
+        reasons = bucket["reasons"]
+        if isinstance(product_ids, set) and not product_id.startswith("__"):
+            product_ids.add(product_id)
+        if isinstance(reasons, set):
+            reasons.add(reason)
+        aggregate_failed_count = int(item.get("failed_count") or 0)
+        if aggregate_failed_count:
+            bucket["failed_count"] = max(
+                int(bucket.get("failed_count") or 0),
+                aggregate_failed_count,
+            )
+    for bucket in by_batch.values():
+        product_ids = bucket.get("product_ids")
+        bucket["product_count"] = len(product_ids) if isinstance(product_ids, set) else 0
+    return by_batch
+
+
+def remember_detail_retry_failures(run: dict) -> None:
+    batch_id = str(run.get("batch_id") or "")
+    details = run.get("fetched_details") if isinstance(run.get("fetched_details"), dict) else {}
+    failed_details = [item for item in details.get("failed_details") or [] if isinstance(item, dict)]
+    if not batch_id or not failed_details:
+        return
+    payload = load_json(DETAIL_RETRY_FAILURES_PATH, {"failures": []})
+    failures = [item for item in payload.get("failures") or [] if isinstance(item, dict)]
+    seen = {
+        (str(item.get("batch_id") or ""), str(item.get("product_id") or ""), str(item.get("reason") or ""))
+        for item in failures
+    }
+    for item in failed_details:
+        product_id = str(item.get("product_id") or "")
+        reason = str(item.get("reason") or "")
+        if not product_id or not reason:
+            continue
+        key = (batch_id, product_id, reason)
+        if key in seen:
+            continue
+        failures.append(
+            {
+                "batch_id": batch_id,
+                "product_id": product_id,
+                "reason": reason,
+                "url": str(item.get("url") or ""),
+                "ran_at": str(run.get("ran_at") or now_iso()),
+            }
+        )
+        seen.add(key)
+    failed_count = int(details.get("failed_detail_count") or len(failed_details))
+    failed_reasons = {str(item.get("reason") or "") for item in failed_details}
+    if failed_count > len(failed_details) and len(failed_reasons) == 1:
+        reason = next(iter(failed_reasons))
+        key = (batch_id, "__aggregate_failed_detail_count__", reason)
+        if key not in seen:
+            failures.append(
+                {
+                    "batch_id": batch_id,
+                    "product_id": "__aggregate_failed_detail_count__",
+                    "reason": reason,
+                    "failed_count": failed_count,
+                    "sample_count": len(failed_details),
+                    "ran_at": str(run.get("ran_at") or now_iso()),
+                }
+            )
+            seen.add(key)
+        else:
+            for existing in failures:
+                existing_key = (
+                    str(existing.get("batch_id") or ""),
+                    str(existing.get("product_id") or ""),
+                    str(existing.get("reason") or ""),
+                )
+                if existing_key != key:
+                    continue
+                existing["failed_count"] = max(
+                    int(existing.get("failed_count") or 0),
+                    failed_count,
+                )
+                existing["sample_count"] = max(
+                    int(existing.get("sample_count") or 0),
+                    len(failed_details),
+                )
+                existing["ran_at"] = str(run.get("ran_at") or now_iso())
+                break
+    write_json(
+        DETAIL_RETRY_FAILURES_PATH,
+        {"generated_at": now_iso(), "failures": sorted(failures, key=lambda item: (item["batch_id"], item["product_id"], item["reason"]))},
+    )
+
+
+def submitted_run_from_command_output(output: str) -> dict:
+    try:
+        payload = json.loads(output.strip())
+    except json.JSONDecodeError:
+        return {}
+    run = payload.get("run") if isinstance(payload, dict) else None
+    return run if isinstance(run, dict) else {}
+
+
+def submitted_run_from_job(job: dict) -> dict:
+    raw_message = str(job.get("message") or "")
+    raw_json = raw_message.split("\n\nIMPORT\n", 1)[0].strip()
+    if not raw_json:
+        return {}
+    return submitted_run_from_command_output(raw_json)
+
+
+def detail_backfill_blocked_by_invalid_session(
+    batch_id: str,
+    submitted_runs: dict[str, dict],
+    failure_batches: dict[str, dict[str, set[str] | int]],
+    missing_count: int = 0,
+) -> bool:
+    failure_bucket = failure_batches.get(batch_id) or {}
+    reasons = failure_bucket.get("reasons")
+    product_count = int(failure_bucket.get("product_count") or 0)
+    failed_count = max(product_count, int(failure_bucket.get("failed_count") or 0))
+    if isinstance(reasons, set) and reasons == {"invalid_detail_session"}:
+        if missing_count <= 0 or failed_count >= missing_count:
+            return True
+    run = submitted_runs.get(batch_id) or {}
+    details = run.get("fetched_details") if isinstance(run.get("fetched_details"), dict) else {}
+    failed_details = [item for item in details.get("failed_details") or [] if isinstance(item, dict)]
+    failed_count = int(details.get("failed_detail_count") or len(failed_details))
+    if failed_count <= 0 or not failed_details:
+        return False
+    if missing_count > 0 and len(failed_details) < missing_count:
+        return False
+    return all(str(item.get("reason") or "") == "invalid_detail_session" for item in failed_details)
 
 
 def has_complete_saved_pages(batch_id: str) -> bool:
@@ -90,6 +327,10 @@ def has_complete_saved_pages(batch_id: str) -> bool:
     if summary and summary.get("status") != "complete":
         return False
     saved_pages = list((ROOT / "work" / "tii-results").glob(f"{batch_id}-page-*.html"))
+    if summary:
+        total_pages = int(summary.get("expected_total_pages") or 0)
+        if total_pages:
+            return len(saved_pages) >= total_pages
     marker = ROOT / "work" / "tii-results" / f"{batch_id}-pages-complete.json"
     if marker.exists():
         payload = load_json(marker, {})
@@ -97,7 +338,8 @@ def has_complete_saved_pages(batch_id: str) -> bool:
         return total_pages > 0 and len(saved_pages) >= total_pages
 
     progress = load_json(PROGRESS_PATH, {"runs": []})
-    run = next((item for item in progress.get("runs", []) if item.get("batch_id") == batch_id), {})
+    latest_runs = latest_runs_by_batch(progress)
+    run = latest_runs_by_batch(progress).get(batch_id, {})
     fetched_pages = run.get("fetched_pages") or {}
     total_pages = int(fetched_pages.get("total_pages") or 0)
     if not fetched_pages.get("is_complete") or total_pages <= 0:
@@ -123,6 +365,21 @@ def run_batch_job(batch_id: str, captcha: str) -> None:
         args.append("--fetch-all-pages")
     code, output = run_command(args)
     if code == 0:
+        submitted_run = submitted_run_from_command_output(output)
+        if submitted_run:
+            remember_detail_retry_failures(submitted_run)
+            details = submitted_run.get("fetched_details") if isinstance(submitted_run.get("fetched_details"), dict) else {}
+            if int(details.get("saved_detail_count") or 0) == 0:
+                set_job_status(
+                    {
+                        "status": "completed",
+                        "batch_id": batch_id,
+                        "message": output + "\n\nIMPORT\nSkipped import because no new detail pages were saved.",
+                        "started_at": started_at,
+                        "finished_at": now_iso(),
+                    }
+                )
+                return
         import_code, import_output = run_command(
             ["scripts/import_tii_results.py", "--input-dir", "work/tii-results", "--output", "data/tii-policy-results.json"]
         )
@@ -239,7 +496,7 @@ def run_document_job(batch_id: str, captcha: str, document_offset: int = 0) -> N
             "mode": "document_extract" if code == 0 else "document_download",
             "batch_id": batch_id,
             "document_offset": document_offset,
-            "message": output + ("\n\nEXTRACT\n" + extract_output if extract_output else ""),
+            "message": (output or "") + ("\n\nEXTRACT\n" + extract_output if extract_output else ""),
             "started_at": started_at,
             "finished_at": now_iso(),
         }
@@ -281,7 +538,15 @@ def batch_order() -> list[str]:
 def next_batch_id() -> str:
     batches = batch_map()
     ordered_batch_ids = batch_order()
+    scoped_batch_ids = [
+        batch_id
+        for batch_id in ordered_batch_ids
+        if batches.get(batch_id, {}).get("company_type") == DOCUMENT_DOWNLOAD_SCOPE
+    ]
     progress = load_json(PROGRESS_PATH, {"runs": []})
+    latest_runs = latest_runs_by_batch(progress)
+    submitted_runs = latest_submitted_runs_by_batch(progress)
+    failure_batches = load_detail_retry_failures_by_batch()
     results = load_json(RESULTS_PATH, {"completed_batches": [], "batch_summaries": []})
     if results.get("_load_error"):
         return ""
@@ -291,19 +556,57 @@ def next_batch_id() -> str:
         for summary in results.get("batch_summaries", [])
         if summary.get("batch_id") in batches and summary.get("status") != "complete"
     ]
+    detail_backfill = [
+        summary["batch_id"]
+        for summary in results.get("batch_summaries", [])
+        if summary.get("batch_id") in batches and summary.get("requires_detail_backfill_session")
+        and not detail_backfill_blocked_by_invalid_session(
+            str(summary.get("batch_id") or ""),
+            submitted_runs,
+            failure_batches,
+            int(summary.get("detail_missing_count") or 0),
+        )
+    ]
+    summaries_by_batch = {
+        str(summary.get("batch_id") or ""): summary
+        for summary in results.get("batch_summaries", [])
+        if isinstance(summary, dict)
+    }
     waiting = [
-        run["batch_id"]
-        for run in progress.get("runs", [])
-        if run.get("batch_id") in batches
-        and run.get("batch_id") not in completed
-        and "captcha" in run.get("status", "")
+        batch_id
+        for batch_id, run in latest_runs.items()
+        if batch_id in batches
+        and batch_id not in completed
+        and "captcha" in str(run.get("status", ""))
+        and not detail_backfill_blocked_by_invalid_session(
+            batch_id,
+            submitted_runs,
+            failure_batches,
+            int((summaries_by_batch.get(batch_id) or {}).get("detail_missing_count") or 0),
+        )
     ]
     if waiting:
         waiting_set = set(waiting)
+        scoped_waiting = next((batch_id for batch_id in scoped_batch_ids if batch_id in waiting_set), "")
+        if scoped_waiting:
+            return scoped_waiting
         return next((batch_id for batch_id in ordered_batch_ids if batch_id in waiting_set), sorted(waiting)[0])
     partial_set = set(partial)
+    detail_backfill_set = set(detail_backfill)
+    for batch_id in scoped_batch_ids:
+        if batch_id in detail_backfill_set:
+            return batch_id
+    for batch_id in ordered_batch_ids:
+        if batch_id in detail_backfill_set:
+            return batch_id
+    for batch_id in scoped_batch_ids:
+        if batch_id in partial_set:
+            return batch_id
     for batch_id in ordered_batch_ids:
         if batch_id in partial_set:
+            return batch_id
+    for batch_id in scoped_batch_ids:
+        if batch_id not in completed:
             return batch_id
     for batch_id in ordered_batch_ids:
         if batch_id not in completed:
@@ -334,6 +637,18 @@ def saved_counts(batch_id: str) -> dict[str, int | bool]:
     if marker.exists():
         payload = load_json(marker, {})
         expected_pages = int(payload.get("total_pages") or 0)
+    if not expected_pages:
+        results = load_json(RESULTS_PATH, {"batch_summaries": []})
+        summary = next(
+            (item for item in results.get("batch_summaries", []) if item.get("batch_id") == batch_id),
+            {},
+        )
+        expected_pages = int(summary.get("expected_total_pages") or 0)
+    if not expected_pages:
+        progress = load_json(PROGRESS_PATH, {"runs": []})
+        run = latest_runs_by_batch(progress).get(batch_id, {})
+        fetched_pages = run.get("fetched_pages") or {}
+        expected_pages = int(fetched_pages.get("total_pages") or 0)
     saved_details = len(list(details_dir.glob("*.html"))) if details_dir.exists() else 0
     return {
         "saved_pages": saved_pages,
@@ -356,7 +671,51 @@ def document_extract_progress_path(batch_id: str) -> Path:
     return ROOT / "work" / "tii-document-text" / f"{batch_id}-progress.json"
 
 
+def source_pending_document_work_item() -> dict:
+    payload = load_json(COMPLETION_SOURCE_GROUPS_PATH, {"groups": []})
+    groups = [item for item in payload.get("groups") or [] if isinstance(item, dict)]
+    for group in groups:
+        if group.get("bucket") != DOCUMENT_DOWNLOAD_SCOPE:
+            continue
+        if group.get("processing_gate") != "needs_tii_document_download_captcha":
+            continue
+        if group.get("source_pending_reason") != "documents_not_downloaded":
+            continue
+        batch_id = str(group.get("batch_id") or "")
+        if not batch_id:
+            continue
+        status = document_status(batch_id)
+        total = int(status.get("total_document_link_count") or 0)
+        offset = int(status.get("document_offset") or 0)
+        window = int(status.get("document_link_count") or 0)
+        limit = int(status.get("document_limit") or 0)
+        if not status:
+            document_offset = 0
+            reason = "source_pending_queue"
+        elif not status.get("total_scanned_all_details") and limit and window >= limit:
+            document_offset = offset + window
+            reason = "source_pending_queue_limit_boundary_recheck"
+        elif total and offset + window < total:
+            document_offset = offset + window
+            reason = "source_pending_queue_partial"
+        else:
+            document_offset = 0
+            reason = "source_pending_queue_refresh"
+        return {
+            "batch_id": batch_id,
+            "document_offset": document_offset,
+            "reason": reason,
+            "source_pending_count": int(group.get("record_count") or 0),
+            "total_document_link_count": total,
+        }
+    return {}
+
+
 def next_document_work_item() -> dict:
+    source_item = source_pending_document_work_item()
+    if source_item.get("batch_id"):
+        return source_item
+
     batches = batch_map()
     ordered_batch_ids = [
         batch_id
@@ -403,9 +762,12 @@ def ensure_captcha(batch_id: str, force_refresh: bool = False, progress_path: Pa
     if force_refresh:
         clear_captcha_session(batch_id)
     image = captcha_image(batch_id)
-    progress = load_json(progress_path, {"runs": []})
-    run = next((item for item in progress.get("runs", []) if item.get("batch_id") == batch_id), None)
-    if image and run and run.get("status") == "captcha_required":
+    if image:
+        age_seconds = time.time() - image.stat().st_mtime
+        if age_seconds > CAPTCHA_MAX_AGE_SECONDS:
+            clear_captcha_session(batch_id)
+            image = None
+    if image:
         return True, "Captcha already prepared."
     code, output = run_command(["scripts/run_tii_batch.py", "--batch-id", batch_id, "--progress", str(progress_path)])
     return code == 0, output
@@ -414,13 +776,14 @@ def ensure_captcha(batch_id: str, force_refresh: bool = False, progress_path: Pa
 def html_page(message: str = "") -> bytes:
     batches = batch_map()
     progress = load_json(PROGRESS_PATH, {"summary": {}, "runs": []})
+    latest_runs = latest_runs_by_batch(progress)
     results = load_json(RESULTS_PATH, {"record_count": 0, "pending_manual_batch_count": len(batches)})
     job = job_status()
     completed_result_batches = set(results.get("completed_batches", []))
     active_captcha_count = sum(
         1
-        for run in progress.get("runs", [])
-        if run.get("batch_id") not in completed_result_batches and "captcha" in run.get("status", "")
+        for batch_id, run in latest_runs.items()
+        if batch_id not in completed_result_batches and "captcha" in str(run.get("status", ""))
     )
     normal_batch_id = next_batch_id()
     document_item = next_document_work_item() if not normal_batch_id else {"batch_id": "", "document_offset": 0}
@@ -438,8 +801,9 @@ def html_page(message: str = "") -> bytes:
         if batch_id and mode != "idle"
         else (False, "No pending batch.")
     )
+    prepare_message_text = str(prepare_message or "")
     if ok and job.get("status") == "failed" and job.get("batch_id") == batch_id:
-        prepare_message = "上一輪驗證碼被官方判定錯誤。這張會固定到你送出或手動換圖為止。"
+        prepare_message_text = "上一輪驗證碼被官方判定錯誤。這張會固定到你送出或手動換圖為止。"
     image = captcha_image(batch_id) if ok else None
     counts = saved_counts(batch_id)
     docs = document_status(batch_id)
@@ -545,7 +909,7 @@ def html_page(message: str = "") -> bytes:
     <p>{html.escape(batch.get('company_label', ''))} / {html.escape(batch.get('category_label', ''))}</p>
     <p class="hint">{html.escape(progress_hint)}<br>{html.escape(mode_hint)}</p>
     <p class="hint">{html.escape(document_hint)}</p>
-    <p>{html.escape(prepare_message[:600])}</p>
+    <p>{html.escape(prepare_message_text[:600])}</p>
     {image_tag}
     {refresh_link}
     <form method="post" action="/submit">

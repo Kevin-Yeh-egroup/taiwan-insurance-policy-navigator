@@ -1,0 +1,4932 @@
+{
+  "generated_at": "2026-07-31T21:45:27+08:00",
+  "summary": {
+    "generated_at": "2026-07-31T21:45:27+08:00",
+    "source": "local TII files downloaded through captcha session",
+    "batch_id": "tii-property-093",
+    "scope_note": "Public output keeps summaries, terms, pages, and short evidence snippets only. Full extracted text stays in ignored work/ output.",
+    "product_count": 41,
+    "document_count": 41,
+    "extracted_document_count": 41,
+    "no_text_document_count": 0,
+    "garbled_document_count": 0,
+    "ocr_document_count": 0,
+    "error_document_count": 0,
+    "pdf_document_count": 41,
+    "legacy_doc_document_count": 0,
+    "policy_terms_document_count": 0,
+    "product_summary_document_count": 41,
+    "total_text_characters": 103439,
+    "focus_counts": [
+      {
+        "label": "保障項目",
+        "count": 37
+      },
+      {
+        "label": "特殊項目",
+        "count": 36
+      },
+      {
+        "label": "理賠申請",
+        "count": 18
+      },
+      {
+        "label": "重要定義",
+        "count": 18
+      }
+    ],
+    "coverage_tag_counts": [
+      {
+        "label": "豁免/附加條款",
+        "count": 19
+      },
+      {
+        "label": "意外險",
+        "count": 10
+      },
+      {
+        "label": "醫療險",
+        "count": 5
+      },
+      {
+        "label": "失能/殘扶",
+        "count": 3
+      }
+    ],
+    "status_counts": [
+      {
+        "label": "extracted",
+        "count": 41
+      }
+    ]
+  },
+  "records": [
+    {
+      "product_id": "144111210007100000",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車車體損失保險代步車附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/05/24",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2290,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144111210007100000-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...完竣可領車之日止。本公司\n對每次保險事故所提供之代步車輛使用天數最高以約定天數為限，保險期間內所提供之\n代步車輛使用次數依主契約之理賠次數而定。有下列情形之一者，其理賠期間之起..."
+            },
+            {
+              "document": "144111210007100000-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...-\n\n費不予退還。 \n五、保險期間 \n    本附加條款之保險期間訂為一年。 \n六、自負額 \n    本附加條款無自負額之規定。 \n七、保費之交付 \n    要保人應於本附加..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：理賠、申請、通知。",
+          "terms": [
+            "理賠",
+            "申請",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144111210007100000-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...提供代步車輛。本附加條款所稱之保\n險事故依主保險契約所載承保之保險事故定之。 \n四、理賠方式 \n（一）代步車輛使用天數之計算係自被保險人將受損車輛移送至本公司認可之修 \n理..."
+            },
+            {
+              "document": "144111210007100000-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...為被保險人之代車費用；被保險人若因體傷而無法使用代步\n車輛時，可出示診斷證明向本公司申請約定之代車費用。 \n二、承保對象 \n本附加條款以自用小客車為承保對象。 \n三、承保範..."
+            },
+            {
+              "document": "144111210007100000-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...依\n各款之約定： \n1.被保險人遇有主保險契約承保範圍內之損失時，應立即以電話或書面通知本公司，俾利於\n查明該損失是否屬於主保險契約之承保範圍，倘被保險人 \n未履行時，理賠..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144111210007100000-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 87881,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 2290,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144111210106010100",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車竊盜損失保險零配件被竊損失高額保障(定額型)附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/07/24",
+      "discontinued_date": "096/07/23",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1253,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144111210106010100-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...對被\n保險汽車之零件、配件發生非與被保險汽車同時被竊所致之損失，負賠償之責。 \n五、不保事項：  \n詳主保保險契約汽車保險共同條款第十條不保事項及汽車竊盜損失保險條款第二條\n不..."
+            },
+            {
+              "document": "144111210106010100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...明台產物汽車竊盜損失保險零配件被竊損失\n高額保障（定額型）附加條款」承保之。 \n三、保險期間：一年期。 \n四、承保範圍: \n本產品為要保人於投保明台產物汽車竊盜損失保險後，加繳..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144111210106010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 71569,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1253,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144111210106010101",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車竊盜損失保險零配件被竊損失高額保障(定額型)附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/07/24",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1261,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144111210106010101-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...對被保險汽車之零件、配件發生非與被保險汽車同時被竊所致之損失，負賠償\n之責。 \n五、不保事項：  \n詳主保保險契約汽車保險共同條款第十條不保事項及汽車竊盜損失保險條款第二條\n不..."
+            },
+            {
+              "document": "144111210106010101-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...住友產物汽車竊盜損失保險零配件被竊\n損失高額保障（定額型）附加條款」承保之。 \n三、保險期間：一年期。 \n四、承保範圍: \n本產品為要保人於投保三井住友產物汽車竊盜損失保險後，..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144111210106010101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 72097,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1261,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144111210113010100",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車車體損失保險許可使用免追償附加條款",
+      "sale_status": "已停售",
+      "sale_date": "097/03/01",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1218,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：給付項目。",
+          "terms": [
+            "給付項目"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144111210113010100-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...體損失保險許可使用免追償附加條款 \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n（主要給付項目：車體險許可使用免追償）..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144111210113010100-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...退還 \n主保險契約發生全損理賠者，本附加條款之未滿期保險費，不予退費。  \n \n六、不保事項  \n詳主保保險契約汽車保險共同條款第十條不保事項及汽車車體損失保險條款第三條不保事..."
+            },
+            {
+              "document": "144111210113010100-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...單上加貼「三井住友產物汽車車體損失保險許可使用免追償附\n加條款」承保之。 \n \n三、保險期間：一年期。 \n \n四、承保範圍: \n本產品為要保人於投保三井住友產物汽車車體損失保險..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144111210113010100-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 107129,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1218,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311112035120001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車第三人責任保險(傷害)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "醫療險",
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 5007,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：保險金、住院、手術、醫療費用、傷害。",
+          "terms": [
+            "保險金",
+            "住院",
+            "手術",
+            "醫療費用",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112035120001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...賠償責任所為之抗辯或訴訟，事先經本公司同意\n者，其支出之費用本公司同意支付之，並不受保險金額之限制。 \n \n第二條\n第二條\n第二條\n第二條 被保險人之定義\n被保險人之定義\n被..."
+            },
+            {
+              "document": "144311112035120001-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...關於醫療費用單據，倘傷者係於私立醫院就醫者，應請院方就治療之經過將手術費、藥品\n費、住院費、檢查費等分項開列清單，貴重藥品應加註藥品名稱、廠牌及數量、單價始准\n核銷。 \n三..."
+            },
+            {
+              "document": "144311112035120001-F.pdf",
+              "page": 1,
+              "term": "手術",
+              "snippet": "...主治醫師簽證。 \n關於醫療費用單據，倘傷者係於私立醫院就醫者，應請院方就治療之經過將手術費、藥品\n費、住院費、檢查費等分項開列清單，貴重藥品應加註藥品名稱、廠牌及數量、單價..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：定義、傷害、醫院、醫師、住院、手術。",
+          "terms": [
+            "定義",
+            "傷害",
+            "醫院",
+            "醫師",
+            "住院",
+            "手術"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112035120001-F.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...同意支付之，並不受保險金額之限制。 \n \n第二條\n第二條\n第二條\n第二條 被保險人之定義\n被保險人之定義\n被保險人之定義\n被保險人之定義 \n本保險所稱之「被保險人」，其意義..."
+            },
+            {
+              "document": "144311112035120001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...承保範圍\n承保範圍\n承保範圍\n承保範圍 \n汽車第三人責任保險承保範圍如下： \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人死亡或受有體傷，..."
+            },
+            {
+              "document": "144311112035120001-F.pdf",
+              "page": 1,
+              "term": "醫院",
+              "snippet": "...護送費用：緊急救治或護送傷亡者，所必需之實際費用。 \n二、醫療費用：須具有執照之中西醫院所開具之醫療費用單據，包括掛號、醫藥、Ｘ光檢\n查等必需費用，如向藥房購買藥品等單據並..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、限制。",
+          "terms": [
+            "不保事項",
+            "限制"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112035120001-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...一次意外事故所\n有財物損失之最高責任額而言。 \n \n第四條\n第四條\n第四條\n第四條 不保事項\n不保事項\n不保事項\n不保事項 \n因下列事項所致之賠償責任，本公司不負賠償之責：..."
+            },
+            {
+              "document": "144311112035120001-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...為之抗辯或訴訟，事先經本公司同意\n者，其支出之費用本公司同意支付之，並不受保險金額之限制。 \n \n第二條\n第二條\n第二條\n第二條 被保險人之定義\n被保險人之定義\n被保險人之..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：理賠、申請、檢具、通知。",
+          "terms": [
+            "理賠",
+            "申請",
+            "檢具",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112035120001-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...，則本公司協助為和解或抗辯之\n義務即為終了。 \n \n第九條\n第九條\n第九條\n第九條 理賠範圍及方式\n理賠範圍及方式\n理賠範圍及方式\n理賠範圍及方式 \n體傷死亡理賠範圍及方式..."
+            },
+            {
+              "document": "144311112035120001-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...應將收受之賠償請求書或法院書狀等影本立即送交本\n公司。 \n損害賠償請求償人依前條規定申請給付保險金時，應檢具和解書或法院判決書。 \n \n第八條\n第八條\n第八條\n第八條 和解..."
+            },
+            {
+              "document": "144311112035120001-F.pdf",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...或法院書狀等影本立即送交本\n公司。 \n損害賠償請求償人依前條規定申請給付保險金時，應檢具和解書或法院判決書。 \n \n第八條\n第八條\n第八條\n第八條 和解或抗辯\n和解或抗辯..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311112035120001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 146443,
+          "page_count": 5,
+          "pages_parsed": 5,
+          "text_char_count": 5007,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311112035120002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車第三人責任保險(傷害)(公會版)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1491,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、保險金、傷害。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112035120002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...自用（公會版）\n自用（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：責任保險金) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://ww..."
+            },
+            {
+              "document": "144311112035120002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...）\n自用（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：責任保險金) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-i..."
+            },
+            {
+              "document": "144311112035120002-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...險\n汽車第三人責任保險\n汽車第三人責任保險\n汽車第三人責任保險 (\n (\n (\n (傷害\n傷害\n傷害\n傷害)-自用（公會版）\n自用（公會版）\n自用（公會版）\n自用（公會版）..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112035120002-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...險\n汽車第三人責任保險\n汽車第三人責任保險\n汽車第三人責任保險 (\n (\n (\n (傷害\n傷害\n傷害\n傷害)-自用（公會版）\n自用（公會版）\n自用（公會版）\n自用（公會版）..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112035120002-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...將強制汽車責\n任保險所規定之給付標準扣除之。但經書面約定批改加保者不在此限。 \n四.不保事項： \n因下列事項所致之賠償責任，本公司不負賠償之責： \n（1）因尚未裝載於被保險汽車..."
+            },
+            {
+              "document": "144311112035120002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...金管保二字第09502522257 號令修正 \n一.承保對象:一般自用汽車。 \n二.保險期間：一年期。 \n三.承保範圍: \n被保險人因所有、使用或管理被保險汽車發生意外事故，致..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311112035120002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 69453,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1491,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311112036120001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車第三人責任保險(財損)",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "醫療險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 5007,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：保險金、住院、手術、醫療費用、傷害。",
+          "terms": [
+            "保險金",
+            "住院",
+            "手術",
+            "醫療費用",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112036120001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...賠償責任所為之抗辯或訴訟，事先經本公司同意\n者，其支出之費用本公司同意支付之，並不受保險金額之限制。 \n \n第二條\n第二條\n第二條\n第二條 被保險人之定義\n被保險人之定義\n被..."
+            },
+            {
+              "document": "144311112036120001-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...關於醫療費用單據，倘傷者係於私立醫院就醫者，應請院方就治療之經過將手術費、藥品\n費、住院費、檢查費等分項開列清單，貴重藥品應加註藥品名稱、廠牌及數量、單價始准\n核銷。 \n三..."
+            },
+            {
+              "document": "144311112036120001-F.pdf",
+              "page": 1,
+              "term": "手術",
+              "snippet": "...主治醫師簽證。 \n關於醫療費用單據，倘傷者係於私立醫院就醫者，應請院方就治療之經過將手術費、藥品\n費、住院費、檢查費等分項開列清單，貴重藥品應加註藥品名稱、廠牌及數量、單價..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：定義、傷害、醫院、醫師、住院、手術。",
+          "terms": [
+            "定義",
+            "傷害",
+            "醫院",
+            "醫師",
+            "住院",
+            "手術"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112036120001-F.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...同意支付之，並不受保險金額之限制。 \n \n第二條\n第二條\n第二條\n第二條 被保險人之定義\n被保險人之定義\n被保險人之定義\n被保險人之定義 \n本保險所稱之「被保險人」，其意義..."
+            },
+            {
+              "document": "144311112036120001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...承保範圍\n承保範圍\n承保範圍\n承保範圍 \n汽車第三人責任保險承保範圍如下： \n一、傷害責任險 \n被保險人因所有、使用或管理被保險汽車發生意外事故，致第三人死亡或受有體傷，..."
+            },
+            {
+              "document": "144311112036120001-F.pdf",
+              "page": 1,
+              "term": "醫院",
+              "snippet": "...護送費用：緊急救治或護送傷亡者，所必需之實際費用。 \n二、醫療費用：須具有執照之中西醫院所開具之醫療費用單據，包括掛號、醫藥、Ｘ光檢\n查等必需費用，如向藥房購買藥品等單據並..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、限制。",
+          "terms": [
+            "不保事項",
+            "限制"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112036120001-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...一次意外事故所\n有財物損失之最高責任額而言。 \n \n第四條\n第四條\n第四條\n第四條 不保事項\n不保事項\n不保事項\n不保事項 \n因下列事項所致之賠償責任，本公司不負賠償之責：..."
+            },
+            {
+              "document": "144311112036120001-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...為之抗辯或訴訟，事先經本公司同意\n者，其支出之費用本公司同意支付之，並不受保險金額之限制。 \n \n第二條\n第二條\n第二條\n第二條 被保險人之定義\n被保險人之定義\n被保險人之..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：理賠、申請、檢具、通知。",
+          "terms": [
+            "理賠",
+            "申請",
+            "檢具",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112036120001-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...，則本公司協助為和解或抗辯之\n義務即為終了。 \n \n第九條\n第九條\n第九條\n第九條 理賠範圍及方式\n理賠範圍及方式\n理賠範圍及方式\n理賠範圍及方式 \n體傷死亡理賠範圍及方式..."
+            },
+            {
+              "document": "144311112036120001-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...應將收受之賠償請求書或法院書狀等影本立即送交本\n公司。 \n損害賠償請求償人依前條規定申請給付保險金時，應檢具和解書或法院判決書。 \n \n第八條\n第八條\n第八條\n第八條 和解..."
+            },
+            {
+              "document": "144311112036120001-F.pdf",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...或法院書狀等影本立即送交本\n公司。 \n損害賠償請求償人依前條規定申請給付保險金時，應檢具和解書或法院判決書。 \n \n第八條\n第八條\n第八條\n第八條 和解或抗辯\n和解或抗辯..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311112036120001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 146443,
+          "page_count": 5,
+          "pages_parsed": 5,
+          "text_char_count": 5007,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311112036120002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車第三人責任保險(財損)(公會版)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1456,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112036120002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...自用（公會版）\n自用（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：責任保險金) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://ww..."
+            },
+            {
+              "document": "144311112036120002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...）\n自用（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：責任保險金) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-i..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：不保事項、限制、保險期間。",
+          "terms": [
+            "不保事項",
+            "限制",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112036120002-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...，事先經本公司同意者，其支\n出之費用本公司同意支付之，並不受保險金額之限制。 \n四.不保事項： \n因下列事項所致之賠償責任，本公司不負賠償之責： \n（1）因尚未裝載於被保險汽車..."
+            },
+            {
+              "document": "144311112036120002-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...為之抗辯或訴訟，事先經本公司同意者，其支\n出之費用本公司同意支付之，並不受保險金額之限制。 \n四.不保事項： \n因下列事項所致之賠償責任，本公司不負賠償之責： \n（1）因尚..."
+            },
+            {
+              "document": "144311112036120002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...金管保二字第09502522257 號令修正 \n一.承保對象:一般自用汽車。 \n二.保險期間：一年期。 \n三.承保範圍: \n被保險人因所有、使用或管理被保險汽車發生意外事故，致..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311112036120002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 67845,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1456,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311112037120001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車第三人責任保險乘客體傷責任附加條款",
+      "sale_status": "已停售",
+      "sale_date": "095/01/26",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "失能/殘扶",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 3681,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：保險金、殘廢、傷害。",
+          "terms": [
+            "保險金",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112037120001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...外別無其他賠償請求權人時，本公司僅賠償實際支出之殯葬費用，且最高\n以「每一個人死亡」保險金額為限。 \n第二條、本附加條款之承保人數以被保險汽車行車執照所記載之載運人數為限。倘..."
+            },
+            {
+              "document": "144311112037120001-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...客因本附加條款承保之意外事故遭受身體傷害，並以此為直接原因，致成本附加條款附\n表所列殘廢程度，本公司以附表所列殘廢等級之賠償比率乘以「每一個人死亡」保險金額\n後之數額為理賠..."
+            },
+            {
+              "document": "144311112037120001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...與實際搭載人數之比例負理賠之責。 \n第三條、乘客因本附加條款承保之意外事故遭受有身體傷害，被保險人依法應負賠償責任而受賠償\n請求時，本公司同意對被保險人負理賠之責，但理賠金..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：疾病、傷害、醫師。",
+          "terms": [
+            "疾病",
+            "傷害",
+            "醫師"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112037120001-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...負理賠責任： \n一.乘客之故意行為。 \n二.乘客之自殺或犯罪行為。 \n三.乘客本身之疾病、殘疾。 \n第九條、依本附加條款第一條第三項申請殯葬費用時，應檢附下列文件： \n一、..."
+            },
+            {
+              "document": "144311112037120001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...與實際搭載人數之比例負理賠之責。 \n第三條、乘客因本附加條款承保之意外事故遭受有身體傷害，被保險人依法應負賠償責任而受賠償\n請求時，本公司同意對被保險人負理賠之責，但理賠金..."
+            },
+            {
+              "document": "144311112037120001-F.pdf",
+              "page": 1,
+              "term": "醫師",
+              "snippet": "...、理賠申請書（由本公司提供）。 \n二、憲警機關處理證明。 \n三、相驗屍體證明書或合格醫師開立之死亡證明書。 \n四、載明項目及金額之相關殯葬費用單據。 \n第十條、本附加條款所..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、限制。",
+          "terms": [
+            "不保事項",
+            "限制"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112037120001-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...00 \n\n\n--- page 2 ---\n\n第八條、除主保險契約及汽車共同條款約定之不保事項外，乘客因下列原因所致之傷害、殘廢或死\n亡，本公司亦不負理賠責任： \n一.乘客之故意..."
+            },
+            {
+              "document": "144311112037120001-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...車行車執照所記載之載運人數為限。倘發生意外事故當\n時，被保險汽車搭載人數超過載運人數限制，本公司對每一乘客及每一意外事故，均僅按\n載運限制人數與實際搭載人數之比例負理賠之責..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：理賠、申請。",
+          "terms": [
+            "理賠",
+            "申請"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112037120001-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...故，致乘客受有體傷或死亡時，依法應負賠償責任而受賠償\n請求時，本公司同意對被保險人負理賠之責。 \n前項所稱乘客指除駕駛人外乘坐或上下被保險汽車之人，包含被保險人之配偶、家屬..."
+            },
+            {
+              "document": "144311112037120001-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...之自殺或犯罪行為。 \n三.乘客本身之疾病、殘疾。 \n第九條、依本附加條款第一條第三項申請殯葬費用時，應檢附下列文件： \n一、理賠申請書（由本公司提供）。 \n二、憲警機關處理..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311112037120001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 128584,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 3681,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311112037120002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車第三人責任保險乘客體傷責任附加條款(公會版)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1399,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：給付項目、保險金、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112037120002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...公會版）\n（公會版）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：責任保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www...."
+            },
+            {
+              "document": "144311112037120002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...會版）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：責任保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-ins..."
+            },
+            {
+              "document": "144311112037120002-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...不保事項: \n除主保險契約及汽車共同條款約定之不保事項外，乘客因下列原因所致之傷害、殘廢或死亡，\n本公司亦不負理賠責任： \n一.乘客之故意行為。 \n二.乘客之自殺或犯罪行為..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：疾病、傷害。",
+          "terms": [
+            "疾病",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112037120002-F.pdf",
+              "page": 1,
+              "term": "疾病",
+              "snippet": "...負理賠責任： \n一.乘客之故意行為。 \n二.乘客之自殺或犯罪行為。 \n三.乘客本身之疾病、殘疾。 \n \n日商三井住友海上火災產物保險股份有限公司\n日商三井住友海上火災產物保..."
+            },
+            {
+              "document": "144311112037120002-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...五.不保事項: \n除主保險契約及汽車共同條款約定之不保事項外，乘客因下列原因所致之傷害、殘廢或死亡，\n本公司亦不負理賠責任： \n一.乘客之故意行為。 \n二.乘客之自殺或犯..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：不保事項。",
+          "terms": [
+            "不保事項"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112037120002-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...時，本公司僅賠償實際支出之殯葬費用，且最高以「每一個人\n死亡」保險金額為限。 \n五.不保事項: \n除主保險契約及汽車共同條款約定之不保事項外，乘客因下列原因所致之傷害、殘廢或死..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：理賠。",
+          "terms": [
+            "理賠"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112037120002-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...客受有體傷或死亡時，    依法應負賠償責任而受賠償請求時，本公司同意\n對被保險人負理賠之責。 \n前項所稱乘客指除駕駛人外乘坐或上下被保險汽車之人，包含被保險人之配偶、家屬..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311112037120002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 69643,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1399,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311112039120001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物第三人責任保險受酒類影響車禍受害人補償附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1911,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112039120001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...傷或第三人財物受有損失，依法應由被保險人負賠償責任而受賠償請求時，本\n公司對第三人於保險金額範圍內直接賠償。倘被保險人已先行賠償予該第三人時，本公司\n於應付給之賠償金額範圍內..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：續保、自負額。",
+          "terms": [
+            "續保",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112039120001-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...加收百分之九。 \n第五條  肇事加費 \n被保險人前一年發生本附加條款承保事故，第二年續保時保險費加倍計算。 \n第六條  自負額 \n本附加條款無自負額。 \n第七條  條款之適..."
+            },
+            {
+              "document": "144311112039120001-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...被保險人前一年發生本附加條款承保事故，第二年續保時保險費加倍計算。 \n第六條  自負額 \n本附加條款無自負額。 \n第七條  條款之適用 \n本附加條款所記載事項如與主保險契..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311112039120001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 86100,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1911,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311112039120002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物第三人責任保險受酒類影響車禍受害人補償附加條款(公會版)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1478,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112039120002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...公會版）\n（公會版）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：責任保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www...."
+            },
+            {
+              "document": "144311112039120002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...會版）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：責任保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-ins..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：不保事項、續保、保險期間、自負額。",
+          "terms": [
+            "不保事項",
+            "續保",
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112039120002-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...八、本附加條款無自負額。 \n九、本附加條款於要保汽車第三人責任險後始得加保。 \n十、不保事項： \n同第三人責任保險。 \n \n日商三井住友海上火災產物保險股份有限公司\n日商三井住..."
+            },
+            {
+              "document": "144311112039120002-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...列保險金額之保險費加收百分之九。 \n七、被保險人前一年發生本附加條款承保事故，第二年續保時保險費加倍計算。 \n八、本附加條款無自負額。 \n九、本附加條款於要保汽車第三人責任..."
+            },
+            {
+              "document": "144311112039120002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保二字第09502522257 號令修正 \n \n一.承保對象:一般自用汽車。 \n二.保險期間：一年期。 \n三.承保範圍: \n茲經雙方同意，在投保第三人責任保險後，加繳保險費，加..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311112039120002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 84615,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1478,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311112046120001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車第三人責任保險傷害責任加倍保障附加條款",
+      "sale_status": "已停售",
+      "sale_date": "093/06/03",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2115,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險金、傷害。",
+          "terms": [
+            "保險金",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112046120001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...二、承保目的： \n被保險人可依其本身風險管理之評估，選擇汽車第三人責任保險每一事故保險金額多倍的\n保障，其保障之倍數由現行二倍增加至十倍。 \n \n三、承保方式： \n以簽發「..."
+            },
+            {
+              "document": "144311112046120001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n三井住友產物汽車第三人責任保險傷害責任事故多倍保障附加條款 \n商品簡介 \n本公司財務及業務公開資訊，歡迎至本公司網站..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112046120001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n三井住友產物汽車第三人責任保險傷害責任事故多倍保障附加條款 \n商品簡介 \n本公司財務及業務公開資訊，歡迎至本公司網站..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112046120001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...人責任保險傷害責任事故\n多倍保障附加條款」(以下簡稱本附加條款)，本公司就被保險人於保險期間內因所有、使\n用或管理被保險汽車發生意外事故，致第三人死亡或受有體傷，依法應負賠償責..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311112046120001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 86486,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 2115,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311112046120002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車第三人責任保險傷害責任加倍保障附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1654,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：給付項目、保險金、傷害。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112046120002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...保險傷害責任事故多倍保障附加條款 \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：責任保險金) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://ww..."
+            },
+            {
+              "document": "144311112046120002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...故多倍保障附加條款 \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：責任保險金) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-i..."
+            },
+            {
+              "document": "144311112046120002-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n三井住友產物汽車第三人責任保險傷害責任事故多倍保障附加條款\n三井住友產物汽車第三人責任保險傷害責任事故多倍保障附加條款..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112046120002-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n三井住友產物汽車第三人責任保險傷害責任事故多倍保障附加條款\n三井住友產物汽車第三人責任保險傷害責任事故多倍保障附加條款..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險期間。",
+          "terms": [
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311112046120002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...人責任保險傷害責任事故\n多倍保障附加條款」(以下簡稱本附加條款)，本公司就被保險人於保險期間內因所有、使\n用或管理被保險汽車發生意外事故，致第三人死亡或受有體傷，依法應負賠償責..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311112046120002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 79855,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1654,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311114057130001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物強制汽車責任保險(汽車)",
+      "sale_status": "已停售",
+      "sale_date": "094/11/07",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2020,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險金、傷害。",
+          "terms": [
+            "保險金",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311114057130001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...三人傷害或死亡\n者，不論被保險人有無過失，本公司應依本保險契約之約定，對請求權人給付保險金。 \n \n除外事項\n除外事項\n除外事項\n除外事項 \n受害人或其他請求權人有下列情事之..."
+            },
+            {
+              "document": "144311114057130001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...被保險人因使用或管理被保險汽車發生汽車交通事故，致乘客或車外第三人傷害或死亡\n者，不論被保險人有無過失，本公司應依本保險契約之約定，對請求權人給付保險金。..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311114057130001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...被保險人因使用或管理被保險汽車發生汽車交通事故，致乘客或車外第三人傷害或死亡\n者，不論被保險人有無過失，本公司應依本保險契約之約定，對請求權人給付保險金。..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：續保、保險期間。",
+          "terms": [
+            "續保",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311114057130001-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...約之保險期間，依保險證之記載為準。 \n本公司應於保險期間屆滿三十日前以書面通知要保人續保，如怠於通知而於原保險期\n間屆滿後三十日內發生保險事故者，本公司仍須負給付責任，但要..."
+            },
+            {
+              "document": "144311114057130001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...之行為者，本公司應將\n扣除該一人或數人應分得部分之餘額，給付於其他請求權人。 \n \n保險期間與保險給付\n保險期間與保險給付\n保險期間與保險給付\n保險期間與保險給付 \n本保險契約..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311114057130001-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...本保險契約之保險期間，依保險證之記載為準。 \n本公司應於保險期間屆滿三十日前以書面通知要保人續保，如怠於通知而於原保險期\n間屆滿後三十日內發生保險事故者，本公司仍須負給付..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311114057130001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 101556,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 2020,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210001100001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物車體損失保險甲式",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 4489,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險金、傷害。",
+          "terms": [
+            "保險金",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210001100001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...圍\n理賠範圍 \n被保險汽車發生本保險承保範圍內之毀損滅失時，本公司以本保險契約所載之保險金額為\n限依下列範圍對被保險人負賠償之責： \n一、救護費用：為維持損害之現狀或為防止損..."
+            },
+            {
+              "document": "144311210001100001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...理賠申請書(由本公司提供)，並由被保險人親自填寫其所載內容。如被保險人死亡\n或受重大傷害時，得由其繼承人或代理人代為填寫。 \n二、汽車行車執照及駕駛人駕駛執照影本。 \n三、..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：定義、傷害。",
+          "terms": [
+            "定義",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210001100001-F.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...。 \n七、不屬本保險契約特別載明為不保事項之任何其他原因。 \n \n第二條 被保險人之定義 \n本保險所稱之「被保險人」，其意義包括列名被保險人及附加被保險人： \n一、列名被保..."
+            },
+            {
+              "document": "144311210001100001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...理賠申請書(由本公司提供)，並由被保險人親自填寫其所載內容。如被保險人死亡\n或受重大傷害時，得由其繼承人或代理人代為填寫。 \n二、汽車行車執照及駕駛人駕駛執照影本。 \n三、..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、自負額。",
+          "terms": [
+            "不保事項",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210001100001-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...五、拋擲物或墜落物。 \n六、第三者之非善意行為。 \n七、不屬本保險契約特別載明為不保事項之任何其他原因。 \n \n第二條 被保險人之定義 \n本保險所稱之「被保險人」，其意義包..."
+            },
+            {
+              "document": "144311210001100001-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...，本公司於給付後得向該使\n用人或管理人追償。 \n \n第四條\n第四條\n第四條\n第四條 自負額\n自負額\n自負額\n自負額 \n被保險汽車發生本保險第一條承保範圍內之損失, 第一次被保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：理賠、申請、檢具、通知。",
+          "terms": [
+            "理賠",
+            "申請",
+            "檢具",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210001100001-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...負額，且該次賠款紀錄，不適用賠款加費之規定。 \n \n第五條\n第五條\n第五條\n第五條 理賠範圍\n理賠範圍\n理賠範圍\n理賠範圍 \n被保險汽車發生本保險承保範圍內之毀損滅失時，本..."
+            },
+            {
+              "document": "144311210001100001-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...繳銷牌照\n後，本公司始予賠付。 \n \n第十一條\n第十一條\n第十一條\n第十一條  理賠申請\n理賠申請\n理賠申請\n理賠申請 \n被保險人向本公司提出理賠申請時，應檢具下列文件：..."
+            },
+            {
+              "document": "144311210001100001-F.pdf",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...一條  理賠申請\n理賠申請\n理賠申請\n理賠申請 \n被保險人向本公司提出理賠申請時，應檢具下列文件： \n一、理賠申請書(由本公司提供)，並由被保險人親自填寫其所載內容。如被保..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210001100001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 125209,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 4489,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210001100002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物車體損失保險甲式(公會版)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1638,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210001100002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...公會版）\n（公會版）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：財產損失保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://ww..."
+            },
+            {
+              "document": "144311210001100002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：財產損失保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-ins..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210001100002-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...5）拋擲物或墜落物。 \n（6）第三者之非善意行為。 \n（7）不屬本保險契約特別載明為不保事項之任何其他原因。 \n四.不保事項： \n（1）被保險人因被保險汽車之毀損滅失所致之附帶..."
+            },
+            {
+              "document": "144311210001100002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保二字第09502522257 號令修正 \n \n一.承保對象:一般自用汽車。 \n二.保險期間：一年期。 \n三.承保範圍: \n被保險汽車在本保險契約有效期間內，因下列危險事故所致..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210001100002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 84939,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1638,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210002100001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物車體損失保險乙式",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 4620,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險金、傷害。",
+          "terms": [
+            "保險金",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210002100001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...圍\n理賠範圍 \n被保險汽車發生本保險承保範圍內之毀損滅失時，本公司以本保險契約所載之保險金額為\n限依下列範圍對被保險人負賠償之責： \n一、救護費用：為維持損害之現狀或為防止損..."
+            },
+            {
+              "document": "144311210002100001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...理賠申請書(由本公司提供)，並由被保險人親自填寫其所載內容。如被保險人死亡\n或受重大傷害時，得由其繼承人或代理人代為填寫。 \n二、汽車行車執照及駕駛人駕駛執照影本。 \n三、..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：定義、傷害。",
+          "terms": [
+            "定義",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210002100001-F.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...四、爆炸。 \n五、拋擲物或墜落物。 \n \n第二條\n第二條\n第二條\n第二條 被保險人之定義\n被保險人之定義\n被保險人之定義\n被保險人之定義 \n本保險所稱之「被保險人」，其意義..."
+            },
+            {
+              "document": "144311210002100001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...理賠申請書(由本公司提供)，並由被保險人親自填寫其所載內容。如被保險人死亡\n或受重大傷害時，得由其繼承人或代理人代為填寫。 \n二、汽車行車執照及駕駛人駕駛執照影本。 \n三、..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210002100001-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...，本公司於給付後得向該使\n用人或管理人追償。 \n \n第四條\n第四條\n第四條\n第四條 自負額\n自負額\n自負額\n自負額 \n被保險汽車發生本保險第一條承保範圍內之損失, 第一次被保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：理賠、申請、檢具、通知。",
+          "terms": [
+            "理賠",
+            "申請",
+            "檢具",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210002100001-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...負額，且該次賠款紀錄，不適用賠款加費之規定。 \n \n第五條\n第五條\n第五條\n第五條 理賠範圍\n理賠範圍\n理賠範圍\n理賠範圍 \n被保險汽車發生本保險承保範圍內之毀損滅失時，本..."
+            },
+            {
+              "document": "144311210002100001-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...繳銷牌照\n後，本公司始予賠付。 \n \n第十一條\n第十一條\n第十一條\n第十一條  理賠申請\n理賠申請\n理賠申請\n理賠申請 \n被保險人向本公司提出理賠申請時，應檢具下列文件：..."
+            },
+            {
+              "document": "144311210002100001-F.pdf",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...一條  理賠申請\n理賠申請\n理賠申請\n理賠申請 \n被保險人向本公司提出理賠申請時，應檢具下列文件： \n一、理賠申請書(由本公司提供)，並由被保險人親自填寫其所載內容。如被保..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210002100001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 125939,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 4620,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210002100002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物車體損失保險乙式(公會版)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1727,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210002100002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...公會版）\n（公會版）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：財產損失保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://ww..."
+            },
+            {
+              "document": "144311210002100002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：財產損失保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-ins..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210002100002-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...（2）火災。 \n（3）閃電、雷擊。 \n（4）爆炸。 \n（5）拋擲物或墜落物。 \n四.不保事項： \n因下列事項所致被保險汽車之毀損滅失，本公司不負賠償之責： \n（1）被保險人因被..."
+            },
+            {
+              "document": "144311210002100002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...金管保二字第09502522257 號令修正 \n一.承保對象:一般自用汽車。 \n二.保險期間：一年期。 \n三.承保範圍: \n被保險汽車在本保險契約有效期間內，因下列危險事故所致..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210002100002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 94843,
+          "page_count": 2,
+          "pages_parsed": 2,
+          "text_char_count": 1727,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210003100001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車竊盜損失保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 4514,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210003100001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...圍\n理賠範圍 \n被保險汽車發生本保險承保範圍內之毀損滅失時，本公司以本保險契約所載之保險金額為\n限依下列範圍對被保險人負賠償之責： \n一、救護費用：為維持損害之現狀或為防止損..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、自負額。",
+          "terms": [
+            "不保事項",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210003100001-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...所致之毀損滅失，本公司對被保險人負賠償之責。 \n \n第二條\n第二條\n第二條\n第二條 不保事項\n不保事項\n不保事項\n不保事項 \n下列事項所致之毀損滅失，本公司不負賠償之責： \n一..."
+            },
+            {
+              "document": "144311210003100001-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...留置權等債務關係存續期間所發生之\n毀損滅失。 \n \n第三條\n第三條\n第三條\n第三條 自負額\n自負額\n自負額\n自負額 \n被保險人於保險契約有效期間內，發生本保險承保範圍內之損失..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：理賠、申請、通知。",
+          "terms": [
+            "理賠",
+            "申請",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210003100001-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...--- page 2 ---\n\n \n \n \n第四條\n第四條\n第四條\n第四條 理賠範圍\n理賠範圍\n理賠範圍\n理賠範圍 \n被保險汽車發生本保險承保範圍內之毀損滅失時，本..."
+            },
+            {
+              "document": "144311210003100001-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...物之處分權，而隨同移轉予本公司承受。 \n \n \n第九條\n第九條\n第九條\n第九條 理賠申請\n理賠申請\n理賠申請\n理賠申請 \n被保險汽車發生本保險承保範圍內之損失時，自被保險人..."
+            },
+            {
+              "document": "144311210003100001-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...，折算新台幣賠付之。 \n(二)以協議方式賠付現款自行修復者，其修復完成後，被保險人應通知本公司檢驗，否\n則本公司對於以後該車同一部份之損失不負賠償責任。 \n \n第六條\n第六..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210003100001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 122562,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 4514,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210003100002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車竊盜損失保險(公會版)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1498,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210003100002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...公會版）\n（公會版）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：財產損失保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://ww..."
+            },
+            {
+              "document": "144311210003100002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：財產損失保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-ins..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210003100002-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...被保險汽車因遭受偷竊、搶奪、強盜所致之毀損滅失，本公司對被保險人負賠償之責。 \n四.不保事項： \n下列事項所致之毀損滅失，本公司不負賠償之責： \n（1）被保險人因被保險汽車之毀..."
+            },
+            {
+              "document": "144311210003100002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保二字第09502522257 號令修正 \n \n一.承保對象:一般自用汽車。 \n二.保險期間：一年期。 \n三.承保範圍: \n被保險汽車因遭受偷竊、搶奪、強盜所致之毀損滅失，本公..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210003100002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 85787,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1498,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210006100001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車竊盜損失保險零件、配件被竊損失附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1788,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210006100001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...間內累計賠償金額最高以實收保險費六倍為限。 \n第六條 本附加條款之保險費，國產汽車按保險金額百分之0.13 計算，最低不得低於1,000 元；進\n口汽車按保 險金額百分之0...."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210006100001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保險汽車原廠裝置之型式為準。 \n第四條 本附加條款無自負額。 \n第五條 本附加條款於保險期間內累計賠償金額最高以實收保險費六倍為限。 \n第六條 本附加條款之保險費，國產汽車按保..."
+            },
+            {
+              "document": "144311210006100001-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...件及配件，除特別載明者外，概以被保險汽車原廠裝置之型式為準。 \n第四條 本附加條款無自負額。 \n第五條 本附加條款於保險期間內累計賠償金額最高以實收保險費六倍為限。 \n第六條..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：理賠。",
+          "terms": [
+            "理賠"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210006100001-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...金額百分之0.22 計算，最低不得低於2,000 元。 \n第七條 主保險契約發生全損理賠者，本附加條款之未滿期保險費，不予退費。 \n第八條 本附加條款所記載事項如與主保險契..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210006100001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 80411,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1788,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210006100002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車竊盜損失保險零件、配件被竊損失附加條款(公會版)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1184,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210006100002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...公會版）\n（公會版）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：財產損失保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://ww..."
+            },
+            {
+              "document": "144311210006100002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：財產損失保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-ins..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210006100002-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...二項第一款所稱之零件、配件非與被保險汽車同時被竊所致之\n損失，亦負賠償之責。 \n四.不保事項： \n同汽車竊盜損失保險但不包含（1）裝置於被保險汽車之零件、配件非與被保險汽車同時..."
+            },
+            {
+              "document": "144311210006100002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...字第09502522257 號令修正 \n \n \n一.承保對象:一般自用汽車。 \n二.保險期間：一年期。 \n三.承保範圍: \n茲經雙方同意，在投保汽車竊盜損失保險後，加繳保險費，..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210006100002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 75168,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1184,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210007100001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車竊盜損失保險附加自用車代車費用條款",
+      "sale_status": "已停售",
+      "sale_date": "093/06/03",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1602,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210007100001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...汽車無法尋回時，自向警方報案之日起至本汽車竊盜損失保險\n以全損賠付並通知被保險人領取保險金之日止計算。 \n(二)、被保險汽車失竊後尋回時，自向警方報案之日起至被保險汽車修復完..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210007100001-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...(一)、被保險汽車無法尋回時，自向警方報案之日起至本汽車竊盜損失保險\n以全損賠付並通知被保險人領取保險金之日止計算。 \n(二)、被保險汽車失竊後尋回時，自向警方報案之日起..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210007100001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 75204,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1602,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210007100002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車竊盜損失保險附加自用車代車費用條款",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1053,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210007100002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...汽車竊盜損失保險附加代車費用條款 \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目:代車費用) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www..."
+            },
+            {
+              "document": "144311210007100002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...汽車無法尋回時，自向警方報案之日起至本汽車竊盜損失保險\n以全損賠付並通知被保險人領取保險金之日止計算。 \n(二)、被保險汽車失竊後尋回時，自向警方報案之日起至被保險汽車修復完..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210007100002-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...(一)、被保險汽車無法尋回時，自向警方報案之日起至本汽車竊盜損失保險\n以全損賠付並通知被保險人領取保險金之日止計算。 \n(二)、被保險汽車失竊後尋回時，自向警方報案之日起..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210007100002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 82684,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1053,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210011100001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車竊盜損失保險附加全損免折舊條款",
+      "sale_status": "已停售",
+      "sale_date": "093/03/04",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1694,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210011100001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...被保險汽車發生汽車竊盜損失保險承保範圍之保險事故或因該事故所致之修理費用數額達\n保險金額扣除折舊後數額之四分之三以上時，本公司按保險金額扣除約定自負額後賠付，\n不再扣除折..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210011100001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...之四分之三以上時，本公司按保險金額扣除約定自負額後賠付，\n不再扣除折舊。 \n \n三、保險期間：最長為一年。 \n \n四、短期費率 \n期間 \n按全年保險費百分比(%) \n一個月或以..."
+            },
+            {
+              "document": "144311210011100001-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...致之修理費用數額達\n保險金額扣除折舊後數額之四分之三以上時，本公司按保險金額扣除約定自負額後賠付，\n不再扣除折舊。 \n \n三、保險期間：最長為一年。 \n \n四、短期費率 \n期..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210011100001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 94398,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1694,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210011100002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車竊盜損失保險附加全損免折舊條款",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1251,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210011100002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...盜損失保險附加全損免折舊附加條款 \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：財產損失保險金) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://..."
+            },
+            {
+              "document": "144311210011100002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...免折舊附加條款 \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：財產損失保險金) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-i..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210011100002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...之四分之三以上時，本公司按保險金額扣除約定自負額後賠付，\n不再扣除折舊。 \n \n三、保險期間：最長為一年。 \n \n四、短期費率 \n期間 \n按全年保險費百分比(%) \n一個月或以..."
+            },
+            {
+              "document": "144311210011100002-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...致之修理費用數額達\n保險金額扣除折舊後數額之四分之三以上時，本公司按保險金額扣除約定自負額後賠付，\n不再扣除折舊。 \n \n三、保險期間：最長為一年。 \n \n四、短期費率 \n期..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210011100002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 71345,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1251,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210021100001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車竊盜損失保險附加無自負額條款",
+      "sale_status": "已停售",
+      "sale_date": "093/03/04",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1688,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210021100001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...失，\n免除被保險人原依汽車竊盜損失保險條款第三條應負擔基本自負額之約定。 \n \n三、保險期間：最長為一年。 \n \n四、短期費率 \n期間 \n按全年保險費百分比(%) \n一個月或以..."
+            },
+            {
+              "document": "144311210021100001-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "--- page 1 ---\n\n \n三井住友產物汽車竊盜損失保險附加無自負額附加條款     \n商品簡介 \n本公司財務及業務公開資訊，歡迎至本公司網站\n本公司財..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 1,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210021100001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 94180,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1688,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210021100002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車竊盜損失保險附加無自負額條款",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1228,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210021100002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...竊盜損失保險附加無自負額附加條款 \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：財產損失保險金) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://..."
+            },
+            {
+              "document": "144311210021100002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...自負額附加條款 \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：財產損失保險金) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-i..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210021100002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...失，\n免除被保險人原依汽車竊盜損失保險條款第三條應負擔基本自負額之約定。 \n \n三、保險期間：最長為一年。 \n \n四、短期費率 \n期間 \n按全年保險費百分比(%) \n一個月或以..."
+            },
+            {
+              "document": "144311210021100002-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "--- page 1 ---\n\n \n三井住友產物汽車竊盜損失保險附加無自負額附加條款\n三井住友產物汽車竊盜損失保險附加無自負額附加條款\n三井住友產物汽車竊盜損失..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210021100002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 71149,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1228,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210022100001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物車體損失保險丙式－免自負額車對車碰撞損失保險",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 4280,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險金、傷害。",
+          "terms": [
+            "保險金",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210022100001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...圍\n理賠範圍 \n被保險汽車發生本保險承保範圍內之毀損滅失時，本公司以本保險契約所載之保險金額為\n限依下列範圍對被保險人負賠償之責： \n一、救護費用：為維持損害之現狀或為防止損..."
+            },
+            {
+              "document": "144311210022100001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...、理賠申請書（由本公司提供），由被保險人親自填寫其所載內容。如被保險人死亡或受\n重大傷害時，得由其繼承人或代理人代為填寫。 \n二、汽車行車執照及駕駛人駕駛執照影本。 \n三、..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：定義、傷害。",
+          "terms": [
+            "定義",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210022100001-F.pdf",
+              "page": 1,
+              "term": "定義",
+              "snippet": "...查証屬實者，本公司亦負\n賠償之責。 \n \n第二條\n第二條\n第二條\n第二條 被保險人之定義\n被保險人之定義\n被保險人之定義\n被保險人之定義 \n本保險所稱之「被保險人」，其意義..."
+            },
+            {
+              "document": "144311210022100001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...、理賠申請書（由本公司提供），由被保險人親自填寫其所載內容。如被保險人死亡或受\n重大傷害時，得由其繼承人或代理人代為填寫。 \n二、汽車行車執照及駕駛人駕駛執照影本。 \n三、..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210022100001-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...車體損失保險丙式－\n車體損失保險丙式－\n車體損失保險丙式－\n車體損失保險丙式－ \n免自負額車對車碰撞損失保險\n免自負額車對車碰撞損失保險\n免自負額車對車碰撞損失保險\n免自負額..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：理賠、申請、檢具、通知。",
+          "terms": [
+            "理賠",
+            "申請",
+            "檢具",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210022100001-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...，本公司於給付後得向該使\n用人或管理人追償。 \n \n第四條\n第四條\n第四條\n第四條 理賠範圍\n理賠範圍\n理賠範圍\n理賠範圍 \n被保險汽車發生本保險承保範圍內之毀損滅失時，本..."
+            },
+            {
+              "document": "144311210022100001-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...關辦理報廢繳銷牌照\n後，本公司始予賠付。 \n \n第十條\n第十條\n第十條\n第十條 理賠申請\n理賠申請\n理賠申請\n理賠申請 \n被保險人向本公司提出理賠申請時，應檢具下列文件：..."
+            },
+            {
+              "document": "144311210022100001-F.pdf",
+              "page": 1,
+              "term": "檢具",
+              "snippet": "...第十條 理賠申請\n理賠申請\n理賠申請\n理賠申請 \n被保險人向本公司提出理賠申請時，應檢具下列文件： \n一、理賠申請書（由本公司提供），由被保險人親自填寫其所載內容。如被保險..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210022100001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 118564,
+          "page_count": 4,
+          "pages_parsed": 4,
+          "text_char_count": 4280,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210022100002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物車體損失保險丙式－免自負額車對車碰撞損失保險(公會版)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1581,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210022100002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...會版）\n（公會版）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n (主要給付項目：財產損失保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://ww..."
+            },
+            {
+              "document": "144311210022100002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n (主要給付項目：財產損失保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-ins..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 3 個重點詞：不保事項、保險期間、自負額。",
+          "terms": [
+            "不保事項",
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210022100002-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...逃逸無法確認，但經憲警現場處理且經由本公司查証屬實者，本公司亦負賠償\n之責。 \n四.不保事項： \n下列毀損滅失，本公司不負賠償之責： \n（1）被保險汽車非直接與對造車輛碰撞、擦..."
+            },
+            {
+              "document": "144311210022100002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...金管保二字第09502522257 號令修正 \n一.承保對象:一般自用汽車。 \n二.保險期間：一年期。 \n三.承保範圍: \n被保險汽車在本保險契約有效期間內，因與車輛發生碰撞、..."
+            },
+            {
+              "document": "144311210022100002-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...產物車體損失保險丙式\n車體損失保險丙式\n車體損失保險丙式\n車體損失保險丙式-- \n免自負額車對車碰撞損失保險條款\n免自負額車對車碰撞損失保險條款\n免自負額車對車碰撞損失保險條..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210022100002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 88667,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1581,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311210024100001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物車體損失保險乙式免自負額附加條款(公會版)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1085,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210024100001-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...簡介\n商品簡介\n商品簡介 \n（公會版）\n（公會版）\n（公會版）\n（公會版） \n(主要給付項目：財產損失保險金)..."
+            },
+            {
+              "document": "144311210024100001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...品簡介 \n（公會版）\n（公會版）\n（公會版）\n（公會版） \n(主要給付項目：財產損失保險金) \n \n                              財政部88.0..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險期間、自負額。",
+          "terms": [
+            "保險期間",
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311210024100001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保二字第09502522257 號令修正 \n \n一.承保對象:一般自用汽車。 \n二.保險期間：ㄧ年期。 \n三.承保範圍: \n被保險汽車在本保險契約有效期間內，因下列危險事故所致..."
+            },
+            {
+              "document": "144311210024100001-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...三井住友\n三井住友\n三井住友\n三井住友產物\n產物\n產物\n產物車體損失保險乙式免自負額附加條款\n車體損失保險乙式免自負額附加條款\n車體損失保險乙式免自負額附加條款\n車體損..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311210024100001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 81045,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1085,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311228059100001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車車體損失保險颱風、地震、海嘯、冰雹、洪水或因雨積水附加條款",
+      "sale_status": "已停售",
+      "sale_date": "091/07/10",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1715,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：保險金。",
+          "terms": [
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311228059100001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...海嘯、冰雹、洪水、\n或因雨積水所致之毀損滅失，亦負賠償之責。 \n第二條 本附加條款之保險金額與主保險契約相同，其保險費按保險金額百分之0.79 計算。 \n第三條 本附加條款無..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：自負額。",
+          "terms": [
+            "自負額"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311228059100001-F.pdf",
+              "page": 1,
+              "term": "自負額",
+              "snippet": "...額與主保險契約相同，其保險費按保險金額百分之0.79 計算。 \n第三條 本附加條款無自負額。 \n第四條 本附加條款應與主保險契約同時起保或退保，如在中途加保者，應按主保險契約..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：理賠。",
+          "terms": [
+            "理賠"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311228059100001-F.pdf",
+              "page": 1,
+              "term": "理賠",
+              "snippet": "...在中途加保者，應按主保險契約所載期限\n計收保費，如在中途單獨退保或主保險契約發生全損理賠者，不予退費。 \n第五條 本附加條款所記載事項如與主保險契約牴觸時，依本附加條款規定..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311228059100001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 79176,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1715,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311228059100002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車車體損失保險颱風、地震、海嘯、冰雹、洪水或因雨積水附加條款(公會版)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1205,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：給付項目、保險金。",
+          "terms": [
+            "給付項目",
+            "保險金"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311228059100002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...公會版）\n（公會版）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：財產損失保險金) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://..."
+            },
+            {
+              "document": "144311228059100002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...）\n（公會版） \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：財產損失保險金) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-i..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311228059100002-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...汽車因颱風、地震、海嘯、冰雹、洪水、或因雨積水所致之毀損滅失，亦負賠償之責。 \n四.不保事項： \n同車體損失保險甲、乙式但不包含(二)被保險汽車因颱風、地震、海嘯、冰雹、洪水或..."
+            },
+            {
+              "document": "144311228059100002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保二字第09502522257 號令修正 \n \n一.承保對象:一般自用汽車。 \n二.保險期間：一年期。 \n三.承保範圍: \n茲經雙方同意，在投保汽車車體損失保險後，加繳保險費，..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311228059100002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 76081,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1205,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311424063190001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車保險附加親屬交通傷害保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "089/02/02",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1601,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：保險金、住院、殘廢、傷害。",
+          "terms": [
+            "保險金",
+            "住院",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424063190001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...加被保險人 \n3. 承保對象為以65 歲以下為限 \n4. 同一保險單中所有被保險人之保險金額須相同 \n5. 依保險法第107 條修正，以未滿十四歲之未成年人，除喪葬費用之給付..."
+            },
+            {
+              "document": "144311424063190001-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...二、承保範圍： \n1. 被保險人因汽、機車交通事故所致身體蒙受傷害而致殘廢、死亡或住院醫\n療時。 \n2. 被保險人之配偶及其親屬，其姓名事先載明於要保書，均可成為被保險人..."
+            },
+            {
+              "document": "144311424063190001-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...附加投保。 \n二、承保範圍： \n1. 被保險人因汽、機車交通事故所致身體蒙受傷害而致殘廢、死亡或住院醫\n療時。 \n2. 被保險人之配偶及其親屬，其姓名事先載明於要保書，均可..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：傷害、住院。",
+          "terms": [
+            "傷害",
+            "住院"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424063190001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n三井住友產物汽車保險附加親屬交通傷害保險附加條款\n三井住友產物汽車保險附加親屬交通傷害保險附加條款\n三井住友產物汽車保險..."
+            },
+            {
+              "document": "144311424063190001-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...二、承保範圍： \n1. 被保險人因汽、機車交通事故所致身體蒙受傷害而致殘廢、死亡或住院醫\n療時。 \n2. 被保險人之配偶及其親屬，其姓名事先載明於要保書，均可成為被保險人..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311424063190001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 79001,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1601,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311424063190002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車保險附加親屬交通傷害保險附加條款",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "醫療險",
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1092,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：給付項目、保險金、住院、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "住院",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424063190002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...保險附加親屬交通傷害保險附加條款 \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：傷害保險金) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://ww..."
+            },
+            {
+              "document": "144311424063190002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...通傷害保險附加條款 \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：傷害保險金) \n \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-i..."
+            },
+            {
+              "document": "144311424063190002-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...二、承保範圍： \n1. 被保險人因汽、機車交通事故所致身體蒙受傷害而致殘廢、死亡或住院醫療時。 \n2. 被保險人之配偶及其親屬，其姓名事先載明於要保書，均可成為被保險人..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：傷害、住院。",
+          "terms": [
+            "傷害",
+            "住院"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424063190002-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "--- page 1 ---\n\n \n三井住友產物汽車保險附加親屬交通傷害保險附加條款\n三井住友產物汽車保險附加親屬交通傷害保險附加條款\n三井住友產物汽車保險..."
+            },
+            {
+              "document": "144311424063190002-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...二、承保範圍： \n1. 被保險人因汽、機車交通事故所致身體蒙受傷害而致殘廢、死亡或住院醫療時。 \n2. 被保險人之配偶及其親屬，其姓名事先載明於要保書，均可成為被保險人..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 2,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311424063190002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 90421,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1092,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311424079190001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車第三人責任保險附加駕駛人傷害保險",
+      "sale_status": "已停售",
+      "sale_date": "094/11/09",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "意外險",
+        "失能/殘扶"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 11428,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：保險金、手術、身故、殘廢、傷害。",
+          "terms": [
+            "保險金",
+            "手術",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424079190001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...被保險汽車發生交通意外事故，致被保險人死亡或殘廢時，本公司依照本附加險\n之約定負給付保險金的責任。 \n本附加險所稱之「被保險人」，指駕駛被保險汽車之人，並以記載於被保險人名冊..."
+            },
+            {
+              "document": "144311424079190001-F.pdf",
+              "page": 1,
+              "term": "手術",
+              "snippet": "...節間關節切斷者。 \n（2）其他各指，係指由近位指節間關節切斷者。 \n8-2.若經接指手術後機能仍永久完全喪失者，視為缺失。足趾亦同。 \n8-3.截取拇趾接合於拇指時，若拇指..."
+            },
+            {
+              "document": "144311424079190001-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...重的項目給付殘廢保險金，但以前的殘廢，視同已給\n付殘廢保險金，應扣除之。 \n第三條 身故保險金的給付 \n被保險人於本契約有效期間內遭受第一條約定的意外傷害事故，自意外傷害事..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：傷害、醫師、手術、意外傷害事故。",
+          "terms": [
+            "傷害",
+            "醫師",
+            "手術",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424079190001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...井住友產物\n三井住友產物\n三井住友產物汽車\n汽車\n汽車\n汽車第三人責任保險附加駕駛人傷害保險\n第三人責任保險附加駕駛人傷害保險\n第三人責任保險附加駕駛人傷害保險\n第三人責任..."
+            },
+            {
+              "document": "144311424079190001-F.pdf",
+              "page": 1,
+              "term": "醫師",
+              "snippet": "...之情況依下列各項狀況定其等級。於審定時，須有精神科、神經科、神經外科或復健科\n等專科醫師診斷證明資料為依據。 \n（1）因重度神經障害，為維持生命必要之日常生活活動，全須他人..."
+            },
+            {
+              "document": "144311424079190001-F.pdf",
+              "page": 1,
+              "term": "手術",
+              "snippet": "...節間關節切斷者。 \n（2）其他各指，係指由近位指節間關節切斷者。 \n8-2.若經接指手術後機能仍永久完全喪失者，視為缺失。足趾亦同。 \n8-3.截取拇趾接合於拇指時，若拇指..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、限制。",
+          "terms": [
+            "不保事項",
+            "限制"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424079190001-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...時，受益人得依第二條及第三條\n之約定分別申領保險金，不適用第一項之約定。 \n第五條 不保事項   \n被保險人駕駛被保險汽車因下列事項而致死亡殘廢或有體傷者，本公司不給付保險金的..."
+            },
+            {
+              "document": "144311424079190001-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...證明\n被保險人之死亡與該意外傷害事故具有因果關係者，不在此限。 \n第四條 保險給付的限制 \n被保險人於本契約有效期間內因同一意外傷害事故致成殘廢後身故，並符合本契約第二條及..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：申請、保險金的申領、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424079190001-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...上，且經其簽名\n同意者為限。在本附加險有效期間內，駕駛被保險汽車之人如有更換，於變更申請書送達本公司時，\n新更換之駕駛被保險汽車之人取得被保險人資格；被更換之駕駛人則同時喪..."
+            },
+            {
+              "document": "144311424079190001-F.pdf",
+              "page": 1,
+              "term": "保險金的申領",
+              "snippet": "...人飲酒後駕車，其吐氣或血液所含酒精成分超過道路交\n通法令規定標準者。 \n第六條 身故保險金的申領 \n受益人申領「身故保險金」應檢具下列文件： \n一、保險金申請書。 \n二、保險單或其..."
+            },
+            {
+              "document": "144311424079190001-F.pdf",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...本契約有效期間內因同一意外傷害事故致成殘廢後身故，並符合本契約第二條及第三條\n約定之申領條件時，本公司之給付總金額合計最高以保險金額為限。 \n前項情形，受益人已受領殘廢保險..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311424079190001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 574733,
+          "page_count": 9,
+          "pages_parsed": 9,
+          "text_char_count": 11428,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311424079190002",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車第三人責任保險附加駕駛人傷害保險(公會版)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "意外險"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1331,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：給付項目、保險金、殘廢、傷害。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424079190002-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...公會版\n公會版\n公會版\n公會版) \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：傷害保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www...."
+            },
+            {
+              "document": "144311424079190002-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...公會版\n公會版) \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：傷害保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-ins..."
+            },
+            {
+              "document": "144311424079190002-F.pdf",
+              "page": 1,
+              "term": "殘廢",
+              "snippet": "...駕駛人傷害保險，本公司對被保險人於駕駛被保險汽車發生交通\n意外事故，致被保險人死亡或殘廢時，本公司依照本附加險之約定負賠償之責。 \n四.不保事項： \n被保險人駕駛被保險汽車..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424079190002-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...三井住友產物汽車第三人責任保險附加駕駛人傷害保險\n三井住友產物汽車第三人責任保險附加駕駛人傷害保險\n三井住友產物汽車第三人責任保..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、保險期間。",
+          "terms": [
+            "不保事項",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424079190002-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...交通\n意外事故，致被保險人死亡或殘廢時，本公司依照本附加險之約定負賠償之責。 \n四.不保事項： \n被保險人駕駛被保險汽車因下列事項而致死亡殘廢或有體傷者，本公司不負賠償之責：..."
+            },
+            {
+              "document": "144311424079190002-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...保二字第09502522257 號令修正 \n \n一.承保對象:一般自用汽車。 \n二.保險期間：一年期。 \n三.承保範圍: \n茲經雙方同意，要保人投保三井住友產物汽車第三人責任保..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311424079190002-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 68263,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1331,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311424079190101",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車第三人責任保險附加駕駛人傷害保險傷害醫療給付附加條款",
+      "sale_status": "已停售",
+      "sale_date": "094/11/09",
+      "discontinued_date": "096/11/28",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "醫療險",
+        "意外險",
+        "失能/殘扶",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 11428,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 5 個重點詞：保險金、手術、身故、殘廢、傷害。",
+          "terms": [
+            "保險金",
+            "手術",
+            "身故",
+            "殘廢",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424079190101-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...被保險汽車發生交通意外事故，致被保險人死亡或殘廢時，本公司依照本附加險\n之約定負給付保險金的責任。 \n本附加險所稱之「被保險人」，指駕駛被保險汽車之人，並以記載於被保險人名冊..."
+            },
+            {
+              "document": "144311424079190101-F.pdf",
+              "page": 1,
+              "term": "手術",
+              "snippet": "...節間關節切斷者。 \n（2）其他各指，係指由近位指節間關節切斷者。 \n8-2.若經接指手術後機能仍永久完全喪失者，視為缺失。足趾亦同。 \n8-3.截取拇趾接合於拇指時，若拇指..."
+            },
+            {
+              "document": "144311424079190101-F.pdf",
+              "page": 1,
+              "term": "身故",
+              "snippet": "...重的項目給付殘廢保險金，但以前的殘廢，視同已給\n付殘廢保險金，應扣除之。 \n第三條 身故保險金的給付 \n被保險人於本契約有效期間內遭受第一條約定的意外傷害事故，自意外傷害事..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：傷害、醫師、手術、意外傷害事故。",
+          "terms": [
+            "傷害",
+            "醫師",
+            "手術",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424079190101-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...井住友產物\n三井住友產物\n三井住友產物汽車\n汽車\n汽車\n汽車第三人責任保險附加駕駛人傷害保險\n第三人責任保險附加駕駛人傷害保險\n第三人責任保險附加駕駛人傷害保險\n第三人責任..."
+            },
+            {
+              "document": "144311424079190101-F.pdf",
+              "page": 1,
+              "term": "醫師",
+              "snippet": "...之情況依下列各項狀況定其等級。於審定時，須有精神科、神經科、神經外科或復健科\n等專科醫師診斷證明資料為依據。 \n（1）因重度神經障害，為維持生命必要之日常生活活動，全須他人..."
+            },
+            {
+              "document": "144311424079190101-F.pdf",
+              "page": 1,
+              "term": "手術",
+              "snippet": "...節間關節切斷者。 \n（2）其他各指，係指由近位指節間關節切斷者。 \n8-2.若經接指手術後機能仍永久完全喪失者，視為缺失。足趾亦同。 \n8-3.截取拇趾接合於拇指時，若拇指..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：不保事項、限制。",
+          "terms": [
+            "不保事項",
+            "限制"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424079190101-F.pdf",
+              "page": 1,
+              "term": "不保事項",
+              "snippet": "...時，受益人得依第二條及第三條\n之約定分別申領保險金，不適用第一項之約定。 \n第五條 不保事項   \n被保險人駕駛被保險汽車因下列事項而致死亡殘廢或有體傷者，本公司不給付保險金的..."
+            },
+            {
+              "document": "144311424079190101-F.pdf",
+              "page": 1,
+              "term": "限制",
+              "snippet": "...證明\n被保險人之死亡與該意外傷害事故具有因果關係者，不在此限。 \n第四條 保險給付的限制 \n被保險人於本契約有效期間內因同一意外傷害事故致成殘廢後身故，並符合本契約第二條及..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 6 個重點詞：申請、保險金的申領、申領、檢具、受益人、通知。",
+          "terms": [
+            "申請",
+            "保險金的申領",
+            "申領",
+            "檢具",
+            "受益人",
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424079190101-F.pdf",
+              "page": 1,
+              "term": "申請",
+              "snippet": "...上，且經其簽名\n同意者為限。在本附加險有效期間內，駕駛被保險汽車之人如有更換，於變更申請書送達本公司時，\n新更換之駕駛被保險汽車之人取得被保險人資格；被更換之駕駛人則同時喪..."
+            },
+            {
+              "document": "144311424079190101-F.pdf",
+              "page": 1,
+              "term": "保險金的申領",
+              "snippet": "...人飲酒後駕車，其吐氣或血液所含酒精成分超過道路交\n通法令規定標準者。 \n第六條 身故保險金的申領 \n受益人申領「身故保險金」應檢具下列文件： \n一、保險金申請書。 \n二、保險單或其..."
+            },
+            {
+              "document": "144311424079190101-F.pdf",
+              "page": 1,
+              "term": "申領",
+              "snippet": "...本契約有效期間內因同一意外傷害事故致成殘廢後身故，並符合本契約第二條及第三條\n約定之申領條件時，本公司之給付總金額合計最高以保險金額為限。 \n前項情形，受益人已受領殘廢保險..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311424079190101-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 574733,
+          "page_count": 9,
+          "pages_parsed": 9,
+          "text_char_count": 11428,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144311424079190102",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物汽車第三人責任保險附加駕駛人傷害保險傷害醫療給付附加條款(公會版)",
+      "sale_status": "已停售",
+      "sale_date": "096/11/29",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [
+        "醫療險",
+        "意外險",
+        "豁免/附加條款"
+      ],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 1458,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：給付項目、保險金、住院、傷害。",
+          "terms": [
+            "給付項目",
+            "保險金",
+            "住院",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424079190102-F.pdf",
+              "page": 1,
+              "term": "給付項目",
+              "snippet": "...公會版\n公會版\n公會版\n公會版) \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：傷害保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www...."
+            },
+            {
+              "document": "144311424079190102-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...公會版\n公會版) \n商品簡介\n商品簡介\n商品簡介\n商品簡介 \n(主要給付項目：傷害保險金) \n本公司財務及業務公開資訊，歡迎至本公司網站(http://www.ms-ins..."
+            },
+            {
+              "document": "144311424079190102-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...自交通意外事故發生之日起一百八十日以內 \n，經登記合格的醫院或診所治療者，本公司就其住院日數，給付保險單所 \n記載的「住院醫療保險金日額」。但超過一百八十日繼續治療者，受益..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 4 個重點詞：傷害、醫院、住院、意外傷害事故。",
+          "terms": [
+            "傷害",
+            "醫院",
+            "住院",
+            "意外傷害事故"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424079190102-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...住友\n三井住友\n三井住友\n三井住友產物\n產物\n產物\n產物汽車第三人責任保險附加駕駛人傷害保險\n汽車第三人責任保險附加駕駛人傷害保險\n汽車第三人責任保險附加駕駛人傷害保險\n汽..."
+            },
+            {
+              "document": "144311424079190102-F.pdf",
+              "page": 1,
+              "term": "醫院",
+              "snippet": "...第一條約定的交通意外事故，自交通意外事故發生之日起一百八十日以內 \n，經登記合格的醫院或診所治療者，本公司就其住院日數，給付保險單所 \n記載的「住院醫療保險金日額」。但超..."
+            },
+            {
+              "document": "144311424079190102-F.pdf",
+              "page": 1,
+              "term": "住院",
+              "snippet": "...自交通意外事故發生之日起一百八十日以內 \n，經登記合格的醫院或診所治療者，本公司就其住院日數，給付保險單所 \n記載的「住院醫療保險金日額」。但超過一百八十日繼續治療者，受益..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "not_detected",
+          "summary": "這批已下載文件未抽到明確文字命中，仍需回官方文件確認。",
+          "terms": [],
+          "pages": [],
+          "evidence": []
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：受益人。",
+          "terms": [
+            "受益人"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144311424079190102-F.pdf",
+              "page": 1,
+              "term": "受益人",
+              "snippet": "...住院日數，給付保險單所 \n記載的「住院醫療保險金日額」。但超過一百八十日繼續治療者，受益人若 \n能證明被保險人之治療與該意外傷害事故具有因果關係者，不在此限。 \n前項每次傷害..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 3,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144311424079190102-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 85909,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 1458,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    },
+    {
+      "product_id": "144313116058140001",
+      "company": "三井住友產物保險股份有限公司",
+      "insurance_category": "汽車保險",
+      "product_name": "三井住友產物強制汽車責任保險(機車)",
+      "sale_status": "已停售",
+      "sale_date": "094/11/07",
+      "discontinued_date": "098/01/01",
+      "source_batch_id": "tii-property-093",
+      "coverage_tags": [],
+      "document_count": 1,
+      "extracted_document_count": 1,
+      "text_char_count": 2020,
+      "reader_focus": [
+        {
+          "key": "coverage",
+          "label": "保障項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：保險金、傷害。",
+          "terms": [
+            "保險金",
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144313116058140001-F.pdf",
+              "page": 1,
+              "term": "保險金",
+              "snippet": "...三人傷害或死亡\n者，不論被保險人有無過失，本公司應依本保險契約之約定，對請求權人給付保險金。 \n \n除外事項\n除外事項\n除外事項\n除外事項 \n受害人或其他請求權人有下列情事之..."
+            },
+            {
+              "document": "144313116058140001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...被保險人因使用或管理被保險汽車發生汽車交通事故，致乘客或車外第三人傷害或死亡\n者，不論被保險人有無過失，本公司應依本保險契約之約定，對請求權人給付保險金。..."
+            }
+          ]
+        },
+        {
+          "key": "definitions",
+          "label": "重要定義",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：傷害。",
+          "terms": [
+            "傷害"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144313116058140001-F.pdf",
+              "page": 1,
+              "term": "傷害",
+              "snippet": "...被保險人因使用或管理被保險汽車發生汽車交通事故，致乘客或車外第三人傷害或死亡\n者，不論被保險人有無過失，本公司應依本保險契約之約定，對請求權人給付保險金。..."
+            }
+          ]
+        },
+        {
+          "key": "special",
+          "label": "特殊項目",
+          "status": "detected",
+          "summary": "已從文件文字命中 2 個重點詞：續保、保險期間。",
+          "terms": [
+            "續保",
+            "保險期間"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144313116058140001-F.pdf",
+              "page": 1,
+              "term": "續保",
+              "snippet": "...約之保險期間，依保險證之記載為準。 \n本公司應於保險期間屆滿三十日前以書面通知要保人續保，如怠於通知而於原保險期\n間屆滿後三十日內發生保險事故者，本公司仍須負給付責任，但要..."
+            },
+            {
+              "document": "144313116058140001-F.pdf",
+              "page": 1,
+              "term": "保險期間",
+              "snippet": "...之行為者，本公司應將\n扣除該一人或數人應分得部分之餘額，給付於其他請求權人。 \n \n保險期間與保險給付\n保險期間與保險給付\n保險期間與保險給付\n保險期間與保險給付 \n本保險契約..."
+            }
+          ]
+        },
+        {
+          "key": "claims",
+          "label": "理賠申請",
+          "status": "detected",
+          "summary": "已從文件文字命中 1 個重點詞：通知。",
+          "terms": [
+            "通知"
+          ],
+          "pages": [
+            1
+          ],
+          "evidence": [
+            {
+              "document": "144313116058140001-F.pdf",
+              "page": 1,
+              "term": "通知",
+              "snippet": "...本保險契約之保險期間，依保險證之記載為準。 \n本公司應於保險期間屆滿三十日前以書面通知要保人續保，如怠於通知而於原保險期\n間屆滿後三十日內發生保險事故者，本公司仍須負給付..."
+            }
+          ]
+        }
+      ],
+      "focus_score": 4,
+      "confidence": "parsed",
+      "documents": [
+        {
+          "file_name": "144313116058140001-F.pdf",
+          "document_type": "product_summary",
+          "document_kind": "pdf",
+          "file_size": 101590,
+          "page_count": 1,
+          "pages_parsed": 1,
+          "text_char_count": 2020,
+          "extraction_status": "extracted",
+          "extraction_method": "staged_text_quality",
+          "error": null
+        }
+      ]
+    }
+  ]
+}
